@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strings>
+	<aggregationlink>Search for other records in this Aggregation Set</aggregationlink>
+	<childidentifierlink>Show Child records</childidentifierlink>
+	<credit>Credit</credit>
+	<creditlink>Search for other records with this Credit</creditlink>
+	<lineage>Lineage</lineage>
+	<metadataInfo>Metadata Info</metadataInfo>
+	<parentidentifierlink>Show Parent record</parentidentifierlink>
+	<referenceSystemInfo>Reference System Info</referenceSystemInfo>
+	<siblingidentifierlink>Show Sibling records</siblingidentifierlink>
+	<spatialExtentTab>Spatial Extent</spatialExtentTab>
+	<temporalExtentTab>Temporal Ext.</temporalExtentTab>
+</strings>

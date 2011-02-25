@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+==============================================================================
+=== Build file to allow ant (http://jakarta.apache.org/ant/) to be used
+=== to build schema plugins.
+==============================================================================
+-->
+
+<project name="schemaPlugins" default="zip">
+
+    <description>
+      Build file for Geonetwork schema plugins.
+    </description>
+
+	<property name="dist" value="dist"/>
+
+	<!-- schema plugins to zip  -->
+	<property name="iso19139.anzlic" value="iso19139.anzlic"/>
+	<property name="iso19139.mcp" value="iso19139.mcp"/>
+	<property name="iso19139.mcp-1.4" value="iso19139.mcp-1.4"/>
+	<property name="anzmeta" value="anzmeta"/>
+
+	<!-- =============================================================== -->
+
+	<!-- Build schematrons from source, output to schema directories -->
+	<target name="schematrons">
+		<ant dir="schematrons" target="clean"/>
+		<ant dir="schematrons" target="schematron"/>
+	</target>
+	
+	<!-- =============================================================== -->
+
+	<!-- Create the zip archives in the ${dist} directory -->
+	<target name="zip" depends="schematrons">
+		<delete dir ="${dist}"/>
+		<mkdir dir ="${dist}"/>
+
+		<zip destfile="${dist}/${iso19139.anzlic}.zip" basedir="${iso19139.anzlic}" excludes=".svn" />
+		<zip destfile="${dist}/${iso19139.mcp}.zip" basedir="${iso19139.mcp}" excludes=".svn" />
+		<zip destfile="${dist}/${iso19139.mcp-1.4}.zip" basedir="${iso19139.mcp-1.4}" excludes=".svn" />
+		<zip destfile="${dist}/${anzmeta}.zip" basedir="${anzmeta}" excludes=".svn" />
+
+	</target>
+
+</project>

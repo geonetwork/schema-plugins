@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://bluenet3.antcrc.utas.edu.au/mcp" elementFormDefault="qualified" version="1.2" xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gsr="http://www.isotc211.org/2005/gsr" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gss="http://www.isotc211.org/2005/gss" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml" xmlns:srv="http://www.isotc211.org/2005/srv">
+
+	<xs:import namespace="http://www.isotc211.org/2005/gco" schemaLocation="../gco/gco.xsd"/>
+	<xs:import namespace="http://www.isotc211.org/2005/gts" schemaLocation="../gts/gts.xsd"/>
+	<xs:import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="../gmd/gmd.xsd"/>
+	<xs:import namespace="http://www.isotc211.org/2005/srv" schemaLocation="../srv/srv.xsd"/>
+	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="../gml/gml.xsd"/>
+
+	<xs:annotation>
+		<xs:documentation>
+This file contains extensions of the ISO19139 gmd schema 
+objects for the Australian Marine Community Profile Version 1.3-19139 and 
+1.4-19139
+
+Rules (added in August 2007) are read from schematrons and applied to 
+the XML as the second stage of a new validate function. The first stage of the 
+validate function checks against this schema definition file.
+
+History:
+
+Simon Pigot, January 2008 
+Added Creative Commons as a substitute for gmd:MD_Constraints
+
+Simon Pigot, December 2008
+Added DataParameters to mcp:MD_DataIndentification
+Added Data Commons as a substitute for gmd:MD_Constraints
+
+Craig Jones, May 2010
+Added dataObject to gmd:MD_ScopeCode code list.
+
+Simon Pigot, July 2010
+Reorganise for MCP 1.4. 
+
+		</xs:documentation>
+	</xs:annotation>
+
+<!-- ====================================================================== -->
+<!-- Extensions for currency and aggregationUnit elements EX_TemporalExtent -->
+<!-- ====================================================================== -->
+
+  <xs:element name="MD_CurrencyTypeCode" type="gco:CodeListValue_Type"/>
+
+  <xs:complexType name="MD_CurrencyTypeCode_PropertyType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="mcp:MD_CurrencyTypeCode"/>
+    </xs:sequence>
+    <xs:attribute ref="gco:nilReason"/>
+  </xs:complexType>
+
+  <xs:element name="MD_TemporalAggregationUnitCode" type="gco:CodeListValue_Type"/>
+
+  <xs:complexType name="MD_TemporalAggregationUnitCode_PropertyType">
+    <xs:sequence minOccurs="0">
+      <xs:element ref="mcp:MD_TemporalAggregationUnitCode"/>
+    </xs:sequence>
+    <xs:attribute ref="gco:nilReason"/>
+  </xs:complexType>
+
+	<xs:element name="EX_TemporalExtent" substitutionGroup="gmd:EX_TemporalExtent" type="mcp:EX_TemporalExtent_Type"/>
+
+	<xs:complexType name="EX_TemporalExtent_Type">
+		<xs:annotation>
+			<xs:documentation>
+				Adds currency and temporalAggregation to gmd:EX_TemporalExtent_Type
+				and temporarily - beginTime and endTime - these two should be deprecated
+				because the gml: constructs work correctly now
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="gmd:EX_TemporalExtent_Type">
+				<xs:sequence minOccurs="0">
+					<xs:element name="beginTime" minOccurs="0" maxOccurs="1" type="gco:DateTime_PropertyType"/>
+					<xs:element name="endTime" minOccurs="0" maxOccurs="1" type="gco:DateTime_PropertyType"/>
+					<xs:element name="currency" minOccurs="0" maxOccurs="1" type="mcp:MD_CurrencyTypeCode_PropertyType"/>
+					<xs:element name="temporalAggregation" minOccurs="0" maxOccurs="1" type="mcp:MD_TemporalAggregationUnitCode_PropertyType"/>
+				</xs:sequence>
+				<xs:attribute ref="gco:isoType" use="required" fixed="gmd:EX_TemporalExtent"/> 
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EX_TemporalExtent_PropertyType">
+		<xs:sequence>
+		 <xs:element ref="mcp:EX_TemporalExtent" minOccurs="1"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+
+<!-- ====================================================================== -->
+<!-- Add MD_Commons as a substitute for MD_Constraints -->
+<!-- ====================================================================== -->
+
+	<xs:element name="MD_Commons" substitutionGroup="gmd:MD_Constraints" type="mcp:MD_CommonsConstraints_Type"/>
+
+	<xs:complexType name="MD_CommonsConstraints_Type">
+		<xs:annotation>
+			<xs:documentation>
+				Add MD_Commons as an extension of gmd:MD_Constraints_Type
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="gmd:MD_Constraints_Type">
+				<xs:sequence minOccurs="0">
+					<xs:element name="jurisdictionLink" type="gmd:URL_PropertyType" minOccurs="1"/>
+      		<xs:element name="licenseLink" type="gmd:URL_PropertyType" minOccurs="1"/>
+      		<xs:element name="imageLink" type="gmd:URL_PropertyType" minOccurs="1"/>
+					<xs:element name="licenseName" type="gco:CharacterString_PropertyType" minOccurs="1"/>
+					<xs:element name="attributionConstraints" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="derivativeConstraints" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="commercialUseConstraints" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="collectiveWorksConstraints" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="otherConstraints" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute ref="mcp:commonsType" use="required"/> 
+				<xs:attribute ref="gco:isoType" use="required" fixed="gmd:MD_Constraints"/> 
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+<!-- ====================================================================== -->
+<!-- commonsType attribute -->
+<!-- ====================================================================== -->
+
+	<xs:attribute name="commonsType">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="Creative Commons"/>
+				<xs:enumeration value="Data Commons"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+
+<!-- ====================================================================== -->
+<!-- Add elements to MD_DataIdentification -->
+<!-- ====================================================================== -->
+
+	<xs:element name="MD_DataIdentification" substitutionGroup="gmd:AbstractMD_Identification" type="mcp:MD_DataIdentification_Type"/>
+
+	<xs:complexType name="MD_DataIdentification_Type">
+		<xs:complexContent>
+			<xs:extension base="gmd:MD_DataIdentification_Type">
+				<xs:sequence>
+					<xs:element name="samplingFrequency" type="gmd:MD_MaintenanceFrequencyCode_PropertyType" minOccurs="0"/>
+					<xs:element name="sensor" type="gco:ObjectReference_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="sensorCalibrationProcess" type="gco:ObjectReference_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="dataParameters" type="mcp:DP_DataParameters_PropertyType" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute ref="gco:isoType" use="required" fixed="gmd:MD_DataIdentification"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="MD_DataIdentification_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="mcp:MD_DataIdentification"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+
+	<!-- The data parameters definitions -->
+
+	<xs:element name="DP_TypeCode" type="gco:CodeListValue_Type" substitutionGroup="gco:CharacterString"/>
+
+	<xs:complexType name="DP_TypeCode_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="mcp:DP_TypeCode"/>
+		</xs:sequence>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+
+	<xs:complexType name="DP_Info_Type">
+		<xs:annotation>
+			<xs:documentation>Information about a Data Parameter or Units Name - 
+			- the name, 
+			- name type: short name, long name, code, or other name, 
+			- whether the name is actually used in dataset (boolean), 
+			- URL of register that holds the name (eg. AODCJF register), 
+			- version of the register that holds the name (eg. GCMD 1.6.1) 
+			- citation of authority that manages name (eg. AODCJF details), 
+			- local definition (usually used if no authority given)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="gco:AbstractObject_Type">
+				<xs:sequence minOccurs="1">
+					<xs:element name="name" type="gco:CharacterString_PropertyType" minOccurs="1"/>
+					<xs:element name="type" type="mcp:DP_TypeCode_PropertyType" minOccurs="1"/>
+					<xs:element name="usedInDataset" type="gco:Boolean_PropertyType" minOccurs="0"/>
+					<xs:element name="vocabularyListURL" type="gmd:URL_PropertyType" minOccurs="0"/>
+					<xs:element name="vocabularyListVersion" type="gco:CharacterString_PropertyType" minOccurs="0"/>
+					<xs:element name="vocabularyListAuthority" type="gmd:CI_Citation_PropertyType" minOccurs="0"/>
+					<xs:element name="localDefinition" type="gco:CharacterString_PropertyType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="DP_ParameterName" type="mcp:DP_Info_Type"/>
+
+	<xs:complexType name="DP_NameInfo_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="mcp:DP_ParameterName"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+
+	<xs:element name="DP_UnitsName" type="mcp:DP_Info_Type"/>
+
+	<xs:complexType name="DP_UnitsInfo_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="mcp:DP_UnitsName"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+
+	<xs:complexType name="DP_DataParameter_Type">
+		<xs:annotation>
+			<xs:documentation>Information about a Data Parameter</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="gco:AbstractObject_Type">
+				<xs:sequence minOccurs="1">
+					<xs:element name="parameterName" type="mcp:DP_NameInfo_PropertyType" minOccurs="1" maxOccurs="unbounded"/>
+					<xs:element name="parameterUnits" type="mcp:DP_UnitsInfo_PropertyType" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="parameterMinimumValue" type="gco:CharacterString_PropertyType" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="parameterMaximumValue" type="gco:CharacterString_PropertyType" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="parameterDescription" type="gco:CharacterString_PropertyType" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="DP_DataParameter" type="mcp:DP_DataParameter_Type"/>
+
+	<xs:complexType name="DP_DataParameter_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="mcp:DP_DataParameter"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+
+	<xs:complexType name="DP_DataParameters_Type">
+		<xs:annotation>
+			<xs:documentation>Information about each Data Parameter in a dataset</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="gco:AbstractObject_Type">
+				<xs:sequence minOccurs="1">
+					<xs:element name="dataParameter" type="mcp:DP_DataParameter_PropertyType" minOccurs="1" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="DP_DataParameters" type="mcp:DP_DataParameters_Type"/>
+
+	<xs:complexType name="DP_DataParameters_PropertyType">
+		<xs:annotation>
+			<xs:documentation>Information the Data Parameters in a dataset</xs:documentation>
+		</xs:annotation>
+		<xs:sequence minOccurs="0">
+			<xs:element ref="mcp:DP_DataParameters"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+
+<!-- NOTE: for geonetwork to be able to determine which elements to add 
+     during editing it is MANDATORY to extend the MD_Metadata element
+     with a namespace representing the profile - geonetwork can then look at
+     the prefix of the root node when it tries to work out which elements
+     to substitute during schema parsing -->
+
+<!-- ====================================================================== -->
+<!-- Add revisionDate to gmd:MD_Metadata -->
+<!-- ====================================================================== -->
+
+	<xs:complexType name="MD_Metadata_Type">
+		<xs:annotation>
+			<xs:documentation>
+Extends the metadata element to include revisionDate 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="gmd:MD_Metadata_Type">
+				<xs:sequence>
+					<xs:element name="revisionDate" type="gco:Date_PropertyType" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute ref="gco:isoType" use="required" fixed="gmd:MD_Metadata"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="MD_Metadata" substitutionGroup="gmd:MD_Metadata" type="mcp:MD_Metadata_Type"/>
+
+	<xs:complexType name="MD_Metadata_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="mcp:MD_Metadata"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+
+</xs:schema>
