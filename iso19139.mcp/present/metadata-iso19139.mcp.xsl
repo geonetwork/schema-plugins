@@ -312,24 +312,6 @@
 			<xsl:with-param name="edit" select="$edit"/>
 			<xsl:with-param name="content">
 
-							<script type="text/javascript">
-								function startTaxonSearch(inputFieldToUpdate) {
-									pars = "&amp;ref="+inputFieldToUpdate;
-									new Ajax.Request(
-										getGNServiceURL('prepare.taxon.search'),
-										{
-											method: 'get',
-											parameters: pars,
-											onSuccess: function(req) {
-												Modalbox.show(req.responseText ,{title: '{<xsl:value-of select="/root/gui/schemas/iso19139.mcp/strings/taxonSearch"/>}', height:600, width: 800} );
-											},
-											onFailure: function(req) {
-												alert("ERROR: "+getGNServiceURL('prepare.taxon.search')+" failed: status "+req.status+" text: "+req.statusText+" - Try again later?");
-											}
-										}
-									);
-								}
-							</script>
 
 			<xsl:call-template name="simpleElementGui">
 				<xsl:with-param name="schema" select="$schema"/>
@@ -375,7 +357,7 @@
 											</xsl:call-template>
 										</td>
 										<td class="padded" width="50%">
-											<button class="content" onclick="startTaxonSearch('_{../geonet:element/@ref}_{$updatename}');" type="button">
+											<button class="content" onclick="startTaxonSearch('_{../geonet:element/@ref}_{$updatename}','{/root/gui/schemas/iso19139.mcp/strings/taxonSearch}');" type="button">
 												<xsl:value-of select="/root/gui/schemas/iso19139.mcp/strings/taxonSearch"/>
 											</button>
 										</td>
