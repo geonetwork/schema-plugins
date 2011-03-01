@@ -16,13 +16,6 @@
 
 <xsl:strip-space elements="*"/>
 
-<!-- the originating source --> 
-<xsl:param name="origSource" select="/root/env/siteURL"/>
-
-<!-- the registry object group -->
-<xsl:param name="group" select="'Local Test'"/>
-
-
 <!--xsl:template match="oai:metadata|oai:ListRecords|oai:record">
    	<xsl:apply-templates/>
 </xsl:template-->
@@ -44,7 +37,7 @@
 <xsl:template match="mcp:MD_Metadata">
 	<xsl:element name="registryObjects">
 		<xsl:attribute name="xsi:schemaLocation">
-        	<xsl:text>http://ands.org.au/standards/iso2146/registryObjects http://services.ands.org.au/home/orca/schemata/registryObjects.xsd</xsl:text>
+        	<xsl:text>http://ands.org.au/standards/rif-cs/registryObjects http://services.ands.org.au/documentation/rifcs/schema/registryObjects.xsd</xsl:text>
 		</xsl:attribute>
 		<xsl:apply-templates select="." mode="collection"/>
 	</xsl:element>
@@ -71,6 +64,63 @@
 			<xsl:value-of select="concat('tel:',translate(translate(.,'+',''),' ','-'))"/>
 		</xsl:element>
 	</xsl:element>
+</xsl:template>
+
+<xsl:template match="gmd:electronicMailAddress[not(@gco:nilReason)]">
+	<xsl:element name="electronic">
+		<xsl:attribute name="type">
+			<xsl:text>email</xsl:text>
+		</xsl:attribute>
+		<xsl:element name="value">
+			<xsl:value-of select="."/>
+		</xsl:element>
+	</xsl:element>
+</xsl:template>
+
+<xsl:template match="gmd:URL[not(@gco:nilReason)]">
+	<xsl:element name="electronic">
+		<xsl:attribute name="type">
+			<xsl:text>url</xsl:text>
+		</xsl:attribute>
+		<xsl:element name="value">
+			<xsl:value-of select="."/>
+		</xsl:element>
+	</xsl:element>
+</xsl:template>
+
+
+
+<xsl:template match="gml:timePosition[not(@gco:nilReason)]">
+    <xsl:choose>
+        <xsl:when test='contains(., "T")'>
+            <xsl:value-of select="."/>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:value-of select="concat(., 'T00:00:00Z')"/> 
+        </xsl:otherwise>
+    </xsl:choose>
+</xsl:template>
+
+<xsl:template match="gml:beginPosition[not(@gco:nilReason)]">
+    <xsl:choose>
+        <xsl:when test='contains(., "T")'>
+            <xsl:value-of select="."/>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:value-of select="concat(., 'T00:00:00Z')"/> 
+        </xsl:otherwise>
+    </xsl:choose>
+</xsl:template>
+
+<xsl:template match="gml:endPosition[not(@gco:nilReason)]">
+    <xsl:choose>
+        <xsl:when test='contains(., "T")'>
+            <xsl:value-of select="."/>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:value-of select="concat(., 'T00:00:00Z')"/> 
+        </xsl:otherwise>
+    </xsl:choose>
 </xsl:template>
 
 
@@ -193,8 +243,6 @@
 		<xsl:value-of select="."/>
 	</xsl:element>
 </xsl:template>
-
-
 <xsl:template match="gmd:abstract">
 	<xsl:element name="description">
 		<xsl:attribute name="type">
@@ -208,50 +256,59 @@
 	CREATE COLLECTION OBJECT
 -->
 <xsl:template match="mcp:MD_Metadata" mode="collection">
+
+
+<!-- the originating source --> 
+  <xsl:param name="origSource" select="/root/env/siteURL"/>
+        
+    <!-- the registry object group -->
+    <xsl:param name="group" select="/root/env/siteName"/>
+
+    <xsl:variable name="originatingSource" select="gmd:identificationInfo/mcp:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL"/>
 	<xsl:variable name="ge" select="gmd:identificationInfo/mcp:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement"/>
-	<xsl:variable name="te" select="gmd:identificationInfo/mcp:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement"/>
+	<xsl:variable name="te" select="gmd:identificationInfo/mcp:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/mcp:EX_TemporalExtent|gmd:identificationInfo/mcp:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent"/>
 	<xsl:variable name="ve" select="gmd:identificationInfo/mcp:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement"/>
 	
-	<xsl:variable name="formattedFrom">
+    <xsl:variable name="formattedFrom">
 		<xsl:choose>
-			<xsl:when test="$te[1]/mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:beginPosition">
-				<xsl:value-of select="$te[1]/mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:beginPosition"/>
+			<xsl:when test="$te[1]/gmd:extent/gml:TimePeriod/gml:beginPosition">
+				<xsl:apply-templates select="$te[1]/gmd:extent/gml:TimePeriod/gml:beginPosition"/>
 			</xsl:when>
-			<xsl:when test="$te[1]/mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:begin/gml:TimeInstant/gml:timePosition">
-				<xsl:value-of select="$te[1]/mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:begin/gml:TimeInstant/gml:timePosition"/>
+			<xsl:when test="$te[1]/gmd:extent/gml:TimePeriod/gml:begin/gml:TimeInstant/gml:timePosition">
+				<xsl:apply-templates select="$te[1]/gmd:extent/gml:TimePeriod/gml:begin/gml:TimeInstant/gml:timePosition"/>
 			</xsl:when>
 		</xsl:choose>					
 	</xsl:variable>
 			
 	<xsl:variable name="formattedTo">
 		<xsl:choose>
-			<xsl:when test="$te[position()=last()]/mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:endPosition">
-				<xsl:value-of	select="$te[position()=last()]/mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:endPosition"/>
+			<xsl:when test="$te[position()=last()]/gmd:extent/gml:TimePeriod/gml:endPosition">
+				<xsl:apply-templates select="$te[position()=last()]/gmd:extent/gml:TimePeriod/gml:endPosition"/>
 			</xsl:when>
-			<xsl:when test="$te[position()=last()]/mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:end/gml:TimeInstant/gml:timePosition">
-				<xsl:value-of select="$te[position()=last()]/mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:end/gml:TimeInstant/gml:timePosition"/>
+			<xsl:when test="$te[position()=last()]/gmd:extent/gml:TimePeriod/gml:end/gml:TimeInstant/gml:timePosition">
+				<xsl:apply-templates select="$te[position()=last()]/gmd:extent/gml:TimePeriod/gml:end/gml:TimeInstant/gml:timePosition"/>
 			</xsl:when>
 		</xsl:choose>
 	</xsl:variable>
 
 	<xsl:variable name="from">
 		<xsl:choose>
-			<xsl:when test="$te[1]/mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:beginPosition">
-				<xsl:value-of select="$te[1]/mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:beginPosition"/>
+			<xsl:when test="$te[1]/gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:beginPosition">
+				<xsl:value-of select="$te[1]/gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:beginPosition"/>
 			</xsl:when>
-			<xsl:when test="$te[1]/mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:begin/gml:TimeInstant/gml:timePosition">
-				<xsl:value-of select="$te[1]/mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:begin/gml:TimeInstant/gml:timePosition"/>
+			<xsl:when test="$te[1]/gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:begin/gml:TimeInstant/gml:timePosition">
+				<xsl:value-of select="$te[1]/gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:begin/gml:TimeInstant/gml:timePosition"/>
 			</xsl:when>
 		</xsl:choose>
 	</xsl:variable>
 			
 	<xsl:variable name="to">
 		<xsl:choose>
-			<xsl:when test="$te[position()=last()]/mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:endPosition">
-				<xsl:value-of	select="$te[position()=last()]/mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:endPosition"/>
+			<xsl:when test="$te[position()=last()]/gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:endPosition">
+				<xsl:value-of	select="$te[position()=last()]/gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:endPosition"/>
 			</xsl:when>
-			<xsl:when test="$te[position()=last()]/mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:end/gml:TimeInstant/gml:timePosition">
-				<xsl:value-of select="$te[position()=last()]/mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:end/gml:TimeInstant/gml:timePosition"/>
+			<xsl:when test="$te[position()=last()]/gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:end/gml:TimeInstant/gml:timePosition">
+				<xsl:value-of select="$te[position()=last()]/gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod/gml:end/gml:TimeInstant/gml:timePosition"/>
 			</xsl:when>
 		</xsl:choose>
 	</xsl:variable>
@@ -264,7 +321,14 @@
 			<xsl:value-of select="gmd:fileIdentifier"/>
 		</xsl:element>
 		<xsl:element name="originatingSource">
-			<xsl:value-of select="$origSource"/>
+            <xsl:choose>
+                <xsl:when test="not($originatingSource)">
+                    <xsl:value-of select="$origSource"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$originatingSource"/>
+                </xsl:otherwise>
+            </xsl:choose>
 		</xsl:element>
 		<xsl:element name="collection">
 			<xsl:attribute name="type">
@@ -297,7 +361,7 @@
 						</xsl:attribute>
 						<xsl:element name="value">
 							<xsl:variable name="url">
-								<xsl:value-of select="gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions[1]/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:linkage[following-sibling::gmd:description = 'Point of truth URL of this metadata record']/gmd:URL"/>	
+								<xsl:value-of select="gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions[1]/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:linkage[following-sibling::gmd:description  ='Point of truth URL of this metadata record']/gmd:URL"/>	
 							</xsl:variable>
 							<xsl:choose>
 								<xsl:when test="not($url='')">
@@ -340,10 +404,20 @@
 			</xsl:if>
 
 			<!-- related parties generated here -->
-			<xsl:for-each-group select="descendant::gmd:CI_ResponsibleParty[gmd:individualName[not(@gco:nilReason)] and not(gmd:role/gmd:CI_RoleCode/@codeListValue='')]" group-by="gmd:individualName">
+			<xsl:for-each-group select="descendant::gmd:CI_ResponsibleParty[(gmd:individualName[not(@gco:nilReason)] or gmd:positionName[not(@gco:nilReason)] or gmd:organisationName[not(@gco:nilReason)]) and not(gmd:role/gmd:CI_RoleCode/@codeListValue='')]"  group-by="gmd:role/gmd:CI_RoleCode">
 				<xsl:element name="relatedObject">
 					<xsl:element name="key">
-						<xsl:value-of select="current-grouping-key()"/>
+                    <xsl:choose>                        
+                        <xsl:when test="string(gmd:individualName)">
+                            <xsl:value-of select="gmd:individualName" />
+                        </xsl:when>                        
+                        <xsl:when test="string(gmd:positionName)">
+                            <xsl:value-of select="gmd:positionName"/>
+                        </xsl:when>
+                        <xsl:otherwise>                            
+                            <xsl:value-of select="gmd:organisationName"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
 					</xsl:element>	
 					<xsl:for-each-group select="gmd:role" group-by="gmd:CI_RoleCode/@codeListValue">
 						<xsl:variable name="code">
@@ -386,13 +460,38 @@
 				</xsl:element>
 			</xsl:for-each-group>
 			
-			<xsl:apply-templates select="gmd:identificationInfo/mcp:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword"/>
-
+            <xsl:apply-templates select="gmd:identificationInfo/mcp:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword"/>
 			<xsl:apply-templates select="gmd:identificationInfo/mcp:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode"/>
-			
 			<xsl:apply-templates select="gmd:identificationInfo/mcp:MD_DataIdentification/gmd:abstract"/>
-		
-			<xsl:if test="$te/mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod">
+
+
+            <!-- for access constraints -->
+            <xsl:variable name="legals" select="descendant::gmd:resourceConstraints[not(@gco:nilReason)]/*"/>
+            
+                        <xsl:for-each select="$legals/node()">
+                <xsl:element name="description">
+                    <xsl:attribute name="type">
+                        <xsl:choose>
+                            <xsl:when test="name(.) eq 'gmd:accessConstraints'">
+                                <xsl:text>accessRights</xsl:text>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:text>rights</xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
+                    <xsl:choose>
+                        <xsl:when test="gmd:MD_RestrictionCode">
+                            <xsl:value-of select="gmd:MD_RestrictionCode/@codeListValue" />
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="." />
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:element>
+            </xsl:for-each>
+
+<xsl:if test="$te/mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod">
 				
 				<xsl:if test="not($from='') and $formattedFrom=''">
 					<xsl:element name="description">
@@ -414,22 +513,51 @@
 			</xsl:if>		
 		</xsl:element>
 	</xsl:element>
-	  
-	<!-- Create all the associated party objects for individuals -->
-	<xsl:for-each-group select="descendant::gmd:CI_ResponsibleParty[gmd:individualName[not(@gco:nilReason)] and not(gmd:role/gmd:CI_RoleCode/@codeListValue='')]" group-by="gmd:individualName">
+	<xsl:for-each-group select="descendant::gmd:CI_ResponsibleParty[(gmd:individualName[not(@gco:nilReason)] or gmd:positionName[not(@gco:nilReason)] or gmd:organisationName[not(@gco:nilReason)]) and not(gmd:role/gmd:CI_RoleCode/@codeListValue='')]" group-by="gmd:role/gmd:CI_RoleCode">
 		<xsl:element name="registryObject">
 			<xsl:attribute name="group">
 				<xsl:value-of select="$group"/>
 			</xsl:attribute>
-			<xsl:element name="key">
-				<xsl:value-of select="current-grouping-key()"/>
+                <xsl:element name="key">
+                    <xsl:choose>
+                        <xsl:when test="string(gmd:individualName)">
+                            <xsl:value-of select="gmd:individualName" />
+                        </xsl:when>
+                        <xsl:when test="string(gmd:positionName)">
+                            <xsl:value-of select="gmd:positionName"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="gmd:organisationName"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+				<!--<xsl:value-of select="current-grouping-key()"/> -->
 			</xsl:element>
 			<xsl:element name="originatingSource">
-				<xsl:value-of select="$origSource"/>
+            <xsl:choose>
+                 <xsl:when test="not($originatingSource)">
+                        <xsl:value-of select="$origSource"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="$originatingSource"/>
+                    </xsl:otherwise>
+                </xsl:choose>
 			</xsl:element>
 			<xsl:element name="party">
 				<xsl:attribute name="type">
-					<xsl:text>person</xsl:text>
+                   <xsl:choose>
+                        <xsl:when test="string(gmd:individualName)">
+                            <xsl:value-of select="'person'" />                        
+                        </xsl:when>
+                        <xsl:when test="string(gmd:positionName)">
+                            <xsl:value-of select="'person'"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="'group'"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+
+
+					<!--<xsl:text>person</xsl:text>-->
 				</xsl:attribute>
 				<xsl:element name="name">
 					<xsl:attribute name="type">
@@ -439,7 +567,19 @@
 						<xsl:attribute name="type">
 							<xsl:text>full</xsl:text>
 						</xsl:attribute>
-						<xsl:value-of select="current-grouping-key()"/>
+                        <xsl:choose>
+                            <xsl:when test="string(gmd:individualName)">
+                                <xsl:value-of select="gmd:individualName" />
+                            </xsl:when>
+                            <xsl:when test="string(gmd:positionName)">
+                                <xsl:value-of select="gmd:positionName"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="gmd:organisationName"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+
+						<!--<xsl:value-of select="current-grouping-key()"/>-->
 					</xsl:element>
 				</xsl:element>
 				
@@ -448,12 +588,9 @@
 					<xsl:sort select="count(gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/child::*) + count(gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/child::*)" data-type="number" order="descending"/>
 					<xsl:choose>
 						<xsl:when test="position()=1">
-							<xsl:if test="gmd:organisationName[not(@gco:nilReason)] or gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:city or gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone[gmd:voice or gmd:fax]">
+							<xsl:if test="gmd:organisationName[not(@gco:nilReason)] or gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:city or gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone[gmd:voice or gmd:facsimile]">
 								<xsl:element name="location">
 									<xsl:element name="address">
-										<xsl:apply-templates select="gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone[not(gmd:voice='')]"/>
-										<xsl:apply-templates select="gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone[not(gmd:facsimile='')]"/>
-
 										<xsl:element name="physical">
 											<xsl:attribute name="type">
 												<xsl:text>streetAddress</xsl:text>
@@ -466,13 +603,35 @@
 											<xsl:apply-templates select="gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:country"/>
 										</xsl:element>
 									</xsl:element>
-								</xsl:element>
+								    <xsl:if test="gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone[gmd:voice or gmd:facsimile] or gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress or gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL">
+                                        <xsl:if test="gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice">
+                                            <xsl:element name="address">
+                                                <xsl:apply-templates select="gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice"/>
+                                            </xsl:element>
+                                        </xsl:if>
+                                        <xsl:if test="gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:facsimile">
+                                            <xsl:element name="address">
+                                                <xsl:apply-templates select="gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:facsimile"/>
+                                            </xsl:element>
+                                        </xsl:if>
+                                        <xsl:if test="gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress">
+                                            <xsl:element name="address">
+                                                <xsl:apply-templates select="gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress"/>
+                                            </xsl:element>
+                                        </xsl:if>
+                                        <xsl:if test="gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL">
+                                            <xsl:element name="address">
+                                                <xsl:apply-templates select="gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL"/>
+                                            </xsl:element>
+                                        </xsl:if>
+                                    </xsl:if>
+                                </xsl:element>
 							</xsl:if>
 						</xsl:when>
 					</xsl:choose>
 				</xsl:for-each>
-		
-				<xsl:element name="relatedObject">
+
+               <xsl:element name="relatedObject">
 					<xsl:element name="key">
 						<xsl:value-of select="ancestor::mcp:MD_Metadata/gmd:fileIdentifier"/>
 					</xsl:element>	
@@ -503,7 +662,14 @@
 				<xsl:value-of select="current-grouping-key()"/>
 			</xsl:element>
 			<xsl:element name="originatingSource">
-				<xsl:value-of select="$origSource"/>
+                <xsl:choose>
+                    <xsl:when test="not($originatingSource)">
+                        <xsl:value-of select="$origSource"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="$originatingSource"/>
+                    </xsl:otherwise>
+                </xsl:choose>
 			</xsl:element>
 			<xsl:element name="party">
 				<xsl:attribute name="type">
@@ -546,7 +712,7 @@
 									</xsl:element>
 								</xsl:element>
 							</xsl:if>
-						</xsl:when>
+                        </xsl:when>
 					</xsl:choose>
 				</xsl:for-each>
 		
