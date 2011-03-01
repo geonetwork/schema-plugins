@@ -16,6 +16,8 @@
     <p>add-extent-from-geokeywords</p>
     <p>add-info-from-wms</p>
     <p>inspire-add-conformity</p>
+    <p>linked-data-checker</p>
+    <p>related-metadata-checker</p>
   </xsl:variable>
   
   <xsl:param name="action" select="'list'"/>
