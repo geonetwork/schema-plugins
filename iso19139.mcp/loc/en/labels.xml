@@ -136,6 +136,16 @@
 		<description>Commons Constraints on metadata or resource eg. creative commons</description>
 	</element>
 	<!-- ==================================================== -->
+	<element name="mcp:MD_CreativeCommons">
+		<label>Creative Commons License (deprecated)</label>
+		<description>Creative Commons License (deprecated)</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:MD_DataCommons">
+		<label>Data Commons License (deprecated)</label>
+		<description>Data Commons License (deprecated)</description>
+	</element>
+	<!-- ==================================================== -->
 	<element name="mcp:attributionConstraints">
 		<label>Attribution Constraints</label>
 		<description>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema targetNamespace="http://bluenet3.antcrc.utas.edu.au/mcp" elementFormDefault="qualified" version="1.2" xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gsr="http://www.isotc211.org/2005/gsr" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gss="http://www.isotc211.org/2005/gss" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml" xmlns:srv="http://www.isotc211.org/2005/srv">
+<xs:schema targetNamespace="http://bluenet3.antcrc.utas.edu.au/mcp" elementFormDefault="qualified" version="1.5" xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gsr="http://www.isotc211.org/2005/gsr" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gss="http://www.isotc211.org/2005/gss" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml" xmlns:srv="http://www.isotc211.org/2005/srv">
 
 	<xs:import namespace="http://www.isotc211.org/2005/gco" schemaLocation="../gco/gco.xsd"/>
 	<xs:import namespace="http://www.isotc211.org/2005/gts" schemaLocation="../gts/gts.xsd"/>
@@ -370,6 +370,69 @@ Extends the metadata element to include revisionDate
 		</xs:sequence>
 		<xs:attributeGroup ref="gco:ObjectReference"/>
 		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+
+<!-- ====================================================================== -->
+<!-- DEPRECATED - elements below this are present but their use is          -->
+<!-- no longer supported and they may be deleted in future versions         -->
+<!-- ====================================================================== -->
+
+<!-- ====================================================================== -->
+<!-- Add MD_CreativeCommons as a substitute for MD_Constraints -->
+<!-- ====================================================================== -->
+
+	<xs:element name="MD_CreativeCommons" substitutionGroup="gmd:MD_Constraints" type="mcp:MD_CreativeCommonsConstraints_Type"/>
+
+	<xs:complexType name="MD_CreativeCommonsConstraints_Type">
+		<xs:annotation>
+			<xs:documentation>
+				Add MD_CreativeCommons as an extension of gmd:MD_Constraints_Type
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="gmd:MD_Constraints_Type">
+				<xs:sequence minOccurs="0">
+					<xs:element name="jurisdictionLink" type="gmd:URL_PropertyType" minOccurs="1"/>
+      		<xs:element name="licenseLink" type="gmd:URL_PropertyType" minOccurs="1"/>
+      		<xs:element name="imageLink" type="gmd:URL_PropertyType" minOccurs="1"/>
+					<xs:element name="licenseName" type="gco:CharacterString_PropertyType" minOccurs="1"/>
+					<xs:element name="attributionConstraints" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="otherConstraints" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute ref="gco:isoType" use="required" fixed="gmd:MD_Constraints"/> 
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+<!-- ====================================================================== -->
+<!-- Add MD_DataCommons as a substitute for MD_Constraints -->
+<!-- ====================================================================== -->
+
+	<xs:element name="MD_DataCommons" substitutionGroup="gmd:MD_Constraints" type="mcp:MD_DataCommonsConstraints_Type"/>
+
+	<xs:complexType name="MD_DataCommonsConstraints_Type">
+		<xs:annotation>
+			<xs:documentation>
+				Add MD_DataCommons as an extension of gmd:MD_Constraints_Type
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="gmd:MD_Constraints_Type">
+				<xs:sequence minOccurs="0">
+					<xs:element name="jurisdictionLink" type="gmd:URL_PropertyType" minOccurs="1"/>
+      		<xs:element name="licenseLink" type="gmd:URL_PropertyType" minOccurs="1"/>
+      		<xs:element name="imageLink" type="gmd:URL_PropertyType" minOccurs="1"/>
+					<xs:element name="licenseName" type="gco:CharacterString_PropertyType" minOccurs="1"/>
+					<xs:element name="attributionConstraints" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="derivativeConstraints" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="commercialUseConstraints" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="collectiveWorksConstraints" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="otherConstraints" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute ref="gco:isoType" use="required" fixed="gmd:MD_Constraints"/> 
+			</xs:extension>
+		</xs:complexContent>
 	</xs:complexType>
 
 </xs:schema>
