@@ -21,6 +21,9 @@
 		<ant target="clean-schema-dir">
 			<property name="schema" value="anzmeta" />
 		</ant>
+		<ant target="clean-schema-dir">
+			<property name="schema" value="eml-gbif" />
+		</ant>
 	</target>
 
 	<target name="clean-schema-dir">
@@ -86,6 +89,11 @@
 		<ant target="publish-schematron">
 			<property name="rules" value="none" />
 			<property name="schema" value="anzmeta" />
+		</ant>
+		<!-- eml-gbif -->
+		<ant target="publish-schematron">
+			<property name="rules" value="none" />
+			<property name="schema" value="eml-gbif" />
 		</ant>
 	</target>
 
