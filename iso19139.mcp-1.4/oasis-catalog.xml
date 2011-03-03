@@ -11,7 +11,7 @@
 	<!-- These are to map schemaLocation hints to local schemas to make sure that
 			 GeoNetwork edits and validates against a schema it knows about -->
 
-	<system systemId="http://bluenet3.antcrc.utas.edu.au/mcp/schema.xsd" 
+	<system systemId="http://bluenet3.antcrc.utas.edu.au/mcp-1.4/schema.xsd" 
 	        uri="schema/extensions/mcpExtensions.xsd"/>
 
 </catalog>
