@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.osgeo.org/geonetwork/schemas/geonet_schema" schemaLocation="http://www.osgeo.org/geonetwork/schemas/geonet_schema http://www.osgeo.org/geonetwork/schemas/geonet_schema/geonet_schema.xsd">
+	<name>eml-gbif</name>
+	<id>42e2724c-ddda-11df-a6c5-001c2346de4d</id>
+	<version>2.1.1</version>
+	<autodetect xmlns:eml="eml://ecoinformatics.org/eml-2.1.1">
+		<elements type="root">
+			<eml:eml/>
+		</elements>
+	</autodetect>
+</schema>

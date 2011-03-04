@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<fields>	
+	<field name="eml:eml">
+		<suggest name="dataset"/>
+	</field>
+
+	<field name="dataset">
+		<suggest name="alternateIdentifier"/>
+		<suggest name="title"/>
+		<suggest name="creator"/>
+		<suggest name="metadataProvider"/>
+		<suggest name="associatedParty"/>
+		<suggest name="pubDate"/>
+		<suggest name="abstract"/>
+		<suggest name="keywordSet"/>
+		<suggest name="additionalInfo"/>
+		<suggest name="intellectualRights"/>
+		<suggest name="distribution"/>
+		<suggest name="coverage"/>
+		<suggest name="purpose"/>
+		<suggest name="contact"/>
+	</field> 
+
+	<field name="creator">
+		<suggest name="address"/>
+		<suggest name="phone"/>
+		<suggest name="electronicMailAddress"/>
+		<suggest name="onlineUrl"/>
+	</field>
+
+	<field name="metadataProvider">
+		<suggest name="address"/>
+		<suggest name="phone"/>
+		<suggest name="electronicMailAddress"/>
+		<suggest name="onlineUrl"/>
+	</field>
+
+	<field name="associatedParty">
+		<suggest name="address"/>
+		<suggest name="phone"/>
+		<suggest name="electronicMailAddress"/>
+		<suggest name="onlineUrl"/>
+		<suggest name="role"/>
+	</field>
+
+	<field name="address">
+		<suggest name="deliveryPoint"/>
+		<suggest name="city"/>
+		<suggest name="administrativeArea"/>
+		<suggest name="postalCode"/>
+		<suggest name="country"/>
+	</field>
+
+	<field name="distribution">
+		<suggest name="online"/>
+	</field>
+
+	<field name="contact">
+		<suggest name="individualName"/>
+		<suggest name="organizationName"/>
+		<suggest name="positionName"/>
+		<suggest name="address"/>
+		<suggest name="phone"/>
+		<suggest name="electronicMailAddress"/>
+		<suggest name="onlineUrl"/>
+	</field>
+
+	<field name="individualName">
+		<suggest name="givenName"/>
+		<suggest name="surName"/>
+	</field>
+
+</fields>
