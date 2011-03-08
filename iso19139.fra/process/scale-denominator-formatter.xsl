@@ -3,6 +3,16 @@
   xmlns:geonet="http://www.fao.org/geonetwork" xmlns:gco="http://www.isotc211.org/2005/gco"
   xmlns:gmd="http://www.isotc211.org/2005/gmd" version="2.0">
 
+  <xsl:import href="process-utility.xsl"/>
+  
+  <!-- i18n information -->
+  <xsl:variable name="scale-denominator-loc">
+    <msg id="a" xml:lang="en">The following values are not recommended for scale denominator: </msg>
+    <msg id="b" xml:lang="en">. Run this task to try to fix it(them).</msg>
+    <msg id="a" xml:lang="fr">Les valeurs suivantes ne sont pas recommandées pour le dénominateur de l'échelle : </msg>
+    <msg id="b" xml:lang="fr">). Exécuter cette action pour le corriger.</msg>
+  </xsl:variable>
+
   <xsl:template name="list-scale-denominator-formatter">
     <suggestion process="scale-denominator-formatter"/>
   </xsl:template>
@@ -15,9 +25,11 @@
       select="string-join($root//gmd:equivalentScale/gmd:MD_RepresentativeFraction/
                 gmd:denominator[contains(gco:Integer, '/') or contains(gco:Integer, ':') or contains(gco:Integer, ' ')], ', ')"/>
     <xsl:if test="$dummyScales!=''">
-      <suggestion process="scale-denominator-formatter" category="identification" target="scale">
-        <name xml:lang="en">The following values are not recommended for scale denominator: <xsl:value-of select="$dummyScales"/>. Run
-          this task to try to fix it(them).</name>
+      <suggestion process="scale-denominator-formatter" id="{generate-id()}" category="identification" target="scale">
+        <name><xsl:value-of select="geonet:i18n($scale-denominator-loc, 'a', $guiLang)"/>
+          <xsl:value-of select="$dummyScales"/>
+          <xsl:value-of select="geonet:i18n($scale-denominator-loc, 'b', $guiLang)"/>
+        </name>
         <operational>true</operational>
         <form/>
       </suggestion>

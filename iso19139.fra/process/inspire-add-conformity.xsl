@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
+  xmlns:geonet="http://www.fao.org/geonetwork"
   xmlns:gml="http://www.opengis.net/gml" xmlns:srv="http://www.isotc211.org/2005/srv"
   xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gmd="http://www.isotc211.org/2005/gmd"
   xmlns:skos="http://www.w3.org/2004/02/skos/core#" exclude-result-prefixes="gmd">
-
+  
+  <xsl:import href="process-utility.xsl"/>
+  
   <xsl:param name="dataDir"/>
-
+  
+  <!-- i18n information -->
+  <xsl:variable name="inspire-conformity-loc">
+    <msg id="a" xml:lang="en"> INSPIRE theme found. Run this task to add an INSPIRE conformity section.</msg>
+    <msg id="a" xml:lang="fr"> est un thème INSPIRE. Exécuter cette action pour ajouter une section conformité INSPIRE.</msg>
+  </xsl:variable>
+  
   <!-- TODO : retrieve local copy -->
-  <!--<xsl:variable name="inspire-thesaurus"
-    select="document(concat($dataDir, '/codelist/external/thesauri/theme/inspire-theme.rdf'))"/>-->
   <xsl:variable name="inspire-thesaurus"
-    select="document('http://geonetwork.svn.sourceforge.net/svnroot/geonetwork/utilities/gemet/thesauri/inspire-theme.rdf')"/>
+    select="document(concat(system-property(concat(substring-after($baseUrl, '/'), '.data.dir')), '/codelist/external/thesauri/theme/inspire-theme.rdf'))"/>
+  <!--<xsl:variable name="inspire-thesaurus"
+    select="document('http://geonetwork.svn.sourceforge.net/svnroot/geonetwork/utilities/gemet/thesauri/inspire-theme.rdf')"/>-->
   
   <xsl:variable name="inspire-theme" select="$inspire-thesaurus//skos:Concept"/>
 
@@ -23,17 +32,17 @@
     for that process -->
   <xsl:template name="analyze-inspire-add-conformity">
     <xsl:param name="root"/>
+    
     <xsl:variable name="keywords" select="$root//gmd:keyword"/>
-    <!-- TODO : PT_FreeText -->
+    <!-- TODO : PT_FreeText ? -->
     <xsl:for-each select="$keywords">
       <xsl:variable name="keyword" select="gco:CharacterString"/>
       <xsl:variable name="inspire-theme-found"
         select="count($inspire-thesaurus//skos:Concept[skos:prefLabel = $keyword])"/>
-      
       <!-- Check no conformity -->
-      <xsl:if test="$inspire-theme-found">
+      <xsl:if test="$inspire-theme-found and count($root//gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title[contains(gco:CharacterString, 'INSPIRE')])=0">
         <suggestion process="inspire-add-conformity" category="keyword" target="keyword">
-          <name xml:lang="en">"<xsl:value-of select="$keyword"/>" INSPIRE theme found. Run this task to add an INSPIRE conformity section.</name>
+          <name><xsl:value-of select="$keyword"/> <xsl:value-of select="geonet:i18n($inspire-conformity-loc, 'a', $guiLang)"/></name>
           <operational>true</operational>
           <form/>
         </suggestion>
@@ -42,6 +51,11 @@
 
     
   </xsl:template>
+
+
+  <!-- Remove geonet:* elements. -->
+  <xsl:template match="geonet:*" priority="2"/>
+
 
   <!-- ================================================================= -->
   <!-- Add a dataQuality section to set INSPIRE conformance result     

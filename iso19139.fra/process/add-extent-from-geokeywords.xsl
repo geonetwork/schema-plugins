@@ -6,6 +6,14 @@
 
   <xsl:import href="process-utility.xsl"/>
 
+  <!-- i18n information -->
+  <xsl:variable name="add-extent-loc">
+    <msg id="a" xml:lang="en">Keyword field contains place keywords (ie. </msg>
+    <msg id="b" xml:lang="en">). Try to compute metadata extent using thesaurus.</msg>
+    <msg id="a" xml:lang="fr">Certains mots clés sont de type géographique (ie. </msg>
+    <msg id="b" xml:lang="fr">). Exécuter cette action pour essayer de calculer l'emprise à partir des thésaurus.</msg>
+  </xsl:variable>
+
   <!-- GeoNetwork base url -->
   <xsl:param name="gurl" select="'http://localhost:8080/geonetwork'"/>
 
@@ -43,9 +51,9 @@
                       and not(contains($extentDescription, gco:CharacterString))
                       and ../gmd:type/gmd:MD_KeywordTypeCode/@codeListValue='place']"/>
     <xsl:if test="$geoKeywords">
-      <suggestion process="add-extent-from-geokeywords" category="keyword" target="extent">
-        <name xml:lang="en"><xsl:value-of select="string-join($geoKeywords, ', ')"/> is(are) place
-          keyword(s). Try to compute metadata extent using thesaurus.</name>
+      <suggestion process="add-extent-from-geokeywords" id="{generate-id()}" category="keyword" target="extent">
+        <name><xsl:value-of select="geonet:i18n($add-extent-loc, 'a', $guiLang)"/><xsl:value-of select="string-join($geoKeywords, ', ')"/>
+          <xsl:value-of select="geonet:i18n($add-extent-loc, 'b', $guiLang)"/></name>
         <operational>true</operational>
         <params>{gurl:{type:'string', defaultValue:'<xsl:value-of select="$gurl"/>'},
           lang:{type:'string', defaultValue:'<xsl:value-of select="$lang"/>'},

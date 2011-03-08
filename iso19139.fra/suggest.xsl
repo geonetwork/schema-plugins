@@ -10,6 +10,8 @@
   <xsl:include href="process/add-extent-from-geokeywords.xsl"/>
   <xsl:include href="process/add-info-from-wms.xsl"/>
   <xsl:include href="process/inspire-add-conformity.xsl"/>
+  <xsl:include href="process/linked-data-checker.xsl"/>
+  <xsl:include href="process/related-metadata-checker.xsl"/>
   <xsl:variable name="processes">
     <p>keywords-comma-exploder</p>
     <p>scale-denominator-formatter</p>

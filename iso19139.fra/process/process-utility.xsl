@@ -4,12 +4,26 @@
   xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:srv="http://www.isotc211.org/2005/srv"
   xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:xs="http://www.w3.org/2001/XMLSchema"
   version="2.0" exclude-result-prefixes="exslt">
-
+  
+  <!-- Language of the GUI -->
+  <xsl:param name="guiLang" select="'en'"/>
+  <xsl:param name="baseUrl" select="''"/>
+  
   <!-- Search for any of the searchStrings provided -->
   <xsl:function name="geonet:parseBoolean" as="xs:boolean">
     <xsl:param name="arg"/>
     <xsl:value-of
       select="if ($arg='on' or $arg=true() or $arg='true' or $arg='1') then true() else false()"/>
+  </xsl:function>
+
+  <!-- Return the message identified by the id in the required language
+  or return the english message if not found. -->
+  <xsl:function name="geonet:i18n" as="xs:string">
+    <xsl:param name="loc"/>
+    <xsl:param name="id"/>
+    <xsl:param name="lang"/>
+    <xsl:value-of
+      select="if ($loc/msg[@id=$id and @xml:lang=$lang]) then $loc/msg[@id=$id and @xml:lang=$lang] else $loc/msg[@id=$id and @xml:lang='en']"/>
   </xsl:function>
 
   <!-- 
@@ -19,8 +33,9 @@
     <xsl:param name="url" as="xs:string"/>
     <xsl:param name="version" as="xs:string"/>
     
+    <xsl:variable name="sep" select="if (contains($url, '?')) then '&amp;' else '?'"/>
     <xsl:copy-of
-      select="document(concat($url, '?SERVICE=WMS&amp;VERSION=', $version, '&amp;REQUEST=GetCapabilities'))"/>
+      select="document(concat($url, $sep, 'SERVICE=WMS&amp;VERSION=', $version, '&amp;REQUEST=GetCapabilities'))"/>
     
   </xsl:function>
 

@@ -7,13 +7,24 @@
 
   <xsl:import href="process-utility.xsl"/>
 
+  <!-- i18n information -->
+  <xsl:variable name="wms-info-loc">
+    <msg id="a" xml:lang="en">WMS service </msg>
+    <msg id="b" xml:lang="en"> is described in online resource section. Run to update extent, CRS or graphic overview
+      for this WMS service for the layer named:</msg>
+    <msg id="a" xml:lang="fr">Le service de visualisation </msg>
+    <msg id="b" xml:lang="fr"> est décrit dans la section resource en ligne. Exécuter cette action pour mettre à jour l'étendue, les systèmes de projection
+      ou les aperçus pour ce service et la couche nommée : </msg>
+  </xsl:variable>
+
   <!-- Process parameters and variables-->
   <xsl:param name="mode" select="'process'"/>
   <xsl:param name="setExtent" select="'0'"/>
   <xsl:param name="setAndReplaceExtent" select="'0'"/>
   <xsl:param name="setCRS" select="'0'"/>
   <xsl:param name="setDynamicGraphicOverview" select="'0'"/>
-
+  <xsl:param name="wmsServiceUrl"/>
+  
   <xsl:variable name="setExtentMode" select="geonet:parseBoolean($setExtent)"/>
   <xsl:variable name="setAndReplaceExtentMode" select="geonet:parseBoolean($setAndReplaceExtent)"/>
   <xsl:variable name="setCRSMode" select="geonet:parseBoolean($setCRS)"/>
@@ -22,11 +33,9 @@
 
 
   <!-- Load the capabilities document if one oneline resource contains a protocol set to WMS 
-    TODO : if many capabilities document set ?
   -->
   <xsl:variable name="onlineNodes"
-    select="//gmd:CI_OnlineResource[contains(gmd:protocol/gco:CharacterString, 'OGC:WMS') and normalize-space(gmd:linkage/gmd:URL)!='']"/>
-  <xsl:variable name="wmsServiceUrl" select="$onlineNodes/gmd:linkage/gmd:URL[normalize-space()!='']"/>
+    select="//gmd:CI_OnlineResource[contains(gmd:protocol/gco:CharacterString, 'OGC:WMS') and normalize-space(gmd:linkage/gmd:URL)=$wmsServiceUrl]"/>
   <xsl:variable name="layerName" select="$onlineNodes/gmd:name/gco:CharacterString"/>
   <xsl:variable name="capabilitiesDoc">
     <xsl:if test="$onlineNodes">
@@ -55,21 +64,21 @@
      <xsl:variable name="capabilities"
       select="geonet:get-wms-capabilities(gmd:linkage/gmd:URL, '1.1.1')"/>
 -->
-    <xsl:if test="$onlineResources">
-      <suggestion process="add-info-from-wms" category="onlineSrc" target="gmd:extent">
-        <name xml:lang="en">WMS service (<xsl:value-of select="$onlineResources/gmd:linkage/gmd:URL"
-          />) is defined in online resource section. Run to update extent, CRS or graphic overview
-          from this WMS service for layer named "<xsl:value-of
-            select="$onlineResources/gmd:name/gco:CharacterString"/>".</name>
-        <!-- TODO : for services or no layer name-->
+    <xsl:for-each select="$onlineResources">
+      <suggestion process="add-info-from-wms" id="{generate-id()}" category="onlineSrc" target="gmd:extent">
+        <name><xsl:value-of select="geonet:i18n($wms-info-loc, 'a', $guiLang)"/><xsl:value-of select="./gmd:linkage/gmd:URL"
+        /><xsl:value-of select="geonet:i18n($wms-info-loc, 'b', $guiLang)"/><xsl:value-of
+            select="./gmd:name/gco:CharacterString"/>.</name>
         <operational>true</operational>
         <params>{ setExtent:{type:'boolean', defaultValue:'<xsl:value-of select="$setExtent"/>'},
           setAndReplaceExtent:{type:'boolean', defaultValue:'<xsl:value-of
             select="$setAndReplaceExtent"/>'}, setCRS:{type:'boolean', defaultValue:'<xsl:value-of
             select="$setCRS"/>'}, setDynamicGraphicOverview:{type:'boolean',
-            defaultValue:'<xsl:value-of select="$setDynamicGraphicOverview"/>'} }</params>
+            defaultValue:'<xsl:value-of select="$setDynamicGraphicOverview"/>'},
+            wmsServiceUrl:{type:'string', defaultValue:'<xsl:value-of select="normalize-space(gmd:linkage/gmd:URL)"/>'}
+          }</params>
       </suggestion>
-    </xsl:if>
+    </xsl:for-each>
 
   </xsl:template>
 
@@ -114,24 +123,27 @@
         gmd:graphicOverview
         "/>
 
-      <!-- TODO graphic overview-->
-      <xsl:if test="$setDynamicGraphicOverviewMode and $wmsServiceUrl!=''">
-        <gmd:graphicOverview>
-          <gmd:MD_BrowseGraphic>
-            <gmd:fileName>
-              <gco:CharacterString>
-                <xsl:variable name="wmsBbox" select="$capabilitiesDoc//Layer[Name=$layerName]/LatLonBoundingBox"/>
-                <xsl:value-of
-                  select="geonet:get-wms-thumbnail-url($wmsServiceUrl, '1.1.1', $layerName, 
-                              concat($wmsBbox/@minx, ',', $wmsBbox/@miny, ',', $wmsBbox/@maxx, ',', $wmsBbox/@maxy))"
-                />
-              </gco:CharacterString>
-            </gmd:fileName>
-            <gmd:fileDescription>
-              <gco:CharacterString><xsl:value-of select="$layerName"/></gco:CharacterString>
-            </gmd:fileDescription>
-          </gmd:MD_BrowseGraphic>
-        </gmd:graphicOverview>
+      <!-- graphic overview-->
+      <xsl:if test="$setDynamicGraphicOverviewMode and $wmsServiceUrl!='' and $layerName!=''">
+        <xsl:variable name="wmsBbox" select="$capabilitiesDoc//Layer[Name=$layerName]/LatLonBoundingBox"/>
+        <xsl:if test="$wmsBbox/@minx!=''">
+          <gmd:graphicOverview>
+            <gmd:MD_BrowseGraphic>
+              <gmd:fileName>
+                <gco:CharacterString>
+                  
+                  <xsl:value-of
+                    select="geonet:get-wms-thumbnail-url($wmsServiceUrl, '1.1.1', $layerName, 
+                                concat($wmsBbox/@minx, ',', $wmsBbox/@miny, ',', $wmsBbox/@maxx, ',', $wmsBbox/@maxy))"
+                  />
+                </gco:CharacterString>
+              </gmd:fileName>
+              <gmd:fileDescription>
+                <gco:CharacterString><xsl:value-of select="$layerName"/></gco:CharacterString>
+              </gmd:fileDescription>
+            </gmd:MD_BrowseGraphic>
+          </gmd:graphicOverview>
+        </xsl:if>
       </xsl:if>
 
       <xsl:copy-of
@@ -200,7 +212,7 @@
       <!-- New extent position is after existing ones. -->
       <xsl:if test="$setExtentMode">
         <xsl:for-each
-          select="//gmd:CI_OnlineResource[contains(gmd:protocol/gco:CharacterString, 'OGC:WMS')]">
+          select="//gmd:CI_OnlineResource[contains(gmd:protocol/gco:CharacterString, 'OGC:WMS') and gmd:linkage/gmd:URL=$wmsServiceUrl]">
           <xsl:call-template name="add-extent-for-wms">
             <xsl:with-param name="srv" select="$srv"/>
           </xsl:call-template>
