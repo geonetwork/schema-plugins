@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<gmd:MD_Metadata xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fra="http://www.cnig.gouv.fr/2005/fra" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gml="http://www.opengis.net/gml" xmlns:gfc="http://www.isotc211.org/2005/gfc" xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gmi="http://www.isotc211.org/2005/gmi" xsi:schemaLocation="http://www.isotc211.org/2005/fra ../../../../web/geonetwork/xml/schemas/iso19139fra/schema.xsd">
+<gmd:MD_Metadata xmlns:gmd="http://www.isotc211.org/2005/gmd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fra="http://www.cnig.gouv.fr/2005/fra"
+  xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gts="http://www.isotc211.org/2005/gts"
+  xmlns:gml="http://www.opengis.net/gml" xmlns:gfc="http://www.isotc211.org/2005/gfc"
+  xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:gmi="http://www.isotc211.org/2005/gmi">
   <gmd:fileIdentifier>
     <gco:CharacterString>939d87fb-837c-41f7-80bc-105d4597e0ce</gco:CharacterString>
   </gmd:fileIdentifier>
@@ -8,10 +12,11 @@
     <gco:CharacterString>fre</gco:CharacterString>
   </gmd:language>
   <gmd:characterSet>
-    <gmd:MD_CharacterSetCode codeListValue="utf8" codeList="MD_CharacterSetCode" />
+    <gmd:MD_CharacterSetCode codeListValue="utf8" codeList="MD_CharacterSetCode"/>
   </gmd:characterSet>
   <gmd:hierarchyLevel>
-    <gmd:MD_ScopeCode codeListValue="dataset" codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_ScopeCode" />
+    <gmd:MD_ScopeCode codeListValue="dataset"
+      codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_ScopeCode"/>
   </gmd:hierarchyLevel>
   <gmd:hierarchyLevelName>
     <gco:CharacterString>Jeu de données</gco:CharacterString>
@@ -33,7 +38,8 @@
         </gmd:CI_Contact>
       </gmd:contactInfo>
       <gmd:role>
-        <gmd:CI_RoleCode codeListValue="pointOfContact" codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_RoleCode" />
+        <gmd:CI_RoleCode codeListValue="pointOfContact"
+          codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_RoleCode"/>
       </gmd:role>
     </gmd:CI_ResponsibleParty>
   </gmd:contact>
@@ -51,7 +57,8 @@
       <gmd:citation>
         <gmd:CI_Citation>
           <gmd:title>
-            <gco:CharacterString>Modèle pour la saisie d'un jeu de données (ISO19139/INSPIRE)</gco:CharacterString>
+            <gco:CharacterString>Modèle pour la saisie d'un jeu de données
+              (ISO19139/INSPIRE)</gco:CharacterString>
           </gmd:title>
           <gmd:date>
             <gmd:CI_Date>
@@ -59,14 +66,17 @@
                 <gco:Date>2000-01-01</gco:Date>
               </gmd:date>
               <gmd:dateType>
-                <gmd:CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode" codeListValue="creation" />
+                <gmd:CI_DateTypeCode
+                  codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode"
+                  codeListValue="creation"/>
               </gmd:dateType>
             </gmd:CI_Date>
           </gmd:date>
           <gmd:identifier>
             <gmd:MD_Identifier>
               <gmd:code>
-                <gco:CharacterString>-- Identificateur unique du jeu de données --</gco:CharacterString>
+                <gco:CharacterString>-- Identificateur unique du jeu de données
+                  --</gco:CharacterString>
               </gmd:code>
             </gmd:MD_Identifier>
           </gmd:identifier>
@@ -92,34 +102,43 @@
             </gmd:CI_Contact>
           </gmd:contactInfo>
           <gmd:role>
-            <gmd:CI_RoleCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_RoleCode" codeListValue="author" />
+            <gmd:CI_RoleCode
+              codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_RoleCode"
+              codeListValue="author"/>
           </gmd:role>
         </gmd:CI_ResponsibleParty>
       </gmd:pointOfContact>
       <gmd:descriptiveKeywords>
         <gmd:MD_Keywords>
           <gmd:keyword>
-            <gco:CharacterString>-- Mot-clé décrivant le thème de données auquel appartient le jeu de données -- --</gco:CharacterString>
+            <gco:CharacterString>-- Mot-clé décrivant le thème de données auquel appartient le jeu
+              de données -- --</gco:CharacterString>
           </gmd:keyword>
           <gmd:type>
-            <gmd:MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_KeywordTypeCode" codeListValue="theme" />
+            <gmd:MD_KeywordTypeCode
+              codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_KeywordTypeCode"
+              codeListValue="theme"/>
           </gmd:type>
         </gmd:MD_Keywords>
       </gmd:descriptiveKeywords>
       <gmd:resourceConstraints>
         <gmd:MD_LegalConstraints>
           <gmd:accessConstraints>
-            <gmd:MD_RestrictionCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_RestrictionCode" codeListValue="otherRestrictions" />
+            <gmd:MD_RestrictionCode
+              codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_RestrictionCode"
+              codeListValue="otherRestrictions"/>
           </gmd:accessConstraints>
           <gmd:otherConstraints>
-            <gco:CharacterString>-- Restrictions concernant l'accès public au jeu de données --</gco:CharacterString>
+            <gco:CharacterString>-- Restrictions concernant l'accès public au jeu de données
+              --</gco:CharacterString>
           </gmd:otherConstraints>
         </gmd:MD_LegalConstraints>
       </gmd:resourceConstraints>
       <gmd:resourceConstraints>
         <gmd:MD_Constraints>
           <gmd:useLimitation>
-            <gco:CharacterString>-- Conditions applicables à l'accès et à l'utilisation du jeu de données --</gco:CharacterString>
+            <gco:CharacterString>-- Conditions applicables à l'accès et à l'utilisation du jeu de
+              données --</gco:CharacterString>
           </gmd:useLimitation>
         </gmd:MD_Constraints>
       </gmd:resourceConstraints>
@@ -142,18 +161,21 @@
         </gmd:MD_Resolution>
       </gmd:spatialResolution>
       <gmd:language>
-    <gco:CharacterString>fre</gco:CharacterString>
+        <gco:CharacterString>fre</gco:CharacterString>
       </gmd:language>
       <gmd:characterSet>
-        <gmd:MD_CharacterSetCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_CharacterSetCode" codeListValue="utf8" />
+        <gmd:MD_CharacterSetCode
+          codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_CharacterSetCode"
+          codeListValue="utf8"/>
       </gmd:characterSet>
       <gmd:topicCategory>
-        <gmd:MD_TopicCategoryCode />
+        <gmd:MD_TopicCategoryCode/>
       </gmd:topicCategory>
       <gmd:extent>
         <gmd:EX_Extent>
           <gmd:description>
-            <gco:CharacterString>-- Description de la localisation géographique --</gco:CharacterString>
+            <gco:CharacterString>-- Description de la localisation géographique
+              --</gco:CharacterString>
           </gmd:description>
           <gmd:geographicElement>
             <gmd:EX_GeographicBoundingBox>
@@ -195,7 +217,8 @@
       <gmd:scope>
         <gmd:DQ_Scope>
           <gmd:level>
-            <gmd:MD_ScopeCode codeListValue="dataset" codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_ScopeCode" />
+            <gmd:MD_ScopeCode codeListValue="dataset"
+              codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_ScopeCode"/>
           </gmd:level>
         </gmd:DQ_Scope>
       </gmd:scope>
@@ -206,7 +229,8 @@
               <gmd:specification>
                 <gmd:CI_Citation>
                   <gmd:title>
-                    <gco:CharacterString>-- Titre d'une spécification à laquelle un jeu de données est conforme ou non --</gco:CharacterString>
+                    <gco:CharacterString>-- Titre d'une spécification à laquelle un jeu de données
+                      est conforme ou non --</gco:CharacterString>
                   </gmd:title>
                   <gmd:date>
                     <gmd:CI_Date>
@@ -214,14 +238,17 @@
                         <gco:Date>2000-01-01</gco:Date>
                       </gmd:date>
                       <gmd:dateType>
-                        <gmd:CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode" codeListValue="publication" />
+                        <gmd:CI_DateTypeCode
+                          codeList="http://www.isotc211.org/2005/resources/codeList.xml#CI_DateTypeCode"
+                          codeListValue="publication"/>
                       </gmd:dateType>
                     </gmd:CI_Date>
                   </gmd:date>
                 </gmd:CI_Citation>
               </gmd:specification>
               <gmd:explanation>
-                <gco:CharacterString>-- Information sur l'évaluation de la conformité --</gco:CharacterString>
+                <gco:CharacterString>-- Information sur l'évaluation de la conformité
+                  --</gco:CharacterString>
               </gmd:explanation>
               <gmd:pass>
                 <gco:Boolean>1</gco:Boolean>
