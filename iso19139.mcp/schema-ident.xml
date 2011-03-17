@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.osgeo.org/geonetwork/schemas/geonet_schema" schemaLocation="http://www.osgeo.org/geonetwork/schemas/geonet_schema http://www.osgeo.org/geonetwork/schemas/geonet_schema/geonet_schema.xsd">
+<schema xmlns="http://www.osgeo.org/geonetwork/schemas/geonet_schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.osgeo.org/geonetwork/schemas/geonet_schema http://www.osgeo.org/geonetwork/schemas/geonet_schema/geonet_schema.xsd">
 	<name>iso19139.mcp</name>
 	<id>19c9a2b2-dddb-11df-9df4-001c2346de4c</id>
 	<version>1.5</version>
+	<schemaLocation>http://bluenet3.antcrc.utas.edu.au/mcp http://bluenet3.antcrc.utas.edu.au/mcp-1.5-experimental/schema.xsd http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd</schemaLocation>
 	<autodetect xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco">
 		<elements>
 			<gmd:metadataStandardName>

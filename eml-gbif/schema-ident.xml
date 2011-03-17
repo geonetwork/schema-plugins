@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.osgeo.org/geonetwork/schemas/geonet_schema" schemaLocation="http://www.osgeo.org/geonetwork/schemas/geonet_schema http://www.osgeo.org/geonetwork/schemas/geonet_schema/geonet_schema.xsd">
+<schema xmlns="http://www.osgeo.org/geonetwork/schemas/geonet_schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.osgeo.org/geonetwork/schemas/geonet_schema http://www.osgeo.org/geonetwork/schemas/geonet_schema/geonet_schema.xsd">
 	<name>eml-gbif</name>
 	<id>42e2724c-ddda-11df-a6c5-001c2346de4d</id>
 	<version>2.1.1</version>
+	<schemaLocation>eml://ecoinformatics.org/eml-2.1.1 http://rs.gbif.org/schema/eml-gbif-profile/1.0/eml.xsd</schemaLocation>
 	<autodetect xmlns:eml="eml://ecoinformatics.org/eml-2.1.1">
 		<elements type="root">
 			<eml:eml/>
