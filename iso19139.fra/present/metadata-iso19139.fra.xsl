@@ -7,6 +7,7 @@
 	xmlns:geonet="http://www.fao.org/geonetwork" xmlns:exslt="http://exslt.org/common"
 	exclude-result-prefixes="gmd gco gml gts srv xlink exslt geonet">
 
+  <xsl:import href="metadata-iso19139.fra-fop.xsl"/>
 
   <xsl:template match="iso19139.fraBrief">
     <metadata>
