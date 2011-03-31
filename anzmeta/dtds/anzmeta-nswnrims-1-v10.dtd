@@ -1,0 +1,93 @@
+<!--
+Name:    DTD ANZMETA NSW NRIMS Page 1 Version 1.0
+Purpose: Provide additional Page 1 metadata for NRIMS, which is
+         an extension of the Page 0 ANZLIC metadata anzmeta-1.3.dtd
+Date:    2003-02-12
+Author:  IndexGeo P/L for NSW Department of Land and Water Conservation (DLWC)
+Ref: http://www.nrims.nsw.gov.au/dtd/anzmeta-nswnrims-1-v10.dtd
+Doc: http://www.nrims.nsw.gov.au/diy/
+
+Changes:
+2003-02-12 v1.0
+  Initial release.
+
+Example Usage:
+To efficiently utilise DTDs, see http://www.auslig.gov.au/anzmeta/catalog.html
+
+... top of the xml instance document with no characters before declarations ...
+<?xml version="1.0"?>
+<!DOCTYPE anzmeta PUBLIC "-//NSW NRIMS//DTD ANZMETA NSW NRIMS Page 1 v1.0//EN"
+ "http://www.nrims.nsw.gov.au/dtd/anzmeta-nswnrims-1-v10.dtd">
+<anzmeta>
+  ....
+</anzmeta>
+
+-->
+
+<!-- DTD Customisation =========================================== -->
+
+  <!-- extend the top-level (anzmeta) element -->
+<!ENTITY % local.anzmeta.content ", content?">
+
+  <!-- extend the Description (descript) element -->
+<!ENTITY % local.descript.content ", spatial-representation?, scale-tip?,
+      ds-hierarchy?">
+
+  <!-- extend the Dataset status (status) element -->
+<!ENTITY % local.status.content ", ds-version?">
+
+  <!-- now include the ANZMETA Page 0 DTD -->
+<!ENTITY % orig-anzmeta PUBLIC "-//ANZLIC//DTD ANZMETA 1.3//EN"
+  "http://www.environment.gov.au/net/dtd/anzmeta-1.3.dtd">
+%orig-anzmeta;
+
+<!-- Spatial representation type ================================= -->
+
+<!ELEMENT spatial-representation (sprep-type)+>
+<!ELEMENT sprep-type (sprep-vector | sprep-raster | sprep-text)>
+<!ELEMENT sprep-vector (keyword)+>
+<!ELEMENT sprep-raster (cell-size, num-rows, num-cols, resolution)>
+<!ELEMENT cell-size (#PCDATA)>
+<!ELEMENT num-rows (#PCDATA)>
+<!ELEMENT num-cols (#PCDATA)>
+<!ELEMENT resolution (#PCDATA)>
+<!ELEMENT sprep-text EMPTY>  <!-- used as a flag -->
+
+<!-- Scale tip =================================================== -->
+
+<!ELEMENT scale-tip (#PCDATA)>
+
+<!-- Dataset hierarchy =========================================== -->
+
+<!ELEMENT ds-hierarchy (ds-parent?)>
+<!ATTLIST ds-hierarchy level (parent | child) "parent">
+ <!-- if hierarchy level=child then describe my parent -->
+<!ELEMENT ds-parent (parent-title, parent-id)>
+<!ELEMENT parent-title (#PCDATA)>
+<!ELEMENT parent-id (#PCDATA)>
+
+<!-- Dataset version information ================================= -->
+
+<!ELEMENT ds-version (ds-vnum, ds-vdate)>
+<!ELEMENT ds-vnum (#PCDATA)>
+<!ELEMENT ds-vdate (date)>
+
+<!-- Content information ========================================= -->
+
+<!ELEMENT content (attrinf?, coordref?)>
+
+<!-- Attribute information ======================================= -->
+
+<!ELEMENT attrinf (attrib+)>
+<!ELEMENT attrib (attrname, attrdesc)>
+<!ELEMENT attrname (#PCDATA)>
+<!ELEMENT attrdesc (#PCDATA)>
+
+<!-- Coordinate reference system ================================= -->
+
+<!ELEMENT coordref (hdatum, proj?, prjparam?)>
+<!ELEMENT hdatum (#PCDATA)>
+<!ELEMENT proj (#PCDATA)>
+<!ELEMENT prjparam (#PCDATA)>
+
+<!-- END ========================================================= -->

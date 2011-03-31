@@ -1,0 +1,191 @@
+<!--
+
+Name: 		ANZLIC Metadata DTD Version 1.1
+Purpose:	This Document Type Definition defines the ANZLIC Metadata
+		Core Element Structure for use with SGML compliant
+		parsers, viewers and other tools.
+Reference:	The Australia New Zealand Land Information Council -
+		Metadata Guidelines July 1996.
+Date:		1998-01-19
+Author:		ANZLIC Working Group on Metadata.
+DTD Ref:	http://www.environment.gov.au/database/metadata/anzmeta/anzmeta-1.1.dtd
+DTD Doc:	http://www.environment.gov.au/database/metadata/anzmeta/anzmeta-1.1.html
+
+
+Example Usage:
+
+	<?XML VERSION="1.0"?>
+	<!DOCTYPE anzmeta PUBLIC "-//ANZLIC//DTD ANZMETA 1.1//EN"
+	 "http://www.environment.gov.au/database/metadata/anzmeta/anzmeta-1.1.dtd">
+	<anzmeta>
+	    ....
+	</anzmeta>
+
+-->
+
+<!--== HTML-style markup ================================================-->
+<!-- These elements have been based on the HTML 4.0 strict DTD.	-->
+
+<!--== Character mnemonic entities ======================================-->
+
+<!ENTITY % HTMLlat1 PUBLIC
+    "-//W3C//ENTITIES Latin1//EN//HTML"
+    "http://www.w3.org/TR/REC-html40-971218/HTMLlat1.ent">
+ %HTMLlat1;
+
+<!ENTITY % HTMLsymbol PUBLIC
+    "-//W3C//ENTITIES Symbols//EN//HTML"
+    "http://www.w3.org/TR/REC-html40-971218/HTMLsymbol.ent">
+%HTMLsymbol;
+
+<!ENTITY % HTMLspecial PUBLIC
+    "-//W3C//ENTITIES Special//EN//HTML"
+    "http://www.w3.org/TR/REC-html40-971218/HTMLspecial.ent">
+%HTMLspecial;
+
+<!-- text entities -->
+<!-- Note that we cannot use these entities in defining themselves, -->
+<!-- since XML requires non-recursive entity definitions -->
+<!ENTITY % fontstyle "tt | i | b | big | small">
+<!ENTITY % phrase "em">
+<!ENTITY % special "a | br | sub | sup">
+
+<!ENTITY % inline "#PCDATA | %fontstyle; | %phrase; | %special;">
+
+<!-- character and phrase elements -->
+<!ELEMENT tt (%inline;)*>
+<!ELEMENT i (%inline;)*>
+<!ELEMENT b (%inline;)*>
+<!ELEMENT big (%inline;)*>
+<!ELEMENT small (%inline;)*>
+<!ELEMENT em (%inline;)*>
+
+<!ELEMENT sub (%inline;)*>
+<!ELEMENT sup (%inline;)*>
+
+<!ELEMENT br EMPTY>
+
+<!ENTITY % list "ul | ol">
+<!ENTITY % preformatted "pre">
+
+<!ENTITY % block "p | %list; | %preformatted; | dl">
+<!ENTITY % flow "%inline; | %block;">
+
+<!ENTITY % URI "CDATA">	
+<!ELEMENT a (%inline;)*>
+<!ATTLIST a
+  href %URI; #IMPLIED
+  >
+
+<!-- paragraphs -->
+<!ELEMENT p (%inline;)*>
+<!ELEMENT dl (dt|dd)*>
+<!ELEMENT dt (%inline;)*>
+<!ELEMENT dd (%flow;)*>
+<!ELEMENT ol (li)+>
+<!ELEMENT ul (li)+>
+<!ELEMENT li (%flow;)*>
+<!ELEMENT pre (#PCDATA | tt | i | b | em | br)*>
+
+<!--== Top Level Element =================================================-->
+
+ <!ELEMENT anzmeta (citeinfo, descript, timeperd, status, distinfo?, 
+				dataqual, cntinfo+, metainfo, supplinf?)>
+
+<!--== Citation Information ==============================================-->
+
+<!ELEMENT citeinfo			(uniqueid, title, origin)>
+<!ELEMENT uniqueid			(#PCDATA)>
+<!ELEMENT title				(%inline;)*>
+<!ELEMENT origin			(custod, jurisdic)>
+<!ELEMENT custod			(%inline;)*>
+<!ELEMENT jurisdic			(keyword)+>
+<!ELEMENT keyword			(%inline;)*>
+<!ATTLIST keyword	
+ 	qualifier CDATA #IMPLIED
+ 	thesaurus CDATA "anzlic" >
+
+<!--== Description =======================================================-->
+
+<!ELEMENT descript			(abstract, theme+, spdom?)>
+
+<!ELEMENT abstract			(%flow;)*>
+<!ELEMENT theme				(keyword)+>
+
+<!ELEMENT spdom				(place*, bounding)>
+
+<!ELEMENT place				(dsgpolyo+ | keyword)>
+<!ELEMENT dsgpolyo			(long, lat, long, lat, (long, lat)+)>
+
+<!ENTITY % COORDINATE "#PCDATA">
+
+<!ELEMENT long				(%COORDINATE;)>
+<!ELEMENT lat				(%COORDINATE;)>
+
+<!ELEMENT bounding			(northbc, southbc, eastbc, westbc)>
+<!ELEMENT northbc			(%COORDINATE;)>
+<!ELEMENT southbc			(%COORDINATE;)>
+<!ELEMENT eastbc			(%COORDINATE;)>
+<!ELEMENT westbc			(%COORDINATE;)>
+
+<!--== Data Currency =====================================================-->
+
+<!ELEMENT timeperd			(begdate, enddate)>
+<!ELEMENT begdate			(date | keyword)>
+<!ELEMENT enddate			(date | keyword)>
+<!ELEMENT date				(#PCDATA)>
+
+<!--== Dataset Status ====================================================-->
+
+<!ELEMENT status			(progress, update)>
+<!ELEMENT progress			(keyword)>
+<!ELEMENT update			(keyword)>
+
+<!--== Access ============================================================-->
+
+<!ELEMENT distinfo			(native, avlform?, accconst)>
+
+<!ELEMENT native			(nondig | digform)+> 
+<!ELEMENT nondig			(formname)>
+<!ELEMENT digform			(formname)>
+<!ELEMENT formname			(%inline;)*>
+
+<!ELEMENT avlform			(nondig | digform)+>
+<!ELEMENT accconst 			(%flow;)*>
+
+
+<!--== Data Quality ======================================================-->
+	
+<!ELEMENT dataqual		(lineage, posacc, attracc, logic, complete)>
+<!ELEMENT lineage		(%flow;)*>
+<!ELEMENT posacc		(%flow;)*>
+<!ELEMENT attracc		(%flow;)*>
+<!ELEMENT logic			(%flow;)*>
+<!ELEMENT complete		(%flow;)*>
+
+<!--== Contact Information ===============================================-->
+
+<!ELEMENT cntinfo  	(cntorg, cntpos, address, address?, city,
+		state, country, postal, cntvoice?, cntfax?, cntemail?)> 
+<!ELEMENT cntorg 			(%inline;)*>
+<!ELEMENT cntpos			(%inline;)*>
+<!ELEMENT address			(%inline;)*>
+<!ELEMENT city				(%inline;)*>
+<!ELEMENT state				(%inline;)*>
+<!ELEMENT country			(%inline;)*>
+<!ELEMENT postal			(%inline;)*>
+<!ELEMENT cntvoice			(%inline;)*>
+<!ELEMENT cntfax			(%inline;)*>
+<!ELEMENT cntemail			(%inline;)*>
+
+<!--== Metadata Information ==============================================-->
+
+<!ELEMENT metainfo			(metd)>
+<!ELEMENT metd				(date)>
+
+<!--== Supplementary Information =========================================-->
+
+<!ELEMENT supplinf			(%flow;)*>
+
+<!--======================================================================-->
+<!--== END ===============================================================-->

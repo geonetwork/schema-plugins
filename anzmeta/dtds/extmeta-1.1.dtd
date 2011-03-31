@@ -1,0 +1,74 @@
+<!--
+Name:    EXTMETA DTD Version 1.1
+Purpose: This DTD demonstrates how to make extensions
+         to the ANZMETA DTD
+Date:    1998-11-16
+Author:  ANZLIC Working Group on Metadata
+Ref: http://www.environment.gov.au/net/anzmeta/extmeta-1.1.dtd
+Doc: http://www.environment.gov.au/net/anzmeta/anzmeta-1.2.html
+
+Example Usage:
+
+<?xml version="1.0"?>
+<!DOCTYPE anzmeta PUBLIC "-//ANZLIC//DTD EXTMETA 1.1//EN"
+  "http://www.environment.gov.au/net/anzmeta/extmeta-1.1.dtd">
+<anzmeta>
+  ....
+</anzmeta>
+
+-->
+
+<!-- DTD Customisation =========================================== -->
+
+  <!-- first step, declare new parameter entities which will
+       override the empty elements that are declared in the
+       ANZMETA DTD                                                 -->
+
+  <!-- over-ride top-level parameter entity
+       %local.anzmeta.content; to facilitate page-1 extensions     -->
+
+<!ENTITY % local.anzmeta.content ", extmeta">
+
+  <!-- over-ride the parameter entity %local.descript.content;
+       to add another element to the "Decription" section          -->
+<!ENTITY % local.descript.content ", uses">
+
+  <!-- over-ride the parameter entity %local.thesaurus.atts;
+       to add another value for the "thesaurus" attribute of
+       of the <keyword> element - this allows you to define
+       your own controlled vocabulary                              -->
+<!ENTITY % local.thesaurus.atts "| my-keywords">
+
+  <!-- second step, now include the ANZMETA DTD                    -->
+
+<!ENTITY % orig-anzmeta PUBLIC "-//ANZLIC//DTD ANZMETA 1.2//EN"
+  "http://www.environment.gov.au/net/anzmeta/anzmeta-1.2.dtd">
+%orig-anzmeta;
+
+<!-- extmeta ... top-level element =============================== -->
+
+  <!-- third step, declare all new elements                        -->
+
+  <!-- define the top-level page-1 extension content model         -->
+<!ELEMENT extmeta (docref+, sample?)>
+
+<!-- docref ... documentation references ========================= -->
+
+  <!-- this element can contain list elements by using the
+       parameter entity %list; that is defined by ANZMETA          -->
+<!ELEMENT docref (%list;)?>
+
+<!-- sample ... references to samples of the data ================ -->
+
+  <!-- this element can contain list elements by using the
+       parameter entity %list; that is defined by ANZMETA          -->
+<!ELEMENT sample (%list;)?>
+
+<!-- uses ... description of suitable uses of the data =========== -->
+
+  <!-- like <abstract> element, this can contain certain HTML
+       elements by using the parameter entity %flow; that is
+       defined by ANZMETA                                          -->
+<!ELEMENT uses (%flow;)*>
+
+<!-- END ========================================================= -->

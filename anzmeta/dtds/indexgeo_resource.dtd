@@ -1,0 +1,51 @@
+<!--
+Name:    DTD ANZMETA Resource Version 1.1
+Purpose: Provide additional metadata for Online linkage.
+         An extension of ANZLIC metadata anzmeta-1.3.dtd
+Date:    2002-09-27
+Author:  IndexGeo Pty Ltd
+Ref: http://www.indexgeo.net/dtd/anzmeta-resource-v11.dtd
+Doc: http://localhost/dtd/
+
+Changes:
+2002-09-27 v1.1-draft
+  Initial draft release
+
+Example Usage:
+
+<?xml version="1.0"?>
+<!DOCTYPE anzmeta PUBLIC "-//IndexGeo//DTD ANZMETA Resource 1.1//EN"
+  "http://www.indexgeo.net/dtd/anzmeta-resource-v11.dtd">
+<anzmeta>
+  ....
+</anzmeta>
+
+-->
+
+<!-- DTD Customisation =========================================== -->
+
+  <!-- over-ride the parameter entity %local.distinfo.content;     -->
+<!ENTITY % local.distinfo.content ", distorTran*">
+
+  <!-- now include the ANZMETA DTD                                 -->
+<!ENTITY % orig-anzmeta PUBLIC "-//ANZLIC//DTD ANZMETA 1.3//EN"
+  "http://www.auslig.gov.au/dtd/anzmeta-1.3.dtd">
+%orig-anzmeta;
+
+<!-- Online resource ============================================== -->
+
+<!ELEMENT distorTran (onLineSrc*)>
+<!ELEMENT onLineSrc (linkage, protocol?, appProfile?, orName?,
+                     orDesc?, orFunct?)>
+<!ELEMENT linkage (#PCDATA)>
+<!ELEMENT protocol (#PCDATA)>
+<!ELEMENT appProfile (#PCDATA)>
+<!ELEMENT orName (#PCDATA)>
+<!ELEMENT orDesc (#PCDATA)>
+<!ELEMENT orFunct (OnFunctCd)>
+<!ELEMENT OnFunctCd (#PCDATA)>
+<!ATTLIST OnFunctCd
+    value (001 | 002 | 003 | 004 | 005) #REQUIRED
+>
+
+<!-- END ========================================================= -->

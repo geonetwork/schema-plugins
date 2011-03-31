@@ -1,0 +1,186 @@
+<!--
+Name: 		Neptune DTD version 1
+Purpose:	This XML Document Type Definition defines the Neptune metadata directory extensions
+                created for the National Oceans Office.  It is an extension to the  ANZMETA DTD 1.3.
+		It is extensible.
+Date:	        2003-01-08 (onwards)
+Author:	        Tony Rees, CSIRO Marine Research, Australia (Tony.Rees@csiro.au)
+DTD Ref:	http://www.marine.csiro.au/neptune/neptune1.dtd
+Attributes:	The attributes lists can be found at the following URL:
+		*****
+
+Example Usage:
+	<?xml version="1.0"?>
+	<!DOCTYPE anzmeta PUBLIC "-//ANZLIC//DTD NEPTMETA 1.0//EN"
+	http://www.marine.csiro.au/neptune/neptune1.dtd>
+<anzmeta>
+	....
+</anzmeta>
+-->
+
+  <!-- ANZLIC DTD Customisation for Neptune (National Oceans Office Metadata Directory,  -->
+  <!-- located at http://neptune.oceans.gov.au/ )   ======================== -->
+
+  <!-- Extension to the Citation Information category =============== -->
+
+<!ENTITY % local.neptune.citeinfo.content "">
+<!ENTITY % local.citeinfo.content ", shorttitle?, neptuneid, origorg+
+  %local.neptune.citeinfo.content;">
+
+  <!-- Extension to the Description category ============================ -->
+
+<!ENTITY % local.neptune.descript.content "">
+<!ENTITY % local.descript.content ", attributes?, limitations?, dstype+, planningreg*, 
+    model*, param*, addparams?, species*, addspecies?, 
+    onlink* %local.neptune.descript.content;">
+
+  <!-- Extension to the Access category ============================ -->
+
+<!ENTITY % local.neptune.distinfo.content "">
+<!ENTITY % local.distinfo.content ", strformpart+, strvolume? %local.neptune.distinfo.content;">
+
+  <!-- Extension to the Data Quality category ============================ -->
+
+<!ENTITY % local.neptune.dataqual.content "">
+<!ENTITY % local.dataqual.content ", scaledenom?, cellsize?, cellunit?, projdetails? 
+   %local.neptune.dataqual.content;">
+
+  <!-- Extension to the Contact Information category ============================ -->
+
+<!ENTITY % local.neptune.cntinfo.content "">
+<!ENTITY % local.cntinfo.content ", cntperson %local.neptune.cntinfo.content;">
+
+  <!-- Extension to the Metadata Information category ============================ -->
+
+<!ENTITY % local.neptune.metainfo.content "">
+<!ENTITY % local.metainfo.content ", mdaccess, mdcreatedate, mdcreateperson, mdupdatedate?,
+    mdupdateperson?, mdupdateableby, mdexportdate %local.neptune.metainfo.content;">
+
+  <!-- Extension to the local.anzmeta.content entity =============== -->
+
+<!ENTITY % local.neptune.thesaurus.atts "">
+<!ENTITY % local.thesaurus.atts "| my-keywords">
+
+<!--  The list of valid keywords can be found at the following URLs:
+	http://www.environment.gov.au/marine/mcdd2/recordtypes/mdgmeta/luts/mdg_keywords.lut
+	http://www.environment.gov.au/marine/mcdd2/places/*.lut
+
+      NOTE:  The ANZLIC keywords are referenced from the anzmeta-1.3.dtd
+ -->
+<!--  Neptune extensions to anzmeta-1.3 DTD ============ -->
+
+<!ENTITY % orig-anzmeta PUBLIC "-//ANZLIC//DTD ANZMETA 1.3//EN"
+ "http://www.environment.gov.au/net/dtd/anzmeta-1.3.dtd"> 
+%orig-anzmeta;
+
+<!-- Extension Elements ============================ -->
+
+<!ELEMENT shorttitle	(%inline;)*>        <!-- short title -->
+<!ELEMENT neptuneid	(#PCDATA)>          <!-- neptune id (record number) -->
+<!ELEMENT origorg	(%inline;)*>        <!-- originator organisation -->
+<!-- Note: origorg should reflect current valid values in -->
+<!-- Neptune "organisations" table.                               -->
+
+<!ELEMENT attributes	(%flow;)*>          <!-- attributes -->
+<!ELEMENT limitations	(%flow;)*>          <!-- limitations -->
+<!ELEMENT dstype	(#PCDATA)>          <!-- data type -->
+<!-- Note: dstype should reflect current valid values in -->
+<!-- Neptune "keywords" table where keyword type = "D" (datatype).                  -->
+
+<!ELEMENT planningreg	(#PCDATA)>          <!-- marine planning region -->
+<!-- Note: planningreg should reflect current valid values in -->
+<!-- Neptune "keywords" table where keyword type = "R" (region).                  -->
+
+<!ELEMENT model	        (modname, modcustorg?, moddevby?, moddescr?, moddevdate?, modrevdate?,
+  modupdfreq?, modlogic?, modcriticaldata?, moddataflow?, modinterp?, modverif?, modvalid?,
+  modlimits?, modlang?, modenv?, modoutput?)*>                <!-- model -->
+<!ELEMENT modname	(%inline;)*>        <!-- model name -->
+<!ELEMENT modcustorg	(%flow;)*>          <!-- model custodian organisation -->
+<!ELEMENT moddevby	(%flow;)*>          <!-- model developed by (person name) -->
+<!ELEMENT moddescr	(%flow;)*>          <!-- model description -->
+<!ELEMENT moddevdate	(date)>             <!-- model development date -->
+<!ELEMENT modrevdate	(date)>             <!-- model revision date -->
+<!ELEMENT modupdfreq	(#PCDATA)>          <!-- model update frequency -->
+<!ELEMENT modlogic	(%flow;)*>          <!-- model logical consistency -->
+<!ELEMENT modcriticaldata  (%flow;)*>        <!-- model critical data -->
+<!ELEMENT moddataflow	(%flow;)*>          <!-- model data flow -->
+<!ELEMENT modinterp	(%flow;)*>          <!-- model interpretation -->
+<!ELEMENT modverif	(%flow;)*>          <!-- model verification -->
+<!ELEMENT modvalid	(%flow;)*>          <!-- model validation -->
+<!ELEMENT modlimits	(%flow;)*>          <!-- model limitations -->
+<!ELEMENT modlang	(#PCDATA)>          <!-- model language -->
+<!ELEMENT modenv	(%flow;)*>          <!-- model environment -->
+<!ELEMENT modoutput	(%flow;)*>          <!-- model output -->
+
+<!ELEMENT param	(category, topic, term, variable?, detvariable?)*>   <!-- parameter (GCMD or Neptune) -->
+<!ATTLIST param
+  kwthesaurus CDATA #IMPLIED >
+<!-- Note: kwthesaurus is expected to be designated as GCMD | Neptune                      -->
+<!-- (the latter for Neptune-specific extensions to GCMD valids list).  -->
+
+<!ELEMENT category	(#PCDATA)>          <!-- category -->
+<!ELEMENT topic	        (#PCDATA)>          <!-- topic -->
+<!ELEMENT term	        (#PCDATA)>          <!-- term -->
+<!ELEMENT variable	(#PCDATA)>          <!-- variable -->
+<!ELEMENT detvariable	(#PCDATA)>          <!-- detailed variable -->
+<!-- Note: category, topic, term, variable and detvariable follow the hierarchical structure  -->
+<!-- of parameter valids as per the NASA GCMD system                  -->
+
+<!ELEMENT addparams	(%flow;)*>          <!-- additional parameters (free text) -->
+
+<!ELEMENT species	(sciname, comname?, caabcode)*>
+<!ELEMENT sciname	(%inline;)*>        <!-- scientific name, as in CAAB (Codes for Australian Aquatic Biota) database -->
+<!ELEMENT comname	(#PCDATA)>          <!-- common name, as in CAAB database -->
+<!ELEMENT caabcode      (#PCDATA)>          <!-- CAAB code  -->
+<!--  Note: CAAB codes should always be 8 digits (9 characters including a space), e.g. "37 441004".  -->
+
+<!ELEMENT addspecies	(%flow;)*>          <!-- additional species (free text) -->
+
+<!ELEMENT onlink	(linktype, linkurl, linkname, internalflag?)*>        <!-- online link -->
+<!ELEMENT linktype	(#PCDATA)>          <!-- link type -->
+<!-- Note: linktype is expected to be designated as one of the currently allowed valids, i.e. -->
+<!-- Data | Graphic | Documentation  -->
+
+<!ELEMENT linkurl	(#PCDATA)>          <!-- link URL -->
+<!ELEMENT linkname      (%inline;)*>        <!-- link name -->
+<!ELEMENT internalflag  (#PCDATA)>          <!-- internal flag (for this link) -->
+<!--  Note: internalflag set to "Y" indicates that link is designated for display to intranet users only, -->
+<!--  "N" indicates display to both internal and external users.          -->
+
+<!ELEMENT strformpart	(#PCDATA)>          <!-- Neptune stored data format  -->
+<!-- Note: reflects internal structure of Neptune database, where multiple stored formats can be  -->
+<!-- designated, each from a pre-defined list of options only (no free text). Elsewhere, these elements  -->
+<!-- are massaged into a single string commencing DIGITAL or NONDIGITAL to produce  -->
+<!-- the equivalent (non repeating) field in the ANZLIC version 1.3 DTD.  -->
+<!-- strformpart should reflect current valid values in -->
+<!-- Neptune "keywords" table where keyword type = "X" (stored data format valids).                  -->
+
+<!ELEMENT strvolume	(%flow;)*>          <!-- stored data volume -->
+<!ELEMENT scaledenom	(#PCDATA)>          <!-- scale denominator -->
+<!ELEMENT cellsize	(#PCDATA)>          <!-- cell size -->
+<!ELEMENT cellunit	(#PCDATA)>          <!-- cell unit -->
+<!ELEMENT projdetails	(%flow;)*>          <!-- projection details -->
+<!ELEMENT cntperson	(#PCDATA)>          <!-- dataset contact person -->
+<!-- Note: cntperson provides an explicit field for dataset contact person (ANZLIC only supports --> 
+<!-- cntpos (=contact position). Where no position is specifically designated in Neptune, --> 
+<!-- cntpos is set to the same value as cntperson. --> 
+<!-- cntperson should reflect current valid values in -->
+<!-- Neptune "persons" table, i.e. given_names||' '||surname       -->
+
+<!ELEMENT mdaccess	   (#PCDATA)>       <!-- metadata access flag -->
+<!--  Note: mdaccess set to "Y" indicates that metadata access is unrestricted, -->
+<!--  "N" indicates is designated for display to intranet users only,      -->
+<!--  "R" indicates is restricted (password access only).      -->
+
+<!ELEMENT mdcreatedate	   (date)>          <!-- metadata created on (date) -->
+<!ELEMENT mdcreateperson   (#PCDATA)>       <!-- metadata created by (person name) -->
+<!ELEMENT mdupdatedate	   (date)>          <!-- metadata last updated on (date) -->
+<!ELEMENT mdupdateperson   (#PCDATA)>       <!-- metadata last updated by (person name) -->
+<!ELEMENT mdupdateableby   (#PCDATA)>       <!-- metadata updateable by (person name) -->
+
+<!-- Note: mdcreateperson, mdupdateperson and mdupdateableby should reflect current valid values in -->
+<!-- Neptune "w_user_logons" table, i.e. given_names||' '||surname.       -->
+
+<!ELEMENT mdexportdate	   (date)>          <!-- metadata export date (from Neptune) -->
+
+<!-- ==END ================================================== -->

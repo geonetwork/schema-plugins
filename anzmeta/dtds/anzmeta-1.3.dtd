@@ -1,0 +1,256 @@
+<!--
+Name:      ANZLIC Metadata ANZMETA DTD Version 1.3
+Purpose:   This XML Document Type Definition defines the ANZLIC
+           Metadata Core Element Structure for use with SGML/XML
+           compliant parsers, viewers, and other tools
+Reference: Australia New Zealand Land Information Council -
+           Metadata Guidelines
+Date:      2001-02-09
+Author:    ANZLIC Metadata Working Group
+Ref: http://www.environment.gov.au/net/dtd/anzmeta-1.3.dtd
+Doc: http://www.environment.gov.au/net/anzmeta/anzmeta-1.3.html
+Doc: http://www.anzlic.org.au/asdi/metaelem.htm
+Thesauri: http://www.environment.gov.au/net/anzmeta/thesauri.html
+Thesauri: http://www.auslig.gov.au/asdi/genreg.htm
+
+Changes:
+2001-02-09 v1.3
+  added <vertex> container within <dsgpolyo>,
+  added missing entity set ISOnum.pen,
+  changed declarations of entity sets to be local references 
+  because Schema.Net has removed the entity sets,
+  added comment that you must use Open Catalogs to resolve any
+  external references,
+  added "custodian" attribute to "keyword" to assist with the
+  documentation of Geographic Extent Names,
+  <spdom> and <distinfo> containers are now mandatory
+1999-03-04 v1.2
+  Facilitate extension, use XML character entities,
+  added "identifier" attribute to "keyword",
+  added thesauri for place-keyword
+1998-01-19 v1.1
+  Initial release
+
+Example Usage:
+  This is how your XML instance documents should
+  declare this DTD ...
+
+<?xml version="1.0"?>
+<!DOCTYPE anzmeta PUBLIC "-//ANZLIC//DTD ANZMETA 1.3//EN"
+ "http://www.environment.gov.au/net/dtd/anzmeta-1.3.dtd">
+<anzmeta>
+...
+</anzmeta>
+
+Layout of this DTD:
+  Character mnemonic entities
+    - allows author to use special characters
+  HTML style markup
+    - allows author to use some simple HTML tags, such as:
+      lists, paragraph, preformatted, emphasis, ...
+  Re-usable elements
+    - defines some elements that are used in various places 
+  Each section of metadata ...
+    - define entities and elements for the metadata structure
+
+Further information:
+  See the documentation URL, as well as documentation for each
+  of the previous DTDs.
+  Rather than write your own full DTD, please build upon this
+  DTD using the extension mechanism explained in the v1.2 doco.
+
+            www.environment.gov.au/net/anzmeta/
+-->
+
+<!-- Character mnemonic entities ================================= -->
+<!--                                                               -->
+<!-- Note: you must use Open Catalogs with your XML parser         -->
+<!--       to resolve any external references                      --> 
+<!--       see the ANZMETA documentation URL for discussion        --> 
+
+<!ENTITY % ISOlat1 PUBLIC
+  "ISO 8879:1986//ENTITIES Added Latin 1//EN//XML" "ISOlat1.pen">
+%ISOlat1;
+
+<!ENTITY % ISOgrk1 PUBLIC
+  "ISO 9573-15:1993//ENTITIES Greek Letters//EN//XML" "ISOgrk1.pen">
+%ISOgrk1;
+
+<!ENTITY % ISOpub PUBLIC
+  "ISO 8879:1986//ENTITIES Publishing//EN//XML" "ISOpub.pen">
+%ISOpub;
+
+<!ENTITY % ISOtech PUBLIC
+  "ISO 8879:1986//ENTITIES General Technical//EN//XML" "ISOtech.pen">
+%ISOtech;
+
+<!ENTITY % ISOnum PUBLIC
+  "ISO 8879:1986//ENTITIES Numeric and Special Graphic//EN//XML" "ISOnum.pen">
+%ISOnum;
+
+<!-- HTML style markup =========================================== -->
+
+<!ENTITY % fontstyle "tt | i | b | big | small">
+<!ENTITY % phrase "em">
+<!ENTITY % special "a | br | sub | sup">
+
+<!ENTITY % inline "#PCDATA | %fontstyle; | %phrase; | %special;">
+
+<!ELEMENT tt (%inline;)*>
+<!ELEMENT i (%inline;)*>
+<!ELEMENT b (%inline;)*>
+<!ELEMENT big (%inline;)*>
+<!ELEMENT small (%inline;)*>
+<!ELEMENT em (%inline;)*>
+
+<!ELEMENT sub (%inline;)*>
+<!ELEMENT sup (%inline;)*>
+
+<!ELEMENT br EMPTY>
+
+<!ENTITY % list "ul | ol">
+<!ENTITY % preformatted "pre">
+
+<!ENTITY % block "p | %list; | %preformatted; | dl">
+<!ENTITY % flow "%inline; | %block;">
+
+<!ENTITY % URI "CDATA">	
+<!ELEMENT a (%inline;)*>
+<!ATTLIST a
+    href %URI; #IMPLIED>
+
+<!ELEMENT p (%inline;)*>
+<!ELEMENT dl (dt|dd)*>
+<!ELEMENT dt (%inline;)*>
+<!ELEMENT dd (%flow;)*>
+<!ELEMENT ol (li)+>
+<!ELEMENT ul (li)+>
+<!ELEMENT li (%flow;)*>
+<!ELEMENT pre (#PCDATA | tt | i | b | em | br)*>
+
+<!-- Re-usable elements ========================================== -->
+
+<!ELEMENT keyword  (%inline;)*>
+<!ATTLIST keyword	
+    qualifier CDATA #IMPLIED
+    identifier CDATA #IMPLIED
+    custodian CDATA #IMPLIED
+    thesaurus CDATA #IMPLIED >
+
+<!-- Note: controlled vocabularies for the following thesauri are  -->
+<!--       available from the abovementioned documentation URL.    -->
+<!-- Note: preferably use the following values for the             -->
+<!--       thesaurus attribute ...                                 -->
+<!--  anzlic-theme | anzlic-update | anzlic-progress |             -->
+<!--  anzlic-begdate | anzlic-enddate | anzlic-jurisdic            -->
+<!--  ... for the place-keyword (GEN) use the values defined in    -->
+<!--      the ANZLIC Guidelines, e.g. "1:100 000 Map Series"       -->
+
+<!ELEMENT date     (#PCDATA)>
+<!-- Note: the content of the date element is expected to contain  -->
+<!--       an ISO 8601 string, i.e. YYYY-MM-DD or YYYY-MM or YYYY  -->
+
+<!-- Top Level Element =========================================== -->
+
+<!ENTITY % local.anzmeta.content "">
+<!ELEMENT anzmeta  (citeinfo, descript, timeperd, status,
+                    distinfo, dataqual, cntinfo+, metainfo,
+                    supplinf? %local.anzmeta.content;)>
+
+<!-- Citation Information ======================================== -->
+
+<!ENTITY % local.citeinfo.content "">
+<!ELEMENT citeinfo (uniqueid, title, origin %local.citeinfo.content;)>
+<!ELEMENT uniqueid (#PCDATA)>
+<!ELEMENT title    (%inline;)*>
+<!ELEMENT origin   (custod, jurisdic)>
+<!ELEMENT custod   (%inline;)*>
+<!ELEMENT jurisdic (keyword)+>
+
+<!-- Description ================================================= -->
+
+<!ENTITY % local.descript.content "">
+<!ELEMENT descript (abstract, theme+, spdom %local.descript.content;)>
+
+<!ELEMENT abstract (%flow;)*>
+<!ELEMENT theme    (keyword)+>
+<!ELEMENT spdom    (place*, bounding)>
+
+<!ELEMENT place    (dsgpolyo+ | keyword)>
+<!ELEMENT dsgpolyo (vertex, (vertex)+)>
+
+<!ENTITY % COORDINATE "#PCDATA">
+<!ELEMENT long     (%COORDINATE;)>
+<!ELEMENT lat      (%COORDINATE;)>
+<!ELEMENT vertex   (long, lat)>
+
+<!ELEMENT bounding (northbc, southbc, eastbc, westbc)>
+<!ELEMENT northbc  (%COORDINATE;)>
+<!ELEMENT southbc  (%COORDINATE;)>
+<!ELEMENT eastbc   (%COORDINATE;)>
+<!ELEMENT westbc   (%COORDINATE;)>
+
+<!-- Data Currency =============================================== -->
+
+<!ENTITY % local.timeperd.content "">
+<!ELEMENT timeperd (begdate, enddate %local.timeperd.content;)>
+<!ELEMENT begdate  (date | keyword)>
+<!ELEMENT enddate  (date | keyword)>
+
+<!-- Dataset Status ============================================== -->
+
+<!ENTITY % local.status.content "">
+<!ELEMENT status   (progress, update %local.status.content;)>
+<!ELEMENT progress (keyword)>
+<!ELEMENT update   (keyword)>
+
+<!-- Access ====================================================== -->
+
+<!ENTITY % local.distinfo.content "">
+<!ELEMENT distinfo (native, avlform?, accconst %local.distinfo.content;)>
+<!ELEMENT native   (nondig | digform)+> 
+<!ELEMENT nondig   (formname)>
+<!ELEMENT digform  (formname)>
+<!ELEMENT formname (%inline;)*>
+<!ELEMENT avlform  (nondig | digform)+>
+<!ELEMENT accconst (%flow;)*>
+
+<!-- Data Quality ================================================ -->
+
+<!ENTITY % local.dataqual.content "">
+<!ELEMENT dataqual (lineage, posacc, attracc, logic, complete
+                    %local.dataqual.content;)>
+<!ELEMENT lineage  (%flow;)*>
+<!ELEMENT posacc   (%flow;)*>
+<!ELEMENT attracc  (%flow;)*>
+<!ELEMENT logic    (%flow;)*>
+<!ELEMENT complete (%flow;)*>
+
+<!-- Contact Information ========================================= -->
+
+<!ENTITY % local.cntinfo.content "">
+<!ELEMENT cntinfo  (cntorg, cntpos, address, address?, city,
+                    state, country, postal, cntvoice?, cntfax?,
+                    cntemail? %local.cntinfo.content;)>
+<!ELEMENT cntorg   (%inline;)*>
+<!ELEMENT cntpos   (%inline;)*>
+<!ELEMENT address  (%inline;)*>
+<!ELEMENT city     (%inline;)*>
+<!ELEMENT state    (%inline;)*>
+<!ELEMENT country  (%inline;)*>
+<!ELEMENT postal   (%inline;)*>
+<!ELEMENT cntvoice (%inline;)*>
+<!ELEMENT cntfax   (%inline;)*>
+<!ELEMENT cntemail (%inline;)*>
+
+<!-- Metadata Information ======================================== -->
+
+<!ENTITY % local.metainfo.content "">
+<!ELEMENT metainfo (metd %local.metainfo.content;)>
+<!ELEMENT metd     (date)>
+
+<!-- Supplementary Information =================================== -->
+
+<!ELEMENT supplinf (%flow;)*>
+
+<!-- END ========================================================= -->
