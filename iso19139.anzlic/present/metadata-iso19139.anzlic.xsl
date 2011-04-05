@@ -47,7 +47,7 @@
 	<!-- template) and code keyword in gmd:geographicIdentifier           -->
 	<!-- ================================================================ -->
 
-	<xsl:template mode="iso19139" match="gmd:keyword[following-sibling::gmd:type/gmd:MD_KeywordTypeCode/@codeListValue='place']|gmd:code[name(../..)='gmd:geographicIdentifier']" priority="10">
+	<xsl:template mode="iso19139" match="gmd:keyword[following-sibling::gmd:type/gmd:MD_KeywordTypeCode/@codeListValue='place' and //geonet:info/schema='iso19139.anzlic']|gmd:code[name(../..)='gmd:geographicIdentifier' and //geonet:info/schema='iso19139.anzlic']" priority="10">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
@@ -103,7 +103,7 @@
 	<!-- descriptiveKeywords 																							-->
 	<!-- ================================================================ -->
 
-	<xsl:template mode="iso19139" match="gmd:keyword[following-sibling::gmd:type/gmd:MD_KeywordTypeCode/@codeListValue!='place']" priority="2">
+	<xsl:template mode="iso19139" match="gmd:keyword[following-sibling::gmd:type/gmd:MD_KeywordTypeCode/@codeListValue!='place' and //geonet:info/schema='iso19139.anzlic']" priority="2">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 		
@@ -159,7 +159,7 @@
 	<!-- EX_GeographicBoundingBox -->
 	<!-- ================================================================== -->
 
-	<xsl:template mode="iso19139" match="gmd:EX_GeographicBoundingBox" priority="2">
+	<xsl:template mode="iso19139" match="gmd:EX_GeographicBoundingBox[//geonet:info/schema='iso19139.anzlic']" priority="3">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 		
@@ -436,7 +436,7 @@
 	<!-- Metadata -->
 	<!-- ==================================================================== -->
 
-	<xsl:template mode="iso19139" match="gmd:MD_Metadata">
+	<xsl:template mode="iso19139" match="gmd:MD_Metadata[//geonet:info/schema='iso19139.anzlic']">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 		<xsl:param name="embedded" select="false()"/>
@@ -925,7 +925,7 @@
 
 	<!-- ============================================================================= -->
 
-	<xsl:template mode="iso19139" match="gmd:fileIdentifier">
+	<xsl:template mode="iso19139" match="gmd:fileIdentifier[//geonet:info/schema='iso19139.anzlic']">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 		<xsl:param name="dataset"/>
@@ -962,7 +962,7 @@
 	</xsl:template>
 		
 	<!-- ============================================================================= -->
-	<xsl:template mode="iso19139" match="gmd:parentIdentifier">
+	<xsl:template mode="iso19139" match="gmd:parentIdentifier[//geonet:info/schema='iso19139.anzlic']">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 		<xsl:param name="dataset"/>
@@ -1021,7 +1021,7 @@
 		
 	<!-- ============================================================================= -->
 
-	<xsl:template mode="iso19139" match="gmd:aggregationInfo">
+	<xsl:template mode="iso19139" match="gmd:aggregationInfo[//geonet:info/schema='iso19139.anzlic']">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 		<xsl:param name="dataset"/>
@@ -1071,7 +1071,7 @@
 
 	<!-- ============================================================================= -->
 
-	<xsl:template mode="iso19139" match="gmd:credit">
+	<xsl:template mode="iso19139" match="gmd:credit[//geonet:info/schema='iso19139.anzlic']">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 		<xsl:param name="dataset"/>
