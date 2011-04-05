@@ -156,7 +156,7 @@
 	</xsl:template>
 		
 	<!-- ================================================================== -->
-	<!-- EX_GeographicBoundingBox -->
+	<!-- EX_GeographicBoundingBox - use for all schemas except iso19139     -->
 	<!-- ================================================================== -->
 
 	<xsl:template mode="iso19139" match="gmd:EX_GeographicBoundingBox[//geonet:info/schema='iso19139.anzlic']" priority="3">
@@ -221,7 +221,7 @@
 					for (var idx = 0; idx &lt; viewers.length; ++idx) {
 	     				var viewer = viewers[idx];
 	     				if (eltRef == viewer.getAttribute("elt_ref")) {
-	    	 				extentMap.updateBbox(extentMap.maps[eltRef], westField + "," + southField + "," + eastField + "," + northField, eltRef, true); // Region are in WGS84
+	    	 				extentMap.updateBboxForRegion(extentMap.maps[eltRef], westField + "," + southField + "," + eastField + "," + northField, eltRef, true); // Region are in WGS84
 	     				}
 					}
 				}
@@ -324,7 +324,7 @@
 				<table>
 					<tr>
 						<td>
-					<xsl:apply-templates mode="iso19139VertElement" select="gmd:northBoundLatitude/gco:Decimal">
+					<xsl:apply-templates mode="coordinateElementGUI" select="gmd:northBoundLatitude/gco:Decimal">
 						<xsl:with-param name="schema" select="$schema"/>
 						<xsl:with-param name="edit"   select="$edit"/>
 						<xsl:with-param name="name"   select="'gmd:northBoundLatitude'"/>
@@ -335,7 +335,7 @@
 					
 					<tr>
 						<td>
-					<xsl:apply-templates mode="iso19139VertElement" select="gmd:westBoundLongitude/gco:Decimal">
+					<xsl:apply-templates mode="coordinateElementGUI" select="gmd:westBoundLongitude/gco:Decimal">
 						<xsl:with-param name="schema" select="$schema"/>
 						<xsl:with-param name="edit"   select="$edit"/>
 						<xsl:with-param name="name"   select="'gmd:westBoundLongitude'"/>
@@ -346,7 +346,7 @@
 					
 					<tr>
 						<td>
-					<xsl:apply-templates mode="iso19139VertElement" select="gmd:eastBoundLongitude/gco:Decimal">
+					<xsl:apply-templates mode="coordinateElementGUI" select="gmd:eastBoundLongitude/gco:Decimal">
 						<xsl:with-param name="schema" select="$schema"/>
 						<xsl:with-param name="edit"   select="$edit"/>
 						<xsl:with-param name="name"   select="'gmd:eastBoundLongitude'"/>
@@ -357,7 +357,7 @@
 					
 					<tr>
 						<td>
-					<xsl:apply-templates mode="iso19139VertElement" select="gmd:southBoundLatitude/gco:Decimal">
+					<xsl:apply-templates mode="coordinateElementGUI" select="gmd:southBoundLatitude/gco:Decimal">
 						<xsl:with-param name="schema" select="$schema"/>
 						<xsl:with-param name="edit"   select="$edit"/>
 						<xsl:with-param name="name"   select="'gmd:southBoundLatitude'"/>

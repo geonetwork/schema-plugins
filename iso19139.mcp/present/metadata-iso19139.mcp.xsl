@@ -477,7 +477,7 @@
 	<!-- EX_GeographicBoundingBox -->
 	<!-- ================================================================== -->
 
-	<xsl:template mode="iso19139" match="gmd:EX_GeographicBoundingBox[//geonet:info/schema='iso19139.mcp']" priority="3">
+	<xsl:template mode="iso19139" match="gmd:EX_GeographicBoundingBox[starts-with(//geonet:info/schema,'iso19139.mcp')]" priority="3">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 		
