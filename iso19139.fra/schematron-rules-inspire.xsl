@@ -757,7 +757,7 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="//gmd:MD_DataIdentification|    //*[@gco:isoType='gmd:MD_DataIdentification']"/>
       <xsl:variable name="inspire-thesaurus"
-                    select="document(concat($dataDir, '/codelist/external/thesauri/theme/inspire-theme.rdf'))"/>
+        select="document(concat('file:///', $dataDir, '/codelist/external/thesauri/theme/inspire-theme.rdf'))"/>
       <xsl:variable name="inspire-theme" select="$inspire-thesaurus//skos:Concept"/>
 
 		    <!--ASSERT -->
