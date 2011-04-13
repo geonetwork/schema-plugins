@@ -15,6 +15,12 @@
 	        uri="dtds/anzmeta-1.1.dtd"/>
 	<system systemId="http://www.environment.gov.au/net/anzmeta/extmeta-1.1.dtd" 
 	        uri="dtds/extmeta-1.1.dtd"/>
+	<system systemId="http://www.w3.org/TR/REC-html40-971218/HTMLlat1.ent"
+					uri="dtds/HTMLlat1.ent"/>
+	<system systemId="http://www.w3.org/TR/REC-html40-971218/HTMLsymbol.ent"
+					uri="dtds/HTMLsymbol.ent"/>
+	<system systemId="http://www.w3.org/TR/REC-html40-971218/HTMLspecial.ent"
+					uri="dtds/HTMLspecial.ent"/>
 
 	<system systemId="http://www.environment.gov.au/database/metadata/anzmeta/anzmeta-1.2.dtd" 
 	        uri="dtds/anzmeta-1.2.dtd"/>
@@ -39,6 +45,5 @@
 
 	<system systemId="http://www.gso.qld.gov.au/qsiis/dtd/qsiis-1.3.dtd"
 	        uri="dtds/qsiis-1.3.dtd"/>
-
 
 </catalog>
