@@ -43,7 +43,11 @@
 	<system systemId="http://www.marine.csiro.au/neptune/neptune1.dtd"
 	        uri="dtds/neptune1.dtd"/>
 
+	<system systemId="http://www.nrm.qld.gov.au/asdd/qsii2/qsiis-1.3.dtd"
+	        uri="dtds/qsiis-1.3.dtd"/>
+
 	<system systemId="http://www.gso.qld.gov.au/qsiis/dtd/qsiis-1.3.dtd"
 	        uri="dtds/qsiis-1.3.dtd"/>
+
 
 </catalog>
