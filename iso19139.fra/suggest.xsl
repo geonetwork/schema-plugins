@@ -9,6 +9,7 @@
   <xsl:include href="process/scale-denominator-formatter.xsl"/>
   <xsl:include href="process/add-extent-from-geokeywords.xsl"/>
   <xsl:include href="process/add-info-from-wms.xsl"/>
+  <xsl:include href="process/add-service-info-from-wxs.xsl"/>
   <xsl:include href="process/inspire-add-conformity.xsl"/>
   <xsl:include href="process/linked-data-checker.xsl"/>
   <xsl:include href="process/related-metadata-checker.xsl"/>
