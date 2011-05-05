@@ -41,7 +41,7 @@
     		<Collections>
 					<xsl:for-each select="srv:containsOperations//srv:connectPoint//gmd:linkage/gmd:URL">
 						<xsl:variable name="code" select="substring-after(.,'z3950://')"/>
-						<Collection code="{$code}" name="{$serviceName}" localId="{substring-after($code,'/')}" profile="geo"/>
+						<Collection code="{substring-after($code,'/')}" name="{$serviceName}" localId="{substring-after($code,'/')}" profile="geo"/>
 					</xsl:for-each>
 				</Collections>
 			</Repository>
