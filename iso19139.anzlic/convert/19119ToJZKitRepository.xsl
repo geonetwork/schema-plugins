@@ -9,11 +9,13 @@
 	<xsl:output method="xml" indent="yes"/>
 
 	<xsl:template match="/gmd:MD_Metadata">
-		<xsl:if test="not(*/srv:SV_ServiceIdentification[srv:serviceType/gco:LocalName='Z3950'])">
+
+		<xsl:variable name="recordType" select="*/srv:SV_ServiceIdentification/srv:serviceType/gco:LocalName"/>
+		<xsl:if test="$recordType!='Z3950' and $recordType!='ISO 23950 gateway'">
 			<error>Incompatible</error>
 		</xsl:if>
 
-		<xsl:for-each select="*/srv:SV_ServiceIdentification[srv:serviceType/gco:LocalName='Z3950']">
+		<xsl:for-each select="*/srv:SV_ServiceIdentification">
 
 			<xsl:variable name="code" select="../../gmd:fileIdentifier/gco:CharacterString"/>
 			<xsl:variable name="serviceName" select="normalize-space(gmd:citation//gmd:title/gco:CharacterString)"/>
