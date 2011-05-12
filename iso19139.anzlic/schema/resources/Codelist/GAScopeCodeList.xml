@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CT_CodelistCatalogue xmlns="http://www.isotc211.org/2005/gmx" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.isotc211.org/2005/gmx http://www.isotc211.org/2005/gmx/gmx.xsd      http://www.isotc211.org/2005/gco http://www.isotc211.org/2005/gco/gco.xsd      http://www.opengis.net/gml http://www.isotc211.org/2005/gml/gml.xsd      http://www.w3.org/1999/xlink http://www.isotc211.org/2005/xlink/xlinks.xsd">
+    <!--=====Catalogue description=====-->
+    <name>
+        <gco:CharacterString>GAScopeCodeList</gco:CharacterString>
+    </name>
+    <scope>
+        <gco:CharacterString>Geoscience Australia's ScopeCode codelist for description of metadata
+            hierarchyLevels compliant with an extension of ISO/TC 211 19115:2003 and 19139</gco:CharacterString>
+    </scope>
+    <fieldOfApplication>
+        <gco:CharacterString>ISO 19139 ScopeCodes</gco:CharacterString>
+    </fieldOfApplication>
+    <versionNumber>
+        <gco:CharacterString>0.1</gco:CharacterString>
+    </versionNumber>
+    <versionDate>
+        <gco:Date>2008-03-04</gco:Date>
+    </versionDate>
+    <!-- refer to this code list using the full url: 
+        http://asdd.ga.gov.au/asdd/profileinfo/GAScopeCodeList.xml#MD_ScopeCode
+    -->
+    <!--============================================================================-->
+    <!--============================================================================-->
+    <!--============================= Codelists =======================================-->
+    <!--=== MD_ScopeCode ===-->
+    <codelistItem>
+        <CodeListDictionary gml:id="MD_ScopeCode">
+            <gml:description>class of information to which the referencing entity applies</gml:description>
+            <gml:identifier codeSpace="ISOTC211/19115">MD_ScopeCode</gml:identifier>
+            <gml:remarks>Any references to this codeList should include in the
+                codeList attribute this url:
+                http://asdd.ga.gov.au/asdd/profileinfo/GAScopeCodeList.xml
+                followed by a # and then the CodeListDictionary. EG. 
+      http://asdd.ga.gov.au/asdd/profileinfo/GAScopeCodeList.xml#MD_ScopeCode</gml:remarks>
+            <codeEntry>
+                <CodeDefinition gml:id="MD_ScopeCode_attribute">
+                    <gml:description>information applies to the attribute class</gml:description>
+                    <gml:identifier codeSpace="ISOTC211/19115">attribute</gml:identifier>
+                </CodeDefinition>
+            </codeEntry>
+            <codeEntry>
+                <CodeDefinition gml:id="MD_ScopeCode_attributeType">
+                    <gml:description>information applies to the characteristic of a feature</gml:description>
+                    <gml:identifier codeSpace="ISOTC211/19115">attributeType</gml:identifier>
+                </CodeDefinition>
+            </codeEntry>
+            <codeEntry>
+                <CodeDefinition gml:id="MD_ScopeCode_collectionHardware">
+                    <gml:description>information applies to the collection hardware class</gml:description>
+                    <gml:identifier codeSpace="ISOTC211/19115">collectionHardware</gml:identifier>
+                </CodeDefinition>
+            </codeEntry>
+            <codeEntry>
+                <CodeDefinition gml:id="MD_ScopeCode_collectionSession">
+                    <gml:description>information applies to the collection session</gml:description>
+                    <gml:identifier codeSpace="ISOTC211/19115">collectionSession</gml:identifier>
+                </CodeDefinition>
+            </codeEntry>
+            <codeEntry>
+                <CodeDefinition gml:id="MD_ScopeCode_dataset">
+                    <gml:description>information applies to the dataset</gml:description>
+                    <gml:identifier codeSpace="ISOTC211/19115">dataset</gml:identifier>
+                </CodeDefinition>
+            </codeEntry>
+            <codeEntry>
+                <CodeDefinition gml:id="MD_ScopeCode_series">
+                    <gml:description>information applies to the series</gml:description>
+                    <gml:identifier codeSpace="ISOTC211/19115">series</gml:identifier>
+                </CodeDefinition>
+            </codeEntry>
+            <codeEntry>
+                <CodeDefinition gml:id="MD_ScopeCode_nonGeographicDataset">
+                    <gml:description>information applies to non-geographic data</gml:description>
+                    <gml:identifier codeSpace="ISOTC211/19115">nonGeographicDataset</gml:identifier>
+                </CodeDefinition>
+            </codeEntry>
+            <codeEntry>
+                <CodeDefinition gml:id="MD_ScopeCode_dimensionGroup">
+                    <gml:description>information applies to a dimension group</gml:description>
+                    <gml:identifier codeSpace="ISOTC211/19115">dimensionGroup</gml:identifier>
+                </CodeDefinition>
+            </codeEntry>
+            <codeEntry>
+                <CodeDefinition gml:id="MD_ScopeCode_feature">
+                    <gml:description>information applies to a feature</gml:description>
+                    <gml:identifier codeSpace="ISOTC211/19115">feature</gml:identifier>
+                </CodeDefinition>
+            </codeEntry>
+            <codeEntry>
+                <CodeDefinition gml:id="MD_ScopeCode_featureType">
+                    <gml:description>information applies to a feature type</gml:description>
+                    <gml:identifier codeSpace="ISOTC211/19115">featureType</gml:identifier>
+                </CodeDefinition>
+            </codeEntry>
+            <codeEntry>
+                <CodeDefinition gml:id="MD_ScopeCode_propertyType">
+                    <gml:description>information applies to a property type</gml:description>
+                    <gml:identifier codeSpace="ISOTC211/19115">propertyType</gml:identifier>
+                </CodeDefinition>
+            </codeEntry>
+            <codeEntry>
+                <CodeDefinition gml:id="MD_ScopeCode_fieldSession">
+                    <gml:description>information applies to a field session</gml:description>
+                    <gml:identifier codeSpace="ISOTC211/19115">fieldSession</gml:identifier>
+                </CodeDefinition>
+            </codeEntry>
+            <codeEntry>
+                <CodeDefinition gml:id="MD_ScopeCode_software">
+                    <gml:description>information applies to a computer program or routine</gml:description>
+                    <gml:identifier codeSpace="ISOTC211/19115">software</gml:identifier>
+                </CodeDefinition>
+            </codeEntry>
+            <codeEntry>
+                <CodeDefinition gml:id="MD_ScopeCode_service">
+                    <gml:description>information applies to a capability which a service provider entity makes available to a service user entity through a set of interfaces that define a behaviour, such as a use case</gml:description>
+                    <gml:identifier codeSpace="ISOTC211/19115">service</gml:identifier>
+                </CodeDefinition>
+            </codeEntry>
+            <codeEntry>
+                <CodeDefinition gml:id="MD_ScopeCode_model">
+                    <gml:description>information applies to a copy or imitation of an existing or hypothetical object</gml:description>
+                    <gml:identifier codeSpace="ISOTC211/19115">model</gml:identifier>
+                </CodeDefinition>
+            </codeEntry>
+            <codeEntry>
+                <CodeDefinition gml:id="MD_ScopeCode_tile">
+                    <gml:description>information applies to a tile, a spatial subset of geographic data</gml:description>
+                    <gml:identifier codeSpace="ISOTC211/19115">tile</gml:identifier>
+                </CodeDefinition>
+            </codeEntry>
+            
+            <!--=== Additional ScopeCodes ===-->
+            
+            <codeEntry>
+                <CodeDefinition gml:id="MD_ScopeCode_modelSession">
+                    <gml:description>information applies to a model session or
+                        model run for a particular model</gml:description>
+                    <gml:identifier codeSpace="ISOTC211/19115">modelSession</gml:identifier>
+                </CodeDefinition>
+            </codeEntry>
+            <codeEntry>
+                <CodeDefinition gml:id="MD_ScopeCode_document">
+                    <gml:description>information applies to a document such as a
+                    publication, report, record etc.</gml:description>
+                    <gml:identifier codeSpace="ISOTC211/19115">document</gml:identifier>
+                </CodeDefinition>
+            </codeEntry>
+            <codeEntry>
+                <CodeDefinition gml:id="MD_ScopeCode_profile">
+                    <gml:description>information applies to a profile of an ISO
+                        TC 211 standard or specification</gml:description>
+                    <gml:identifier codeSpace="ISOTC211/19115">profile</gml:identifier>
+                </CodeDefinition>
+            </codeEntry>
+            <codeEntry>
+                <CodeDefinition gml:id="MD_ScopeCode_dataRepository">
+                    <gml:description>information applies to a data repository
+                        such as a Catalogue Service, Relational Database, Web
+                        Registry</gml:description>
+                    <gml:identifier codeSpace="ISOTC211/19115">dataRepository</gml:identifier>
+                </CodeDefinition>
+            </codeEntry>
+            <codeEntry>
+                <CodeDefinition gml:id="MD_ScopeCode_codeList">
+                    <gml:description>information applies to a code list
+                        according to the CT_CodelistCatalogue format</gml:description>
+                    <gml:identifier codeSpace="ISOTC211/19115">codeList</gml:identifier>
+                </CodeDefinition>
+            </codeEntry>
+            <codeEntry>
+                <CodeDefinition gml:id="MD_ScopeCode_project">
+                    <gml:description>information applies to a project or programme</gml:description>
+                    <gml:identifier codeSpace="ISOTC211/19115">project</gml:identifier>
+                </CodeDefinition>
+            </codeEntry>
+            
+        </CodeListDictionary>
+    </codelistItem>
+    
+    <!--=== EOF ===-->
+</CT_CodelistCatalogue>

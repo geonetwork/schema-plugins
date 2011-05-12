@@ -138,9 +138,18 @@
 	<xsl:template match="gmd:*[@codeListValue]">
 		<xsl:copy>
 			<xsl:apply-templates select="@*"/>
-			<xsl:attribute name="codeList">
-				<xsl:value-of select="concat('http://asdd.ga.gov.au/asdd/profileinfo/gmxCodelists.xml#',local-name(.))"/>
-			</xsl:attribute>
+			<xsl:choose>
+				<xsl:when test="local-name(.)='MD_ScopeCode'">
+					<xsl:attribute name="codeList">
+						<xsl:value-of select="concat('http://asdd.ga.gov.au/asdd/profileinfo/GAScopeCodeList.xml#',local-name(.))"/>
+					</xsl:attribute>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:attribute name="codeList">
+						<xsl:value-of select="concat('http://asdd.ga.gov.au/asdd/profileinfo/gmxCodelists.xml#',local-name(.))"/>
+					</xsl:attribute>
+				</xsl:otherwise>
+			</xsl:choose>
 		</xsl:copy>
 	</xsl:template>
 

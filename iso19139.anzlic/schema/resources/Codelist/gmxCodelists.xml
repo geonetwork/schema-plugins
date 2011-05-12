@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CT_CodelistCatalogue xmlns="http://www.isotc211.org/2005/gmx" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.isotc211.org/2005/gmx ../../gmx/gmx.xsd http://www.isotc211.org/2005/gco ../../gco/gco.xsd http://www.opengis.net/gml ../../gml/gml.xsd http://www.w3.org/1999/xlink ../../xlink/xlinks.xsd">
+<!-- 
+	Changes made for: 	Australian Government Security Classification codes
+	Changes made by:	John Hockaday john.hockaday@osdm.gov.au
+							Office of Spatial Data Management (OSDM)
+	Changes made on: 2011-04-12
+	CORRECTIONS:
+	Spelling mistake of "responsability" to "responsibility" in definition of CI_RoleCode_custodian.
+	Changed three hyphens within a comment identifier to two hyphens.
+	
+CORRECTIONS referenced by 2008-09-11 #NN
+AUTHOR : IGN (France) contact: nicolas.lesage@ign.fr
+PURPOSE : Correction of 3 typographical errors 
+DESCRIPTION : 
+#01: 'unknwon' replaced by 'unknown'
+#02: 'MD_MaintenanceFrequencyCode_quartely' replaced by 'MD_MaintenanceFrequencyCode_quarterly'
+#03: 'quartely' replaced by 'quarterly'
+-->
+<CT_CodelistCatalogue xmlns="http://www.isotc211.org/2005/gmx" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.isotc211.org/2005/gmx http://www.isotc211.org/2005/gmx/gmx.xsd   http://www.isotc211.org/2005/gco http://www.isotc211.org/2005/gco/gco.xsd   http://www.opengis.net/gml http://www.isotc211.org/2005/gml/gml.xsd   http://www.w3.org/1999/xlink http://www.isotc211.org/2005/xlink/xlinks.xsd">
 	<!--=====Catalogue description=====-->
 	<name>
 		<gco:CharacterString>gmxCodelists</gco:CharacterString>
@@ -11,10 +28,10 @@
 		<gco:CharacterString>GMX (and imported) namespace</gco:CharacterString>
 	</fieldOfApplication>
 	<versionNumber>
-		<gco:CharacterString>0.0</gco:CharacterString>
+		<gco:CharacterString>0.2</gco:CharacterString>
 	</versionNumber>
 	<versionDate>
-		<gco:Date>2005-03-18</gco:Date>
+		<gco:Date>2011-04-12</gco:Date>
 	</versionDate>
 	<!--============================================================================-->
 	<!--============================================================================-->
@@ -38,7 +55,7 @@
 			</codeEntry>
 			<codeEntry>
 				<CodeDefinition gml:id="CI_DateTypeCode_revision">
-					<gml:description>date identifies when the resource was examined or re-examined and improved or amended</gml:description>
+					<gml:description>date identifies when the resource was examined or re-examined and imporved or amended</gml:description>
 					<gml:identifier codeSpace="ISOTC211/19115">revision</gml:identifier>
 				</CodeDefinition>
 			</codeEntry>
@@ -185,7 +202,7 @@
 			</codeEntry>
 			<codeEntry>
 				<CodeDefinition gml:id="CI_RoleCode_custodian">
-					<gml:description>party that accepts accountability and responsability for the data and ensures appropriate care and maintenance of the resource</gml:description>
+					<gml:description>party that accepts accountability and responsibility for the data and ensures appropriate care and maintenance of the resource</gml:description>
 					<gml:identifier codeSpace="ISOTC211/19115">custodian</gml:identifier>
 				</CodeDefinition>
 			</codeEntry>
@@ -614,21 +631,31 @@
 					<gml:identifier codeSpace="ISOTC211/19115">unclassified</gml:identifier>
 				</CodeDefinition>
 			</codeEntry>
+			<!-- New element and definition -->
+			<codeEntry>
+				<CodeDefinition gml:id="MD_ClassificationCode_in-confidence">
+					<gml:description>guarded due to propriety, ethical or privacy considerations</gml:description>
+					<gml:identifier codeSpace="ISOTC211/19115">in-confidence</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<!-- End of new element and defintion -->
 			<codeEntry>
 				<CodeDefinition gml:id="MD_ClassificationCode_restricted">
 					<gml:description>not for general disclosure</gml:description>
 					<gml:identifier codeSpace="ISOTC211/19115">restricted</gml:identifier>
 				</CodeDefinition>
 			</codeEntry>
+			<!-- Same as protected in Australian Government Security Classification -->
 			<codeEntry>
 				<CodeDefinition gml:id="MD_ClassificationCode_confidential">
-					<gml:description>available for someone who can be entrusted with information</gml:description>
+					<gml:description>available for someone who can be entrusted with information (protected)</gml:description>
 					<gml:identifier codeSpace="ISOTC211/19115">confidential</gml:identifier>
 				</CodeDefinition>
 			</codeEntry>
+			<!-- Same as highly protected in Australian Government Security Classification -->
 			<codeEntry>
 				<CodeDefinition gml:id="MD_ClassificationCode_secret">
-					<gml:description>kept or meant to be kept private, unknown, or hidden from all but a select group of people</gml:description>
+					<gml:description>kept or meant to be kept private, unknown, or hidden from all but a select group of people (highly protected)</gml:description>
 					<gml:identifier codeSpace="ISOTC211/19115">secret</gml:identifier>
 				</CodeDefinition>
 			</codeEntry>
@@ -1006,9 +1033,17 @@
 				</CodeDefinition>
 			</codeEntry>
 			<codeEntry>
+				<!-- CHANGE 2008-09-11 #02 -->
+				<CodeDefinition gml:id="MD_MaintenanceFrequencyCode_quarterly">
+				<!-- CHANGE 2008-09-11 #02
 				<CodeDefinition gml:id="MD_MaintenanceFrequencyCode_quartely">
+				-->
 					<gml:description>data is updated every three months</gml:description>
+					<!-- CHANGE 2008-09-11 #03 -->
+					<gml:identifier codeSpace="ISOTC211/19115">quarterly</gml:identifier>
+					<!-- CHANGE 2008-09-11 #03
 					<gml:identifier codeSpace="ISOTC211/19115">quartely</gml:identifier>
+					-->
 				</CodeDefinition>
 			</codeEntry>
 			<codeEntry>
@@ -1044,7 +1079,11 @@
 			<codeEntry>
 				<CodeDefinition gml:id="MD_MaintenanceFrequencyCode_unknown">
 					<gml:description>frequency of maintenance for the data is not known</gml:description>
+					<!-- CHANGE 2008-09-11 #01-->
 					<gml:identifier codeSpace="ISOTC211/19115">unknown</gml:identifier>
+					<!-- CHANGE 2008-09-11 #01
+					<gml:identifier codeSpace="ISOTC211/19115">unknwon</gml:identifier>
+					-->
 				</CodeDefinition>
 			</codeEntry>
 		</CodeListDictionary>
@@ -1176,9 +1215,9 @@
 				</CodeDefinition>
 			</codeEntry>
 			<codeEntry>
-				<CodeDefinition gml:id="MD_MediumNameCode_digitalLinearTap">
+				<CodeDefinition gml:id="MD_MediumNameCode_digitalLinearTape">
 					<gml:description>half inch cartridge streaming tape drive</gml:description>
-					<gml:identifier codeSpace="ISOTC211/19115">digitalLinearTap</gml:identifier>
+					<gml:identifier codeSpace="ISOTC211/19115">digitalLinearTape</gml:identifier>
 				</CodeDefinition>
 			</codeEntry>
 			<codeEntry>
@@ -1701,7 +1740,7 @@
 			</codeEntry>
 		</CodeListDictionary>
 	</codelistItem>
-	<!---===MX_ScopeCode===-->
+	<!-- ===MX_ScopeCode=== -->
 	<codelistItem>
 		<CodeListDictionary gml:id="MX_ScopeCode">
 			<gml:description>Extension of MD_ScopeCode for the needs of GMX application schemas and in the context of a transfer</gml:description>

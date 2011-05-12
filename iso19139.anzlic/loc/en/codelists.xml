@@ -33,8 +33,7 @@
 		<entry>
 			<code>revision</code>
 			<label>Revision</label>
-			<description>Date identifies when the resource was examined or re-examined and improved or
-				amended</description>
+			<description>Date identifies when the resource was examined or re-examined and improved or amended</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
@@ -43,8 +42,7 @@
 		<entry>
 			<code>download</code>
 			<label>Download</label>
-			<description>Online instructions for transferring data from one storage device or system to
-				another</description>
+			<description>Online instructions for transferring data from one storage device or system to another</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -56,21 +54,19 @@
 		<entry>
 			<code>offlineAccess</code>
 			<label>Offline access</label>
-			<description>Online instructions for requesting the resource from the
-			provider</description>
+			<description>Online instructions for requesting the resource from the provider</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>order</code>
 			<label>Order</label>
-			<description>Online order process for obtening the resource</description>
+			<description>Online order process for obtaining the resource</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>search</code>
 			<label>Search</label>
-			<description>Online search interface for seeking out information about the
-			resource</description>
+			<description>Online search interface for seeking out information about the resource</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
@@ -86,26 +82,19 @@
 		<entry>
 			<code>imageDigital</code>
 			<label>Digital image</label>
-			<description>Representation of a primarily textual item (can contain illustrations also) on
-				paper, photograhic material, or other media</description>
+			<description>Representation of a primarily textual item (can contain illustrations also) on paper, photographic material, or other media</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>documentHardcopy</code>
 			<label>Hardcopy document</label>
-			<description>Likeness of natural or man-made features, objects, and activities acquired
-				through the sensing of visual or any other segment of the electromagnetic spectrum by
-				sensors, such as thermal infrared, and high resolution radar and stored in digital
-				format</description>
+			<description>Likeness of natural or man-made features, objects, and activities acquired through the sensing of visual or any other segment of the electromagnetic spectrum by sensors, such as thermal infrared, and high resolution radar and stored in digital format</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>imageHardcopy</code>
 			<label>Hardcopy image</label>
-			<description>Likeness of natural or man-made features, objects, and activities acquired
-				through the sensing of visual or any other segment of the electromagnetic spectrum by
-				sensors, such as thermal infrared, and high resolution radar and reproduced on paper,
-				photographic material, or other media for use directly by the human user</description>
+			<description>Likeness of natural or man-made features, objects, and activities acquired through the sensing of visual or any other segment of the electromagnetic spectrum by sensors, such as thermal infrared, and high resolution radar and reproduced on paper, photographic material, or other media for use directly by the human user</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -117,15 +106,13 @@
 		<entry>
 			<code>mapHardcopy</code>
 			<label>Hardcopy map</label>
-			<description>Map printed on paper, photographic material, or other media for use directly
-				by the human user</description>
+			<description>Map printed on paper, photographic material, or other media for use directly by the human user</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>modelDigital</code>
 			<label>Digital model</label>
-			<description>Multi-dimensional digital representation of a feature, process,
-			etc.</description>
+			<description>Multi-dimensional digital representation of a feature, process, etc.</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -149,15 +136,13 @@
 		<entry>
 			<code>tableDigital</code>
 			<label>Digital table</label>
-			<description>Digital representation of facts or figures systematically displayed,
-				especially in columns</description>
+			<description>Digital representation of facts or figures systematically displayed, especially in columns</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>tableHardcopy</code>
 			<label>Hardcopy table</label>
-			<description>Representation of facts or figures systematically displayed, especially in
-				columns, printed onpapers, photographic material, or other media</description>
+			<description>Representation of facts or figures systematically displayed, especially in columns, printed onpapers, photographic material, or other media</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -184,8 +169,7 @@
 		<entry>
 			<code>custodian</code>
 			<label>Custodian</label>
-			<description>Party that accepts accountability and responsability for the data and ensures
-				appropriate care and maintenance of the resource</description>
+			<description>Party that accepts accountability and responsibility for the data and ensures appropriate care and maintenance of the resource</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -215,22 +199,19 @@
 		<entry>
 			<code>pointOfContact</code>
 			<label>Point of contact</label>
-			<description>Party who can be contacted for acquiring knowledge about or acquisition of the
-				resource</description>
+			<description>Party who can be contacted for acquiring knowledge about or acquisition of the resource</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>principalInvestigator</code>
 			<label>Principal investigator</label>
-			<description>Key party responsible for gathering information and conducting
-			research</description>
+			<description>Key party responsible for gathering information and conducting research</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>processor</code>
 			<label>Processor</label>
-			<description>Party wha has processed the data in a manner such that the resource has been
-				modified</description>
+			<description>Party who has processed the data in a manner such that the resource has been modified</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -244,41 +225,25 @@
 			<label>Author</label>
 			<description>Party who authored the resource</description>
 		</entry>
-		<!-- ISO PROFIL CHE ONLY 
-		<entry>
-			<code>editor</code>
-			<label>Editor</label>
-			<description></description>
-		</entry>
-		<entry>
-			<code>partner</code>
-			<label>Partner</label>
-			<description></description>
-		</entry>-->
 	</codelist>
 	<!-- ==================================================== -->
 	<codelist name="gmd:DQ_EvaluationMethodTypeCode">
 		<entry>
 			<code>directInternal</code>
 			<label>Direct internal</label>
-			<description>Method of evaluating the quality of a dataset based on inspection of items
-				within the dataset, where all data required is internal to the dataset being
-			evaluated</description>
+			<description>Method of evaluating the quality of a dataset based on inspection of items within the dataset, where all data required is internal to the dataset being evaluated</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>directExternal</code>
 			<label>Direct external</label>
-			<description>Method of evaluating the quality of a dataset based on inspection of items
-				within the dataset, where reference data external to the dataset being evaluated is
-				required</description>
+			<description>Method of evaluating the quality of a dataset based on inspection of items within the dataset, where reference data external to the dataset being evaluated is required</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>indirect</code>
 			<label>Indirect</label>
-			<description>Method of evaluating the quality of a dataset based on external
-			knowledge</description>
+			<description>Method of evaluating the quality of a dataset based on external knowledge</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
@@ -312,8 +277,7 @@
 		<entry>
 			<code>stereoMate</code>
 			<label>Stereo mate</label>
-			<description>Part of a set of imagery that when used together, provides three-dimensional
-				images</description>
+			<description>Part of a set of imagery that when used together, provides three-dimensional images</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
@@ -430,15 +394,13 @@
 		<entry>
 			<code>ucs2</code>
 			<label>UCS2</label>
-			<description>16-bit fixed size Universal Character Set, based on ISO/IEC
-			10646</description>
+			<description>16-bit fixed size Universal Character Set, based on ISO/IEC 10646</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>ucs4</code>
 			<label>UCS4</label>
-			<description>32-bit fixed size Universal Character Set, based on ISO/IEC
-			10646</description>
+			<description>32-bit fixed size Universal Character Set, based on ISO/IEC 10646</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -462,106 +424,91 @@
 		<entry>
 			<code>8859part1</code>
 			<label>8859 Part 1</label>
-			<description>ISO/IEC 8859-1, Information technology - 8-bit single byte coded graphic
-				character sets - Part 1 : Latin alphabet No.1</description>
+			<description>ISO/IEC 8859-1, Information technology - 8-bit single byte coded graphic character sets - Part 1 : Latin alphabet No.1</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>8859part2</code>
 			<label>8859 Part 2</label>
-			<description>ISO/IEC 8859-2, Information technology - 8-bit single byte coded graphic
-				character sets - Part 2 : Latin alphabet No.2</description>
+			<description>ISO/IEC 8859-2, Information technology - 8-bit single byte coded graphic character sets - Part 2 : Latin alphabet No.2</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>8859part3</code>
 			<label>8859 Part 3</label>
-			<description>ISO/IEC 8859-3, Information technology - 8-bit single byte coded graphic
-				character sets - Part 3 : Latin alphabet No.3</description>
+			<description>ISO/IEC 8859-3, Information technology - 8-bit single byte coded graphic character sets - Part 3 : Latin alphabet No.3</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>8859part4</code>
 			<label>8859 Part 4</label>
-			<description>ISO/IEC 8859-4, Information technology - 8-bit single byte coded graphic
-				character sets - Part 4 : Latin alphabet No.4</description>
+			<description>ISO/IEC 8859-4, Information technology - 8-bit single byte coded graphic character sets - Part 4 : Latin alphabet No.4</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>8859part5</code>
 			<label>8859 Part 5</label>
-			<description>ISO/IEC 8859-5, Information technology - 8-bit single byte coded graphic
-				character sets - Part 5 : Latin/Cyrillic alphabet</description>
+			<description>ISO/IEC 8859-5, Information technology - 8-bit single byte coded graphic character sets - Part 5 : Latin/Cyrillic alphabet</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>8859part6</code>
 			<label>8859 Part 6</label>
-			<description>ISO/IEC 8859-6, Information technology - 8-bit single byte coded graphic
-				character sets - Part 6 : Latin/Arabic alphabet</description>
+			<description>ISO/IEC 8859-6, Information technology - 8-bit single byte coded graphic character sets - Part 6 : Latin/Arabic alphabet</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>8859part7</code>
 			<label>8859 Part 7</label>
-			<description>ISO/IEC 8859-7, Information technology - 8-bit single byte coded graphic
-				character sets - Part 7 : Latin/Greek alphabet</description>
+			<description>ISO/IEC 8859-7, Information technology - 8-bit single byte coded graphic character sets - Part 7 : Latin/Greek alphabet</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>8859part8</code>
 			<label>8859 Part 8</label>
-			<description>ISO/IEC 8859-8, Information technology - 8-bit single byte coded graphic
-				character sets - Part 8 : Latin/Hebrew alphabet</description>
+			<description>ISO/IEC 8859-8, Information technology - 8-bit single byte coded graphic character sets - Part 8 : Latin/Hebrew alphabet</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>8859part9</code>
 			<label>8859 Part 9</label>
-			<description>ISO/IEC 8859-9, Information technology - 8-bit single byte coded graphic
-				character sets - Part 9 : Latin alphabet No.5</description>
+			<description>ISO/IEC 8859-9, Information technology - 8-bit single byte coded graphic character sets - Part 9 : Latin alphabet No.5</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>8859part10</code>
 			<label>8859 Part 10</label>
-			<description>ISO/IEC 8859-10, Information technology - 8-bit single byte coded graphic
-				character sets - Part 10 : Latin alphabet No.6</description>
+			<description>ISO/IEC 8859-10, Information technology - 8-bit single byte coded graphic character sets - Part 10 : Latin alphabet No.6</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>8859part11</code>
 			<label>8859 Part 11</label>
-			<description>ISO/IEC 8859-11, Information technology - 8-bit single byte coded graphic
-				character sets - Part 11 : Latin/Thai alphabet</description>
+			<description>ISO/IEC 8859-11, Information technology - 8-bit single byte coded graphic character sets - Part 11 : Latin/Thai alphabet</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>8859part13</code>
 			<label>8859 Part 13</label>
-			<description>ISO/IEC 8859-13, Information technology - 8-bit single byte coded graphic
-				character sets - Part 13 : Latin alphabet No.7</description>
+			<description>ISO/IEC 8859-13, Information technology - 8-bit single byte coded graphic character sets - Part 13 : Latin alphabet No.7</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>8859part14</code>
 			<label>8859 Part 14</label>
-			<description>ISO/IEC 8859-14, Information technology - 8-bit single byte coded graphic
-				character sets - Part 14 : Latin alphabet No.8 (Celtic)</description>
+			<description>ISO/IEC 8859-14, Information technology - 8-bit single byte coded graphic character sets - Part 14 : Latin alphabet No.8 (Celtic)</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>8859part15</code>
 			<label>8859 Part 15</label>
-			<description>ISO/IEC 8859-15, Information technology - 8-bit single byte coded graphic
-				character sets - Part 15 : Latin alphabet No.9</description>
+			<description>ISO/IEC 8859-15, Information technology - 8-bit single byte coded graphic character sets - Part 15 : Latin alphabet No.9</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>8859part16</code>
 			<label>8859 Part 16</label>
-			<description>ISO/IEC 8859-16, Information technology - 8-bit single byte coded graphic
-				character sets - Part 16 : Latin alphabet No.10</description>
+			<description>ISO/IEC 8859-16, Information technology - 8-bit single byte coded graphic character sets - Part 16 : Latin alphabet No.10</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -623,6 +570,12 @@
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
+			<code>in-confidence</code>
+			<label>In-confidence</label>
+			<description>Guarded due to propriety, ethical or privacy considerations</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
 			<code>restricted</code>
 			<label>Restricted</label>
 			<description>Not for general disclosure</description>
@@ -631,14 +584,13 @@
 		<entry>
 			<code>confidential</code>
 			<label>Confidential</label>
-			<description>Available for someone who can be entrusted with information</description>
+			<description>Available for someone who can be entrusted with information (protected)</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>secret</code>
 			<label>Secret</label>
-			<description>Kept or meant to be kept private, unknown, or hidden from all but a select
-				group of people</description>
+			<description>Kept or meant to be kept private, unknown, or hidden from all but a select group of people (highly protected)</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -653,15 +605,13 @@
 		<entry>
 			<code>image</code>
 			<label>Image</label>
-			<description>Meaningful numerical representation of a physical parameter that is not the
-				actual value of the physical parameter</description>
+			<description>Meaningful numerical representation of a physical parameter that is not the actual value of the physical parameter</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>thematicClassification</code>
 			<label>Thematic classification</label>
-			<description>Code value with no quantitative meaning, used to represent a physical
-			quantity</description>
+			<description>Code value with no quantitative meaning, used to represent a physical quantity</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -676,22 +626,19 @@
 		<entry>
 			<code>class</code>
 			<label>Class</label>
-			<description>Descriptor of a set of objects that share the same attributes, operations,
-				methods, relationships, and behavior</description>
+			<description>Descriptor of a set of objects that share the same attributes, operations, methods, relationships, and behavior</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>codelist</code>
 			<label>Codelist</label>
-			<description>Descriptor of a set of objects that share the same attributes, operations,
-				methods, relationships, and behavior</description>
+			<description>Descriptor of a set of objects that share the same attributes, operations, methods, relationships, and behavior</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>enumeration</code>
 			<label>Enumeration</label>
-			<description>Data type whose instances form a list of named literal values, not
-			extendable</description>
+			<description>Data type whose instances form a list of named literal values, not extendable</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -709,8 +656,7 @@
 		<entry>
 			<code>aggregateClass</code>
 			<label>Aggregate class</label>
-			<description>Class that is composed of classes it is connected to by an aggregate
-				relationship</description>
+			<description>Class that is composed of classes it is connected to by an aggregate relationship</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -722,16 +668,13 @@
 		<entry>
 			<code>datatypeClass</code>
 			<label>Datatype class</label>
-			<description>Class with few or no operations whose primary purpose is to hold the abstract
-				state of another class for transmittal, storage, encoding or persistent
-			storage</description>
+			<description>Class with few or no operations whose primary purpose is to hold the abstract state of another class for transmittal, storage, encoding or persistent storage</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>interfaceClass</code>
 			<label>Interface class</label>
-			<description>Named set of operations that characterize the behavior of an
-			element</description>
+			<description>Named set of operations that characterize the behavior of an element</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -749,9 +692,7 @@
 		<entry>
 			<code>typeClass</code>
 			<label>Type class</label>
-			<description>Class used for specification of a domain of instances (objects), together with
-				the operations applicable to the objects. A type may have attributes and
-			associations</description>
+			<description>Class used for specification of a domain of instances (objects), together with the operations applicable to the objects. A type may have attributes and associations</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -769,8 +710,7 @@
 		<entry>
 			<code>association</code>
 			<label>Association</label>
-			<description>Semantic relationship between two classes that involves connections among
-				their instances</description>
+			<description>Semantic relationship between two classes that involves connections among their instances</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
@@ -830,8 +770,7 @@
 		<entry>
 			<code>complex</code>
 			<label>Complex</label>
-			<description>Set of geometric primitives such that their boundaries can be represented as a
-				union of other primitives</description>
+			<description>Set of geometric primitives such that their boundaries can be represented as a union of other primitives</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -843,29 +782,25 @@
 		<entry>
 			<code>curve</code>
 			<label>Curve</label>
-			<description>Bounded, 1-dimensional geometric primitive, representing the continuous image
-				of a line</description>
+			<description>Bounded, 1-dimensional geometric primitive, representing the continuous image of a line</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>point</code>
 			<label>Point</label>
-			<description>Zero-dimensional geometric primitive, representing a position but not having
-				an extent</description>
+			<description>Zero-dimensional geometric primitive, representing a position but not having an extent</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>solid</code>
 			<label>Solid</label>
-			<description>Bounded, connected 3-dimensional geometric primitive, representing the
-				continuous image of a region of space</description>
+			<description>Bounded, connected 3-dimensional geometric primitive, representing the continuous image of a region of space</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>surface</code>
 			<label>Surface</label>
-			<description>Bounded, connected 2-dimensional geometric primitive, representing the
-				continuous image of a region of a plane</description>
+			<description>Bounded, connected 2-dimensional geometric primitive, representing the continuous image of a region of a plane</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
@@ -886,8 +821,7 @@
 		<entry>
 			<code>degradingObliquity</code>
 			<label>Degrading obliquity</label>
-			<description>Acute angle between the plane of the ecliptic (the plane of the Earth s orbit)
-				and the plane of the celestial equator</description>
+			<description>Acute angle between the plane of the ecliptic (the plane of the Earth s orbit) and the plane of the celestial equator</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -899,8 +833,7 @@
 		<entry>
 			<code>heavySmokeOrDust</code>
 			<label>Heavy smoke or dust</label>
-			<description>Portion of the image is partially obscured by heavy smoke or
-			dust</description>
+			<description>Portion of the image is partially obscured by heavy smoke or dust</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -918,8 +851,7 @@
 		<entry>
 			<code>semiDarkness</code>
 			<label>Semi darkness</label>
-			<description>Image was taken during semi-dark conditions -- twilight
-			conditions</description>
+			<description>Image was taken during semi-dark conditions -- twilight conditions</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -937,9 +869,7 @@
 		<entry>
 			<code>terrainMasking</code>
 			<label>Terrain masking</label>
-			<description>The absence of collection data of a given point or area caused by the relative
-				location of topographic features which obstruct the collection path between the
-				collector(s) and the subject(s) of interest</description>
+			<description>The absence of collection data of a given point or area caused by the relative location of topographic features which obstruct the collection path between the collector(s) and the subject(s) of interest</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
@@ -948,8 +878,7 @@
 		<entry>
 			<code>discipline</code>
 			<label>Discipline</label>
-			<description>Keyword identifies a branch of instruction or specialized
-			learning</description>
+			<description>Keyword identifies a branch of instruction or specialized learning</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -1206,34 +1135,6 @@
 			<label>Hardcopy</label>
 			<description>Pamphlet or leaflet giving descriptive information</description>
 		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<!-- ISO PROFIL CHE ONLY 
-		<entry>
-			<code>zip100</code>
-			<label>Zip100</label>
-			<description></description>
-		</entry>
-		<entry>
-			<code>zip250</code>
-			<label>Zip250</label>
-			<description></description>
-		</entry>      <entry>
-			<code>e-mail</code>
-			<label>E-mail</label>
-			<description></description>
-		</entry>      <entry>
-			<code>zip</code>
-			<label>Zip</label>
-			<description></description>
-		</entry>      <entry>
-			<code>jaz</code>
-			<label>Jaz</label>
-			<description></description>
-		</entry>      <entry>
-			<code>other</code>
-			<label>Other</label>
-			<description></description>
-		</entry>-->
 	</codelist>
 	<!-- ==================================================== -->
 	<codelist name="gmd:MD_ObligationCode">
@@ -1342,17 +1243,13 @@
 		<entry>
 			<code>copyright</code>
 			<label>Copyright</label>
-			<description>Exclusive right to the publication, production, or sale of the rights to a
-				literary, dramatic, musical, or artistic work, or to the use of a commercial print or
-				label, granted by law for a specified period of time to an author, composer, artist,
-				distributor</description>
+			<description>Exclusive right to the publication, production, or sale of the rights to a literary, dramatic, musical, or artistic work, or to the use of a commercial print or label, granted by law for a specified period of time to an author, composer, artist, distributor</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>patent</code>
 			<label>Patent</label>
-			<description>Government has granted exclusive right to make, sell, use or license an
-				invention or discovery</description>
+			<description>Government has granted exclusive right to make, sell, use or license an invention or discovery</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -1364,8 +1261,7 @@
 		<entry>
 			<code>trademark</code>
 			<label>Trademark</label>
-			<description>A name, symbol, or other device identifying a product, officially registered
-				and legally restricted to the use of the owner or manufacturer</description>
+			<description>A name, symbol, or other device identifying a product, officially registered and legally restricted to the use of the owner or manufacturer</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -1377,8 +1273,7 @@
 		<entry>
 			<code>intellectualPropertyRights</code>
 			<label>Intellectual property rights</label>
-			<description>Rights to financial benefit from and control of distribution of non-tangible
-				property that is a result of creativity</description>
+			<description>Rights to financial benefit from and control of distribution of non-tangible property that is a result of creativity</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -1477,40 +1372,58 @@
 		<entry>
 			<code>service</code>
 			<label>Service</label>
-			<description>Information applies to a capability which a service provider entity makes
-				available to a service user entity through a set of interfaces that define a behaviour,
-				such as a use case</description>
+			<description>Information applies to a capability which a service provider entity makes available to a service user entity through a set of interfaces that define a behaviour, such as a use case</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>model</code>
 			<label>Model</label>
-			<description>Information applies to a copy or imitation of an existing or hypothetical
-				object</description>
+			<description>Information applies to a copy or imitation of an existing or hypothetical object</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>tile</code>
 			<label>Tile</label>
-			<description>Information applies to a tile, a spatial subset of geographic
-			data</description>
+			<description>Information applies to a tile, a spatial subset of geographic data</description>
 		</entry>
-		<!-- ISO PROFIL CHE ONLY
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<!-- new scope codes from GA -->
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>modelSession</code>
+			<label>Model Session</label>
+			<description>Information applies to a model session or model run for a particular model</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>document</code>
+			<label>Document</label>
+			<description>Information applies to a document such as a publication, report, record etc.</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>profile</code>
+			<label>Profile</label>
+			<description>Information applies to a profile of an ISO TC 211 standard or specification</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>dataRepository</code>
+			<label>Data Repository</label>
+			<description>Information applies to a data repository such as a Catalogue Service, Relational Database, Web Registry</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>codeList</code>
+			<label>Code List</label>
+			<description>Information applies to a code list according to the CT_CodelistCatalogue format</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>project</code>
 			<label>Project</label>
-			<description></description>
+			<description>Information applies to a project or programme</description>
 		</entry>
-		<entry>
-			<code>stationSite</code>
-			<label>Station site</label>
-			<description></description>
-		</entry>
-		<entry>
-			<code>publication</code>
-			<label>Publication</label>
-			<description>Publication</description>
-		</entry>-->
 	</codelist>
 	<!-- ==================================================== -->
 	<codelist name="gmd:MD_SpatialRepresentationTypeCode">
@@ -1541,8 +1454,7 @@
 		<entry>
 			<code>stereoModel</code>
 			<label>Stereo model</label>
-			<description>Three-dimensional view formed by the intersecting homologous rays of an
-				overlapping pair of images</description>
+			<description>Three-dimensional view formed by the intersecting homologous rays of an overlapping pair of images</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -1550,160 +1462,121 @@
 			<label>Video</label>
 			<description>Scene from a video recording</description>
 		</entry>
-		<!-- ISO PROFIL CHE ONLY
-		<entry>
-			<code>paperMap</code>
-			<label>Paper map</label>
-			<description></description>
-		</entry>-->
 	</codelist>
 	<!-- ==================================================== -->
 	<codelist name="gmd:MD_TopicCategoryCode">
 		<entry>
 			<code>farming</code>
 			<label>Farming</label>
-			<description>Rearing of animals and/or cultivation of plants. Examples: agriculture,
-				irrigation, aquaculture, plantations, herding, pests and diseases affecting crops and
-				livestock</description>
+			<description>Rearing of animals and/or cultivation of plants. Examples: agriculture, irrigation, aquaculture, plantations, herding, pests and diseases affecting crops and livestock</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>biota</code>
 			<label>Biota</label>
-			<description>Flora and/or fauna in natural environment. Examples: wildlife, vegetation,
-				biological sciences, ecology, wilderness, sealife, wetlands, habitat</description>
+			<description>Flora and/or fauna in natural environment. Examples: wildlife, vegetation, biological sciences, ecology, wilderness, sealife, wetlands, habitat</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>boundaries</code>
 			<label>Boundaries</label>
-			<description>Legal land descriptions. Examples: political and administrative
-			boundaries</description>
+			<description>Legal land descriptions. Examples: political and administrative boundaries</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>climatologyMeteorologyAtmosphere</code>
 			<label>Climatology, meteorology, atmosphere</label>
-			<description>Processes and phenomena of the atmosphere. Examples: cloud cover, weather,
-				climate, atmospheric conditions, climate change, precipitation</description>
+			<description>Processes and phenomena of the atmosphere. Examples: cloud cover, weather, climate, atmospheric conditions, climate change, precipitation</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>economy</code>
 			<label>Economy</label>
-			<description>Economic activities, conditions and employment. Examples: production, labour,
-				revenue, commerce, industry, tourism and ecotourism, forestry, fisheries, commercial or
-				subsistence hunting, exploration and exploitation of resources such as minerals, oil and
-				gas</description>
+			<description>Economic activities, conditions and employment. Examples: production, labour, revenue, commerce, industry, tourism and ecotourism, forestry, fisheries, commercial or subsistence hunting, exploration and exploitation of resources such as minerals, oil and gas</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>elevation</code>
 			<label>Elevation</label>
-			<description>Height above or below sea level. Examples: altitude, bathymetry, digital
-				elevation models, slope, derived products</description>
+			<description>Height above or below sea level. Examples: altitude, bathymetry, digital elevation models, slope, derived products</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>environment</code>
 			<label>Environment</label>
-			<description>Environmental resources, protection and conservation. Examples: environmental
-				pollution, waste storage and treatment, environmental impact assessment, monitoring
-				environmental risk, nature reserves, landscape</description>
+			<description>Environmental resources, protection and conservation. Examples: environmental pollution, waste storage and treatment, environmental impact assessment, monitoring environmental risk, nature reserves, landscape</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>geoscientificInformation</code>
 			<label>Geoscientific information</label>
-			<description>Information pertaining to earth sciences. Examples: geophysical features and
-				processes, geology, minerals, sciences dealing with the composition, structure and
-				origin of the earth s rocks, risks of earthquakes, volcanic activity, landslides,
-				gravity information, soils, permafrost, hydrogeology, erosion</description>
+			<description>Information pertaining to earth sciences. Examples: geophysical features and processes, geology, minerals, sciences dealing with the composition, structure and origin of the earth s rocks, risks of earthquakes, volcanic activity, landslides, gravity information, soils, permafrost, hydrogeology, erosion</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>health</code>
 			<label>Health</label>
-			<description>Health, health services, human ecology, and safety. Examples: disease and
-				illness, factors affecting health, hygiene, substance abuse, mental and physical health,
-				health services</description>
+			<description>Health, health services, human ecology, and safety. Examples: disease and illness, factors affecting health, hygiene, substance abuse, mental and physical health, health services</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>imageryBaseMapsEarthCover</code>
 			<label>Imagery base maps earth cover</label>
-			<description>Base maps. Examples: land cover, topographic maps, imagery, unclassified
-				images, annotations</description>
+			<description>Base maps. Examples: land cover, topographic maps, imagery, unclassified images, annotations</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>intelligenceMilitary</code>
 			<label>Intelligence military</label>
-			<description>Military bases, structures, activities. Examples: barracks, training grounds,
-				military transportation, information collection</description>
+			<description>Military bases, structures, activities. Examples: barracks, training grounds, military transportation, information collection</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>inlandWaters</code>
 			<label>Inland waters</label>
-			<description>Inland water features, drainage systems and their characteristics. Examples:
-				rivers and glaciers, salt lakes, water utilization plans, dams, currents, floods, water
-				quality, hydrographic charts</description>
+			<description>Inland water features, drainage systems and their characteristics. Examples: rivers and glaciers, salt lakes, water utilization plans, dams, currents, floods, water quality, hydrographic charts</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>location</code>
 			<label>Location</label>
-			<description>Positional information and services. Examples: addresses, geodetic networks,
-				control points, postal zones and services, place names</description>
+			<description>Positional information and services. Examples: addresses, geodetic networks, control points, postal zones and services, place names</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>oceans</code>
 			<label>Oceans</label>
-			<description>Features and characteristics of salt water bodies (excluding inland waters).
-				Examples: tides, tidal waves, coastal information, reefs</description>
+			<description>Features and characteristics of salt water bodies (excluding inland waters). Examples: tides, tidal waves, coastal information, reefs</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>planningCadastre</code>
 			<label>Planning cadastre</label>
-			<description>Information used for appropriate actions for future use of the land. Examples:
-				land use maps, zoning maps, cadastral surveys, land ownership</description>
+			<description>Information used for appropriate actions for future use of the land. Examples: land use maps, zoning maps, cadastral surveys, land ownership</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>society</code>
 			<label>Society</label>
-			<description>Characteristics of society and cultures. Examples: settlements, anthropology,
-				archaeology, education, traditional beliefs, manners and customs, demographic data,
-				recreational areas and activities, social impact assessments, crime and justice, census
-				information</description>
+			<description>Characteristics of society and cultures. Examples: settlements, anthropology, archaeology, education, traditional beliefs, manners and customs, demographic data, recreational areas and activities, social impact assessments, crime and justice, census information</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>structure</code>
 			<label>Structure</label>
-			<description>Man-made construction. Examples: buildings, museums, churches, factories,
-				housing, monuments, shops, towers</description>
+			<description>Man-made construction. Examples: buildings, museums, churches, factories, housing, monuments, shops, towers</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>transportation</code>
 			<label>Transportation</label>
-			<description>Means and aids for conveying persons and/or goods. Examples: roads,
-				airports/airstrips, shipping routes, tunnels, nautical charts, vehicle or vessel
-				location, aeronautical charts, railways</description>
+			<description>Means and aids for conveying persons and/or goods. Examples: roads, airports/airstrips, shipping routes, tunnels, nautical charts, vehicle or vessel location, aeronautical charts, railways</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>utilitiesCommunication</code>
 			<label>Utilities communication</label>
-			<description>Energy, water and waste systems and communications infrastructure and
-				services. Examples: hydroelectricity, geothermal, solar and nuclear sources of energy,
-				water purification and distribution, sewage collection and disposal, electricity and gas
-				distribution, data communication, telecommunication, radio, communication
-			networks</description>
+			<description>Energy, water and waste systems and communications infrastructure and services. Examples: hydroelectricity, geothermal, solar and nuclear sources of energy, water purification and distribution, sewage collection and disposal, electricity and gas distribution, data communication, telecommunication, radio, communication networks</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
@@ -1712,54 +1585,43 @@
 		<entry>
 			<code>geometryOnly</code>
 			<label>Geometry only</label>
-			<description>Geometry objects without any additional structure which describes
-			topology</description>
+			<description>Geometry objects without any additional structure which describes topology</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>topology1D</code>
 			<label>Topology 1D</label>
-			<description>1-dimensional topological complex -- commonly called chain-node
-			topology</description>
+			<description>1-dimensional topological complex -- commonly called chain-node topology</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>planarGraph</code>
 			<label>Planar graph</label>
-			<description>1-dimensional topological complex that is planar. (A planar graph is a graph
-				that can be drawn in a plane in such a way that no two edges intersect except at a
-				vertex.)</description>
+			<description>1-dimensional topological complex that is planar. (A planar graph is a graph that can be drawn in a plane in such a way that no two edges intersect except at a vertex.)</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>fullPlanarGraph</code>
 			<label>Full planar graph</label>
-			<description>2-dimensional topological complex that is planar. (A 2-dimensional topological
-				complex is commonly called full topology in a cartographic 2D
-			environment.)</description>
+			<description>2-dimensional topological complex that is planar. (A 2-dimensional topological complex is commonly called full topology in a cartographic 2D environment.)</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>surfaceGraph</code>
 			<label>Surface graph</label>
-			<description>1-dimensional topological complex that is isomorphic to a subset of a surface.
-				(A geometric complex is isomorphic to a topological complex if their elements are in a
-				one-to-one, dimensional-and boundry-preserving correspondence to one
-			another.)</description>
+			<description>1-dimensional topological complex that is isomorphic to a subset of a surface.  (A geometric complex is isomorphic to a topological complex if their elements are in a one-to-one, dimensional-and boundary-preserving correspondence to one another.)</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>fullSurfaceGraph</code>
 			<label>Full surface graph</label>
-			<description>2-dimensional topological complex that is isomorphic to a subset of a
-			surface</description>
+			<description>2-dimensional topological complex that is isomorphic to a subset of a surface</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>topology3D</code>
 			<label>Topology 3D</label>
-			<description>3-dimensional topological complex. (A topological complex is a collection of
-				topological primitives that are closed under the boundary operations.)</description>
+			<description>3-dimensional topological complex. (A topological complex is a collection of topological primitives that are closed under the boundary operations.)</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -1858,80 +1720,67 @@
 		<entry>
 			<code>service</code>
 			<label>Service</label>
-			<description>Information applies to a capability which a service provider entity makes
-				available to a service user entity through a set of interfaces that define a behaviour,
-				such as a use case</description>
+			<description>Information applies to a capability which a service provider entity makes available to a service user entity through a set of interfaces that define a behaviour, such as a use case</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>model</code>
 			<label>Model</label>
-			<description>Information applies to a copy or imitation of an existing or hypothetical
-				object</description>
+			<description>Information applies to a copy or imitation of an existing or hypothetical object</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>tile</code>
 			<label>Tile</label>
-			<description>Information applies to a tile, a spatial subset of geographic
-			data</description>
+			<description>Information applies to a tile, a spatial subset of geographic data</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>initiative</code>
 			<label>Initiative</label>
-			<description>The referencing entity applies to a transfer aggregate which was originally
-				identified as an initiative (DS_Initiative)</description>
+			<description>The referencing entity applies to a transfer aggregate which was originally identified as an initiative (DS_Initiative)</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>stereomate</code>
 			<label>Stereo mate</label>
-			<description>The referencing entity applies to a transfer aggregate which was originally
-				identified as a stereo mate (DS_StereoMate)</description>
+			<description>The referencing entity applies to a transfer aggregate which was originally identified as a stereo mate (DS_StereoMate)</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>sensor</code>
 			<label>Sensor</label>
-			<description>The referencing entity applies to a transfer aggregate which was originally
-				identified as a sensor (DS_Sensor)</description>
+			<description>The referencing entity applies to a transfer aggregate which was originally identified as a sensor (DS_Sensor)</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>platformSeries</code>
 			<label>Platform series</label>
-			<description>The referencing entity applies to a transfer aggregate which was originally
-				identified as a platform series (DS_PlatformSeries)</description>
+			<description>The referencing entity applies to a transfer aggregate which was originally identified as a platform series (DS_PlatformSeries)</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>sensorSeries</code>
 			<label>Sensor series</label>
-			<description>The referencing entity applies to a transfer aggregate which was originally
-				identified as a sensor series (DS_SensorSeries)</description>
+			<description>The referencing entity applies to a transfer aggregate which was originally identified as a sensor series (DS_SensorSeries)</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>productionSeries</code>
 			<label>Production series</label>
-			<description>The referencing entity applies to a transfer aggregate which was originally
-				identified as a production series (DS_ProductionSeries)</description>
+			<description>The referencing entity applies to a transfer aggregate which was originally identified as a production series (DS_ProductionSeries)</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>transferAggregate</code>
 			<label>Transfer aggregate</label>
-			<description>The referencing entity applies to a transfer aggregate which has no existence
-				outside of the transfer context</description>
+			<description>The referencing entity applies to a transfer aggregate which has no existence outside of the transfer context</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>otherAggregate</code>
 			<label>Other aggregate</label>
-			<description>The referencing entity applies to a transfer aggregate which has an existence
-				outside of the transfer context, but which does not pertains to a specific aggregate
-				type.</description>
+			<description>The referencing entity applies to a transfer aggregate which has an existence outside of the transfer context, but which does not pertains to a specific aggregate type.</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
