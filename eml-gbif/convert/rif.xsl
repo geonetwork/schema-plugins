@@ -150,12 +150,12 @@
 </xsl:template>
 
 
-<xsl:template match="geographicCoverage">
+<xsl:template match="boundingCoordinates">
 	<xsl:element name="spatial">
 		<xsl:attribute name="type">
 			<xsl:text>iso19139dcmiBox</xsl:text>
 		</xsl:attribute>
-		<xsl:value-of select="concat('northlimit=',boundingCoordinates/northBoundingCoordinate,'; southlimit=',boundingCoordinates/southBoundingCoordinate,'; westlimit=',boundingCoordinates/westBoundingCoordinate,'; eastLimit=',boundingCoordinates/eastBoundingCoordinate)"/>
+		<xsl:value-of select="concat('northlimit=',northBoundingCoordinate,'; southlimit=',southBoundingCoordinate,'; westlimit=',westBoundingCoordinate,'; eastLimit=',eastBoundingCoordinate)"/>
 		<xsl:text>; projection=WGS84</xsl:text>
 	</xsl:element>
 </xsl:template>
