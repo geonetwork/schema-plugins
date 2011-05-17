@@ -305,8 +305,8 @@
 				</xsl:element>
 			</xsl:if>
 
-			<!-- parties generated here -->
-			<xsl:for-each-group select="dataset/*[(individualName/surName!='' or positionName!='' or organizationName!='') and not(role='')]"  group-by="role">
+			<!-- parties generated here - individuals first -->
+			<xsl:for-each-group select="dataset/*[individualName/surName!='' and not(role='')]"  group-by="role">
 				<xsl:element name="relatedObject">
 					<xsl:element name="key">
                     <xsl:choose>                        
@@ -331,6 +331,7 @@
 				</xsl:element>
 			</xsl:for-each-group>
 
+			<!-- parties generated here - now organizations -->
 			<xsl:for-each-group select="dataset/*[organizationName != '' and not(role='') and not(individualName)]" group-by="organizationName">
 				<xsl:element name="relatedObject">
 					<xsl:element name="key">
@@ -346,7 +347,8 @@
 				</xsl:element>
 			</xsl:for-each-group>
 			
-			<xsl:for-each select="dataset/*[(individualName/surName!='' or positionName!='' or organizationName!='') and (name()='creator' or name()='metadataProvider')]" >
+			<!-- parties generated here - implied by name of element -->
+			<xsl:for-each select="dataset/*[(individualName/surName!='' or positionName!='' or organizationName!='') and (name()='creator' or name()='metadataProvider') and not(role)]" >
 				<xsl:element name="relatedObject">
 					<xsl:element name="key">
                     <xsl:choose>                        
@@ -406,262 +408,59 @@
 		</xsl:element>
 	</xsl:element>
 
-	<xsl:for-each-group select="//dataset/*[(individualName!='' or positionName!='' or organizationName!='') and not(role='')]" group-by="role">
+	<!-- Create all the associated party objects for individuals -->
+	<xsl:for-each-group select="//dataset/*[(individualName!='') and not(role='')]" group-by="role">
 		<xsl:element name="registryObject">
-			<xsl:attribute name="group">
-				<xsl:value-of select="$group"/>
-			</xsl:attribute>
-      <xsl:element name="key">
-        <xsl:choose>
-        	<xsl:when test="individualName">
-						<xsl:apply-templates select="individualName"/>
-          </xsl:when>
-          <xsl:when test="string(positionName)">
-          	<xsl:value-of select="positionName"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="organizationName"/>
-          </xsl:otherwise>
-        </xsl:choose>
-				<!--<xsl:value-of select="current-grouping-key()"/> -->
-			</xsl:element>
-			<xsl:element name="originatingSource">
-        <xsl:choose>
-          <xsl:when test="not($originatingSource)">
-            <xsl:value-of select="$origSource"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="$originatingSource"/>
-          </xsl:otherwise>
-        </xsl:choose>
-			</xsl:element>
-			<xsl:element name="party">
-				<xsl:attribute name="type">
-         <xsl:choose>
-           <xsl:when test="individualName">
-           	<xsl:value-of select="'person'" />                        
-           </xsl:when>
-           <xsl:when test="string(positionName)">
-           	<xsl:value-of select="'person'"/>
-           </xsl:when>
-           <xsl:otherwise>
-             <xsl:value-of select="'group'"/>
-           </xsl:otherwise>
-         </xsl:choose>
-					<!--<xsl:text>person</xsl:text>-->
-				</xsl:attribute>
-				<xsl:element name="name">
-					<xsl:attribute name="type">
-						<xsl:text>primary</xsl:text>
-					</xsl:attribute>
-					<xsl:element name="namePart">
-						<xsl:attribute name="type">
-							<xsl:text>full</xsl:text>
-						</xsl:attribute>
-            <xsl:choose>
-               <xsl:when test="individualName">
-								<xsl:apply-templates select="individualName"/>
-               </xsl:when>
-               <xsl:when test="string(positionName)">
-                <xsl:value-of select="positionName"/>
-               </xsl:when>
-               <xsl:otherwise>
-                <xsl:value-of select="organizationName"/>
-               </xsl:otherwise>
-            </xsl:choose>
-						<!--<xsl:value-of select="current-grouping-key()"/>-->
-					</xsl:element>
-				</xsl:element>
-				
-				<!-- to normalise parties within a single record we group them -->
-				<xsl:for-each select="current-group()">
-					<xsl:sort select="count(address/child::*) + count(phone)" data-type="number" order="descending"/>
-					<xsl:choose>
-						<xsl:when test="position()=1">
-							<xsl:if test="organizationName!='' or address/city or phone">
-								<xsl:element name="location">
-									<xsl:element name="address">
-										<xsl:element name="physical">
-											<xsl:attribute name="type">
-												<xsl:text>streetAddress</xsl:text>
-											</xsl:attribute>
-											<xsl:apply-templates select="organizationName"/>
-											<xsl:apply-templates select="address/deliveryPoint"/>
-											<xsl:apply-templates select="address/city"/>
-											<xsl:apply-templates select="address/administrativeArea"/>
-											<xsl:apply-templates select="address/postalCode"/>
-											<xsl:apply-templates select="address/country"/>
-										</xsl:element>
-									</xsl:element>
-								  <xsl:if test="phone or electronicMailAddress or onlineUrl">
-                                        <xsl:if test="phone">
-                                            <xsl:element name="address">
-                                                <xsl:apply-templates select="phone"/>
-                                            </xsl:element>
-                                        </xsl:if>
-                                        <xsl:if test="electronicMailAddress">
-                                            <xsl:element name="address">
-                                                <xsl:apply-templates select="electronicMailAddress"/>
-                                            </xsl:element>
-                                        </xsl:if>
-                                        <xsl:if test="onlineUrl">
-                                            <xsl:element name="address">
-                                                <xsl:apply-templates select="onlineUrl"/>
-                                            </xsl:element>
-                                        </xsl:if>
-                                    </xsl:if>
-                                </xsl:element>
-							</xsl:if>
-						</xsl:when>
-					</xsl:choose>
-				</xsl:for-each>
+			<xsl:call-template name="createPartyRegistryObject">
+				<xsl:with-param name="group" select="$group"/>
+				<xsl:with-param name="originatingSource" select="$originatingSource"/>
+				<xsl:with-param name="origSource" select="$origSource"/>
+			</xsl:call-template>
 
-          <xsl:element name="relatedObject">
-					<xsl:element name="key">
-						<xsl:value-of select="ancestor::eml:eml/dataset/alternateIdentifier[1]"/>
-					</xsl:element>	
-
-					<xsl:for-each select="role">
-						<xsl:variable name="code">
-							<xsl:value-of select="current-grouping-key()"/>
-						</xsl:variable>
-						
-						<xsl:element name="relation">
-							<xsl:attribute name="type">
-								<xsl:value-of select="$code"/>
-							</xsl:attribute>
-						</xsl:element>		
-					</xsl:for-each>
-				</xsl:element>
-			</xsl:element>
-		</xsl:element>
-	</xsl:for-each-group>
-
-	<xsl:for-each-group select="//dataset/*[(individualName!='' or positionName!='' or organizationName!='') and (name()='creator' or name()='metadataProvider')]" group-by="name()">
-		<xsl:element name="registryObject">
-			<xsl:attribute name="group">
-				<xsl:value-of select="$group"/>
-			</xsl:attribute>
-      <xsl:element name="key">
-        <xsl:choose>
-        	<xsl:when test="individualName">
-						<xsl:apply-templates select="individualName"/>
-          </xsl:when>
-          <xsl:when test="string(positionName)">
-          	<xsl:value-of select="positionName"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="organizationName"/>
-          </xsl:otherwise>
-        </xsl:choose>
-				<!--<xsl:value-of select="current-grouping-key()"/> -->
-			</xsl:element>
-			<xsl:element name="originatingSource">
-        <xsl:choose>
-          <xsl:when test="not($originatingSource)">
-            <xsl:value-of select="$origSource"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="$originatingSource"/>
-          </xsl:otherwise>
-        </xsl:choose>
-			</xsl:element>
-			<xsl:element name="party">
-				<xsl:attribute name="type">
-         <xsl:choose>
-           <xsl:when test="individualName">
-           	<xsl:value-of select="'person'" />                        
-           </xsl:when>
-           <xsl:when test="string(positionName)">
-           	<xsl:value-of select="'person'"/>
-           </xsl:when>
-           <xsl:otherwise>
-             <xsl:value-of select="'group'"/>
-           </xsl:otherwise>
-         </xsl:choose>
-					<!--<xsl:text>person</xsl:text>-->
-				</xsl:attribute>
-				<xsl:element name="name">
-					<xsl:attribute name="type">
-						<xsl:text>primary</xsl:text>
-					</xsl:attribute>
-					<xsl:element name="namePart">
-						<xsl:attribute name="type">
-							<xsl:text>full</xsl:text>
-						</xsl:attribute>
-            <xsl:choose>
-               <xsl:when test="individualName">
-								<xsl:apply-templates select="individualName"/>
-               </xsl:when>
-               <xsl:when test="string(positionName)">
-                <xsl:value-of select="positionName"/>
-               </xsl:when>
-               <xsl:otherwise>
-                <xsl:value-of select="organizationName"/>
-               </xsl:otherwise>
-            </xsl:choose>
-						<!--<xsl:value-of select="current-grouping-key()"/>-->
-					</xsl:element>
-				</xsl:element>
-				
-				<!-- to normalise parties within a single record we group them -->
-				<xsl:for-each select="current-group()">
-					<xsl:sort select="count(address/child::*) + count(phone)" data-type="number" order="descending"/>
-					<xsl:choose>
-						<xsl:when test="position()=1">
-							<xsl:if test="organizationName!='' or address/city or phone">
-								<xsl:element name="location">
-									<xsl:element name="address">
-										<xsl:element name="physical">
-											<xsl:attribute name="type">
-												<xsl:text>streetAddress</xsl:text>
-											</xsl:attribute>
-											<xsl:apply-templates select="organizationName"/>
-											<xsl:apply-templates select="address/deliveryPoint"/>
-											<xsl:apply-templates select="address/city"/>
-											<xsl:apply-templates select="address/administrativeArea"/>
-											<xsl:apply-templates select="address/postalCode"/>
-											<xsl:apply-templates select="address/country"/>
-										</xsl:element>
-									</xsl:element>
-								  <xsl:if test="phone or electronicMailAddress or onlineUrl">
-                                        <xsl:if test="phone">
-                                            <xsl:element name="address">
-                                                <xsl:apply-templates select="phone"/>
-                                            </xsl:element>
-                                        </xsl:if>
-                                        <xsl:if test="electronicMailAddress">
-                                            <xsl:element name="address">
-                                                <xsl:apply-templates select="electronicMailAddress"/>
-                                            </xsl:element>
-                                        </xsl:if>
-                                        <xsl:if test="onlineUrl">
-                                            <xsl:element name="address">
-                                                <xsl:apply-templates select="onlineUrl"/>
-                                            </xsl:element>
-                                        </xsl:if>
-                                    </xsl:if>
-                                </xsl:element>
-							</xsl:if>
-						</xsl:when>
-					</xsl:choose>
-				</xsl:for-each>
-
-          <xsl:element name="relatedObject">
-					<xsl:element name="key">
-						<xsl:value-of select="ancestor::eml:eml/dataset/alternateIdentifier[1]"/>
-					</xsl:element>	
-
+      <xsl:element name="relatedObject">
+				<xsl:element name="key">
+					<xsl:value-of select="ancestor::eml:eml/dataset/alternateIdentifier[1]"/>
+				</xsl:element>	
+				<xsl:for-each select="role">
 					<xsl:variable name="code">
 						<xsl:value-of select="current-grouping-key()"/>
 					</xsl:variable>
-						
+					
 					<xsl:element name="relation">
 						<xsl:attribute name="type">
 							<xsl:value-of select="$code"/>
 						</xsl:attribute>
 					</xsl:element>		
-				</xsl:element>
+				</xsl:for-each>
+
+			</xsl:element>
+		</xsl:element>
+	</xsl:for-each-group>
+
+
+	<!-- Again, sometimes we have an implied role in creator and metadataProvider
+	     elements so process these separately -->
+	<xsl:for-each-group select="//dataset/*[(individualName!='' or positionName!='' or organizationName!='') and (name()='creator' or name()='metadataProvider') and not(role)]" group-by="name()">
+		<xsl:element name="registryObject">
+			<xsl:call-template name="createPartyRegistryObject">
+				<xsl:with-param name="group" select="$group"/>
+				<xsl:with-param name="originatingSource" select="$originatingSource"/>
+				<xsl:with-param name="origSource" select="$origSource"/>
+			</xsl:call-template>
+      <xsl:element name="relatedObject">
+				<xsl:element name="key">
+					<xsl:value-of select="ancestor::eml:eml/dataset/alternateIdentifier[1]"/>
+				</xsl:element>	
+
+				<xsl:variable name="code">
+					<xsl:value-of select="current-grouping-key()"/>
+				</xsl:variable>
+						
+				<xsl:element name="relation">
+					<xsl:attribute name="type">
+						<xsl:value-of select="$code"/>
+					</xsl:attribute>
+				</xsl:element>		
 			</xsl:element>
 		</xsl:element>
 	</xsl:for-each-group>
@@ -687,7 +486,7 @@
 			</xsl:element>
 			<xsl:element name="party">
 				<xsl:attribute name="type">
-					<xsl:text>person</xsl:text>
+					<xsl:text>group</xsl:text>
 				</xsl:attribute>
 				<xsl:element name="name">
 					<xsl:attribute name="type">
@@ -756,6 +555,124 @@
 			<xsl:value-of select="surName"/>
 		</xsl:otherwise>
 	</xsl:choose>
+</xsl:template>
+
+<xsl:template name="createPartyRegistryObject">
+	<xsl:param name="group"/>
+	<xsl:param name="originatingSource"/>
+	<xsl:param name="origSource"/>
+
+			<xsl:attribute name="group">
+				<xsl:value-of select="$group"/>
+			</xsl:attribute>
+      <xsl:element name="key">
+        <xsl:choose>
+        	<xsl:when test="individualName">
+						<xsl:apply-templates select="individualName"/>
+          </xsl:when>
+          <xsl:when test="string(positionName)">
+          	<xsl:value-of select="positionName"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="organizationName"/>
+          </xsl:otherwise>
+        </xsl:choose>
+			</xsl:element>
+			<xsl:element name="originatingSource">
+        <xsl:choose>
+          <xsl:when test="not($originatingSource)">
+            <xsl:value-of select="$origSource"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$originatingSource"/>
+          </xsl:otherwise>
+        </xsl:choose>
+			</xsl:element>
+			<xsl:element name="party">
+				<xsl:attribute name="type">
+         <xsl:choose>
+           <xsl:when test="individualName">
+           	<xsl:value-of select="'person'" />                        
+           </xsl:when>
+           <xsl:when test="string(positionName)">
+           	<xsl:value-of select="'person'"/>
+           </xsl:when>
+           <xsl:otherwise>
+             <xsl:value-of select="'group'"/>
+           </xsl:otherwise>
+         </xsl:choose>
+					<!--<xsl:text>person</xsl:text>-->
+				</xsl:attribute>
+				<xsl:element name="name">
+					<xsl:attribute name="type">
+						<xsl:text>primary</xsl:text>
+					</xsl:attribute>
+					<xsl:element name="namePart">
+						<xsl:attribute name="type">
+							<xsl:text>full</xsl:text>
+						</xsl:attribute>
+            <xsl:choose>
+               <xsl:when test="individualName">
+								<xsl:apply-templates select="individualName"/>
+               </xsl:when>
+               <xsl:when test="string(positionName)">
+                <xsl:value-of select="positionName"/>
+               </xsl:when>
+               <xsl:otherwise>
+                <xsl:value-of select="organizationName"/>
+               </xsl:otherwise>
+            </xsl:choose>
+						<!--<xsl:value-of select="current-grouping-key()"/>-->
+					</xsl:element>
+				</xsl:element>
+				<xsl:call-template name="fillOutAddress"/>
+			</xsl:element>
+</xsl:template>
+
+<xsl:template name="fillOutAddress">	
+
+				<!-- to normalise parties within a single record we group them -->
+				<xsl:for-each select="current-group()">
+					<xsl:sort select="count(address/child::*) + count(phone)" data-type="number" order="descending"/>
+					<xsl:choose>
+						<xsl:when test="position()=1">
+							<xsl:if test="organizationName!='' or address/city or phone">
+								<xsl:element name="location">
+									<xsl:element name="address">
+										<xsl:element name="physical">
+											<xsl:attribute name="type">
+												<xsl:text>streetAddress</xsl:text>
+											</xsl:attribute>
+											<xsl:apply-templates select="organizationName"/>
+											<xsl:apply-templates select="address/deliveryPoint"/>
+											<xsl:apply-templates select="address/city"/>
+											<xsl:apply-templates select="address/administrativeArea"/>
+											<xsl:apply-templates select="address/postalCode"/>
+											<xsl:apply-templates select="address/country"/>
+										</xsl:element>
+									</xsl:element>
+								  <xsl:if test="phone or electronicMailAddress or onlineUrl">
+                                        <xsl:if test="phone">
+                                            <xsl:element name="address">
+                                                <xsl:apply-templates select="phone"/>
+                                            </xsl:element>
+                                        </xsl:if>
+                                        <xsl:if test="electronicMailAddress">
+                                            <xsl:element name="address">
+                                                <xsl:apply-templates select="electronicMailAddress"/>
+                                            </xsl:element>
+                                        </xsl:if>
+                                        <xsl:if test="onlineUrl">
+                                            <xsl:element name="address">
+                                                <xsl:apply-templates select="onlineUrl"/>
+                                            </xsl:element>
+                                        </xsl:if>
+                                    </xsl:if>
+                                </xsl:element>
+							</xsl:if>
+						</xsl:when>
+					</xsl:choose>
+				</xsl:for-each>
 </xsl:template>
 
 <xsl:template match="node()"/>
