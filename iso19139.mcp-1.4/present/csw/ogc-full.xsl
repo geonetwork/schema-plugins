@@ -7,6 +7,7 @@
 										xmlns:gco="http://www.isotc211.org/2005/gco"
 										xmlns:gmd="http://www.isotc211.org/2005/gmd" 
 										xmlns:gmx="http://www.isotc211.org/2005/gmx"
+										xmlns:srv="http://www.isotc211.org/2005/srv"
 										xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"
 										xmlns:geonet="http://www.fao.org/geonetwork"
 										xmlns:ows="http://www.opengis.net/ows">
