@@ -6,10 +6,11 @@
 										xmlns:dct="http://purl.org/dc/terms/"
 										xmlns:gco="http://www.isotc211.org/2005/gco"
 										xmlns:gmd="http://www.isotc211.org/2005/gmd"
+										xmlns:gmx="http://www.isotc211.org/2005/gmx"
 										xmlns:srv="http://www.isotc211.org/2005/srv"
 										xmlns:geonet="http://www.fao.org/geonetwork"
 										xmlns:ows="http://www.opengis.net/ows"
-										exclude-result-prefixes="gmd srv gco">
+										exclude-result-prefixes="gmd srv gco gmx">
 
 	<xsl:param name="displayInfo"/>
 	<xsl:param name="lang"/>
@@ -255,13 +256,20 @@
 								<xsl:attribute name="protocol"><xsl:value-of select="gmd:protocol/gco:CharacterString"/></xsl:attribute>
 							</xsl:if>
 							
-							<xsl:if test="gmd:name">
+							<xsl:if test="normalize-space(gmd:name/*)!=''">
 								<xsl:attribute name="name">
 									<xsl:for-each select="gmd:name">
-										<xsl:apply-templates mode="localised" select=".">
+										<!-- <xsl:apply-templates mode="localised" select=".">
 											<xsl:with-param name="langId" select="$langId"/>
-										</xsl:apply-templates>
+										</xsl:apply-templates> -->
+										<xsl:value-of select="gco:CharacterString|gmx:MimeFileType"/>
 									</xsl:for-each>
+								</xsl:attribute>
+							</xsl:if>
+							
+							<xsl:if test="gmd:name/gmx:MimeFileType/@type">
+								<xsl:attribute name="type">
+									<xsl:value-of select="gmd:name/gmx:MimeFileType/@type"/>
 								</xsl:attribute>
 							</xsl:if>
 							
