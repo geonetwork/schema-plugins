@@ -222,7 +222,38 @@
 				</xsl:for-each>
 			</xsl:for-each>
 
-			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
+			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+			<!--  Fields use to search on Service -->
+			
+			<xsl:for-each select="srv:serviceType/gco:LocalName">
+				<Field  name="serviceType" string="{string(.)}" store="true" index="true"/>
+			</xsl:for-each>
+			
+			<xsl:for-each select="srv:serviceTypeVersion/gco:CharacterString">
+				<Field  name="serviceTypeVersion" string="{string(.)}" store="true" index="true"/>
+			</xsl:for-each>
+			
+			<xsl:for-each select="//srv:SV_OperationMetadata/srv:operationName/gco:CharacterString">
+				<Field  name="operation" string="{string(.)}" store="true" index="true"/>
+			</xsl:for-each>
+			
+			<xsl:for-each select="srv:operatesOn/@uuidref">
+				<Field  name="operatesOn" string="{string(.)}" store="true" index="true"/>
+			</xsl:for-each>
+			
+			<xsl:for-each select="srv:coupledResource">
+				<xsl:for-each select="srv:SV_CoupledResource/srv:identifier/gco:CharacterString">
+					<Field  name="operatesOnIdentifier" string="{string(.)}" store="true" index="true"/>
+				</xsl:for-each>
+				
+				<xsl:for-each select="srv:SV_CoupledResource/srv:operationName/gco:CharacterString">
+					<Field  name="operatesOnName" string="{string(.)}" store="true" index="true"/>
+				</xsl:for-each>
+			</xsl:for-each>
+			
+			<xsl:for-each select="//srv:SV_CouplingType/srv:code/@codeListValue">
+				<Field  name="couplingType" string="{string(.)}" store="true" index="true"/>
+			</xsl:for-each>		
 
 		</xsl:for-each>
 
