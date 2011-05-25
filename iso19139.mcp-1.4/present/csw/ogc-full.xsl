@@ -8,6 +8,7 @@
 										xmlns:gmd="http://www.isotc211.org/2005/gmd" 
 										xmlns:gmx="http://www.isotc211.org/2005/gmx"
 										xmlns:srv="http://www.isotc211.org/2005/srv"
+										xmlns:gml="http://www.opengis.net/gml"
 										xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"
 										xmlns:geonet="http://www.fao.org/geonetwork"
 										xmlns:ows="http://www.opengis.net/ows">
@@ -80,9 +81,16 @@
 					<dc:language><xsl:value-of select="."/></dc:language>
 				</xsl:for-each>
 
+				<!-- temporal extent -->
+
+				<xsl:for-each select="gmd:extent/*/gmd:temporalElement/mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod">
+					<dc:coverage>name="<xsl:value-of select="@gml:id"/>"; start="<xsl:value-of select="gml:beginPosition|gml:begin/gml:TimeInstant/gml:timePosition"/>"; end="<xsl:value-of select="gml:endPosition|gml:end/gml:TimeInstant/gml:timePosition"/>"
+					</dc:coverage>
+				</xsl:for-each>
+
 				<!-- bounding box -->
 
-				<xsl:for-each select="gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox">
+				<xsl:for-each select="gmd:extent/*/gmd:geographicElement/gmd:EX_GeographicBoundingBox">
 					<xsl:variable name="rsi"  select="/mcp:MD_Metadata/gmd:referenceSystemInfo/gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/gmd:RS_Identifier"/>
 					<xsl:variable name="auth" select="$rsi/gmd:codeSpace/gco:CharacterString"/>
 					<xsl:variable name="id"   select="$rsi/gmd:code/gco:CharacterString"/>
