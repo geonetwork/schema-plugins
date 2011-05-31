@@ -212,6 +212,7 @@ elsewhere -->
 	      <xsl:with-param name="schema"  select="$schema"/>
 	      <xsl:with-param name="edit"    select="$edit"/>
 	  	</xsl:call-template>
+		
 		</xsl:variable>
 
 		<xsl:variable name="title">
@@ -261,18 +262,22 @@ elsewhere -->
 			<tr>
 				<td/>
 				<td class="padded" align="center">
-					<xsl:apply-templates mode="anzmetaVertElement" select="$n">
+					<xsl:apply-templates mode="coordinateElementGUI" select="$n">
 						<xsl:with-param name="schema" select="$schema"/>
 						<xsl:with-param name="edit"   select="$edit"/>
+						<xsl:with-param name="name" select="'northbc'" />
+						<xsl:with-param name="eltRef" select="concat('n', $eltRef)"/>
 					</xsl:apply-templates>
 				</td>
 				<td/>
 			</tr>
 			<tr>
 				<td class="padded" align="center">
-					<xsl:apply-templates mode="anzmetaVertElement" select="$w">
+					<xsl:apply-templates mode="coordinateElementGUI" select="$w">
 						<xsl:with-param name="schema" select="$schema"/>
 						<xsl:with-param name="edit"   select="$edit"/>
+						<xsl:with-param name="name" select="'westbc'" />
+						<xsl:with-param name="eltRef" select="concat('w', $eltRef)"/>
 					</xsl:apply-templates>
 				</td>
 				
@@ -294,18 +299,22 @@ elsewhere -->
 				</td>
 				
 				<td class="padded" align="center">
-					<xsl:apply-templates mode="anzmetaVertElement" select="$e">
+					<xsl:apply-templates mode="coordinateElementGUI" select="$e">
 						<xsl:with-param name="schema" select="$schema"/>
 						<xsl:with-param name="edit"   select="$edit"/>
+						<xsl:with-param name="name" select="'eastbc'" />
+						<xsl:with-param name="eltRef" select="concat('e', $eltRef)"/>
 					</xsl:apply-templates>
 				</td>
 			</tr>
 			<tr>
 				<td/>
 				<td class="padded" align="center">
-					<xsl:apply-templates mode="anzmetaVertElement" select="$s">
+					<xsl:apply-templates mode="coordinateElementGUI" select="$s">
 						<xsl:with-param name="schema" select="$schema"/>
 						<xsl:with-param name="edit"   select="$edit"/>
+						<xsl:with-param name="name" select="'southbc'" />
+						<xsl:with-param name="eltRef" select="concat('s', $eltRef)"/>
 					</xsl:apply-templates>
 				</td>
 				<td/>
@@ -313,47 +322,6 @@ elsewhere -->
 		</table>
 	</xsl:template>
 	
-	<xsl:template mode="anzmetaVertElement" match="*">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-		
-		<xsl:variable name="title">
-			<xsl:call-template name="getTitle">
-				<xsl:with-param name="name"   select="name(.)"/>
-				<xsl:with-param name="schema" select="$schema"/>
-			</xsl:call-template>
-		</xsl:variable>
-		<xsl:variable name="helpLink">
-			<xsl:call-template name="getHelpLink">
-				<xsl:with-param name="name"   select="name(.)"/>
-				<xsl:with-param name="schema" select="$schema"/>
-			</xsl:call-template>
-		</xsl:variable>
-		<b>
-			<xsl:choose>
-				<xsl:when test="$helpLink!=''">
-					<span id="tip.{$helpLink}" style="cursor:help;">
-						<xsl:value-of select="$title" />
-            <xsl:call-template name="asterisk">
-							<xsl:with-param name="link" select="$helpLink" />
-							<xsl:with-param name="edit" select="$edit" />
-						</xsl:call-template>
-					</span>
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:value-of select="$title"/>
-				</xsl:otherwise>
-			</xsl:choose>
-		</b>
-		<br/>
-		<xsl:call-template name="getElementText">
-			<xsl:with-param name="schema" select="$schema" />
-			<xsl:with-param name="edit" select="false()" />
-			<xsl:with-param name="cols" select="10" />
-			<xsl:with-param name="input_type" select="'hidden'" />
-		</xsl:call-template>
-	</xsl:template>
-
 	<xsl:template mode="anzmeta" match="descript">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
