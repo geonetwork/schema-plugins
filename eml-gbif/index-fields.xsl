@@ -35,32 +35,32 @@
 		
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 			<xsl:for-each select="alternateIdentifier">
-				<Field name="fileId" string="{string(.)}" store="true" index="true" token="false"/>
+				<Field name="fileId" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 			<xsl:variable name="title" select="title[1]"/>
-			<Field name="title" string="{string($title)}" store="true" index="true" token="true"/>
-      <Field name="_title" string="{string($title)}" store="true" index="true" token="false"/>
+			<Field name="title" string="{string($title)}" store="true" index="true"/>
+      <Field name="_title" string="{string($title)}" store="true" index="true"/>
 
 			<xsl:for-each select="title[position() > 1]">
-				<Field name="altTitle" string="{string(.)}" store="true" index="true" token="true"/>
+				<Field name="altTitle" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
 	
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 			<xsl:for-each select="pubDate">
-				<Field name="publicationDate" string="{string(.)}" store="true" index="true" token="false"/>
+				<Field name="publicationDate" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 			<!-- fields used to search for metadata in paper or digital format -->
 
-			<Field name="digital" string="true" store="true" index="true" token="false"/>
+			<Field name="digital" string="true" store="true" index="true"/>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 	
 			<xsl:for-each select="abstract">
-				<Field name="abstract" string="{string(.)}" store="true" index="true" token="true"/>
+				<Field name="abstract" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
@@ -70,7 +70,7 @@
 				<xsl:apply-templates select="boundingCoordinates" mode="latLon"/>
 
 				<xsl:for-each select="geographicDescription">
-					<Field name="geoDescCode" string="{string(.)}" store="true" index="true" token="false"/>
+					<Field name="geoDescCode" string="{string(.)}" store="true" index="true"/>
 				</xsl:for-each>
 			</xsl:for-each>
 
@@ -85,8 +85,8 @@
 						</xsl:call-template>
 					</xsl:variable>
 
-					<Field name="tempExtentBegin" string="{lower-case(substring-before($times,'|'))}" store="true" index="true" token="false"/>
-					<Field name="tempExtentEnd" string="{lower-case(substring-after($times,'|'))}" store="true" index="true" token="false"/>
+					<Field name="tempExtentBegin" string="{lower-case(substring-before($times,'|'))}" store="true" index="true"/>
+					<Field name="tempExtentEnd" string="{lower-case(substring-after($times,'|'))}" store="true" index="true"/>
 				</xsl:for-each>
 
 			</xsl:for-each>
@@ -102,8 +102,8 @@
 			<xsl:for-each select="keywordSet">
 				<xsl:for-each select="keyword">
           <xsl:variable name="keywordLower" select="translate(string(.),$upper,$lower)"/>
-          <Field name="keyword" string="{string(.)}" store="true" index="true" token="false"/>
-					<Field name="subject" string="{string(.)}" store="true" index="true" token="false"/>
+          <Field name="keyword" string="{string(.)}" store="true" index="true"/>
+					<Field name="subject" string="{string(.)}" store="true" index="true"/>
 				</xsl:for-each>
 			</xsl:for-each>
 	
@@ -111,27 +111,27 @@
 			<!-- Organization could be in associatedParty or in contact -->	
 
 			<xsl:for-each select="associatedParty[role='pointOfContact' and organizationName]">
-				<Field name="orgName" string="{string(organizationName)}" store="true" index="true" token="true"/>
+				<Field name="orgName" string="{string(organizationName)}" store="true" index="true"/>
 			</xsl:for-each>
 
 			<xsl:for-each select="contact[organizationName]">
-				<Field name="orgName" string="{string(organizationName)}" store="true" index="true" token="true"/>
+				<Field name="orgName" string="{string(organizationName)}" store="true" index="true"/>
 			</xsl:for-each>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 			<xsl:for-each select="language">
-				<Field name="datasetLang" string="{string(.)}" store="true" index="true" token="false"/>
+				<Field name="datasetLang" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 			<xsl:for-each select="intellectualRights">
-				<Field name="conditionApplyingToAccessAndUse" string="{string(.)}" store="true" index="true" token="false"/>
+				<Field name="conditionApplyingToAccessAndUse" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 		
 			<xsl:for-each select="metadataProvider/organisationName">
-				<Field name="metadataPOC" string="{string(.)}" store="true" index="true" token="false"/>
+				<Field name="metadataPOC" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
 
 		</xsl:for-each>
@@ -146,41 +146,41 @@
 			<xsl:choose>
 				<xsl:when test="hierarchyLevel">
 					<xsl:for-each select="hierarchyLevel">
-						<Field name="type" string="{string(.)}" store="true" index="true" token="false"/>
+						<Field name="type" string="{string(.)}" store="true" index="true"/>
 					</xsl:for-each>
 				</xsl:when>
 				<xsl:otherwise>
-					<Field name="type" string="dataset" store="true" index="true" token="false"/>
+					<Field name="type" string="dataset" store="true" index="true"/>
 				</xsl:otherwise>
 			</xsl:choose>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 			<xsl:for-each select="physical">
 				<xsl:for-each select="dataFormat/externallyDefinedFormat/formatName">
-					<Field name="format" string="{string(.)}" store="true" index="true" token="false"/>
+					<Field name="format" string="{string(.)}" store="true" index="true"/>
 				</xsl:for-each>
 
 				<!-- index online protocol -->
 				<xsl:if test="distribution/online/url/@function='download'">
-					<Field name="protocol" string="WWW:DOWNLOAD-1.0-http--download" store="true" index="true" token="false"/>
+					<Field name="protocol" string="WWW:DOWNLOAD-1.0-http--download" store="true" index="true"/>
 				</xsl:if>  
 
 				<!-- FIXME: add code to calculate mimetype and add to index -->
 				<!--
-        <Field name="mimetype" string="{$mimetype}" store="true" index="true" token="false"/>
+        <Field name="mimetype" string="{$mimetype}" store="true" index="true"/>
 				-->
 			</xsl:for-each>  
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 			<xsl:for-each select="dateStamp">
-				<Field name="changeDate" string="{string(.)}" store="true" index="true" token="false"/>
+				<Field name="changeDate" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
 		</xsl:for-each>
 		
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 		<!-- === Free text search === -->		
 
-		<Field name="any" store="false" index="true" token="true">
+		<Field name="any" store="false" index="true">
 			<xsl:attribute name="string">
 				<xsl:apply-templates select="." mode="allText"/>
 			</xsl:attribute>
@@ -194,19 +194,19 @@
 	<xsl:template match="*" mode="latLon">
 	
 		<xsl:for-each select="westBoundingCoordinate">
-			<Field name="westBL" string="{string(.) + 360}" store="true" index="true" token="false"/>
+			<Field name="westBL" string="{string(.) + 360}" store="true" index="true"/>
 		</xsl:for-each>
 	
 		<xsl:for-each select="southBoundingCoordinate">
-			<Field name="southBL" string="{string(.) + 360}" store="true" index="true" token="false"/>
+			<Field name="southBL" string="{string(.) + 360}" store="true" index="true"/>
 		</xsl:for-each>
 	
 		<xsl:for-each select="eastBoundingCoordinate">
-			<Field name="eastBL" string="{string(.) + 360}" store="true" index="true" token="false"/>
+			<Field name="eastBL" string="{string(.) + 360}" store="true" index="true"/>
 		</xsl:for-each>
 	
 		<xsl:for-each select="northBoundingCoordinate">
-			<Field name="northBL" string="{string(.) + 360}" store="true" index="true" token="false"/>
+			<Field name="northBL" string="{string(.) + 360}" store="true" index="true"/>
 		</xsl:for-each>
 	
 	</xsl:template>

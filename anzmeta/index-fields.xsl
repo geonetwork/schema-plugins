@@ -50,7 +50,7 @@
 				<xsl:with-param name="token" select="'false'"/>
 			</xsl:apply-templates>
 
-			<Field name="any" store="false" index="true" token="true">
+			<Field name="any" store="false" index="true">
 				<xsl:attribute name="string">
 					<xsl:apply-templates select="/anzmeta" mode="allText"/>
 				</xsl:attribute>
@@ -58,11 +58,11 @@
 	
 			<!-- digital data format -->
 			<xsl:if test="/anzmeta/distinfo/native/digform">
-				<Field name="digital" string="true" store="false" index="true" token="false"/>
+				<Field name="digital" string="true" store="false" index="true"/>
 			</xsl:if>
 
      	<!-- not tokenized title for sorting -->
-     	<Field name="_title" string="{string(/anzmeta/citeinfo/title)}" store="true" index="true" token="false"/>
+     	<Field name="_title" string="{string(/anzmeta/citeinfo/title)}" store="true" index="true"/>
 		</Document>
 	</xsl:template>
 	
@@ -83,7 +83,7 @@
 	<!-- latlon coordinates + 360, zero-padded, indexed, not stored, not tokenized -->
 	<xsl:template match="*" mode="latLon">
 		<xsl:param name="name" select="name(.)"/>
-		<Field name="{$name}" string="{string(.) + 360}" store="true" index="true" token="false"/>
+		<Field name="{$name}" string="{string(.) + 360}" store="true" index="true"/>
 	</xsl:template>
 	
 	<!-- ========================================================================================= -->
