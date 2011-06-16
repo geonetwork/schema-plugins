@@ -105,7 +105,7 @@
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 
-			<xsl:for-each select="*/mcp:EX_Extent">
+			<xsl:for-each select="*/mcp:EX_Extent|*/gmd:EX_Extent">
 				<xsl:apply-templates select="gmd:geographicElement/gmd:EX_GeographicBoundingBox" mode="latLon"/>
 
 				<xsl:for-each select="gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier/gmd:MD_Identifier/gmd:code/gco:CharacterString">
