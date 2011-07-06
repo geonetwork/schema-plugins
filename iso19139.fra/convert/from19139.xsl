@@ -2,7 +2,7 @@
 <xsl:stylesheet version="1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:fra="http://www.cnig.gouv.fr/2005/fra"  xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gfc="http://www.isotc211.org/2005/gfc" xmlns:gmi="http://www.isotc211.org/2005/gmi" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gml="http://www.opengis.net/gml" xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 	
-	<xsl:variable name="schemaLocation">http://www.cnig.gouv.fr/2005/fra ../schemas/iso19139Fra/fra/fra.xsd</xsl:variable>
+  <xsl:variable name="schemaLocation">http://www.cnig.gouv.fr/2005/fra http://eden.ign.fr/xsd/fra/20060106/fra/fra.xsd</xsl:variable>
 	
 	<!-- root element -->
 	<xsl:template match="gmd:DS_DataSet">
