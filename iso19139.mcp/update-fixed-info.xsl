@@ -265,7 +265,7 @@
 		<xsl:copy>
 			<xsl:apply-templates select="@*"/>
 			<xsl:attribute name="codeList">
-				<xsl:value-of select="concat(/root/env/baseURL,'/web/geonetwork/xml/schemas/iso19139.mcp/schema/resources/Codelist/gmxCodelists.xml#',local-name(.))"/>
+				<xsl:value-of select="concat(/root/env/baseURL,'/web/geonetwork/xml/schemas/iso19139/schema/resources/Codelist/gmxCodelists.xml#',local-name(.))"/>
 			</xsl:attribute>
 			<xsl:value-of select="@codeListValue"/>
 		</xsl:copy>

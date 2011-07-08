@@ -14,6 +14,10 @@
 	<xsl:include href="metadata-taxonconcepts.mcp.xsl"/>
 
 	<xsl:variable name="mcpallgens" select="document('../schema/resources/Codelist/mcp-allgens.xml')"/>
+
+	<!-- codelists are handled directly from the gmxCodelists.xml file as we
+	     don't support localized codelists in the MCP and we don't want to
+	     duplicate the codelists into another file -->
 	<xsl:variable name="codelistsmcp" select="document('../schema/resources/Codelist/gmxCodelists.xml')"/>
 
 	<xsl:variable name="dcurl" select="/root/gui/schemas/iso19139.mcp/strings/dataCommonsUrl"/>
@@ -381,7 +385,7 @@
 	</xsl:template>
 
 	<!-- ==================================================================== -->
-	<!-- keywords from GCMD - made specific to the MCP by checking descendant -->
+	<!-- keywords from GCMD Chooser Application                               -->
 	<!-- ==================================================================== -->
 
 	<xsl:template mode="iso19139" match="gmd:keyword[//geonet:info/schema='iso19139.mcp']" priority="10">
