@@ -216,7 +216,7 @@
 	<!-- mcp codelists -->
 	<!-- ================================================================= -->
 
-	<xsl:template mode="iso19139" match="*[*/@codeList and //geonet:info/schema='iso19139.mcp' and name(.)!='gmd:country' and name()!='gmd:languageCode']" priority="100">
+	<xsl:template mode="iso19139" match="*[*/@codeList and starts-with(//geonet:info/schema,'iso19139.mcp') and name(.)!='gmd:country' and name()!='gmd:languageCode']" priority="100">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
@@ -388,7 +388,7 @@
 	<!-- keywords from GCMD Chooser Application                               -->
 	<!-- ==================================================================== -->
 
-	<xsl:template mode="iso19139" match="gmd:keyword[//geonet:info/schema='iso19139.mcp']" priority="10">
+	<xsl:template mode="iso19139" match="gmd:keyword[starts-with(//geonet:info/schema,'iso19139.mcp')]" priority="10">
   	<xsl:param name="schema"/>
     <xsl:param name="edit"/>
 
@@ -426,7 +426,7 @@
 	<!-- template) and code keyword in gmd:geographicIdentifier           -->
 	<!-- ================================================================ -->
 
-	<xsl:template mode="iso19139" match="gmd:keyword[following-sibling::gmd:type/gmd:MD_KeywordTypeCode/@codeListValue='place' and //geonet:info/schema='iso19139.mcp']|gmd:code[name(../..)='gmd:geographicIdentifier' and //geonet:info/schema='iso19139.mcp']" priority="20">
+	<xsl:template mode="iso19139" match="gmd:keyword[following-sibling::gmd:type/gmd:MD_KeywordTypeCode/@codeListValue='place' and starts-with(//geonet:info/schema,'iso19139.mcp')]|gmd:code[name(../..)='gmd:geographicIdentifier' and starts-with(//geonet:info/schema,'iso19139.mcp')]" priority="20">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
@@ -1743,7 +1743,7 @@
 	<!-- mcp Online Resource space reduced when only one resource available -->
 	<!-- ================================================================== -->
 
-	<xsl:template mode="elementEP" match="gmd:distributionInfo[//geonet:info/schema='iso19139.mcp']">
+	<xsl:template mode="elementEP" match="gmd:distributionInfo[starts-with(//geonet:info/schema,'iso19139.mcp')]">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 		<xsl:param name="dataset"/>
