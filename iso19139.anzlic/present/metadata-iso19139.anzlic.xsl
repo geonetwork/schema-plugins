@@ -1090,5 +1090,8 @@
 		</metadata>
 	</xsl:template>
 
+	<!-- match everything else and do nothing - leave that to iso19139 mode -->
+	<xsl:template mode="iso19139.anzlic" match="*|@*"/> 
+
 
 </xsl:stylesheet>
