@@ -12,6 +12,9 @@
 
 	<xsl:include href="convert/functions.xsl"/>
 
+	<xsl:variable name="metadataStandardName" select="'Australian Marine Community Profile of ISO 19115:2005/19139'"/>
+	<xsl:variable name="metadataStandardVersion" select="'MCP:BlueNet V1.5'"/>
+
 	<!-- ================================================================= -->
 	
 	<xsl:template match="/root">
@@ -41,8 +44,26 @@
       <xsl:apply-templates select="gmd:hierarchyLevelName"/>
       <xsl:apply-templates select="gmd:contact"/>
       <xsl:apply-templates select="gmd:dateStamp"/>
-      <xsl:apply-templates select="gmd:metadataStandardName"/>
-      <xsl:apply-templates select="gmd:metadataStandardVersion"/>
+			<xsl:choose>
+				<xsl:when test="not(gmd:metadataStandardName)">
+					<mcp:metadataStandardName>
+						<gco:CharacterString><xsl:value-of select="$metadataStandardName"/></gco:CharacterString>
+					</mcp:metadataStandardName>
+				</xsl:when>
+				<xsl:otherwise>
+      		<xsl:apply-templates select="gmd:metadataStandardName"/>
+				</xsl:otherwise>
+			</xsl:choose>
+			<xsl:choose>
+				<xsl:when test="not(gmd:metadataStandardVersion)">
+					<mcp:metadataStandardVersion>
+						<gco:CharacterString><xsl:value-of select="$metadataStandardVersion"/></gco:CharacterString>
+					</mcp:metadataStandardVersion>
+				</xsl:when>
+				<xsl:otherwise>
+      		<xsl:apply-templates select="gmd:metadataStandardVersion"/>
+				</xsl:otherwise>
+			</xsl:choose>
       <xsl:apply-templates select="gmd:dataSetURI"/>
       <xsl:apply-templates select="gmd:locale"/>
       <xsl:apply-templates select="gmd:spatialRepresentationInfo"/>
@@ -77,15 +98,15 @@
       <xsl:apply-templates select="gmd:featureType"/>
       <xsl:apply-templates select="gmd:featureAttribute"/>
 			<xsl:choose>
-				<xsl:when test="not(mcp:revisionDate)">
-					<mcp:revisionDate>
-						<gco:DateTime><xsl:value-of select="/root/env/changeDate"/></gco:DateTime>
-					</mcp:revisionDate>
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:apply-templates select="mcp:revisionDate"/>
-				</xsl:otherwise>
-			</xsl:choose>
+        <xsl:when test="not(mcp:revisionDate)">
+          <mcp:revisionDate>
+            <gco:DateTime><xsl:value-of select="/root/env/changeDate"/></gco:DateTime>
+          </mcp:revisionDate>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="mcp:revisionDate"/>
+        </xsl:otherwise>
+      </xsl:choose>
 		</xsl:copy>
 	</xsl:template>
 
@@ -122,16 +143,23 @@
 	<!-- ================================================================= -->
 	
 	<xsl:template match="mcp:revisionDate" priority="10">
-		<xsl:copy>
-			<gco:DateTime><xsl:value-of select="/root/env/changeDate"/></gco:DateTime>
-		</xsl:copy>
+		<xsl:choose>
+			<xsl:when test="/root/env/changeDate">
+				<xsl:copy>
+					<gco:DateTime><xsl:value-of select="/root/env/changeDate"/></gco:DateTime>
+				</xsl:copy>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:copy-of select="."/>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 	
 	<!-- ================================================================= -->
 	
 	<xsl:template match="gmd:metadataStandardName" priority="10">
 		<xsl:copy>
-			<gco:CharacterString>Australian Marine Community Profile of ISO 19115:2005/19139</gco:CharacterString>
+			<gco:CharacterString><xsl:value-of select="$metadataStandardName"/></gco:CharacterString>
 		</xsl:copy>
 	</xsl:template>
 
@@ -139,7 +167,7 @@
 	
 	<xsl:template match="gmd:metadataStandardVersion" priority="10">
 		<xsl:copy>
-			<gco:CharacterString>MCP:BlueNet V1.5</gco:CharacterString>
+			<gco:CharacterString><xsl:value-of select="$metadataStandardVersion"/></gco:CharacterString>
 		</xsl:copy>
 	</xsl:template>
 

@@ -30,23 +30,31 @@
     <xsl:param name="embedded"/>
 		<xsl:param name="usedot" select="false()"/>
 
-		<xsl:choose>
-			<xsl:when test="$usedot">
-    		<xsl:apply-templates mode="iso19139" select="." >
-      		<xsl:with-param name="schema" select="$schema"/>
-      		<xsl:with-param name="edit"   select="$edit"/>
-      		<xsl:with-param name="embedded" select="$embedded" />
+			<!-- process in profile mode first -->
+			<xsl:variable name="mcpElements">
+    		<xsl:apply-templates mode="iso19139.mcp" select="." >
+     			<xsl:with-param name="schema" select="$schema"/>
+     			<xsl:with-param name="edit"   select="$edit"/>
+     			<xsl:with-param name="embedded" select="$embedded" />
     		</xsl:apply-templates>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:variable name="refName" select="/metadata/@ref"/>
-    		<xsl:apply-templates mode="iso19139" select="//*[geonet:element/@ref=$refName]" >
-      		<xsl:with-param name="schema" select="$schema"/>
-      		<xsl:with-param name="edit"   select="$edit"/>
-      		<xsl:with-param name="embedded" select="$embedded" />
-    		</xsl:apply-templates>
-			</xsl:otherwise>
-		</xsl:choose>
+			</xsl:variable>
+
+			<xsl:choose>
+
+				<!-- if we got a match in profile mode then show it -->
+				<xsl:when test="count($mcpElements/*)>0">
+					<xsl:copy-of select="$mcpElements"/>
+				</xsl:when>
+
+				<!-- otherwise process in base iso19139 mode -->
+				<xsl:otherwise>	
+    			<xsl:apply-templates mode="iso19139" select="." >
+     				<xsl:with-param name="schema" select="$schema"/>
+     				<xsl:with-param name="edit"   select="$edit"/>
+     				<xsl:with-param name="embedded" select="$embedded" />
+    			</xsl:apply-templates>
+				</xsl:otherwise>
+			</xsl:choose>
   </xsl:template>
 
 	<!-- CompleteTab template - iso19139.mcp has its own set of tabs -->
@@ -216,7 +224,7 @@
 	<!-- mcp codelists -->
 	<!-- ================================================================= -->
 
-	<xsl:template mode="iso19139" match="*[*/@codeList and starts-with(//geonet:info/schema,'iso19139.mcp') and name(.)!='gmd:country' and name()!='gmd:languageCode']" priority="100">
+	<xsl:template mode="iso19139.mcp" match="*[*/@codeList and name(.)!='gmd:country' and name()!='gmd:languageCode']">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
@@ -305,7 +313,7 @@
 	<!-- taxonomic info 																											-->
 	<!-- ==================================================================== -->
 
-	<xsl:template mode="iso19139" match="mcp:taxonomicElement">
+	<xsl:template mode="iso19139.mcp" match="mcp:taxonomicElement">
   	<xsl:param name="schema"/>
     <xsl:param name="edit"/>
 
@@ -388,7 +396,7 @@
 	<!-- keywords from GCMD Chooser Application                               -->
 	<!-- ==================================================================== -->
 
-	<xsl:template mode="iso19139" match="gmd:keyword[starts-with(//geonet:info/schema,'iso19139.mcp')]" priority="10">
+	<xsl:template mode="iso19139.mcp" match="gmd:keyword">
   	<xsl:param name="schema"/>
     <xsl:param name="edit"/>
 
@@ -426,7 +434,7 @@
 	<!-- template) and code keyword in gmd:geographicIdentifier           -->
 	<!-- ================================================================ -->
 
-	<xsl:template mode="iso19139" match="gmd:keyword[following-sibling::gmd:type/gmd:MD_KeywordTypeCode/@codeListValue='place' and starts-with(//geonet:info/schema,'iso19139.mcp')]|gmd:code[name(../..)='gmd:geographicIdentifier' and starts-with(//geonet:info/schema,'iso19139.mcp')]" priority="20">
+	<xsl:template mode="iso19139.mcp" match="gmd:keyword[following-sibling::gmd:type/gmd:MD_KeywordTypeCode/@codeListValue='place']|gmd:code[name(../..)='gmd:geographicIdentifier']">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
@@ -481,7 +489,7 @@
 	<!-- EX_GeographicBoundingBox -->
 	<!-- ================================================================== -->
 
-	<xsl:template mode="iso19139" match="gmd:EX_GeographicBoundingBox[starts-with(//geonet:info/schema,'iso19139.mcp')]" priority="3">
+	<xsl:template mode="iso19139.mcp" match="gmd:EX_GeographicBoundingBox">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 		
@@ -611,7 +619,7 @@
 	<!-- various fields that need 3 rows    -->
 	<!-- ================================================================ -->
 
-	<xsl:template mode="iso19139" match="mcp:parameterDescription|mcp:attributionConstraints|mcp:otherConstraints|mcp:derivativeConstraints|mcp:commercialUseConstraints|mcp:collectiveWorksConstraints|gmd:useLimitation|gmd:otherConstraints|gmd:userNote|gmd:handlingDescription|gmd:classificationSystem" priority="2">
+	<xsl:template mode="iso19139.mcp" match="mcp:parameterDescription|mcp:attributionConstraints|mcp:otherConstraints|mcp:derivativeConstraints|mcp:commercialUseConstraints|mcp:collectiveWorksConstraints|gmd:useLimitation|gmd:otherConstraints|gmd:userNote|gmd:handlingDescription|gmd:classificationSystem">
     <xsl:param name="schema"/>
     <xsl:param name="edit"/>
 
@@ -626,7 +634,7 @@
 	<!-- mcp:MD_Commons - offer creative or data commons editing          -->
 	<!-- ================================================================ -->
 
-	<xsl:template mode="iso19139" match="mcp:MD_Commons[@mcp:commonsType='']">
+	<xsl:template mode="iso19139.mcp" match="mcp:MD_Commons[@mcp:commonsType='']">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
@@ -710,7 +718,7 @@
 	<!-- mcp:MD_Commons - offer creative commons editing          -->
 	<!-- ================================================================ -->
 
-	<xsl:template mode="iso19139" match="mcp:MD_Commons[@mcp:commonsType='Creative Commons']">
+	<xsl:template mode="iso19139.mcp" match="mcp:MD_Commons[@mcp:commonsType='Creative Commons']">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
@@ -848,7 +856,7 @@
 	<!-- mcp:MD_Commons - offer data commons editing                  -->
 	<!-- ================================================================ -->
 
-	<xsl:template mode="iso19139" match="mcp:MD_Commons[@mcp:commonsType='Data Commons']">
+	<xsl:template mode="iso19139.mcp" match="mcp:MD_Commons[@mcp:commonsType='Data Commons']">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
@@ -1070,7 +1078,7 @@
 	<!-- mcp:beginTime and mcp:endTime - deprecated - not editable        -->
 	<!-- ================================================================ -->
 
-	<xsl:template mode="iso19139" match="mcp:beginTime|mcp:endTime" priority="2">
+	<xsl:template mode="iso19139.mcp" match="mcp:beginTime|mcp:endTime" priority="2">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
@@ -1093,65 +1101,18 @@
 	</xsl:template>
 
 	<!-- ================================================================ -->
-	<!-- mcp:revisionDate                                                 -->
+	<!-- These elements cannot be edited                                  -->
 	<!-- ================================================================ -->
 
-	<xsl:template mode="iso19139" match="mcp:revisionDate">
+	<xsl:template mode="iso19139.mcp" match="mcp:revisionDate|gmd:metadataStandardName|gmd:metadataStandardVersion">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
-		
-		<xsl:choose>
-			<xsl:when test="$edit=true()">
-				<xsl:apply-templates mode="simpleElement" select=".">
-					<xsl:with-param name="schema"  select="$schema"/>
-					<xsl:with-param name="edit"   select="$edit"/>
-					<xsl:with-param name="text">
-						<xsl:variable name="ref" select="gco:DateTime/geonet:element/@ref"/>
-						
-						<table width="100%"><tr>
-							<td>
-								<input class="md" type="text" name="_{$ref}" id="_{$ref}_cal" value="{gco:DateTime/text()}" size="30" readonly="1"/>
-							</td>
-							<td align="center" width="30" valign="middle">
-								<img src="{/root/gui/url}/scripts/calendar/img.gif"
-									 id="_{$ref}_trigger"
-									 style="cursor: pointer; border: 1px solid;"
-									 title="Date selector"
-									 onmouseover="this.style.background='red';"
-									 onmouseout="this.style.background=''" />
-								<script type="text/javascript">
-									Calendar.setup(
-										{
-											inputField  : &quot;_<xsl:value-of select="$ref"/>_cal&quot;,         // ID of the input field
-											ifFormat    : "%Y-%m-%dT%H:%M:00",                                // the date format
-											showsTime   : true, // Show the time
-											button      : &quot;_<xsl:value-of select="$ref"/>_trigger&quot;  // ID of the button
-										}
-									);
-									Calendar.setup(
-										{
-											inputField  : &quot;_<xsl:value-of select="$ref"/>_cal&quot;,         // ID of the input field
-											ifFormat    : "%Y-%m-%dT%H:%M:00",                                // the date format
-											showsTime   : true, // Show the time
-											button      : &quot;_<xsl:value-of select="$ref"/>_cal&quot;  // ID of the button
-										}
-									);
-								</script>
-							</td>
-							<td align="left" width="100%">
-								<xsl:text>  </xsl:text><a onclick="javascript:setBunload(false);" href="javascript:clearRef('{$ref}');"> <xsl:value-of select="/root/gui/schemas/iso19139.mcp/strings/clear"/></a>
-							</td>
-						</tr></table>
-					</xsl:with-param>
-				</xsl:apply-templates>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:call-template name="iso19139String">
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="edit"   select="$edit"/>
-				</xsl:call-template>
-			</xsl:otherwise>
-		</xsl:choose>
+
+		<!-- Doesn't matter what mode this is - we don't allow editing -->
+		<xsl:call-template name="iso19139String">
+			<xsl:with-param name="schema" select="$schema"/>
+			<xsl:with-param name="edit"   select="false()"/>
+		</xsl:call-template>
 	</xsl:template>
 
 	<!-- ================================================================== -->
@@ -1271,7 +1232,7 @@
 	<!-- mcp:MD_Metadata -->
 	<!-- ==================================================================== -->
 
-	<xsl:template mode="iso19139" match="mcp:MD_Metadata">
+	<xsl:template mode="iso19139.mcp" match="mcp:MD_Metadata">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 		<xsl:param name="embedded" select="false()"/>
@@ -1472,6 +1433,13 @@
 					<xsl:with-param name="edit"   select="$edit"/>
 					<xsl:with-param name="dataset" select="$dataset"/>
 				</xsl:call-template>
+
+				<!-- mcp:revisionDate is the only element added mcp:MD_Metadata -->
+
+				<xsl:apply-templates mode="elementEP" select="mcp:revisionDate|geonet:child[string(@name)='revisionDate']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
 				
 			</xsl:otherwise>
 		</xsl:choose>
@@ -1743,12 +1711,13 @@
 	<!-- mcp Online Resource space reduced when only one resource available -->
 	<!-- ================================================================== -->
 
-	<xsl:template mode="elementEP" match="gmd:distributionInfo[starts-with(//geonet:info/schema,'iso19139.mcp')]">
+	<xsl:template mode="iso19139.mcp" match="gmd:distributionInfo">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 		<xsl:param name="dataset"/>
 		<xsl:param name="tab"/>
 		<xsl:param name="core"/>
+
 		<xsl:for-each select=".">
 			<xsl:call-template name="complexElementGuiWrapper">
 				<xsl:with-param name="title" select="/root/gui/schemas/iso19139.mcp/strings/distributionOnlineInfo"/>
@@ -1808,5 +1777,8 @@
 	 		</xsl:for-each>
 		</metadata>
 	</xsl:template>
+
+	<!-- match everything else and do nothing - leave that to iso19139 mode -->
+	<xsl:template mode="iso19139.mcp" match="*|@*"/> 
 
 </xsl:stylesheet>

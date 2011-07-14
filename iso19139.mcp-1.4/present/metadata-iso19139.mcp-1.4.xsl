@@ -18,23 +18,31 @@
     <xsl:param name="embedded"/>
 		<xsl:param name="usedot" select="false()"/>
 
-		<xsl:choose>
-			<xsl:when test="$usedot">
-    		<xsl:apply-templates mode="iso19139" select="." >
-      		<xsl:with-param name="schema" select="$schema"/>
-      		<xsl:with-param name="edit"   select="$edit"/>
-      		<xsl:with-param name="embedded" select="$embedded" />
-    		</xsl:apply-templates>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:variable name="refName" select="/metadata/@ref"/>
-    		<xsl:apply-templates mode="iso19139" select="//*[geonet:element/@ref=$refName]" >
-      		<xsl:with-param name="schema" select="$schema"/>
-      		<xsl:with-param name="edit"   select="$edit"/>
-      		<xsl:with-param name="embedded" select="$embedded" />
-    		</xsl:apply-templates>
-			</xsl:otherwise>
-		</xsl:choose>
+			<!-- process in iso19139.mcp profile mode first -->
+      <xsl:variable name="mcpElements">
+        <xsl:apply-templates mode="iso19139.mcp" select="." >
+          <xsl:with-param name="schema" select="$schema"/>
+          <xsl:with-param name="edit"   select="$edit"/>
+          <xsl:with-param name="embedded" select="$embedded" />
+        </xsl:apply-templates>
+      </xsl:variable>
+
+      <xsl:choose>
+
+        <!-- if we got a match in profile mode then show it -->
+        <xsl:when test="count($mcpElements/*)>0">
+          <xsl:copy-of select="$mcpElements"/>
+        </xsl:when>
+
+        <!-- otherwise process in base iso19139 mode -->
+        <xsl:otherwise>
+          <xsl:apply-templates mode="iso19139" select="." >
+            <xsl:with-param name="schema" select="$schema"/>
+            <xsl:with-param name="edit"   select="$edit"/>
+            <xsl:with-param name="embedded" select="$embedded" />
+          </xsl:apply-templates>
+        </xsl:otherwise>
+      </xsl:choose>
   </xsl:template>
 
 	<!-- CompleteTab template - iso19139.mcp-1.4 has its own set of tabs - same 

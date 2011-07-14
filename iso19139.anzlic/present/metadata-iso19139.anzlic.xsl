@@ -22,23 +22,31 @@
     <xsl:param name="embedded"/>
 		<xsl:param name="usedot" select="false()"/>
 
-		<xsl:choose>
-			<xsl:when test="$usedot">
-    		<xsl:apply-templates mode="iso19139" select="." >
-      		<xsl:with-param name="schema" select="$schema"/>
-      		<xsl:with-param name="edit"   select="$edit"/>
-      		<xsl:with-param name="embedded" select="$embedded" />
-    		</xsl:apply-templates>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:variable name="refName" select="/metadata/@ref"/>
-    		<xsl:apply-templates mode="iso19139" select="//*[geonet:element/@ref=$refName]" >
-      		<xsl:with-param name="schema" select="$schema"/>
-      		<xsl:with-param name="edit"   select="$edit"/>
-      		<xsl:with-param name="embedded" select="$embedded" />
-    		</xsl:apply-templates>
-			</xsl:otherwise>
-		</xsl:choose>
+			<!-- process in profile mode first -->
+      <xsl:variable name="anzlicElements">
+        <xsl:apply-templates mode="iso19139.anzlic" select="." >
+          <xsl:with-param name="schema" select="$schema"/>
+          <xsl:with-param name="edit"   select="$edit"/>
+          <xsl:with-param name="embedded" select="$embedded" />
+        </xsl:apply-templates>
+      </xsl:variable>
+
+      <xsl:choose>
+
+        <!-- if we got a match in profile mode then show it -->
+        <xsl:when test="count($anzlicElements/*)>0">
+          <xsl:copy-of select="$anzlicElements"/>
+        </xsl:when>
+
+        <!-- otherwise process in base iso19139 mode -->
+        <xsl:otherwise>
+          <xsl:apply-templates mode="iso19139" select="." >
+            <xsl:with-param name="schema" select="$schema"/>
+            <xsl:with-param name="edit"   select="$edit"/>
+            <xsl:with-param name="embedded" select="$embedded" />
+          </xsl:apply-templates>
+        </xsl:otherwise>
+      </xsl:choose>	
   </xsl:template>
 
 
@@ -47,7 +55,7 @@
 	<!-- template) and code keyword in gmd:geographicIdentifier           -->
 	<!-- ================================================================ -->
 
-	<xsl:template mode="iso19139" match="gmd:keyword[following-sibling::gmd:type/gmd:MD_KeywordTypeCode/@codeListValue='place' and //geonet:info/schema='iso19139.anzlic']|gmd:code[name(../..)='gmd:geographicIdentifier' and //geonet:info/schema='iso19139.anzlic']" priority="10">
+	<xsl:template mode="iso19139.anzlic" match="gmd:keyword[following-sibling::gmd:type/gmd:MD_KeywordTypeCode/@codeListValue='place']|gmd:code[name(../..)='gmd:geographicIdentifier']">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
@@ -103,7 +111,7 @@
 	<!-- descriptiveKeywords 																							-->
 	<!-- ================================================================ -->
 
-	<xsl:template mode="iso19139" match="gmd:keyword[following-sibling::gmd:type/gmd:MD_KeywordTypeCode/@codeListValue!='place' and //geonet:info/schema='iso19139.anzlic']" priority="2">
+	<xsl:template mode="iso19139.anzlic" match="gmd:keyword[following-sibling::gmd:type/gmd:MD_KeywordTypeCode/@codeListValue!='place']">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 		
@@ -159,7 +167,7 @@
 	<!-- EX_GeographicBoundingBox - use for all schemas except iso19139     -->
 	<!-- ================================================================== -->
 
-	<xsl:template mode="iso19139" match="gmd:EX_GeographicBoundingBox[//geonet:info/schema='iso19139.anzlic']" priority="3">
+	<xsl:template mode="iso19139.anzlic" match="gmd:EX_GeographicBoundingBox" priority="3">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 		
@@ -421,7 +429,7 @@
 	<!-- supplementalInformation | purpose -->
 	<!-- ============================================================================= -->
 
-	<xsl:template mode="iso19139" match="gmd:supplementalInformation|gmd:purpose|gmd:statement" priority="2">
+	<xsl:template mode="iso19139.anzlic" match="gmd:supplementalInformation|gmd:purpose|gmd:statement" priority="2">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 		
@@ -436,7 +444,7 @@
 	<!-- Metadata -->
 	<!-- ==================================================================== -->
 
-	<xsl:template mode="iso19139" match="gmd:MD_Metadata[//geonet:info/schema='iso19139.anzlic']">
+	<xsl:template mode="iso19139.anzlic" match="gmd:MD_Metadata">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 		<xsl:param name="embedded" select="false()"/>
@@ -923,277 +931,11 @@
 		
 	</xsl:template>
 
-	<!-- ============================================================================= -->
-
-	<xsl:template mode="iso19139" match="gmd:fileIdentifier[//geonet:info/schema='iso19139.anzlic']">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-		<xsl:param name="dataset"/>
-		<xsl:param name="tab"/>
-		<xsl:param name="title"/>
-		<xsl:param name="text"/>
-		<xsl:param name="helpLink">
-            <!--<xsl:call-template name="getHelpLink">
-                <xsl:with-param name="name"   select=""/>
-                <xsl:with-param name="schema" select="$schema"/>
-            </xsl:call-template>-->
-		</xsl:param>
-			<xsl:apply-templates mode="iso19139" select=".">
-				<xsl:with-param name="schema" select="$schema"/>
-				<xsl:with-param name="edit"   select="$edit"/>
-			</xsl:apply-templates>
-			
-			<!-- Ticket:63 search results contain child record of this record -->
-			<xsl:if test="$edit=false()">
-				<xsl:variable name="fileidentifierlink" select="gco:CharacterString"/>	
-				<xsl:variable name="regexp" select="'[^a-zA-Z0-9]'"/>
-
-				<xsl:apply-templates mode="simpleElement" select=".">
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="edit"   select="$edit"/>
-					<xsl:with-param name="title"    select="'Child records'"/>
-					<xsl:with-param name="text">
-						<!-- todo: will $baseurl be needed here? -->
-						<xsl:if test="/root/gui/relations/children/response/@to!=0"><a href='search.external?parentId=%22{replace(normalize-space($fileidentifierlink), $regexp,"-")}%22' target="_blank"><xsl:value-of select="/root/gui/schemas/iso19139/strings/childidentifierlink"/></a></xsl:if>
-					</xsl:with-param>
-					<xsl:with-param name="helpLink" select="$helpLink"/>
-				</xsl:apply-templates>
-			</xsl:if>
-	</xsl:template>
-		
-	<!-- ============================================================================= -->
-	<xsl:template mode="iso19139" match="gmd:parentIdentifier[//geonet:info/schema='iso19139.anzlic']">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-		<xsl:param name="dataset"/>
-		<xsl:param name="tab"/>
-		<xsl:param name="title"/>
-		<xsl:param name="text"/>
-		<xsl:param name="helpLink">
-            <xsl:call-template name="getHelpLink">
-                <xsl:with-param name="name"   select="name(.)"/>
-                <xsl:with-param name="schema" select="$schema"/>
-            </xsl:call-template>
-		</xsl:param>
-			<xsl:choose>
-				<xsl:when test="$edit=true()">
-					<xsl:apply-templates mode="iso19139" select=".">
-						<xsl:with-param name="schema" select="$schema"/>
-						<xsl:with-param name="edit"   select="$edit"/>
-					</xsl:apply-templates>
-				</xsl:when>
-				<xsl:otherwise>
-					<!-- Ticket:63 link to other records with same parentIdentifier -->
-					<xsl:for-each select=".">
-						<xsl:variable name="paridname" select="gco:CharacterString"/>
-						<xsl:variable name="regexp" select="'[^a-zA-Z0-9]'"/>	
-						<xsl:if test="$paridname!=''">
-							<xsl:apply-templates mode="simpleElement" select=".">
-								<xsl:with-param name="schema" select="$schema"/>
-								<xsl:with-param name="edit"   select="$edit"/>
-								<xsl:with-param name="title"    select="string(/root/gui/iso19139/element[@name='gmd:parentIdentifier']/label)"/>
-								<xsl:with-param name="text">
-									<xsl:apply-templates mode="simpleElementGuiTextOnly" select="gco:CharacterString">
-										<xsl:with-param name="schema" select="$schema"/>
-										<xsl:with-param name="edit"   select="$edit"/>
-									</xsl:apply-templates>
-								<!-- todo: will $baseurl be needed here? -->
-								<xsl:text> (</xsl:text>
-									<xsl:if test="/root/gui/relations/siblings/response/@to&gt;0">
-										<a href='metadata.show?uuid={replace(normalize-space($paridname), $regexp,"-")}' target="_blank"><xsl:value-of select="/root/gui/schemas/iso19139/strings/parentidentifierlink"/></a>
-									</xsl:if>
-									
-									<xsl:if test="/root/gui/relations/siblings/response/@to&gt;0 and /root/gui/relations/siblings/response/@to&gt;1">
-										<xsl:text>/</xsl:text>
-									</xsl:if>
-									<xsl:if test="/root/gui/relations/siblings/response/@to&gt;1">
-										<a href='search.external?parentId=%22{replace(normalize-space($paridname), $regexp,"-")}%22' target="_blank"><xsl:value-of select="/root/gui/schemas/iso19139/strings/siblingidentifierlink"/></a>
-									</xsl:if>
-									<xsl:text>)</xsl:text>
-								</xsl:with-param>
-								<xsl:with-param name="helpLink" select="$helpLink"/>
-							</xsl:apply-templates>
-						</xsl:if>
-					</xsl:for-each>
-				</xsl:otherwise>
-			</xsl:choose>
-	</xsl:template>
-		
-	<!-- ============================================================================= -->
-
-	<xsl:template mode="iso19139" match="gmd:aggregationInfo[//geonet:info/schema='iso19139.anzlic']">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-		<xsl:param name="dataset"/>
-		<xsl:param name="tab"/>
-		<xsl:for-each select=".">
-			<xsl:call-template name="complexElementGuiWrapper">
-				<xsl:with-param name="title" select="string(/root/gui/iso19139/element[@name='gmd:aggregationInfo']/label)"/>
-				<xsl:with-param name="tab" select="$tab"/>
-				<xsl:with-param name="content">
-					
-					<xsl:choose>
-						<xsl:when test="$edit=true() or gmd:aggregationInfo/gmd:MD_AggregateInformation/gmd:aggregateDataSetName/gmd:CI_Citation/gmd:title/gco:CharacterString=''">
-							<xsl:apply-templates mode="elementEP" select="*">
-								<xsl:with-param name="schema" select="$schema"/>
-								<xsl:with-param name="edit"   select="$edit"/>
-							</xsl:apply-templates>
-						</xsl:when>
-						<xsl:otherwise>
-							<xsl:if test=".!=''">
-								<!-- Ticket:63 link to other records in Aggregation Set -->
-								<xsl:for-each select="gmd:MD_AggregateInformation/gmd:aggregateDataSetName/gmd:CI_Citation/gmd:title">
-									<xsl:variable name="aggdatasetname" select="gco:CharacterString"/>
-									<xsl:variable name="regexp" select="'[^a-zA-Z0-9]'"/>
-									<xsl:if test="$aggdatasetname!=''">
-										<!-- todo: will $baseurl be needed here? -->
-										<a href='search.external?title=%22{replace($aggdatasetname, $regexp," ")}%22' target="_blank">
-											<xsl:value-of select="/root/gui/schemas/iso19139/strings/aggregationlink"/>
-										</a>
-									</xsl:if>
-								</xsl:for-each>
-							
-								<xsl:apply-templates mode="elementEP" select="*">
-									<xsl:with-param name="schema" select="$schema"/>
-									<xsl:with-param name="edit"   select="$edit"/>
-								</xsl:apply-templates>
-							</xsl:if>
-						</xsl:otherwise>
-					</xsl:choose>
-				
-				</xsl:with-param>
-				<xsl:with-param name="schema" select="$schema"/>
-				<xsl:with-param name="edit"   select="$edit"/>
-				<xsl:with-param name="realname"   select="'gmd:aggregationInfo'"/>
-			</xsl:call-template>
-		</xsl:for-each>
-	</xsl:template>
-
-	<!-- ============================================================================= -->
-
-	<xsl:template mode="iso19139" match="gmd:credit[//geonet:info/schema='iso19139.anzlic']">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-		<xsl:param name="dataset"/>
-		<xsl:param name="tab"/>
-		<xsl:param name="title"/>
-		<xsl:param name="text"/>
-		<xsl:param name="helpLink">
-            <xsl:call-template name="getHelpLink">
-                <xsl:with-param name="name"   select="name(.)"/>
-                <xsl:with-param name="schema" select="$schema"/>
-            </xsl:call-template>
-		</xsl:param>
-		<xsl:for-each select=".">
-			<xsl:choose>
-				<xsl:when test="$edit=true()">
-					<xsl:apply-templates mode="iso19139" select=".">
-						<xsl:with-param name="schema" select="$schema"/>
-						<xsl:with-param name="edit"   select="$edit"/>
-					</xsl:apply-templates>
-				</xsl:when>
-				<xsl:otherwise>
-					<!-- Ticket:63 link to other records with same Credit -->
-					<xsl:for-each select=".">
-						<xsl:variable name="creditname" select="gco:CharacterString"/>
-						<xsl:variable name="regexp" select="'[^a-zA-Z0-9]'"/>
-						<xsl:if test="$creditname!=''">
-
-							<xsl:apply-templates mode="simpleElement" select=".">
-								<xsl:with-param name="schema" select="$schema"/>
-								<xsl:with-param name="edit"   select="$edit"/>
-								<xsl:with-param name="title"    select="/root/gui/schemas/iso19139/strings/credit"/>
-								<xsl:with-param name="text">
-									<xsl:apply-templates mode="simpleElementGuiTextOnly" select=".">
-										<xsl:with-param name="schema" select="$schema"/>
-										<xsl:with-param name="edit"   select="$edit"/>
-									</xsl:apply-templates>
-									<!-- todo: will $baseurl be needed here? -->
-									<xsl:text> (</xsl:text><a href='search.external?credit=%22{normalize-space(replace($creditname, $regexp," "))}%22' target="_blank"><xsl:value-of select="/root/gui/schemas/iso19139/strings/creditlink"/></a><xsl:text>)</xsl:text>
-								</xsl:with-param>
-								<xsl:with-param name="helpLink" select="$helpLink"/>
-							</xsl:apply-templates>
-						</xsl:if>
-					</xsl:for-each>
-				</xsl:otherwise>
-			</xsl:choose>			
-		</xsl:for-each>
-	</xsl:template>
-
-	<!-- ============================================================================= -->
-<!--	
-	<xsl:template mode="iso19139" match="gmd:EX_VerticalExtent|geonet:child[string(@name)='EX_VerticalExtent']">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-		<xsl:param name="dataset"/>
-		<xsl:for-each select=".">
-			<xsl:choose>
-				<xsl:when test="$edit=true()">
-					<xsl:call-template name="complexElementGuiWrapper">
-						<xsl:with-param name="title" select="string(/root/gui/schemas/iso19139/element[@name='gmd:EX_VerticalExtent']/label)"/>
-						<xsl:with-param name="content">
-							<xsl:apply-templates mode="elementEP" select="*">
-								<xsl:with-param name="schema" select="$schema"/>
-								<xsl:with-param name="edit"   select="$edit"/>
-							</xsl:apply-templates>
-						</xsl:with-param>
-						<xsl:with-param name="schema" select="$schema"/>
-						<xsl:with-param name="edit"   select="$edit"/>
-						<xsl:with-param name="realname"   select="'gmd:EX_VerticalExtent'"/>
-					</xsl:call-template>
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:call-template name="complexElementGuiWrapper">
-						<xsl:with-param name="title" select="string(/root/gui/schemas/iso19139/element[@name='gmd:EX_VerticalExtent']/label)"/>
-						<xsl:with-param name="content">
-							<tr>
-								<td class="padded-content" width="100%" colspan="2">
-									<table>
-										<tr>
-											<td width="50%" valign="top">
-												<table width="100%" class="vertical">
-												<xsl:apply-templates mode="elementEP" select="gmd:minimumValue">
-													<xsl:with-param name="schema" select="$schema"/>
-													<xsl:with-param name="edit"   select="$edit"/>
-												</xsl:apply-templates>
-												</table>
-											</td>
-											<td width="50%" valign="top">
-												<table width="100%" class="vertical"><tbody>
-												<xsl:apply-templates mode="elementEP" select="gmd:maximumValue">
-													<xsl:with-param name="schema" select="$schema"/>
-													<xsl:with-param name="edit"   select="$edit"/>
-												</xsl:apply-templates>
-												</tbody></table>
-											</td>
-										</tr>
-									</table>
-								</td>
-							</tr>
-							<tr>
-								<td class="padded-content" width="100%" colspan="2">
-									<xsl:apply-templates mode="elementEP" select="gmd:verticalCRS"> 
-										<xsl:with-param name="schema" select="$schema"/>
-										<xsl:with-param name="edit"   select="$edit"/>
-									</xsl:apply-templates>
-								</td>
-							</tr>
-						</xsl:with-param>
-						<xsl:with-param name="schema" select="$schema"/>
-						<xsl:with-param name="edit"   select="$edit"/>
-						<xsl:with-param name="realname"   select="'gmd:EX_VerticalExtent'"/>
-					</xsl:call-template>
-				</xsl:otherwise>
-			</xsl:choose>
-		</xsl:for-each>
-	</xsl:template>
-	-->
-
 	<!-- =================================================================== -->
 	<!-- display all tabs for iso19139 ANZLIC                                -->
 	<!-- =================================================================== -->
 
-	<xsl:template match="iso19139.anzlicCompleteTab" priority="999">
+	<xsl:template match="iso19139.anzlicCompleteTab">
 		<xsl:param name="tabLink"/>
 
 		<xsl:if test="/root/gui/config/metadata-tab/iso">
