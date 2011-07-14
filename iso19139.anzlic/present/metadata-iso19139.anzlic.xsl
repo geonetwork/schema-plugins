@@ -167,7 +167,7 @@
 	<!-- EX_GeographicBoundingBox - use for all schemas except iso19139     -->
 	<!-- ================================================================== -->
 
-	<xsl:template mode="iso19139.anzlic" match="gmd:EX_GeographicBoundingBox" priority="3">
+	<xsl:template mode="iso19139.anzlic" match="gmd:EX_GeographicBoundingBox">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 		
