@@ -1565,7 +1565,7 @@
 		<!-- scope and lineage in their own box -->
 		
 			<xsl:call-template name="complexElementGuiWrapper">
-				<xsl:with-param name="title" select="/root/gui/schemas/iso19139.mcp/lineage"/>
+				<xsl:with-param name="title" select="/root/gui/schemas/iso19139.mcp/strings/lineage"/>
 				<xsl:with-param name="content">
 
 				<xsl:for-each select="gmd:dataQualityInfo/gmd:DQ_DataQuality">
@@ -1584,7 +1584,7 @@
 				<xsl:with-param name="schema" select="$schema"/>
 				<xsl:with-param name="group" select="/root/gui/strings/dataQualityTab"/>
 				<xsl:with-param name="edit" select="$edit"/>
-				<xsl:with-param name="realname"   select="'gmd:DataQualityInfo'"/>
+				<xsl:with-param name="realname"   select="'gmd:dataQualityInfo'"/>
 			</xsl:call-template>
 
 		<!-- referenceSystemInfo in its own box -->
