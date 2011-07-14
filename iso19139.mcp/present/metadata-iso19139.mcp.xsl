@@ -1240,7 +1240,6 @@
 		<xsl:variable name="dataset" select="gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue='dataset'  or gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue='dataObject'	or normalize-space(gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue)=''"/>
 
 		<xsl:choose>
-	
 			<!-- metadata tab -->
 			<xsl:when test="$currTab='metadata'">
 			
@@ -1459,7 +1458,7 @@
 			<xsl:call-template name="complexElementGuiWrapper">
 				<xsl:with-param name="title">
 				<xsl:choose>
-					<xsl:when test="$dataset=true()">
+					<xsl:when test="$dataset">
 						<xsl:value-of select="'Data Identification'"/>
 					</xsl:when>
 					<xsl:when test="local-name(.)='SV_ServiceIdentification'">
@@ -1487,15 +1486,19 @@
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
 
-				<xsl:apply-templates mode="elementEP" select="gmd:pointOfContact|geonet:child[string(@name)='pointOfContact']">
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="edit"   select="$edit"/>
-				</xsl:apply-templates>
+				<xsl:if test="$core">
+					<xsl:apply-templates mode="elementEP" select="gmd:pointOfContact|geonet:child[string(@name)='pointOfContact']">
+						<xsl:with-param name="schema" select="$schema"/>
+						<xsl:with-param name="edit"   select="$edit"/>
+					</xsl:apply-templates>
 
-				<xsl:apply-templates mode="elementEP" select="gmd:descriptiveKeywords|geonet:child[string(@name)='descriptiveKeywords']">
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="edit"   select="$edit"/>
-				</xsl:apply-templates>
+					<!-- keywords is not part of MCP core elements but it should be -->
+
+					<xsl:apply-templates mode="elementEP" select="gmd:descriptiveKeywords|geonet:child[string(@name)='descriptiveKeywords']">
+						<xsl:with-param name="schema" select="$schema"/>
+						<xsl:with-param name="edit"   select="$edit"/>
+					</xsl:apply-templates>
+				</xsl:if>
 
 				<xsl:if test="$core and $dataset">
 					<xsl:apply-templates mode="elementEP" select="gmd:spatialRepresentationType|geonet:child[string(@name)='spatialRepresentationType']">
@@ -1509,25 +1512,41 @@
 					</xsl:apply-templates>
 				</xsl:if>
 
-				<xsl:apply-templates mode="elementEP" select="gmd:language|geonet:child[string(@name)='language']">
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="edit"   select="$edit"/>
-				</xsl:apply-templates>
+				<xsl:if test="$core">
+					<xsl:apply-templates mode="elementEP" select="gmd:language|geonet:child[string(@name)='language']">
+						<xsl:with-param name="schema" select="$schema"/>
+						<xsl:with-param name="edit"   select="$edit"/>
+					</xsl:apply-templates>
+				</xsl:if>
 
-				<xsl:apply-templates mode="elementEP" select="gmd:characterSet|geonet:child[string(@name)='characterSet']">
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="edit"   select="$edit"/>
-				</xsl:apply-templates>
-
-				<xsl:apply-templates mode="elementEP" select="gmd:topicCategory|geonet:child[string(@name)='topicCategory']">
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="edit"   select="$edit"/>
-				</xsl:apply-templates>
-
-				<!-- geographic extent, vertical extent, temporal extent and taxonomic coverage in their own boxes -->
+				<!-- topic category is mandatory if dataset -->
 
 				<xsl:if test="$dataset">
-					<xsl:apply-templates mode="elementEP" select="gmd:extent/mcp:EX_Extent|gmd:extent/geonet:child[string(@name)='EX_Extent']">
+					<xsl:apply-templates mode="elementEP" select="gmd:topicCategory|geonet:child[string(@name)='topicCategory']">
+						<xsl:with-param name="schema" select="$schema"/>
+						<xsl:with-param name="edit"   select="$edit"/>
+					</xsl:apply-templates>
+				</xsl:if>
+
+				<!-- geographic extent is mandatory -->
+
+				<xsl:if test="$dataset">
+					<xsl:apply-templates mode="elementEP" select="gmd:extent/*/gmd:geographicElement/gmd:EX_GeographicBoundingBox|gmd:extent/*/gmd:geographicElement/geonet:child[string(@name)='EX_GeographicBoundingBox']">
+						<xsl:with-param name="schema" select="$schema"/>
+						<xsl:with-param name="edit"   select="$edit"/>
+					</xsl:apply-templates>
+				</xsl:if>
+
+				<!-- temporal extent and taxonomic extent in their own boxes if 
+				     core -->
+
+				<xsl:if test="$dataset and $core">
+					<xsl:apply-templates mode="elementEP" select="gmd:extent/*/gmd:EX_TemporalExtent|gmd:extent/*/geonet:child[string(@name)='EX_TemporalExtent']">
+						<xsl:with-param name="schema" select="$schema"/>
+						<xsl:with-param name="edit"   select="$edit"/>
+					</xsl:apply-templates>
+
+					<xsl:apply-templates mode="elementEP" select="gmd:extent/*/gmd:EX_TaxonomicExtent|gmd:extent/*/geonet:child[string(@name)='EX_TaxonomicExtent']">
 						<xsl:with-param name="schema" select="$schema"/>
 						<xsl:with-param name="edit"   select="$edit"/>
 					</xsl:apply-templates>
@@ -1623,16 +1642,6 @@
 				<xsl:with-param name="edit"   select="$edit"/>
 			</xsl:apply-templates>
 		
-			<xsl:apply-templates mode="elementEP" select="gmd:hierarchyLevel|geonet:child[string(@name)='hierarchyLevel']">
-				<xsl:with-param name="schema" select="$schema"/>
-				<xsl:with-param name="edit"   select="$edit"/>
-			</xsl:apply-templates>
-	
-			<xsl:apply-templates mode="elementEP" select="gmd:hierarchyLevelName|geonet:child[string(@name)='hierarchyLevelName']">
-				<xsl:with-param name="schema" select="$schema"/>
-				<xsl:with-param name="edit"   select="$edit"/>
-			</xsl:apply-templates>
-
 		<!-- metadata contact info in its own box -->
 
 			<xsl:for-each select="gmd:contact">
@@ -1680,7 +1689,7 @@
 				<xsl:with-param name="edit"   select="$edit"/>
 			</xsl:apply-templates>
 
-			<xsl:if test="$core and $dataset">
+			<xsl:if test="$core">
 				<xsl:apply-templates mode="elementEP" select="gmd:metadataStandardName|geonet:child[string(@name)='metadataStandardName']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
@@ -1692,7 +1701,7 @@
 				</xsl:apply-templates>
 			</xsl:if>
 
-		<!-- mcp:revisionDate -->
+		<!-- mcp:revisionDate is mandatory (despite what the MCP doc says!)  -->
 		
 			<xsl:apply-templates mode="elementEP" select="mcp:revisionDate|geonet:child[string(@name)='revisionDate']">
 				<xsl:with-param name="schema" select="$schema"/>
