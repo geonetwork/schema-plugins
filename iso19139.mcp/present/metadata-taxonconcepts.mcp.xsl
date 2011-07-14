@@ -21,12 +21,14 @@
 				<a href="{@ibis:uri}.html">
 					<xsl:value-of select="dcterms:title"/>
 				</a>
-				<p>Accepted for:</p>
-				<xsl:for-each select="ibis:AcceptedFor/ibis:AcceptedForNameRef">
-					<p><a href="{@ibis:uriRef}.html">
-						<xsl:value-of select="ibis:NameComplete"/>
-					</a></p>
-				</xsl:for-each>
+				<xsl:if test="count(ibis:AcceptedFor/ibis:AcceptedForNameRef)>0">
+					<p>Accepted for:</p>
+					<xsl:for-each select="ibis:AcceptedFor/ibis:AcceptedForNameRef">
+						<p><a href="{@ibis:uriRef}.html">
+							<xsl:value-of select="ibis:NameComplete"/>
+						</a></p>
+					</xsl:for-each>
+				</xsl:if>
 		</xsl:for-each>
 	</xsl:template>
 </xsl:stylesheet>
