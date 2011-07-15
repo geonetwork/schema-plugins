@@ -10,34 +10,21 @@
 <!-- EML-GBIF Presentation xslt -->
 
 	<!-- main template - the way into processing eml-gbif -->
-  <xsl:template match="metadata-eml-gbif" name="metadata-eml-gbif">
+  <xsl:template name="metadata-eml-gbif">
     <xsl:param name="schema"/>
     <xsl:param name="edit" select="false()"/>
     <xsl:param name="embedded"/>
-		<xsl:param name="usedot" select="false()"/>
 
-		<xsl:choose>
-			<xsl:when test="$usedot">
-    		<xsl:apply-templates mode="eml-gbif" select="." >
-      		<xsl:with-param name="schema" select="$schema"/>
-      		<xsl:with-param name="edit"   select="$edit"/>
-      		<xsl:with-param name="embedded" select="$embedded" />
-    		</xsl:apply-templates>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:variable name="refName" select="/metadata/@ref"/>
-    		<xsl:apply-templates mode="eml-gbif" select="//*[geonet:element/@ref=$refName]" >
-      		<xsl:with-param name="schema" select="$schema"/>
-      		<xsl:with-param name="edit"   select="$edit"/>
-      		<xsl:with-param name="embedded" select="$embedded" />
-    		</xsl:apply-templates>
-			</xsl:otherwise>
-		</xsl:choose>
+    <xsl:apply-templates mode="eml-gbif" select="." >
+      <xsl:with-param name="schema" select="$schema"/>
+      <xsl:with-param name="edit"   select="$edit"/>
+      <xsl:with-param name="embedded" select="$embedded" />
+    </xsl:apply-templates>
   </xsl:template>	
 
 	<!-- CompleteTab template - eml-gbif just calls completeTab from 
 	     metadata-utils.xsl -->
-	<xsl:template match="eml-gbifCompleteTab">
+	<xsl:template name="eml-gbifCompleteTab">
 		<xsl:param name="tabLink"/>
 
 		<xsl:call-template name="displayTab">

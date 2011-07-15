@@ -28,37 +28,36 @@
     <xsl:param name="schema"/>
     <xsl:param name="edit" select="false()"/>
     <xsl:param name="embedded"/>
-		<xsl:param name="usedot" select="false()"/>
 
-			<!-- process in profile mode first -->
-			<xsl:variable name="mcpElements">
-    		<xsl:apply-templates mode="iso19139.mcp" select="." >
+		<!-- process in profile mode first -->
+		<xsl:variable name="mcpElements">
+    	<xsl:apply-templates mode="iso19139.mcp" select="." >
+     		<xsl:with-param name="schema" select="$schema"/>
+     		<xsl:with-param name="edit"   select="$edit"/>
+     		<xsl:with-param name="embedded" select="$embedded" />
+    	</xsl:apply-templates>
+		</xsl:variable>
+
+		<xsl:choose>
+
+			<!-- if we got a match in profile mode then show it -->
+			<xsl:when test="count($mcpElements/*)>0">
+				<xsl:copy-of select="$mcpElements"/>
+			</xsl:when>
+
+			<!-- otherwise process in base iso19139 mode -->
+			<xsl:otherwise>	
+    		<xsl:apply-templates mode="iso19139" select="." >
      			<xsl:with-param name="schema" select="$schema"/>
      			<xsl:with-param name="edit"   select="$edit"/>
      			<xsl:with-param name="embedded" select="$embedded" />
     		</xsl:apply-templates>
-			</xsl:variable>
-
-			<xsl:choose>
-
-				<!-- if we got a match in profile mode then show it -->
-				<xsl:when test="count($mcpElements/*)>0">
-					<xsl:copy-of select="$mcpElements"/>
-				</xsl:when>
-
-				<!-- otherwise process in base iso19139 mode -->
-				<xsl:otherwise>	
-    			<xsl:apply-templates mode="iso19139" select="." >
-     				<xsl:with-param name="schema" select="$schema"/>
-     				<xsl:with-param name="edit"   select="$edit"/>
-     				<xsl:with-param name="embedded" select="$embedded" />
-    			</xsl:apply-templates>
-				</xsl:otherwise>
-			</xsl:choose>
+			</xsl:otherwise>
+		</xsl:choose>
   </xsl:template>
 
 	<!-- CompleteTab template - iso19139.mcp has its own set of tabs -->
-	<xsl:template match="iso19139.mcpCompleteTab">
+	<xsl:template name="iso19139.mcpCompleteTab">
 		<xsl:param name="tabLink"/>
 
 		<xsl:call-template name="displayTab"> <!-- non existent tab - by profile -->

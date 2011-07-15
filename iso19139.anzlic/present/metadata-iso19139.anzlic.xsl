@@ -16,37 +16,36 @@
 	<xsl:variable name="anzlicthemes" select="document('../schema/resources/Codelist/anzlic-theme.xml')"/>
 
 	<!-- main template - the way into processing iso19139.mcp -->
-  <xsl:template match="metadata-iso19139.anzlic" name="metadata-iso19139.anzlic">
+  <xsl:template  name="metadata-iso19139.anzlic">
     <xsl:param name="schema"/>
     <xsl:param name="edit" select="false()"/>
     <xsl:param name="embedded"/>
-		<xsl:param name="usedot" select="false()"/>
 
-			<!-- process in profile mode first -->
-      <xsl:variable name="anzlicElements">
-        <xsl:apply-templates mode="iso19139.anzlic" select="." >
+		<!-- process in profile mode first -->
+    <xsl:variable name="anzlicElements">
+      <xsl:apply-templates mode="iso19139.anzlic" select="." >
+        <xsl:with-param name="schema" select="$schema"/>
+        <xsl:with-param name="edit"   select="$edit"/>
+        <xsl:with-param name="embedded" select="$embedded" />
+      </xsl:apply-templates>
+    </xsl:variable>
+
+    <xsl:choose>
+
+      <!-- if we got a match in profile mode then show it -->
+      <xsl:when test="count($anzlicElements/*)>0">
+        <xsl:copy-of select="$anzlicElements"/>
+      </xsl:when>
+
+      <!-- otherwise process in base iso19139 mode -->
+      <xsl:otherwise>
+        <xsl:apply-templates mode="iso19139" select="." >
           <xsl:with-param name="schema" select="$schema"/>
           <xsl:with-param name="edit"   select="$edit"/>
           <xsl:with-param name="embedded" select="$embedded" />
         </xsl:apply-templates>
-      </xsl:variable>
-
-      <xsl:choose>
-
-        <!-- if we got a match in profile mode then show it -->
-        <xsl:when test="count($anzlicElements/*)>0">
-          <xsl:copy-of select="$anzlicElements"/>
-        </xsl:when>
-
-        <!-- otherwise process in base iso19139 mode -->
-        <xsl:otherwise>
-          <xsl:apply-templates mode="iso19139" select="." >
-            <xsl:with-param name="schema" select="$schema"/>
-            <xsl:with-param name="edit"   select="$edit"/>
-            <xsl:with-param name="embedded" select="$embedded" />
-          </xsl:apply-templates>
-        </xsl:otherwise>
-      </xsl:choose>	
+      </xsl:otherwise>
+    </xsl:choose>	
   </xsl:template>
 
 
@@ -935,7 +934,7 @@
 	<!-- display all tabs for iso19139 ANZLIC                                -->
 	<!-- =================================================================== -->
 
-	<xsl:template match="iso19139.anzlicCompleteTab">
+	<xsl:template name="iso19139.anzlicCompleteTab">
 		<xsl:param name="tabLink"/>
 
 		<xsl:if test="/root/gui/config/metadata-tab/iso">
