@@ -12,29 +12,16 @@
     <xsl:call-template name="metadata-iso19139view-simple"/>
   </xsl:template>
   
-	<xsl:template match="metadata-iso19139.fra" name="metadata-iso19139.fra">
+	<xsl:template name="metadata-iso19139.fra">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit" select="false()"/>
 		<xsl:param name="embedded"/>
-		<xsl:param name="usedot" select="false()"/>
 		
-		<xsl:choose>
-			<xsl:when test="$usedot">
-				<xsl:apply-templates mode="iso19139" select="." >
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="edit"   select="$edit"/>
-					<xsl:with-param name="embedded" select="$embedded" />
-				</xsl:apply-templates>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:variable name="refName" select="/metadata/@ref"/>
-				<xsl:apply-templates mode="iso19139" select="//*[geonet:element/@ref=$refName]" >
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="edit"   select="$edit"/>
-					<xsl:with-param name="embedded" select="$embedded" />
-				</xsl:apply-templates>
-			</xsl:otherwise>
-		</xsl:choose>
+		<xsl:apply-templates mode="iso19139" select="." >
+			<xsl:with-param name="schema" select="$schema"/>
+			<xsl:with-param name="edit"   select="$edit"/>
+			<xsl:with-param name="embedded" select="$embedded" />
+		</xsl:apply-templates>
 	</xsl:template>
 	
 	
