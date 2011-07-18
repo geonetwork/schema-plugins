@@ -11,7 +11,8 @@
 	xmlns:geonet="http://www.fao.org/geonetwork"
 	exclude-result-prefixes="gmx gmd gco gml srv xlink exslt geonet">
 
-	<xsl:include href="metadata-taxonconcepts.mcp.xsl"/>
+	<xsl:import href="metadata-taxonconcepts.mcp.xsl"/>
+	<xsl:import href="metadata-iso19139.mcp-fop.xsl"/>
 
 	<xsl:variable name="mcpallgens" select="document('../schema/resources/Codelist/mcp-allgens.xml')"/>
 
@@ -1451,6 +1452,8 @@
 		<xsl:param name="dataset"/>
 		<xsl:param name="core"/>
 
+		<!-- from mandatory and core elements table of MCP 1.4 -->
+
 		<!-- dataset or resource info in its/their own box -->
 	
 		<xsl:for-each select="gmd:identificationInfo/mcp:MD_DataIdentification|gmd:identificationInfo/srv:SV_ServiceIdentification">
@@ -1484,6 +1487,9 @@
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
+
+				<!-- if core elements tab then add pointOfContact and descriptive 
+				     keywords -->
 
 				<xsl:if test="$core">
 					<xsl:apply-templates mode="elementEP" select="gmd:pointOfContact|geonet:child[string(@name)='pointOfContact']">
@@ -1611,12 +1617,30 @@
 				<xsl:with-param name="realname"   select="'gmd:referenceSystemInfo'"/>
 			</xsl:call-template>
 
-		<!-- onlineResource(s) in their own box -->
+		<!-- distribution Format and onlineResource(s) in their own box -->
+			
+    	<xsl:call-template name="complexElementGuiWrapper">
+      	<xsl:with-param name="title" select="'Distribution and On-line Resource(s)'"/>
+      	<xsl:with-param name="content">
 
-			<xsl:apply-templates mode="elementEP" select="gmd:distributionInfo|geonet:child[string(@name)='distributionInfo']">
-				<xsl:with-param name="schema" select="$schema"/>
-				<xsl:with-param name="edit"   select="$edit"/>
-			</xsl:apply-templates>
+				<xsl:for-each select="gmd:distributionInfo">
+        	<xsl:apply-templates mode="elementEP" select="*/gmd:distributionFormat|*/geonet:child[string(@name)='distributionFormat']">
+          	<xsl:with-param name="schema" select="$schema"/>
+          	<xsl:with-param name="edit"   select="$edit"/>
+        	</xsl:apply-templates>
+
+        	<xsl:apply-templates mode="elementEP" select="*/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine|*/gmd:transferOptions/gmd:MD_DigitalTransferOptions/geonet:child[string(@name)='onLine']">
+          	<xsl:with-param name="schema" select="$schema"/>
+          	<xsl:with-param name="edit"   select="$edit"/>
+        	</xsl:apply-templates>
+				</xsl:for-each>
+
+      	</xsl:with-param>
+      	<xsl:with-param name="schema" select="$schema"/>
+      	<xsl:with-param name="group" select="/root/gui/strings/distributionTab"/>
+      	<xsl:with-param name="edit" select="$edit"/>
+      	<xsl:with-param name="realname" select="gmd:distributionInfo"/>
+    	</xsl:call-template>
 
 		</xsl:if>
 
@@ -1677,6 +1701,8 @@
 
 				</xsl:with-param>
 				<xsl:with-param name="schema" select="$schema"/>
+				<xsl:with-param name="group" select="/root/gui/strings/metadata"/>
+				<xsl:with-param name="edit" select="$edit"/>
 			</xsl:call-template>
 
 			</xsl:for-each>

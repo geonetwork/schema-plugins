@@ -10,6 +10,8 @@
 
 		 Simon Pigot, September-January 2006 -->
 
+	<xsl:import href="metadata-anzmeta-fop.xsl"/>
+
 	<!-- main template - the way into processing anzmeta -->
   <xsl:template name="metadata-anzmeta">
     <xsl:param name="schema"/>

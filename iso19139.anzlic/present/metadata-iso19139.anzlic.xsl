@@ -7,10 +7,12 @@
 	xmlns:srv="http://www.isotc211.org/2005/srv"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:gml="http://www.opengis.net/gml"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
 	xmlns:geonet="http://www.fao.org/geonetwork"
 	xmlns:exslt="http://exslt.org/common"
 	exclude-result-prefixes="gmx xsi gmd gco gml gts srv xlink exslt geonet">
+
+	<xsl:import href="metadata-iso19139.anzlic-fop.xsl"/>
 
 	<xsl:variable name="anzlicallgens" select="document('../schema/resources/Codelist/anzlic-allgens.xml')"/>
 	<xsl:variable name="anzlicthemes" select="document('../schema/resources/Codelist/anzlic-theme.xml')"/>
@@ -657,13 +659,15 @@
 		<xsl:param name="dataset"/>
 		<xsl:param name="core"/>
 
+		<!-- from mandatory and core elements table, pg 16 of AS/NZS 19115 -->
+
 		<!-- dataset or resource info in its own box -->
 	
 		<xsl:for-each select="gmd:identificationInfo/gmd:MD_DataIdentification|gmd:identificationInfo/srv:SV_ServiceIdentification">
 			<xsl:call-template name="complexElementGuiWrapper">
 				<xsl:with-param name="title">
 				<xsl:choose>
-					<xsl:when test="$dataset=true()">
+					<xsl:when test="$dataset">
 						<xsl:value-of select="'Data Identification'"/>
 					</xsl:when>
 					<xsl:when test="local-name(.)='SV_ServiceIdentification'">
@@ -675,7 +679,7 @@
 				</xsl:choose>
 				</xsl:with-param>
 				<xsl:with-param name="content">
-		
+	
 				<xsl:apply-templates mode="elementEP" select="gmd:citation/gmd:CI_Citation/gmd:title|gmd:citation/gmd:CI_Citation/geonet:child[string(@name)='title']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
@@ -691,15 +695,16 @@
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
 
-				<xsl:apply-templates mode="elementEP" select="gmd:pointOfContact|geonet:child[string(@name)='pointOfContact']">
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="edit"   select="$edit"/>
-				</xsl:apply-templates>
+				<!-- dataset point of contact is optional in core elements -->
 
-				<xsl:apply-templates mode="elementEP" select="gmd:descriptiveKeywords|geonet:child[string(@name)='descriptiveKeywords']">
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="edit"   select="$edit"/>
-				</xsl:apply-templates>
+				<xsl:if test="$core">
+					<xsl:apply-templates mode="elementEP" select="gmd:pointOfContact|geonet:child[string(@name)='pointOfContact']">
+						<xsl:with-param name="schema" select="$schema"/>
+						<xsl:with-param name="edit"   select="$edit"/>
+					</xsl:apply-templates>
+				</xsl:if>
+
+				<!-- spatial representation and resolution are optional in core -->
 
 				<xsl:if test="$core and $dataset">
 					<xsl:apply-templates mode="elementEP" select="gmd:spatialRepresentationType|geonet:child[string(@name)='spatialRepresentationType']">
@@ -728,10 +733,11 @@
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
 
+				<!-- geographic extent is mandatory if record describes dataset -->
 
 				<xsl:if test="$dataset">
-					<xsl:apply-templates mode="elementEP" select="gmd:extent/gmd:EX_Extent|gmd:extent/geonet:child[string(@name)='EX_Extent']">
-						<xsl:with-param name="schema" select="$schema"/>
+					<xsl:apply-templates mode="elementEP" select="gmd:extent/*/gmd:geographicElement/gmd:EX_GeographicBoundingBox|gmd:extent/*/gmd:geographicElement/geonet:child[string(@name)='EX_GeographicBoundingBox']">
+					  <xsl:with-param name="schema" select="$schema"/>
 						<xsl:with-param name="edit"   select="$edit"/>
 					</xsl:apply-templates>
 				</xsl:if>
@@ -767,7 +773,7 @@
 
 				</xsl:with-param>
 				<xsl:with-param name="schema" select="$schema"/>
-      	<xsl:with-param name="group" select="/root/gui/strings/dataQualityTab"/>
+      	<xsl:with-param name="group" select="/root/gui/schemas/iso19139.anzlic/strings/dataQualityTab"/>
       	<xsl:with-param name="edit" select="$edit"/>
 				<xsl:with-param name="realname"   select="'gmd:DataQualityInfo'"/>
 			</xsl:call-template>
@@ -775,7 +781,7 @@
 		<!-- referenceSystemInfo in its own box -->
 		
 			<xsl:call-template name="complexElementGuiWrapper">
-				<xsl:with-param name="title" select="'Reference System Info'"/>
+				<xsl:with-param name="title" select="/root/gui/schemas/iso19139.anzlic/strings/referenceSystemInfo"/>
 				<xsl:with-param name="content">
 
 				<xsl:for-each select="gmd:referenceSystemInfo/gmd:MD_ReferenceSystem">
@@ -800,7 +806,7 @@
 			<!-- distribution Format and onlineResource(s) in their own box -->
 
     	<xsl:call-template name="complexElementGuiWrapper">
-      	<xsl:with-param name="title" select="'Distribution and On-line Resource(s)'"/>
+      	<xsl:with-param name="title" select="/root/gui/schemas/iso19139.anzlic/strings/distributionOnlineInfo"/>
       	<xsl:with-param name="content">
 
 				<xsl:for-each select="gmd:distributionInfo">
@@ -827,7 +833,7 @@
 		<!-- metadata info in its own box -->
 
 		<xsl:call-template name="complexElementGuiWrapper">
-			<xsl:with-param name="title" select="'Metadata Info'"/>
+			<xsl:with-param name="title" select="/root/gui/schemas/iso19139.anzlic/strings/metadataInfo"/>
 			<xsl:with-param name="content">
 
 			<xsl:apply-templates mode="elementEP" select="gmd:fileIdentifier|geonet:child[string(@name)='fileIdentifier']">
@@ -845,27 +851,12 @@
 				<xsl:with-param name="edit"   select="$edit"/>
 			</xsl:apply-templates>
 
-			<xsl:apply-templates mode="elementEP" select="gmd:parentIdentifier|geonet:child[string(@name)='parentIdentifier']">
-				<xsl:with-param name="schema" select="$schema"/>
-				<xsl:with-param name="edit"   select="$edit"/>
-			</xsl:apply-templates>
-		
-			<xsl:apply-templates mode="elementEP" select="gmd:hierarchyLevel|geonet:child[string(@name)='hierarchyLevel']">
-				<xsl:with-param name="schema" select="$schema"/>
-				<xsl:with-param name="edit"   select="$edit"/>
-			</xsl:apply-templates>
-	
-			<xsl:apply-templates mode="elementEP" select="gmd:hierarchyLevelName|geonet:child[string(@name)='hierarchyLevelName']">
-				<xsl:with-param name="schema" select="$schema"/>
-				<xsl:with-param name="edit"   select="$edit"/>
-			</xsl:apply-templates>
-
 			<!-- metadata contact info in its own box -->
 
 			<xsl:for-each select="gmd:contact">
 
 				<xsl:call-template name="complexElementGuiWrapper">
-					<xsl:with-param name="title" select="string(/root/gui/iso19139/element[@name='gmd:contact']/label)"/>
+					<xsl:with-param name="title" select="/root/gui/schemas/iso19139.anzlic/strings/contact"/>
 					<xsl:with-param name="content">
 
 						<xsl:apply-templates mode="elementEP" select="*/gmd:individualName|*/geonet:child[string(@name)='individualName']">
@@ -910,7 +901,7 @@
 				<xsl:with-param name="edit"   select="$edit"/>
 			</xsl:apply-templates>
 		
-			<xsl:if test="$core and $dataset">
+			<xsl:if test="$core">
 				<xsl:apply-templates mode="elementEP" select="gmd:metadataStandardName|geonet:child[string(@name)='metadataStandardName']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>

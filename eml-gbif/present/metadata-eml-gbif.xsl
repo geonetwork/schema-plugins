@@ -7,6 +7,8 @@
 	xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
 	xmlns:exslt= "http://exslt.org/common">
 
+	<xsl:import href="metadata-eml-gbif-fop.xsl"/>
+
 <!-- EML-GBIF Presentation xslt -->
 
 	<!-- main template - the way into processing eml-gbif -->

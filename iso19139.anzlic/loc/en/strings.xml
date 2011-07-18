@@ -2,8 +2,10 @@
 <strings>
 	<aggregationlink>Search for other records in this Aggregation Set</aggregationlink>
 	<childidentifierlink>Show Child records</childidentifierlink>
+	<contact>Contact</contact>
 	<credit>Credit</credit>
 	<creditlink>Search for other records with this Credit</creditlink>
+	<distributionOnlineInfo>Distribution and On-line Resource(s)</distributionOnlineInfo>
 	<lineage>Lineage</lineage>
 	<metadataInfo>Metadata Info</metadataInfo>
 	<parentidentifierlink>Show Parent record</parentidentifierlink>
@@ -11,4 +13,5 @@
 	<siblingidentifierlink>Show Sibling records</siblingidentifierlink>
 	<spatialExtentTab>Spatial Extent</spatialExtentTab>
 	<temporalExtentTab>Temporal Ext.</temporalExtentTab>
+	<deprecatedTimeStrings>Deprecated - use time elements above</deprecatedTimeStrings>
 </strings>
