@@ -12,6 +12,7 @@
 	exclude-result-prefixes="gmx gmd gco gml srv xlink exslt geonet">
 
 	<xsl:import href="metadata-taxonconcepts.mcp.xsl"/>
+	<xsl:import href="metadata-iso19139.mcp-view.xsl"/>
 
 	<xsl:variable name="mcpallgens" select="document('../schema/resources/Codelist/mcp-allgens.xml')"/>
 
@@ -24,9 +25,6 @@
 	<xsl:variable name="ccurl" select="/root/gui/schemas/iso19139.mcp/strings/creativeCommonsUrl"/>
 
 	<!-- main template - the way into processing iso19139.mcp -->
-	<xsl:template name="metadata-iso19139.mcpview-simple">
-	  <xsl:call-template name="metadata-iso19139view-simple"/>
-	</xsl:template>
 
   <xsl:template match="metadata-iso19139.mcp" name="metadata-iso19139.mcp">
     <xsl:param name="schema"/>
