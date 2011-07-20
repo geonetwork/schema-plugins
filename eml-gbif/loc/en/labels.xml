@@ -185,6 +185,10 @@
         <label>Project</label>
 				<description>The project field contains information on the project in which this dataset was collected. It includes information such as project personnel, funding, study area, project design and related projects.</description>
 	</element>
+	<element name="positionName">
+        <label>Position Name</label>
+				<description>The Position name of the person in this role.</description>
+	</element>
 	<element name="personnel">
         <label>Personnel</label>
 				<description>The Personnel field extends ResponsibleParty with role information and is used to document people involved in a research project by providing contact information and their role in the project. </description>
@@ -350,10 +354,6 @@
   <element name="title">
         <label>Title</label>
 				<description>The 'title' field provides a description of the resource that is being documented that is long enough to differentiate it from other similar resources. Multiple titles may be provided, particularly when trying to express the title in more than one language (use the "xml:lang" attribute to indicate the language if not English/en).</description>
-  </element>
-  <element name="individualName">
-        <label>Individual Name</label>
-				<description>The individualName field contains subfields so that a person's name can be broken down into parts.</description>
   </element>
 	<element name="givenName">
         <label>Given Name</label>

@@ -7,13 +7,11 @@
 	xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
 	xmlns:exslt= "http://exslt.org/common">
 
+	<xsl:import href="metadata-eml-gbif-view.xsl"/>
+
 <!-- EML-GBIF Presentation xslt -->
 
 	<!-- main template - the way into processing eml-gbif -->
-	<xsl:template name="metadata-eml-gbif-view-simple">
-		<xsl:message>VIEW SIMPLE EML-GBIF</xsl:message>
-	</xsl:template>
-
   <xsl:template name="metadata-eml-gbif">
     <xsl:param name="schema"/>
     <xsl:param name="edit" select="false()"/>
