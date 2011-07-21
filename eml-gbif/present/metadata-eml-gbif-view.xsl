@@ -102,7 +102,7 @@
       </xsl:with-param>
      	<xsl:with-param name="content">
 				<xsl:for-each select="para">
-					<p><xsl:value-of select="string(.)"/></p>
+					<xsl:value-of select="string(.)"/>
 				</xsl:for-each>
       </xsl:with-param>
     </xsl:call-template>

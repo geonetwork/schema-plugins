@@ -5,16 +5,14 @@
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 	xmlns:exslt= "http://exslt.org/common">
 
+	<xsl:import href="metadata-anzmeta-view.xsl"/>
+
 <!-- Good old ANZLIC Metadata Format Version 1.3/2.0 as delivered from Z39.50
      servers in the ASDD
 
 		 Simon Pigot, September-January 2006 -->
 
 	<!-- main template - the way into processing anzmeta -->
-	<xsl:template name="metadata-anzmetaview-simple">
-		<xsl:message>ANZMETA SIMPLE VIEW</xsl:message>
-	</xsl:template>
-
   <xsl:template name="metadata-anzmeta">
     <xsl:param name="schema"/>
     <xsl:param name="edit" select="false()"/>
