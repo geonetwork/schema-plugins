@@ -25,6 +25,10 @@
 				<dc:identifier><xsl:value-of select="gco:CharacterString"/></dc:identifier>
 			</xsl:for-each>
 
+			<xsl:for-each select="gmd:dateStamp">
+				<dc:date><xsl:value-of select="gco:Date|gco:DateTime"/></dc:date>
+			</xsl:for-each>
+
 			<!-- DataIdentification - - - - - - - - - - - - - - - - - - - - - -->
 
 			<xsl:for-each select="gmd:identificationInfo/mcp:MD_DataIdentification">
@@ -61,6 +65,7 @@
 
 				<xsl:for-each select="gmd:abstract/gco:CharacterString">
 					<dct:abstract><xsl:value-of select="."/></dct:abstract>
+					<dc:description><xsl:value-of select="."/></dc:description>
 				</xsl:for-each>
 
 				<!-- rights -->

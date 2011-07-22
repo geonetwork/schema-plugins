@@ -23,6 +23,10 @@
 				<dc:identifier><xsl:value-of select="."/></dc:identifier>
 			</xsl:for-each>
 			
+			<xsl:for-each select="additionalMetadata/metadata/gbif/dateStamp">
+				<dc:date><xsl:value-of select="."/></dc:date>
+			</xsl:for-each>
+			
 			<!-- DataIdentification -->
 			<xsl:for-each select="dataset/title">    
 				<dc:title><xsl:value-of select="."/></dc:title>

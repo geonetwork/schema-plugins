@@ -41,6 +41,10 @@
 				<dc:identifier><xsl:value-of select="gco:CharacterString"/></dc:identifier>
 			</xsl:for-each>
 
+			<xsl:for-each select="gmd:dateStamp">
+				<dc:date><xsl:value-of select="gco:Date|gco:DateTime"/></dc:date>
+			</xsl:for-each>
+
 			<!-- DataIdentification - - - - - - - - - - - - - - - - - - - - - -->
 
 			<xsl:for-each select="$identification/gmd:citation/gmd:CI_Citation">	
@@ -127,6 +131,11 @@
 						<xsl:with-param name="langId" select="$langId"/>
 					</xsl:apply-templates>				
 				</dct:abstract>
+				<dc:description>
+					<xsl:apply-templates mode="localised" select=".">
+						<xsl:with-param name="langId" select="$langId"/>
+					</xsl:apply-templates>				
+				</dc:description>
 			</xsl:for-each>
 
 			<!-- rights -->

@@ -20,6 +20,7 @@
 		<csw:Record>
 			<dc:identifier><xsl:value-of select="citeinfo/uniqueid"/></dc:identifier>
 			<dc:title><xsl:value-of select="citeinfo/title"/></dc:title>
+			<dc:date><xsl:value-of select="metainfo/metd/date"/></dc:date>
 			<ows:BoundingBox crs="epsg::4326">
 				<ows:LowerCorner>
 					<xsl:value-of select="concat(descript/spdom/bounding/eastbc, ' ', descript/spdom/bounding/southbc)"/>

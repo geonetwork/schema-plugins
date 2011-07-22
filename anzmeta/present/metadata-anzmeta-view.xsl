@@ -106,7 +106,6 @@
   </xsl:template>
 
   <xsl:template mode="block-anzmeta" match="spdom">
-		<xsl:message>XXXXXXXXXXXXXXX runing spdom</xsl:message>
     <xsl:apply-templates mode="anzmeta" select=".">
       <xsl:with-param name="schema" select="$schema"/>
       <xsl:with-param name="edit" select="false()"/>
