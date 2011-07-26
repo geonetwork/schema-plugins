@@ -12,11 +12,9 @@
 		 by Simon Pigot, CSIRO, 2011-07-26 
 
 		 TODO: 
-		   - online resources not handled
-		   - project field - need to be mapped to activity registry object
+		   - project field - need to be mapped to activity registry object -
+			                   not finished yet
 			 - citation links
-			 - reg objects grouped according the metadata catalog siteName 
-			   (maybe this should be the GeoNetwork siteid which is unique?)
 -->
 
 <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
