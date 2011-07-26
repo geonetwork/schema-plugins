@@ -5,9 +5,19 @@
                  xmlns:dc="http://purl.org/dc/terms/"  
                  xmlns="http://ands.org.au/standards/rif-cs/registryObjects">
 
-<!-- Stylesheet to convert eml-gbif metadata response to RIF-CS 
-     Adapted from ISO stylesheet by Simon Pigot, CSIRO, 2001 
-		 TODO: add taxonomic coverage info as keywords -->
+<!-- 
+     Stylesheet to convert eml-gbif metadata response to RIF-CS 
+     Adapted and extended from ISO to RIFCS stylesheet 
+		 (originally by Scott Yeadon, ANDS)
+		 by Simon Pigot, CSIRO, 2011-07-26 
+
+		 TODO: 
+		   - online resources not handled
+		   - project field - need to be mapped to activity registry object
+			 - citation links
+			 - reg objects grouped according the metadata catalog siteName 
+			   (maybe this should be the GeoNetwork siteid which is unique?)
+-->
 
 <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
@@ -17,12 +27,40 @@
     <xsl:apply-templates/>
 </xsl:template>
 
+<!-- the originating source --> 
+<xsl:variable name="origSource" select="/root/env/siteURL"/>
+        
+<!-- the registry object group -->
+<xsl:variable name="group" select="concat(/root/env/siteName,'.',/root/env/siteURL)"/>
+
 <xsl:template match="eml:eml">
 	<xsl:element name="registryObjects">
 		<xsl:attribute name="xsi:schemaLocation">
         	<xsl:text>http://ands.org.au/standards/rif-cs/registryObjects http://services.ands.org.au/documentation/rifcs/schema/registryObjects.xsd</xsl:text>
 		</xsl:attribute>
-		<xsl:apply-templates select="." mode="collection"/>
+		<xsl:apply-templates mode="collection" select="."/>
+		<xsl:if test="dataset/project">
+			<xsl:apply-templates mode="activity" select="."/>
+		</xsl:if>
+	</xsl:element>
+</xsl:template>
+
+<xsl:template mode="genId" match="*">
+	<xsl:value-of select="concat(generate-id(.),'.',/root/env/uuid)"/>
+</xsl:template>
+
+<xsl:template match="distribution">
+	<xsl:element name="location">
+		<xsl:element name="address">
+			<xsl:element name="electronic">
+				<xsl:attribute name="type">
+					<xsl:text>url</xsl:text>
+				</xsl:attribute>
+				<xsl:element name="value">
+					<xsl:value-of select="online/url"/>
+				</xsl:element>
+			</xsl:element>
+		</xsl:element>
 	</xsl:element>
 </xsl:template>
 
@@ -36,7 +74,6 @@
 		</xsl:element>
 	</xsl:element>
 </xsl:template>
-
 
 <xsl:template match="electronicMailAddress">
 	<xsl:element name="electronic">
@@ -60,30 +97,27 @@
 	</xsl:element>
 </xsl:template>
 
-
-
 <xsl:template match="beginDate">
-    <xsl:choose>
-        <xsl:when test='contains(., "T")'>
-            <xsl:value-of select="."/>
-        </xsl:when>
-        <xsl:otherwise>
-            <xsl:value-of select="concat(., 'T00:00:00Z')"/> 
-        </xsl:otherwise>
-    </xsl:choose>
+  <xsl:choose>
+    <xsl:when test='contains(calendarDate, "T")'>
+      <xsl:value-of select="."/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="concat(calendarDate, 'T00:00:00Z')"/> 
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="endDate">
-    <xsl:choose>
-        <xsl:when test='contains(., "T")'>
-            <xsl:value-of select="."/>
-        </xsl:when>
-        <xsl:otherwise>
-            <xsl:value-of select="concat(., 'T00:00:00Z')"/> 
-        </xsl:otherwise>
-    </xsl:choose>
+  <xsl:choose>
+    <xsl:when test='contains(calendarDate, "T")'>
+      <xsl:value-of select="."/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="concat(calendarDate, 'T00:00:00Z')"/> 
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
-
 
 <xsl:template match="organizationName">
 	<xsl:element name="addressPart">
@@ -94,7 +128,6 @@
 	</xsl:element>
 </xsl:template>
 
-
 <xsl:template match="deliveryPoint">
 	<xsl:element name="addressPart">
 		<xsl:attribute name="type">
@@ -103,7 +136,6 @@
 		<xsl:value-of select="."/>
 	</xsl:element>
 </xsl:template>
-
 
 <xsl:template match="city">
 	<xsl:element name="addressPart">
@@ -114,7 +146,6 @@
 	</xsl:element>
 </xsl:template>
 
-
 <xsl:template match="administrativeArea">
 	<xsl:element name="addressPart">
 		<xsl:attribute name="type">
@@ -123,7 +154,6 @@
 		<xsl:value-of select="."/>
 	</xsl:element>
 </xsl:template>
-
 
 <xsl:template match="postalCode">
 	<xsl:element name="addressPart">
@@ -134,7 +164,6 @@
 	</xsl:element>
 </xsl:template>
 
-
 <xsl:template match="country">
 	<xsl:element name="addressPart">
 		<xsl:attribute name="type">
@@ -144,11 +173,9 @@
 	</xsl:element>
 </xsl:template>
 
-
 <xsl:template match="title">
 	<xsl:value-of select="."/>
 </xsl:template>
-
 
 <xsl:template match="boundingCoordinates">
 	<xsl:element name="spatial">
@@ -160,7 +187,6 @@
 	</xsl:element>
 </xsl:template>
 
-
 <xsl:template match="geographicDescription">
 	<xsl:element name="spatial">
 		<xsl:attribute name="type">
@@ -169,7 +195,6 @@
 		<xsl:value-of select="."/>
 	</xsl:element>
 </xsl:template>
-
 
 <xsl:template match="keywordSet">
 	<xsl:for-each select="keyword">
@@ -182,6 +207,22 @@
 	</xsl:for-each>
 </xsl:template>
 
+<xsl:template match="taxonomicCoverage">
+	<xsl:for-each select="generalTaxonomicCoverage|taxonomicClassification/*">
+  	<xsl:element name="subject">
+			<!-- unfortunately the content in the taxonomic coverage elements 
+			     used in eml-gbif is unlikely to be registered with the library of 
+					 congress source codes for subjects so we have to use local
+					 here - see 
+ http://services.ands.org.au/documentation/rifcs/guidelines/rif-cs.html#subject
+       -->
+			<xsl:attribute name="type">
+				<xsl:text>local</xsl:text>
+			</xsl:attribute>
+			<xsl:value-of select="."/>
+  	</xsl:element>
+	</xsl:for-each>
+</xsl:template>
 
 <xsl:template match="abstract">
 	<xsl:element name="description">
@@ -192,17 +233,76 @@
 	</xsl:element>
 </xsl:template>
 
-<!--
-	CREATE COLLECTION OBJECT
--->
+<xsl:template match="individualName">
+	<xsl:choose>
+		<xsl:when test="givenName">
+       <xsl:value-of select="concat(givenName,' ',surName)" />
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:value-of select="surName"/>
+		</xsl:otherwise>
+	</xsl:choose>
+</xsl:template>
+
+<!-- CREATE ACTIVITY Registry OBJECT -->
+
+<xsl:template match="eml:eml" mode="activity">
+
+	<!-- create an activity registry object from the dataset and
+	     dataset/project element -->
+	<xsl:element name="registryObject">
+		<xsl:attribute name="group">
+			<xsl:value-of select="$group"/>
+		</xsl:attribute>
+
+		<xsl:element name="key"> <!-- first alternateIdentifier -->
+			<xsl:value-of select="dataset/alternateIdentifier[1]"/>
+		</xsl:element>
+
+  	<xsl:variable name="originatingSource" select="dataset/creator/onlineUrl"/>
+
+		<xsl:element name="originatingSource">
+      <xsl:choose>
+        <xsl:when test="not($originatingSource)">
+          <xsl:value-of select="$origSource"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$originatingSource"/>
+        </xsl:otherwise>
+      </xsl:choose>
+		</xsl:element>
+
+		<xsl:element name="activity">
+			<xsl:attribute name="type">
+				<xsl:value-of select="'program'"/>
+			</xsl:attribute>
+
+			<!-- identifier of activity object comes from dataset identifier -->
+			<xsl:element name="identifier">
+				<xsl:attribute name="type">
+					<xsl:text>local</xsl:text>
+				</xsl:attribute>
+				<!-- first alternateIdentifier -->
+				<xsl:value-of select="dataset/alternateIdentifier[1]"/>
+			</xsl:element>
+			
+			<!-- name of activity object -->
+			<xsl:element name="name">
+				<xsl:attribute name="type">
+					<xsl:text>primary</xsl:text>
+				</xsl:attribute>
+				<xsl:element name="namePart">
+					<xsl:apply-templates select="dataset/project/title[1]"/>
+				</xsl:element>
+			</xsl:element>
+
+		</xsl:element>
+	</xsl:element>
+</xsl:template>
+
+<!-- CREATE COLLECTION Registry OBJECT -->
+
 <xsl:template match="eml:eml" mode="collection">
-
-
-	<!-- the originating source --> 
-  <xsl:param name="origSource" select="/root/env/siteURL"/>
-        
-  <!-- the registry object group -->
-  <xsl:param name="group" select="/root/env/siteName"/>
 
   <xsl:variable name="originatingSource" select="dataset/creator/onlineUrl"/>
 	<xsl:variable name="ge" select="dataset/coverage/geographicCoverage"/>
@@ -229,27 +329,33 @@
 			
 	<xsl:variable name="to" select="$formattedTo"/>
 
+	<!-- create a collection registry object from the dataset element -->
 	<xsl:element name="registryObject">
 		<xsl:attribute name="group">
 			<xsl:value-of select="$group"/>
 		</xsl:attribute>
+
 		<xsl:element name="key"> <!-- first alternateIdentifier -->
 			<xsl:value-of select="dataset/alternateIdentifier[1]"/>
 		</xsl:element>
+
 		<xsl:element name="originatingSource">
-            <xsl:choose>
-                <xsl:when test="not($originatingSource)">
-                    <xsl:value-of select="$origSource"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="$originatingSource"/>
-                </xsl:otherwise>
-            </xsl:choose>
+      <xsl:choose>
+        <xsl:when test="not($originatingSource)">
+          <xsl:value-of select="$origSource"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$originatingSource"/>
+        </xsl:otherwise>
+      </xsl:choose>
 		</xsl:element>
+
 		<xsl:element name="collection">
 			<xsl:attribute name="type">
 				<xsl:value-of select="'dataset'"/>
 			</xsl:attribute>
+
+			<!-- identifier of collection object comes from dataset identifier -->
 			<xsl:element name="identifier">
 				<xsl:attribute name="type">
 					<xsl:text>local</xsl:text>
@@ -258,18 +364,17 @@
 				<xsl:value-of select="dataset/alternateIdentifier[1]"/>
 			</xsl:element>
 			
+			<!-- name of collection object -->
 			<xsl:element name="name">
 				<xsl:attribute name="type">
 					<xsl:text>primary</xsl:text>
 				</xsl:attribute>
 				<xsl:element name="namePart">
-					<xsl:attribute name="type">
-						<xsl:text>full</xsl:text>
-					</xsl:attribute>
 					<xsl:apply-templates select="dataset/title[1]"/>
 				</xsl:element>
 			</xsl:element>
 
+			<!-- location of metadata record -->
 			<xsl:element name="location">
 				<xsl:element name="address">
 					<xsl:element name="electronic">
@@ -283,6 +388,10 @@
 				</xsl:element>
 			</xsl:element>
 
+			<!-- location of any online resources related to dataset -->
+			<xsl:apply-templates select="dataset/distribution"/>
+
+			<!-- bounding coordinates and date range -->
 			<xsl:if test="$ge/boundingCoordinates">
 				<xsl:element name="location">
 					<xsl:attribute name="type">
@@ -306,74 +415,86 @@
 			</xsl:if>
 
 			<!-- parties generated here - individuals first -->
-			<xsl:for-each-group select="dataset/*[individualName/surName!='' and not(role='')]"  group-by="role">
+			<xsl:for-each-group select="dataset/*[individualName]" group-by="individualName">
 				<xsl:element name="relatedObject">
 					<xsl:element name="key">
-                    <xsl:choose>                        
-                        <xsl:when test="individualName">
-													<xsl:apply-templates select="individualName"/>
-                        </xsl:when>                        
-                        <xsl:when test="string(positionName)">
-                            <xsl:value-of select="positionName"/>
-                        </xsl:when>
-                        <xsl:otherwise>                            
-                            <xsl:value-of select="organizationName"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
+						<!-- <xsl:apply-templates select="individualName"/> -->
+						<!-- <xsl:value-of select="generate-id(individualName)"/> -->
+						<xsl:apply-templates mode="genId" select="individualName"/>
 					</xsl:element>	
-					<xsl:for-each select="role">
-						<xsl:element name="relation">
-							<xsl:attribute name="type">
-								<xsl:value-of select="."/>
-							</xsl:attribute>
-						</xsl:element>
+					<xsl:for-each select="current-group()">
+						<xsl:call-template name="createRelationFromRoleForCollection">
+							<xsl:with-param name="role">
+								<xsl:choose>
+									<xsl:when test="role!=''">
+										<xsl:value-of select="role"/>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:value-of select="name(.)"/>
+									</xsl:otherwise>
+								</xsl:choose>
+							</xsl:with-param>
+						</xsl:call-template>
+					</xsl:for-each>
+				</xsl:element>
+			</xsl:for-each-group>
+
+			<!-- parties generated here - individuals with a position name only -->
+			<xsl:for-each-group select="dataset/*[not(individualName) and positionName]" group-by="positionName">
+				<xsl:element name="relatedObject">
+					<xsl:element name="key">
+            <!-- <xsl:value-of select="positionName"/> -->
+            <!-- <xsl:value-of select="generate-id(positionName)"/> -->
+						<xsl:apply-templates mode="genId" select="positionName"/>
+					</xsl:element>	
+					<xsl:for-each select="current-group()">
+						<xsl:call-template name="createRelationFromRoleForCollection">
+							<xsl:with-param name="role">
+								<xsl:choose>
+									<xsl:when test="role!=''">
+										<xsl:value-of select="role"/>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:value-of select="name(.)"/>
+									</xsl:otherwise>
+								</xsl:choose>
+							</xsl:with-param>
+						</xsl:call-template>
 					</xsl:for-each>
 				</xsl:element>
 			</xsl:for-each-group>
 
 			<!-- parties generated here - now organizations -->
-			<xsl:for-each-group select="dataset/*[organizationName != '' and not(role='') and not(individualName)]" group-by="organizationName">
+			<xsl:for-each-group select="dataset/*[organizationName!='']" group-by="organizationName">
 				<xsl:element name="relatedObject">
 					<xsl:element name="key">
-						<xsl:value-of select="current-grouping-key()"/>
+						<!-- <xsl:value-of select="current-grouping-key()"/> -->
+						<!-- <xsl:value-of select="generate-id(organizationName)"/> -->
+						<xsl:apply-templates mode="genId" select="organizationName"/>
 					</xsl:element>
-					<xsl:for-each select="role">
-						<xsl:element name="relation">
-							<xsl:attribute name="type">
-								<xsl:value-of select="."/>
-							</xsl:attribute>
-						</xsl:element>		
+					<xsl:for-each select="current-group()">
+						<xsl:call-template name="createRelationFromRoleForCollection">
+							<xsl:with-param name="role">
+								<xsl:choose>
+									<xsl:when test="role!=''">
+										<xsl:value-of select="role"/>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:value-of select="name(.)"/>
+									</xsl:otherwise>
+								</xsl:choose>
+							</xsl:with-param>
+						</xsl:call-template>
 					</xsl:for-each>
 				</xsl:element>
 			</xsl:for-each-group>
 			
-			<!-- parties generated here - implied by name of element -->
-			<xsl:for-each select="dataset/*[(individualName/surName!='' or positionName!='' or organizationName!='') and (name()='creator' or name()='metadataProvider') and not(role)]" >
-				<xsl:element name="relatedObject">
-					<xsl:element name="key">
-                    <xsl:choose>                        
-                        <xsl:when test="individualName">
-													<xsl:apply-templates select="individualName"/>
-                        </xsl:when>                        
-                        <xsl:when test="string(positionName)">
-                            <xsl:value-of select="positionName"/>
-                        </xsl:when>
-                        <xsl:otherwise>                            
-                            <xsl:value-of select="organizationName"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-					</xsl:element>
-					<xsl:element name="relation">
-						<xsl:attribute name="type">
-							<xsl:value-of select="name(.)"/>
-						</xsl:attribute>
-					</xsl:element>		
-				</xsl:element>
-			</xsl:for-each>
-			
+      <!-- for keywords: thesaurus and taxonomic elements -->
       <xsl:apply-templates select="dataset/keywordSet"/>
-			<xsl:apply-templates select="dataset/abstract"/>
+      <xsl:apply-templates select="dataset/coverage/taxonomicCoverage"/>
 
+      <!-- for abstract -->
+			<xsl:apply-templates select="dataset/abstract"/>
 
       <!-- for intellectualRights -->
       <xsl:for-each select="dataset/intellectualRights/para">
@@ -385,6 +506,7 @@
         </xsl:element>
       </xsl:for-each>
 
+      <!-- for temporal range -->
 			<xsl:if test="$te/rangeOfDates">
 				<xsl:if test="not($from='') and $formattedFrom=''">
 					<xsl:element name="description">
@@ -408,153 +530,132 @@
 		</xsl:element>
 	</xsl:element>
 
-	<!-- Create all the associated party objects for individuals -->
-	<xsl:for-each-group select="//dataset/*[(individualName!='') and not(role='')]" group-by="role">
+	<!-- create party objects for associatedParty, metadataCreator, contact etc
+	     with an individualName defined -->
+	<xsl:for-each-group select="dataset/*[individualName]" group-by="individualName">
 		<xsl:element name="registryObject">
 			<xsl:call-template name="createPartyRegistryObject">
 				<xsl:with-param name="group" select="$group"/>
 				<xsl:with-param name="originatingSource" select="$originatingSource"/>
 				<xsl:with-param name="origSource" select="$origSource"/>
 			</xsl:call-template>
-
-      <xsl:element name="relatedObject">
-				<xsl:element name="key">
-					<xsl:value-of select="ancestor::eml:eml/dataset/alternateIdentifier[1]"/>
-				</xsl:element>	
-				<xsl:for-each select="role">
-					<xsl:variable name="code">
-						<xsl:value-of select="current-grouping-key()"/>
-					</xsl:variable>
-					
-					<xsl:element name="relation">
-						<xsl:attribute name="type">
-							<xsl:value-of select="$code"/>
-						</xsl:attribute>
-					</xsl:element>		
-				</xsl:for-each>
-
-			</xsl:element>
 		</xsl:element>
 	</xsl:for-each-group>
 
-
-	<!-- Again, sometimes we have an implied role in creator and metadataProvider
-	     elements so process these separately -->
-	<xsl:for-each-group select="//dataset/*[(individualName!='' or positionName!='' or organizationName!='') and (name()='creator' or name()='metadataProvider') and not(role)]" group-by="name()">
+	<!-- create party objects for associatedParty, metadataCreator, contact etc
+	     without an individualName but with a positionName defined -->
+	<xsl:for-each-group select="dataset/*[not(individualName) and positionName]" group-by="positionName">
 		<xsl:element name="registryObject">
 			<xsl:call-template name="createPartyRegistryObject">
 				<xsl:with-param name="group" select="$group"/>
 				<xsl:with-param name="originatingSource" select="$originatingSource"/>
 				<xsl:with-param name="origSource" select="$origSource"/>
 			</xsl:call-template>
-      <xsl:element name="relatedObject">
-				<xsl:element name="key">
-					<xsl:value-of select="ancestor::eml:eml/dataset/alternateIdentifier[1]"/>
-				</xsl:element>	
-
-				<xsl:variable name="code">
-					<xsl:value-of select="current-grouping-key()"/>
-				</xsl:variable>
-						
-				<xsl:element name="relation">
-					<xsl:attribute name="type">
-						<xsl:value-of select="$code"/>
-					</xsl:attribute>
-				</xsl:element>		
-			</xsl:element>
 		</xsl:element>
 	</xsl:for-each-group>
 
-	<!-- Create all the associated party objects for organisations -->
-	<xsl:for-each-group select="//dataset/*[not(individualName) and organizationName!='' and not(role='')]" group-by="organizationName">
+	<!-- Create party objects for all organisations -->
+	<xsl:for-each-group select="dataset/*[organizationName!='']" group-by="organizationName">
 		<xsl:element name="registryObject">
-			<xsl:attribute name="group">
-				<xsl:value-of select="$group"/>
-			</xsl:attribute>
-			<xsl:element name="key">
-				<xsl:value-of select="current-grouping-key()"/>
-			</xsl:element>
-			<xsl:element name="originatingSource">
-                <xsl:choose>
-                    <xsl:when test="not($originatingSource)">
-                        <xsl:value-of select="$origSource"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="$originatingSource"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-			</xsl:element>
-			<xsl:element name="party">
-				<xsl:attribute name="type">
-					<xsl:text>group</xsl:text>
-				</xsl:attribute>
-				<xsl:element name="name">
-					<xsl:attribute name="type">
-						<xsl:text>primary</xsl:text>
-					</xsl:attribute>
-					<xsl:element name="namePart">
-						<xsl:attribute name="type">
-							<xsl:text>full</xsl:text>
-						</xsl:attribute>
-						<xsl:value-of select="current-grouping-key()"/>
-					</xsl:element>
-				</xsl:element>
-				
-				<!-- to normalise parties within a single record we need to group them, obtain the fragment for each party with the most information, and at the same time cope with rubbish data. In the end the only way to cope is to ensure at least an organisation name, city, phone or fax exists (sigh) -->
-				<xsl:for-each select="current-group()">
-					<xsl:sort select="count(address/child::*) + count(phone)" data-type="number" order="descending"/>
-					<xsl:choose>
-						<xsl:when test="position()=1">
-							<xsl:if test="organizationName[text()!=''] or address/city or phone">
-								<xsl:element name="location">
-									<xsl:element name="address">
-										<xsl:apply-templates select="phone[text()!='']"/>
-										<xsl:element name="physical">
-											<xsl:attribute name="type">
-												<xsl:text>streetAddress</xsl:text>
-											</xsl:attribute>
-											<xsl:apply-templates select="organizationName"/>
-											<xsl:apply-templates select="address/deliveryPoint"/>
-											<xsl:apply-templates select="address/city"/>
-											<xsl:apply-templates select="address/administrativeArea[text()!='']"/>
-											<xsl:apply-templates select="address/postalCode[text()!='']"/>
-											<xsl:apply-templates select="address/country"/>
-										</xsl:element>
-									</xsl:element>
-								</xsl:element>
-							</xsl:if>
-                        </xsl:when>
-					</xsl:choose>
-				</xsl:for-each>
-		
-				<xsl:element name="relatedObject">
-					<xsl:element name="key">
-						<xsl:value-of select="ancestor::eml:eml/dataset/alternateIdentifier[1]"/>
-					</xsl:element>	
-
-					<xsl:for-each select="role">
-						<xsl:element name="relation">
-							<xsl:attribute name="type">
-								<xsl:value-of select="."/>
-							</xsl:attribute>
-						</xsl:element>		
-					</xsl:for-each>
-				</xsl:element>
-			</xsl:element>
+			<xsl:call-template name="createPartyRegistryObject">
+				<xsl:with-param name="group" select="$group"/>
+				<xsl:with-param name="originatingSource" select="$originatingSource"/>
+				<xsl:with-param name="origSource" select="$origSource"/>
+			</xsl:call-template>
 		</xsl:element>
 	</xsl:for-each-group>
 
 </xsl:template>
 
-<xsl:template match="individualName">
-	<xsl:choose>
-		<xsl:when test="givenName">
-       <xsl:value-of select="concat(givenName,' ',surName)" />
-		</xsl:when>
-		<xsl:otherwise>
-			<xsl:value-of select="surName"/>
-		</xsl:otherwise>
-	</xsl:choose>
+<xsl:template name="addAddressAndRelatedObjects">
+	<!-- to normalise address info and related objects we group them -->
+	<xsl:for-each select="current-group()">
+		<xsl:sort select="count(address/child::*) + count(phone)" data-type="number" order="descending"/>
+		<xsl:if test="position()=1">
+			<xsl:call-template name="fillOutAddress"/>		
+		</xsl:if>
+		<xsl:element name="relatedObject">
+			<xsl:element name="key">
+				<xsl:value-of select="ancestor::eml:eml/dataset/alternateIdentifier[1]"/>
+			</xsl:element>	
+			<xsl:call-template name="createRelationFromRoleForParty">
+				<xsl:with-param name="role">
+					<xsl:choose>
+						<xsl:when test="string(role)!=''">
+							<xsl:value-of select="role"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="name(.)"/>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:with-param>
+			</xsl:call-template>
+		</xsl:element>
+	</xsl:for-each>
+</xsl:template>
+
+<xsl:template name="createRelationFromRoleForCollection">
+		<xsl:param name="role" select="string(role)"/>
+
+		<xsl:element name="relation">
+			<xsl:attribute name="type">
+				<xsl:choose>
+					<xsl:when test="$role='owner' or $role='creator'">
+						<xsl:value-of select="'isOwnedBy'"/>
+					</xsl:when>
+					<xsl:when test="$role='resourceProvider' or $role='custodian'">
+						<xsl:value-of select="'isManagedBy'"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="'hasAssociationWith'"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:attribute>
+			<xsl:element name="description">
+				Derived from eml element <xsl:value-of select="name(.)"/> 
+				<xsl:if test="individualName">
+					<xsl:value-of select="concat(' with ',individualName/givenName,' ',individualName/surName)"/>
+				</xsl:if>
+				<xsl:if test="positionName!=''">
+					<xsl:value-of select="concat(', ',positionName)"/>
+				</xsl:if>
+				<xsl:if test="organizationName!=''">
+					<xsl:value-of select="concat(', ',organizationName)"/>
+				</xsl:if>
+			</xsl:element>
+		</xsl:element>
+</xsl:template>
+
+<xsl:template name="createRelationFromRoleForParty">
+		<xsl:param name="role" select="string(role)"/>
+
+		<xsl:element name="relation">
+			<xsl:attribute name="type">
+				<xsl:choose>
+					<xsl:when test="$role='owner' or $role='creator'">
+						<xsl:value-of select="'isOwnerOf'"/>
+					</xsl:when>
+					<xsl:when test="$role='resourceProvider' or $role='custodian'">
+						<xsl:value-of select="'isManagerOf'"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="'hasAssociationWith'"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:attribute>
+			<xsl:element name="description">
+				Derived from eml element <xsl:value-of select="name(.)"/> 
+				<xsl:if test="individualName">
+					<xsl:value-of select="concat(' with ',individualName/givenName,' ',individualName/surName)"/>
+				</xsl:if>
+				<xsl:if test="positionName!=''">
+					<xsl:value-of select="concat(', ',positionName)"/>
+				</xsl:if>
+				<xsl:if test="organizationName!=''">
+					<xsl:value-of select="concat(', ',organizationName)"/>
+				</xsl:if>
+			</xsl:element>
+		</xsl:element>
 </xsl:template>
 
 <xsl:template name="createPartyRegistryObject">
@@ -562,117 +663,109 @@
 	<xsl:param name="originatingSource"/>
 	<xsl:param name="origSource"/>
 
-			<xsl:attribute name="group">
-				<xsl:value-of select="$group"/>
+	<xsl:attribute name="group">
+		<xsl:value-of select="$group"/>
+	</xsl:attribute>
+  <xsl:element name="key">
+    <xsl:choose>
+      <xsl:when test="individualName">
+				<!-- <xsl:apply-templates select="individualName"/> -->
+				<!-- <xsl:value-of select="generate-id(individualName)"/> -->
+				<xsl:apply-templates mode="genId" select="individualName"/>
+      </xsl:when>
+      <xsl:when test="positionName">
+        <!-- <xsl:value-of select="positionName"/> -->
+        <!-- <xsl:value-of select="generate-id(positionName)"/> -->
+				<xsl:apply-templates mode="genId" select="positionName"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <!-- <xsl:value-of select="organizationName"/> -->
+        <!-- <xsl:value-of select="generate-id(organizationName)"/> -->
+				<xsl:apply-templates mode="genId" select="organizationName"/>
+      </xsl:otherwise>
+    </xsl:choose>
+	</xsl:element>
+	<xsl:element name="originatingSource">
+    <xsl:choose>
+      <xsl:when test="not($originatingSource)">
+        <xsl:value-of select="$origSource"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$originatingSource"/>
+      </xsl:otherwise>
+    </xsl:choose>
+	</xsl:element>
+	<xsl:element name="party">
+		<xsl:attribute name="type">
+      <xsl:choose>
+        <xsl:when test="individualName">
+          <xsl:value-of select="'person'" />                        
+        </xsl:when>
+        <xsl:when test="positionName">
+          <xsl:value-of select="'person'"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="'group'"/>
+        </xsl:otherwise>
+      </xsl:choose>
+		</xsl:attribute>
+		<xsl:element name="name">
+			<xsl:attribute name="type">
+				<xsl:text>primary</xsl:text>
 			</xsl:attribute>
-      <xsl:element name="key">
+			<xsl:element name="namePart">
         <xsl:choose>
-        	<xsl:when test="individualName">
+          <xsl:when test="individualName">
 						<xsl:apply-templates select="individualName"/>
           </xsl:when>
-          <xsl:when test="string(positionName)">
-          	<xsl:value-of select="positionName"/>
+          <xsl:when test="positionName">
+            <xsl:value-of select="positionName"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:value-of select="organizationName"/>
           </xsl:otherwise>
         </xsl:choose>
 			</xsl:element>
-			<xsl:element name="originatingSource">
-        <xsl:choose>
-          <xsl:when test="not($originatingSource)">
-            <xsl:value-of select="$origSource"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="$originatingSource"/>
-          </xsl:otherwise>
-        </xsl:choose>
-			</xsl:element>
-			<xsl:element name="party">
-				<xsl:attribute name="type">
-         <xsl:choose>
-           <xsl:when test="individualName">
-           	<xsl:value-of select="'person'" />                        
-           </xsl:when>
-           <xsl:when test="string(positionName)">
-           	<xsl:value-of select="'person'"/>
-           </xsl:when>
-           <xsl:otherwise>
-             <xsl:value-of select="'group'"/>
-           </xsl:otherwise>
-         </xsl:choose>
-					<!--<xsl:text>person</xsl:text>-->
-				</xsl:attribute>
-				<xsl:element name="name">
-					<xsl:attribute name="type">
-						<xsl:text>primary</xsl:text>
-					</xsl:attribute>
-					<xsl:element name="namePart">
-						<xsl:attribute name="type">
-							<xsl:text>full</xsl:text>
-						</xsl:attribute>
-            <xsl:choose>
-               <xsl:when test="individualName">
-								<xsl:apply-templates select="individualName"/>
-               </xsl:when>
-               <xsl:when test="string(positionName)">
-                <xsl:value-of select="positionName"/>
-               </xsl:when>
-               <xsl:otherwise>
-                <xsl:value-of select="organizationName"/>
-               </xsl:otherwise>
-            </xsl:choose>
-						<!--<xsl:value-of select="current-grouping-key()"/>-->
-					</xsl:element>
-				</xsl:element>
-				<xsl:call-template name="fillOutAddress"/>
-			</xsl:element>
+		</xsl:element>
+		<xsl:call-template name="addAddressAndRelatedObjects"/>
+	</xsl:element>
 </xsl:template>
 
 <xsl:template name="fillOutAddress">	
-
-				<!-- to normalise parties within a single record we group them -->
-				<xsl:for-each select="current-group()">
-					<xsl:sort select="count(address/child::*) + count(phone)" data-type="number" order="descending"/>
-					<xsl:choose>
-						<xsl:when test="position()=1">
-							<xsl:if test="organizationName!='' or address/city or phone">
-								<xsl:element name="location">
-									<xsl:element name="address">
-										<xsl:element name="physical">
-											<xsl:attribute name="type">
-												<xsl:text>streetAddress</xsl:text>
-											</xsl:attribute>
-											<xsl:apply-templates select="organizationName"/>
-											<xsl:apply-templates select="address/deliveryPoint"/>
-											<xsl:apply-templates select="address/city"/>
-											<xsl:apply-templates select="address/administrativeArea"/>
-											<xsl:apply-templates select="address/postalCode"/>
-											<xsl:apply-templates select="address/country"/>
-										</xsl:element>
-									</xsl:element>
-								  <xsl:if test="phone or electronicMailAddress or onlineUrl">
-                                        <xsl:if test="phone">
-                                            <xsl:element name="address">
-                                                <xsl:apply-templates select="phone"/>
-                                            </xsl:element>
-                                        </xsl:if>
-                                        <xsl:if test="electronicMailAddress">
-                                            <xsl:element name="address">
-                                                <xsl:apply-templates select="electronicMailAddress"/>
-                                            </xsl:element>
-                                        </xsl:if>
-                                        <xsl:if test="onlineUrl">
-                                            <xsl:element name="address">
-                                                <xsl:apply-templates select="onlineUrl"/>
-                                            </xsl:element>
-                                        </xsl:if>
-                                    </xsl:if>
-                                </xsl:element>
-							</xsl:if>
-						</xsl:when>
-					</xsl:choose>
-				</xsl:for-each>
+	<xsl:element name="location">
+		<xsl:if test="organizationName or address">
+			<xsl:element name="address">
+				<xsl:element name="physical">
+					<xsl:attribute name="type">
+						<xsl:text>streetAddress</xsl:text>
+					</xsl:attribute>
+					<xsl:apply-templates select="organizationName"/>
+					<xsl:apply-templates select="address/deliveryPoint"/>
+					<xsl:apply-templates select="address/city"/>
+					<xsl:apply-templates select="address/administrativeArea"/>
+					<xsl:apply-templates select="address/postalCode"/>
+					<xsl:apply-templates select="address/country"/>
+				</xsl:element>
+			</xsl:element>
+		</xsl:if>
+		<xsl:if test="phone or electronicMailAddress or onlineUrl">
+       <xsl:if test="phone">
+         <xsl:element name="address">
+           <xsl:apply-templates select="phone"/>
+         </xsl:element>
+       </xsl:if>
+       <xsl:if test="electronicMailAddress">
+         <xsl:element name="address">
+           <xsl:apply-templates select="electronicMailAddress"/>
+         </xsl:element>
+       </xsl:if>
+       <xsl:if test="onlineUrl">
+         <xsl:element name="address">
+           <xsl:apply-templates select="onlineUrl"/>
+         </xsl:element>
+       </xsl:if>
+     </xsl:if>
+   </xsl:element>
 </xsl:template>
 
 <xsl:template match="node()"/>
