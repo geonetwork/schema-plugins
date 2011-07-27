@@ -3,18 +3,19 @@
 								 xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:dc="http://purl.org/dc/terms/"  
-                 xmlns="http://ands.org.au/standards/rif-cs/registryObjects">
+                 xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
+                 xmlns:genId="java:org.fao.geonet.util.Sha1Encoder">
 
 <!-- 
-     Stylesheet to convert eml-gbif metadata response to RIF-CS 
+     Stylesheet to convert eml-gbif metadata response to RIF-CS/RIF
      Adapted and extended from ISO to RIFCS stylesheet 
 		 (originally by Scott Yeadon, ANDS)
 		 by Simon Pigot, CSIRO, 2011-07-26 
 
 		 TODO: 
-		   - project field - need to be mapped to activity registry object -
-			                   not finished yet
-			 - citation links
+		   - eml project field - need to be mapped to activity registry object -
+			                       not finished yet
+			 - eml citation links
 -->
 
 <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
@@ -29,7 +30,7 @@
 <xsl:variable name="origSource" select="/root/env/siteURL"/>
         
 <!-- the registry object group -->
-<xsl:variable name="group" select="concat(/root/env/siteName,'.',/root/env/siteURL)"/>
+<xsl:variable name="group" select="concat(/root/env/siteName,'|',/root/env/siteURL)"/>
 
 <xsl:template match="eml:eml">
 	<xsl:element name="registryObjects">
@@ -44,7 +45,16 @@
 </xsl:template>
 
 <xsl:template mode="genId" match="*">
-	<xsl:value-of select="concat(generate-id(.),'.',/root/env/uuid)"/>
+	<!-- Encode string in element using sha1 in java method encodeString (class
+	     org.fao.geonet.utils.Sha1Encoder - see genId namespace above) - this is
+			 so that identifiers can be generated that are global eg. when creating
+			 a relatedObject describing an organisation, the eml organizationName
+			 element is passed to this template, then encoded as a sha1 string 
+			 to produce an identifier. If this organizationName has already been 
+			 used in a previous metadata emk record then it will already be present 
+			 in the ANDS repository with this identifier - this saves duplication of 
+			 parties (organizations and individuals) in the ANDS repository -->
+	<xsl:value-of select="genId:encodeString(.)"/>
 </xsl:template>
 
 <xsl:template match="distribution">
@@ -117,7 +127,7 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="organizationName">
+<xsl:template match="organizationName|positionName">
 	<xsl:element name="addressPart">
 		<xsl:attribute name="type">
 			<xsl:text>locationDescriptor</xsl:text>
@@ -282,8 +292,7 @@
 				<xsl:attribute name="type">
 					<xsl:text>local</xsl:text>
 				</xsl:attribute>
-				<!-- md5 the title -->
-				<xsl:value-of select="dataset/project/title[1]"/>
+				<xsl:apply-templates mode="genId" select="dataset/project/title[1]"/>
 			</xsl:element>
 			
 			<!-- name of activity object -->
@@ -434,8 +443,6 @@
 			<xsl:for-each-group select="dataset/*[individualName]" group-by="individualName">
 				<xsl:element name="relatedObject">
 					<xsl:element name="key">
-						<!-- <xsl:apply-templates select="individualName"/> -->
-						<!-- <xsl:value-of select="generate-id(individualName)"/> -->
 						<xsl:apply-templates mode="genId" select="individualName"/>
 					</xsl:element>	
 					<xsl:for-each select="current-group()">
@@ -459,8 +466,6 @@
 			<xsl:for-each-group select="dataset/*[not(individualName) and positionName]" group-by="positionName">
 				<xsl:element name="relatedObject">
 					<xsl:element name="key">
-            <!-- <xsl:value-of select="positionName"/> -->
-            <!-- <xsl:value-of select="generate-id(positionName)"/> -->
 						<xsl:apply-templates mode="genId" select="positionName"/>
 					</xsl:element>	
 					<xsl:for-each select="current-group()">
@@ -484,8 +489,6 @@
 			<xsl:for-each-group select="dataset/*[organizationName!='']" group-by="organizationName">
 				<xsl:element name="relatedObject">
 					<xsl:element name="key">
-						<!-- <xsl:value-of select="current-grouping-key()"/> -->
-						<!-- <xsl:value-of select="generate-id(organizationName)"/> -->
 						<xsl:apply-templates mode="genId" select="organizationName"/>
 					</xsl:element>
 					<xsl:for-each select="current-group()">
@@ -505,8 +508,24 @@
 				</xsl:element>
 			</xsl:for-each-group>
 		
-			<!-- TODO: create relatedObject that points to the project with
-			           relation type isOutputOf -->
+			<!-- create relatedObject that points to the project with
+			     relation type isOutputOf -->
+			<xsl:for-each select="dataset/project">
+				<xsl:element name="relatedObject">
+					<xsl:element name="key">
+						<xsl:apply-templates mode="genId" select="title[1]"/>
+					</xsl:element>
+					<xsl:element name="relation">
+						<xsl:attribute name="type">
+							<xsl:value-of select="'isOutputOf'"/>
+						</xsl:attribute>
+						<xsl:element name="description">
+							Derived from eml element <xsl:value-of select="name(.)"/> 
+							<xsl:value-of select="title"/>
+						</xsl:element>
+					</xsl:element>
+				</xsl:element>
+			</xsl:for-each>
 
       <!-- for keywords: thesaurus and taxonomic elements -->
       <xsl:apply-templates select="dataset/keywordSet"/>
@@ -619,11 +638,11 @@
 		<xsl:element name="relation">
 			<xsl:attribute name="type">
 				<xsl:choose>
-					<xsl:when test="$role='owner' or $role='creator'">
+					<xsl:when test="$role='owner' or $role='creator' or 
+					                $role='custodian'">
 						<xsl:value-of select="'isOwnedBy'"/>
 					</xsl:when>
-					<xsl:when test="$role='resourceProvider' or $role='custodian' or
-					                $role='contact'">
+					<xsl:when test="$role='resourceProvider' or $role='contact'">
 						<xsl:value-of select="'isManagedBy'"/>
 					</xsl:when>
 					<xsl:otherwise>
@@ -652,11 +671,11 @@
 		<xsl:element name="relation">
 			<xsl:attribute name="type">
 				<xsl:choose>
-					<xsl:when test="$role='owner' or $role='creator'">
+					<xsl:when test="$role='owner' or $role='creator' or
+					                $role='custodian'">
 						<xsl:value-of select="'isOwnerOf'"/>
 					</xsl:when>
-					<xsl:when test="$role='resourceProvider' or $role='custodian' or
-					                $role='contact'">
+					<xsl:when test="$role='resourceProvider' or $role='contact'">
 						<xsl:value-of select="'isManagerOf'"/>
 					</xsl:when>
 					<xsl:otherwise>
@@ -690,18 +709,12 @@
   <xsl:element name="key">
     <xsl:choose>
       <xsl:when test="individualName">
-				<!-- <xsl:apply-templates select="individualName"/> -->
-				<!-- <xsl:value-of select="generate-id(individualName)"/> -->
 				<xsl:apply-templates mode="genId" select="individualName"/>
       </xsl:when>
       <xsl:when test="positionName">
-        <!-- <xsl:value-of select="positionName"/> -->
-        <!-- <xsl:value-of select="generate-id(positionName)"/> -->
 				<xsl:apply-templates mode="genId" select="positionName"/>
       </xsl:when>
       <xsl:otherwise>
-        <!-- <xsl:value-of select="organizationName"/> -->
-        <!-- <xsl:value-of select="generate-id(organizationName)"/> -->
 				<xsl:apply-templates mode="genId" select="organizationName"/>
       </xsl:otherwise>
     </xsl:choose>
@@ -760,6 +773,7 @@
 					<xsl:attribute name="type">
 						<xsl:text>streetAddress</xsl:text>
 					</xsl:attribute>
+					<xsl:apply-templates select="positionName"/>
 					<xsl:apply-templates select="organizationName"/>
 					<xsl:apply-templates select="address/deliveryPoint"/>
 					<xsl:apply-templates select="address/city"/>
