@@ -22,6 +22,18 @@
 
 <xsl:strip-space elements="*"/>
 
+<!-- if set to true then related object identifiers are created using sha1 
+     encoding on strings eg. individualName, positionName, organizationName,
+		 project/title[1]
+		 if false then related object identifiers are the strings themselves -->
+<xsl:param name="useSha1ForIdentifiers" select="true()"/>
+
+<!-- if set to true then related party registry objects for organizations are  
+     created by scanning organizationName elements of the creator, 
+		 metadataProvider, associatedParty and contact elements 
+		 if false then related party registry objects are not created -->
+<xsl:param name="generateOrganizations" select="true()"/>
+
 <xsl:template match="root">
     <xsl:apply-templates/>
 </xsl:template>
@@ -45,16 +57,29 @@
 </xsl:template>
 
 <xsl:template mode="genId" match="*">
-	<!-- Encode string in element using sha1 in java method encodeString (class
-	     org.fao.geonet.utils.Sha1Encoder - see genId namespace above) - this is
-			 so that identifiers can be generated that are global eg. when creating
-			 a relatedObject describing an organisation, the eml organizationName
-			 element is passed to this template, then encoded as a sha1 string 
-			 to produce an identifier. If this organizationName has already been 
-			 used in a previous metadata emk record then it will already be present 
-			 in the ANDS repository with this identifier - this saves duplication of 
-			 parties (organizations and individuals) in the ANDS repository -->
-	<xsl:value-of select="genId:encodeString(.)"/>
+<!--
+	This template is used to generate identifiers that are global. 
+	eg. when creating a relatedObject describing an organisation, the 
+	eml organizationName element is passed to this template, 
+	then it can be used as is or encoded as a sha1 string 
+	to produce a more DB friendly identifier. 
+	If this organizationName has already been 
+	used in a previous metadata eml record then it will already be present 
+	in the ANDS repository with this identifier - this saves 
+	duplication of parties (organizations and individuals) in the ANDS 
+	repository 
+-->
+	<xsl:choose>
+		<xsl:when test="$useSha1ForIdentifiers">
+	<!--  Encode string in element using sha1 in java method encodeString (class
+	     	org.fao.geonet.utils.Sha1Encoder - see genId namespace above) -->
+			<xsl:value-of select="genId:encodeString(.)"/>
+		</xsl:when>
+		<xsl:otherwise>
+	<!--  Use as is -->
+			<xsl:value-of select="."/>
+		</xsl:otherwise>
+	</xsl:choose>
 </xsl:template>
 
 <xsl:template match="distribution">
@@ -263,21 +288,12 @@
 			<xsl:value-of select="$group"/>
 		</xsl:attribute>
 
-		<xsl:element name="key"> <!-- first alternateIdentifier -->
-			<xsl:value-of select="dataset/alternateIdentifier[1]"/>
+		<xsl:element name="key"> <!-- first project title -->
+			<xsl:apply-templates mode="genId" select="dataset/project/title[1]"/>
 		</xsl:element>
 
-  	<xsl:variable name="originatingSource" select="dataset/creator/onlineUrl"/>
-
 		<xsl:element name="originatingSource">
-      <xsl:choose>
-        <xsl:when test="not($originatingSource)">
-          <xsl:value-of select="$origSource"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="$originatingSource"/>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:value-of select="$origSource"/>
 		</xsl:element>
 
 		<xsl:element name="activity">
@@ -287,7 +303,7 @@
 				<xsl:value-of select="'project'"/>
 			</xsl:attribute>
 
-			<!-- identifier of activity object comes from project title -->
+			<!-- identifier of activity object comes from first project title -->
 			<xsl:element name="identifier">
 				<xsl:attribute name="type">
 					<xsl:text>local</xsl:text>
@@ -308,7 +324,7 @@
 			<!-- collection is an output of the project -->
 			<xsl:element name="relatedObject">
 				<xsl:element name="key">
-					<xsl:value-of select="ancestor::eml:eml/dataset/alternateIdentifier[1]"/>
+					<xsl:value-of select="dataset/alternateIdentifier[1]"/>
 				</xsl:element>
 				<xsl:element name="relation">
 					<xsl:attribute name="type">
@@ -317,10 +333,19 @@
 				</xsl:element>
 			</xsl:element>
 
-			<!-- TODO: project personnel need to be extracted and related -->
+			<!-- TODO: project/personnel need to be extracted and related -->
 
-      <!-- TODO: create description elements from the studyAreaDescriptor,
-			           designDescription and funding(?) elements -->
+      <!-- description elements created from the eml designDescription and 
+			     funding elements -->
+      <xsl:for-each select="dataset/project/designDescription/description/para|dataset/project/funding/para">
+        <xsl:element name="description">
+        	<xsl:attribute name="type">
+          	<xsl:text>full</xsl:text>
+          </xsl:attribute>
+          <xsl:value-of select="." />
+        </xsl:element>
+      </xsl:for-each>
+
 		</xsl:element>
 	</xsl:element>
 </xsl:template>
@@ -486,27 +511,29 @@
 			</xsl:for-each-group>
 
 			<!-- parties generated here - now organizations -->
-			<xsl:for-each-group select="dataset/*[organizationName!='']" group-by="organizationName">
-				<xsl:element name="relatedObject">
-					<xsl:element name="key">
-						<xsl:apply-templates mode="genId" select="organizationName"/>
+			<xsl:if test="$generateOrganizations">
+				<xsl:for-each-group select="dataset/*[organizationName!='']" group-by="organizationName">
+					<xsl:element name="relatedObject">
+						<xsl:element name="key">
+							<xsl:apply-templates mode="genId" select="organizationName"/>
+						</xsl:element>
+						<xsl:for-each select="current-group()">
+							<xsl:call-template name="createRelationFromRoleForCollection">
+								<xsl:with-param name="role">
+									<xsl:choose>
+										<xsl:when test="role!=''">
+											<xsl:value-of select="role"/>
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:value-of select="name(.)"/>
+										</xsl:otherwise>
+									</xsl:choose>
+								</xsl:with-param>
+							</xsl:call-template>
+						</xsl:for-each>
 					</xsl:element>
-					<xsl:for-each select="current-group()">
-						<xsl:call-template name="createRelationFromRoleForCollection">
-							<xsl:with-param name="role">
-								<xsl:choose>
-									<xsl:when test="role!=''">
-										<xsl:value-of select="role"/>
-									</xsl:when>
-									<xsl:otherwise>
-										<xsl:value-of select="name(.)"/>
-									</xsl:otherwise>
-								</xsl:choose>
-							</xsl:with-param>
-						</xsl:call-template>
-					</xsl:for-each>
-				</xsl:element>
-			</xsl:for-each-group>
+				</xsl:for-each-group>
+			</xsl:if>
 		
 			<!-- create relatedObject that points to the project with
 			     relation type isOutputOf -->
@@ -593,15 +620,17 @@
 	</xsl:for-each-group>
 
 	<!-- Create party objects for all organisations -->
-	<xsl:for-each-group select="dataset/*[organizationName!='']" group-by="organizationName">
-		<xsl:element name="registryObject">
-			<xsl:call-template name="createPartyRegistryObject">
-				<xsl:with-param name="group" select="$group"/>
-				<xsl:with-param name="originatingSource" select="$originatingSource"/>
-				<xsl:with-param name="origSource" select="$origSource"/>
-			</xsl:call-template>
-		</xsl:element>
-	</xsl:for-each-group>
+	<xsl:if test="$generateOrganizations">
+		<xsl:for-each-group select="dataset/*[organizationName!='']" group-by="organizationName">
+			<xsl:element name="registryObject">
+				<xsl:call-template name="createPartyRegistryObject">
+					<xsl:with-param name="group" select="$group"/>
+					<xsl:with-param name="originatingSource" select="$originatingSource"/>
+					<xsl:with-param name="origSource" select="$origSource"/>
+				</xsl:call-template>
+			</xsl:element>
+		</xsl:for-each-group>
+	</xsl:if>
 
 </xsl:template>
 
@@ -653,7 +682,7 @@
 			<xsl:element name="description">
 				Derived from eml element <xsl:value-of select="name(.)"/> 
 				<xsl:if test="individualName">
-					<xsl:value-of select="concat(' with ',individualName/givenName,' ',individualName/surName)"/>
+					<xsl:value-of select="concat(' with ',individualName)"/>
 				</xsl:if>
 				<xsl:if test="positionName!=''">
 					<xsl:value-of select="concat(', ',positionName)"/>
@@ -686,7 +715,7 @@
 			<xsl:element name="description">
 				Derived from eml element <xsl:value-of select="name(.)"/> 
 				<xsl:if test="individualName">
-					<xsl:value-of select="concat(' with ',individualName/givenName,' ',individualName/surName)"/>
+					<xsl:value-of select="concat(' with ',individualName)"/>
 				</xsl:if>
 				<xsl:if test="positionName!=''">
 					<xsl:value-of select="concat(', ',positionName)"/>
