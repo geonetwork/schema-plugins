@@ -272,16 +272,18 @@
 
 		<xsl:element name="activity">
 			<xsl:attribute name="type">
-				<xsl:value-of select="'program'"/>
+				<!-- from rifcs vocabs - piece of work that is undertaken or attempted
+				     with a start date and end date plus defined objectives -->
+				<xsl:value-of select="'project'"/>
 			</xsl:attribute>
 
-			<!-- identifier of activity object comes from dataset identifier -->
+			<!-- identifier of activity object comes from project title -->
 			<xsl:element name="identifier">
 				<xsl:attribute name="type">
 					<xsl:text>local</xsl:text>
 				</xsl:attribute>
-				<!-- first alternateIdentifier -->
-				<xsl:value-of select="dataset/alternateIdentifier[1]"/>
+				<!-- md5 the title -->
+				<xsl:value-of select="dataset/project/title[1]"/>
 			</xsl:element>
 			
 			<!-- name of activity object -->
@@ -294,6 +296,22 @@
 				</xsl:element>
 			</xsl:element>
 
+			<!-- collection is an output of the project -->
+			<xsl:element name="relatedObject">
+				<xsl:element name="key">
+					<xsl:value-of select="ancestor::eml:eml/dataset/alternateIdentifier[1]"/>
+				</xsl:element>
+				<xsl:element name="relation">
+					<xsl:attribute name="type">
+						<xsl:value-of select="'hasOutput'"/>
+					</xsl:attribute>
+				</xsl:element>
+			</xsl:element>
+
+			<!-- TODO: project personnel need to be extracted and related -->
+
+      <!-- TODO: create description elements from the studyAreaDescriptor,
+			           designDescription and funding(?) elements -->
 		</xsl:element>
 	</xsl:element>
 </xsl:template>
@@ -486,7 +504,10 @@
 					</xsl:for-each>
 				</xsl:element>
 			</xsl:for-each-group>
-			
+		
+			<!-- TODO: create relatedObject that points to the project with
+			           relation type isOutputOf -->
+
       <!-- for keywords: thesaurus and taxonomic elements -->
       <xsl:apply-templates select="dataset/keywordSet"/>
       <xsl:apply-templates select="dataset/coverage/taxonomicCoverage"/>
@@ -601,7 +622,8 @@
 					<xsl:when test="$role='owner' or $role='creator'">
 						<xsl:value-of select="'isOwnedBy'"/>
 					</xsl:when>
-					<xsl:when test="$role='resourceProvider' or $role='custodian'">
+					<xsl:when test="$role='resourceProvider' or $role='custodian' or
+					                $role='contact'">
 						<xsl:value-of select="'isManagedBy'"/>
 					</xsl:when>
 					<xsl:otherwise>
@@ -633,7 +655,8 @@
 					<xsl:when test="$role='owner' or $role='creator'">
 						<xsl:value-of select="'isOwnerOf'"/>
 					</xsl:when>
-					<xsl:when test="$role='resourceProvider' or $role='custodian'">
+					<xsl:when test="$role='resourceProvider' or $role='custodian' or
+					                $role='contact'">
 						<xsl:value-of select="'isManagerOf'"/>
 					</xsl:when>
 					<xsl:otherwise>
