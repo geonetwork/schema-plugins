@@ -224,6 +224,18 @@
 				</xsl:if>
 			</xsl:for-each>
 			
+			<!-- Data Parameters - select those used in dataset only -->
+
+			<xsl:for-each select="gmd:identificationInfo/*/mcp:dataParameters/*/mcp:dataParameter/*/mcp:parameterName/*[mcp:usedInDataset/*='true']">
+				<dc:dataParameter 
+						definition="{string(mcp:localDefinition/*)}" 
+						units="{string(../../mcp:parameterUnits/*/mcp:name/*)}" 
+						minValue="{string(../../mcp:parameterMinimumValue/*)}" 
+						maxValue="{string(../../mcp:parameterMaximumValue/*)}" 
+						desc="{string(../../mcp:parameterDescription/*)}">
+					<xsl:value-of select="string(mcp:name/*)"/>
+				</dc:dataParameter>
+			</xsl:for-each>
 			
 			<!-- GeoNetwork elements added when resultType is equal to results_with_summary -->
 			<xsl:if test="$displayInfo = 'true'">

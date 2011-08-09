@@ -4,6 +4,7 @@
 		xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
     xmlns:dc="http://purl.org/dc/terms/"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:geonet="http://www.fao.org/geonetwork"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <!-- This stylesheet produces eml-gbif metadata in XML format -->
@@ -28,6 +29,9 @@
 			<xsl:apply-templates select="*"/>
 		</xsl:copy>
 	</xsl:template>
+
+	<!-- Delete any GeoNetwork specific elements -->
+  <xsl:template match="geonet:*"/> 
 
   <!-- Copy everything else -->
   <xsl:template match="@*|node()">
