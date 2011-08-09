@@ -73,9 +73,18 @@
  	<!-- ================================================================= -->
 	
 	<xsl:template match="gmd:dateStamp">
-		<xsl:copy>
-			<gco:DateTime><xsl:value-of select="/root/env/changeDate"/></gco:DateTime>
-		</xsl:copy>
+	  <xsl:choose>
+	    <xsl:when test="/root/env/changeDate">
+	      <xsl:copy>
+	        <gco:DateTime>
+	          <xsl:value-of select="/root/env/changeDate"/>
+	        </gco:DateTime>
+	      </xsl:copy>
+	    </xsl:when>
+	    <xsl:otherwise>
+	      <xsl:copy-of select="."/>
+	    </xsl:otherwise>
+	  </xsl:choose>
 	</xsl:template>
 
 	<!-- ================================================================= -->

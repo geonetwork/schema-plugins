@@ -18,6 +18,17 @@
     </metadata>
   </xsl:template>
 
+
+  <xsl:template name="iso19139.fraCompleteTab">
+    <xsl:param name="tabLink"/>
+    <xsl:param name="schema"/>
+    
+    <xsl:call-template name="iso19139CompleteTab">
+      <xsl:with-param name="tabLink" select="$tabLink"/>
+      <xsl:with-param name="schema" select="$schema"/>
+    </xsl:call-template>
+  </xsl:template>
+
 	<!-- main template - the way into processing iso19139.fra -->
 	<xsl:template name="metadata-iso19139.fra">
 		<xsl:param name="schema"/>
@@ -45,12 +56,12 @@
 		</xsl:apply-templates>
 	</xsl:template>
 
-
 	<!-- Extra tabs for ISO Profil for France -->
 	<xsl:template mode="extraTab" match="/">
 		<xsl:param name="tabLink"/>
 		<xsl:param name="schema"/>
-		<xsl:if test="$schema='iso19139.fra'">
+	  
+	  <xsl:if test="$schema='iso19139.fra'">
 			<!-- FRA tabs -->
 			<xsl:if test="/root/gui/config/metadata-tab/fra">
 				<xsl:call-template name="displayTab">

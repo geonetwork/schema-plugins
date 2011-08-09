@@ -7,7 +7,7 @@
     <gco:CharacterString>6797fc02-c7be-49a5-9634-4fc611e6215c</gco:CharacterString>
   </gmd:fileIdentifier>
   <gmd:language>
-    <gco:CharacterString>fre</gco:CharacterString>
+    <gmd:LanguageCode codeList="" codeListValue="fre"/>
   </gmd:language>
   <gmd:characterSet>
     <gmd:MD_CharacterSetCode codeListValue="utf8" codeList="MD_CharacterSetCode" />

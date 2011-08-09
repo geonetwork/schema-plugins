@@ -25,13 +25,12 @@
 	</xsl:template>
 	
 	
-  <xsl:template name="iso19139.fraCompleteTab" match="iso19139.fraCompleteTab">
+  <xsl:template name="iso19139.fraCompleteTab">
     <xsl:param name="tabLink"/>
     <xsl:param name="schema"/>
-
     <xsl:call-template name="iso19139CompleteTab">
-      <xsl:with-param name="tabLink"/>
-      <xsl:with-param name="schema"/>
+      <xsl:with-param name="tabLink" select="$tabLink"/>
+      <xsl:with-param name="schema" select="$schema"/>
     </xsl:call-template>
   </xsl:template>
   
@@ -52,7 +51,7 @@
 
 
 	<!-- Extra tabs for ISO Profil for France -->
-  <xsl:template mode="extraTab" match="iso19139.fraCompleteTab">
+  <xsl:template mode="extraTab" match="/">
 		<xsl:param name="tabLink"/>
 		<xsl:param name="schema"/>
 
