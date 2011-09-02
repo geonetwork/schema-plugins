@@ -33,7 +33,7 @@
                indent="yes"/>
    <xsl:include xmlns:svrl="http://purl.oclc.org/dsdl/svrl" href="../../../xsl/utils-fn.xsl"/>
    <xsl:param xmlns:svrl="http://purl.oclc.org/dsdl/svrl" name="lang"/>
-   <xsl:param xmlns:svrl="http://purl.oclc.org/dsdl/svrl" name="dataDir"/>
+   <xsl:param xmlns:svrl="http://purl.oclc.org/dsdl/svrl" name="thesaurusDir"/>
    <xsl:param xmlns:svrl="http://purl.oclc.org/dsdl/svrl" name="rule"/>
    <xsl:variable xmlns:svrl="http://purl.oclc.org/dsdl/svrl" name="loc"
                  select="document(concat('loc/', $lang, '/', substring-before($rule, '.xsl'), '.xml'))"/>
@@ -757,7 +757,7 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="//gmd:MD_DataIdentification|    //*[@gco:isoType='gmd:MD_DataIdentification']"/>
       <xsl:variable name="inspire-thesaurus"
-        select="document(concat('file:///', $dataDir, '/codelist/external/thesauri/theme/inspire-theme.rdf'))"/>
+        select="document(concat('file:///', $thesaurusDir, '/codelist/external/thesauri/theme/inspire-theme.rdf'))"/>
       <xsl:variable name="inspire-theme" select="$inspire-thesaurus//skos:Concept"/>
 
 		    <!--ASSERT -->
@@ -860,7 +860,7 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="//srv:SV_ServiceIdentification|//*[@gco:isoType='srv:SV_ServiceIdentification']"/>
       <xsl:variable name="inspire-thesaurus"
-                    select="document(concat($dataDir, '/codelist/external/thesauri/theme/inspire-service-taxonomy.rdf'))"/>
+                    select="document(concat($thesaurusDir, '/codelist/external/thesauri/theme/inspire-service-taxonomy.rdf'))"/>
       <xsl:variable name="inspire-st" select="$inspire-thesaurus//skos:Concept"/>
 
 		    <!--ASSERT -->
