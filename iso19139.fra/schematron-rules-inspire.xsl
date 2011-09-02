@@ -757,7 +757,7 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="//gmd:MD_DataIdentification|    //*[@gco:isoType='gmd:MD_DataIdentification']"/>
       <xsl:variable name="inspire-thesaurus"
-        select="document(concat('file:///', $thesaurusDir, '/codelist/external/thesauri/theme/inspire-theme.rdf'))"/>
+        select="document(concat('file:///', $thesaurusDir, '/external/thesauri/theme/inspire-theme.rdf'))"/>
       <xsl:variable name="inspire-theme" select="$inspire-thesaurus//skos:Concept"/>
 
 		    <!--ASSERT -->
@@ -860,7 +860,7 @@
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="//srv:SV_ServiceIdentification|//*[@gco:isoType='srv:SV_ServiceIdentification']"/>
       <xsl:variable name="inspire-thesaurus"
-                    select="document(concat($thesaurusDir, '/codelist/external/thesauri/theme/inspire-service-taxonomy.rdf'))"/>
+                    select="document(concat($thesaurusDir, '/external/thesauri/theme/inspire-service-taxonomy.rdf'))"/>
       <xsl:variable name="inspire-st" select="$inspire-thesaurus//skos:Concept"/>
 
 		    <!--ASSERT -->
