@@ -189,10 +189,10 @@
   
 
 
-    <!-- Quality -->
+    <!-- Quality
     <field name="gmd:report">
         <suggest name="gmd:DQ_DomainConsistency"/>
-    </field>
+    </field> -->
 
     <field name="gmd:DQ_DomainConsistency">
         <suggest name="gmd:result"/>
