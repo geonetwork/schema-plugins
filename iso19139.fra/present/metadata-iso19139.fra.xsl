@@ -11,10 +11,19 @@
 
   <xsl:template match="iso19139.fraBrief">
     <metadata>
-      <xsl:for-each select="/metadata/*[1]">
-        <!-- call iso19139 brief -->
-        <xsl:call-template name="iso19139-brief"/>
-      </xsl:for-each>
+	  <xsl:for-each select="/metadata/*[1]">
+		<xsl:choose>
+		    <xsl:when test="geonet:info/isTemplate='s'">
+		      <xsl:apply-templates mode="iso19139-subtemplate" select="."/>
+		      <xsl:copy-of select="geonet:info" copy-namespaces="no"/>
+		    </xsl:when>
+		    <xsl:otherwise>
+	
+			<!-- call iso19139 brief -->
+			<xsl:call-template name="iso19139-brief"/>
+		    </xsl:otherwise>
+		  </xsl:choose>    
+      </xsl:for-each> 
     </metadata>
   </xsl:template>
 
