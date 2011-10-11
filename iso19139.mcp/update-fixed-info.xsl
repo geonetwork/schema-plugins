@@ -46,9 +46,9 @@
       <xsl:apply-templates select="gmd:dateStamp"/>
 			<xsl:choose>
 				<xsl:when test="not(gmd:metadataStandardName)">
-					<mcp:metadataStandardName>
+					<gmd:metadataStandardName>
 						<gco:CharacterString><xsl:value-of select="$metadataStandardName"/></gco:CharacterString>
-					</mcp:metadataStandardName>
+					</gmd:metadataStandardName>
 				</xsl:when>
 				<xsl:otherwise>
       		<xsl:apply-templates select="gmd:metadataStandardName"/>
@@ -56,9 +56,9 @@
 			</xsl:choose>
 			<xsl:choose>
 				<xsl:when test="not(gmd:metadataStandardVersion)">
-					<mcp:metadataStandardVersion>
+					<gmd:metadataStandardVersion>
 						<gco:CharacterString><xsl:value-of select="$metadataStandardVersion"/></gco:CharacterString>
-					</mcp:metadataStandardVersion>
+					</gmd:metadataStandardVersion>
 				</xsl:when>
 				<xsl:otherwise>
       		<xsl:apply-templates select="gmd:metadataStandardVersion"/>

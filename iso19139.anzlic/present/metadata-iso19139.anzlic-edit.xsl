@@ -454,8 +454,41 @@
 
 		<xsl:variable name="dataset" select="gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue='dataset'  or gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue='dataObject'	or normalize-space(gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue)=''"/>
 		
+		<!-- thumbnail -->
+		<tr>
+			<td valign="middle" colspan="2">
+				<xsl:if test="$currTab='metadata' or $currTab='identification' or /root/gui/config/metadata-tab/*[name(.)=$currTab]/@flat">
+					<div style="float:left;width:70%;text-align:center;">
+						<xsl:variable name="md">
+							<xsl:apply-templates mode="brief" select="."/>
+						</xsl:variable>
+						<xsl:variable name="metadata" select="exslt:node-set($md)/*[1]"/>
+						<xsl:call-template name="thumbnail">
+							<xsl:with-param name="metadata" select="$metadata"/>
+						</xsl:call-template>
+					</div>
+				</xsl:if>
+				<xsl:if test="/root/gui/config/editor-metadata-relation">
+					<div style="float:right;">				
+						<xsl:call-template name="relatedResources">
+							<xsl:with-param name="edit" select="$edit"/>
+						</xsl:call-template>
+					</div>
+				</xsl:if>
+			</td>
+		</tr>
+		
 		<xsl:choose>
 	
+			<!-- simple tab -->
+			<xsl:when test="$currTab='simple'">
+        <xsl:call-template name="iso19139Simple">
+          <xsl:with-param name="schema" select="$schema"/>
+          <xsl:with-param name="edit"   select="$edit"/>
+          <xsl:with-param name="flat"   select="/root/gui/config/metadata-tab/*[name(.)=$currTab]/@flat"/>
+        </xsl:call-template>
+			</xsl:when>
+
 			<!-- metadata tab -->
 			<xsl:when test="$currTab='metadata'">
 				<xsl:call-template name="iso19139Metadata">

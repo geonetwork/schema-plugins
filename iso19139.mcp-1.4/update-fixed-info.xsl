@@ -13,7 +13,7 @@
 	<xsl:include href="convert/functions.xsl"/>
 
 	<xsl:variable name="metadataStandardName" select="'Australian Marine Community Profile of ISO 19115:2005/19139'"/>
-	<xsl:variable name="metadataStandardVersion" select="'MCP:BlueNet V1.5'"/>
+	<xsl:variable name="metadataStandardVersion" select="'1.4'"/>
 
 	<!-- ================================================================= -->
 	
@@ -48,9 +48,9 @@
       <xsl:apply-templates select="gmd:dateStamp"/>
 			<xsl:choose>
         <xsl:when test="not(gmd:metadataStandardName)">
-          <mcp:metadataStandardName>
+          <gmd:metadataStandardName>
             <gco:CharacterString><xsl:value-of select="$metadataStandardName"/></gco:CharacterString>
-          </mcp:metadataStandardName>
+          </gmd:metadataStandardName>
         </xsl:when>
         <xsl:otherwise>
           <xsl:apply-templates select="gmd:metadataStandardName"/>
@@ -58,9 +58,9 @@
       </xsl:choose>
       <xsl:choose>
         <xsl:when test="not(gmd:metadataStandardVersion)">
-          <mcp:metadataStandardVersion>
+          <gmd:metadataStandardVersion>
             <gco:CharacterString><xsl:value-of select="$metadataStandardVersion"/></gco:CharacterString>
-          </mcp:metadataStandardVersion>
+          </gmd:metadataStandardVersion>
         </xsl:when>
         <xsl:otherwise>
           <xsl:apply-templates select="gmd:metadataStandardVersion"/>
