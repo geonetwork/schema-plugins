@@ -1269,7 +1269,6 @@
         <xsl:call-template name="iso19139Simple">
           <xsl:with-param name="schema" select="$schema"/>
           <xsl:with-param name="edit"   select="$edit"/>
-          <xsl:with-param name="flat"   select="/root/gui/config/metadata-tab/*[name(.)=$currTab]/@flat"/>
         </xsl:call-template>
 			</xsl:when>
 
