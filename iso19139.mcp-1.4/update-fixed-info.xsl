@@ -27,7 +27,7 @@
 		 <xsl:copy>
 		 	<xsl:copy-of select="@*[name(.)!='xsi:schemaLocation']"/>
 			<xsl:attribute name="xsi:schemaLocation">
-				http://www.isotc211.org/2005/gmd/ http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/srv/ http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd http://bluenet3.antcrc.utas.edu.au/mcp/ http://bluenet3.antcrc.utas.edu.au/mcp-1.4/schema.xsd
+				http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd http://bluenet3.antcrc.utas.edu.au/mcp http://bluenet3.antcrc.utas.edu.au/mcp-1.4/schema.xsd
 			</xsl:attribute>
 		 	<xsl:choose>
 				<xsl:when test="not(gmd:fileIdentifier)">
