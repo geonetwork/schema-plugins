@@ -7,7 +7,7 @@
                  xmlns:gco="http://www.isotc211.org/2005/gco"
                  xmlns:geonet="http://www.fao.org/geonetwork"
                  gco:isoType="gmd:MD_Metadata"
-                 xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd">
+                 xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd  http://bluenet3.antcrc.utas.edu.au/mcp http://bluenet3.antcrc.utas.edu.au/mcp-1.4/schema.xsd">
   <gmd:fileIdentifier>
       <gco:CharacterString xmlns:srv="http://www.isotc211.org/2005/srv">4294e6ae-9c7c-462f-a7c5-6cbe0a7c8b90</gco:CharacterString>
   </gmd:fileIdentifier>
