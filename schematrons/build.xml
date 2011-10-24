@@ -24,6 +24,9 @@
 		<ant target="clean-schema-dir">
 			<property name="schema" value="eml-gbif" />
 		</ant>
+		<ant target="clean-schema-dir">
+			<property name="schema" value="iso19135" />
+		</ant>
 	</target>
 
 	<target name="clean-schema-dir">
@@ -94,6 +97,10 @@
 		<ant target="publish-schematron">
 			<property name="rules" value="none" />
 			<property name="schema" value="eml-gbif" />
+		</ant>
+		<ant target="publish-schematron">
+			<property name="rules" value="none" />
+			<property name="schema" value="iso19135" />
 		</ant>
 	</target>
 
