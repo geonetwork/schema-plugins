@@ -20,6 +20,7 @@
 	<property name="iso19139.mcp" value="iso19139.mcp"/>
 	<property name="iso19139.mcp-1.4" value="iso19139.mcp-1.4"/>
 	<property name="anzmeta" value="anzmeta"/>
+	<property name="iso19135" value="iso19135"/>
 	<property name="eml-gbif" value="eml-gbif"/>
 
 	<!-- =============================================================== -->
@@ -38,6 +39,7 @@
 		<mkdir dir ="${dist}"/>
 
 		<zip destfile="${dist}/${iso19139.anzlic}.zip" basedir="${iso19139.anzlic}" excludes=".svn" />
+		<zip destfile="${dist}/${iso19135}.zip" basedir="${iso19135}" excludes=".svn" />
 		<zip destfile="${dist}/${iso19139.mcp}.zip" basedir="${iso19139.mcp}" excludes=".svn" />
 		<zip destfile="${dist}/${iso19139.mcp-1.4}.zip" basedir="${iso19139.mcp-1.4}" excludes=".svn" />
 		<zip destfile="${dist}/${anzmeta}.zip" basedir="${anzmeta}" excludes=".svn" />
