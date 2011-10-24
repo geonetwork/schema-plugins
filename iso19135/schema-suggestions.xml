@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<fields>	
+	<field name="gmd:otherCitationDetails">
+		<suggest name="gco:CharacterString"/>
+		<suggest name="gmx:FileName"/>
+	</field> 
+
+	<field name="gmx:FileName">
+		<suggest name="src"/>
+	</field> 
+	
+	<field name="gmd:CI_OnlineResource">
+		<suggest name="gmd:protocol"/>
+		<suggest name="gmd:name"/>
+		<suggest name="gmd:description"/>
+	</field>
+	
+	<!-- Contact info: suggest all by default. -->
+	<field name="gmd:CI_ResponsibleParty">
+		<suggest name="gmd:individualName"/>
+		<suggest name="gmd:organisationName"/>
+		<suggest name="gmd:positionName"/>
+		<suggest name="gmd:contactInfo"/>
+	</field>
+	
+	<field name="gmd:CI_Contact">
+		<suggest name="gmd:phone"/>
+		<suggest name="gmd:address"/>
+	</field>
+	
+	<field name="gmd:CI_Telephone">
+		<suggest name="gmd:voice"/>
+		<suggest name="gmd:facsimile"/>
+	</field>
+	
+	<field name="gmd:CI_Address">
+		<suggest name="gmd:deliveryPoint"/>
+		<suggest name="gmd:city"/>
+		<suggest name="gmd:administrativeArea"/>
+		<suggest name="gmd:postalCode"/>
+		<suggest name="gmd:country"/>
+		<suggest name="gmd:electronicMailAddress"/>
+	</field>
+	
+	<field name="grg:RE_RegisterManager">
+		<suggest name="grg:name"/>
+		<suggest name="grg:contact"/>
+	</field>
+	
+	<field name="grg:RE_RegisterOwner">
+		<suggest name="grg:name"/>
+		<suggest name="grg:contact"/>
+	</field>
+	
+	<field name="grg:RE_SubmittingOrganization">
+		<suggest name="grg:name"/>
+		<suggest name="grg:contact"/>
+	</field>
+	
+	<field name="grg:RE_RegisterItem">
+		<suggest name="grg:itemIdentifier"/>
+		<suggest name="grg:name"/>
+		<suggest name="grg:status"/>
+		<suggest name="grg:dateAccepted"/>
+		<suggest name="grg:description"/>
+		<suggest name="grg:fieldOfApplication"/>
+	</field>
+	
+</fields>

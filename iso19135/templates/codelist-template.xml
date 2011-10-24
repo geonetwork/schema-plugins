@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grg:RE_Register xmlns:grg="http://www.isotc211.org/2005/grg"
+                 xmlns:gmd="http://www.isotc211.org/2005/gmd"
+                 xmlns:gco="http://www.isotc211.org/2005/gco"
+                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                 uuid="e038c489-2230-4e0e-a820-63832ccd0298">
+   <grg:name>
+      <gco:CharacterString>Codelist template</gco:CharacterString>
+   </grg:name>
+   <grg:contentSummary>
+      <gco:CharacterString>Codelists for ....</gco:CharacterString>
+   </grg:contentSummary>
+   <grg:uniformResourceIdentifier>
+      <gmd:CI_OnlineResource>
+         <gmd:linkage>
+            <gmd:URL></gmd:URL>
+         </gmd:linkage>
+      </gmd:CI_OnlineResource>
+   </grg:uniformResourceIdentifier>
+   <grg:operatingLanguage>
+      <grg:RE_Locale>
+         <grg:name>
+            <gco:CharacterString>English</gco:CharacterString>
+         </grg:name>
+         <grg:language>
+            <gco:CharacterString>eng</gco:CharacterString>
+         </grg:language>
+         <grg:country>
+            <gco:CharacterString></gco:CharacterString>
+         </grg:country>
+         <grg:characterEncoding>
+            <gmd:MD_CharacterSetCode codeListValue="utf8"
+                                     codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode"/>
+         </grg:characterEncoding>
+      </grg:RE_Locale>
+   </grg:operatingLanguage>
+   <grg:alternativeLanguages>
+      <grg:RE_Locale>
+         <grg:name>
+            <gco:CharacterString>English</gco:CharacterString>
+         </grg:name>
+         <grg:language>
+            <gco:CharacterString>eng</gco:CharacterString>
+         </grg:language>
+         <grg:country>
+            <gco:CharacterString></gco:CharacterString>
+         </grg:country>
+         <grg:characterEncoding>
+            <gmd:MD_CharacterSetCode codeListValue="utf8"
+                                     codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode"/>
+         </grg:characterEncoding>
+      </grg:RE_Locale>
+   </grg:alternativeLanguages>
+   <grg:version>
+      <grg:RE_Version>
+         <grg:versionNumber>
+            <gco:CharacterString>1.0</gco:CharacterString>
+         </grg:versionNumber>
+         <grg:versionDate>
+            <gco:Date>1800-01-01</gco:Date>
+         </grg:versionDate>
+      </grg:RE_Version>
+   </grg:version>
+   <grg:owner>
+      <grg:RE_RegisterOwner>
+         <grg:name>
+            <gco:CharacterString>Owner Name</gco:CharacterString>
+         </grg:name>
+      </grg:RE_RegisterOwner>
+   </grg:owner>
+   <grg:submitter>
+      <grg:RE_SubmittingOrganization>
+         <grg:name>
+            <gco:CharacterString>Submitter Organization Name</gco:CharacterString>
+         </grg:name>
+      </grg:RE_SubmittingOrganization>
+   </grg:submitter>
+   <grg:containedItemClass>
+	 	<grg:RE_ItemClass>
+     	<grg:name>
+         <gco:CharacterString>grg:RE_RegisterItem</gco:CharacterString>
+      </grg:name>
+      <grg:technicalStandard>
+         <gmd:CI_Citation>
+            <gmd:title>
+               <gco:CharacterString>ISO19135</gco:CharacterString>
+            </gmd:title>
+            <gmd:date>
+               <gmd:CI_Date>
+                  <gmd:date>
+                     <gco:Date>2005-10-15</gco:Date>
+                  </gmd:date>
+                  <gmd:dateType>
+                     <gmd:CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode"
+                                          codeListValue="creation"/>
+                  </gmd:dateType>
+               </gmd:CI_Date>
+            </gmd:date>
+            <gmd:edition>
+               <gco:CharacterString>First</gco:CharacterString>
+            </gmd:edition>
+         </gmd:CI_Citation>
+      </grg:technicalStandard>
+	 	</grg:RE_ItemClass>
+   </grg:containedItemClass>
+   <grg:manager>
+      <grg:RE_RegisterManager>
+         <grg:name>
+            <gco:CharacterString>Manager Name</gco:CharacterString>
+         </grg:name>
+      </grg:RE_RegisterManager>
+   </grg:manager>
+   <grg:containedItem>
+      <grg:RE_RegisterItem>
+         <grg:itemIdentifier>
+            <gco:Integer>1</gco:Integer>
+         </grg:itemIdentifier>
+         <grg:name>
+            <gco:CharacterString>codelist item name</gco:CharacterString>
+         </grg:name>
+         <grg:status>
+            <grg:RE_ItemStatus>valid</grg:RE_ItemStatus>
+         </grg:status>
+         <grg:dateAccepted>
+            <gco:Date>1800-01-01</gco:Date>
+         </grg:dateAccepted>
+         <grg:definition>
+            <gco:CharacterString>codelist description</gco:CharacterString>
+         </grg:definition>
+				 <grg:fieldOfApplication>
+            <grg:RE_FieldOfApplication>
+               <grg:name>
+                  <gco:CharacterString>metadata</gco:CharacterString>
+               </grg:name>
+               <grg:description>
+                  <gco:CharacterString>This codelist item is applied to my metadata</gco:CharacterString>
+               </grg:description>
+            </grg:RE_FieldOfApplication>
+         </grg:fieldOfApplication>
+      </grg:RE_RegisterItem>
+   </grg:containedItem>
+</grg:RE_Register>

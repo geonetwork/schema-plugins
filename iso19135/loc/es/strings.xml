@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strings>
+	<registerTab>Register Info</registerTab>
+	<languageTab>Languages</languageTab>
+	<ownerTab>Owner</ownerTab>
+	<submitterTab>Submitter</submitterTab>
+	<managerTab>Manager</managerTab>
+	<registerItemsTab>Register Items</registerItemsTab>
+	<allTab>All</allTab>
+</strings>
