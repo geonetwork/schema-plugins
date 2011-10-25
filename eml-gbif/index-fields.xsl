@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 								xmlns:dc="http://purl.org/dc/terms/" 
 								xmlns:eml="eml://ecoinformatics.org/eml-2.1.1">	
 
@@ -189,24 +189,26 @@
 	</xsl:template>
 
 	<!-- ========================================================================================= -->
-	<!-- latlon coordinates + 360, zero-padded, indexed, not stored, not tokenized -->
+	<!-- latlon coordinates indexed as numeric. -->
 	
 	<xsl:template match="*" mode="latLon">
-	
+
+		<xsl:variable name="format" select="'##.00'"></xsl:variable>
+
 		<xsl:for-each select="westBoundingCoordinate">
-			<Field name="westBL" string="{string(.) + 360}" store="true" index="true"/>
+			<Field name="westBL" string="{format-number(westBoundingCoordinate, $format)}" store="true" index="true"/>
 		</xsl:for-each>
 	
 		<xsl:for-each select="southBoundingCoordinate">
-			<Field name="southBL" string="{string(.) + 360}" store="true" index="true"/>
+			<Field name="southBL" string="{format-number(southBoundingCoordinate, $format)}" store="true" index="true"/>
 		</xsl:for-each>
 	
 		<xsl:for-each select="eastBoundingCoordinate">
-			<Field name="eastBL" string="{string(.) + 360}" store="true" index="true"/>
+			<Field name="eastBL" string="{format-number(eastBoundingCoordinate, $format)}" store="true" index="true"/>
 		</xsl:for-each>
 	
 		<xsl:for-each select="northBoundingCoordinate">
-			<Field name="northBL" string="{string(.) + 360}" store="true" index="true"/>
+			<Field name="northBL" string="{format-number(northBoundingCoordinate, $format)}" store="true" index="true"/>
 		</xsl:for-each>
 	
 	</xsl:template>

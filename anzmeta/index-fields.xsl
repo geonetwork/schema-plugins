@@ -24,19 +24,8 @@
 			<xsl:apply-templates select="/anzmeta/descript/abstract">
 				<xsl:with-param name="token" select="'true'"/>
 			</xsl:apply-templates>
-			
-			<xsl:apply-templates select="/anzmeta/spdom/bounding/westbc" mode="latLon">
-				<xsl:with-param name="name" select="'westBL'"/>
-			</xsl:apply-templates>
-			<xsl:apply-templates select="/anzmeta/spdom/bounding/eastbc" mode="latLon">
-				<xsl:with-param name="name" select="'eastBL'"/>
-			</xsl:apply-templates>
-			<xsl:apply-templates select="/anzmeta/spdom/bounding/southbc" mode="latLon">
-				<xsl:with-param name="name" select="'southBL'"/>
-			</xsl:apply-templates>
-			<xsl:apply-templates select="/anzmeta/spdom/bounding/northbc" mode="latLon">
-				<xsl:with-param name="name" select="'northBL'"/>
-			</xsl:apply-templates>
+		
+			<xsl:apply-templates select="/anzmeta/descript/spdom/bounding" mode="latLon"/>
 			
 			<xsl:apply-templates select="/anzmeta/citeinfo/origin/jurisdic/keyword">
 				<xsl:with-param name="name" select="'keyword'"/>
@@ -82,8 +71,22 @@
 	
 	<!-- latlon coordinates + 360, zero-padded, indexed, not stored, not tokenized -->
 	<xsl:template match="*" mode="latLon">
-		<xsl:param name="name" select="name(.)"/>
-		<Field name="{$name}" string="{string(.) + 360}" store="true" index="true"/>
+		<xsl:variable name="format" select="'##.00'"></xsl:variable>
+		<xsl:if test="number(westbc)">
+			<Field name="westBL" string="{format-number(westbc, $format)}" store="true" index="true"/>
+		</xsl:if>
+	
+		<xsl:if test="number(southbc)">
+			<Field name="southBL" string="{format-number(southbc, $format)}" store="true" index="true"/>
+		</xsl:if>
+	
+		<xsl:if test="number(eastbc)">
+			<Field name="eastBL" string="{format-number(eastbc, $format)}" store="true" index="true"/>
+		</xsl:if>
+	
+		<xsl:if test="number(northbc)">
+			<Field name="northBL" string="{format-number(northbc, $format)}" store="true" index="true"/>
+		</xsl:if>
 	</xsl:template>
 	
 	<!-- ========================================================================================= -->

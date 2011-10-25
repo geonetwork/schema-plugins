@@ -368,39 +368,33 @@
 	</xsl:template>
 	
 	<!-- ========================================================================================= -->
-	<!-- latlon coordinates + 360, zero-padded, indexed, not stored, not tokenized -->
+	<!-- latlon coordinates indexed as numeric. -->
 	
 	<xsl:template match="*" mode="latLon">
-		<xsl:variable name="westBL"  select="number(gmd:westBoundLongitude/gco:Decimal)"/>
-		<xsl:variable name="eastBL"  select="number(gmd:eastBoundLongitude/gco:Decimal)"/>
-		<xsl:variable name="southBL" select="number(gmd:southBoundLatitude/gco:Decimal)"/>
-		<xsl:variable name="northBL" select="number(gmd:northBoundLatitude/gco:Decimal)"/>
-		<xsl:choose>
-			<xsl:when test="$westBL=NaN or $eastBL=NaN or $northBL=NaN or $southBL=NaN">
-			    <!-- don't index invalid bounding boxes --> 
-			</xsl:when> 
-			<xsl:when test="$eastBL &lt; $westBL">
-				<Field name="crossesMeridian" string="true" store="true" index="true"/>
-				<!-- Split extents crossing anti-meridian into two bounding boxes for searching purposes -->
-				<!-- Eastern bounding box -->
-				<Field name="westBL"   string="{$westBL + 360}" store="true" index="true"/>
-				<Field name="eastBL"   string="{180 + 360}" store="true" index="true"/>
-				<Field name="northBL"  string="{$northBL + 360}" store="true" index="true"/>
-				<Field name="southBL"  string="{$southBL + 360}" store="true" index="true"/>
-				<!-- Western bounding box -->
-				<Field name="westBL2"  string="{-180 + 360}" store="true" index="true"/>
-				<Field name="eastBL2"  string="{$eastBL + 360}" store="true" index="true"/>
-				<Field name="northBL2" string="{$northBL + 360}" store="true" index="true"/>
-				<Field name="southBL2" string="{$southBL + 360}" store="true" index="true"/>
-			</xsl:when>
-			<xsl:otherwise>		
-				<Field name="crossesMeridian" string="false" store="true" index="true"/>
-				<Field name="westBL"  string="{$westBL + 360}" store="true" index="true"/>
-				<Field name="eastBL"  string="{$eastBL + 360}" store="true" index="true"/>
-				<Field name="northBL" string="{$northBL + 360}" store="true" index="true"/>
-				<Field name="southBL" string="{$southBL + 360}" store="true" index="true"/>
-			</xsl:otherwise>
-		</xsl:choose>	
+		<xsl:variable name="format" select="'##.00'"></xsl:variable>
+    <xsl:for-each select="gmd:westBoundLongitude">
+      <xsl:if test="number(gco:Decimal)">
+        <Field name="westBL" string="{format-number(gco:Decimal, $format)}" store="true" index="true"/>
+      </xsl:if>
+    </xsl:for-each>
+
+    <xsl:for-each select="gmd:southBoundLatitude">
+      <xsl:if test="number(gco:Decimal)">
+        <Field name="southBL" string="{format-number(gco:Decimal, $format)}" store="true" index="true"/>
+      </xsl:if>
+    </xsl:for-each>
+
+    <xsl:for-each select="gmd:eastBoundLongitude">
+      <xsl:if test="number(gco:Decimal)">
+        <Field name="eastBL" string="{format-number(gco:Decimal, $format)}" store="true" index="true"/>
+      </xsl:if>
+    </xsl:for-each>
+
+    <xsl:for-each select="gmd:northBoundLatitude">
+      <xsl:if test="number(gco:Decimal)">
+        <Field name="northBL" string="{format-number(gco:Decimal, $format)}" store="true" index="true"/>
+      </xsl:if>
+		</xsl:for-each>	
 	</xsl:template>
 
 	<!-- ========================================================================================= -->

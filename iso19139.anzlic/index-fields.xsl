@@ -422,26 +422,33 @@
 	</xsl:template>
 	
 	<!-- ========================================================================================= -->
-	<!-- latlon coordinates + 360, zero-padded, indexed, not stored, not tokenized -->
+	<!-- latlon coordinates indexed as numeric. -->
 	
 	<xsl:template match="*" mode="latLon">
-	
-		<xsl:for-each select="gmd:westBoundLongitude">
-			<Field name="westBL" string="{string(gco:Decimal) + 360}" store="true" index="true"/>
-		</xsl:for-each>
-	
-		<xsl:for-each select="gmd:southBoundLatitude">
-			<Field name="southBL" string="{string(gco:Decimal) + 360}" store="true" index="true"/>
-		</xsl:for-each>
-	
-		<xsl:for-each select="gmd:eastBoundLongitude">
-			<Field name="eastBL" string="{string(gco:Decimal) + 360}" store="true" index="true"/>
-		</xsl:for-each>
-	
-		<xsl:for-each select="gmd:northBoundLatitude">
-			<Field name="northBL" string="{string(gco:Decimal) + 360}" store="true" index="true"/>
-		</xsl:for-each>
-	
+		<xsl:variable name="format" select="'##.00'"></xsl:variable>
+    <xsl:for-each select="gmd:westBoundLongitude">
+      <xsl:if test="number(gco:Decimal)">
+        <Field name="westBL" string="{format-number(gco:Decimal, $format)}" store="true" index="true"/>
+      </xsl:if>
+    </xsl:for-each>
+
+    <xsl:for-each select="gmd:southBoundLatitude">
+      <xsl:if test="number(gco:Decimal)">
+        <Field name="southBL" string="{format-number(gco:Decimal, $format)}" store="true" index="true"/>
+      </xsl:if>
+    </xsl:for-each>
+
+    <xsl:for-each select="gmd:eastBoundLongitude">
+      <xsl:if test="number(gco:Decimal)">
+        <Field name="eastBL" string="{format-number(gco:Decimal, $format)}" store="true" index="true"/>
+      </xsl:if>
+    </xsl:for-each>
+
+    <xsl:for-each select="gmd:northBoundLatitude">
+      <xsl:if test="number(gco:Decimal)">
+        <Field name="northBL" string="{format-number(gco:Decimal, $format)}" store="true" index="true"/>
+      </xsl:if>
+    </xsl:for-each>	
 	</xsl:template>
 
 	<!-- ========================================================================================= -->
