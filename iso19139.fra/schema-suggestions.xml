@@ -240,5 +240,9 @@
     <field name="gmd:spatialResolution">
         <suggest name="gmd:MD_Resolution"/>
     </field>
-
+	
+	
+	<field name="gmd:RS_Identifier">
+		<suggest name="gmd:codeSpace"/>
+	</field>
 </fields>
