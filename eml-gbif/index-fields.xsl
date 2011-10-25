@@ -195,21 +195,21 @@
 
 		<xsl:variable name="format" select="'##.00'"></xsl:variable>
 
-		<xsl:for-each select="westBoundingCoordinate">
+		<xsl:if test="number(westBoundingCoordinate)">
 			<Field name="westBL" string="{format-number(westBoundingCoordinate, $format)}" store="true" index="true"/>
-		</xsl:for-each>
+		</xsl:if>
 	
-		<xsl:for-each select="southBoundingCoordinate">
+		<xsl:if test="number(southBoundingCoordinate)">
 			<Field name="southBL" string="{format-number(southBoundingCoordinate, $format)}" store="true" index="true"/>
-		</xsl:for-each>
+		</xsl:if>
 	
-		<xsl:for-each select="eastBoundingCoordinate">
+		<xsl:if test="number(eastBoundingCoordinate)">
 			<Field name="eastBL" string="{format-number(eastBoundingCoordinate, $format)}" store="true" index="true"/>
-		</xsl:for-each>
+		</xsl:if>
 	
-		<xsl:for-each select="northBoundingCoordinate">
+		<xsl:if test="number(northBoundingCoordinate)">
 			<Field name="northBL" string="{format-number(northBoundingCoordinate, $format)}" store="true" index="true"/>
-		</xsl:for-each>
+		</xsl:if>
 	
 	</xsl:template>
 
