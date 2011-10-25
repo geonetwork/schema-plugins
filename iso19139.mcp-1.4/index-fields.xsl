@@ -89,6 +89,10 @@
 			<xsl:for-each select="mcp:dataParameters/mcp:DP_DataParameters/mcp:dataParameter">
 				<xsl:for-each select="mcp:DP_DataParameter/mcp:parameterName">
 					<Field name="dataparam" string="{mcp:DP_ParameterName/mcp:name/gco:CharacterString}" store="true" index="true"/>
+					
+					<xsl:if test="mcp:DP_ParameterName/mcp:type/mcp:DP_TypeCode/@codeListValue='longName'">
+						<Field name="longParamName" string="{mcp:DP_ParameterName/mcp:name/gco:CharacterString}" store="true" index="true"/>
+					</xsl:if>
 				</xsl:for-each>
 			</xsl:for-each>
 
@@ -264,16 +268,15 @@
 				<xsl:if test="normalize-space($mimetype)!=''">
           <Field name="mimetype" string="{$mimetype}" store="true" index="true"/>
 				</xsl:if>
-			</xsl:for-each>  
-			
-			  <xsl:if test="contains(., 'WWW:DOWNLOAD')">
-			    <Field name="download" string="true" store="false" index="true"/>
-			  </xsl:if>
+				
+				<xsl:if test="contains(., 'WWW:DOWNLOAD')">
+					<Field name="download" string="true" store="false" index="true"/>
+				</xsl:if>
 			  
-			  <xsl:if test="contains(., 'OGC:WMS')">
-			    <Field name="dynamic" string="true" store="false" index="true"/>
-			  </xsl:if>
-			
+				<xsl:if test="contains(., 'OGC:WMS')">
+					<Field name="dynamic" string="true" store="false" index="true"/>
+				</xsl:if>
+			</xsl:for-each>  
 		</xsl:for-each>
 
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
