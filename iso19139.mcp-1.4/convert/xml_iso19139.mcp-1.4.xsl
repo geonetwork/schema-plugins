@@ -39,7 +39,7 @@
 	<!-- Convert mcp:EX_Extent to gmd:EX_Extent -->
 	<xsl:template match="mcp:EX_Extent">
 		<gmd:EX_Extent>
-			<xsl:apply-templates select="@*|*"/>
+			<xsl:apply-templates select="@*[name()!='gco:isoType']|*"/>
 		</gmd:EX_Extent>
 	</xsl:template>
 
