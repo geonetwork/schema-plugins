@@ -103,4 +103,6 @@
 	<taxon>Taxonomic Names</taxon>
 	<temporalExtent>Time Span:</temporalExtent>
 	<uuid>Universal Unique Identifier (UUID)</uuid>
+	<xml_iso19139.mcp-1.4>Save this metadata as an ISO19139 Marine Community Profile XML file</xml_iso19139.mcp-1.4>
+	<xml_iso19139.mcp-1.4Torifcs>Save this metadata as an ANDS rifcs XML file</xml_iso19139.mcp-1.4Torifcs>
 </strings>

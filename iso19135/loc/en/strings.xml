@@ -7,4 +7,5 @@
 	<managerTab>Manager</managerTab>
 	<registerItemsTab>Register Items</registerItemsTab>
 	<allTab>All</allTab>
+	<xml_iso19135>Save this metadata as an ISO19135 XML file</xml_iso19135>
 </strings>

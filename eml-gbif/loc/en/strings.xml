@@ -12,4 +12,6 @@
 	<spatialExtentTab>Spatial Extent</spatialExtentTab>
 	<temporalExtentTab>Temporal Ext.</temporalExtentTab>
 	<otherInfo>Other Information</otherInfo>
+	<xml_eml-gbif>Save this metadata as an EML-GBIF XML file</xml_eml-gbif>
+	<xml_eml-gbifTorifcs>Save this metadata as an ANDS rifcs XML file</xml_eml-gbifTorifcs>
 </strings>

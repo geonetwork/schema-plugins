@@ -105,4 +105,7 @@
 	<taxonSearch>Search APC/AFD for Taxonomic Names</taxonSearch>
 	<temporalExtent>Time Span:</temporalExtent>
 	<uuid>Universal Unique Identifier (UUID)</uuid>
+	<xml_iso19139.mcp>Save this metadata as an ISO19139 Marine Community Profile XML file</xml_iso19139.mcp>
+	<xml_iso19139.mcp-1.4>Save this metadata as a Version 1.4 ISO19139 Marine Community Profile XML file</xml_iso19139.mcp-1.4>
+	<xml_iso19139.mcpTorifcs>Save this metadata as an ANDS rifcs XML file</xml_iso19139.mcpTorifcs>
 </strings>
