@@ -146,19 +146,19 @@
 					<Field name="taxonPub"			string="{string(PublicationRef)}" store="true" index="true"/>
 
 					<!-- index both complete name and lsid of this species -->
-					<Field name="taxonName"		string="{string(NameComplete)}" store="true" index="true"/>
-					<Field name="taxonName"		string="{string(@id)}" store="true" index="true"/>
+					<Field name="taxon"		string="{string(NameComplete)}" store="true" index="true"/>
+					<Field name="taxon"		string="{string(@id)}" store="true" index="true"/>
 
 					<!-- Also index all synonyms and their lsids from this record so 
 							 that searches on synonyms will also pick up this record -->
 					<xsl:for-each select="AcceptedFor/AcceptedForNameRef">
 						<xsl:variable name="complete" select="normalize-space(ibis:NameComplete)"/>
 						<xsl:if test="$complete!=''">
-							<Field name="taxonName"		string="{$complete}" store="true" index="true"/>
+							<Field name="taxon"		string="{$complete}" store="true" index="true"/>
 						</xsl:if>
 						<xsl:variable name="ibisId" select="normalize-space(@ibis:objectidRef)"/>
 						<xsl:if test="$ibisId!=''">
-							<Field name="taxonName"		string="{concat('urn:lsid:biodiversity.org.au:apni.taxon:',$ibisId)}" store="true" index="true"/>
+							<Field name="taxon"		string="{concat('urn:lsid:biodiversity.org.au:apni.taxon:',$ibisId)}" store="true" index="true"/>
 						</xsl:if>
 					</xsl:for-each>
 
