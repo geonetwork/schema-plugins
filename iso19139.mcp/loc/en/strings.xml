@@ -26,17 +26,16 @@
 	<licenseSelectorSelector>2. Select/Change the License</licenseSelectorSelector>
 
 	<!-- form help strings -->
-	<dataparamHelp>Click in the data parameter field to retrieve data parameters from the metadata</dataparamHelp>
-	<keywordsHelp>Click in the keywords field to retrieve keywords from the metadata</keywordsHelp>
+	<dataparamHelp>Pick data parameters from existing metadata records</dataparamHelp>
 	<keywordsHelpRemote>Enter a keyword (Australian users of Marine data should use the Keyword MARINE to limit the remote search)</keywordsHelpRemote>
-	<taxonHelp>Click in the taxonomic names field to retrieve taxonomic names from the metadata</taxonHelp>
+	<taxonHelp>Pick taxonomic names from existing metadata records</taxonHelp>
 	<!-- new strings - SP 2.5 -->
 	<showRemoteHTML>Show HTML from remote server</showRemoteHTML>
 	<acceptanceMessage>By pressing the Accept button below you are agreeing to abide by the constraints shown on this page</acceptanceMessage>
 	<canBeViewed>Records published to these groups</canBeViewed>
 	<cannotBeViewed>Records NOT published to these groups</cannotBeViewed>
 	<credit>Credit</credit>
-	<creditHelp>>Click in the credit field to retrieve credit fields from the metadata</creditHelp>
+	<creditHelp>Pick individuals/organisations given credit in existing metadata records<creditHelp>
 	<creditlink>Search for other records with this Credit</creditlink>
 
 	<!-- logo management NB Not part of mcp but must be added -->
