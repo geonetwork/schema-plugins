@@ -35,7 +35,7 @@
 	<canBeViewed>Records published to these groups</canBeViewed>
 	<cannotBeViewed>Records NOT published to these groups</cannotBeViewed>
 	<credit>Credit</credit>
-	<creditHelp>Pick individuals/organisations given credit in existing metadata records<creditHelp>
+	<creditHelp>Pick individuals/organisations given credit in existing metadata records</creditHelp>
 	<creditlink>Search for other records with this Credit</creditlink>
 
 	<!-- logo management NB Not part of mcp but must be added -->
