@@ -678,4 +678,10 @@
 			</xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
+
+	<!-- =================================================================== -->
+	<!-- === Javascript used by functions in this presentation XSLT          -->
+	<!-- =================================================================== -->
+	<xsl:template name="iso19139.fra-javascript"/>
+
 </xsl:stylesheet>

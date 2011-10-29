@@ -531,4 +531,9 @@
     </xsl:choose>
   </xsl:template>
 
+	<!-- =================================================================== -->
+	<!-- === Javascript used by functions in this presentation XSLT          -->
+	<!-- =================================================================== -->
+	<xsl:template name="iso19135-javascript"/>
+
 </xsl:stylesheet>

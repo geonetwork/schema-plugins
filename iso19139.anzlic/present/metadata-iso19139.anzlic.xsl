@@ -1086,5 +1086,10 @@
 	<!-- match everything else and do nothing - leave that to iso19139 mode -->
 	<xsl:template mode="iso19139.anzlic" match="*|@*"/> 
 
+	<!-- =================================================================== -->
+	<!-- === Javascript used by functions in this presentation XSLT          -->
+	<!-- =================================================================== -->
+	<xsl:template name="iso19139.anzlic-javascript"/>
+
 
 </xsl:stylesheet>

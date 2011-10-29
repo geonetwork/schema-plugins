@@ -1794,9 +1794,9 @@
 		</xsl:for-each>
 	</xsl:template>
 
-	<!-- ===================================================================== -->
+	<!-- ==================================================================== -->
   <!-- === iso19139.mcp brief formatting === -->
-  <!-- ===================================================================== -->
+  <!-- ==================================================================== -->
 
 	<xsl:template match="iso19139.mcpBrief">
 		<metadata>
@@ -1812,4 +1812,141 @@
 	<!-- match everything else and do nothing - leave that to iso19139 mode -->
 	<xsl:template mode="iso19139.mcp" match="*|@*"/> 
 
+	<!-- ==================================================================== -->
+  <!-- === Javascript used by functions in this presentation XSLT -->
+  <!-- ==================================================================== -->
+
+	<!-- Javascript used by functions in this XSLT -->
+	<xsl:template name="iso19139.mcp-javascript">
+		<xsl:message>Adding iso19139.mcp-javascript</xsl:message>
+		<script type="text/javascript">
+		<![CDATA[
+/**
+ * JavaScript Functions to support Marine Community Profile
+ */
+
+function submitTaxonSearch(refToUpdate) {
+				// submit search to APC/AFD search URL with params
+				// using Ajax.Updater
+
+				$('taxonSearchButton').hide();
+				$('taxonSearchWaitMessage').show();
+
+
+				var forwardUrl = 'http://biodiversity.org.au/name/?';
+				
+				var forwardTempBeg =
+					'<request>'+
+					'   <site>'+
+					'      <url>{URL}</url>'+
+					'      <type>other</type>'+
+					'   </site>'+
+					'   <params>';
+				var forwardTempEnd = '</params>'+
+					'</request>';
+
+				// build params from form
+				var hmParams = $('taxonSearchForm').serialize(true);
+				var params = '';
+
+				for (var name in hmParams) {
+					params = params + '<'+name+'>'+hmParams[name]+'</'+name+'>\n';
+				}
+		
+				var request = str.substitute(forwardTempBeg, { URL : forwardUrl })+params+forwardTempEnd;
+
+				ker.send('xml.forward.taxonsearch', request, ker.wrap(this, retrieve_OK));
+				
+				function retrieve_OK(xmlRes) {
+					var selectedId = 'assignedTaxonName';
+					if (xmlRes.nodeName == 'error')
+						ker.showError('taxonSearchError', xmlRes);
+					else {
+						var list = xml.children(xmlRes);
+						var taxonSearchResults = $('taxonSearchResults');
+						taxonSearchResults.update(); // clear it out
+						for (var i=0; i < list.length; i++) {
+							var data = xml.toObject(list[i]);
+
+							var divSel = new Element('div', { 'id': 'row_'+i, 'style': 'position:relative;left:-20px;top:-20px' });
+							var divName = new Element('div', { 'class': 'table-left' }).update(data.name);
+							divName.insert(divSel, divName);
+							var divScore = new Element('div', { 'class': 'table-middle' }).update(data.score);
+							var anchor = new Element('a', { 'class': 'content', 'onclick': "clickSetRef('"+selectedId+"','"+refToUpdate+"','"+data.uri+"','"+data.name+"','"+i+"');" }).update('Use this name');
+							var divAnchor = new Element('div', { 'class': 'table-right' }).update(anchor);
+							var divTableRow = new Element('div', { 'class': 'table-row' });
+							divTableRow.insert(divName, divTableRow);
+							divTableRow.insert(divScore, divTableRow);
+							divTableRow.insert(divAnchor, divTableRow);
+							taxonSearchResults.insert(divTableRow, taxonSearchResults);
+						}
+					}
+
+					$('taxonSearchWaitMessage').hide();
+					$('taxonSearchResultsHeader').show();
+					$('taxonSearchResults').show();
+					$('taxonSearchButton').show();
+				}
+
+}
+
+function clickSetRef(selectedId, refToUpdate, uri, name, index) {
+					$(refToUpdate).value = uri + '.xml';
+
+					var selected = $(selectedId);
+					if (selected != null) {
+						selected.remove();
+					}
+					var spanSel = new Element('span', { 'id': selectedId, 'class': 'searchHelpFrame', 'style': 'z-index:1000;color:#ff0000;opacity:0.75' }).update('Selected');
+					$('row_'+index).insert(spanSel);
+}
+							
+function startTaxonSearch(inputFieldToUpdate, taxonSearchTitle) {
+	pars = "&ref="+inputFieldToUpdate;
+	new Ajax.Request(
+		getGNServiceURL('prepare.taxon.search'),
+			{
+				method: 'get',
+				parameters: pars,
+				onSuccess: function(req) {
+					Modalbox.show(req.responseText ,{title: taxonSearchTitle, height: 600, width: 800} );
+				},
+				onFailure: function(req) {
+					alert("ERROR: "+getGNServiceURL('prepare.taxon.search')+" failed: status "+req.status+" text: "+req.statusText+" - Try again later?");
+				}
+			}
+	);
+}
+
+function showCommons(select) {
+	var commons = $(select).value;
+
+	if (commons == 'Creative Commons') $("creative").show();
+	else $("creative").hide();
+
+	if (commons == 'Data Commons') 		 $("data").show();
+	else $("data").hide();
+}
+
+function doCommonsAction(action, name, licenseurl, type, id)
+{
+	var top = findPos($(id));
+	setBunload(false);
+  document.mainForm.name.value = $(name).value;
+  document.mainForm.licenseurl.value = licenseurl;
+  document.mainForm.type.value = type;
+	document.mainForm.position.value = top;
+  doAction(action);
+}
+
+function doResetCommonsAction(action, name, licenseurl, type, id, ref)
+{
+	$(ref).value = '';
+	document.mainForm.ref.value = '';
+	doCommonsAction(action, name, licenseurl, type, id);
+}
+
+		]]>
+		</script>
+	</xsl:template>
 </xsl:stylesheet>

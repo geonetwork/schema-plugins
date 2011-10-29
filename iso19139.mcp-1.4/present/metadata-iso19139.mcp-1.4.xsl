@@ -201,4 +201,9 @@
 		</metadata>
 	</xsl:template>
 
+	<!-- =================================================================== -->
+	<!-- === Javascript used by functions in this presentation XSLT          -->
+	<!-- =================================================================== -->
+	<xsl:template name="iso19139.mcp-1.4-javascript"/>
+
 </xsl:stylesheet>

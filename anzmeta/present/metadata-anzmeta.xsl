@@ -484,4 +484,9 @@ elsewhere -->
 	 </xsl:for-each>
 	</xsl:template>
 
+	<!-- =================================================================== -->
+	<!-- === Javascript used by functions in this presentation XSLT          -->
+	<!-- =================================================================== -->
+	<xsl:template name="anzmeta-javascript"/>
+
 </xsl:stylesheet>
