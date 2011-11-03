@@ -171,7 +171,6 @@
 			<xsl:for-each select="*/gmd:MD_Keywords">
 				<xsl:for-each select="gmd:keyword/gco:CharacterString">
 					<Field name="keyword" string="{string(.)}" store="true" index="true"/>
-					<Field name="keyword" string="{string(.)}" store="true" index="true"/>
 					<Field name="subject" string="{string(.)}" store="true" index="true"/>
 				</xsl:for-each>
 
