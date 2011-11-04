@@ -1818,7 +1818,6 @@
 
 	<!-- Javascript used by functions in this XSLT -->
 	<xsl:template name="iso19139.mcp-javascript">
-		<xsl:message>Adding iso19139.mcp-javascript</xsl:message>
 		<script type="text/javascript">
 		<![CDATA[
 /**
