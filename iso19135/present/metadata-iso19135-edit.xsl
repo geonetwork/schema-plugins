@@ -273,64 +273,19 @@
 		<xsl:param name="tabLink"/>
 
 		<xsl:if test="/root/gui/config/metadata-tab/advanced">
-			<xsl:call-template name="displayTab"> <!-- non existent tab - by packages -->
-				<xsl:with-param name="tab"     select="'packages'"/>
-				<xsl:with-param name="text"    select="/root/gui/strings/byPackage"/>
-				<xsl:with-param name="tabLink" select="''"/>
-			</xsl:call-template>
-			
-			<xsl:call-template name="displayTab">
-				<xsl:with-param name="tab"     select="'register'"/>
-				<xsl:with-param name="text"    select="/root/gui/schemas/iso19135/strings/registerTab"/>
-				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
-				<xsl:with-param name="tabLink" select="$tabLink"/>
-			</xsl:call-template>
-		
-			<xsl:call-template name="displayTab">
-				<xsl:with-param name="tab"     select="'language'"/>
-				<xsl:with-param name="text"    select="/root/gui/schemas/iso19135/strings/languageTab"/>
-				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
-				<xsl:with-param name="tabLink" select="$tabLink"/>
-			</xsl:call-template>
-
-			<xsl:call-template name="displayTab">
-				<xsl:with-param name="tab"     select="'owner'"/>
-				<xsl:with-param name="text"    select="/root/gui/schemas/iso19135/strings/ownerTab"/>
-				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
-				<xsl:with-param name="tabLink" select="$tabLink"/>
-				<xsl:with-param name="highlighted" select="true()"/>
-			</xsl:call-template>
-
-			<xsl:call-template name="displayTab">
-				<xsl:with-param name="tab"     select="'submitter'"/>
-				<xsl:with-param name="text"    select="/root/gui/schemas/iso19135/strings/submitterTab"/>
-				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
-				<xsl:with-param name="tabLink" select="$tabLink"/>
-				<xsl:with-param name="highlighted" select="true()"/>
-			</xsl:call-template>
-
-			<xsl:call-template name="displayTab">
-				<xsl:with-param name="tab"     select="'manager'"/>
-				<xsl:with-param name="text"    select="/root/gui/schemas/iso19135/strings/managerTab"/>
-				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
-				<xsl:with-param name="tabLink" select="$tabLink"/>
-			</xsl:call-template>
-	
-			<xsl:call-template name="displayTab">
-				<xsl:with-param name="tab"     select="'registerItems'"/>
-				<xsl:with-param name="text"    select="/root/gui/schemas/iso19135/strings/registerItemsTab"/>
-				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
-				<xsl:with-param name="tabLink" select="$tabLink"/>
-			</xsl:call-template>
-
-			<xsl:call-template name="displayTab">
-				<xsl:with-param name="tab"     select="'All'"/>
-				<xsl:with-param name="text"    select="/root/gui/schemas/iso19135/strings/allTab"/>
-				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
-				<xsl:with-param name="tabLink" select="$tabLink"/>
-			</xsl:call-template>
-		</xsl:if>
-
+      <xsl:call-template name="mainTab">
+        <xsl:with-param name="title" select="/root/gui/strings/byPackage"/>
+        <xsl:with-param name="default">register</xsl:with-param>
+        <xsl:with-param name="menu">
+          <item label="register">register</item>
+          <item label="language">language</item>
+          <item label="owner">owner</item>
+          <item label="submitter">submitter</item>
+          <item label="manager">manager</item>
+          <item label="registerItems">registerItems</item>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:if>
 	</xsl:template>
 	
 	<!-- =================================================================== -->

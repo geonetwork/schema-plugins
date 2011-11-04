@@ -24,24 +24,11 @@
     </xsl:apply-templates>
   </xsl:template>	
 
-	<!-- CompleteTab template - eml-gbif just calls completeTab from 
-	     metadata-utils.xsl -->
+	<!-- CompleteTab template - eml-gbif does default tabs here only 
+	     at the moment -->
 	<xsl:template name="eml-gbifCompleteTab">
 		<xsl:param name="tabLink"/>
 
-		<xsl:call-template name="displayTab">
-      <xsl:with-param name="tab"     select="'dataset'"/>
-      <xsl:with-param name="text"    select="'Dataset'"/>
-      <xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
-      <xsl:with-param name="tabLink" select="$tabLink"/>
-    </xsl:call-template>
-
-		<xsl:call-template name="displayTab">
-      <xsl:with-param name="tab"     select="'additional'"/>
-      <xsl:with-param name="text"    select="'Additional'"/>
-      <xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
-      <xsl:with-param name="tabLink" select="$tabLink"/>
-    </xsl:call-template>
 	</xsl:template>
 
 	<!-- default template -->
