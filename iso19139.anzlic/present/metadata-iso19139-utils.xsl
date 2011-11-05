@@ -228,14 +228,17 @@
 		        				<xsl:variable name="profile"  select="/root/gui/session/profile"/>
 		        				<xsl:variable name="childCount"  select="/root/gui/relation/children/response/summary/@count"/>
 		        				<xsl:variable name="childrenIds">
-		        					<xsl:for-each select="/root/gui/relation/children/response/MD_Metadata">
+		        					<xsl:for-each select="/root/gui/relation/children/response/metadata">
 		        						<xsl:value-of select="concat(geonet:info/id,',')"/>
 		        					</xsl:for-each>
 		        				</xsl:variable>
 		        				<xsl:if test="($profile = 'Administrator' or $profile = 'Editor' or $profile = 'Reviewer' or $profile = 'UserAdmin') and $childCount &gt; 0">
+											<!-- Leave out '+' as there is nothing to expand here -->
+											<!--
 		        					<img src="{/root/gui/url}/images/plus.gif"
 		        						alt="{/root/gui/strings/updateChildren}" title="{/root/gui/strings/updateChildren}" align="absmiddle"/>
 		        					<xsl:text> </xsl:text>
+											-->
 		        					<a alt="{/root/gui/strings/updateChildren}" title="{/root/gui/strings/updateChildren}"
 		        						href="#" onclick="javascript:massiveUpdateChildren('metadata.massive.children.form?id={$metadata/geonet:info/id}&amp;schema={$metadata/geonet:info/schema}&amp;parentUuid={$metadata/geonet:info/uuid}&amp;childrenIds={$childrenIds}','{/root/gui/strings/massiveUpdateChildrenTitle}',800);">
 		        						<xsl:value-of select="/root/gui/strings/updateChildren"/>
