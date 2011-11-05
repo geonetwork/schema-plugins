@@ -11,11 +11,9 @@
 	xmlns:geonet="http://www.fao.org/geonetwork"
 	exclude-result-prefixes="gmx gmd gco gml srv xlink exslt geonet">
 
-	<!-- main template - the way into processing iso19139.mcp-1.4 -->
-	<xsl:template name="metadata-iso19139.mcp-1.4-simple">
-	  <xsl:call-template name="metadata-iso19139view-simple"/>
-	</xsl:template>
+	<xsl:import href="metadata-iso19139.mcp-1.4-view.xsl"/>
 
+	<!-- main template - the way into processing iso19139.mcp-1.4 -->
   <xsl:template name="metadata-iso19139.mcp-1.4">
     <xsl:param name="schema"/>
     <xsl:param name="edit" select="false()"/>
