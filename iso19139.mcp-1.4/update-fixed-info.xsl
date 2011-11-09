@@ -41,7 +41,18 @@
 			</xsl:choose>
       <xsl:apply-templates select="gmd:language"/>
       <xsl:apply-templates select="gmd:characterSet"/>
-      <xsl:apply-templates select="gmd:parentIdentifier"/>
+			<xsl:choose>
+        <xsl:when test="/root/env/parentUuid!=''">
+          <gmd:parentIdentifier>
+            <gco:CharacterString>
+              <xsl:value-of select="/root/env/parentUuid"/>
+            </gco:CharacterString>
+          </gmd:parentIdentifier>
+        </xsl:when>
+        <xsl:when test="gmd:parentIdentifier">
+          <xsl:apply-templates select="gmd:parentIdentifier"/>
+        </xsl:when>
+      </xsl:choose>
       <xsl:apply-templates select="gmd:hierarchyLevel"/>
       <xsl:apply-templates select="gmd:hierarchyLevelName"/>
       <xsl:apply-templates select="gmd:contact"/>
