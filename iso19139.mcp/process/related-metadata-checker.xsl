@@ -26,7 +26,7 @@
     
     <!-- Check URL -->
     <xsl:variable name="links"
-      select="$root//gmd:parentIdentifier/gco:CharacterString"/>
+      select="$root//gmd:parentIdentifier[not(@gco:nilReason)]/gco:CharacterString"/>
     <xsl:for-each select="$links">
       <xsl:call-template name="checkUuid">
         <xsl:with-param name="uuid" select="."/>
