@@ -57,7 +57,16 @@
       <xsl:apply-templates select="gmd:hierarchyLevel"/>
       <xsl:apply-templates select="gmd:hierarchyLevelName"/>
       <xsl:apply-templates select="gmd:contact"/>
-      <xsl:apply-templates select="gmd:dateStamp"/>
+			<xsl:choose>
+				<xsl:when test="not(gmd:dateStamp) or normalize-space(gmd:dateStamp/*)=''">
+					<gmd:dateStamp>
+						<gco:DateTime><xsl:value-of select="/root/env/changeDate"/></gco:DateTime>
+					</gmd:dateStamp>
+				</xsl:when>
+				<xsl:otherwise>
+      		<xsl:apply-templates select="gmd:dateStamp"/>
+				</xsl:otherwise>
+			</xsl:choose>
 			<xsl:choose>
 				<xsl:when test="not(gmd:metadataStandardName)">
 					<gmd:metadataStandardName>
@@ -205,7 +214,7 @@
 
 	<xsl:template match="gmd:dateStamp">
 		<xsl:choose>
-			<xsl:when test="/root/env/updateDateStamp='yes'">
+			<xsl:when test="/root/env/changeDate">
 				<gmd:dateStamp>
 					<gco:DateTime><xsl:value-of select="/root/env/changeDate"/></gco:DateTime>
 				</gmd:dateStamp>
