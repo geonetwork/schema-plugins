@@ -50,4 +50,18 @@
 	<system systemId="http://www.w3.org/1999/xlink/xlinks.xsd" 
 	        uri="schema/xlink/xlinks.xsd"/>
 
+	<!-- Code lists -->
+
+	<system systemId="http://asdd.ga.gov.au/asdd/profileinfo/GAScopeCodeList.xml" 
+	        uri="schema/resources/Codelist/GAScopeCodeList.xml"/>
+
+	<system systemId="http://asdd.ga.gov.au/asdd/profileinfo/gmxCodelists.xml"
+					uri="schema/resources/Codelist/gmxCodelists.xml"/>
+
+	<system systemId="http://www.isotc211.org/2005/iso19119/resources/Codelist/gmxCodelists.xml"
+					uri="schema/resources/Codelist/gmxCodelists.xml"/>
+
+	<system systemId="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml" 
+	        uri="schema/resources/Codelist/gmxCodeLists.xml"/>
+
 </catalog>

@@ -14,4 +14,22 @@
 	<system systemId="http://bluenet3.antcrc.utas.edu.au/mcp-1.5-experimental/schema.xsd" 
 	        uri="schema/extensions/mcpExtensions.xsd"/>
 
+	<!-- Code lists -->
+
+	<system systemId="http://asdd.ga.gov.au/asdd/profileinfo/GAScopeCodeList.xml" 
+	        uri="schema/resources/Codelist/GAScopeCodeList.xml"/>
+
+	<system systemId="http://asdd.ga.gov.au/asdd/profileinfo/gmxCodelists.xml"
+					uri="schema/resources/Codelist/gmxCodelists.xml"/>
+
+	<system systemId="http://www.isotc211.org/2005/iso19119/resources/Codelist/gmxCodelists.xml"
+					uri="schema/resources/Codelist/gmxCodelists.xml"/>
+
+	<system systemId="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml" 
+	        uri="schema/resources/Codelist/gmxCodeLists.xml"/>
+
+	<system systemId="'http://bluenet3.antcrc.utas.edu.au/mcp/resources/Codelist/gmxCodelists.xml" 
+	        uri="schema/resources/Codelist/gmxCodeLists.xml"/>
+
+	
 </catalog>
