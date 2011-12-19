@@ -10,9 +10,11 @@
   <xsl:include href="process/add-extent-from-geokeywords.xsl"/>
   <xsl:include href="process/add-info-from-wms.xsl"/>
   <xsl:include href="process/add-service-info-from-wxs.xsl"/>
-  <xsl:include href="process/inspire-add-conformity.xsl"/>
   <xsl:include href="process/linked-data-checker.xsl"/>
   <xsl:include href="process/related-metadata-checker.xsl"/>
+  
+  <xsl:include href="process/inspire-add-conformity.xsl"/>
+  <xsl:include href="process/inspire-add-dq-toporeport.xsl"/>
   <xsl:include href="process/inspire-themes-and-topiccategory.xsl"/>
   
   <xsl:variable name="processes">
@@ -20,9 +22,11 @@
     <p>scale-denominator-formatter</p>
     <p>add-extent-from-geokeywords</p>
     <p>add-info-from-wms</p>
-    <p>inspire-add-conformity</p>
     <p>linked-data-checker</p>
     <p>related-metadata-checker</p>
+    
+    <p>inspire-add-conformity</p>
+    <p>inspire-add-dq-toporeport</p>
     <p>inspire-themes-and-topiccategory</p>
   </xsl:variable>
   
