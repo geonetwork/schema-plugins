@@ -19,10 +19,12 @@
 	
 			<xsl:apply-templates select="/anzmeta/citeinfo/title">
 				<xsl:with-param name="token" select="'true'"/>
+				<xsl:with-param name="store" select="'true'"/>
 			</xsl:apply-templates>
 			
 			<xsl:apply-templates select="/anzmeta/descript/abstract">
 				<xsl:with-param name="token" select="'true'"/>
+				<xsl:with-param name="store" select="'true'"/>
 			</xsl:apply-templates>
 		
 			<xsl:apply-templates select="/anzmeta/descript/spdom/bounding" mode="latLon"/>
