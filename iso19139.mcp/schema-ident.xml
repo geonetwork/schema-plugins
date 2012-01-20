@@ -5,13 +5,10 @@
 	<version>1.5</version>
 	<schemaLocation>http://bluenet3.antcrc.utas.edu.au/mcp http://bluenet3.antcrc.utas.edu.au/mcp-1.5-experimental/schema.xsd http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd</schemaLocation>
 	<autodetect xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco">
-		<elements>
-			<gmd:metadataStandardName>
-				<gco:CharacterString>Australian Marine Community Profile of ISO 19115:2005/19139</gco:CharacterString>
-			</gmd:metadataStandardName>
-			<gmd:metadataStandardVersion>
-				<gco:CharacterString>MCP:BlueNet V1.5</gco:CharacterString>
-			</gmd:metadataStandardVersion>
+		<!-- catch all MCP records as 1.5 since all versions since 1.3 are
+		     backwards compatible -->
+		<elements type="root">
+			<mcp:MD_Metadata/>
 		</elements>
 	</autodetect>
 </schema>
