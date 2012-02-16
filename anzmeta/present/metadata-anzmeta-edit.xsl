@@ -218,6 +218,30 @@ elsewhere -->
 	  </xsl:call-template>
 	</xsl:template>
 
+		
+	<xsl:template name="processNEWS">
+		<xsl:param name="value"/>
+
+		<xsl:choose>
+			<xsl:when test="contains($value,' S')">
+				<xsl:value-of select="concat('-',normalize-space(substring-before($value,'S')))"/>
+			</xsl:when>
+			<xsl:when test="contains($value,' W')">
+				<xsl:value-of select="concat('-',normalize-space(substring-before($value,'W')))"/>
+			</xsl:when>
+			<xsl:when test="contains($value,' E')">
+				<xsl:value-of select="normalize-space(substring-before($value,'E'))"/>
+			</xsl:when>
+			<xsl:when test="contains($value,' N')">
+				<xsl:value-of select="normalize-space(substring-before($value,'N'))"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="normalize-space($value)"/>
+			</xsl:otherwise>
+		</xsl:choose>
+
+	</xsl:template>
+
 	<!-- geoBox -->
 
 	<xsl:template name="geoBox">
@@ -242,10 +266,26 @@ elsewhere -->
        <xsl:text> </xsl:text>
     </xsl:for-each>
 
-		<xsl:variable name="w" select="bounding/westbc"/>
-    <xsl:variable name="e" select="bounding/eastbc"/>
-    <xsl:variable name="n" select="bounding/northbc"/>
-    <xsl:variable name="s" select="bounding/southbc"/>
+		<xsl:variable name="w">
+			<xsl:call-template name="processNEWS">
+				<xsl:with-param name="value" select="bounding/westbc"/>
+			</xsl:call-template>
+		</xsl:variable>
+    <xsl:variable name="e"> 
+			<xsl:call-template name="processNEWS">
+				<xsl:with-param name="value" select="bounding/eastbc"/>
+			</xsl:call-template>
+		</xsl:variable>
+    <xsl:variable name="n">
+			<xsl:call-template name="processNEWS">
+				<xsl:with-param name="value" select="bounding/northbc"/>
+			</xsl:call-template>
+		</xsl:variable>
+    <xsl:variable name="s">
+			<xsl:call-template name="processNEWS">
+				<xsl:with-param name="value" select="bounding/southbc"/>
+			</xsl:call-template>
+		</xsl:variable>
 		
 		<table>
 			<tr>
@@ -463,10 +503,26 @@ elsewhere -->
 <!-- and the geoBox -->
 
 			<geoBox>
-					<westBL><xsl:value-of select="descript/spdom/bounding/westbc"/></westBL>
-					<eastBL><xsl:value-of select="descript/spdom/bounding/eastbc"/></eastBL>
-				  <southBL><xsl:value-of select="descript/spdom/bounding/southbc"/></southBL>
-				  <northBL><xsl:value-of select="descript/spdom/bounding/northbc"/></northBL>
+					<westBL>
+						<xsl:call-template name="processNEWS">
+							<xsl:with-param name="value" select="descript/spdom/bounding/westbc"/>
+						</xsl:call-template>
+					</westBL>
+					<eastBL>
+						<xsl:call-template name="processNEWS">
+							<xsl:with-param name="value" select="descript/spdom/bounding/eastbc"/>
+						</xsl:call-template>
+					</eastBL>
+				  <southBL>
+						<xsl:call-template name="processNEWS">
+							<xsl:with-param name="value" select="descript/spdom/bounding/southbc"/>
+						</xsl:call-template>
+					</southBL>
+				  <northBL>
+						<xsl:call-template name="processNEWS">
+							<xsl:with-param name="value" select="descript/spdom/bounding/northbc"/>
+						</xsl:call-template>
+					</northBL>
 			</geoBox>
 			<xsl:copy-of select="geonet:info"/>
 		</metadata>
