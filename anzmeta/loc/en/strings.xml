@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strings>
+	<xml_anzmeta>Save this metadata as an old ANZLIC XML file</xml_anzmeta>
+	<xml_anzmetaToiso19139.anzlic>Save this metadata as an ISO19115/19139 ANZLIC Profile XML file</xml_anzmetaToiso19139.anzlic>
+	<xml_anzmetaTooai_dc>Save this metadata as an OAI Dublin Core XML file</xml_anzmetaTooai_dc>
+	<xml_anzmetaTorifcs>Save this metadata as an ANDS rifcs XML file</xml_anzmetaTorifcs>
+</strings>

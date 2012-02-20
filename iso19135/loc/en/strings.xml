@@ -8,4 +8,5 @@
 	<registerItemsTab>Register Items</registerItemsTab>
 	<allTab>All</allTab>
 	<xml_iso19135>Save this metadata as an ISO19135 XML file</xml_iso19135>
+	<xml_iso19135Tooai_dc>Save this metadata as an OAI Dublin Core XML file</xml_iso19135Tooai_dc>
 </strings>
