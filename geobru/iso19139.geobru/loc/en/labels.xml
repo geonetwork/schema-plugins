@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<labels xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gts="http://www.isotc211.org/2005/gts"
+    xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gml="http://www.opengis.net/gml"
+    xmlns:srv="http://www.isotc211.org/2005/srv"
+    xmlns:geobru="http://geobru.irisnet.be">
+<element name="gmd:codeSpace" context="gmd:identifier">
+		<label>Nom de l'identifiant</label>
+		<description>Identification: Identificateur de ressource unique (Annexe 1.6) ou Informations de distribution: Système de coordonnées utilisé (Annexe 2.2)</description>
+		<help>Informations sur la personne ou l'organisation en charge de l'espace nominal ou de l'identifiant.</help>
+		<condition>Obligatoire</condition>
+		<helper>
+			<option value="http://geobru.irisnet.be">http://geobru.irisnet.be</option>    
+		</helper>
+	</element>
+	<element name="geobru:version" context="geobru:BXL_Distribution">
+		<label>Version</label>
+		<description>Informations de distribution: Version de référence UrbIS utilisée (Annexe 2.1)</description>
+		<condition>mandatory</condition>
+	</element>
+	
+	<element name="gmd:codeSpace" context="gmd:referenceSystemIdentifier">
+		<label>Nom de l'identifiant</label>
+		<description>Informations de distribution: Système de coordonnées utilisé (Annexe 2.2)</description>
+		<help>Informations sur la personne ou l'organisation en charge de l'espace nominal ou de l'identifiant.</help>
+		<condition>Obligatoire</condition>
+		<helper>
+			<option value="http://geobru.irisnet.be">http://geobru.irisnet.be</option>    
+		</helper>
+	</element>
+		<element name="geobru:format" context="geobru:BXL_Distribution">
+		<label>Nom du format</label>
+		<description>Informations de distribution: Format du jeu de données (Annexe 2.3)</description>
+		<help>Nom du format de transfert de données, par exemple TIFF, ZIP, etc.</help>
+		<condition>Obligatoire</condition>
+	</element>
+	<element name="geobru:featureType" context="geobru:BXL_Distribution">
+		<label>Types d'objet</label>
+		<description>Informations de distribution: Description des attributs par les valeurs mesurées (Annexe 2.5, 2.6, 2.7)</description>
+		<condition>Facultatif</condition>
+ 	</element>
+ 	<element name="gmd:statement" context="geobru:BXL_Lineage">
+		<label>Généralités sur la provenance</label>
+		<description>Qualité et validité: Généalogie (Annexe 7.1)</description>
+		<help>Explication générale de la filiation du jeu de données fournie par le créateur des données. Dans le cas de données de la MO, il peut s'agir de l'indication des bases (MO93/MD93). Pour des données tramées, il peut s'agir de l'indication du fait qu''elles dérivent de prises de vues aériennes.</help>
+		<condition>Condition</condition>
+	</element>
+
+	<element name="geobru:completeness" context="geobru:BXL_Lineage">
+		<label>Complétude</label>
+		<description>Qualité et validité: Complétude (Annexe 7.3)</description>
+		<condition>Obligatoire</condition>
+	    </element>
+
+	<element name="geobru:quality" context="geobru:BXL_Lineage">
+		<label>Qualité</label>
+		<description>Qualité et validité: Généalogie (Qualité générale de la série de données) (Annexe 7.4)</description>
+		<condition>Facultatif</condition>
+	</element>
+	<element name="geobru:validated" context="geobru:BXL_Lineage">
+		<label>Validée</label>
+		<description>Qualité et validité: Généalogie (La série de données a-t-elle été validée ou soumise à un contrôle de qualité?) (Annexe 7.5)</description>
+		<condition>Facultatif</condition>
+	</element>
+	<element name="geobru:official" context="geobru:BXL_Lineage">
+		<label>Officielle</label>
+		<description>Qualité et validité: Généalogie (S'agit-il de la version officielle?) (Annexe 7.6)</description>
+		<condition>Facultatif</condition>
+	</element>
+	<element name="geobru:legal" context="geobru:BXL_Lineage">
+		<label>Légale</label>
+		<description>Qualité et validité: Généalogie (La série de données a-t-elle une valeur légale?) (Annexe 7.7)</description>
+		<condition>Facultatif</condition>
+	</element>
+	<element name="geobru:individualElectronicMailAddress" context="gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/geobru:BXL_Address/geobru:individualElectronicMailAddress">
+		<label>Adresse e-mail individuel</label>
+		<description>Organisation(s) responsable(s): Adresse mail de la personne de contact (Annexe 9.9)</description>
+		<condition>Facultatif</condition>
+	</element>
+	<element name="geobru:individualElectronicMailAddress" context="gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/geobru:BXL_Address/geobru:individualElectronicMailAddress">
+		<label>Adresse e-mail individuel</label>
+		<description>Métadonnées concernant les métadonnées: Adresse mail de la personne de contact (Annexe 10.12)</description>
+		<condition>Facultatif</condition>
+	</element>
+	 <element name="geobru:BXL_Address" id="380.0">
+        <label>Address</label>
+        <description>Location of the responsible individual or organization</description>
+        <_condition>Use obligation/condition from referencing object</_condition>
+    </element>
+    <element name="geobru:BXL_Lineage" id="82.0">
+        <label>Lineage</label>
+        <description>Information about the events or source data used in constructing the data
+            specified by the scope or lack of knowledge about lineage</description>
+    </element>
+     <element name="geobru:BXL_Distribution" id="270.0">
+        <label>Distribution</label>
+        <description>Information about the distributor of and options for obtaining the
+            resource</description>
+    </element>
+</labels>

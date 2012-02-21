@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ################################################### -->
+<!-- This grammar defines the Brussels Metadata extensions of the  ## -->
+<!-- INSPIRE  / ISO 19139 grammars                                                   ## -->
+<!-- ################################################### -->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gfc="http://www.isotc211.org/2005/gfc" xmlns:geobru="http://geobru.irisnet.be" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco" targetNamespace="http://geobru.irisnet.be" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<annotation>
+		<documentation>
+			### ==========================================
+			### This XSD file provides ISO 19139 grammar extensions 
+			### according to the INSPIRE Brussels metadata profil
+			### ==========================================
+		</documentation>
+	</annotation>
+	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="../gmd/gmd.xsd"/> 
+	<import namespace="http://www.isotc211.org/2005/gco" schemaLocation="../gco/gcoBase.xsd"/>
+	<!-- heikki: copied gfc.xsd from http://www.isotc211.org/2005/gfc/gfc.xsd to this local location, and adapted it so that it imports gmd, gco and gmx not from internet but from here locally -->
+   <import namespace="http://www.isotc211.org/2005/gfc" schemaLocation="../gfc/gfc.xsd"/>
+	<!-- ################################################### -->
+	<annotation>
+		<documentation>
+			### extends the ISO 19139 {http://www.isotc211.org/2005/gmd}LI_Lineage_Type
+			### see GEOBRU - Annexe 4 - Genealogie
+		</documentation>
+	</annotation>
+	<complexType name="BXL_Lineage_Type">
+		<complexContent>
+			<extension base="gmd:LI_Lineage_Type">
+				<sequence>
+					<element name="completeness" type="gco:Boolean_PropertyType"/>
+					<element name="quality" type="gco:CharacterString_PropertyType" minOccurs="0"/>
+					<element name="validated" type="gco:Boolean_PropertyType" minOccurs="0"/>
+					<element name="official" type="gco:Boolean_PropertyType" minOccurs="0"/>
+					<element name="legal" type="gco:Boolean_PropertyType" minOccurs="0"/>
+				</sequence>
+				<attribute ref="gco:isoType" use="required" fixed="gmd:LI_Lineage_Type"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="BXL_Lineage" type="geobru:BXL_Lineage_Type" substitutionGroup="gmd:LI_Lineage"/>
+	<!-- ################################################### -->
+	<annotation>
+		<documentation>
+			### extends the ISO 19139 {http://www.isotc211.org/2005/gmd}CI_Address_Type
+			### see GEOBRU - Annexe 4 - Metadata on metadata / Responsible organisation
+		</documentation>
+	</annotation>
+	<complexType name="BXL_Address_Type">
+		<complexContent>
+			<extension base="gmd:CI_Address_Type">
+				<sequence>
+					<element name="individualElectronicMailAddress" type="gco:CharacterString_PropertyType" minOccurs="0"/>
+				</sequence>
+				<attribute ref="gco:isoType" use="required" fixed="CI_Address_Type"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="BXL_Address" type="geobru:BXL_Address_Type" substitutionGroup="gmd:CI_Address"/>
+	<!--
+	<annotation>
+		<documentation>
+			### extends the ISO 19139 {http://www.isotc211.org/2005/gmd}CI_ResponsibleParty_Type
+			### see GEOBRU - Annexe 4 - Metadata on metadata / Responsible organisation
+		</documentation>
+	</annotation>
+	<complexType name="BXL_ResponsibleParty_Type">
+		<complexContent>
+			<extension base="gmd:CI_ResponsibleParty_Type">
+				<sequence>
+					<element name="individualElectronicMailAddress" minOccurs="0" type="gco:CharacterString_PropertyType"/>
+				</sequence>
+				<attribute ref="gco:isoType" use="required" fixed="CI_ResponsibleParty_Type"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="BXL_ResponsibleParty" type="geobru:BXL_ResponsibleParty_Type" substitutionGroup="gmd:CI_ResponsibleParty"/>
+-->
+	<!-- ################################################### -->
+	<annotation>
+		<documentation>
+			### extends the ISO 19139 {http://www.isotc211.org/2005/gmd}MD_Distribution
+			### see GEOBRU - Annexe 4 - Informations de distribution 5,6,7
+		</documentation>
+	</annotation>
+	<complexType name="BXL_Distribution_Type">
+		<complexContent>
+			<extension base="gmd:MD_Distribution_Type">
+				<sequence>
+					<element name="version" type="gco:CharacterString_PropertyType"/>
+					<element name="featureType" type="gfc:FC_FeatureType_PropertyType" minOccurs="0"/>
+				</sequence>
+				<attribute ref="gco:isoType" use="required" fixed="MD_Distribution_Type"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="BXL_Distribution" type="geobru:BXL_Distribution_Type" substitutionGroup="gmd:MD_Distribution"/>
+	<!-- ################################################### -->
+</schema>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://geonetwork-opensource.org/schemas/schema-ident" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://geonetwork-opensource.org/schemas/schema-ident http://geonetwork-opensource.org/schemas/schema-ident/schema-ident.xsd">
+
+	<!-- heikki: used name iso19139.geobru -->
+	<name>iso19139.geobru</name>
+	<!-- heikki: used generated random UUID -->
+	<id>ab6f3bc0-7ef9-4c8a-b12d-52066a578a66</id>
+	<!-- heikki: chose this version number at random -->
+	<version>1.1</version>
+	<!-- heikki: added this schemalocation -->
+	<schemaLocation>http://geobru.irisnet.be schema.xsd</schemaLocation>
+	<!-- heikki: how to detect if a document is a geobru document ? Presence of mandatory element specific to geobru: -->
+	<autodetect xmlns:geobru="http://geobru.irisnet.be">
+		<elements type="search">
+			<geobru:BXL_Address/>
+		</elements>
+	</autodetect>
+</schema>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- heikki: added geobru namespace declaration -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:geobru="http://geobru.irisnet.be" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:srv="http://www.isotc211.org/2005/srv" targetNamespace="http://geobru.irisnet.be" elementFormDefault="qualified">
+	<!-- heikki: included geobru extensions schema -->
+	<xs:include schemaLocation="schema/extensions/geobruExtensions.xsd"/>
+	<xs:import namespace="http://www.isotc211.org/2005/srv" schemaLocation="schema/srv/srv.xsd"/>
+	<xs:import namespace="http://www.isotc211.org/2005/gmx" schemaLocation="schema/gmx/gmx.xsd"/>
+</xs:schema>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ################################################### ############################## -->
+<!-- This grammar defines the Brussels Metadata extensions of the  													## -->
+<!-- INSPIRE  / ISO 19139 grammars                                             													## -->
+<!-- CIRB -SS 26102011																  													## -->
+<!-- Only extension for services is  the individualElectronicMailAddress - meeting CIRB -CIBG October 2011 -->
+<!-- #################################################################################  -->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gfc="http://www.isotc211.org/2005/gfc" xmlns:geobru="http://geobru.irisnet.be" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco" targetNamespace="http://geobru.irisnet.be" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<annotation>
+		<documentation>
+			### ==========================================
+			### This XSD file provides ISO 19139 grammar extensions 
+			### according to the INSPIRE Brussels metadata profil
+			### ==========================================
+		</documentation>
+	</annotation>
+	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20060504/gmd/gmd.xsd"/>
+	<import namespace="http://www.isotc211.org/2005/gco" schemaLocation="http://schemas.opengis.net/iso/19139/20060504/gco/gcoBase.xsd"/>
+	<!-- ################################################### -->
+		<annotation>
+		<documentation>
+			### extends the ISO 19139 {http://www.isotc211.org/2005/gmd}CI_Address_Type
+			### see GEOBRU - Annexe 4 - Metadata on metadata / Responsible organisation
+		</documentation>
+	</annotation>
+	<complexType name="BXL_Address_Type">
+		<complexContent>
+			<extension base="gmd:CI_Address_Type">
+				<sequence>
+					<element name="individualElectronicMailAddress" type="gco:CharacterString_PropertyType" minOccurs="0"/>
+				</sequence>
+				<attribute ref="gco:isoType" use="required" fixed="CI_Address_Type"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="BXL_Address" type="geobru:BXL_Address_Type" substitutionGroup="gmd:CI_Address"/>
+	<annotation>
+		<documentation>
+			### extends the ISO 19139 {http://www.isotc211.org/2005/gmd}CI_ResponsibleParty_Type
+			### see GEOBRU - Annexe 4 - Metadata on metadata / Responsible organisation
+		</documentation>
+	</annotation>
+	<complexType name="BXL_ResponsibleParty_Type">
+		<complexContent>
+			<extension base="gmd:CI_ResponsibleParty_Type">
+				<sequence>
+					<element name="individualElectronicMailAddress" minOccurs="0" type="gco:CharacterString_PropertyType"/>
+				</sequence>
+				<attribute ref="gco:isoType" use="required" fixed="CI_ResponsibleParty_Type"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="BXL_ResponsibleParty" type="geobru:BXL_ResponsibleParty_Type" substitutionGroup="gmd:CI_ResponsibleParty"/>
+</schema>
