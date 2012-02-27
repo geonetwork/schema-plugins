@@ -193,10 +193,18 @@
 	<xsl:template match="iso19139.mcp-1.4Brief">
 		<metadata>
    		<xsl:for-each select="/metadata/*[1]">
-				<!-- call iso19139 brief -->
-	 			<xsl:call-template name="iso19139-brief"/>
-				<!-- now brief elements for mcp specific elements -->
-				<xsl:call-template name="iso19139.mcp-brief"/>
+				<xsl:choose>
+					<xsl:when test="geonet:info/isTemplate='s'">
+						<xsl:call-template name="iso19139.mcp-subtemplate"/>
+						<xsl:copy-of select="geonet:info" copy-namespaces="no"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<!-- call iso19139 brief -->
+	 					<xsl:call-template name="iso19139-brief"/>
+						<!-- now brief elements for mcp specific elements -->
+						<xsl:call-template name="iso19139.mcp-brief"/>
+					</xsl:otherwise>
+				</xsl:choose>
 	 		</xsl:for-each>
 		</metadata>
 	</xsl:template>
