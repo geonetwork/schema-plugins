@@ -73,21 +73,21 @@
 	
 	<!-- latlon coordinates + 360, zero-padded, indexed, not stored, not tokenized -->
 	<xsl:template match="*" mode="latLon">
-		<xsl:variable name="format" select="'##.00'"></xsl:variable>
-		<xsl:if test="number(westbc)">
+		<xsl:if test="number(westbc) and number(southbc) and number(eastbc) and
+									number(northbc)">
+			<xsl:variable name="format" select="'##.00'"></xsl:variable>
 			<Field name="westBL" string="{format-number(westbc, $format)}" store="true" index="true"/>
-		</xsl:if>
 	
-		<xsl:if test="number(southbc)">
 			<Field name="southBL" string="{format-number(southbc, $format)}" store="true" index="true"/>
-		</xsl:if>
 	
-		<xsl:if test="number(eastbc)">
 			<Field name="eastBL" string="{format-number(eastbc, $format)}" store="true" index="true"/>
-		</xsl:if>
 	
-		<xsl:if test="number(northbc)">
 			<Field name="northBL" string="{format-number(northbc, $format)}" store="true" index="true"/>
+			<Field name="geoBox" string="{concat(format-number(westbc, $format), '|',
+		        				format-number(southbc, $format), '|', 
+						        format-number(eastbc, $format), '|', 
+										format-number(northbc, $format)
+														        )}" store="true" index="false"/>
 		</xsl:if>
 	</xsl:template>
 	
