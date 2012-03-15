@@ -94,7 +94,7 @@
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-			<xsl:for-each select="gmd:pointOfContact[1]/*/gmd:role/*/@codeListValue">
+			<xsl:for-each select="gmd:pointOfContact[1]/*/gmd:role/*/@codeListValue|mcp:resourceContactInfo[1]/mcp:CI_Responsibility/mcp:role/*/@codeListValue">
 				<Field name="responsiblePartyRole" string="{string(.)}" store="false" index="true"/>
 			</xsl:for-each>
 
@@ -195,7 +195,7 @@
 	
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 	
-			<xsl:for-each select="gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString">
+			<xsl:for-each select="gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString|mcp:resourceContactInfo/mcp:CI_Responsibility//mcp:party/mcp:CI_Organisation/mcp:name/gco:CharacterString">
 				<Field name="orgName" string="{string(.)}" store="true" index="true"/>
 
 				<xsl:variable name="role" select="../../gmd:role/*/@codeListValue"/>
@@ -440,7 +440,7 @@
 		
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 		
-		<xsl:for-each select="gmd:contact/*/gmd:organisationName/gco:CharacterString">
+		<xsl:for-each select="gmd:contact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString|mcp:metadataContactInfo/mcp:CI_Responsibility/mcp:party/mcp:CI_Organisation/mcp:name/gco:CharacterString">
 			<Field name="metadataPOC" string="{string(.)}" store="true" index="true"/>
 			<xsl:variable name="role" select="../../gmd:role/*/@codeListValue"/>
 			<xsl:variable name="logo" select="../..//gmx:FileName/@src"/>

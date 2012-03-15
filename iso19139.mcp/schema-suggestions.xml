@@ -5,12 +5,15 @@
 		<suggest name="gco:CharacterString"/>
 		<suggest name="gmx:FileName"/>
 	</field>
+
 	<field name="gmx:FileName">
 		<suggest name="src"/>
 	</field>
+
 	<field name="gmd:polygon">
 		<suggest name="gml:Polygon"/>
 	</field>
+
 	<field name="gmd:CI_OnlineResource">
 		<suggest name="gmd:protocol"/>
 		<suggest name="gmd:name"/>
@@ -24,6 +27,24 @@
 		<suggest name="gmd:contactInfo"/>
 	</field>
 	
+	<field name="mcp:CI_Responsibility">
+		<suggest name="mcp:role"/>
+		<suggest name="mcp:extent"/>
+		<suggest name="mcp:party"/>
+	</field>
+
+	<field name="mcp:CI_Organisation">
+		<suggest name="mcp:name"/>
+		<suggest name="mcp:contactInfo"/>
+		<suggest name="mcp:individual"/>
+	</field>
+
+	<field name="mcp:CI_Individual">
+		<suggest name="mcp:name"/>
+		<suggest name="mcp:contactInfo"/>
+		<suggest name="mcp:positionName"/>
+	</field>
+
 	<field name="gmd:CI_Contact">
 		<suggest name="gmd:phone"/>
 		<suggest name="gmd:address"/>

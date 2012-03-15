@@ -224,6 +224,66 @@ Describes the type of commons license that describes the conditions of usage. Ca
 		<description>Information about spatial, vertical, temporal and taxonomic extent</description>
 	</element>
 	<!-- ==================================================== -->
+	<element name="mcp:extent">
+		<label>Extent</label>
+		<description>Information about spatial, vertical, temporal and taxonomic extent</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:contactInfo">
+		<label>Contact Information</label>
+		<description>Address of the responsible party</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:party">
+		<label>Responsible party</label>
+		<description>Details and contact information for a responsible party (Organisation or individual)</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:individual">
+		<label>Responsible individual</label>
+		<description>Details and contact information for a responsible individual within an organisation</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:CI_Individual">
+		<label>Responsible individual</label>
+		<description>Details and contact information for a responsible individual (possibly within an organisation)</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:CI_Organisation">
+		<label>Responsible organisation</label>
+		<description>Details and contact information for a responsible organisation (may contain details of responsible individuals)</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:role">
+		<label>Role</label>
+		<description>Function performed by the responsible party</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:metadataContactInfo">
+		<label>Metadata Contact</label>
+		<description>Contact information for those parties who have a role in producing. maintaining and looking after the metadata.</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:resourceContactInfo">
+		<label>Resource Contact</label>
+		<description>Contact information for those parties who have a role in producing. maintaining and looking after the resource.</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:responsibleParty">
+		<label>Responsible Party</label>
+		<description>Contact information for those parties who have been cited as responsible for the resource.</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:CI_Citation">
+		<label>Citation</label>
+		<description>Citation information.</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:positionName">
+		<label>Position Name</label>
+		<description>Position of the individual within the organisation</description>
+	</element>
+	<!-- ==================================================== -->
 	
 	
 </labels>

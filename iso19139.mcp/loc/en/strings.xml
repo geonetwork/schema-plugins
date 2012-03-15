@@ -108,4 +108,7 @@
 	<xml_iso19139.mcp-1.4>Save this metadata as a Version 1.4 ISO19139 Marine Community Profile XML file</xml_iso19139.mcp-1.4>
 	<xml_iso19139.mcpTorifcs>Save this metadata as an ANDS rifcs XML file</xml_iso19139.mcpTorifcs>
 	<xml_iso19139.mcpTooai_dc>Save this metadata as an OAI Dublin Core XML file</xml_iso19139.mcpTooai_dc>
+
+	<organisation>Organisation</organisation>
+	<individual>Individual</individual>
 </strings>

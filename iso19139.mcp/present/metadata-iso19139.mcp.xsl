@@ -31,6 +31,7 @@
     <xsl:param name="edit" select="false()"/>
     <xsl:param name="embedded"/>
 
+
 		<!-- process in profile mode first -->
 		<xsl:variable name="mcpElements">
     	<xsl:apply-templates mode="iso19139.mcp" select="." >
@@ -1268,7 +1269,7 @@
 
 			<!-- metadata tab -->
 			<xsl:when test="$currTab='metadata'">
-				<xsl:call-template name="iso19139Metadata">
+				<xsl:call-template name="iso19139McpMetadata">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:call-template>
@@ -1442,6 +1443,137 @@
 		</xsl:choose>
 	</xsl:template>
 
+	<!-- ============================================================================= -->
+
+  <xsl:template name="iso19139McpMetadata">
+    <xsl:param name="schema"/>
+    <xsl:param name="edit"/>
+  	
+  	<xsl:variable name="ref" select="concat('#_',geonet:element/@ref)"/>  	
+  	<xsl:variable name="validationLink">
+  		<xsl:call-template name="validationLink">
+  			<xsl:with-param name="ref" select="$ref"/>
+  		</xsl:call-template>  		
+  	</xsl:variable>
+  	
+  	<xsl:call-template name="complexElementGui">
+  		<xsl:with-param name="title" select="/root/gui/strings/metadata"/>
+  		<xsl:with-param name="validationLink" select="$validationLink"/>
+  		<xsl:with-param name="edit" select="true()"/>
+  		<xsl:with-param name="content">
+  	
+			<!-- if the parent is root then display fields not in tabs -->
+				<xsl:choose>
+	    		<xsl:when test="name(..)='root'">
+			    <xsl:apply-templates mode="elementEP" select="gmd:fileIdentifier|geonet:child[string(@name)='fileIdentifier']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:language|geonet:child[string(@name)='language']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:characterSet|geonet:child[string(@name)='characterSet']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:parentIdentifier|geonet:child[string(@name)='parentIdentifier']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:hierarchyLevel|geonet:child[string(@name)='hierarchyLevel']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:hierarchyLevelName|geonet:child[string(@name)='hierarchyLevelName']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:dateStamp|geonet:child[string(@name)='dateStamp']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+					<xsl:apply-templates mode="elementEP" select="gmd:metadataStandardName|geonet:child[string(@name)='metadataStandardName']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:metadataStandardVersion|geonet:child[string(@name)='metadataStandardVersion']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+	
+		    	<xsl:apply-templates mode="elementEP" select="gmd:contact|geonet:child[string(@name)='contact']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="mcp:metadataContactInfo|geonet:child[string(@name)='metadataContactInfo']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:dataSetURI|geonet:child[string(@name)='dataSetURI']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:locale|geonet:child[string(@name)='locale']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:series|geonet:child[string(@name)='series']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:describes|geonet:child[string(@name)='describes']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:propertyType|geonet:child[string(@name)='propertyType']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+				<xsl:apply-templates mode="elementEP" select="gmd:featureType|geonet:child[string(@name)='featureType']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:featureAttribute|geonet:child[string(@name)='featureAttribute']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+
+		    	<xsl:apply-templates mode="elementEP" select="mcp:revisionDate|geonet:child[string(@name)='revisionDate']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="false()"/>
+		    	</xsl:apply-templates>
+			</xsl:when>
+			<!-- otherwise, display everything because we have embedded MD_Metadata -->
+			<xsl:otherwise>
+				<xsl:apply-templates mode="elementEP" select="*">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+			</xsl:otherwise>
+			</xsl:choose>
+
+  		</xsl:with-param>
+  		<xsl:with-param name="schema" select="$schema"/>
+  	</xsl:call-template>
+  	
+  </xsl:template>
 <!-- mcp tabs -->
 	
 	<xsl:template name="mcp">
@@ -1471,12 +1603,12 @@
 				</xsl:with-param>
 				<xsl:with-param name="content">
 	
-				<xsl:apply-templates mode="elementEP" select="gmd:citation/gmd:CI_Citation/gmd:title|gmd:citation/gmd:CI_Citation/geonet:child[string(@name)='title']">
+				<xsl:apply-templates mode="elementEP" select="gmd:citation/*/gmd:title|gmd:citation/*/geonet:child[string(@name)='title']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
 
-				<xsl:apply-templates mode="elementEP" select="gmd:citation/gmd:CI_Citation/gmd:date|gmd:citation/gmd:CI_Citation/geonet:child[string(@name)='date']">
+				<xsl:apply-templates mode="elementEP" select="gmd:citation/*/gmd:date|gmd:citation/*/geonet:child[string(@name)='date']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
@@ -1491,6 +1623,11 @@
 
 				<xsl:if test="$core">
 					<xsl:apply-templates mode="elementEP" select="gmd:pointOfContact|geonet:child[string(@name)='pointOfContact']">
+						<xsl:with-param name="schema" select="$schema"/>
+						<xsl:with-param name="edit"   select="$edit"/>
+					</xsl:apply-templates>
+
+					<xsl:apply-templates mode="elementEP" select="gmd:resourceContactInfo|geonet:child[string(@name)='resourceContactInfo']">
 						<xsl:with-param name="schema" select="$schema"/>
 						<xsl:with-param name="edit"   select="$edit"/>
 					</xsl:apply-templates>
@@ -1665,7 +1802,7 @@
 		
 		<!-- metadata contact info in its own box -->
 
-			<xsl:for-each select="gmd:contact">
+			<xsl:for-each select="gmd:contact[gmd:CI_ResponsibleParty]">
 
 			<xsl:call-template name="complexElementGuiWrapper">
 				<xsl:with-param name="title" select="/root/gui/schemas/iso19139.mcp/strings/contact"/>
@@ -1696,6 +1833,84 @@
 						<xsl:with-param name="schema" select="$schema"/>
 						<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
+
+				</xsl:with-param>
+				<xsl:with-param name="schema" select="$schema"/>
+				<xsl:with-param name="group" select="/root/gui/strings/metadata"/>
+				<xsl:with-param name="edit" select="$edit"/>
+			</xsl:call-template>
+
+			</xsl:for-each>
+
+			<xsl:for-each select="gmd:metadataContactInfo/mcp:CI_Responsibility">
+
+			<xsl:call-template name="complexElementGuiWrapper">
+				<xsl:with-param name="title" select="/root/gui/schemas/iso19139.mcp/strings/contact"/>
+				<xsl:with-param name="content">
+
+				<xsl:apply-templates mode="elementEP" select="mcp:role|geonet:child[string(@name)='role']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="group" select="/root/gui/strings/metadata"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+
+				<xsl:apply-templates mode="elementEP" select="mcp:extent|geonet:child[string(@name)='extent']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="group" select="/root/gui/strings/metadata"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+
+				<xsl:for-each select="mcp:party/mcp:CI_Organisation">
+
+				<xsl:call-template name="complexElementGuiWrapper">
+					<xsl:with-param name="title" select="/root/gui/schemas/iso19139.mcp/strings/organisation"/>
+					<xsl:with-param name="content">
+
+					<xsl:apply-templates mode="elementEP" select="mcp:name|geonet:child[string(@name)='name']">
+						<xsl:with-param name="schema" select="$schema"/>
+						<xsl:with-param name="edit"   select="$edit"/>
+					</xsl:apply-templates>
+
+					<xsl:apply-templates mode="elementEP" select="mcp:contactInfo|geonet:child[string(@name)='contactInfo']">
+						<xsl:with-param name="schema" select="$schema"/>
+						<xsl:with-param name="edit"   select="$edit"/>
+					</xsl:apply-templates>
+
+					<xsl:for-each select="mcp:individual/mcp:CI_Individual">
+					<xsl:call-template name="complexElementGuiWrapper">
+						<xsl:with-param name="title" select="/root/gui/schemas/iso19139.mcp/strings/individual"/>
+						<xsl:with-param name="content">
+	
+						<xsl:apply-templates mode="elementEP" select="mcp:name|geonet:child[string(@name)='name']">
+							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="edit"   select="$edit"/>
+						</xsl:apply-templates>
+
+						<xsl:apply-templates mode="elementEP" select="mcp:contactInfo|geonet:child[string(@name)='contactInfo']">
+							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="edit"   select="$edit"/>
+						</xsl:apply-templates>
+
+						<xsl:apply-templates mode="elementEP" select="mcp:positionName|geonet:child[string(@name)='positionName']">
+							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="edit"   select="$edit"/>
+						</xsl:apply-templates>
+
+						</xsl:with-param>
+						<xsl:with-param name="schema" select="$schema"/>
+						<xsl:with-param name="group" select="/root/gui/strings/metadata"/>
+						<xsl:with-param name="edit" select="$edit"/>
+					</xsl:call-template>
+
+					</xsl:for-each>
+
+					</xsl:with-param>
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="group" select="/root/gui/strings/metadata"/>
+					<xsl:with-param name="edit" select="$edit"/>
+				</xsl:call-template>
+
+				</xsl:for-each>
 
 				</xsl:with-param>
 				<xsl:with-param name="schema" select="$schema"/>
@@ -1737,6 +1952,133 @@
 			<xsl:with-param name="edit" select="$edit"/>
 		</xsl:call-template>
 
+	</xsl:template>
+
+	<!-- ============================================================================= -->
+
+	<xsl:template mode="iso19139.mcp" match="mcp:metadataContactInfo|mcp:resourceContactInfo|mcp:responsibleParty">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+
+		<xsl:apply-templates mode="complexElement" select=".">
+			<xsl:with-param name="schema"  select="$schema"/>
+			<xsl:with-param name="edit"    select="$edit"/>
+			<xsl:with-param name="content">
+				<xsl:apply-templates mode="elementEP" select="mcp:CI_Responsibility|geonet:child[string(@name)='CI_Responsibility']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+			</xsl:with-param>
+		</xsl:apply-templates>
+
+	</xsl:template>
+
+	<!-- ============================================================================= -->
+
+	<xsl:template mode="iso19139.mcp" match="mcp:CI_Responsibility">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+
+		<xsl:apply-templates mode="elementEP" select="mcp:role|geonet:child[string(@name)='role']">
+			<xsl:with-param name="schema" select="$schema"/>
+			<xsl:with-param name="edit"   select="$edit"/>
+		</xsl:apply-templates>
+
+		<xsl:apply-templates mode="elementEP" select="mcp:extent|geonet:child[string(@name)='extent']">
+			<xsl:with-param name="schema" select="$schema"/>
+			<xsl:with-param name="edit"   select="$edit"/>
+		</xsl:apply-templates>
+
+		<xsl:for-each select="mcp:party">
+			<xsl:call-template name="partyTemplate">
+				<xsl:with-param name="edit" select="$edit"/>
+				<xsl:with-param name="schema" select="$schema"/>
+			</xsl:call-template>
+		</xsl:for-each>
+
+	</xsl:template>
+
+	<!-- ============================================================================= -->
+
+	<xsl:template name="partyTemplate">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+		
+		<xsl:variable name="content">
+			<xsl:for-each select="mcp:CI_Organisation|mcp:CI_Individual">
+			<tr>
+				<td class="padded-content" width="100%" colspan="2">
+					<table width="100%">
+						<tr>
+							<td width="50%" valign="top">
+								<table width="100%">
+									<xsl:apply-templates mode="elementEP" select="../@xlink:href">
+										<xsl:with-param name="schema" select="$schema"/>
+										<xsl:with-param name="edit"   select="$edit"/>
+									</xsl:apply-templates>
+									
+									<xsl:apply-templates mode="elementEP" select="mcp:name|geonet:child[string(@name)='name']">
+										<xsl:with-param name="schema" select="$schema"/>
+										<xsl:with-param name="edit"   select="$edit"/>
+									</xsl:apply-templates>
+									
+									<xsl:apply-templates mode="elementEP" select="mcp:positionName|geonet:child[string(@name)='positionName']">
+										<xsl:with-param name="schema" select="$schema"/>
+										<xsl:with-param name="edit"   select="$edit"/>
+									</xsl:apply-templates>
+									
+									<xsl:for-each select="mcp:individual/mcp:CI_Individual">
+										<xsl:apply-templates mode="complexElement" select=".">
+											<xsl:with-param name="schema"  select="$schema"/>
+											<xsl:with-param name="edit"    select="$edit"/>
+											<xsl:with-param name="content">
+									
+												<xsl:apply-templates mode="elementEP" select="../@xlink:href">
+													<xsl:with-param name="schema" select="$schema"/>
+													<xsl:with-param name="edit"   select="$edit"/>
+												</xsl:apply-templates>
+									
+												<xsl:apply-templates mode="elementEP" select="mcp:name|geonet:child[string(@name)='name']">
+													<xsl:with-param name="schema" select="$schema"/>
+													<xsl:with-param name="edit"   select="$edit"/>
+												</xsl:apply-templates>
+									
+												<xsl:apply-templates mode="elementEP" select="mcp:positionName|geonet:child[string(@name)='positionName']">
+													<xsl:with-param name="schema" select="$schema"/>
+													<xsl:with-param name="edit"   select="$edit"/>
+												</xsl:apply-templates>
+
+												<xsl:apply-templates mode="elementEP" select="mcp:contactInfo|geonet:child[string(@name)='contactInfo']">
+													<xsl:with-param name="schema" select="$schema"/>
+													<xsl:with-param name="edit"   select="$edit"/>
+												</xsl:apply-templates>
+									
+											</xsl:with-param>
+										</xsl:apply-templates>
+									</xsl:for-each>
+								</table>
+							</td>
+							<td valign="top">
+								<table width="100%">
+									<xsl:apply-templates mode="elementEP" select="mcp:contactInfo|geonet:child[string(@name)='contactInfo']">
+										<xsl:with-param name="schema" select="$schema"/>
+										<xsl:with-param name="edit"   select="$edit"/>
+									</xsl:apply-templates>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			</xsl:for-each>
+		</xsl:variable>
+		
+		<xsl:apply-templates mode="complexElement" select="mcp:CI_Organisation|mcp:CI_Individual">
+			<xsl:with-param name="schema"  select="$schema"/>
+			<xsl:with-param name="edit"    select="$edit"/>
+			<xsl:with-param name="content" select="$content"/>
+		</xsl:apply-templates>
+		
 	</xsl:template>
 
 	<!-- ================================================================== -->
