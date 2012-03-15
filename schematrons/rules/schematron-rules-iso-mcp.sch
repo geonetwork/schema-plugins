@@ -29,6 +29,11 @@ Add MCP rules
 Simon Pigot
 February 8, 2011
 
+Add more MCP rules for CI_Responsibility
+
+Simon Pigot
+February 8, 2011
+
 This work is licensed under the Creative Commons Attribution 2.5 License. 
 To view a copy of this license, visit 
     http://creativecommons.org/licenses/by/2.5/au/ 
@@ -80,6 +85,40 @@ USA.
 			<sch:report
 				test="(not(@uomLabels) and not(@axisLabels)) or (@uomLabels and @axisLabels)"
 				>$loc/strings/alert.M7.uomAndAxis</sch:report>
+		</sch:rule>
+	</sch:pattern>
+
+	<!--mcpExtensions.xsd - check CI_Organisation has a name -->
+	<sch:pattern>
+		<sch:title>$loc/strings/M32</sch:title>
+		<sch:rule context="//*[mcp:CI_Organisation]">
+			<sch:let name="countName" value="count(mcp:CI_Organisation/mcp:name[@gco:nilReason!='missing' or not(@gco:nilReason)])"/>
+			<sch:assert
+				test="$countName > 0"
+				>$loc/strings/alert.M32</sch:assert>
+			<sch:report
+				test="$countName > 0"
+				><sch:value-of select="$loc/strings/report.M32"/> 
+				<sch:value-of select="mcp:CI_Organisation/mcp:name"/>-
+			</sch:report>
+		</sch:rule>
+	</sch:pattern>
+
+	<!--mcpExtensions.xsd - check CI_Individual have a name or positionName -->
+	<sch:pattern>
+		<sch:title>$loc/strings/M33</sch:title>
+		<sch:rule context="//*[mcp:CI_Individual]">
+			<sch:let name="count" value="(count(mcp:CI_Individual/mcp:name[@gco:nilReason!='missing' or not(@gco:nilReason)]) 
+				+ count(mcp:CI_Individual/mcp:positionName[@gco:nilReason!='missing' or not(@gco:nilReason)]))"/>
+			<sch:assert
+				test="$count > 0"
+				>$loc/strings/alert.M33</sch:assert>
+			<sch:report
+				test="$count > 0"
+				><sch:value-of select="$loc/strings/report.M33"/> 
+				<sch:value-of select="mcp:CI_Individual/mcp:name"/>-
+				<sch:value-of select="mcp:CI_Individual/mcp:positionName"/>
+			</sch:report>
 		</sch:rule>
 	</sch:pattern>
 

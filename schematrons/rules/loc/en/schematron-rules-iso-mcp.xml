@@ -101,6 +101,10 @@
     <report.M29>Short name documented for none code list element.</report.M29>
     <alert.M30><div>'checkPointDescription' is mandatory if 'checkPointAvailability' = 1 or true.</div></alert.M30>
     <report.M30>Check point description documented.</report.M30>
+    <alert.M32><div>Organisation (CI_Organisation) must have a 'name'.</div></alert.M32>
+    <report.M32>Condition defined for an Organisation.</report.M32>
+    <alert.M33><div>Individual (CI_Organisation) must have a 'name' or 'positionName'.</div></alert.M33>
+    <report.M33>Condition defined for an Individual.</report.M33>
     <alert.M61><div>hierarchyLevelName must be documented if hierarchyLevel does not contain 'dataset'</div></alert.M61>
     <report.M61>Hierarchy level name is:</report.M61>
 </strings>
