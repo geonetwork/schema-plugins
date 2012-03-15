@@ -18,7 +18,7 @@
     <xsl:call-template name="md-content">
       <xsl:with-param name="title">
         <xsl:apply-templates mode="localised"
-          select="gmd:identificationInfo/*/gmd:citation/gmd:CI_Citation/gmd:title">
+          select="gmd:identificationInfo/*/gmd:citation/*/gmd:title">
           <xsl:with-param name="langId" select="$langId"/>
         </xsl:apply-templates>
       </xsl:with-param>
@@ -42,7 +42,7 @@
           <xsl:with-param name="content">
             <xsl:apply-templates mode="block"
               select="
-                gmd:identificationInfo/*/gmd:citation/gmd:CI_Citation[gmd:date]
+                gmd:identificationInfo/*/gmd:citation/*[gmd:date]
                 |gmd:identificationInfo/*/gmd:language
                 |gmd:topicCategory
                 |gmd:identificationInfo/*/gmd:descriptiveKeywords
@@ -60,9 +60,9 @@
           <xsl:with-param name="title" select="/root/gui/schemas/iso19139/strings/contactInfo"/>
           <xsl:with-param name="content">
             <xsl:apply-templates mode="block"
-              select="gmd:identificationInfo/*/gmd:pointOfContact"/> 
+              select="gmd:identificationInfo/*/gmd:pointOfContact|gmd:identificationInfo/*/mcp:resourceContactInfo"/> 
             <xsl:apply-templates mode="block"
-              select="gmd:contact"/>
+              select="gmd:contact|mcp:metadataContactInfo"/>
           </xsl:with-param>
         </xsl:call-template>
 

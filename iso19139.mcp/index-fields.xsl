@@ -49,7 +49,7 @@
 
 		<xsl:for-each select="gmd:identificationInfo/mcp:MD_DataIdentification|gmd:identificationInfo/srv:SV_ServiceIdentification">
 
-			<xsl:for-each select="gmd:citation/gmd:CI_Citation">
+			<xsl:for-each select="gmd:citation/*">
 				<xsl:for-each select="gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString">
 					<Field name="identifier" string="{string(.)}" store="true" index="true"/>
 				</xsl:for-each>
@@ -131,7 +131,7 @@
 				</xsl:for-each>
 				
 				<xsl:for-each select="gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier/gmd:RS_Identifier">
-					<xsl:if test="gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString='c-squares'">
+					<xsl:if test="gmd:authority/*/gmd:title/gco:CharacterString='c-squares'">
 						<xsl:for-each select="tokenize(gmd:code/gco:CharacterString,'\|')">
 							<Field name="csquare" string="{string(.)}" store="false" index="true"/>
 						</xsl:for-each>
