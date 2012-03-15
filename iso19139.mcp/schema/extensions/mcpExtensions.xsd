@@ -81,7 +81,7 @@ MD_DataIdentification/resourceContactInfo/CI_Responsibility
     <xs:complexContent>
       <xs:extension base="gco:AbstractObject_Type">
         <xs:sequence>
-					<xs:element name="name" type="gco:CharacterString_PropertyType" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="name" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="1"/>
 					<xs:element name="contactInfo" type="gmd:CI_Contact_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
       </xs:extension>
