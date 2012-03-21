@@ -12,4 +12,5 @@
 <conversions>
 	<converter name="xml_iso19135" nsUri="http://www.isotc211.org/2005/grg" schemaLocation="http://www.isotc211.org/2005/grg/grg.xsd" xslt="xml_iso19135.xsl"/>
 	<converter name="xml_iso19135Tooai_dc" nsUri="http://www.openarchives.org/OAI/2.0/" schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc.xsd" xslt="oai_dc.xsl"/>
+	<converter name="xml_iso19135ToSKOS" nsUri="http://www.w3.org/2004/02/skos/core#" schemaLocation="" xslt="xml_iso19135ToSKOS.xsl"/>
 </conversions>
