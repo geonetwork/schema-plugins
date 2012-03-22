@@ -13,7 +13,7 @@
   xmlns:exslt="http://exslt.org/common"
   exclude-result-prefixes="gmx xsi gmd gco gml gts srv xlink exslt geonet">
 
-
+	<xsl:include href="metadata-iso19139.geobru-view.xsl"/>
 
 	<!-- heikki: changed name to iso19139.geobruCompleteTab -->
 	<xsl:template name="iso19139.geobruCompleteTab">
