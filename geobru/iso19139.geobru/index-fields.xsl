@@ -40,8 +40,24 @@
         <!-- ========================================================================================= -->
 
 	<xsl:template match="/">
-		<Document>
-			<xsl:apply-templates select="gmd:MD_Metadata" mode="metadata"/>
+	    <xsl:variable name="isoLangId">
+	  	    <xsl:call-template name="langId19139"/>
+        </xsl:variable>
+
+		<Document locale="{$isoLangId}">
+			<Field name="_locale" string="{$isoLangId}" store="true" index="true" token="false"/>
+
+			<Field name="_docLocale" string="{$isoLangId}" store="true" index="true" token="false"/>
+
+			<xsl:variable name="_defaultTitle">
+				<xsl:call-template name="defaultTitle">
+					<xsl:with-param name="isoDocLangId" select="$isoLangId"/>
+				</xsl:call-template>
+			</xsl:variable>
+			<!-- not tokenized title for sorting, needed for multilingual sorting -->
+			<Field name="_defaultTitle" string="{string($_defaultTitle)}" store="true" index="true" token="false" />
+
+			<xsl:apply-templates select="*[name(.)='gmd:MD_Metadata' or @gco:isoType='gmd:MD_Metadata']" mode="metadata"/>
 		</Document>
 	</xsl:template>
 	
@@ -100,6 +116,8 @@
 				<!-- fields used to search for metadata in paper or digital format -->
 
 				<xsl:for-each select="gmd:presentationForm">
+					<Field name="presentationForm" string="{gmd:CI_PresentationFormCode/@codeListValue}" store="true" index="true"/>
+					
 					<xsl:if test="contains(gmd:CI_PresentationFormCode/@codeListValue, 'Digital')">
 						<Field name="digital" string="true" store="false" index="true"/>
 					</xsl:if>
@@ -300,7 +318,7 @@
 						</xsl:when>
 						<xsl:when test="string($fileDescr)='thumbnail'">
 							<!-- FIXME : relative path -->
-							<Field  name="image" string="{concat($fileDescr, '|', '../../srv/en/resources.get?uuid=', //gmd:fileIdentifier/gco:CharacterString, '&amp;fname=', $fileName, '&amp;access=public')}" store="true" index="false"/>
+							<Field  name="image" string="{concat($fileDescr, '|', '../../srv/eng/resources.get?uuid=', //gmd:fileIdentifier/gco:CharacterString, '&amp;fname=', $fileName, '&amp;access=public')}" store="true" index="false"/>
 						</xsl:when>
 					</xsl:choose>
 				</xsl:if>
@@ -319,7 +337,7 @@
 
 			<!-- index online protocol -->
 			
-			<xsl:for-each select="gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource">
+			<xsl:for-each select="gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource[gmd:linkage/gmd:URL!='']">
 				<xsl:variable name="download_check"><xsl:text>&amp;fname=&amp;access</xsl:text></xsl:variable>
 				<xsl:variable name="linkage" select="gmd:linkage/gmd:URL" /> 
 				<xsl:variable name="title" select="normalize-space(gmd:name/gco:CharacterString|gmd:name/gmx:MimeFileType)"/>
@@ -396,8 +414,8 @@
 				<Field name="specificationTitle" string="{string(.)}" store="false" index="true"/>
 			</xsl:for-each>
 			
-			<xsl:for-each select="//gmd:specification/*/gmd:date/*/gmd:date/gco:DateTime">
-				<Field name="specificationDate" string="{string(.)}" store="false" index="true"/>
+			<xsl:for-each select="//gmd:specification/*/gmd:date/*/gmd:date">
+				<Field name="specificationDate" string="{string(gco:Date|gco:DateTime)}" store="false" index="true"/>
 			</xsl:for-each>
 			
 			<xsl:for-each select="//gmd:specification/*/gmd:date/*/gmd:dateType/gmd:CI_DateTypeCode/@codeListValue">
@@ -414,11 +432,11 @@
 		<xsl:choose>
 			<xsl:when test="gmd:hierarchyLevel">
 				<xsl:for-each select="gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue">
-					<Field name="type" string="{string(.)}" store="false" index="true"/>
+					<Field name="type" string="{string(.)}" store="true" index="true"/>
 				</xsl:for-each>
 			</xsl:when>
 			<xsl:otherwise>
-				<Field name="type" string="dataset" store="false" index="true"/>
+				<Field name="type" string="dataset" store="true" index="true"/>
 			</xsl:otherwise>
 		</xsl:choose>
 
@@ -538,11 +556,11 @@
 			and number(gmd:eastBoundLongitude/gco:Decimal)
 			and number(gmd:northBoundLatitude/gco:Decimal)
 			">
-			<Field name="westBL" string="{format-number(gco:Decimal, $format)}" store="false" index="true"/>
-			<Field name="southBL" string="{format-number(gco:Decimal, $format)}" store="false" index="true"/>
+			<Field name="westBL" string="{format-number(gmd:westBoundLongitude/gco:Decimal, $format)}" store="false" index="true"/>
+			<Field name="southBL" string="{format-number(gmd:southBoundLatitude/gco:Decimal, $format)}" store="false" index="true"/>
 			
-			<Field name="eastBL" string="{format-number(gco:Decimal, $format)}" store="false" index="true"/>
-			<Field name="northBL" string="{format-number(gco:Decimal, $format)}" store="false" index="true"/>
+			<Field name="eastBL" string="{format-number(gmd:eastBoundLongitude/gco:Decimal, $format)}" store="false" index="true"/>
+			<Field name="northBL" string="{format-number(gmd:northBoundLatitude/gco:Decimal, $format)}" store="false" index="true"/>
 			
 			<Field name="geoBox" string="{concat(gmd:westBoundLongitude/gco:Decimal, '|', 
 				gmd:southBoundLatitude/gco:Decimal, '|', 

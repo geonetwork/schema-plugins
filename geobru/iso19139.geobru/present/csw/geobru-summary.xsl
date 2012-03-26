@@ -122,9 +122,9 @@
 	<!-- =================================================================== -->
 	
 	<xsl:template match="gmd:MD_LegalConstraints">
-		<fra:FRA_LegalConstraints gco:isoType="gmd:MD_LegalConstraints">
+		<xsl:copy>
 			<xsl:apply-templates select="gmd:accessConstraints"/>
-		</fra:FRA_LegalConstraints>
+		</xsl:copy>
 	</xsl:template>
 	
 	<!-- =================================================================== -->
@@ -141,7 +141,7 @@
 
 	<xsl:template match="gmd:MD_DataIdentification
 		|*[@gco:isoType='gmd:MD_DataIdentification']">
-		<fra:FRA_DataIdentification gco:isoType="gmd:MD_DataIdentification">
+		<xsl:copy>
 			<xsl:apply-templates select="gmd:citation"/>
 			<xsl:apply-templates select="gmd:abstract"/>
 			<xsl:apply-templates select="gmd:graphicOverview"/>
@@ -154,7 +154,7 @@
 			<xsl:apply-templates select="gmd:topicCategory"/>
 			<xsl:apply-templates select="gmd:extent[child::gmd:EX_Extent
 				[child::gmd:geographicElement]]"/>
-		</fra:FRA_DataIdentification>
+		</xsl:copy>
 	</xsl:template>
 
 	<!-- =================================================================== -->

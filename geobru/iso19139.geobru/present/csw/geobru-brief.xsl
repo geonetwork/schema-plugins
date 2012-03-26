@@ -30,27 +30,21 @@
 
 	<!-- =================================================================== -->
 
-	<xsl:template match="gmd:MD_DataIdentification
-		|*[@gco:isoType='gmd:MD_DataIdentification']">
-		<fra:FRA_DataIdentification gco:isoType="gmd:MD_DataIdentification">
-			<xsl:apply-templates select="gmd:citation"/>
-			<xsl:apply-templates select="gmd:graphicOverview"/>
-			<xsl:apply-templates select="gmd:extent[child::gmd:EX_Extent[child::gmd:geographicElement]]"/>
-		</fra:FRA_DataIdentification>
-	</xsl:template>
-
-	<!-- =================================================================== -->
-
-	<xsl:template match="srv:SV_ServiceIdentification">
+	<xsl:template match="gmd:MD_DataIdentification|
+		*[@gco:isoType='gmd:MD_DataIdentification']|
+		srv:SV_ServiceIdentification|
+		*[@gco:isoType='srv:SV_ServiceIdentification']
+		">
 		<xsl:copy>
 			<xsl:apply-templates select="gmd:citation"/>
 			<xsl:apply-templates select="gmd:graphicOverview"/>
+			<xsl:apply-templates select="gmd:extent[child::gmd:EX_Extent[child::gmd:geographicElement]]|
+				srv:extent[child::gmd:EX_Extent[child::gmd:geographicElement]]"/>
 			<xsl:apply-templates select="srv:serviceType"/>
 			<xsl:apply-templates select="srv:serviceTypeVersion"/>
-			<xsl:apply-templates select="srv:extent[child::gmd:EX_Extent[child::gmd:geographicElement]]"/>
 		</xsl:copy>
 	</xsl:template>
-	
+
 	<!-- =================================================================== -->
 	
 	<xsl:template match="gmd:MD_BrowseGraphic">
