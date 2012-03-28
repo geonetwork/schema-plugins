@@ -78,7 +78,7 @@
 		<gco:CharacterString>1.0</gco:CharacterString>
 	</gmd:metadataStandardVersion>
 	<gmd:locale>
-		<gmd:PT_Locale id="#FRE">
+		<gmd:PT_Locale id="FRE">
 			<gmd:languageCode>
 				<gmd:LanguageCode codeList="" codeListValue="fre"/>
 			</gmd:languageCode>
@@ -86,7 +86,7 @@
 		</gmd:PT_Locale>
 	</gmd:locale>
 	<gmd:locale>
-		<gmd:PT_Locale id="#GER">
+		<gmd:PT_Locale id="GER">
 			<gmd:languageCode>
 				<gmd:LanguageCode codeList="" codeListValue="ger"/>
 			</gmd:languageCode>
@@ -94,7 +94,7 @@
 		</gmd:PT_Locale>
 	</gmd:locale>
 	<gmd:locale>
-		<gmd:PT_Locale id="#CHI">
+		<gmd:PT_Locale id="CHI">
 			<gmd:languageCode>
 				<gmd:LanguageCode codeList="" codeListValue="chi"/>
 			</gmd:languageCode>
@@ -104,7 +104,7 @@
 		</gmd:PT_Locale>
 	</gmd:locale>
 	<gmd:locale>
-		<gmd:PT_Locale id="#ARA">
+		<gmd:PT_Locale id="ARA">
 			<gmd:languageCode>
 				<gmd:LanguageCode codeList="" codeListValue="ara"/>
 			</gmd:languageCode>
@@ -114,7 +114,7 @@
 		</gmd:PT_Locale>
 	</gmd:locale>
 	<gmd:locale>
-		<gmd:PT_Locale id="#SPA">
+		<gmd:PT_Locale id="SPA">
 			<gmd:languageCode>
 				<gmd:LanguageCode codeList="" codeListValue="spa"/>
 			</gmd:languageCode>
@@ -124,7 +124,7 @@
 		</gmd:PT_Locale>
 	</gmd:locale>
 	<gmd:locale>
-		<gmd:PT_Locale id="#RUS">
+		<gmd:PT_Locale id="RUS">
 			<gmd:languageCode>
 				<gmd:LanguageCode codeList="" codeListValue="rus"/>
 			</gmd:languageCode>

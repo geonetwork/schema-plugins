@@ -4,7 +4,7 @@
 	xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:gco="http://www.isotc211.org/2005/gco"
 	xmlns:gmd="http://www.isotc211.org/2005/gmd" exclude-result-prefixes="#all">
 
-	<xsl:include href="../iso19139/convert/functions.xsl"/>
+	<xsl:include href="convert/functions.xsl"/>
 
 	<!-- ================================================================= -->
 

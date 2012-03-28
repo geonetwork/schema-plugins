@@ -6,11 +6,8 @@ This document outlines the steps I've taken to create a GeoNetwork plugin profil
 
 - this document ;
 - the plugin profile: directory iso19139.geobru
-- file schemaplugin-uri-catalog.xml
-- to load this profile on GeoNetwork startup, you need to
-  a. copy the plugin profile to <geonetwork-installation>/web/geonetwork/xml/schemas
-  b. copy file schemaplugin-uri-catalog.xml to <geonetwork-installation>/web/geonetwork/WEB-INF
-
+- to load this profile on GeoNetwork startup, you need to copy the plugin profile folder (iso19139.geobru) in the plugins profile folder in GeoNetwork data folder, by default <geonetwork-installation>/web/geonetwork/WEB-INF/data/config/schema_plugins
+  
 1. Obtain and prepare the XSDs.
 
 Downloaded them from 
@@ -28,7 +25,6 @@ for all the local XSDs.
 
 Won't repeat the complete User Manual documentation here, but some specific points:
 
-- added a reference to the GeoBRU schema plugin to WEB-INF/schemaplugin-uri-catalog.xml
 - created a way to recognize documents as being GeoBRU, in schema-ident.xsl
 - created a GeoBRU template containing all the extension elements for datasets, based on the standard ISO19139 template for Vector metadata
 - created a GeoBRU template containing all the extension elements for datasets, based on the standard Multilingual ISO19139 template for Vector metadata
