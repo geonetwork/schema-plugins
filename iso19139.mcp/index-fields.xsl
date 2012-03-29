@@ -14,7 +14,7 @@
 
 	<xsl:param name="datadir"/>
 
-	<xsl:include href="convert/functions.xsl"/>
+	<xsl:include href="iso19139/convert/functions.xsl"/>
 	<xsl:include href="../../../xsl/utils-fn.xsl"/>
 
 	<!-- This file defines what parts of the metadata are indexed by Lucene
@@ -31,11 +31,22 @@
 	<!-- ========================================================================================= -->
 
 	<xsl:template match="/">
+		<xsl:variable name="isoLangId">
+			<xsl:call-template name="langId19139"/>
+		</xsl:variable>
 
-		<Document locale="en">
-			<Field name="_locale" string="en" store="true" index="true" token="false"/>
+		<Document locale="{$isoLangId}">
+			<Field name="_locale" string="{$isoLangId}" store="true" index="true" token="false"/>
 
-			<Field name="_docLocale" string="en" store="true" index="true" token="false"/>
+			<Field name="_docLocale" string="{$isoLangId}" store="true" index="true" token="false"/>
+
+			<xsl:variable name="_defaultTitle">
+				<xsl:call-template name="defaultTitle">
+					<xsl:with-param name="isoDocLangId" select="$isoLangId"/>
+				</xsl:call-template>
+			</xsl:variable>
+			<!-- not tokenized title for sorting, needed for multilingual sorting -->
+			<Field name="_defaultTitle" string="{string($_defaultTitle)}" store="true" index="true"/>
 
 			<xsl:apply-templates select="mcp:MD_Metadata" mode="metadata"/>
 		</Document>
@@ -58,8 +69,6 @@
 					<Field name="title" string="{string(.)}" store="true" index="true"/>
 					<!-- not tokenized title for sorting -->
 					<Field name="_title" string="{string(.)}" store="true" index="true"/>
-					<Field name="_defaultTitle" string="{string(.)}" store="true" index="true"/>
-					<Field name="title" string="{string(.)}" store="true" index="true"/>
 				</xsl:for-each>
 	
 				<xsl:for-each select="gmd:alternateTitle/gco:CharacterString">
@@ -81,6 +90,8 @@
 				<!-- fields used to search for metadata in paper or digital format -->
 
 				<xsl:for-each select="gmd:presentationForm">
+					<Field name="presentationForm" string="{gmd:CI_PresentationFormCode/@codeListValue}" store="true" index="true"/>
+
 					<xsl:if test="contains(gmd:CI_PresentationFormCode/@codeListValue, 'Digital')">
 						<Field name="digital" string="true" store="true" index="true"/>
 					</xsl:if>
@@ -191,6 +202,16 @@
 				<xsl:for-each select="gmd:type/gmd:MD_KeywordTypeCode/@codeListValue">
 					<Field name="keywordType" string="{string(.)}" store="true" index="true"/>
 				</xsl:for-each>
+
+				<xsl:for-each select="gmd:type/gmd:MD_KeywordTypeCode/@codeListValue">
+					<Field name="keywordType" string="{string(.)}" store="true" index="true"/>
+				</xsl:for-each>
+
+				<xsl:for-each select="gmd:thesaurusName/*[starts-with(@id,'geonetwork.thesaurus')]">
+					<Field name="keywordThesaurus" string="{string(@id)}" store="true" index="true"/>
+				</xsl:for-each>
+
+
 			</xsl:for-each>
 	
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
@@ -225,7 +246,7 @@
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 	
-			<xsl:for-each select="gmd:language/gco:CharacterString">
+			<xsl:for-each select="gmd:language/gco:CharacterString|gmd:language/gmd:LanguageCode/@codeListValue">
 				<Field name="datasetLang" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
 
@@ -243,6 +264,11 @@
 				<xsl:for-each select="gmd:distance/gco:Distance/@uom">
 					<Field name="distanceUom" string="{string(.)}" store="true" index="true"/>
 				</xsl:for-each>
+			</xsl:for-each>
+
+			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+			<xsl:for-each select="gmd:spatialRepresentationType">
+				<Field name="spatialRepresentationType" string="{gmd:MD_SpatialRepresentationTypeCode/@codeListValue}" store="true" index="true"/>
 			</xsl:for-each>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -408,6 +434,10 @@
 			</xsl:otherwise>
 		</xsl:choose>
 
+		<xsl:if test="gmd:identificationInfo/srv:SV_ServiceIdentification">
+			<Field name="type" string="service" store="false" index="true"/>
+		</xsl:if>
+
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 
 		<xsl:for-each select="gmd:hierarchyLevelName/gco:CharacterString">
@@ -496,30 +526,6 @@
 		<xsl:apply-templates select="*" mode="codeList"/>
 	</xsl:template>
 	
-	<!-- ========================================================================================= -->
-	<!-- latlon coordinates indexed as numeric. -->
-	
-	<xsl:template match="*" mode="latLon">
-		<xsl:variable name="format" select="'##.00'"></xsl:variable>
-		<xsl:if test="number(gmd:westBoundLongitude/gco:Decimal)
-			and number(gmd:southBoundLatitude/gco:Decimal)
-			and number(gmd:eastBoundLongitude/gco:Decimal)
-			and number(gmd:northBoundLatitude/gco:Decimal)
-			">
-			<Field name="westBL" string="{format-number(gmd:westBoundLongitude/gco:Decimal, $format)}" store="false" index="true"/>
-			<Field name="southBL" string="{format-number(gmd:southBoundLatitude/gco:Decimal, $format)}" store="false" index="true"/>
-			
-			<Field name="eastBL" string="{format-number(gmd:eastBoundLongitude/gco:Decimal, $format)}" store="false" index="true"/>
-			<Field name="northBL" string="{format-number(gmd:northBoundLatitude/gco:Decimal, $format)}" store="false" index="true"/>
-			
-			<Field name="geoBox" string="{concat(gmd:westBoundLongitude/gco:Decimal, '|', 
-				gmd:southBoundLatitude/gco:Decimal, '|', 
-				gmd:eastBoundLongitude/gco:Decimal, '|', 
-				gmd:northBoundLatitude/gco:Decimal
-				)}" store="true" index="false"/>
-		</xsl:if>
-	</xsl:template>
-
 	<!-- ========================================================================================= -->
 
 </xsl:stylesheet>
