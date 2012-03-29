@@ -136,4 +136,8 @@
 		</xsl:apply-templates>		
 	</xsl:template>		
 	
+	<!-- =================================================================== -->
+	<!-- === Javascript used by functions in this presentation XSLT          -->
+	<!-- =================================================================== -->
+	<xsl:template name="iso19139.geobru-javascript"/>
 </xsl:stylesheet>
