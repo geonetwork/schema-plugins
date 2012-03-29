@@ -21,7 +21,7 @@
 		 work accross different metadata resources -->
 	<!-- ========================================================================================= -->
 	
-	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
+	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no" />
 	
 	<!-- ========================================================================================= -->
 
@@ -40,8 +40,24 @@
         <!-- ========================================================================================= -->
 
 	<xsl:template match="/">
-		<Document>
-			<xsl:apply-templates select="gmd:MD_Metadata" mode="metadata"/>
+		<xsl:variable name="isoLangId">
+	  	    <xsl:call-template name="langId19139"/>
+        </xsl:variable>
+        
+		<Document locale="{$isoLangId}">
+			<Field name="_locale" string="{$isoLangId}" store="true" index="true"/>
+
+			<Field name="_docLocale" string="{$isoLangId}" store="true" index="true"/>
+
+			<xsl:variable name="_defaultTitle">
+				<xsl:call-template name="defaultTitle">
+					<xsl:with-param name="isoDocLangId" select="$isoLangId"/>
+				</xsl:call-template>
+			</xsl:variable>
+			<!-- not tokenized title for sorting, needed for multilingual sorting -->
+			<Field name="_defaultTitle" string="{string($_defaultTitle)}" store="true" index="true" />
+
+			<xsl:apply-templates select="*[name(.)='gmd:MD_Metadata' or @gco:isoType='gmd:MD_Metadata']" mode="metadata"/>
 		</Document>
 	</xsl:template>
 	
@@ -101,6 +117,8 @@
 				<!-- fields used to search for metadata in paper or digital format -->
 
 				<xsl:for-each select="gmd:presentationForm">
+					<Field name="presentationForm" string="{gmd:CI_PresentationFormCode/@codeListValue}" store="true" index="true"/>
+
 					<xsl:if test="contains(gmd:CI_PresentationFormCode/@codeListValue, 'Digital')">
 						<Field name="digital" string="true" store="false" index="true"/>
 					</xsl:if>
@@ -300,7 +318,7 @@
 						</xsl:when>
 						<xsl:when test="string($fileDescr)='thumbnail'">
 							<!-- FIXME : relative path -->
-							<Field  name="image" string="{concat($fileDescr, '|', '../../srv/en/resources.get?uuid=', //gmd:fileIdentifier/gco:CharacterString, '&amp;fname=', $fileName, '&amp;access=public')}" store="true" index="false"/>
+							<Field  name="image" string="{concat($fileDescr, '|', '../../srv/eng/resources.get?uuid=', //gmd:fileIdentifier/gco:CharacterString, '&amp;fname=', $fileName, '&amp;access=public')}" store="true" index="false"/>
 						</xsl:when>
 					</xsl:choose>
 				</xsl:if>
@@ -318,17 +336,13 @@
 
 			<!-- index online protocol -->
 			
-			<xsl:for-each select="gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource">
+			<xsl:for-each select="gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource[gmd:linkage/gmd:URL!='']">
 				<xsl:variable name="download_check"><xsl:text>&amp;fname=&amp;access</xsl:text></xsl:variable>
 				<xsl:variable name="linkage" select="gmd:linkage/gmd:URL" /> 
 				<xsl:variable name="title" select="normalize-space(gmd:name/gco:CharacterString|gmd:name/gmx:MimeFileType)"/>
 				<xsl:variable name="desc" select="normalize-space(gmd:description/gco:CharacterString)"/>
 				<xsl:variable name="protocol" select="normalize-space(gmd:protocol/gco:CharacterString)"/>
-				<xsl:variable name="mimetype">
-				  <xsl:if test="$linkage!=''">
-				    <xsl:value-of select="geonet:protocolMimeType($linkage, $protocol, gmd:name/gmx:MimeFileType/@type)"/>
-				  </xsl:if>
-				</xsl:variable>
+				<xsl:variable name="mimetype" select="geonet:protocolMimeType($linkage, $protocol, gmd:name/gmx:MimeFileType/@type)"/>
 				
 				<!-- ignore empty downloads -->
 				<xsl:if test="string($linkage)!='' and not(contains($linkage,$download_check))">  
@@ -372,7 +386,7 @@
 		
 		<!-- === Data Quality  === -->
 		<xsl:for-each select="gmd:dataQualityInfo/*/gmd:report/*/gmd:result">
-				<xsl:if test="$inspire='true'">
+			<xsl:if test="$inspire='true'">
 				<!-- 
 				INSPIRE related dataset could contains a conformity section with:
 				* COMMISSION REGULATION (EU) No 1089/2010 of 23 November 2010 implementing Directive 2007/2/EC of the European Parliament and of the Council as regards interoperability of spatial data sets and services
@@ -400,8 +414,8 @@
 				<Field name="specificationTitle" string="{string(.)}" store="false" index="true"/>
 			</xsl:for-each>
 			
-			<xsl:for-each select="//gmd:specification/*/gmd:date/*/gmd:date/gco:DateTime">
-				<Field name="specificationDate" string="{string(.)}" store="false" index="true"/>
+			<xsl:for-each select="//gmd:specification/*/gmd:date/*/gmd:date">
+				<Field name="specificationDate" string="{string(gco:Date|gco:DateTime)}" store="false" index="true"/>
 			</xsl:for-each>
 			
 			<xsl:for-each select="//gmd:specification/*/gmd:date/*/gmd:dateType/gmd:CI_DateTypeCode/@codeListValue">
@@ -414,26 +428,26 @@
 		
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 		<!-- === General stuff === -->		
-	  <!-- Metadata type  -->
-	  <xsl:choose>
-	    <xsl:when test="gmd:hierarchyLevel">
-	      <xsl:for-each select="gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue">
-	        <Field name="type" string="{string(.)}" store="true" index="true"/>
-	      </xsl:for-each>
-	    </xsl:when>
-	    <xsl:otherwise>
-	      <Field name="type" string="dataset" store="true" index="true"/>
-	    </xsl:otherwise>
-	  </xsl:choose>
-	  
-	  <xsl:choose>
-	    <xsl:when test="gmd:identificationInfo/srv:SV_ServiceIdentification">
-	      <Field name="type" string="service" store="false" index="true"/>
-	    </xsl:when>
-	    <!-- <xsl:otherwise>
+		<!-- Metadata type  -->
+		<xsl:choose>
+			<xsl:when test="gmd:hierarchyLevel">
+				<xsl:for-each select="gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue">
+					<Field name="type" string="{string(.)}" store="true" index="true"/>
+				</xsl:for-each>
+			</xsl:when>
+			<xsl:otherwise>
+				<Field name="type" string="dataset" store="true" index="true"/>
+			</xsl:otherwise>
+		</xsl:choose>
+
+	    <xsl:choose>
+	     <xsl:when test="gmd:identificationInfo/srv:SV_ServiceIdentification">
+	     	<Field name="type" string="service" store="false" index="true"/>
+	     </xsl:when>
+	     <!-- <xsl:otherwise>
 	      ... gmd:*_DataIdentification / hierachicalLevel is used and return dataset, serie, ... 
 	      </xsl:otherwise>-->
-	  </xsl:choose>
+	    </xsl:choose>
 
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 
@@ -529,34 +543,8 @@
 	
 	<xsl:template match="*" mode="codeList">
 		<xsl:apply-templates select="*" mode="codeList"/>
-		</xsl:template>
-	
-	<!-- ========================================================================================= -->
-	<!-- latlon coordinates indexed as numeric. -->
-	
-	<xsl:template match="*" mode="latLon">
-		<xsl:variable name="format" select="'##.00'"></xsl:variable>
-		
-		<xsl:if test="number(gmd:westBoundLongitude/gco:Decimal)
-			and number(gmd:southBoundLatitude/gco:Decimal)
-			and number(gmd:eastBoundLongitude/gco:Decimal)
-			and number(gmd:northBoundLatitude/gco:Decimal)
-			">
-		    <Field name="westBL" string="{format-number(gmd:westBoundLongitude/gco:Decimal, $format)}" store="false" index="true"/>
-		    <Field name="southBL" string="{format-number(gmd:southBoundLatitude/gco:Decimal, $format)}" store="false" index="true"/>
-		    
-		    <Field name="eastBL" string="{format-number(gmd:eastBoundLongitude/gco:Decimal, $format)}" store="false" index="true"/>
-		    <Field name="northBL" string="{format-number(gmd:northBoundLatitude/gco:Decimal, $format)}" store="false" index="true"/>
-
-		    <Field name="geoBox" string="{concat(gmd:westBoundLongitude/gco:Decimal, '|', 
-				gmd:southBoundLatitude/gco:Decimal, '|', 
-				gmd:eastBoundLongitude/gco:Decimal, '|', 
-				gmd:northBoundLatitude/gco:Decimal
-				)}" store="true" index="false"/>
-		</xsl:if>
-		
 	</xsl:template>
-
+	
 	<!-- ========================================================================================= -->
 
 	<!-- inspireThemes is a nodeset consisting of skos:Concept elements -->
