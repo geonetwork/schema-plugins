@@ -63,7 +63,7 @@
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 	
 			<xsl:for-each select="abstract">
-				<Field name="abstract" string="{string(.)}" store="true" index="true"/>
+				<Field name="abstract" string="{normalize-space(string(.))}" store="true" index="true"/>
 			</xsl:for-each>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
@@ -125,13 +125,25 @@
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 
-			<xsl:for-each select="contact[organizationName]">
+			<!-- contact field (same as creator field) refers to resource -->
+			<xsl:for-each select="contact[organizationName]|creator[organizationName]">
 				<Field name="orgName" string="{string(organizationName)}" store="true" index="true"/>
-				<Field name="responsibleParty" string="{concat(role, '|metadata|', organizationName, '|')}" store="true" index="false"/>
+				<Field name="responsibleParty" string="{concat('pointOfContact|resource|', organizationName, '|')}" store="true" index="false"/>
 			</xsl:for-each>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 
+			<!-- creator field (same as contact field) refers to resource -->
+			<xsl:for-each select="creator[individualName]|contact[individualName]">
+				<xsl:variable name="ind">
+					<xsl:apply-templates select="individualName"/>
+				</xsl:variable>
+
+				<Field name="responsiblePartyRole" string="originator" store="true" index="true"/>
+				<Field name="responsibleParty" string="{concat('pointOfContact|resource|', $ind, '|')}" store="true" index="false"/>
+			</xsl:for-each>
+
+			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 			<xsl:for-each select="associatedParty[role]">
 				<Field name="responsiblePartyRole" string="{string(role)}" store="true" index="true"/>
 			</xsl:for-each>
@@ -139,9 +151,19 @@
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 		
 			<xsl:for-each select="metadataProvider[organizationName]">
-				<Field name="orgName" string="{string(organizationName)}" store="true" index="true"/>
-				<Field name="responsiblePartyRole" string="originator" store="true" index="true"/>
+				<Field name="metadataPOC" string="{string(organizationName)}" store="true" index="true"/>
 				<Field name="responsibleParty" string="{concat('originator|metadata|', organizationName, '|')}" store="true" index="false"/>
+			</xsl:for-each>
+
+			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+			
+			<xsl:for-each select="metadataProvider[individualName]">
+				<xsl:variable name="ind">
+					<xsl:apply-templates select="individualName"/>
+				</xsl:variable>
+
+				<Field name="metadataPOC" string="{$ind}" store="true" index="true"/>
+				<Field name="responsibleParty" string="{concat('originator|metadata|', $ind, '|')}" store="true" index="false"/>
 			</xsl:for-each>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -152,7 +174,7 @@
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 			<xsl:for-each select="intellectualRights">
-				<Field name="conditionApplyingToAccessAndUse" string="{string(.)}" store="true" index="true"/>
+				<Field name="conditionApplyingToAccessAndUse" string="{normalize-space(string(.))}" store="true" index="true"/>
 			</xsl:for-each>
 
 		</xsl:for-each>
@@ -207,6 +229,15 @@
 			</xsl:attribute>
 		</Field>
 
+	</xsl:template>
+
+	<!-- ========================================================================================= -->
+
+	<xsl:template match="individualName">
+		<xsl:value-of select="surName"/>
+		<xsl:if test="givenName">
+			<xsl:value-of select="concat(', ',givenName)"/>
+		</xsl:if>
 	</xsl:template>
 
 	<!-- ========================================================================================= -->
