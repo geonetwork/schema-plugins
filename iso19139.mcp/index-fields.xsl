@@ -194,20 +194,27 @@
 					<Field name="keywordType" string="{string(.)}" store="true" index="true"/>
 				</xsl:for-each>
 
-				<xsl:for-each select="gmd:type/gmd:MD_KeywordTypeCode/@codeListValue">
-					<Field name="keywordType" string="{string(.)}" store="true" index="true"/>
-				</xsl:for-each>
-
 				<xsl:for-each select="gmd:thesaurusName/*[starts-with(@id,'geonetwork.thesaurus')]">
 					<Field name="keywordThesaurus" string="{string(@id)}" store="true" index="true"/>
 				</xsl:for-each>
-
-
 			</xsl:for-each>
 	
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 	
-			<xsl:for-each select="gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString|mcp:resourceContactInfo/mcp:CI_Responsibility//mcp:party/mcp:CI_Organisation/mcp:name/gco:CharacterString">
+			<xsl:for-each select="mcp:resourceContactInfo/mcp:CI_Responsibility//mcp:party/mcp:CI_Organisation/mcp:name/gco:CharacterString">
+				<xsl:variable name="org" select="string(.)"/>
+
+				<Field name="orgName" string="{$org}" store="true" index="true"/>
+
+				<xsl:variable name="logo" select="../..//gmx:FileName/@src"/>
+				<xsl:for-each select="../../../../mcp:role/*/@codeListValue">
+					<Field name="responsibleParty" string="{concat(., '|resource|', $org, '|', $logo)}" store="true" index="false"/>
+				</xsl:for-each>
+			</xsl:for-each>
+
+			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
+	
+			<xsl:for-each select="gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString">
 				<Field name="orgName" string="{string(.)}" store="true" index="true"/>
 
 				<xsl:variable name="role" select="../../gmd:role/*/@codeListValue"/>
@@ -461,7 +468,20 @@
 		
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 		
-		<xsl:for-each select="gmd:contact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString|mcp:metadataContactInfo/mcp:CI_Responsibility/mcp:party/mcp:CI_Organisation/mcp:name/gco:CharacterString">
+		<xsl:for-each select="mcp:metadataContactInfo/mcp:CI_Responsibility/mcp:party/mcp:CI_Organisation/mcp:name/gco:CharacterString">
+			<xsl:variable name="org" select="."/>
+
+			<Field name="metadataPOC" string="{$org}" store="true" index="true"/>
+
+			<xsl:variable name="logo" select="../..//gmx:FileName/@src"/>
+			<xsl:for-each select="../../../../mcp:role/*/@codeListValue">
+				<Field name="responsibleParty" string="{concat(., '|metadata|', $org, '|', $logo)}" store="true" index="false"/>
+			</xsl:for-each>
+		</xsl:for-each>
+
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+		
+		<xsl:for-each select="gmd:contact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString">
 			<Field name="metadataPOC" string="{string(.)}" store="true" index="true"/>
 			<xsl:variable name="role" select="../../gmd:role/*/@codeListValue"/>
 			<xsl:variable name="logo" select="../..//gmx:FileName/@src"/>
