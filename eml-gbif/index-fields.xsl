@@ -22,7 +22,9 @@
 	<!-- ========================================================================================= -->
 
 	<xsl:template match="/">
-		<Document>
+		<Document locale="eng">
+			<Field name="_locale" string="eng" store="true" index="true" token="false"/>
+			<Field name="_docLocale" string="eng" store="true" index="true" token="false"/>
 			<xsl:apply-templates select="eml:eml" mode="metadata"/>
 		</Document>
 	</xsl:template>
@@ -42,6 +44,7 @@
 			<xsl:variable name="title" select="title[1]"/>
 			<Field name="title" string="{string($title)}" store="true" index="true"/>
       <Field name="_title" string="{string($title)}" store="true" index="true"/>
+      <Field name="_defaultTitle" string="{string($title)}" store="true" index="true"/>
 
 			<xsl:for-each select="title[position() > 1]">
 				<Field name="altTitle" string="{string(.)}" store="true" index="true"/>
@@ -114,11 +117,35 @@
 				<Field name="orgName" string="{string(organizationName)}" store="true" index="true"/>
 			</xsl:for-each>
 
-			<xsl:for-each select="contact[organizationName]">
-				<Field name="orgName" string="{string(organizationName)}" store="true" index="true"/>
+			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
+
+			<xsl:for-each select="associatedParty[role and organizationName]">
+				<Field name="responsibleParty" string="{concat(role, '|resource|', organizationName, '|')}" store="true" index="false"/>
 			</xsl:for-each>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
+
+			<xsl:for-each select="contact[organizationName]">
+				<Field name="orgName" string="{string(organizationName)}" store="true" index="true"/>
+				<Field name="responsibleParty" string="{concat(role, '|metadata|', organizationName, '|')}" store="true" index="false"/>
+			</xsl:for-each>
+
+			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
+
+			<xsl:for-each select="associatedParty[role]">
+				<Field name="responsiblePartyRole" string="{string(role)}" store="true" index="true"/>
+			</xsl:for-each>
+
+			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
+		
+			<xsl:for-each select="metadataProvider[organizationName]">
+				<Field name="orgName" string="{string(organizationName)}" store="true" index="true"/>
+				<Field name="responsiblePartyRole" string="originator" store="true" index="true"/>
+				<Field name="responsibleParty" string="{concat('originator|metadata|', organizationName, '|')}" store="true" index="false"/>
+			</xsl:for-each>
+
+			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+			
 			<xsl:for-each select="language">
 				<Field name="datasetLang" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
@@ -128,14 +155,8 @@
 				<Field name="conditionApplyingToAccessAndUse" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
 
-			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-		
-			<xsl:for-each select="metadataProvider/organisationName">
-				<Field name="metadataPOC" string="{string(.)}" store="true" index="true"/>
-			</xsl:for-each>
-
 		</xsl:for-each>
-			
+
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<!-- === Other stuff from the additionalMetadata block === -->
 
@@ -182,7 +203,7 @@
 
 		<Field name="any" store="false" index="true">
 			<xsl:attribute name="string">
-				<xsl:apply-templates select="." mode="allText"/>
+				<xsl:value-of select="normalize-space(string(.))"/>
 			</xsl:attribute>
 		</Field>
 
@@ -193,40 +214,23 @@
 	
 	<xsl:template match="*" mode="latLon">
 
-		<xsl:variable name="format" select="'##.00'"></xsl:variable>
+		<xsl:if test="number(westBoundingCoordinate) and number(southBoundingCoordinate) and number(eastBoundingCoordinate) and number(northBoundingCoordinate)">
+			<xsl:variable name="format" select="'##.00'"></xsl:variable>
 
-		<xsl:if test="number(westBoundingCoordinate)">
 			<Field name="westBL" string="{format-number(westBoundingCoordinate, $format)}" store="true" index="true"/>
-		</xsl:if>
-	
-		<xsl:if test="number(southBoundingCoordinate)">
 			<Field name="southBL" string="{format-number(southBoundingCoordinate, $format)}" store="true" index="true"/>
-		</xsl:if>
 	
-		<xsl:if test="number(eastBoundingCoordinate)">
 			<Field name="eastBL" string="{format-number(eastBoundingCoordinate, $format)}" store="true" index="true"/>
-		</xsl:if>
-	
-		<xsl:if test="number(northBoundingCoordinate)">
 			<Field name="northBL" string="{format-number(northBoundingCoordinate, $format)}" store="true" index="true"/>
+
+			<Field name="geoBox" string="{
+			concat(format-number(westBoundingCoordinate, $format), '|', 
+						format-number(southBoundingCoordinate, $format), '|', 
+						format-number(eastBoundingCoordinate, $format), '|', 
+						format-number(northBoundingCoordinate, $format)
+						)}" store="true" index="false"/>
 		</xsl:if>
 	
-	</xsl:template>
-
-	<!-- ========================================================================================= -->
-	<!--allText -->
-	
-	<xsl:template match="*" mode="allText">
-		<xsl:for-each select="@*">
-			<xsl:if test="name(.) != 'codeList' ">
-				<xsl:value-of select="concat(string(.),' ')"/>
-			</xsl:if>	
-		</xsl:for-each>
-
-		<xsl:choose>
-			<xsl:when test="*"><xsl:apply-templates select="*" mode="allText"/></xsl:when>
-			<xsl:otherwise><xsl:value-of select="concat(string(.),' ')"/></xsl:otherwise>
-		</xsl:choose>
 	</xsl:template>
 
 	<!-- ========================================================================================= -->
