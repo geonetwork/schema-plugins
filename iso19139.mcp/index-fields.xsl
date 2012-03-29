@@ -36,10 +36,8 @@
 		</xsl:variable>
 
 		<Document locale="{$isoLangId}">
-			<Field name="_locale" string="{$isoLangId}" store="true" index="true" token="false"/>
-
-			<Field name="_docLocale" string="{$isoLangId}" store="true" index="true" token="false"/>
-
+			<Field name="_locale" string="{$isoLangId}" store="true" index="true"/>
+			<Field name="_docLocale" string="{$isoLangId}" store="true" index="true"/>
 			<xsl:variable name="_defaultTitle">
 				<xsl:call-template name="defaultTitle">
 					<xsl:with-param name="isoDocLangId" select="$isoLangId"/>

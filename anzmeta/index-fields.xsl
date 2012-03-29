@@ -15,8 +15,12 @@
 	<!-- ========================================================================================= -->
 
 	<xsl:template match="/">
-		<Document>
-	
+		<Document locale="eng">
+			<Field name="_locale" string="eng" store="true" index="true"/>
+			<Field name="_docLocale" string="eng" store="true" index="true"/>
+
+			<Field name="_defaultTitle" string="{/anzmeta/citeinfo/title}" store="true" index="true"/>
+
 			<xsl:apply-templates select="/anzmeta/citeinfo/title">
 				<xsl:with-param name="token" select="'true'"/>
 				<xsl:with-param name="store" select="'true'"/>
@@ -43,10 +47,22 @@
 
 			<Field name="any" store="false" index="true">
 				<xsl:attribute name="string">
-					<xsl:apply-templates select="/anzmeta" mode="allText"/>
+					<xsl:value-of select="normalize-space(string(/anzmeta))"/>
+					<xsl:text> </xsl:text>
+					<xsl:for-each select="@*"><xsl:value-of select="concat(string(.),' ')"/></xsl:for-each>
 				</xsl:attribute>
 			</Field>
 	
+			<!-- contact info -->
+			<xsl:for-each select="/anzmeta/cntinfo">
+				<Field name="metadataPOC" string="{cntorg}" store="false" index="true"/>
+				<Field name="orgName" string="{cntorg}" store="false" index="true"/>
+
+				<Field name="responsibleParty" string="{concat('contact|metadata|',cntorg,'|')}" store="true" index="false"/>
+
+				<Field name="responsibleParty" string="{concat('contact|resource|',cntorg,'|')}" store="true" index="false"/>
+			</xsl:for-each>
+
 			<!-- digital data format -->
 			<xsl:if test="/anzmeta/distinfo/native/digform">
 				<Field name="digital" string="true" store="false" index="true"/>
@@ -92,14 +108,5 @@
 	</xsl:template>
 	
 	<!-- ========================================================================================= -->
-	
-	<!--allText -->
-	<xsl:template match="*" mode="allText">
-		<xsl:for-each select="@*"><xsl:value-of select="concat(string(.),' ')"/></xsl:for-each>
-		<xsl:choose>
-			<xsl:when test="*"><xsl:apply-templates select="*" mode="allText"/></xsl:when>
-			<xsl:otherwise><xsl:value-of select="concat(string(.),' ')"/></xsl:otherwise>
-		</xsl:choose>
-	</xsl:template>
 
 </xsl:stylesheet>
