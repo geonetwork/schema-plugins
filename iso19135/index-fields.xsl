@@ -12,7 +12,11 @@
 	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
 
 	<xsl:template match="/">
-		<Document>
+		<xsl:variable name="isoLangId" select="'eng'"/>
+			
+		<Document locale="{$isoLangId}">
+			<Field name="_locale" string="{$isoLangId}" store="true" index="true"/>
+			<Field name="_docLocale" string="{$isoLangId}" store="true" index="true"/>
 			<xsl:apply-templates select="grg:RE_Register" mode="metadata"/>
 		</Document>
 	</xsl:template>

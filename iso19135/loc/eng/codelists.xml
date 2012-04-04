@@ -1921,32 +1921,32 @@
 	</codelist>	
 	<codelist name="grg:RE_SimilarityToSource">
 		<entry>
-			<code>1</code>
+			<code>identical</code>
 			<label>Identical</label>
 			<description>No change has been made to the specification.</description>
 		</entry>
 		<entry>
-			<code>2</code>
+			<code>restyled</code>
 			<label>Restyled</label>
 			<description>The style of the specification has changed to match the style and structure of other specifications in the register that has imported the specification.</description>
 		</entry>
 		<entry>
-			<code>3</code>
-			<label>ContextAdded</label>
+			<code>contextAdded</code>
+			<label>Context Added</label>
 			<description>The specification includes information about its context that is not explicit in the specification in the external source.</description>
 		</entry>
 		<entry>
-			<code>4</code>
+			<code>generalization</code>
 			<label>Generalization</label>
 			<description>The specification has been generalized to have a broader meaning than the item specified in the external source.</description>
 		</entry>
 		<entry>
-			<code>5</code>
+			<code>specialization</code>
 			<label>Specialization</label>
 			<description>The specification has been specialized to have a narrower meaning than the item specified in the external source.</description>
 		</entry>
 		<entry>
-			<code>6</code>
+			<code>unspecified</code>
 			<label>Unspecified</label>
 			<description>The nature of the differences between the register item and the similar item in the external source is unspecified.</description>
 		</entry>
