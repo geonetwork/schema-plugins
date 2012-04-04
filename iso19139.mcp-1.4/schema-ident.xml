@@ -3,6 +3,8 @@
 	<name>iso19139.mcp-1.4</name>
 	<id>ad5525c0-ddda-11df-a981-001c2346de4c</id>
 	<version>1.4</version>
+	<depends>iso19139</depends>
+	<depends>iso19139.mcp</depends>
 	<schemaLocation>http://bluenet3.antcrc.utas.edu.au/mcp http://bluenet3.antcrc.utas.edu.au/mcp-1.4/schema.xsd http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd</schemaLocation>
 	<autodetect xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco">
 		<elements>
