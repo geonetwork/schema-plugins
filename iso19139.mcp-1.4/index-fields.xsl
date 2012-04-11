@@ -14,7 +14,7 @@
 
 	<xsl:param name="datadir"/>
 
-	<xsl:include href="iso19139/convert/functions.xsl"/>
+	<xsl:include href="../iso19139/convert/functions.xsl"/>
 	<xsl:include href="../../../xsl/utils-fn.xsl"/>
 
 	<!-- This file defines what parts of the metadata are indexed by Lucene

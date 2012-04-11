@@ -212,6 +212,8 @@
 	<!-- =================================================================== -->
 	<!-- === Javascript used by functions in this presentation XSLT          -->
 	<!-- =================================================================== -->
-	<xsl:template name="iso19139.mcp-1.4-javascript"/>
+	<xsl:template name="iso19139.mcp-1.4-javascript">
+		<xsl:call-template name="iso19139.mcp-javascript"/>
+	</xsl:template>
 
 </xsl:stylesheet>
