@@ -9,7 +9,7 @@
    xmlns:gmd="http://www.isotc211.org/2005/gmd"
 	 exclude-result-prefixes="gmd">
 
-	<xsl:include href="convert/functions.xsl"/>
+	<xsl:include href="../iso19139/convert/functions.xsl"/>
 
 	<xsl:variable name="metadataStandardName" select="'ANZLIC Metadata Profile: An Australian/New Zealand Profile of AS/NZS ISO 19115:2005, Geographic information - Metadata'"/>
 	<xsl:variable name="metadataStandardVersion" select="'1.1'"/>
