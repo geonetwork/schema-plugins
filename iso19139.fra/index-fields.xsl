@@ -9,8 +9,8 @@
 										xmlns:gmx="http://www.isotc211.org/2005/gmx"
                     xmlns:skos="http://www.w3.org/2004/02/skos/core#">
 
-	<xsl:include href="convert/functions.xsl"/>
 	<xsl:include href="../../../xsl/utils-fn.xsl"/>
+	<xsl:include href="../iso19139/convert/functions.xsl"/>
 
 	<!-- This file defines what parts of the metadata are indexed by Lucene
 	     Searches can be conducted on indexes defined here. 
