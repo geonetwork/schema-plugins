@@ -13,7 +13,6 @@
 	<siblingidentifierlink>Show Sibling records</siblingidentifierlink>
 	<spatialExtentTab>Spatial Extent</spatialExtentTab>
 	<temporalExtentTab>Temporal Ext.</temporalExtentTab>
-	<deprecatedTimeStrings>Deprecated - use time elements above</deprecatedTimeStrings>
 	<xml_iso19139.anzlic>Save this metadata as an ISO19139 ANZLIC XML file</xml_iso19139.anzlic>
 	<xml_iso19139.anzlicTorifcs>Save this metadata as an ANDS rifcs XML file</xml_iso19139.anzlicTorifcs>
 	<xml_iso19139.anzlicTooai_dc>Save this metadata as an OAI Dublin Core XML file</xml_iso19139.anzlicTooai_dc>
