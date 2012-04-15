@@ -274,6 +274,11 @@ Describes the type of commons license that describes the conditions of usage. Ca
 		<description>Contact information for those parties who have been cited as responsible for the resource.</description>
 	</element>
 	<!-- ==================================================== -->
+	<element name="mcp:CI_Responsibility">
+		<label>Responsibility</label>
+		<description>Contact information for those parties who have been cited as responsible for the resource.</description>
+	</element>
+	<!-- ==================================================== -->
 	<element name="mcp:CI_Citation">
 		<label>Citation</label>
 		<description>Citation information.</description>

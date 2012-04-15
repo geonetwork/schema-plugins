@@ -1842,7 +1842,7 @@
 
 			</xsl:for-each>
 
-			<xsl:for-each select="gmd:metadataContactInfo/mcp:CI_Responsibility">
+			<xsl:for-each select="mcp:metadataContactInfo/mcp:CI_Responsibility">
 
 			<xsl:call-template name="complexElementGuiWrapper">
 				<xsl:with-param name="title" select="/root/gui/schemas/iso19139.mcp/strings/contact"/>
