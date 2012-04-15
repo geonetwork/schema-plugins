@@ -42,8 +42,9 @@
           <xsl:with-param name="content">
             <xsl:apply-templates mode="block"
               select="
-                gmd:identificationInfo/*/gmd:citation/*[gmd:date]
+                gmd:identificationInfo/*/gmd:citation/*/gmd:date[1]
                 |gmd:identificationInfo/*/gmd:language
+								|gmd:identificationInfo/*/gmd:citation/*/gmd:edition
                 |gmd:topicCategory
                 |gmd:identificationInfo/*/gmd:descriptiveKeywords
                 |gmd:identificationInfo/*/gmd:graphicOverview[1]
@@ -60,9 +61,13 @@
           <xsl:with-param name="title" select="/root/gui/schemas/iso19139/strings/contactInfo"/>
           <xsl:with-param name="content">
             <xsl:apply-templates mode="block"
-              select="gmd:identificationInfo/*/gmd:pointOfContact|gmd:identificationInfo/*/mcp:resourceContactInfo"/> 
+              select="gmd:identificationInfo/*/gmd:pointOfContact"/>
+						<xsl:apply-templates mode="block-mcp" 
+							select="gmd:identificationInfo/*/mcp:resourceContactInfo"/> 
             <xsl:apply-templates mode="block"
-              select="gmd:contact|mcp:metadataContactInfo"/>
+              select="gmd:contact"/>
+						<xsl:apply-templates mode="block-mcp"
+							select="mcp:metadataContactInfo"/>
           </xsl:with-param>
         </xsl:call-template>
 
@@ -127,5 +132,70 @@
     </xsl:apply-templates>
   </xsl:template>
 
+  <xsl:template mode="block-mcp" match="mcp:metadataContactInfo|mcp:resourceContactInfo">
+		
+    <xsl:call-template name="complexElementSimpleGui">
+      <xsl:with-param name="title">
+				<xsl:variable name="roles" select="count(*/mcp:role/gmd:CI_RoleCode/@codeListValue)"/>
+				<xsl:for-each select="*/mcp:role/gmd:CI_RoleCode/@codeListValue">
+        	<xsl:value-of
+          	select="geonet:getCodeListValue(/root/gui/schemas, 'iso19139.mcp', 'gmd:CI_RoleCode', .)"/>
+					<xsl:if test="position()>1 and position()!=$roles">
+						<xsl:text>, </xsl:text>
+					</xsl:if>
+				</xsl:for-each>
+      </xsl:with-param>
+      <xsl:with-param name="content">
+
+				<xsl:for-each select="*/mcp:party/*">
+    			<xsl:call-template name="simpleElementSimpleGUI">
+      			<xsl:with-param name="title">
+							<xsl:value-of select="substring-after(local-name(),'CI_')"/>
+						</xsl:with-param>
+      			<xsl:with-param name="helpLink">
+        			<xsl:call-template name="getHelpLink">
+          			<xsl:with-param name="schema" select="$schema"/>
+          			<xsl:with-param name="name" select="name(.)"/>
+        			</xsl:call-template>
+      			</xsl:with-param>
+      			<xsl:with-param name="content">
+					
+        <xsl:apply-templates mode="iso19139-simple"
+          select="
+          mcp:individual/descendant::node()[(gco:CharacterString and normalize-space(gco:CharacterString)!='')]
+          "/>
+
+        <xsl:apply-templates mode="iso19139-simple"
+          select="
+          mcp:contactInfo/gmd:CI_Contact/gmd:address/descendant::node()[(gco:CharacterString and normalize-space(gco:CharacterString)!='')]
+          "/>
+        
+        <xsl:for-each select="mcp:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource">
+          
+          <xsl:call-template name="simpleElement">
+            <xsl:with-param name="id" select="generate-id(.)"/>
+            <xsl:with-param name="title">
+              <xsl:call-template name="getTitle">
+                <xsl:with-param name="name" select="'gmd:onlineResource'"/>
+                <xsl:with-param name="schema" select="$schema"/>
+              </xsl:call-template>
+            </xsl:with-param>
+            <xsl:with-param name="help"></xsl:with-param>
+            <xsl:with-param name="content">
+              <a href="{gmd:linkage/gmd:URL}" target="_blank">
+                <xsl:value-of select="gmd:description/gco:CharacterString"/>
+              </a>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:for-each>
+
+						 </xsl:with-param>
+    			</xsl:call-template>
+				</xsl:for-each>
+
+        
+      </xsl:with-param>
+    </xsl:call-template>
+	</xsl:template>
 
 </xsl:stylesheet>

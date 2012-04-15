@@ -25,11 +25,11 @@
 	<xsl:variable name="ccurl" select="/root/gui/schemas/iso19139.mcp/strings/creativeCommonsUrl"/>
 
 	<!-- main template - the way into processing iso19139.mcp -->
-
   <xsl:template match="metadata-iso19139.mcp" name="metadata-iso19139.mcp">
     <xsl:param name="schema"/>
     <xsl:param name="edit" select="false()"/>
     <xsl:param name="embedded"/>
+
 
 		<!-- process in profile mode first -->
 		<xsl:variable name="mcpElements">
@@ -1100,21 +1100,20 @@
 				</xsl:when>
 			</xsl:choose>
 
-		</xsl:for-each>
-
-		<xsl:for-each select="gmd:extent/mcp:EX_Extent/gmd:temporalElement/mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod">
-				<temporalExtent>	
+			<xsl:for-each select="gmd:extent/mcp:EX_Extent/gmd:temporalElement/mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod">
+				<temporalExtent>
 					<begin><xsl:apply-templates mode="brieftime" select="gml:beginPosition|gml:begin/gml:TimeInstant/gml:timePosition"/></begin>
 					<end><xsl:apply-templates mode="brieftime" select="gml:endPosition|gml:end/gml:TimeInstant/gml:timePosition"/></end>
 				</temporalExtent>
-		</xsl:for-each>
-	
-		<xsl:for-each select="gmd:extent/mcp:EX_Extent/mcp:taxonomicElement/mcp:EX_TaxonomicCoverage/mcp:presentationLink">
-			<taxonomicCoverage>	
-				<link><xsl:value-of select="string(.)"/></link>
-			</taxonomicCoverage>
-		</xsl:for-each>
+			</xsl:for-each>
+
+			<xsl:for-each select="gmd:extent/mcp:EX_Extent/mcp:taxonomicElement/mcp:EX_TaxonomicCoverage/mcp:presentationLink">
+				<taxonomicCoverage>	
+					<link><xsl:value-of select="string(.)"/></link>
+				</taxonomicCoverage>
+			</xsl:for-each>
 			
+		</xsl:for-each>
 	</xsl:template>
 	
 <!-- helper to create a simplified view of a CI_ResponsibleParty block -->
@@ -1142,7 +1141,7 @@
 		<xsl:param name="embedded" select="false()"/>
 
 		<xsl:variable name="dataset" select="gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue='dataset'  or gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue='dataObject'	or normalize-space(gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue)=''"/>
-		
+
 		<xsl:choose>
 			<!-- simple tab -->
 			<xsl:when test="$currTab='simple'">
@@ -1154,7 +1153,7 @@
 
 			<!-- metadata tab -->
 			<xsl:when test="$currTab='metadata'">
-				<xsl:call-template name="iso19139Metadata">
+				<xsl:call-template name="iso19139McpMetadata">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:call-template>
@@ -1166,6 +1165,7 @@
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
+				
 			</xsl:when>
 
 			<!-- maintenance tab -->
@@ -1294,6 +1294,7 @@
 
 			<!-- default - display everything - usually just tab="complete" -->
 			<xsl:otherwise>
+			
 				<xsl:call-template name="iso19139Complete">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
@@ -1311,6 +1312,137 @@
 		</xsl:choose>
 	</xsl:template>
 
+	<!-- ============================================================================= -->
+
+  <xsl:template name="iso19139McpMetadata">
+    <xsl:param name="schema"/>
+    <xsl:param name="edit"/>
+  	
+  	<xsl:variable name="ref" select="concat('#_',geonet:element/@ref)"/>  	
+  	<xsl:variable name="validationLink">
+  		<xsl:call-template name="validationLink">
+  			<xsl:with-param name="ref" select="$ref"/>
+  		</xsl:call-template>  		
+  	</xsl:variable>
+  	
+  	<xsl:call-template name="complexElementGui">
+  		<xsl:with-param name="title" select="/root/gui/strings/metadata"/>
+  		<xsl:with-param name="validationLink" select="$validationLink"/>
+  		<xsl:with-param name="edit" select="true()"/>
+  		<xsl:with-param name="content">
+  	
+			<!-- if the parent is root then display fields not in tabs -->
+				<xsl:choose>
+	    		<xsl:when test="name(..)='root'">
+			    <xsl:apply-templates mode="elementEP" select="gmd:fileIdentifier|geonet:child[string(@name)='fileIdentifier']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:language|geonet:child[string(@name)='language']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:characterSet|geonet:child[string(@name)='characterSet']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:parentIdentifier|geonet:child[string(@name)='parentIdentifier']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:hierarchyLevel|geonet:child[string(@name)='hierarchyLevel']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:hierarchyLevelName|geonet:child[string(@name)='hierarchyLevelName']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:dateStamp|geonet:child[string(@name)='dateStamp']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+					<xsl:apply-templates mode="elementEP" select="gmd:metadataStandardName|geonet:child[string(@name)='metadataStandardName']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:metadataStandardVersion|geonet:child[string(@name)='metadataStandardVersion']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+	
+		    	<xsl:apply-templates mode="elementEP" select="gmd:contact|geonet:child[string(@name)='contact']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="mcp:metadataContactInfo|geonet:child[string(@name)='metadataContactInfo']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:dataSetURI|geonet:child[string(@name)='dataSetURI']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:locale|geonet:child[string(@name)='locale']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:series|geonet:child[string(@name)='series']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:describes|geonet:child[string(@name)='describes']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:propertyType|geonet:child[string(@name)='propertyType']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+				<xsl:apply-templates mode="elementEP" select="gmd:featureType|geonet:child[string(@name)='featureType']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+		
+		    	<xsl:apply-templates mode="elementEP" select="gmd:featureAttribute|geonet:child[string(@name)='featureAttribute']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="$edit"/>
+		    	</xsl:apply-templates>
+
+		    	<xsl:apply-templates mode="elementEP" select="mcp:revisionDate|geonet:child[string(@name)='revisionDate']">
+		      	<xsl:with-param name="schema" select="$schema"/>
+		      	<xsl:with-param name="edit"   select="false()"/>
+		    	</xsl:apply-templates>
+			</xsl:when>
+			<!-- otherwise, display everything because we have embedded MD_Metadata -->
+			<xsl:otherwise>
+				<xsl:apply-templates mode="elementEP" select="*">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+			</xsl:otherwise>
+			</xsl:choose>
+
+  		</xsl:with-param>
+  		<xsl:with-param name="schema" select="$schema"/>
+  	</xsl:call-template>
+  	
+  </xsl:template>
 <!-- mcp tabs -->
 	
 	<xsl:template name="mcp">
@@ -1340,12 +1472,12 @@
 				</xsl:with-param>
 				<xsl:with-param name="content">
 	
-				<xsl:apply-templates mode="elementEP" select="gmd:citation/gmd:CI_Citation/gmd:title|gmd:citation/gmd:CI_Citation/geonet:child[string(@name)='title']">
+				<xsl:apply-templates mode="elementEP" select="gmd:citation/*/gmd:title|gmd:citation/*/geonet:child[string(@name)='title']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
 
-				<xsl:apply-templates mode="elementEP" select="gmd:citation/gmd:CI_Citation/gmd:date|gmd:citation/gmd:CI_Citation/geonet:child[string(@name)='date']">
+				<xsl:apply-templates mode="elementEP" select="gmd:citation/*/gmd:date|gmd:citation/*/geonet:child[string(@name)='date']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
@@ -1360,6 +1492,11 @@
 
 				<xsl:if test="$core">
 					<xsl:apply-templates mode="elementEP" select="gmd:pointOfContact|geonet:child[string(@name)='pointOfContact']">
+						<xsl:with-param name="schema" select="$schema"/>
+						<xsl:with-param name="edit"   select="$edit"/>
+					</xsl:apply-templates>
+
+					<xsl:apply-templates mode="elementEP" select="gmd:resourceContactInfo|geonet:child[string(@name)='resourceContactInfo']">
 						<xsl:with-param name="schema" select="$schema"/>
 						<xsl:with-param name="edit"   select="$edit"/>
 					</xsl:apply-templates>
@@ -1534,7 +1671,7 @@
 		
 		<!-- metadata contact info in its own box -->
 
-			<xsl:for-each select="gmd:contact">
+			<xsl:for-each select="gmd:contact[gmd:CI_ResponsibleParty]">
 
 			<xsl:call-template name="complexElementGuiWrapper">
 				<xsl:with-param name="title" select="/root/gui/schemas/iso19139.mcp/strings/contact"/>
@@ -1565,6 +1702,84 @@
 						<xsl:with-param name="schema" select="$schema"/>
 						<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
+
+				</xsl:with-param>
+				<xsl:with-param name="schema" select="$schema"/>
+				<xsl:with-param name="group" select="/root/gui/strings/metadata"/>
+				<xsl:with-param name="edit" select="$edit"/>
+			</xsl:call-template>
+
+			</xsl:for-each>
+
+			<xsl:for-each select="mcp:metadataContactInfo/mcp:CI_Responsibility">
+
+			<xsl:call-template name="complexElementGuiWrapper">
+				<xsl:with-param name="title" select="/root/gui/schemas/iso19139.mcp/strings/contact"/>
+				<xsl:with-param name="content">
+
+				<xsl:apply-templates mode="elementEP" select="mcp:role|geonet:child[string(@name)='role']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="group" select="/root/gui/strings/metadata"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+
+				<xsl:apply-templates mode="elementEP" select="mcp:extent|geonet:child[string(@name)='extent']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="group" select="/root/gui/strings/metadata"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+
+				<xsl:for-each select="mcp:party/mcp:CI_Organisation">
+
+				<xsl:call-template name="complexElementGuiWrapper">
+					<xsl:with-param name="title" select="/root/gui/schemas/iso19139.mcp/strings/organisation"/>
+					<xsl:with-param name="content">
+
+					<xsl:apply-templates mode="elementEP" select="mcp:name|geonet:child[string(@name)='name']">
+						<xsl:with-param name="schema" select="$schema"/>
+						<xsl:with-param name="edit"   select="$edit"/>
+					</xsl:apply-templates>
+
+					<xsl:apply-templates mode="elementEP" select="mcp:contactInfo|geonet:child[string(@name)='contactInfo']">
+						<xsl:with-param name="schema" select="$schema"/>
+						<xsl:with-param name="edit"   select="$edit"/>
+					</xsl:apply-templates>
+
+					<xsl:for-each select="mcp:individual/mcp:CI_Individual">
+					<xsl:call-template name="complexElementGuiWrapper">
+						<xsl:with-param name="title" select="/root/gui/schemas/iso19139.mcp/strings/individual"/>
+						<xsl:with-param name="content">
+	
+						<xsl:apply-templates mode="elementEP" select="mcp:name|geonet:child[string(@name)='name']">
+							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="edit"   select="$edit"/>
+						</xsl:apply-templates>
+
+						<xsl:apply-templates mode="elementEP" select="mcp:contactInfo|geonet:child[string(@name)='contactInfo']">
+							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="edit"   select="$edit"/>
+						</xsl:apply-templates>
+
+						<xsl:apply-templates mode="elementEP" select="mcp:positionName|geonet:child[string(@name)='positionName']">
+							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="edit"   select="$edit"/>
+						</xsl:apply-templates>
+
+						</xsl:with-param>
+						<xsl:with-param name="schema" select="$schema"/>
+						<xsl:with-param name="group" select="/root/gui/strings/metadata"/>
+						<xsl:with-param name="edit" select="$edit"/>
+					</xsl:call-template>
+
+					</xsl:for-each>
+
+					</xsl:with-param>
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="group" select="/root/gui/strings/metadata"/>
+					<xsl:with-param name="edit" select="$edit"/>
+				</xsl:call-template>
+
+				</xsl:for-each>
 
 				</xsl:with-param>
 				<xsl:with-param name="schema" select="$schema"/>
@@ -1606,6 +1821,133 @@
 			<xsl:with-param name="edit" select="$edit"/>
 		</xsl:call-template>
 
+	</xsl:template>
+
+	<!-- ============================================================================= -->
+
+	<xsl:template mode="iso19139.mcp" match="mcp:metadataContactInfo|mcp:resourceContactInfo|mcp:responsibleParty">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+
+		<xsl:apply-templates mode="complexElement" select=".">
+			<xsl:with-param name="schema"  select="$schema"/>
+			<xsl:with-param name="edit"    select="$edit"/>
+			<xsl:with-param name="content">
+				<xsl:apply-templates mode="elementEP" select="mcp:CI_Responsibility|geonet:child[string(@name)='CI_Responsibility']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+			</xsl:with-param>
+		</xsl:apply-templates>
+
+	</xsl:template>
+
+	<!-- ============================================================================= -->
+
+	<xsl:template mode="iso19139.mcp" match="mcp:CI_Responsibility">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+
+		<xsl:apply-templates mode="elementEP" select="mcp:role|geonet:child[string(@name)='role']">
+			<xsl:with-param name="schema" select="$schema"/>
+			<xsl:with-param name="edit"   select="$edit"/>
+		</xsl:apply-templates>
+
+		<xsl:apply-templates mode="elementEP" select="mcp:extent|geonet:child[string(@name)='extent']">
+			<xsl:with-param name="schema" select="$schema"/>
+			<xsl:with-param name="edit"   select="$edit"/>
+		</xsl:apply-templates>
+
+		<xsl:for-each select="mcp:party">
+			<xsl:call-template name="partyTemplate">
+				<xsl:with-param name="edit" select="$edit"/>
+				<xsl:with-param name="schema" select="$schema"/>
+			</xsl:call-template>
+		</xsl:for-each>
+
+	</xsl:template>
+
+	<!-- ============================================================================= -->
+
+	<xsl:template name="partyTemplate">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+		
+		<xsl:variable name="content">
+			<xsl:for-each select="mcp:CI_Organisation|mcp:CI_Individual">
+			<tr>
+				<td class="padded-content" width="100%" colspan="2">
+					<table width="100%">
+						<tr>
+							<td width="50%" valign="top">
+								<table width="100%">
+									<xsl:apply-templates mode="elementEP" select="../@xlink:href">
+										<xsl:with-param name="schema" select="$schema"/>
+										<xsl:with-param name="edit"   select="$edit"/>
+									</xsl:apply-templates>
+									
+									<xsl:apply-templates mode="elementEP" select="mcp:name|geonet:child[string(@name)='name']">
+										<xsl:with-param name="schema" select="$schema"/>
+										<xsl:with-param name="edit"   select="$edit"/>
+									</xsl:apply-templates>
+									
+									<xsl:apply-templates mode="elementEP" select="mcp:positionName|geonet:child[string(@name)='positionName']">
+										<xsl:with-param name="schema" select="$schema"/>
+										<xsl:with-param name="edit"   select="$edit"/>
+									</xsl:apply-templates>
+									
+									<xsl:for-each select="mcp:individual/mcp:CI_Individual">
+										<xsl:apply-templates mode="complexElement" select=".">
+											<xsl:with-param name="schema"  select="$schema"/>
+											<xsl:with-param name="edit"    select="$edit"/>
+											<xsl:with-param name="content">
+									
+												<xsl:apply-templates mode="elementEP" select="../@xlink:href">
+													<xsl:with-param name="schema" select="$schema"/>
+													<xsl:with-param name="edit"   select="$edit"/>
+												</xsl:apply-templates>
+									
+												<xsl:apply-templates mode="elementEP" select="mcp:name|geonet:child[string(@name)='name']">
+													<xsl:with-param name="schema" select="$schema"/>
+													<xsl:with-param name="edit"   select="$edit"/>
+												</xsl:apply-templates>
+									
+												<xsl:apply-templates mode="elementEP" select="mcp:positionName|geonet:child[string(@name)='positionName']">
+													<xsl:with-param name="schema" select="$schema"/>
+													<xsl:with-param name="edit"   select="$edit"/>
+												</xsl:apply-templates>
+
+												<xsl:apply-templates mode="elementEP" select="mcp:contactInfo|geonet:child[string(@name)='contactInfo']">
+													<xsl:with-param name="schema" select="$schema"/>
+													<xsl:with-param name="edit"   select="$edit"/>
+												</xsl:apply-templates>
+									
+											</xsl:with-param>
+										</xsl:apply-templates>
+									</xsl:for-each>
+								</table>
+							</td>
+							<td valign="top">
+								<table width="100%">
+									<xsl:apply-templates mode="elementEP" select="mcp:contactInfo|geonet:child[string(@name)='contactInfo']">
+										<xsl:with-param name="schema" select="$schema"/>
+										<xsl:with-param name="edit"   select="$edit"/>
+									</xsl:apply-templates>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			</xsl:for-each>
+		</xsl:variable>
+		
+		<xsl:apply-templates mode="complexElement" select="mcp:CI_Organisation|mcp:CI_Individual">
+			<xsl:with-param name="schema"  select="$schema"/>
+			<xsl:with-param name="edit"    select="$edit"/>
+			<xsl:with-param name="content" select="$content"/>
+		</xsl:apply-templates>
+		
 	</xsl:template>
 
 	<!-- ================================================================== -->
@@ -1664,9 +2006,9 @@
 		</xsl:for-each>
 	</xsl:template>
 
-	<!-- ===================================================================== -->
+	<!-- ==================================================================== -->
   <!-- === iso19139.mcp brief formatting === -->
-  <!-- ===================================================================== -->
+  <!-- ==================================================================== -->
 
 	<xsl:template match="iso19139.mcpBrief">
 		<metadata>
@@ -1682,4 +2024,140 @@
 	<!-- match everything else and do nothing - leave that to iso19139 mode -->
 	<xsl:template mode="iso19139.mcp" match="*|@*"/> 
 
+	<!-- ==================================================================== -->
+  <!-- === Javascript used by functions in this presentation XSLT -->
+  <!-- ==================================================================== -->
+
+	<!-- Javascript used by functions in this XSLT -->
+	<xsl:template name="iso19139.mcp-javascript">
+		<script type="text/javascript">
+		<![CDATA[
+/**
+ * JavaScript Functions to support Marine Community Profile
+ */
+
+function submitTaxonSearch(refToUpdate) {
+				// submit search to APC/AFD search URL with params
+				// using Ajax.Updater
+
+				$('taxonSearchButton').hide();
+				$('taxonSearchWaitMessage').show();
+
+
+				var forwardUrl = 'http://biodiversity.org.au/name/?';
+				
+				var forwardTempBeg =
+					'<request>'+
+					'   <site>'+
+					'      <url>{URL}</url>'+
+					'      <type>other</type>'+
+					'   </site>'+
+					'   <params>';
+				var forwardTempEnd = '</params>'+
+					'</request>';
+
+				// build params from form
+				var hmParams = $('taxonSearchForm').serialize(true);
+				var params = '';
+
+				for (var name in hmParams) {
+					params = params + '<'+name+'>'+hmParams[name]+'</'+name+'>\n';
+				}
+		
+				var request = str.substitute(forwardTempBeg, { URL : forwardUrl })+params+forwardTempEnd;
+
+				ker.send('xml.forward.taxonsearch', request, ker.wrap(this, retrieve_OK));
+				
+				function retrieve_OK(xmlRes) {
+					var selectedId = 'assignedTaxonName';
+					if (xmlRes.nodeName == 'error')
+						ker.showError('taxonSearchError', xmlRes);
+					else {
+						var list = xml.children(xmlRes);
+						var taxonSearchResults = $('taxonSearchResults');
+						taxonSearchResults.update(); // clear it out
+						for (var i=0; i < list.length; i++) {
+							var data = xml.toObject(list[i]);
+
+							var divSel = new Element('div', { 'id': 'row_'+i, 'style': 'position:relative;left:-20px;top:-20px' });
+							var divName = new Element('div', { 'class': 'table-left' }).update(data.name);
+							divName.insert(divSel, divName);
+							var divScore = new Element('div', { 'class': 'table-middle' }).update(data.score);
+							var anchor = new Element('a', { 'class': 'content', 'onclick': "clickSetRef('"+selectedId+"','"+refToUpdate+"','"+data.uri+"','"+data.name+"','"+i+"');" }).update('Use this name');
+							var divAnchor = new Element('div', { 'class': 'table-right' }).update(anchor);
+							var divTableRow = new Element('div', { 'class': 'table-row' });
+							divTableRow.insert(divName, divTableRow);
+							divTableRow.insert(divScore, divTableRow);
+							divTableRow.insert(divAnchor, divTableRow);
+							taxonSearchResults.insert(divTableRow, taxonSearchResults);
+						}
+					}
+
+					$('taxonSearchWaitMessage').hide();
+					$('taxonSearchResultsHeader').show();
+					$('taxonSearchResults').show();
+					$('taxonSearchButton').show();
+				}
+
+}
+
+function clickSetRef(selectedId, refToUpdate, uri, name, index) {
+					$(refToUpdate).value = uri + '.xml';
+
+					var selected = $(selectedId);
+					if (selected != null) {
+						selected.remove();
+					}
+					var spanSel = new Element('span', { 'id': selectedId, 'class': 'searchHelpFrame', 'style': 'z-index:1000;color:#ff0000;opacity:0.75' }).update('Selected');
+					$('row_'+index).insert(spanSel);
+}
+							
+function startTaxonSearch(inputFieldToUpdate, taxonSearchTitle) {
+	pars = "&ref="+inputFieldToUpdate;
+	new Ajax.Request(
+		getGNServiceURL('prepare.taxon.search'),
+			{
+				method: 'get',
+				parameters: pars,
+				onSuccess: function(req) {
+					Modalbox.show(req.responseText ,{title: taxonSearchTitle, height: 600, width: 800} );
+				},
+				onFailure: function(req) {
+					alert("ERROR: "+getGNServiceURL('prepare.taxon.search')+" failed: status "+req.status+" text: "+req.statusText+" - Try again later?");
+				}
+			}
+	);
+}
+
+function showCommons(select) {
+	var commons = $(select).value;
+
+	if (commons == 'Creative Commons') $("creative").show();
+	else $("creative").hide();
+
+	if (commons == 'Data Commons') 		 $("data").show();
+	else $("data").hide();
+}
+
+function doCommonsAction(action, name, licenseurl, type, id)
+{
+	var top = findPos($(id));
+	setBunload(false);
+  document.mainForm.name.value = $(name).value;
+  document.mainForm.licenseurl.value = licenseurl;
+  document.mainForm.type.value = type;
+	document.mainForm.position.value = top;
+  doAction(action);
+}
+
+function doResetCommonsAction(action, name, licenseurl, type, id, ref)
+{
+	$(ref).value = '';
+	document.mainForm.ref.value = '';
+	doCommonsAction(action, name, licenseurl, type, id);
+}
+
+		]]>
+		</script>
+	</xsl:template>
 </xsl:stylesheet>

@@ -1198,6 +1198,12 @@
 				</xsl:when>
 			</xsl:choose>
 
+			<xsl:for-each select="gmd:extent/mcp:EX_Extent/gmd:temporalElement/mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod">
+				<temporalExtent>
+					<begin><xsl:apply-templates mode="brieftime" select="gml:beginPosition|gml:begin/gml:TimeInstant/gml:timePosition"/></begin>
+					<end><xsl:apply-templates mode="brieftime" select="gml:endPosition|gml:end/gml:TimeInstant/gml:timePosition"/></end>
+				</temporalExtent>
+			</xsl:for-each>
 
 			<xsl:for-each select="gmd:extent/mcp:EX_Extent/mcp:taxonomicElement/mcp:EX_TaxonomicCoverage/mcp:presentationLink">
 				<taxonomicCoverage>	
