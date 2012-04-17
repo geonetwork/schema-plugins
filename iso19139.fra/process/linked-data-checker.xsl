@@ -9,10 +9,10 @@
   
   <!-- i18n information -->
   <xsl:variable name="linked-data-checker-loc">
-    <msg id="a" xml:lang="en"> return an error (</msg>
-    <msg id="b" xml:lang="en">). Run this task to remove it.</msg>
-    <msg id="a" xml:lang="fr"> a retourné une erreur (</msg>
-    <msg id="b" xml:lang="fr">). Si l'erreur persiste, corriger le lien manuellement ou exécuter cette action pour le supprimer.</msg>
+    <msg id="a" xml:lang="eng"> return an error (</msg>
+    <msg id="b" xml:lang="eng">). Run this task to remove it.</msg>
+    <msg id="a" xml:lang="fre"> a retourné une erreur (</msg>
+    <msg id="b" xml:lang="fre">). Si l'erreur persiste, corriger le lien manuellement ou exécuter cette action pour le supprimer.</msg>
   </xsl:variable>
 
   <xsl:template name="list-linked-data-checker">
@@ -27,11 +27,11 @@
     <!-- Check URL -->
     <xsl:variable name="httpLinks"
       select="$root//*[starts-with(., 'http') and name(..) != 'geonet:info']"/>
-    <xsl:for-each select="$httpLinks">
+    <xsl:for-each-group select="$httpLinks" group-by=".">
       <xsl:call-template name="checkUrl">
         <xsl:with-param name="url" select="."/>
       </xsl:call-template>
-    </xsl:for-each>
+    </xsl:for-each-group>
   </xsl:template>
 
   <xsl:template name="checkUrl">
@@ -46,7 +46,7 @@
         <name xml:lang="en">
           <xsl:value-of select="$type"/> <xsl:value-of select="."/>
           <xsl:value-of select="geonet:i18n($linked-data-checker-loc, 'a', $guiLang)"/> 
-          <xsl:value-of select="."/>:<xsl:value-of select="$status"/>
+          <xsl:value-of select="$status"/>
           <xsl:value-of select="geonet:i18n($linked-data-checker-loc, 'b', $guiLang)"/></name>
         <operational>true</operational>
         <params>{ linkUrl:{type:'string', defaultValue:'<xsl:value-of select="normalize-space($url)"/>'}
