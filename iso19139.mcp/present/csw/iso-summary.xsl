@@ -42,13 +42,13 @@
 
 	<!-- =================================================================== -->
 
-	<xsl:template match="gmd:CI_Citation">
+	<xsl:template match="gmd:CI_Citation|mcp:CI_Citation">
 		<xsl:copy>
       <xsl:copy-of select="@*"/>
 			<xsl:apply-templates select="gmd:title"/>
 			<xsl:apply-templates select="gmd:date"/>
 			<xsl:apply-templates select="gmd:identifier"/>
-			<xsl:apply-templates select="gmd:citedResponsibleParty"/>
+			<xsl:apply-templates select="gmd:citedResponsibleParty|mcp:responsibleParty"/>
 		</xsl:copy>
 	</xsl:template>
 
@@ -92,12 +92,13 @@
 
 	<!-- =================================================================== -->
 
-	<xsl:template match="gmd:EX_Extent">
+	<xsl:template match="gmd:EX_Extent|mcp:EX_Extent">
 		<xsl:copy>
       <xsl:copy-of select="@*"/>
 			<xsl:apply-templates select="gmd:verticalElement"/>
 			<xsl:apply-templates select="gmd:temporalElement"/>
 			<xsl:apply-templates select="gmd:geographicElement"/>
+			<xsl:apply-templates select="mcp:taxonomicElement"/>
 		</xsl:copy>
 	</xsl:template>
 
@@ -110,7 +111,7 @@
       <xsl:copy-of select="@*"/>
 			<xsl:apply-templates select="gmd:citation"/>
 			<xsl:apply-templates select="gmd:abstract"/>
-			<xsl:apply-templates select="gmd:pointOfContact"/>
+			<xsl:apply-templates select="gmd:pointOfContact|mcp:resourceContactInfo"/>
 			<xsl:apply-templates select="gmd:resourceConstraints"/>
 			<xsl:apply-templates select="gmd:spatialRepresentationType"/>
 			<xsl:apply-templates select="gmd:spatialResolution"/>
@@ -130,7 +131,7 @@
       <xsl:copy-of select="@*"/>
 			<xsl:apply-templates select="gmd:citation"/>
 			<xsl:apply-templates select="gmd:abstract"/>
-			<xsl:apply-templates select="gmd:pointOfContact"/>
+			<xsl:apply-templates select="gmd:pointOfContact|mcp:resourceContactInfo"/>
 			<xsl:apply-templates select="gmd:resourceConstraints"/>
 			<xsl:apply-templates select="srv:serviceType"/>
 			<xsl:apply-templates select="srv:serviceTypeVersion"/>
