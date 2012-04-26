@@ -151,7 +151,21 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
-	
+
+	<!-- Add required gml attributes if missing -->
+	<xsl:template match="gml:Polygon[not(@gml:id) and not(@srsName)]">
+		<xsl:copy>
+			<xsl:attribute name="gml:id">
+				<xsl:value-of select="generate-id(.)"/>
+			</xsl:attribute>
+			<xsl:attribute name="srsName">
+				<xsl:text>urn:x-ogc:def:crs:EPSG:6.6:4326</xsl:text>
+			</xsl:attribute>
+			<xsl:copy-of select="@*"/>
+			<xsl:copy-of select="*"/>
+		</xsl:copy>
+	</xsl:template>
+
 	<!-- ================================================================= -->
 	
 	<xsl:template match="*[gco:CharacterString]">
@@ -268,7 +282,15 @@
 
 	<!-- ================================================================= -->
 
-	<xsl:template match="gmx:FileName">
+  <xsl:template match="gmx:FileName[contains(../../@id,'geonetwork.thesaurus.')]" priority="200">
+		<xsl:copy>
+    	<xsl:apply-templates select="node()|@*"/>
+		</xsl:copy>
+	</xsl:template>
+
+	<!-- ================================================================= -->
+
+	<xsl:template match="gmx:FileName[name(..)!='gmd:contactInstructions']">
 		<xsl:copy>
 			<xsl:attribute name="src">
 				<xsl:choose>
