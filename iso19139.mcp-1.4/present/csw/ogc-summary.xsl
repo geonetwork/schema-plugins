@@ -26,7 +26,7 @@
 
 			<xsl:for-each select="gmd:identificationInfo/mcp:MD_DataIdentification">
 
-				<xsl:for-each select="gmd:citation/gmd:CI_Citation/gmd:title/gco:CharacterString">
+				<xsl:for-each select="gmd:citation/*/gmd:title/gco:CharacterString">
 					<dc:title><xsl:value-of select="."/></dc:title>
 				</xsl:for-each>
 	
@@ -38,7 +38,7 @@
 					<dct:abstract><xsl:value-of select="."/></dct:abstract>
 				</xsl:for-each>
 
-				<xsl:for-each select="gmd:citation/gmd:CI_Citation/gmd:date/gmd:CI_Date[gmd:dateType/gmd:CI_DateTypeCode/@codeListValue='revision']/gmd:date/gco:Date">
+				<xsl:for-each select="gmd:citation/*/gmd:date/gmd:CI_Date[gmd:dateType/gmd:CI_DateTypeCode/@codeListValue='revision']/gmd:date/gco:Date">
 					<dct:modified><xsl:value-of select="."/></dct:modified>
 				</xsl:for-each>
 

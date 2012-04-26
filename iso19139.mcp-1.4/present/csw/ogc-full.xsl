@@ -33,7 +33,7 @@
 
 			<xsl:for-each select="gmd:identificationInfo/mcp:MD_DataIdentification">
 
-				<xsl:for-each select="gmd:citation/gmd:CI_Citation">	
+				<xsl:for-each select="gmd:citation/*">	
 					<xsl:for-each select="gmd:title/gco:CharacterString">
 						<dc:title><xsl:value-of select="."/></dc:title>
 					</xsl:for-each>
@@ -42,18 +42,11 @@
 						<dct:modified><xsl:value-of select="."/></dct:modified>
 					</xsl:for-each>
 
-					<xsl:for-each select="gmd:citedResponsibleParty/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue='originator']/gmd:organisationName/gco:CharacterString">
-						<dc:creator><xsl:value-of select="."/></dc:creator>
-					</xsl:for-each>
+					<xsl:apply-templates select="gmd:citedResponsibleParty/gmd:CI_ResponsibleParty|mcp:responsibleParty/mcp:CI_Responsibility"/>
 
-					<xsl:for-each select="gmd:citedResponsibleParty/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue='publisher']/gmd:organisationName/gco:CharacterString">
-						<dc:publisher><xsl:value-of select="."/></dc:publisher>
-					</xsl:for-each>
-
-					<xsl:for-each select="gmd:citedResponsibleParty/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue='author']/gmd:organisationName/gco:CharacterString">
-						<dc:contributor><xsl:value-of select="."/></dc:contributor>
-					</xsl:for-each>
 				</xsl:for-each>
+
+				<xsl:apply-templates select="gmd:pointOfContact/gmd:CI_ResponsibleParty|mcp:resourceContactInfo/mcp:CI_Responsibility"/>
 
 				<!-- subject -->
 
@@ -224,6 +217,18 @@
 				</xsl:if>
 			</xsl:for-each>
 			
+			<!-- Data Parameters - select those used in dataset only -->
+
+			<xsl:for-each select="gmd:identificationInfo/*/mcp:dataParameters/*/mcp:dataParameter/*/mcp:parameterName/*[mcp:usedInDataset/*='true']">
+				<dc:dataParameter 
+						definition="{string(mcp:localDefinition/*)}" 
+						units="{string(../../mcp:parameterUnits/*/mcp:name/*)}" 
+						minValue="{string(../../mcp:parameterMinimumValue/*)}" 
+						maxValue="{string(../../mcp:parameterMaximumValue/*)}" 
+						desc="{string(../../mcp:parameterDescription/*)}">
+					<xsl:value-of select="string(mcp:name/*)"/>
+				</dc:dataParameter>
+			</xsl:for-each>
 			
 			<!-- GeoNetwork elements added when resultType is equal to results_with_summary -->
 			<xsl:if test="$displayInfo = 'true'">
@@ -231,6 +236,50 @@
 			</xsl:if>
 
 		</csw:Record>
+	</xsl:template>
+
+	<!-- ============================================================================= -->
+
+	<xsl:template match="gmd:CI_ResponsibleParty">
+
+		<xsl:if test="gmd:role/gmd:CI_RoleCode/@codeListValue='originator'">
+			<dc:creator><xsl:value-of select="gmd:organisationName/gco:CharacterString"/></dc:creator>
+		</xsl:if>
+
+		<xsl:if test="gmd:role/gmd:CI_RoleCode/@codeListValue='custodian'">
+			<dc:custodian><xsl:value-of select="gmd:organisationName/gco:CharacterString"/></dc:custodian>
+		</xsl:if>
+
+		<xsl:if test="gmd:role/gmd:CI_RoleCode/@codeListValue='publisher'">
+			<dc:publisher><xsl:value-of select="gmd:organisationName/gco:CharacterString"/></dc:publisher>
+		</xsl:if>
+
+		<xsl:if test="gmd:role/gmd:CI_RoleCode/@codeListValue='author'">
+			<dc:contributor><xsl:value-of select="gmd:organisationName/gco:CharacterString"/></dc:contributor>
+		</xsl:if>
+
+	</xsl:template>
+
+	<!-- ============================================================================= -->
+
+	<xsl:template match="mcp:CI_Responsibility">
+
+		<xsl:if test="mcp:role/gmd:CI_RoleCode/@codeListValue='originator'">
+			<dc:creator><xsl:value-of select="mcp:party/*/mcp:name/gco:CharacterString"/></dc:creator>
+		</xsl:if>
+
+		<xsl:if test="mcp:role/gmd:CI_RoleCode/@codeListValue='custodian'">
+			<dc:custodian><xsl:value-of select="mcp:party/*/mcp:name/gco:CharacterString"/></dc:custodian>
+		</xsl:if>
+
+		<xsl:if test="mcp:role/gmd:CI_RoleCode/@codeListValue='publisher'">
+			<dc:publisher><xsl:value-of select="mcp:party/*/mcp:name/gco:CharacterString"/></dc:publisher>
+		</xsl:if>
+
+		<xsl:if test="mcp:role/gmd:CI_RoleCode/@codeListValue='author'">
+			<dc:contributor><xsl:value-of select="mcp:party/*/mcp:name/gco:CharacterString"/></dc:contributor>
+		</xsl:if>
+
 	</xsl:template>
 
 	<!-- ============================================================================= -->

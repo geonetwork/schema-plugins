@@ -19,7 +19,7 @@
       <xsl:copy-of select="@*"/>
 			<xsl:apply-templates select="gmd:fileIdentifier"/>
 			<xsl:apply-templates select="gmd:hierarchyLevel"/>
-			<xsl:apply-templates select="gmd:contact"/>
+			<xsl:apply-templates select="gmd:contact|mcp:metadataContactInfo"/>
 			<xsl:apply-templates select="gmd:identificationInfo"/>
 			
 			<!-- GeoNetwork elements added when resultType is equal to results_with_summary -->
@@ -35,7 +35,7 @@
 	<xsl:template match="mcp:MD_DataIdentification">
 		<xsl:copy>
       <xsl:copy-of select="@*"/>
-			<xsl:apply-templates select="gmd:title"/>
+			<xsl:apply-templates select="gmd:citation"/>
 			<xsl:apply-templates select="gmd:graphicOverview"/>
 			<xsl:apply-templates select="gmd:topicCategory"/>
 			<xsl:apply-templates select="gmd:extent"/>
@@ -47,7 +47,7 @@
 	<xsl:template match="srv:SV_ServiceIdentification">
 		<xsl:copy>
       <xsl:copy-of select="@*"/>
-			<xsl:apply-templates select="gmd:title"/>
+			<xsl:apply-templates select="gmd:citation"/>
 			<xsl:apply-templates select="gmd:graphicOverview"/>
 			<xsl:apply-templates select="srv:serviceType"/>
 			<xsl:apply-templates select="srv:serviceTypeVersion"/>
