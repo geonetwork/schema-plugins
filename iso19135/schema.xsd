@@ -4,8 +4,10 @@
 			  xmlns:xs="http://www.w3.org/2001/XMLSchema" 
 				xmlns:grg="http://www.isotc211.org/2005/grg"
 				xmlns:gco="http://www.isotc211.org/2005/gco"
-			  xmlns:gmd="http://www.isotc211.org/2005/gmd">
+			  xmlns:gmd="http://www.isotc211.org/2005/gmd"
+				xmlns:gnreg="http://geonetwork-opensource.org/register">
 
 	<xs:include schemaLocation="schema/grg/grg.xsd"/>
+	<xs:include schemaLocation="schema/extensions/geonetworkExtensions.xsd"/>
 	<xs:import namespace="http://www.isotc211.org/2005/gmx" schemaLocation="schema/gmx/gmx.xsd"/>
 </xs:schema>

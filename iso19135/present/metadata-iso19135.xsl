@@ -105,22 +105,9 @@
 				</xsl:apply-templates>
 			</xsl:when>
 
-			<!-- register items tab -->
-			<xsl:when test="$currTab='registerItems'">
-				<xsl:apply-templates mode="elementEP" select="grg:containedItemClass|geonet:child[string(@name)='containedItemClass']">
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="edit"   select="$edit"/>
-				</xsl:apply-templates>
-
-				<xsl:apply-templates mode="elementEP" select="grg:containedItem|geonet:child[string(@name)='containedItem']">
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="edit"   select="$edit"/>
-				</xsl:apply-templates>
-			</xsl:when>
-
-			<!-- default - display everything - usually just tab="complete" -->
+			<!-- default - display everything except contained items - usually just tab="complete" -->
 			<xsl:otherwise>
-				<xsl:apply-templates mode="elementEP" select="*">
+				<xsl:apply-templates mode="elementEP" select="*[name()!='grg:containedItem']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
@@ -197,7 +184,7 @@
 	<!-- These items should be boxed as they have children -->
 	<!-- =================================================================== -->
 
-	<xsl:template mode="iso19135" match="grg:submitter|grg:manager|grg:owner|grg:containedItemClass|grg:containedItem|grg:version|grg:operatingLanguage|grg:alternativeLanguages|grg:successor|grg:predecessor|grg:fieldOfApplication|grg:technicalStandard|grg:additionInformation|grg:sponsor">
+	<xsl:template mode="iso19135" match="grg:submitter|grg:manager|grg:owner|grg:containedItemClass|grg:version|grg:operatingLanguage|grg:alternativeLanguages|grg:successor|grg:predecessor|grg:fieldOfApplication|grg:technicalStandard|grg:additionInformation|grg:sponsor">
     <xsl:param name="schema"/>
     <xsl:param name="edit"/>
 
@@ -314,13 +301,6 @@
 			</xsl:call-template>
 	
 			<xsl:call-template name="displayTab">
-				<xsl:with-param name="tab"     select="'registerItems'"/>
-				<xsl:with-param name="text"    select="/root/gui/schemas/iso19135/strings/registerItemsTab"/>
-				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
-				<xsl:with-param name="tabLink" select="$tabLink"/>
-			</xsl:call-template>
-
-			<xsl:call-template name="displayTab">
 				<xsl:with-param name="tab"     select="'All'"/>
 				<xsl:with-param name="text"    select="/root/gui/schemas/iso19135/strings/allTab"/>
 				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
@@ -358,9 +338,9 @@
 				</abstract>
 	
 				<!-- Put valid register items out as dc:subject keywords -->
-      	<xsl:for-each select="grg:containedItem[grg:RE_RegisterItem/grg:status/grg:RE_ItemStatus='valid']">
+      	<xsl:for-each select="grg:containedItem[*/grg:status/grg:RE_ItemStatus='valid']">
         	<keyword>
-          	<xsl:apply-templates mode="localised" select="grg:RE_RegisterItem/grg:name">
+          	<xsl:apply-templates mode="localised" select="*/grg:name">
             	<xsl:with-param name="langId" select="$langId"/>
           	</xsl:apply-templates>
         	</keyword>

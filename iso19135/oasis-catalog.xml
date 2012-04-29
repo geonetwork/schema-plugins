@@ -38,6 +38,8 @@
 	        uri="schema/grg/grg.xsd"/>
 	<system systemId="http://www.isotc211.org/2005/grg/register.xsd" 
 	        uri="schema/grg/register.xsd"/>
+	<system systemId="http://geonetwork-opensource.org/schemas/register/register.xsd" 
+	        uri="schema/extensions/geonetworkExtensions.xsd"/>
 	<system systemId="http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd"
 					uri="schema/srv/srv.xsd"/>
 

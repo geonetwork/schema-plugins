@@ -5,6 +5,7 @@
    xmlns:gmx="http://www.isotc211.org/2005/gmx"
    xmlns:gmd="http://www.isotc211.org/2005/gmd"
    xmlns:grg="http://www.isotc211.org/2005/grg"
+   xmlns:gnreg="http://geonetwork-opensource.org/register"
 	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	 xmlns:xlink="http://www.w3.org/1999/xlink"
 	 exclude-result-prefixes="#all">
@@ -12,6 +13,17 @@
 	<xsl:output method="xml" version="1.0" indent="yes"/>
 
 	<xsl:param name="uuid" select="generate-id()"/>
+	<!-- some nasty CT_CodelistCatalog files actually have extra information
+	     attached to gml:description in the form of a bounding box in longitudes
+			 and latitudes 
+
+			 eg. <gml:description>AUSTRALIA INCLUDING EXTERNAL TERRITORIES|-9|-90|168|45|Australia</gml:description>
+			 
+			 Nasty because the info has to be parsed out and its harder to validate 
+			 (defeats the purpose of using XML really). Fortunately we can extract 
+			 it into an extent element for the register items we create here -
+			 setting extractbbox to true will do this -->
+	<xsl:param name="extractbbox" select="true()"/>
 
 	<xsl:variable name="versionDate">
 		<xsl:choose>
@@ -53,7 +65,7 @@
   		<grg:uniformResourceIdentifier>
     		<gmd:CI_OnlineResource>
       		<gmd:linkage>
-        		<gmd:URL><xsl:value-of select="gmx:codelistItem/gmx:CodeListDictionary/gml:identifier/@codeSpace"/></gmd:URL>
+        		<gmd:URL><xsl:value-of select="gmx:codelistItem[1]/gmx:CodeListDictionary/gml:identifier/@codeSpace"/></gmd:URL>
       		</gmd:linkage>
     		</gmd:CI_OnlineResource>
   		</grg:uniformResourceIdentifier>
@@ -130,17 +142,17 @@
 			<grg:containedItemClass>
 				<grg:RE_ItemClass id="Item_Class">
 					<grg:name>
-        		<gco:CharacterString>grg:RE_RegisterItem</gco:CharacterString>
+        		<gco:CharacterString>gnreg:RE_RegisterItem</gco:CharacterString>
 					</grg:name>
 					<grg:technicalStandard>
         		<gmd:CI_Citation>	
 							<gmd:title>
-								<gco:CharacterString>ISO19135</gco:CharacterString>
+								<gco:CharacterString>GeoNetwork Extension to RE_RegisterItem in ISO19135</gco:CharacterString>
           		</gmd:title>
             	<gmd:date>
             		<gmd:CI_Date>
                 	<gmd:date>
-                		<gco:Date>2005-10-15</gco:Date>
+                		<gco:Date>2012-04-29</gco:Date>
                 	</gmd:date>
                 	<gmd:dateType>
                 		<gmd:CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation"/>
@@ -203,14 +215,14 @@
 			<!-- codelist items -->
 			<xsl:for-each select="gmx:codelistItem/gmx:CodeListDictionary/gmx:codeEntry">
 				<grg:containedItem>
-    			<grg:RE_RegisterItem uuid="{gmx:CodeDefinition/gml:identifier}">
+    			<gnreg:RE_RegisterItem uuid="{concat(gmx:CodeDefinition/gml:identifier/@codeSpace,'/',gmx:CodeDefinition/gml:identifier)}">
       			<grg:itemIdentifier>
 							<gco:Integer><xsl:value-of select="position()"/></gco:Integer>
       			</grg:itemIdentifier>
 
 						<xsl:apply-templates select="gmx:CodeDefinition"/>
 
-    			</grg:RE_RegisterItem>
+    			</gnreg:RE_RegisterItem>
 				</grg:containedItem>
 					
 			</xsl:for-each>
@@ -234,7 +246,14 @@
 		</grg:dateAccepted>
 
 		<grg:definition>
-			<gco:CharacterString><xsl:value-of select="gml:description"/></gco:CharacterString>
+			<xsl:choose>
+				<xsl:when test="$extractbbox">
+					<gco:CharacterString><xsl:value-of select="substring-before(gml:description,'|')"/></gco:CharacterString>
+				</xsl:when>
+				<xsl:otherwise>
+					<gco:CharacterString><xsl:value-of select="gml:description"/></gco:CharacterString>
+				</xsl:otherwise>
+			</xsl:choose>
 		</grg:definition>
 
 		<grg:fieldOfApplication>
@@ -271,6 +290,35 @@
 		</grg:additionInformation>
 
 		<grg:itemClass xlink:href="#Item_Class"/>
+
+		<xsl:if test="$extractbbox">
+			<xsl:variable name="extra" select="translate(normalize-space(substring-after(gml:description,'|')),'|',',')"/>
+
+			<xsl:variable name="bbox" select="tokenize($extra,',')"/>
+			<gnreg:itemExtent>
+				<gmd:EX_Extent>
+					<gmd:geographicElement>
+           	<gmd:EX_GeographicBoundingBox>
+             	<gmd:westBoundLongitude>
+               	<gco:Decimal><xsl:value-of select="$bbox[4]"/></gco:Decimal>
+             	</gmd:westBoundLongitude>
+             	<gmd:eastBoundLongitude>
+               	<gco:Decimal><xsl:value-of select="$bbox[3]"/></gco:Decimal>
+             	</gmd:eastBoundLongitude>
+             	<gmd:southBoundLatitude>
+               	<gco:Decimal><xsl:value-of select="$bbox[2]"/></gco:Decimal>
+             	</gmd:southBoundLatitude>
+             	<gmd:northBoundLatitude>
+               	<gco:Decimal><xsl:value-of select="$bbox[1]"/></gco:Decimal>
+             	</gmd:northBoundLatitude>
+           	</gmd:EX_GeographicBoundingBox>
+         	</gmd:geographicElement>
+				</gmd:EX_Extent>
+			</gnreg:itemExtent>
+		</xsl:if>
+
+		<gnreg:itemIdentifier><xsl:value-of select="concat(gml:identifier/@codeSpace,'/',gml:identifier)"/></gnreg:itemIdentifier>
+
 
 	</xsl:template>
 

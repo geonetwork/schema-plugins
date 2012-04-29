@@ -8,6 +8,7 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:gmd="http://www.isotc211.org/2005/gmd"
    xmlns:grg="http://www.isotc211.org/2005/grg"
+   xmlns:gnreg="http://geonetwork-opensource.org/register"
 	 exclude-result-prefixes="gmd">
 
 	<xsl:include href="convert/functions.xsl"/>
@@ -24,7 +25,7 @@
 		<xsl:copy>
 			<xsl:copy-of select="@*[name()!='xsi:schemaLocation' and 
 			                        name()!='uuid']"/>
-			<xsl:attribute name="xsi:schemaLocation">http://www.isotc211.org/2005/grg http://www.isotc211.org/2005/grg/grg.xsd http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/gco http://www.isotc211.org/2005/gco/gco.xsd</xsl:attribute>
+			<xsl:attribute name="xsi:schemaLocation">http://www.isotc211.org/2005/grg http://www.isotc211.org/2005/grg/grg.xsd http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/gco http://www.isotc211.org/2005/gco/gco.xsd http://geonetwork-opensource.org/register http://geonetwork-opensource.org/schemas/register/register.xsd</xsl:attribute>
 			<xsl:attribute name="uuid">
 				<xsl:value-of select="/root/env/uuid"/>
 			</xsl:attribute>
