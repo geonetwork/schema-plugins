@@ -48,6 +48,7 @@
 			<xsl:namespace name="grg" select="'http://www.isotc211.org/2005/grg'"/>
 			<xsl:namespace name="gmd" select="'http://www.isotc211.org/2005/gmd'"/>
 			<xsl:namespace name="gco" select="'http://www.isotc211.org/2005/gco'"/>
+   		<xsl:namespace name="gnreg" select="'http://geonetwork-opensource.org/register'"/>
 			<xsl:namespace name="xlink" select="'http://www.w3.org/1999/xlink'"/>
 
 			<xsl:attribute name="uuid"><xsl:value-of select="$uuid"/></xsl:attribute>
@@ -212,10 +213,12 @@
 				</grg:RE_RegisterManager>
 			</grg:manager>
 
+			<xsl:message>Converting <xsl:value-of select="count(gmx:codelistItem/gmx:CodeListDictionary/gmx:codeEntry)"/> codelist items</xsl:message>
+
 			<!-- codelist items -->
 			<xsl:for-each select="gmx:codelistItem/gmx:CodeListDictionary/gmx:codeEntry">
 				<grg:containedItem>
-    			<gnreg:RE_RegisterItem uuid="{concat(gmx:CodeDefinition/gml:identifier/@codeSpace,'/',gmx:CodeDefinition/gml:identifier)}">
+					<gnreg:RE_RegisterItem gco:isoType="grg:RE_RegisterItem" uuid="{concat(gmx:CodeDefinition/gml:identifier/@codeSpace,'/',gmx:CodeDefinition/gml:identifier)}">
       			<grg:itemIdentifier>
 							<gco:Integer><xsl:value-of select="position()"/></gco:Integer>
       			</grg:itemIdentifier>

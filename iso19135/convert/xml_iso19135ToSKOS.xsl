@@ -17,7 +17,8 @@
 		xmlns:skos="http://www.w3.org/2004/02/skos/core#" 
 		xmlns:xdt="http://www.w3.org/2005/02/xpath-datatypes"
 		xmlns:xs="http://www.w3.org/2001/XMLSchema"
-		exclude-result-prefixes="fn gmd gco grg xsi geonet xsl gml xdt xs rdfs">
+		xmlns:gnreg="http://geonetwork-opensource.org/register"
+		exclude-result-prefixes="fn gmd gco grg xsi geonet xsl xdt xs rdfs gnreg">
 
   <!-- This stylesheet produces SKOS in XML format from ISO19135 -->
   <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
@@ -45,7 +46,7 @@
 
 		<!-- and now all the concepts -->
 
-		<xsl:apply-templates select="grg:containedItem/grg:RE_RegisterItem[grg:status/grg:RE_ItemStatus='valid']">
+		<xsl:apply-templates select="grg:containedItem/*[grg:status/grg:RE_ItemStatus='valid']">
 			<xsl:with-param name="about" select="$about"/>
 			<xsl:with-param name="aboutScheme" select="$aboutScheme"/>
 		</xsl:apply-templates>
@@ -127,13 +128,24 @@
 
 <!-- ................................................................... -->
 
-	<xsl:template match="grg:RE_RegisterItem">
+	<xsl:template match="grg:RE_RegisterItem|*[@gco:isoType='grg:RE_RegisterItem']">
 		<xsl:param name="about"/>
 		<xsl:param name="aboutScheme"/>
 
 		<skos:Concept rdf:about="{concat($about,'#',grg:itemIdentifier/gco:Integer)}">
 			<skos:prefLabel xml:lang="en"><xsl:value-of select="grg:name/gco:CharacterString"/></skos:prefLabel>
 			<skos:inScheme rdf:resource="{$aboutScheme}"/>
+
+			<!-- put in a bounding box -->
+			<xsl:for-each select="gnreg:itemExtent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox">
+				<gml:BoundedBy>
+					<gml:Envelope gml:srsName="http://www.opengis.net/gml/srs/epsg.xml#epsg:4326">
+						<gml:lowerCorner><xsl:value-of select="gmd:westBoundLongitude/gco:Decimal"/><xsl:text> </xsl:text><xsl:value-of select="gmd:southBoundLatitude/gco:Decimal"/></gml:lowerCorner>
+						<gml:upperCorner><xsl:value-of select="gmd:eastBoundLongitude/gco:Decimal"/><xsl:text> </xsl:text><xsl:value-of select="gmd:northBoundLatitude/gco:Decimal"/></gml:upperCorner>
+					</gml:Envelope>
+				</gml:BoundedBy>
+			</xsl:for-each>
+
 			<xsl:for-each select="grg:specificationLineage/grg:RE_Reference">
 				<xsl:variable name="sim" select="grg:similarity/grg:RE_SimilarityToSource/@codeListValue"/>
 				<xsl:variable name="item" select="grg:itemIdentifierAtSource/gco:CharacterString"/>
