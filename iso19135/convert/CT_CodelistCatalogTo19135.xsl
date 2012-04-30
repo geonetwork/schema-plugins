@@ -77,7 +77,7 @@
         		<gco:CharacterString>English</gco:CharacterString>
       		</grg:name>
       		<grg:language>
-        		<gco:CharacterString>eng</gco:CharacterString>
+						<gmd:LanguageCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_LanguageCode" codeListValue="eng"/>		
       		</grg:language>
       		<grg:country>
         		<gco:CharacterString>Australia</gco:CharacterString>
@@ -95,7 +95,7 @@
         		<gco:CharacterString>English</gco:CharacterString>
       		</grg:name>
       		<grg:language>
-        		<gco:CharacterString>eng</gco:CharacterString>
+						<gmd:LanguageCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_LanguageCode" codeListValue="eng"/>		
       		</grg:language>
       		<grg:country>
         		<gco:CharacterString>Australia</gco:CharacterString>

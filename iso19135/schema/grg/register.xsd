@@ -181,7 +181,8 @@
 					<xs:element name="technicalStandard" type="gmd:CI_Citation_PropertyType"/>
 					<!-- GeoNetwork: alternativeNames should be conditional on the presence of alternativeLanguages so set minOccurs = 0 and add a schematron to check this -->
 					<xs:element name="alternativeNames" type="grg:RE_AlternativeName_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="describedItem" type="grg:RE_RegisterItem_PropertyType" maxOccurs="unbounded"/>
+					<!-- GeoNetwork: describedItem is supposed to be pointers to the containedItems of the register - effectively giving back and forward pointers between this element and those - which is overkill! so set minOccurs="0" -->
+					<xs:element name="describedItem" type="grg:RE_RegisterItem_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
