@@ -317,7 +317,12 @@
 			</gnreg:itemExtent>
 		</xsl:if>
 
-		<gnreg:itemIdentifier><xsl:value-of select="concat(gml:identifier/@codeSpace,'/',gml:identifier)"/></gnreg:itemIdentifier>
+		<!-- add a useful identifier that has more meaning than the integer
+		     id provided by grg:itemIdentifier -->
+
+		<gnreg:itemIdentifier>
+			<gco:CharacterString><xsl:value-of select="concat(gml:identifier/@codeSpace,'/',gml:identifier)"/></gco:CharacterString>
+		</gnreg:itemIdentifier>
 
 
 	</xsl:template>
