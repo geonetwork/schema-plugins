@@ -514,8 +514,8 @@
 		<xsl:variable name="value"    select="../@codeListValue"/>
 		
 		<xsl:choose>
-			<xsl:when test="$qname='grg:LanguageCode'">
-				<xsl:apply-templates mode="iso19135" select="..">
+			<xsl:when test="$qname='gmd:LanguageCode'">
+				<xsl:apply-templates mode="iso19139" select="..">
 					<xsl:with-param name="edit" select="$edit"/>
 				</xsl:apply-templates>
 			</xsl:when>
