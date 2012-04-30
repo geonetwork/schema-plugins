@@ -590,7 +590,16 @@
 		</xsl:call-template>
 		-->
 	</xsl:template>
-	
+
+	<!-- =================================================================== -->
+  <!-- Capture grg:containedItem - not processed here as too many  -->
+  <!-- =================================================================== -->
+
+	<xsl:template mode="iso19135" match="grg:containedItem">
+    <xsl:param name="schema"/>
+    <xsl:param name="edit"/>
+	</xsl:template>
+
 	<!-- =================================================================== -->
   <!-- Utilities -->
   <!-- =================================================================== -->
