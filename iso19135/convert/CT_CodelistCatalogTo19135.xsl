@@ -23,7 +23,11 @@
 			 (defeats the purpose of using XML really). Fortunately we can extract 
 			 it into an extent element for the register items we create here -
 			 setting extractbbox to true will do this -->
-	<xsl:param name="extractbbox" select="true()"/>
+	<xsl:param name="extractbbox" select="false()"/>
+	<!-- sometimes the gml:identifier is too short/not useful as thesaurus term
+	     if so then setting usedescription to true() will use the gml:description
+			 instead -->
+	<xsl:param name="usedescription" select="false()"/>
 
 	<xsl:variable name="versionDate">
 		<xsl:choose>
@@ -214,20 +218,12 @@
 			</grg:manager>
 
 			<xsl:message>Converting <xsl:value-of select="count(gmx:codelistItem/gmx:CodeListDictionary/gmx:codeEntry)"/> codelist items</xsl:message>
+			<xsl:message>Number of dictionaries <xsl:value-of select="count(gmx:codelistItem/gmx:CodeListDictionary)"/></xsl:message>
 
-			<!-- codelist items -->
-			<xsl:for-each select="gmx:codelistItem/gmx:CodeListDictionary/gmx:codeEntry">
-				<grg:containedItem>
-					<gnreg:RE_RegisterItem gco:isoType="grg:RE_RegisterItem" uuid="{concat(gmx:CodeDefinition/gml:identifier/@codeSpace,'/',gmx:CodeDefinition/gml:identifier)}">
-      			<grg:itemIdentifier>
-							<gco:Integer><xsl:value-of select="position()"/></gco:Integer>
-      			</grg:itemIdentifier>
-
-						<xsl:apply-templates select="gmx:CodeDefinition"/>
-
-    			</gnreg:RE_RegisterItem>
-				</grg:containedItem>
-					
+			<!-- codelist dictionaries -->
+			<xsl:for-each select="gmx:codelistItem/gmx:CodeListDictionary">
+				<xsl:message>Processing dictionary <xsl:value-of select="gml:description"/></xsl:message>
+				<xsl:apply-templates select="."/>
 			</xsl:for-each>
 	
 		</xsl:element>
@@ -235,98 +231,180 @@
 
 	<!-- ================================================================= -->
 
-	<xsl:template match="gmx:CodeDefinition">
-		<grg:name>
-			<gco:CharacterString><xsl:value-of select="gml:identifier"/></gco:CharacterString>
-		</grg:name>
+	<xsl:template match="gmx:CodeListDictionary">
 
-		<grg:status>
-			<grg:RE_ItemStatus>valid</grg:RE_ItemStatus>
-		</grg:status>
+		<xsl:variable name="id" select="substring-after(generate-id(),'e')"/>
 
-		<grg:dateAccepted>
-			<gco:Date><xsl:value-of select="$versionDate"/></gco:Date>
-		</grg:dateAccepted>
+		<!-- process the code dictionary element -->
+		<xsl:call-template name="createItem"/>
+		
+		<!-- codelist items -->
+		<xsl:for-each select="gmx:codeEntry/gmx:CodeDefinition">
+			<xsl:call-template name="createItem">
+				<xsl:with-param name="broader" select="$id"/>
+			</xsl:call-template>
+		</xsl:for-each>
+	</xsl:template>
 
-		<grg:definition>
+
+	<!-- ================================================================= -->
+
+	<xsl:template name="createItem">
+		<xsl:param name="broader"/>
+
+		<xsl:variable name="uuid" select="concat(normalize-space(gml:identifier/@codeSpace),'/',normalize-space(gml:identifier))"/>
+
+		<xsl:variable name="desc">
 			<xsl:choose>
 				<xsl:when test="$extractbbox">
-					<gco:CharacterString><xsl:value-of select="substring-before(gml:description,'|')"/></gco:CharacterString>
+					<xsl:variable name="descBefore" select="substring-before(gml:description,'|')"/>
+					<xsl:choose>
+						<xsl:when test="normalize-space($descBefore)=''">
+							<xsl:value-of select="gml:description"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="$descBefore"/>
+						</xsl:otherwise>
+					</xsl:choose>
 				</xsl:when>
 				<xsl:otherwise>
-					<gco:CharacterString><xsl:value-of select="gml:description"/></gco:CharacterString>
+					<xsl:value-of select="gml:description"/>
 				</xsl:otherwise>
 			</xsl:choose>
-		</grg:definition>
+		</xsl:variable>
 
-		<grg:fieldOfApplication>
-			<grg:RE_FieldOfApplication>
-				<grg:name>
-					<gco:CharacterString><xsl:value-of select="$fieldOfApplication"/></gco:CharacterString>
-				</grg:name>
-				<grg:description>
-					<gco:CharacterString><xsl:value-of select="$fieldOfApplication"/></gco:CharacterString>
-				</grg:description>
-			</grg:RE_FieldOfApplication>
-		</grg:fieldOfApplication>
+		<grg:containedItem>
+			<gnreg:RE_RegisterItem gco:isoType="grg:RE_RegisterItem" uuid="{$uuid}">
+     	<grg:itemIdentifier>
+				<gco:Integer><xsl:value-of select="substring-after(generate-id(),'e')"/></gco:Integer>
+      </grg:itemIdentifier>
 
-		<grg:additionInformation>
-			<grg:RE_AdditionInformation>
-				<grg:dateProposed>
-					<gco:Date><xsl:value-of select="$versionDate"/></gco:Date>
-				</grg:dateProposed>
-				<grg:justification>
-					<gco:CharacterString>Needed for metadata themes</gco:CharacterString>
-				</grg:justification>
-				<grg:status>
-					<grg:RE_DecisionStatus>final</grg:RE_DecisionStatus>
-				</grg:status>
-				<grg:sponsor>
-					<grg:RE_SubmittingOrganization>
-      			<grg:name>
-        			<gco:CharacterString>ANZLIC</gco:CharacterString>
-      			</grg:name>
-						<grg:contact xlink:href="#ANZLIC_Contact"/>
-					</grg:RE_SubmittingOrganization>
-				</grg:sponsor>
-			</grg:RE_AdditionInformation>
-		</grg:additionInformation>
+			<grg:name>
+				<xsl:choose>
+					<xsl:when test="$usedescription">
+						<gco:CharacterString><xsl:value-of select="$desc"/></gco:CharacterString>
+					</xsl:when>
+					<xsl:otherwise>
+						<gco:CharacterString><xsl:value-of select="gml:identifier"/></gco:CharacterString>
+					</xsl:otherwise>
+				</xsl:choose>
+			</grg:name>
 
-		<grg:itemClass xlink:href="#Item_Class"/>
+			<grg:status>
+				<grg:RE_ItemStatus>valid</grg:RE_ItemStatus>
+			</grg:status>
 
-		<xsl:if test="$extractbbox">
-			<xsl:variable name="extra" select="translate(normalize-space(substring-after(gml:description,'|')),'|',',')"/>
+			<grg:dateAccepted>
+				<gco:Date><xsl:value-of select="$versionDate"/></gco:Date>
+			</grg:dateAccepted>
 
-			<xsl:variable name="bbox" select="tokenize($extra,',')"/>
-			<gnreg:itemExtent>
-				<gmd:EX_Extent>
-					<gmd:geographicElement>
-           	<gmd:EX_GeographicBoundingBox>
-             	<gmd:westBoundLongitude>
-               	<gco:Decimal><xsl:value-of select="$bbox[4]"/></gco:Decimal>
-             	</gmd:westBoundLongitude>
-             	<gmd:eastBoundLongitude>
-               	<gco:Decimal><xsl:value-of select="$bbox[3]"/></gco:Decimal>
-             	</gmd:eastBoundLongitude>
-             	<gmd:southBoundLatitude>
-               	<gco:Decimal><xsl:value-of select="$bbox[2]"/></gco:Decimal>
-             	</gmd:southBoundLatitude>
-             	<gmd:northBoundLatitude>
-               	<gco:Decimal><xsl:value-of select="$bbox[1]"/></gco:Decimal>
-             	</gmd:northBoundLatitude>
-           	</gmd:EX_GeographicBoundingBox>
-         	</gmd:geographicElement>
-				</gmd:EX_Extent>
-			</gnreg:itemExtent>
-		</xsl:if>
+			<grg:definition>
+				<gco:CharacterString><xsl:value-of select="gml:description"/></gco:CharacterString>
+			</grg:definition>
 
-		<!-- add a useful identifier that has more meaning than the integer
-		     id provided by grg:itemIdentifier -->
+			<grg:fieldOfApplication>
+				<grg:RE_FieldOfApplication>
+					<grg:name>
+						<gco:CharacterString><xsl:value-of select="$fieldOfApplication"/></gco:CharacterString>
+					</grg:name>
+					<grg:description>
+						<gco:CharacterString><xsl:value-of select="$fieldOfApplication"/></gco:CharacterString>
+					</grg:description>
+				</grg:RE_FieldOfApplication>
+			</grg:fieldOfApplication>
 
-		<gnreg:itemIdentifier>
-			<gco:CharacterString><xsl:value-of select="concat(gml:identifier/@codeSpace,'/',gml:identifier)"/></gco:CharacterString>
-		</gnreg:itemIdentifier>
+			<grg:additionInformation>
+				<grg:RE_AdditionInformation>
+					<grg:dateProposed>
+						<gco:Date><xsl:value-of select="$versionDate"/></gco:Date>
+					</grg:dateProposed>
+					<grg:justification>
+						<gco:CharacterString>Needed for metadata themes</gco:CharacterString>
+					</grg:justification>
+					<grg:status>
+						<grg:RE_DecisionStatus>final</grg:RE_DecisionStatus>
+					</grg:status>
+					<grg:sponsor>
+						<grg:RE_SubmittingOrganization>
+      				<grg:name>
+        				<gco:CharacterString>ANZLIC</gco:CharacterString>
+      				</grg:name>
+							<grg:contact xlink:href="#ANZLIC_Contact"/>
+						</grg:RE_SubmittingOrganization>
+					</grg:sponsor>
+				</grg:RE_AdditionInformation>
+			</grg:additionInformation>
 
+			<grg:itemClass xlink:href="#Item_Class"/>
+
+			<!-- add broader similarity to source to point back to parent --> 
+			<xsl:if test="normalize-space($broader)!=''">
+				<grg:specificationLineage>
+					<grg:RE_Reference>
+						<grg:itemIdentifierAtSource>
+							<gco:CharacterString><xsl:value-of select="$broader"/></gco:CharacterString>
+						</grg:itemIdentifierAtSource>
+						<grg:similarity>
+							<grg:RE_SimilarityToSource codeListValue="generalization"
+											codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#RE_SimilarityToSource"/>
+						</grg:similarity>
+					</grg:RE_Reference>
+				</grg:specificationLineage>	
+			</xsl:if>
+
+			<!-- add narrower similarity to source to point to children -->
+			<xsl:if test="local-name(.)='CodeListDictionary'">
+				<xsl:for-each select="gmx:codeEntry">
+					<grg:specificationLineage>
+						<grg:RE_Reference>
+							<grg:itemIdentifierAtSource>
+								<gco:CharacterString><xsl:value-of select="substring-after(generate-id(),'e')"/></gco:CharacterString>
+							</grg:itemIdentifierAtSource>
+							<grg:similarity>
+								<grg:RE_SimilarityToSource codeListValue="specialization"
+												codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#RE_SimilarityToSource"/>
+							</grg:similarity>
+						</grg:RE_Reference>
+					</grg:specificationLineage>	
+				</xsl:for-each>
+			</xsl:if>
+
+			<xsl:if test="$extractbbox">
+				<xsl:variable name="extra" select="translate(normalize-space(substring-after(gml:description,'|')),'|',',')"/>
+				<xsl:if test="normalize-space($extra)!=''">
+					<xsl:variable name="bbox" select="tokenize($extra,',')"/>
+					<gnreg:itemExtent>
+						<gmd:EX_Extent>
+							<gmd:geographicElement>
+           			<gmd:EX_GeographicBoundingBox>
+             			<gmd:westBoundLongitude>
+               			<gco:Decimal><xsl:value-of select="$bbox[4]"/></gco:Decimal>
+             			</gmd:westBoundLongitude>
+             			<gmd:eastBoundLongitude>
+               			<gco:Decimal><xsl:value-of select="$bbox[3]"/></gco:Decimal>
+             			</gmd:eastBoundLongitude>
+             			<gmd:southBoundLatitude>
+               			<gco:Decimal><xsl:value-of select="$bbox[2]"/></gco:Decimal>
+             			</gmd:southBoundLatitude>
+             			<gmd:northBoundLatitude>
+               			<gco:Decimal><xsl:value-of select="$bbox[1]"/></gco:Decimal>
+             			</gmd:northBoundLatitude>
+           			</gmd:EX_GeographicBoundingBox>
+         			</gmd:geographicElement>
+						</gmd:EX_Extent>
+					</gnreg:itemExtent>
+				</xsl:if>
+			</xsl:if>
+
+			<!-- add a useful identifier that has more meaning than the integer
+		     	id provided by grg:itemIdentifier -->
+
+			<gnreg:itemIdentifier>
+				<gco:CharacterString><xsl:value-of select="$uuid"/></gco:CharacterString>
+			</gnreg:itemIdentifier>
+
+  	 	</gnreg:RE_RegisterItem>
+		</grg:containedItem>
 
 	</xsl:template>
 
