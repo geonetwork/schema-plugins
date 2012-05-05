@@ -8,11 +8,12 @@
    xmlns:gnreg="http://geonetwork-opensource.org/register"
 	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	 xmlns:xlink="http://www.w3.org/1999/xlink"
+	 xmlns:util="java:java.util.UUID"
 	 exclude-result-prefixes="#all">
 
 	<xsl:output method="xml" version="1.0" indent="yes"/>
 
-	<xsl:param name="uuid" select="generate-id()"/>
+	<xsl:param name="uuid" select="util:toString(util:randomUUID())"/>
 	<!-- some nasty CT_CodelistCatalog files actually have extra information
 	     attached to gml:description in the form of a bounding box in longitudes
 			 and latitudes 

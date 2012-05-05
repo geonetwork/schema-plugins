@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl ="http://www.w3.org/1999/XSL/Transform"
 	xmlns:grg="http://www.isotc211.org/2005/grg"
+	xmlns:gnreg="http://geonetwork-opensource.org/register"
 	xmlns:gmd="http://www.isotc211.org/2005/gmd"
 	xmlns:gts="http://www.isotc211.org/2005/gts"
 	xmlns:gco="http://www.isotc211.org/2005/gco"
@@ -12,6 +13,7 @@
 	xmlns:geonet="http://www.fao.org/geonetwork"
 	xmlns:exslt="http://exslt.org/common"
 	exclude-result-prefixes="grg gmx xsi gmd gco gml gts srv xlink exslt geonet">
+
 	<xsl:import href="metadata-iso19135-view.xsl"/>
 
 	<xsl:template name="metadata-iso19135-simple">
@@ -26,7 +28,8 @@
 
 		<xsl:choose>
 			<!-- process in iso19135 mode if grg namespace -->
-			<xsl:when test="namespace-uri(.)='http://www.isotc211.org/2005/grg'">
+			<xsl:when test="namespace-uri()='http://www.isotc211.org/2005/grg' or
+											namespace-uri()='http://geonetwork-opensource.org/register'">
       	<xsl:apply-templates mode="iso19135" select="." >
         	<xsl:with-param name="schema" select="$schema"/>
         	<xsl:with-param name="edit"   select="$edit"/>
@@ -108,22 +111,9 @@
 				</xsl:apply-templates>
 			</xsl:when>
 
-			<!-- register items tab -->
-			<xsl:when test="$currTab='registerItems'">
-				<xsl:apply-templates mode="elementEP" select="grg:containedItemClass|geonet:child[string(@name)='containedItemClass']">
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="edit"   select="$edit"/>
-				</xsl:apply-templates>
-
-				<xsl:apply-templates mode="elementEP" select="grg:containedItem|geonet:child[string(@name)='containedItem']">
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="edit"   select="$edit"/>
-				</xsl:apply-templates>
-			</xsl:when>
-
-			<!-- default - display everything - usually just tab="complete" -->
+			<!-- default - display everything except contained items - usually just tab="complete" -->
 			<xsl:otherwise>
-				<xsl:apply-templates mode="elementEP" select="*">
+				<xsl:apply-templates mode="elementEP" select="*[name()!='grg:containedItem']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
@@ -200,7 +190,7 @@
 	<!-- These items should be boxed as they have children -->
 	<!-- =================================================================== -->
 
-	<xsl:template mode="iso19135" match="grg:submitter|grg:manager|grg:owner|grg:containedItemClass|grg:containedItem|grg:version|grg:operatingLanguage|grg:alternativeLanguages|grg:successor|grg:predecessor|grg:fieldOfApplication|grg:technicalStandard|grg:additionInformation|grg:sponsor">
+	<xsl:template mode="iso19135" match="grg:submitter|grg:manager|grg:owner|grg:containedItemClass|grg:version|grg:operatingLanguage|grg:alternativeLanguages|grg:successor|grg:predecessor|grg:fieldOfApplication|grg:technicalStandard|grg:additionInformation|grg:sponsor|grg:specificationLineage">
     <xsl:param name="schema"/>
     <xsl:param name="edit"/>
 
@@ -272,7 +262,7 @@
 	<xsl:template name="iso19135CompleteTab">
 		<xsl:param name="tabLink"/>
 
-		<xsl:if test="/root/gui/config/metadata-tab/advanced">
+    <xsl:if test="/root/gui/config/metadata-tab/advanced">
       <xsl:call-template name="mainTab">
         <xsl:with-param name="title" select="/root/gui/strings/byPackage"/>
         <xsl:with-param name="default">register</xsl:with-param>
@@ -282,10 +272,10 @@
           <item label="owner">owner</item>
           <item label="submitter">submitter</item>
           <item label="manager">manager</item>
-          <item label="registerItems">registerItems</item>
         </xsl:with-param>
       </xsl:call-template>
     </xsl:if>
+
 	</xsl:template>
 	
 	<!-- =================================================================== -->
@@ -316,9 +306,9 @@
 				</abstract>
 	
 				<!-- Put valid register items out as dc:subject keywords -->
-      	<xsl:for-each select="grg:containedItem[grg:RE_RegisterItem/grg:status/grg:RE_ItemStatus='valid']">
+      	<xsl:for-each select="grg:containedItem[*/grg:status/grg:RE_ItemStatus='valid']">
         	<keyword>
-          	<xsl:apply-templates mode="localised" select="grg:RE_RegisterItem/grg:name">
+          	<xsl:apply-templates mode="localised" select="*/grg:name">
             	<xsl:with-param name="langId" select="$langId"/>
           	</xsl:apply-templates>
         	</keyword>
@@ -461,11 +451,122 @@
     <xsl:param name="schema"/>
     <xsl:param name="edit"/>
 
-    <xsl:call-template name="iso19139Codelist">
+    <xsl:call-template name="iso19135Codelist">
       <xsl:with-param name="schema" select="$schema"/>
       <xsl:with-param name="edit"   select="$edit"/>
     </xsl:call-template>
   </xsl:template>
+
+	<xsl:template name="iso19135Codelist">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+		
+		<xsl:apply-templates mode="simpleElement" select=".">
+			<xsl:with-param name="schema" select="$schema"/>
+			<xsl:with-param name="edit"   select="$edit"/>
+			<xsl:with-param name="text">
+				<xsl:apply-templates mode="iso19135GetAttributeText" select="*/@codeListValue">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+			</xsl:with-param>
+		</xsl:apply-templates>
+	</xsl:template>
+
+	<xsl:template mode="iso19135GetAttributeText" match="@*">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+		
+		<xsl:variable name="name"     select="local-name(..)"/>
+		<xsl:variable name="qname"    select="name(..)"/>
+		<xsl:variable name="value"    select="../@codeListValue"/>
+		
+		<xsl:choose>
+			<xsl:when test="$qname='gmd:LanguageCode'">
+				<xsl:apply-templates mode="iso19139" select="..">
+					<xsl:with-param name="edit" select="$edit"/>
+				</xsl:apply-templates>
+			</xsl:when>
+			<xsl:otherwise>
+				<!--
+					Get codelist from profil first and use use default one if not
+					available.
+				-->
+				<xsl:variable name="codelistProfil">
+					<xsl:choose>
+						<xsl:when test="starts-with($schema,'iso19135.')">
+							<xsl:copy-of
+								select="/root/gui/schemas/*[name(.)=$schema]/codelists/codelist[@name = $qname]/*" />
+						</xsl:when>
+						<xsl:otherwise />
+					</xsl:choose>
+				</xsl:variable>
+				
+				<xsl:variable name="codelistCore">
+					<xsl:choose>
+						<xsl:when test="normalize-space($codelistProfil)!=''">
+							<xsl:copy-of select="$codelistProfil" />
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:copy-of
+								select="/root/gui/schemas/*[name(.)='iso19135']/codelists/codelist[@name = $qname]/*" />
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:variable>
+				
+				<xsl:variable name="codelist" select="exslt:node-set($codelistCore)" />
+				<xsl:variable name="isXLinked" select="count(ancestor-or-self::node()[@xlink:href]) > 0" />
+
+				<xsl:choose>
+					<xsl:when test="$edit=true()">
+						<!-- codelist in edit mode -->
+						<select class="md" name="_{../geonet:element/@ref}_{name(.)}" id="_{../geonet:element/@ref}_{name(.)}" size="1">
+							<!-- Check element is mandatory or not -->
+							<xsl:if test="../../geonet:element/@min='1' and $edit">
+								<xsl:attribute name="onchange">validateNonEmpty(this);</xsl:attribute>
+							</xsl:if>
+							<xsl:if test="$isXLinked">
+								<xsl:attribute name="disabled">disabled</xsl:attribute>
+							</xsl:if>
+							<option name=""/>
+							<xsl:for-each select="$codelist/entry[not(@hideInEditMode)]">
+								<xsl:sort select="label"/>
+								<option>
+									<xsl:if test="code=$value">
+										<xsl:attribute name="selected"/>
+									</xsl:if>
+									<xsl:attribute name="value"><xsl:value-of select="code"/></xsl:attribute>
+									<xsl:value-of select="label"/>
+								</option>
+							</xsl:for-each>
+						</select>
+					</xsl:when>
+					<xsl:otherwise>
+						<!-- codelist in view mode -->
+						<xsl:if test="normalize-space($value)!=''">
+							<b><xsl:value-of select="$codelist/entry[code = $value]/label"/></b>
+							<xsl:value-of select="concat(': ',$codelist/entry[code = $value]/description)"/>
+						</xsl:if>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:otherwise>
+		</xsl:choose>
+		<!--
+		<xsl:call-template name="getAttributeText">
+			<xsl:with-param name="schema" select="$schema"/>
+			<xsl:with-param name="edit"   select="$edit"/>
+		</xsl:call-template>
+		-->
+	</xsl:template>
+
+	<!-- =================================================================== -->
+  <!-- Capture grg:containedItem - not processed here as too many  -->
+  <!-- =================================================================== -->
+
+	<xsl:template mode="iso19135" match="grg:containedItem">
+    <xsl:param name="schema"/>
+    <xsl:param name="edit"/>
+	</xsl:template>
 
 	<!-- =================================================================== -->
   <!-- Utilities -->
@@ -493,5 +594,20 @@
 	<!-- === Javascript used by functions in this presentation XSLT          -->
 	<!-- =================================================================== -->
 	<xsl:template name="iso19135-javascript"/>
+
+	<!-- =================================================================== -->
+	<!-- subtemplates -->
+	<!-- =================================================================== -->
+
+	<xsl:template mode="iso19135" match="*[geonet:info/isTemplate='s']" priority="3">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+		
+		<xsl:apply-templates mode="element" select=".">
+			<xsl:with-param name="schema" select="$schema"/>
+			<xsl:with-param name="edit"   select="$edit"/>
+		</xsl:apply-templates>
+	</xsl:template>
+	
 
 </xsl:stylesheet>

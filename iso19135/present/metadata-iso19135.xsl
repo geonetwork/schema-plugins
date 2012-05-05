@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl ="http://www.w3.org/1999/XSL/Transform"
 	xmlns:grg="http://www.isotc211.org/2005/grg"
+	xmlns:gnreg="http://geonetwork-opensource.org/register"
 	xmlns:gmd="http://www.isotc211.org/2005/gmd"
 	xmlns:gts="http://www.isotc211.org/2005/gts"
 	xmlns:gco="http://www.isotc211.org/2005/gco"
@@ -11,7 +12,7 @@
   xmlns:xlink="http://www.w3.org/1999/xlink"
 	xmlns:geonet="http://www.fao.org/geonetwork"
 	xmlns:exslt="http://exslt.org/common"
-	exclude-result-prefixes="grg gmx xsi gmd gco gml gts srv xlink exslt geonet">
+	exclude-result-prefixes="grg gnreg gmx xsi gmd gco gml gts srv xlink exslt geonet">
 
 	<xsl:import href="metadata-iso19135-fop.xsl"/>
 
@@ -23,7 +24,8 @@
 
 		<xsl:choose>
 			<!-- process in iso19135 mode if grg namespace -->
-			<xsl:when test="namespace-uri(.)='http://www.isotc211.org/2005/grg'">
+			<xsl:when test="namespace-uri(.)='http://www.isotc211.org/2005/grg' or
+									namespace-uri()='http://geonetwork-opensource.org/register'">
       	<xsl:apply-templates mode="iso19135" select="." >
         	<xsl:with-param name="schema" select="$schema"/>
         	<xsl:with-param name="edit"   select="$edit"/>
@@ -184,7 +186,7 @@
 	<!-- These items should be boxed as they have children -->
 	<!-- =================================================================== -->
 
-	<xsl:template mode="iso19135" match="grg:submitter|grg:manager|grg:owner|grg:containedItemClass|grg:version|grg:operatingLanguage|grg:alternativeLanguages|grg:successor|grg:predecessor|grg:fieldOfApplication|grg:technicalStandard|grg:additionInformation|grg:sponsor">
+	<xsl:template mode="iso19135" match="grg:submitter|grg:manager|grg:owner|grg:containedItemClass|grg:version|grg:operatingLanguage|grg:alternativeLanguages|grg:successor|grg:predecessor|grg:fieldOfApplication|grg:technicalStandard|grg:additionInformation|grg:sponsor|grg:specificationLineage">
     <xsl:param name="schema"/>
     <xsl:param name="edit"/>
 
