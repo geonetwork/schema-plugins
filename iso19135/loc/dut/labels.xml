@@ -2533,10 +2533,6 @@
         <label>Sponsor</label>
         <description>Sponsoring Organisation.</description>
     </element>
-        <element name="grg:sponsor">
-        <label>Sponsor</label>
-        <description>Sponsoring Organisation.</description>
-    </element>
         <element name="grg:RE_ItemStatus">
         <label>Item Status</label>
         <description>Item Status.</description>
@@ -2544,5 +2540,37 @@
         <element name="grg:RE_DecisionStatus">
         <label>Decision Status</label>
         <description>Decision Status.</description>
+    </element>
+        <element name="grg:itemIdentifierAtSource">
+        <label>Item Identifier at source</label>
+        <description>Item identifier of source item.</description>
+    </element>
+        <element name="grg:similarity">
+        <label>Similarity</label>
+        <description>Similarity of this item to source item.</description>
+    </element>
+        <element name="grg:specificationLineage">
+        <label>Lineage/Relationships</label>
+        <description>The lineage of this register item and how it relates to other register items.</description>
+    </element>
+        <element name="gnreg:RE_RegisterItem">
+        <label>Register Item (GeoNetwork)</label>
+        <description>The characteristics of a register item.</description>
+    </element>
+        <element name="gnreg:itemExtent">
+        <label>Item Extent (GeoNetwork)</label>
+        <description>The geographic, temporal, vertical or spatiotemporal extent of the register item.</description>
+    </element>
+        <element name="gnreg:itemIdentifier">
+        <label>Item Identifier (GeoNetwork)</label>
+        <description>A more flexible item identifier (need not be an integer).</description>
+    </element>
+        <element name="gnreg:itemIdentifier">
+        <label>Item Identifier (GeoNetwork)</label>
+        <description>A more flexible item identifier (need not be an integer).</description>
+    </element>
+        <element name="gnreg:itemURL">
+        <label>URL (GeoNetwork)</label>
+        <description>An online resource associated with the register item.</description>
     </element>
 </labels>
