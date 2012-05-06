@@ -390,7 +390,9 @@ elsewhere -->
 		  <tr>
 		    <td class="padded" align="center" valign="center" colspan="2">
 		      <xsl:variable name="md">
-		        <xsl:apply-templates mode="brief" select="../.."/>
+						<xsl:message>Bulls</xsl:message>
+		        <xsl:apply-templates mode="brief" select=".."/>
+						<xsl:message>No Bulls</xsl:message>
 		      </xsl:variable>
 		      <xsl:variable name="metadata" select="exslt:node-set($md)/*[1]"/>
 		      <xsl:call-template name="thumbnail">
