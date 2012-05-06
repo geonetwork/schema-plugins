@@ -6,6 +6,7 @@
 	<submitterTab>Submitter</submitterTab>
 	<managerTab>Manager</managerTab>
 	<registerItemsTab>Register Items</registerItemsTab>
+	<advTab>Advanced</advTab>
 	<allTab>All</allTab>
 	<xml_iso19135>Save this metadata as an ISO19135 XML file</xml_iso19135>
 	<xml_iso19135Tooai_dc>Save this metadata as an OAI Dublin Core XML file</xml_iso19135Tooai_dc>

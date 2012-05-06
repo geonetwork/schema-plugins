@@ -61,14 +61,12 @@
   <!-- === iso19139.mcp-1.4 brief formatting - same as iso19139.mcp      === -->
   <!-- ===================================================================== -->
 
-	<xsl:template match="iso19139.mcp-1.4Brief">
+	<xsl:template name="iso19139.mcp-1.4Brief">
 		<metadata>
-   		<xsl:for-each select="/metadata/*[1]">
-				<!-- call iso19139 brief -->
-	 			<xsl:call-template name="iso19139-brief"/>
-				<!-- now brief elements for mcp specific elements -->
-				<xsl:call-template name="iso19139.mcp-brief"/>
-	 		</xsl:for-each>
+			<!-- call iso19139 brief -->
+	 		<xsl:call-template name="iso19139-brief"/>
+			<!-- now brief elements for mcp specific elements -->
+			<xsl:call-template name="iso19139.mcp-brief"/>
 		</metadata>
 	</xsl:template>
 

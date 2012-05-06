@@ -933,12 +933,10 @@
   <!-- === iso19139.anzlic brief formatting - same as iso19139           === -->
   <!-- ===================================================================== -->
 
-	<xsl:template match="iso19139.anzlicBrief">
+	<xsl:template name="iso19139.anzlicBrief">
 		<metadata>
-   		<xsl:for-each select="/metadata/*[1]">
-				<!-- call iso19139 brief -->
-	 			<xsl:call-template name="iso19139-brief"/>
-	 		</xsl:for-each>
+			<!-- call iso19139 brief -->
+	 		<xsl:call-template name="iso19139-brief"/>
 		</metadata>
 	</xsl:template>
 

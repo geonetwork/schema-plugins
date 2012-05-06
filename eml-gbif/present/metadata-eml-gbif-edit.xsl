@@ -389,8 +389,7 @@
 	<!-- eml-gbif brief formatting 																			 -->
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 	
-	<xsl:template match="eml-gbifBrief">
-	 <xsl:for-each select="/metadata/*[1]">
+	<xsl:template name="eml-gbifBrief">
 		<metadata>
 			<title><xsl:value-of select="normalize-space(dataset/title[1])"/></title>
 			<abstract><xsl:value-of select="dataset/abstract"/></abstract>
@@ -407,7 +406,6 @@
 			</geoBox>
 			<xsl:copy-of select="geonet:info"/>
 		</metadata>
-	 </xsl:for-each>
 	</xsl:template>
 
 </xsl:stylesheet>

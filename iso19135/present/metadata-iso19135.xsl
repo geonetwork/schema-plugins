@@ -316,8 +316,7 @@
   <!-- === iso19135 brief formatting                                   === -->
   <!-- =================================================================== -->
 
-	<xsl:template match="iso19135Brief">
-		<xsl:for-each select="/metadata/*[1]">
+	<xsl:template name="iso19135Brief">
 			<metadata>
 			
 				<xsl:variable name="langId">
@@ -339,7 +338,7 @@
 					</xsl:apply-templates>
 				</abstract>
 	
-				<!-- Put valid register items out as dc:subject keywords -->
+				<!-- Put valid register items out as keywords -->
       	<xsl:for-each select="grg:containedItem[*/grg:status/grg:RE_ItemStatus='valid']">
         	<keyword>
           	<xsl:apply-templates mode="localised" select="*/grg:name">
@@ -406,7 +405,6 @@
         	</xsl:choose>
 				</geonet:info>
 			</metadata>
-		</xsl:for-each>
 	</xsl:template>
 
 	<!-- =================================================================== -->

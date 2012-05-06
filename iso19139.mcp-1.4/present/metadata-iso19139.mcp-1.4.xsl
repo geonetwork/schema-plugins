@@ -190,9 +190,8 @@
   <!-- === iso19139.mcp-1.4 brief formatting - same as iso19139.mcp      === -->
   <!-- ===================================================================== -->
 
-	<xsl:template match="iso19139.mcp-1.4Brief">
+	<xsl:template name="iso19139.mcp-1.4Brief">
 		<metadata>
-   		<xsl:for-each select="/metadata/*[1]">
 				<xsl:choose>
 					<xsl:when test="geonet:info/isTemplate='s'">
 						<xsl:call-template name="iso19139.mcp-subtemplate"/>
@@ -205,7 +204,6 @@
 						<xsl:call-template name="iso19139.mcp-brief"/>
 					</xsl:otherwise>
 				</xsl:choose>
-	 		</xsl:for-each>
 		</metadata>
 	</xsl:template>
 

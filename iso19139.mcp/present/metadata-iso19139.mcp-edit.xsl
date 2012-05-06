@@ -2010,14 +2010,12 @@
   <!-- === iso19139.mcp brief formatting === -->
   <!-- ==================================================================== -->
 
-	<xsl:template match="iso19139.mcpBrief">
+	<xsl:template name="iso19139.mcpBrief">
 		<metadata>
-   		<xsl:for-each select="/metadata/*[1]">
 				<!-- call iso19139 brief -->
 	 			<xsl:call-template name="iso19139-brief"/>
 				<!-- now brief elements for mcp specific elements -->
 				<xsl:call-template name="iso19139.mcp-brief"/>
-	 		</xsl:for-each>
 		</metadata>
 	</xsl:template>
 

@@ -261,6 +261,8 @@
 
 	<xsl:template name="iso19135CompleteTab">
 		<xsl:param name="tabLink"/>
+		<xsl:param name="schema"/>
+
 
     <xsl:if test="/root/gui/config/metadata-tab/advanced">
       <xsl:call-template name="mainTab">
@@ -282,8 +284,7 @@
   <!-- === iso19135 brief formatting                                   === -->
   <!-- =================================================================== -->
 
-	<xsl:template match="iso19135Brief">
-		<xsl:for-each select="/metadata/*[1]">
+	<xsl:template name="iso19135Brief">
 			<metadata>
 			
 				<xsl:variable name="langId">
@@ -372,7 +373,6 @@
         	</xsl:choose>
 				</geonet:info>
 			</metadata>
-		</xsl:for-each>
 	</xsl:template>
 
 	<!-- =================================================================== -->

@@ -468,8 +468,7 @@ elsewhere -->
 	<!-- anzmeta brief formatting 																			 -->
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 	
-	<xsl:template match="anzmetaBrief">
-	 <xsl:for-each select="/metadata/*[1]">
+	<xsl:template name="anzmetaBrief">
 		<metadata>
 			<title><xsl:value-of select="normalize-space(citeinfo/title)"/></title>
 			<abstract><xsl:value-of select="descript/abstract"/></abstract>
@@ -536,7 +535,6 @@ elsewhere -->
 			</geoBox>
 			<xsl:copy-of select="geonet:info"/>
 		</metadata>
-	 </xsl:for-each>
 	</xsl:template>
 
 	<!-- =================================================================== -->
