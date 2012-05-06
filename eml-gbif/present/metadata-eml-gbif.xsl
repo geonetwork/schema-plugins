@@ -406,7 +406,7 @@
 	<!-- eml-gbif brief formatting 																			 -->
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 	
-	<xsl:template match="eml-gbifBrief">
+	<xsl:template name="eml-gbifBrief">
 		<metadata>
 			<title><xsl:value-of select="normalize-space(dataset/title[1])"/></title>
 			<abstract><xsl:value-of select="dataset/abstract"/></abstract>
