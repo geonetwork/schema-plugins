@@ -9,10 +9,9 @@
 
   <xsl:import href="metadata-iso19139.fra-fop.xsl"/>
 
-  <xsl:template match="iso19139.fraBrief">
+  <xsl:template name="iso19139.fraBrief">
     <metadata>
-	  <xsl:for-each select="/metadata/*[1]">
-		<xsl:choose>
+			<xsl:choose>
 		    <xsl:when test="geonet:info/isTemplate='s'">
 		      <xsl:apply-templates mode="iso19139-subtemplate" select="."/>
 		      <xsl:copy-of select="geonet:info" copy-namespaces="no"/>
@@ -23,7 +22,6 @@
 			<xsl:call-template name="iso19139-brief"/>
 		    </xsl:otherwise>
 		  </xsl:choose>    
-      </xsl:for-each> 
     </metadata>
   </xsl:template>
 
