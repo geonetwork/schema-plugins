@@ -6,7 +6,7 @@
 						xmlns:gnreg="http://geonetwork-opensource.org/register"
 						xmlns:gmd="http://www.isotc211.org/2005/gmd">
 
-	<xsl:template match="gnreg:RE_RegisterItem">
+	<xsl:template match="gnreg:RE_RegisterItem|grg:RE_RegisterItem">
 		<title><xsl:value-of select="grg:name/gco:CharacterString"/></title>
 	</xsl:template>
 
