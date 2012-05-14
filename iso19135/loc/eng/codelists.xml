@@ -1950,5 +1950,15 @@
 			<label>Unspecified</label>
 			<description>The nature of the differences between the register item and the similar item in the external source is unspecified.</description>
 		</entry>
+		<entry>
+			<code>units</code>
+			<label>Units</label>
+			<description>The item in the external source is the units of the register item.</description>
+		</entry>
+		<entry>
+			<code>partOf</code>
+			<label>Part Of</label>
+			<description>The item in the external source is the part of the register item.</description>
+		</entry>
 	</codelist>	
 </codelists>

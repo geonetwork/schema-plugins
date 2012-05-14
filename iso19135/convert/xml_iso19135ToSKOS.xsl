@@ -23,6 +23,7 @@
   <!-- This stylesheet produces SKOS in XML format from ISO19135 -->
   <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
 
+	<xsl:variable name="siteURL" select="substring-before(/root/env/siteURL,'/srv')"/>
   <!-- Metadata is passed under /root XPath -->
   <xsl:template match="/root">
     <!-- Export ISO19135 -->
@@ -34,7 +35,7 @@
   </xsl:template>
 
 	<xsl:template match="grg:RE_Register">
-		<xsl:variable name="about" select="/root/grg:RE_Register/grg:uniformResourceIdentifier/gmd:CI_OnlineResource/gmd:linkage/gmd:URL"/>
+		<xsl:variable name="about" select="concat($siteURL,'/?',@uuid)"/>
 		<xsl:variable name="aboutScheme" select="concat($about,'#scheme')"/>
 		<xsl:variable name="df">[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]</xsl:variable>
 
@@ -43,7 +44,7 @@
 			<xsl:apply-templates select="grg:name|grg:contentSummary|grg:uniformResourceIdentifier|grg:dateOfLastChange|grg:version|grg:manager|grg:submitter"/>
 			<dct:issued><xsl:value-of select="format-dateTime(current-dateTime(),$df)"/></dct:issued>
 		</skos:ConceptScheme>
-
+env
 		<!-- and now all the concepts -->
 
 		<xsl:apply-templates select="grg:containedItem/*[grg:status/grg:RE_ItemStatus='valid']">
@@ -152,13 +153,22 @@
 
 				<xsl:choose>
 					<xsl:when test="$sim='generalization'">
-						<skos:broader rdf:resource="{concat($about,'#',$item)}"/>
+						<skos:broader rdf:resource="{
+							if (../@uuidref) then concat($siteURL,'/?',../@uuidref,'#',$item)
+							else concat($about,'#',$item)
+								}"/>
 					</xsl:when>
 					<xsl:when test="$sim='specialization'">
-						<skos:narrower rdf:resource="{concat($about,'#',$item)}"/>
+						<skos:narrower rdf:resource="{
+							if (../@uuidref) then concat($siteURL,'/?',../@uuidref,'#',$item)
+							else concat($about,'#',$item)
+						}"/>
 					</xsl:when>
 					<xsl:otherwise>
-						<skos:related rdf:resource="{concat($about,'#',$item)}"/>
+						<skos:related rdf:resource="{
+							if (../@uuidref) then concat($siteURL,'/?',../@uuidref,'#',$item)
+							else concat($about,'#',$item)
+						}"/>
 					</xsl:otherwise>
 				</xsl:choose>
 			</xsl:for-each>

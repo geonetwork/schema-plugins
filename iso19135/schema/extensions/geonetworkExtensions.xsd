@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:grg="http://www.isotc211.org/2005/grg" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco" targetNamespace="http://geonetwork-opensource.org/register" xmlns:gnreg="http://geonetwork-opensource.org/register" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
-	<!-- ================================= Annotation ================================ -->
+	<!-- ================================= Annotation ======================= -->
 	<xs:annotation>
-		<xs:documentation>This file describes an extended grg:Register_Item class that contains: an extent and an onlineResource</xs:documentation>
+		<xs:documentation>This file describes geonetwork extensions to the ISO19135 standard.</xs:documentation>
 	</xs:annotation>
-	<!-- ================================== Imports ================================== -->
+	<!-- ================================== Imports ========================= -->
 	<xs:import namespace="http://www.isotc211.org/2005/grg" schemaLocation="../grg/grg.xsd"/>
 	<xs:import namespace="http://www.isotc211.org/2005/gco" schemaLocation="../gco/gco.xsd"/>
 	<xs:import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="../gmd/gmd.xsd"/>
-	<!-- ########################################################################### -->
-	<!-- ########################################################################### -->
-	<!-- ================================== Classes ================================= -->
+	<!-- #################################################################### -->
+	<!-- #################################################################### -->
+	<!-- ================================== Classes ========================= -->
 	<xs:complexType name="RE_RegisterItem_Type">
+		<xs:annotation>
+			<xs:documentation>gnreg:RE_RegisterItem_Type describes an extended grg:RegisterItem_Type class that contains (in addition to the base standard types): an extent, an onlineResource and an identifier with fewer restrictions.</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="grg:RE_RegisterItem_Type">
 				<xs:sequence>
@@ -26,8 +29,21 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<!-- ........................................................................ -->
+	<!-- .................................................................... -->
 	<xs:element name="RE_RegisterItem" type="gnreg:RE_RegisterItem_Type" substitutionGroup="grg:RE_RegisterItem"/>
-	<!-- ........................................................................ -->
+	<!-- .................................................................... -->
 
+	<!-- 
+		Other conventions:
+
+			 uuidref on gnreg:RE_RegisterItem/grg:specificationLineage = uuid of 
+			            register record holding the specification - if no uuidref 
+									then refers to local record
+
+		   uuid attribute on gnreg:RE_RegisterItem = uuid of register item - used
+			            to provide a uuid of subtemplate when split out of register
+									record by 'extract register items' - if no uuid then 
+									'extract register items' creates a random one
+			 
+	-->
 </xs:schema>
