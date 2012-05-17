@@ -129,7 +129,7 @@ env
 
 <!-- ................................................................... -->
 
-	<xsl:template match="grg:RE_RegisterItem|*[@gco:isoType='grg:RE_RegisterItem']">
+	<xsl:template match="grg:RE_RegisterItem|gnreg:RE_RegisterItem">
 		<xsl:param name="about"/>
 		<xsl:param name="aboutScheme"/>
 
