@@ -74,6 +74,8 @@ env
 <!-- ................................................................... -->
 
 	<xsl:template match="grg:version">
+		<dct:hasVersion><xsl:value-of select="grg:RE_Version/grg:versionNumber/gco:CharacterString"/></dct:hasVersion>
+		<!-- but see http://lists.w3.org/Archives/Public/public-earl10-comments/2009Nov/0000.html - maybe dc/dct doesn't have -->
 		<dct:modified><xsl:value-of select="grg:RE_Version/grg:versionDate/gco:Date"/></dct:modified>
 	</xsl:template>
 
