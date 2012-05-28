@@ -15,4 +15,12 @@
     <xsl:call-template name="metadata-iso19139view-simple"/>
   </xsl:template>
 
+  <xsl:template name="view-with-header-iso19139.geobru">
+    <xsl:param name="tabs"/>
+
+    <xsl:call-template name="view-with-header-iso19139">
+      <xsl:with-param name="tabs" select="$tabs"/>
+    </xsl:call-template>
+  </xsl:template>
+
 </xsl:stylesheet>
