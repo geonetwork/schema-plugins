@@ -18,7 +18,7 @@
 		<xs:complexContent>
 			<xs:extension base="grg:RE_RegisterItem_Type">
 				<xs:sequence>
-					<xs:element name="itemURL" type="gmd:CI_OnlineResource_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="itemOnlineResource" type="gmd:CI_OnlineResource_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="itemExtent" type="gmd:EX_Extent_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<!-- rather strangely the grg:itemIdentifier is limited to be an
 					     gco:Integer - better to have one as well that is a little less 
