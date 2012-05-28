@@ -33,8 +33,7 @@
 	<!-- === iso19139 brief formatting === -->
 	<!-- ===================================================================== -->
 	<!-- heikki: changed name to iso19139.geobruBrief -->
-	<xsl:template match="iso19139.geobruBrief">
-	 <xsl:for-each select="/metadata/*[1]">
+	<xsl:template name="iso19139.geobruBrief">
 		<metadata>
 		  <xsl:choose>
 		    <xsl:when test="geonet:info/isTemplate='s'">
@@ -43,10 +42,11 @@
 		    </xsl:when>
 		    <xsl:otherwise>
 		      <xsl:call-template name="iso19139-brief"/>
+		      <!-- now brief elements for mcp specific elements -->
+				<xsl:call-template name="iso19139.geobru-brief"/>
 		    </xsl:otherwise>
 		  </xsl:choose>
 		</metadata>
-	 </xsl:for-each>
 	</xsl:template>
   
   
@@ -136,6 +136,10 @@
 		</xsl:apply-templates>		
 	</xsl:template>		
 	
+
+	<!-- Custom geobru information added to brief template -->
+	<xsl:template name="iso19139.geobru-brief" />
+
 	<!-- =================================================================== -->
 	<!-- === Javascript used by functions in this presentation XSLT          -->
 	<!-- =================================================================== -->
