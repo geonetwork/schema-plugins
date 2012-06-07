@@ -292,33 +292,11 @@
 	<!-- codelists: set @codeList path -->
 	<!-- ================================================================= -->
 	
-	<xsl:template match="gmd:*[@codeListValue]">
+	<xsl:template match="*[@codeListValue]">
 		<xsl:copy>
 			<xsl:apply-templates select="@*"/>
 			<xsl:attribute name="codeList">
-				<xsl:value-of select="concat('http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#',local-name(.))"/>
-			</xsl:attribute>
-			<xsl:value-of select="@codeListValue"/>
-		</xsl:copy>
-	</xsl:template>
-
-	<xsl:template match="mcp:*[@codeListValue]">
-		<xsl:copy>
-			<xsl:apply-templates select="@*"/>
-			<xsl:attribute name="codeList">
-				<xsl:value-of select="concat('http://bluenet3.antcrc.utas.edu.au/mcp/resources/Codelist/gmxCodelists.xml#',local-name(.))"/>
-			</xsl:attribute>
-			<xsl:value-of select="@codeListValue"/>
-		</xsl:copy>
-	</xsl:template>
-
-	<!-- can't find official location of the 19119 codelists - so use local -->
-
-	<xsl:template match="srv:*[@codeListValue]">
-		<xsl:copy>
-			<xsl:apply-templates select="@*"/>
-			<xsl:attribute name="codeList">
-				<xsl:value-of select="concat(/root/env/baseURL,'/web/geonetwork/xml/schemas/iso19139.mcp/schema/resources/Codelist/gmxCodelists.xml#',local-name(.))"/>
+				<xsl:value-of select="concat('http://bluenet3.antcrc.utas.edu.au/mcp-1.4/schema/resources/Codelist/gmxCodelists.xml#',local-name(.))"/>
 			</xsl:attribute>
 			<xsl:value-of select="@codeListValue"/>
 		</xsl:copy>

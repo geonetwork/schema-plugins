@@ -5,16 +5,16 @@
 		<gco:CharacterString>gmxCodelists</gco:CharacterString>
 	</name>
 	<scope>
-		<gco:CharacterString>Codelists for description of metadata datasets compliant with the ANZLIC Metadata Profile (Version 1.1) and te Australian Marine Community Profile of AS/NZS 19115:2003 and 19139</gco:CharacterString>
+		<gco:CharacterString>Codelists for description of metadata datasets compliant with the ANZLIC Metadata Profile (Version 1.1) and the Australian Marine Community Profile (Version 1.4) of AS/NZS 19115:2003 and 19139</gco:CharacterString>
 	</scope>
 	<fieldOfApplication>
 		<gco:CharacterString>GMX (and imported) namespace</gco:CharacterString>
 	</fieldOfApplication>
 	<versionNumber>
-		<gco:CharacterString>0.0</gco:CharacterString>
+		<gco:CharacterString>1.4</gco:CharacterString>
 	</versionNumber>
 	<versionDate>
-		<gco:Date>2005-03-18</gco:Date>
+		<gco:Date>2012-06-08</gco:Date>
 	</versionDate>
 	<!--============================================================================-->
 	<!--============================================================================-->
@@ -192,7 +192,7 @@
 			</codeEntry>
 			<codeEntry>
 				<CodeDefinition gml:id="CI_RoleCode_custodian">
-					<gml:description>party that accepts accountability and responsability for the data and ensures appropriate care and maintenance of the resource</gml:description>
+					<gml:description>party that accepts accountability and responsibility for the data and ensures appropriate care and maintenance of the resource</gml:description>
 					<gml:identifier codeSpace="ISOTC211/19115">custodian</gml:identifier>
 				</CodeDefinition>
 			</codeEntry>
@@ -664,6 +664,12 @@
 				</CodeDefinition>
 			</codeEntry>
 			<codeEntry>
+				<CodeDefinition gml:id="MD_ClassificationCode_in-confidence">
+					<gml:description>guarded due to propriety, ethical or privacy considerations</gml:description>
+					<gml:identifier codeSpace="ISOTC211/19115">in-confidence</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
 				<CodeDefinition gml:id="MD_ClassificationCode_restricted">
 					<gml:description>not for general disclosure</gml:description>
 					<gml:identifier codeSpace="ISOTC211/19115">restricted</gml:identifier>
@@ -1017,13 +1023,6 @@
 					<gml:identifier codeSpace="ISOTC211/19115">theme</gml:identifier>
 				</CodeDefinition>
 			</codeEntry>
-<!-- MCP -->
-			<codeEntry>
-				<CodeDefinition gml:id="MD_KeywordTypeCode_taxon">
-					<gml:description>keyword identifies a taxonomy</gml:description>
-					<gml:identifier codeSpace="MCP version 1.4">taxon</gml:identifier>
-				</CodeDefinition>
-			</codeEntry>
 		</CodeListDictionary>
 	</codelistItem>
 	<!--=== MD_MaintenanceFrequencyCode ===-->
@@ -1069,7 +1068,7 @@
 				</CodeDefinition>
 			</codeEntry>
 			<codeEntry>
-				<CodeDefinition gml:id="MD_MaintenanceFrequencyCode_quartely">
+				<CodeDefinition gml:id="MD_MaintenanceFrequencyCode_quarterly">
 					<gml:description>data is updated every three months</gml:description>
 					<gml:identifier codeSpace="ISOTC211/19115">quarterly</gml:identifier>
 				</CodeDefinition>
@@ -1239,9 +1238,9 @@
 				</CodeDefinition>
 			</codeEntry>
 			<codeEntry>
-				<CodeDefinition gml:id="MD_MediumNameCode_digitalLinearTap">
+				<CodeDefinition gml:id="MD_MediumNameCode_digitalLinearTape">
 					<gml:description>half inch cartridge streaming tape drive</gml:description>
-					<gml:identifier codeSpace="ISOTC211/19115">digitalLinearTap</gml:identifier>
+					<gml:identifier codeSpace="ISOTC211/19115">digitalLinearTape</gml:identifier>
 				</CodeDefinition>
 			</codeEntry>
 			<codeEntry>
