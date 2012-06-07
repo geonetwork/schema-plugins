@@ -8,13 +8,6 @@
 
 <!-- =============== ISO19135 and 19139 maps -->
 
-	<!-- Before opengis.net started being used as the srv namespace URL
-	     we used http://www.isotc211.org/2005/srv so remap opengis.net to
-			 that so all our stuff continues to work -->
-
-	<uri    name="http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd"
-					uri="http://www.isotc211.org/2005/srv"/>
-
 	<!-- These are to map schemaLocation hints to local schemas to make sure that
        GeoNetwork edits and validates against a schema it knows about. -->
 
@@ -40,13 +33,6 @@
 	        uri="schema/grg/register.xsd"/>
 	<system systemId="http://geonetwork-opensource.org/schemas/register/register.xsd" 
 	        uri="schema/extensions/geonetworkExtensions.xsd"/>
-	<system systemId="http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd"
-					uri="schema/srv/srv.xsd"/>
-
-	<!-- hope this isn't being used as a schema hint but if it is, map it -->
-
-	<system systemId="http://www.isotc211.org/2005/srv/srv.xsd" 
-					uri="schema/srv/srv.xsd"/>
 
 	<!-- gml (both known places for 3.1.1) -->
 

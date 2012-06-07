@@ -1,8 +1,6 @@
 <xsl:stylesheet version="2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd"
                     xmlns:gco="http://www.isotc211.org/2005/gco"
                     xmlns:gml="http://www.opengis.net/gml"
-                    xmlns:srv="http://www.isotc211.org/2005/srv"
-                    xmlns:ADO="http://www.defence.gov.au/ADO_DM_MDP"
                     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 										xmlns:date="http://exslt.org/dates-and-times"
                     xmlns:joda="java:org.fao.geonet.util.JODAISODate"
