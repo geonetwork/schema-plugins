@@ -7,11 +7,9 @@
   xmlns:saxon="http://saxon.sf.net/" extension-element-prefixes="saxon"
   exclude-result-prefixes="eml dc exslt geonet">
 
-  <!-- View templates are available only in view mode and does not provide 
-	     editing capabilities. Template MUST start with "view". -->
-  <!-- ===================================================================== -->
-  <!-- eml-gbif-simple -->
-  <xsl:template name="metadata-eml-gbifview-simple" match="metadata-eml-gbifview-simple">
+  <!-- eml-gbif -->
+  <xsl:template name="view-with-header-eml-gbif">
+		<xsl:param name="tabs"/>
 
     <xsl:call-template name="md-content">
       <xsl:with-param name="title">
@@ -32,49 +30,58 @@
       <xsl:with-param name="relatedResources">
 				<xsl:apply-templates mode="relatedResources" select="dataset/distribution|additionalMetadata/metadata/gbif/physical/distribution"/>
 			</xsl:with-param>
-      <xsl:with-param name="tabs">
-        <xsl:call-template name="complexElementSimpleGui">
-          <xsl:with-param name="title"
-            select="/root/gui/schemas/iso19139/strings/understandResource"/>
-          <xsl:with-param name="content">
-            <xsl:apply-templates mode="block-eml-gbif"
-              select="
-                 dataset/pubDate
-                |dataset/language
-                |dataset/keywordSet
-                |dataset/coverage/geographicCoverage
-                |dataset/coverage/taxonomicCoverage
-                "> </xsl:apply-templates>
+      <xsl:with-param name="tabs" select="$tabs"/>
+		</xsl:call-template>
+	</xsl:template>
 
-          </xsl:with-param>
-        </xsl:call-template>
+  <!-- View templates are available only in view mode and does not provide 
+	     editing capabilities. Template MUST start with "view". -->
+  <!-- ===================================================================== -->
+	<xsl:template name="metadata-eml-gbifview-simple" match="metadata-eml-gbifview-simple">
+		<xsl:call-template name="view-with-header-eml-gbif">
+			<xsl:with-param name="tabs">
+       	<xsl:call-template name="complexElementSimpleGui">
+         	<xsl:with-param name="title"
+           	select="/root/gui/schemas/iso19139/strings/understandResource"/>
+         	<xsl:with-param name="content">
+           	<xsl:apply-templates mode="block-eml-gbif"
+             	select="
+               	dataset/pubDate
+               	|dataset/language
+               	|dataset/keywordSet
+               	|dataset/coverage/geographicCoverage
+               	|dataset/coverage/taxonomicCoverage
+               	"> </xsl:apply-templates>
+	
+         	</xsl:with-param>
+       	</xsl:call-template>
+	
 
+       	<xsl:call-template name="complexElementSimpleGui">
+         	<xsl:with-param name="title" select="/root/gui/schemas/iso19139/strings/contactInfo"/>
+         	<xsl:with-param name="content">
+           	<xsl:apply-templates mode="block-eml-gbif" select="dataset/contact"/> 
+           	<xsl:apply-templates mode="block-eml-gbif" select="dataset/associatedParty[role='pointOfContact']"/>
+         	</xsl:with-param>
+       	</xsl:call-template>
 
-        <xsl:call-template name="complexElementSimpleGui">
-          <xsl:with-param name="title" select="/root/gui/schemas/iso19139/strings/contactInfo"/>
-          <xsl:with-param name="content">
-            <xsl:apply-templates mode="block-eml-gbif" select="dataset/contact"/> 
-            <xsl:apply-templates mode="block-eml-gbif" select="dataset/associatedParty[role='pointOfContact']"/>
-          </xsl:with-param>
-        </xsl:call-template>
-
-        <xsl:call-template name="complexElementSimpleGui">
-          <xsl:with-param name="title" select="/root/gui/schemas/eml-gbif/strings/otherInfo"/>
-          <xsl:with-param name="content">
-            <xsl:apply-templates mode="block-eml-gbif"
-              select="
-               dataset/intellectualRights
+       	<xsl:call-template name="complexElementSimpleGui">
+         	<xsl:with-param name="title" select="/root/gui/schemas/eml-gbif/strings/otherInfo"/>
+         	<xsl:with-param name="content">
+           	<xsl:apply-templates mode="block-eml-gbif"
+             	select="
+             	dataset/intellectualRights
 							|dataset/purpose
 							|dataset/methods
 							|dataset/project
-              "
-            > </xsl:apply-templates>
-          </xsl:with-param>
-        </xsl:call-template>
+             	"
+          	> </xsl:apply-templates>
+         	</xsl:with-param>
+       	</xsl:call-template>
 
 
-        <span class="madeBy">
-          <xsl:value-of select="/root/gui/strings/changeDate"/>
+       	<span class="madeBy">
+         	<xsl:value-of select="/root/gui/strings/changeDate"/>
 					<xsl:choose>
 						<xsl:when test="additionalMetadata/metadata/gbif/dateStamp">
 							<xsl:value-of select="additionalMetadata/metadata/gbif/dateStamp"/>
@@ -86,10 +93,10 @@
 							<xsl:text>Unknown</xsl:text>
 						</xsl:otherwise>
 					</xsl:choose>
-        </span>
+       	</span>
 
-      </xsl:with-param>
-    </xsl:call-template>
+     	</xsl:with-param>
+   	</xsl:call-template>
   </xsl:template>
 
   <xsl:template mode="block-eml-gbif" match="intellectualRights|abstract|samplingDescription|funding|purpose">
