@@ -10,10 +10,10 @@
   exclude-result-prefixes="gmx xsi gmd grg gco gml gts xlink exslt geonet">
 
   <!-- View templates are available only in view mode and do not provide 
-	     editing capabilities. Template MUST start with "view". -->
+	     editing capabilities. -->
   <!-- ===================================================================== -->
-  <!-- iso19135-simple -->
-  <xsl:template name="metadata-iso19135view-simple" match="metadata-iso19135view-simple">
+  <xsl:template name="view-with-header-iso19135">
+		<xsl:param name="tabs"/>
 
     <xsl:call-template name="md-content">
       <xsl:with-param name="title">
@@ -31,6 +31,15 @@
         <xsl:apply-templates mode="relatedResources" select="grg:uniformResourceIdentifier"
         />
       </xsl:with-param>
+      <xsl:with-param name="tabs" select="$tabs"/>
+		</xsl:call-template>
+	</xsl:template>
+
+  <!-- View templates are available only in view mode and do not provide 
+	     editing capabilities. -->
+  <!-- ===================================================================== -->
+  <xsl:template name="metadata-iso19135view-simple" match="metadata-iso19135view-simple">
+		<xsl:call-template name="view-with-header-iso19135">
       <xsl:with-param name="tabs">
         <xsl:call-template name="complexElementSimpleGui">
           <xsl:with-param name="title"

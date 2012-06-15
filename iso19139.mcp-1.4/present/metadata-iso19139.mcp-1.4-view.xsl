@@ -7,13 +7,13 @@
   xmlns:geonet="http://www.fao.org/geonetwork" xmlns:exslt="http://exslt.org/common"
   xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"
   xmlns:saxon="http://saxon.sf.net/" extension-element-prefixes="saxon"
-  exclude-result-prefixes="gmx xsi gmd gco gml gts srv xlink exslt geonet">
+  exclude-result-prefixes="mcp gmx xsi gmd gco gml gts srv xlink exslt geonet">
 
   <!-- View templates are available only in view mode and do not provide 
-	     editing capabilities. Template MUST start with "view". -->
+	     editing capabilities. -->
   <!-- ===================================================================== -->
-  <!-- iso19139.mcp-1.4viewsimple -->
-  <xsl:template name="metadata-iso19139.mcp-1.4view-simple" match="metadata-iso19139.mcp-1.4view-simple">
+  <xsl:template name="view-with-header-iso19139.mcp-1.4">
+		<xsl:param name="tabs"/>
 
     <xsl:call-template name="md-content">
       <xsl:with-param name="title">
@@ -35,6 +35,15 @@
         <xsl:apply-templates mode="relatedResources" select="gmd:distributionInfo"
         />
       </xsl:with-param>
+      <xsl:with-param name="tabs" select="$tabs"/>
+		</xsl:call-template>
+	</xsl:template>
+
+  <!-- View templates are available only in view mode and do not provide 
+	     editing capabilities. -->
+  <!-- ===================================================================== -->
+  <xsl:template name="metadata-iso19139.mcp-1.4view-simple" match="metadata-iso19139.mcp-1.4view-simple">
+		<xsl:call-template name="view-with-header-iso19139.mcp-1.4">
       <xsl:with-param name="tabs">
         <xsl:call-template name="complexElementSimpleGui">
           <xsl:with-param name="title"
@@ -50,8 +59,6 @@
                 "> </xsl:apply-templates>
 						<!-- process mcp:EX_Extent -->
 						<xsl:apply-templates mode="block-mcp" select="gmd:identificationInfo/*/gmd:extent/*/gmd:geographicElement"/>
-						<!-- process mcp:taxonomicElement -->
-						<xsl:apply-templates mode="block-mcp" select="gmd:identificationInfo/*/gmd:extent/*/mcp:taxonomicElement"/>
           </xsl:with-param>
         </xsl:call-template>
 

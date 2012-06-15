@@ -6,10 +6,10 @@
   exclude-result-prefixes="exslt geonet">
 
   <!-- View templates are available only in view mode and does not provide 
-	     editing capabilities. Template MUST start with "view". -->
+	     editing capabilities. -->
   <!-- ===================================================================== -->
-  <!-- anzmeta-simple -->
-  <xsl:template name="metadata-anzmetaview-simple" match="metadata-anzmetaview-simple">
+  <xsl:template name="view-with-header-anzmeta">
+		<xsl:param name="tabs"/>
 
     <xsl:call-template name="md-content">
       <xsl:with-param name="title">
@@ -23,6 +23,15 @@
       <xsl:with-param name="logo"/>
 			<!-- no related resources for anzmeta records -->
       <xsl:with-param name="relatedResources"/>
+      <xsl:with-param name="tabs" select="$tabs"/>
+		</xsl:call-template>
+	</xsl:template>
+
+  <!-- View templates are available only in view mode and does not provide 
+	     editing capabilities. -->
+  <!-- ===================================================================== -->
+  <xsl:template name="metadata-anzmetaview-simple" match="metadata-anzmetaview-simple">
+  	<xsl:call-template name="view-with-header-anzmeta">
       <xsl:with-param name="tabs">
         <xsl:call-template name="complexElementSimpleGui">
           <xsl:with-param name="title"
