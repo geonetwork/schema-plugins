@@ -23,7 +23,6 @@
   <!-- This stylesheet produces SKOS in XML format from ISO19135 -->
   <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
 
-	<xsl:variable name="siteURL" select="substring-before(/root/env/siteURL,'/srv')"/>
   <!-- Metadata is passed under /root XPath -->
   <xsl:template match="/root">
     <!-- Export ISO19135 -->
@@ -35,8 +34,11 @@
   </xsl:template>
 
 	<xsl:template match="grg:RE_Register">
-		<xsl:variable name="about" select="concat($siteURL,'/?',@uuid)"/>
-		<xsl:variable name="aboutScheme" select="concat($about,'#scheme')"/>
+		<xsl:variable name="about" select="concat(@uuid,':concept')"/>
+		<xsl:variable name="aboutScheme" select="
+							if (grg:version/*/grg:versionNumber) then concat(@uuid,':conceptscheme#',string(grg:version/*/grg:versionNumber/*))
+							else concat($about,':conceptscheme')"/>
+
 		<xsl:variable name="df">[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]</xsl:variable>
 
 		<skos:ConceptScheme rdf:about="{$aboutScheme}">
@@ -74,8 +76,6 @@ env
 <!-- ................................................................... -->
 
 	<xsl:template match="grg:version">
-		<dct:hasVersion><xsl:value-of select="grg:RE_Version/grg:versionNumber/gco:CharacterString"/></dct:hasVersion>
-		<!-- but see http://lists.w3.org/Archives/Public/public-earl10-comments/2009Nov/0000.html - maybe dc/dct doesn't have -->
 		<dct:modified><xsl:value-of select="grg:RE_Version/grg:versionDate/gco:Date"/></dct:modified>
 	</xsl:template>
 
@@ -156,20 +156,20 @@ env
 				<xsl:choose>
 					<xsl:when test="$sim='generalization'">
 						<skos:broader rdf:resource="{
-							if (../@uuidref) then concat($siteURL,'/?',../@uuidref,'#',$item)
-							else concat($about,'#',$item)
+							if (../@uuidref) then concat(../@uuidref,':concept#',$item)
+							else $item
 								}"/>
 					</xsl:when>
 					<xsl:when test="$sim='specialization'">
 						<skos:narrower rdf:resource="{
-							if (../@uuidref) then concat($siteURL,'/?',../@uuidref,'#',$item)
-							else concat($about,'#',$item)
+							if (../@uuidref) then concat(../@uuidref,':concept#',$item)
+							else $item
 						}"/>
 					</xsl:when>
 					<xsl:otherwise>
 						<skos:related rdf:resource="{
-							if (../@uuidref) then concat($siteURL,'/?',../@uuidref,'#',$item)
-							else concat($about,'#',$item)
+							if (../@uuidref) then concat(../@uuidref,':concept#',$item)
+							else $item
 						}"/>
 					</xsl:otherwise>
 				</xsl:choose>
