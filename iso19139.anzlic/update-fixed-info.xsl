@@ -25,7 +25,7 @@
 	<xsl:template match="gmd:MD_Metadata">
 		<xsl:copy>
 			<xsl:copy-of select="@*[name(.)!='xsi:schemaLocation']"/>
-			<xsl:attribute name="xsi:schemaLocation">http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd</xsl:attribute>
+			<xsl:attribute name="xsi:schemaLocation">http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/gmx http://www.isotc211.org/2005/gmx/gmx.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd</xsl:attribute>
 		 	<xsl:choose>
 				<xsl:when test="not(gmd:fileIdentifier)">
 		 			<gmd:fileIdentifier>
@@ -171,11 +171,19 @@
 	<xsl:template match="*[gco:CharacterString]">
 		<xsl:copy>
 			<xsl:copy-of select="@*[not(name()='gco:nilReason')]"/>
-			<xsl:if test="normalize-space(gco:CharacterString)=''">
-				<xsl:attribute name="gco:nilReason">
-					<xsl:value-of select="'missing'"/>
-				</xsl:attribute>
-			</xsl:if>
+			<xsl:choose>
+				<xsl:when test="normalize-space(gco:CharacterString)=''">
+					<xsl:attribute name="gco:nilReason">
+						<xsl:choose>
+							<xsl:when test="@gco:nilReason"><xsl:value-of select="@gco:nilReason"/></xsl:when>
+							<xsl:otherwise>missing</xsl:otherwise>
+						</xsl:choose>
+					</xsl:attribute>
+				</xsl:when>
+				<xsl:when test="@gco:nilReason!='missing' and normalize-space(gco:CharacterString)!=''">
+					<xsl:copy-of select="@gco:nilReason"/>
+				</xsl:when>
+			</xsl:choose>
 			<xsl:apply-templates select="gco:CharacterString"/>
 			<xsl:copy-of select="*[name(.)!='gco:CharacterString']"/>
 		</xsl:copy>
@@ -184,7 +192,12 @@
 	<!-- ================================================================= -->
 	<!-- codelists: set @codeList path -->
 	<!-- ================================================================= -->
-	
+	<xsl:template match="gmd:LanguageCode[@codeListValue]" priority="10">
+    <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/">
+			<xsl:apply-templates select="@*[name(.)!='codeList']"/>
+		</gmd:LanguageCode>
+	</xsl:template>
+
 	<xsl:template match="gmd:*[@codeListValue]">
 		<xsl:copy>
 			<xsl:apply-templates select="@*"/>
@@ -282,14 +295,6 @@
 
 	<!-- ================================================================= -->
 
-  <xsl:template match="gmx:FileName[contains(../../@id,'geonetwork.thesaurus.')]" priority="200">
-		<xsl:copy>
-    	<xsl:apply-templates select="node()|@*"/>
-		</xsl:copy>
-	</xsl:template>
-
-	<!-- ================================================================= -->
-
 	<xsl:template match="gmx:FileName[name(..)!='gmd:contactInstructions']">
 		<xsl:copy>
 			<xsl:attribute name="src">
@@ -343,16 +348,6 @@
 				</gmd:PT_Locale>
 			</xsl:otherwise>
 		</xsl:choose>
-	</xsl:template>
-
-	<!-- Replace gmx:Anchor element by a simple gco:CharacterString.
-		gmx:Anchor is usually used for linking element using xlink.
-		TODO : Currently gmx:Anchor is not supported
-	-->
-	<xsl:template match="gmx:Anchor">
-		<gco:CharacterString>
-			<xsl:value-of select="."/>
-		</gco:CharacterString>
 	</xsl:template>
 
 	<!-- ================================================================= -->
