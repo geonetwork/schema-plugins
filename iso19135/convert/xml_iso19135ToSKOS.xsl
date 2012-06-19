@@ -153,23 +153,26 @@ env
 				<xsl:variable name="sim" select="grg:similarity/grg:RE_SimilarityToSource/@codeListValue"/>
 				<xsl:variable name="item" select="grg:itemIdentifierAtSource/gco:CharacterString"/>
 
+				<!-- @uuidref refers to uuid of external register = item in that
+				     register, otherwise the item is in this register and we use
+						 the about variable -->
 				<xsl:choose>
 					<xsl:when test="$sim='generalization'">
 						<skos:broader rdf:resource="{
 							if (../@uuidref) then concat(../@uuidref,':concept#',$item)
-							else $item
+							else concat($about,'#',$item)
 								}"/>
 					</xsl:when>
 					<xsl:when test="$sim='specialization'">
 						<skos:narrower rdf:resource="{
 							if (../@uuidref) then concat(../@uuidref,':concept#',$item)
-							else $item
+							else concat($about,'#',$item)
 						}"/>
 					</xsl:when>
 					<xsl:otherwise>
 						<skos:related rdf:resource="{
 							if (../@uuidref) then concat(../@uuidref,':concept#',$item)
-							else $item
+							else concat($about,'#',$item)
 						}"/>
 					</xsl:otherwise>
 				</xsl:choose>
