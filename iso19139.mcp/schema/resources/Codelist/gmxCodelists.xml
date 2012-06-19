@@ -1037,6 +1037,20 @@
 					<gml:identifier codeSpace="MCP version 1.4">taxon</gml:identifier>
 				</CodeDefinition>
 			</codeEntry>
+<!-- MCP -->
+			<codeEntry>
+				<CodeDefinition gml:id="MD_KeywordTypeCode_equipment">
+					<gml:description>keyword identifies equipment used in data collection</gml:description>
+					<gml:identifier codeSpace="MCP version 1.5">equipment</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+<!-- MCP -->
+			<codeEntry>
+				<CodeDefinition gml:id="MD_KeywordTypeCode_dataSource">
+					<gml:description>keyword identifies data source eg. aggregated/derived</gml:description>
+					<gml:identifier codeSpace="MCP version 1.5">dataSource</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
 		</CodeListDictionary>
 	</codelistItem>
 	<!--=== MD_MaintenanceFrequencyCode ===-->
