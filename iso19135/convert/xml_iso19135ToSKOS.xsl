@@ -36,7 +36,7 @@
 	<xsl:template match="grg:RE_Register">
 		<xsl:variable name="about" select="concat(@uuid,':concept')"/>
 		<xsl:variable name="aboutScheme" select="
-							if (grg:version/*/grg:versionNumber) then concat(@uuid,':conceptscheme#',string(grg:version/*/grg:versionNumber/*))
+							if (grg:version/*/grg:versionNumber) then concat(@uuid,':conceptscheme:',string(grg:version/*/grg:versionNumber/*))
 							else concat($about,':conceptscheme')"/>
 
 		<xsl:variable name="df">[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]</xsl:variable>
@@ -135,7 +135,7 @@ env
 		<xsl:param name="about"/>
 		<xsl:param name="aboutScheme"/>
 
-		<skos:Concept rdf:about="{concat($about,'#',grg:itemIdentifier/gco:Integer)}">
+		<skos:Concept rdf:about="{concat($about,':',grg:itemIdentifier/gco:Integer)}">
 			<skos:prefLabel xml:lang="en"><xsl:value-of select="grg:name/gco:CharacterString"/></skos:prefLabel>
 			<skos:inScheme rdf:resource="{$aboutScheme}"/>
 
@@ -159,20 +159,20 @@ env
 				<xsl:choose>
 					<xsl:when test="$sim='generalization'">
 						<skos:broader rdf:resource="{
-							if (../@uuidref) then concat(../@uuidref,':concept#',$item)
-							else concat($about,'#',$item)
+							if (../@uuidref) then concat(../@uuidref,':concept:',$item)
+							else concat($about,':',$item)
 								}"/>
 					</xsl:when>
 					<xsl:when test="$sim='specialization'">
 						<skos:narrower rdf:resource="{
-							if (../@uuidref) then concat(../@uuidref,':concept#',$item)
-							else concat($about,'#',$item)
+							if (../@uuidref) then concat(../@uuidref,':concept:',$item)
+							else concat($about,':',$item)
 						}"/>
 					</xsl:when>
 					<xsl:otherwise>
 						<skos:related rdf:resource="{
-							if (../@uuidref) then concat(../@uuidref,':concept#',$item)
-							else concat($about,'#',$item)
+							if (../@uuidref) then concat(../@uuidref,':concept:',$item)
+							else concat($about,':',$item)
 						}"/>
 					</xsl:otherwise>
 				</xsl:choose>
