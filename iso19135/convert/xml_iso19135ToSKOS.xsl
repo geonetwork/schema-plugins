@@ -46,7 +46,7 @@
 			<xsl:apply-templates select="grg:name|grg:contentSummary|grg:uniformResourceIdentifier|grg:dateOfLastChange|grg:version|grg:manager|grg:submitter"/>
 			<dct:issued><xsl:value-of select="format-dateTime(current-dateTime(),$df)"/></dct:issued>
 		</skos:ConceptScheme>
-env
+   
 		<!-- and now all the concepts -->
 
 		<xsl:apply-templates select="grg:containedItem/*[grg:status/grg:RE_ItemStatus='valid']">
