@@ -170,7 +170,7 @@
 	
 	<xsl:template match="*[gco:CharacterString]">
 		<xsl:copy>
-			<xsl:copy-of select="@*[not(name()='gco:nilReason')]"/>
+			<xsl:apply-templates select="@*[not(name()='gco:nilReason')]"/>
 			<xsl:choose>
 				<xsl:when test="normalize-space(gco:CharacterString)=''">
 					<xsl:attribute name="gco:nilReason">
@@ -184,8 +184,7 @@
 					<xsl:copy-of select="@gco:nilReason"/>
 				</xsl:when>
 			</xsl:choose>
-			<xsl:apply-templates select="gco:CharacterString"/>
-			<xsl:copy-of select="*[name(.)!='gco:CharacterString']"/>
+			<xsl:apply-templates select="node()"/>
 		</xsl:copy>
 	</xsl:template>
 
@@ -332,8 +331,8 @@
 		are used for multilingual charcterString using #iso2code for referencing.
 	-->
 	<xsl:template match="gmd:PT_Locale">
-		<xsl:variable name="id" select="upper-case(
-			substring(gmd:languageCode/gmd:LanguageCode/@codeListValue, 1, 2))"/>
+			<xsl:variable name="id" select="upper-case(
+				substring(gmd:languageCode/gmd:LanguageCode/@codeListValue, 1, 2))"/>
 
 		<xsl:choose>
 			<xsl:when test="@id and (normalize-space(@id)!='' and normalize-space(@id)=$id)">
@@ -348,6 +347,54 @@
 				</gmd:PT_Locale>
 			</xsl:otherwise>
 		</xsl:choose>
+	</xsl:template>
+
+	<!-- ================================================================= -->
+	<!-- Adjust the namespace declaration - In some cases name() is used to get the 
+		element. The assumption is that the name is in the format of  <ns:element> 
+		however in some cases it is in the format of <element xmlns=""> so the 
+		following will convert them back to the expected value. This also corrects the issue 
+		where the <element xmlns=""> loose the xmlns="" due to the exclude-result-prefixes="#all" -->
+	<!-- Note: Only included prefix gml, gmd and gco for now. -->
+	<!-- TODO: Figure out how to get the namespace prefix via a function so that we don't need to hard code them -->
+	<!-- ================================================================= -->
+
+	<xsl:template name="correct_ns_prefix">
+		<xsl:param name="element" />
+		<xsl:param name="prefix" />
+		<xsl:choose>
+			<xsl:when test="local-name($element)=name($element) and $prefix != '' ">
+				<xsl:element name="{$prefix}:{local-name($element)}">
+					<xsl:apply-templates select="@*|node()"/>
+				</xsl:element>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:copy>
+					<xsl:apply-templates select="@*|node()"/>
+				</xsl:copy>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<xsl:template match="gmd:*">
+		<xsl:call-template name="correct_ns_prefix">
+			<xsl:with-param name="element" select="."/>
+			<xsl:with-param name="prefix" select="'gmd'"/>
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="gco:*">
+		<xsl:call-template name="correct_ns_prefix">
+			<xsl:with-param name="element" select="."/>
+			<xsl:with-param name="prefix" select="'gco'"/>
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="gml:*">
+		<xsl:call-template name="correct_ns_prefix">
+			<xsl:with-param name="element" select="."/>
+			<xsl:with-param name="prefix" select="'gml'"/>
+		</xsl:call-template>
 	</xsl:template>
 
 	<!-- ================================================================= -->
