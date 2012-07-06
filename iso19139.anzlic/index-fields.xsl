@@ -6,7 +6,8 @@
 										xmlns:geonet="http://www.fao.org/geonetwork"
 										xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 										xmlns:gmx="http://www.isotc211.org/2005/gmx"
-                                        xmlns:skos="http://www.w3.org/2004/02/skos/core#">
+										xmlns:xlink="http://www.w3.org/1999/xlink"
+										xmlns:skos="http://www.w3.org/2004/02/skos/core#">
 
 	<xsl:include href="../iso19139/convert/functions.xsl"/>
 	<xsl:include href="../../../xsl/utils-fn.xsl"/>
@@ -169,7 +170,13 @@
 
 			<xsl:for-each select="//gmd:MD_Keywords">
 			  
-				<xsl:for-each select="gmd:keyword/gco:CharacterString|gmd:keyword/gmd:PT_FreeText/gmd:textGroup/gmd:LocalisedCharacterString">
+				<xsl:variable name="thesaurusId" select="normalize-space(gmd:thesaurusName/*/gmd:identifier/*/gmd:code[starts-with(string(gmx:Anchor),'geonetwork.thesaurus')])"/>
+
+				<xsl:if test="$thesaurusId!=''">
+					<Field name="thesaurusName" string="{string($thesaurusId)}" store="true" index="true"/>
+				</xsl:if>
+
+				<xsl:for-each select="gmd:keyword/gco:CharacterString|gmd:keyword/gmd:PT_FreeText/gmd:textGroup/gmd:LocalisedCharacterString|gmd:keyword/gmx:Anchor">
                     <xsl:variable name="keywordLower" select="lower-case(.)"/>
                     <Field name="keyword" string="{string(.)}" store="true" index="true"/>
 					
@@ -194,11 +201,35 @@
                           </xsl:if>
                         </xsl:if>
                     </xsl:if>
-                </xsl:for-each>
+
+					<!-- index keyword codes under lucene index field with name same
+					     as thesaurus that contains the keyword codes -->
+
+					<xsl:if test="name()='gmx:Anchor' and $thesaurusId!=''">
+						<!-- expecting something like 
+							    <gmx:Anchor 
+									  xlink:href="http://localhost:8080/geonetwork/srv/en/xml.keyword.get?thesaurus=register.theme.urn:marine.csiro.au:marlin:keywords:standardDataType&id=urn:marine.csiro.au:marlin:keywords:standardDataTypes:concept:3510">CMAR Vessel Data: ADCP</gmx:Anchor>
+						-->
+
+						<xsl:variable name="keywordId">
+							<xsl:for-each select="tokenize(@xlink:href,'&amp;')">
+								<xsl:if test="starts-with(string(.),'id=')">
+									<xsl:value-of select="substring-after(string(.),'id=')"/>
+								</xsl:if>
+							</xsl:for-each>
+						</xsl:variable>
+
+						<xsl:if test="normalize-space($keywordId)!=''">
+							<Field name="{$thesaurusId}" string="{replace($keywordId,'%23','#')}" store="true" index="true"/>
+						</xsl:if>
+					</xsl:if>
+				</xsl:for-each>
 
 				<xsl:for-each select="gmd:type/gmd:MD_KeywordTypeCode/@codeListValue">
 					<Field name="keywordType" string="{string(.)}" store="false" index="true"/>
 				</xsl:for-each>
+
+
 			</xsl:for-each>
 	
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
