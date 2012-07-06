@@ -15,7 +15,6 @@
 	<xsl:import href="metadata-iso19139.anzlic-fop.xsl"/>
 
 	<xsl:variable name="anzlicallgens" select="document('../schema/resources/Codelist/anzlic-allgens.xml')"/>
-	<xsl:variable name="anzlicthemes" select="document('../schema/resources/Codelist/anzlic-theme.xml')"/>
 
 	<!-- main template - the way into processing iso19139.mcp -->
   <xsl:template  name="metadata-iso19139.anzlic">
@@ -50,120 +49,6 @@
     </xsl:choose>	
   </xsl:template>
 
-
-	<!-- ================================================================ -->
-	<!-- keyword; only called in edit mode (see descriptiveKeywords -->
-	<!-- template) and code keyword in gmd:geographicIdentifier           -->
-	<!-- ================================================================ -->
-
-	<xsl:template mode="iso19139.anzlic" match="gmd:keyword[following-sibling::gmd:type/gmd:MD_KeywordTypeCode/@codeListValue='place']|gmd:code[name(../..)='gmd:geographicIdentifier']">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-
-		<xsl:choose>
-		<xsl:when test="$edit=true()">
-		
-		<xsl:variable name="text">
-			<xsl:variable name="ref" select="gco:CharacterString/geonet:element/@ref"/>
-			<xsl:variable name="keyword" select="gco:CharacterString/text()"/>
-			
-			<input class="md" type="text" name="_{$ref}" value="{gco:CharacterString/text()}" size="50" />
-
-			<!-- anzlic-allgens combobox -->
-
-			<select name="place" size="1" onChange="document.mainForm._{$ref}.value=this.options[this.selectedIndex].text">
-				<option value=""/>
-				<xsl:for-each select="$anzlicallgens/gmx:CT_CodelistCatalogue/gmx:codelistItem/gmx:CodeListDictionary">
-					<optgroup label="{gml:identifier}">
-					<xsl:for-each select="gmx:codeEntry">
-						<xsl:variable name="entry" select="substring-before(gmx:CodeDefinition/gml:description,'|')"/>
-						<option value="{$entry}">
-							<xsl:if test="$entry=$keyword">
-								<xsl:attribute name="selected"/>
-							</xsl:if>
-							<xsl:value-of select="$entry"/>
-						</option>
-					</xsl:for-each>
-					</optgroup>
-				</xsl:for-each>
-			</select>
-		</xsl:variable>
-		<xsl:apply-templates mode="simpleElement" select=".">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="true()"/>
-			<xsl:with-param name="text"   select="$text"/>
-		</xsl:apply-templates>
-		</xsl:when>
-
-		<xsl:otherwise>
-		<xsl:apply-templates mode="simpleElement" select=".">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-      <xsl:with-param name="text">
-        <xsl:value-of select="gco:CharacterString"/>
-      </xsl:with-param>
-		</xsl:apply-templates>
-		</xsl:otherwise>
-		</xsl:choose>
-	</xsl:template>
-		
-	<!-- ================================================================ -->
-	<!-- anzlic theme keyword; only called in edit mode (see              -->
-	<!-- descriptiveKeywords 																							-->
-	<!-- ================================================================ -->
-
-	<xsl:template mode="iso19139.anzlic" match="gmd:keyword[following-sibling::gmd:type/gmd:MD_KeywordTypeCode/@codeListValue!='place']">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-		
-		<xsl:choose>
-		<xsl:when test="$edit=true()">
-		
-		<xsl:variable name="text">
-			<xsl:variable name="ref" select="gco:CharacterString/geonet:element/@ref"/>
-			<xsl:variable name="keyword" select="gco:CharacterString/text()"/>
-			
-			<input class="md" type="text" name="_{$ref}" value="{gco:CharacterString/text()}" size="50" />
-
-			<!-- anzlic-allgens combobox -->
-
-			<select name="place" size="1" onChange="document.mainForm._{$ref}.value=this.options[this.selectedIndex].text">
-				<option value=""/>
-				<xsl:for-each select="$anzlicthemes/gmx:CT_CodelistCatalogue/gmx:codelistItem/gmx:CodeListDictionary">
-					<optgroup label="{gml:identifier}">
-					<xsl:for-each select="gmx:codeEntry">
-						<xsl:variable name="entry" select="gmx:CodeDefinition/gml:identifier"/>
-						<option value="{$entry}">
-							<xsl:if test="$entry=$keyword">
-								<xsl:attribute name="selected"/>
-							</xsl:if>
-							<xsl:value-of select="$entry"/>
-						</option>
-					</xsl:for-each>
-					</optgroup>
-				</xsl:for-each>
-			</select>
-		</xsl:variable>
-		<xsl:apply-templates mode="simpleElement" select=".">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="true()"/>
-			<xsl:with-param name="text"   select="$text"/>
-		</xsl:apply-templates>
-
-		</xsl:when>
-		<xsl:otherwise>
-		<xsl:apply-templates mode="simpleElement" select=".">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-      <xsl:with-param name="text">
-        <xsl:value-of select="gco:CharacterString"/>
-      </xsl:with-param>
-		</xsl:apply-templates>
-		</xsl:otherwise>
-		</xsl:choose>
-
-	</xsl:template>
-		
 	<!-- ================================================================== -->
 	<!-- EX_GeographicBoundingBox - use for all schemas except iso19139     -->
 	<!-- ================================================================== -->

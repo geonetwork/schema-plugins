@@ -1,10 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <fields>	
+	<field name="gmd:contactInstructions">
+		<suggest name="gco:CharacterString"/>
+		<suggest name="gmx:FileName"/>
+	</field>
+
 	<field name="gmd:otherCitationDetails">
 		<suggest name="gco:CharacterString"/>
 		<suggest name="gmx:FileName"/>
+		<suggest name="gmx:Anchor"/>
 	</field> 
+
+	<field name="gmd:code">
+		<suggest name="gco:CharacterString"/>
+		<suggest name="gmx:FileName"/>
+		<suggest name="gmx:Anchor"/>
+	</field>
+
+	<field name="gmd:keyword">
+		<suggest name="gco:CharacterString"/>
+		<suggest name="gmx:Anchor"/>
+	</field>
+
+	<field name="gmx:Anchor">
+		<suggest name="xlink:href"/>
+	</field>
+
+	<field name="gmd:language">
+		<suggest name="gco:CharacterString"/>
+		<suggest name="gmd:LanguageCode"/>
+	</field>
+
 	<field name="gmx:FileName">
 		<suggest name="src"/>
 	</field> 
