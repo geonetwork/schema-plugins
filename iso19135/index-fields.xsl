@@ -37,9 +37,6 @@
 		<Field name="abstract" string="{string(grg:contentSummary/gco:CharacterString)}" store="true" index="true"/>
 
 		<xsl:for-each select="grg:containedItem/*">
-      <Field name="keyword" string="{string(grg:name/*)}" store="true" index="true"/>
-			<Field name="subject" string="{string(grg:name/*)}" store="true" index="true"/>
-
 			<Field name="registerItem" string="{string(grg:name/*)}" store="true" index="true"/>
 			<Field name="registerItemDesc" string="{string(grg:definition/*|grg:description)}" store="true" index="true"/>
 

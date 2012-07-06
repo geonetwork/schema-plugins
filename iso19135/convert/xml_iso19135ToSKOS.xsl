@@ -178,12 +178,22 @@
 				</xsl:choose>
 			</xsl:for-each>
 			<skos:definition xml:lang="en"><xsl:value-of select="grg:definition/gco:CharacterString"/></skos:definition>
-			<xsl:if test="normalize-space(grg:description/gco:CharacterString)!=''">
-				<skos:scopeNote xml:lang="en"><xsl:value-of select="grg:description/gco:CharacterString"/></skos:scopeNote>
-			</xsl:if>
+			<xsl:choose>
+				<xsl:when test="starts-with(grg:name/gco:CharacterString,'urn:')">
+					<skos:scopeNote xml:lang="en"><xsl:value-of select="grg:definition/gco:CharacterString"/></skos:scopeNote>
+				</xsl:when>
+				<xsl:when test="normalize-space(grg:definition/gco:CharacterString)!=''">
+					<skos:scopeNote xml:lang="en"><xsl:value-of select="concat(grg:name/gco:CharacterString,': ',grg:definition/gco:CharacterString)"/></skos:scopeNote>
+				</xsl:when>
+				<xsl:otherwise>
+					<skos:scopeNote xml:lang="en"><xsl:value-of select="grg:name/gco:CharacterString"/></skos:scopeNote>
+				</xsl:otherwise>
+			</xsl:choose>
+			<!--
 			<xsl:for-each select="grg:fieldOfApplication/grg:RE_FieldOfApplication">
 				<skos:scopeNote xml:lang="en"><xsl:value-of select="concat('Name of field of Application: ',grg:name/gco:CharacterString,', Description: ',grg:description/gco:CharacterString)"/></skos:scopeNote>
 			</xsl:for-each>
+			-->
 		</skos:Concept>
 	</xsl:template>
 
