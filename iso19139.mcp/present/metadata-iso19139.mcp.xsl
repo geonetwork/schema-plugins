@@ -398,7 +398,7 @@
 	<!-- keywords from GCMD Chooser Application                               -->
 	<!-- ==================================================================== -->
 
-	<xsl:template mode="iso19139.mcp" match="gmd:keyword">
+	<xsl:template mode="iso19139.mcp" match="gmd:keyword[not(starts-with(following-sibling::gmd:thesaurusName/*/gmd:identifier/*/gmd:code/gmx:Anchor,'geonetwork.thesaurus.'))]">
   	<xsl:param name="schema"/>
     <xsl:param name="edit"/>
 
@@ -409,10 +409,10 @@
       	<xsl:with-param name="schema"  select="$schema"/>
       	<xsl:with-param name="edit"   select="$edit"/>
       	<xsl:with-param name="text">
-      		<xsl:variable name="ref" select="gco:CharacterString/geonet:element/@ref"/>
+      		<xsl:variable name="ref" select="*/geonet:element/@ref"/>
         	<table width="100%"><tr>
           	<td>
-<input class="md" type="text" name="_{$ref}" id="_{$ref}_cal1" value="{gco:CharacterString/text()}" size="60" onClick="window.open('/GCMDFinder/GCMDFinder/GCMDFinder.jsp',this.id,'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,width=700,height=500,top=150,left=150');"/>
+<input class="md" type="text" name="_{$ref}" id="_{$ref}_cal1" value="{*/text()}" size="60" onClick="window.open('/GCMDFinder/GCMDFinder/GCMDFinder.jsp',this.id,'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,width=700,height=500,top=150,left=150');"/>
 						</td>
         	</tr></table>
       	</xsl:with-param>
@@ -444,10 +444,10 @@
 		<xsl:when test="$edit=true()">
 		
 		<xsl:variable name="text">
-			<xsl:variable name="ref" select="gco:CharacterString/geonet:element/@ref"/>
-			<xsl:variable name="keyword" select="gco:CharacterString/text()"/>
+			<xsl:variable name="ref" select="*/geonet:element/@ref"/>
+			<xsl:variable name="keyword" select="*/text()"/>
 			
-			<input class="md" type="text" name="_{$ref}" value="{gco:CharacterString/text()}" size="50" />
+			<input class="md" type="text" name="_{$ref}" value="{*/text()}" size="50" />
 
 			<!-- mcp-allgens combobox -->
 
