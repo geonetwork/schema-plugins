@@ -8,8 +8,7 @@
 										xmlns:geonet="http://www.fao.org/geonetwork"
 										xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"
 										xmlns:app="http://biodiversity.org.au/xml/servicelayer/content"
-										xmlns:ibis="http://biodiversity.org.au/xml/ibis"
-										xpath-default-namespace="http://biodiversity.org.au/xml/ibis"
+										xmlns:xlink="http://www.w3.org/1999/xlink"
 										xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 	<xsl:param name="datadir"/>
