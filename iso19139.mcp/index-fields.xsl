@@ -86,6 +86,18 @@
 					<Field name="publicationDate" string="{string(.)}" store="true" index="true"/>
 				</xsl:for-each>
 
+				<xsl:for-each select="mcp:responsibleParty/mcp:CI_Responsibility/mcp:party/mcp:CI_Organisation/mcp:name/gco:CharacterString">
+					<xsl:variable name="org" select="string(.)"/>
+
+					<Field name="orgName" string="{$org}" store="true" index="true"/>
+
+					<xsl:variable name="logo" select="../..//gmx:FileName/@src"/>
+					<xsl:for-each select="../../../../mcp:role/*/@codeListValue">
+						<Field name="responsibleParty" string="{concat(., '|resource|', $org, '|', $logo)}" store="true" index="false"/>
+					</xsl:for-each>
+				</xsl:for-each>
+
+			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 				<!-- fields used to search for metadata in paper or digital format -->
 
 				<xsl:for-each select="gmd:presentationForm">
@@ -100,6 +112,21 @@
 					</xsl:if>
 				</xsl:for-each>
 
+			</xsl:for-each>
+
+			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+			<!-- if aggregation code comes from a thesaurus then index it and the  -->
+			<!-- the thesaurus it comes from                                       -->
+			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+			<xsl:for-each select="gmd:aggregateInformation/*">
+				<xsl:variable name="code" select="string(gmd:aggregateDataSetIdentifier/*/gmd:code/*)"/>
+
+				<xsl:variable name="thesaurusId" select="gmd:aggregateDataSetIdentifier/*/gmd:authority/*/gmd:identifier/*/gmd:code/gmx:Anchor"/>
+				<xsl:if test="contains($thesaurusId,'geonetwork.thesaurus') and normalize-space($code)!=''">
+					<Field name="thesaurusName" string="{$thesaurusId}" store="true" index="true"/>
+					<Field name="{$thesaurusId}" string="{$code}" store="true" index="true"/>
+				</xsl:if>
 			</xsl:for-each>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

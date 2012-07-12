@@ -348,6 +348,27 @@
 			<label>Taxon</label>
 			<description>Keyword identifies a taxonomy</description>
 		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<!-- MCP -->
+		<entry>
+			<code>equipment</code>
+			<label>Equipment</label>
+			<description>Keyword identifies equipment used in data collection.</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<!-- MCP -->
+		<entry>
+			<code>survey</code>
+			<label>Survey</label>
+			<description>Keyword identifies a survey/voyage.</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<!-- MCP -->
+		<entry>
+			<code>project</code>
+			<label>Project</label>
+			<description>Keyword identifies a project.</description>
+		</entry>
 	</codelist>
 	<!-- ==================================================== -->
 	<codelist name="gmd:MD_MaintenanceFrequencyCode">
