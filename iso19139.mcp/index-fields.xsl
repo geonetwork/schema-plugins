@@ -125,7 +125,13 @@
 				<xsl:variable name="thesaurusId" select="gmd:aggregateDataSetIdentifier/*/gmd:authority/*/gmd:identifier/*/gmd:code/gmx:Anchor"/>
 				<xsl:if test="contains($thesaurusId,'geonetwork.thesaurus') and normalize-space($code)!=''">
 					<Field name="thesaurusName" string="{$thesaurusId}" store="true" index="true"/>
+					<!-- thesaurusId field not used for searching -->
 					<Field name="{$thesaurusId}" string="{$code}" store="true" index="true"/>
+					<xsl:variable name="initiative" select="gmd:initiativeType/gmd:DS_InitiativeTypeCode/@codeListValue"/>
+					<!-- initiative field is used for searching -->
+					<xsl:if test="normalize-space($initiative)!=''">
+						<Field name="{$initiative}" string="{$code}" store="true" index="true"/>
+					</xsl:if>
 				</xsl:if>
 			</xsl:for-each>
 
