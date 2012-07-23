@@ -196,22 +196,38 @@
 				</xsl:for-each>
 
 
-				<xsl:for-each select="mcp:taxonomicElement/*/mcp:taxonConcepts/app:documents/TaxonConcept|mcp:taxonomicElement/*/mcp:taxonConcepts/app:documents/TaxonName">
-					<Field name="taxonPub"			string="{string(PublicationRef/*[1])}" store="true" index="true"/>
+				<xsl:for-each select="mcp:taxonomicElement/*">
 
-					<!-- index both complete name and lsid of this species -->
-					<Field name="taxon"		string="{string(HasNameRef/NameComplete)}" store="true" index="true"/>
-					<Field name="taxon"		string="{string(HasNameRef/@ibis:lsidRef)}" store="true" index="true"/>
+					<xsl:for-each select="mcp:taxonConcepts/*/ibis:TaxonName">
+						<xsl:variable name="thesaurusId" select="normalize-space(@ibis:thesaurusUri)"/>
 
-					<!-- Also index all synonyms and their lsids from this record so 
-							 that searches on synonyms will also pick up this record -->
-					<xsl:for-each select="AcceptedFor/AcceptedForNameRef">
+						<xsl:if test="$thesaurusId!=''">
+							<Field name="thesaurusName" string="{string($thesaurusId)}" store="true" index="true"/>
+						</xsl:if>
+
+						<xsl:if test="PublicationRef">
+							<Field name="taxonPub"			string="{string(PublicationRef/*[1])}" store="true" index="true"/>
+						</xsl:if>
+
+						<!-- index both complete name and lsid of this species -->
 						<Field name="taxon"		string="{string(NameComplete)}" store="true" index="true"/>
-						<Field name="taxon"		string="{string(@ibis:lsidRef)}" store="true" index="true"/>
+						<Field name="taxonId"	string="{string(@ibis:lsid)}" store="true" index="true"/>
+						<xsl:if test="$thesaurusId!=''">
+							<Field name="{$thesaurusId}"	string="{string(@ibis:lsid)}" store="true" index="true"/>
+						</xsl:if>
+	
+						<!-- Also index all synonyms and their lsids from this record so 
+							 	that searches on synonyms will also pick up this record -->
+						<xsl:for-each select="HasAcceptedConcept/HasNameRef">
+							<Field name="taxon"		string="{string(NameComplete)}" store="true" index="true"/>
+							<Field name="taxonId"	string="{string(@ibis:lsid)}" store="true" index="true"/>
+							<xsl:if test="$thesaurusId!=''">
+								<Field name="{$thesaurusId}"	string="{string(@ibis:lsid)}" store="true" index="true"/>
+							</xsl:if>
+						</xsl:for-each>
+	
 					</xsl:for-each>
-
 				</xsl:for-each>
-
 			</xsl:for-each>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
@@ -250,6 +266,7 @@
 
 						<xsl:if test="normalize-space($keywordId)!=''">
 							<Field name="{$thesaurusId}" string="{replace($keywordId,'%23','#')}" store="true" index="true"/>
+							<Field name="keywordId" string="{replace($keywordId,'%23','#')}" store="true" index="true"/>
 						</xsl:if>
 					</xsl:if>
 				</xsl:for-each>
