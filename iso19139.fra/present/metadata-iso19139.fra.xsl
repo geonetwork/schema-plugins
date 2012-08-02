@@ -34,6 +34,51 @@
       <xsl:with-param name="tabLink" select="$tabLink"/>
       <xsl:with-param name="schema" select="$schema"/>
     </xsl:call-template>
+  	
+  	
+  	<!-- FRA tabs -->
+  	<xsl:if test="/root/gui/config/metadata-tab/fra">
+  		<xsl:call-template name="displayTab">
+  			<xsl:with-param name="tab"     select="'packages'"/>
+  			<xsl:with-param name="text"    select="/root/gui/strings/fraTab"/>
+  			<xsl:with-param name="tabLink" select="''"/>
+  		</xsl:call-template>
+  		
+  		<xsl:call-template name="displayTab">
+  			<xsl:with-param name="tab"     select="'fraTabDesc'"/>
+  			<xsl:with-param name="text"    select="/root/gui/strings/fraTabDesc"/>
+  			<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
+  			<xsl:with-param name="tabLink" select="$tabLink"/>
+  		</xsl:call-template>
+  		
+  		<xsl:call-template name="displayTab">
+  			<xsl:with-param name="tab"     select="'fraTabTech'"/>
+  			<xsl:with-param name="text"    select="/root/gui/strings/fraTabTech"/>
+  			<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
+  			<xsl:with-param name="tabLink" select="$tabLink"/>
+  		</xsl:call-template>
+  		
+  		<xsl:call-template name="displayTab">
+  			<xsl:with-param name="tab"     select="'fraTabQua'"/>
+  			<xsl:with-param name="text"    select="/root/gui/strings/fraTabQua"/>
+  			<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
+  			<xsl:with-param name="tabLink" select="$tabLink"/>
+  		</xsl:call-template>
+  		
+  		<xsl:call-template name="displayTab">
+  			<xsl:with-param name="tab"     select="'fraTabAcc'"/>
+  			<xsl:with-param name="text"    select="/root/gui/strings/fraTabAcc"/>
+  			<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
+  			<xsl:with-param name="tabLink" select="$tabLink"/>
+  		</xsl:call-template>
+  		
+  		<xsl:call-template name="displayTab">
+  			<xsl:with-param name="tab"     select="'fraTabMd'"/>
+  			<xsl:with-param name="text"    select="/root/gui/strings/fraTabMd"/>
+  			<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
+  			<xsl:with-param name="tabLink" select="$tabLink"/>
+  		</xsl:call-template>
+  	</xsl:if>
   </xsl:template>
 
 	<!-- main template - the way into processing iso19139.fra -->
@@ -61,58 +106,6 @@
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit" select="$edit"/>
 		</xsl:apply-templates>
-	</xsl:template>
-
-	<!-- Extra tabs for ISO Profil for France -->
-	<xsl:template mode="extraTab" match="/">
-		<xsl:param name="tabLink"/>
-		<xsl:param name="schema"/>
-	  
-	  <xsl:if test="$schema='iso19139.fra'">
-			<!-- FRA tabs -->
-			<xsl:if test="/root/gui/config/metadata-tab/fra">
-				<xsl:call-template name="displayTab">
-					<xsl:with-param name="tab"     select="'packages'"/>
-					<xsl:with-param name="text"    select="/root/gui/strings/fraTab"/>
-					<xsl:with-param name="tabLink" select="''"/>
-				</xsl:call-template>
-				
-				<xsl:call-template name="displayTab">
-					<xsl:with-param name="tab"     select="'fraTabDesc'"/>
-					<xsl:with-param name="text"    select="/root/gui/strings/fraTabDesc"/>
-					<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
-					<xsl:with-param name="tabLink" select="$tabLink"/>
-				</xsl:call-template>
-				
-				<xsl:call-template name="displayTab">
-					<xsl:with-param name="tab"     select="'fraTabTech'"/>
-					<xsl:with-param name="text"    select="/root/gui/strings/fraTabTech"/>
-					<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
-					<xsl:with-param name="tabLink" select="$tabLink"/>
-				</xsl:call-template>
-				
-				<xsl:call-template name="displayTab">
-					<xsl:with-param name="tab"     select="'fraTabQua'"/>
-					<xsl:with-param name="text"    select="/root/gui/strings/fraTabQua"/>
-					<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
-					<xsl:with-param name="tabLink" select="$tabLink"/>
-				</xsl:call-template>
-				
-				<xsl:call-template name="displayTab">
-					<xsl:with-param name="tab"     select="'fraTabAcc'"/>
-					<xsl:with-param name="text"    select="/root/gui/strings/fraTabAcc"/>
-					<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
-					<xsl:with-param name="tabLink" select="$tabLink"/>
-				</xsl:call-template>
-				
-				<xsl:call-template name="displayTab">
-					<xsl:with-param name="tab"     select="'fraTabMd'"/>
-					<xsl:with-param name="text"    select="/root/gui/strings/fraTabMd"/>
-					<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
-					<xsl:with-param name="tabLink" select="$tabLink"/>
-				</xsl:call-template>
-			</xsl:if>
-		</xsl:if>
 	</xsl:template>
 
 

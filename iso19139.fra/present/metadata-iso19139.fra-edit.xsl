@@ -37,6 +37,22 @@
   <xsl:template name="iso19139.fraCompleteTab">
     <xsl:param name="tabLink"/>
     <xsl:param name="schema"/>
+  	
+  	<!-- FRA tabs -->
+  	<xsl:if test="/root/gui/config/metadata-tab/fra">
+  		<xsl:call-template name="mainTab">
+  			<xsl:with-param name="title" select="/root/gui/schemas/iso19139.fra/strings/fraTab"/>
+  			<xsl:with-param name="default">fraTabDesc</xsl:with-param>
+  			<xsl:with-param name="menu">
+  				<item label="fraTabDesc">fraTabDesc</item>
+  				<item label="fraTabTech">fraTabTech</item>
+  				<item label="fraTabQua">fraTabQua</item>
+  				<item label="fraTabAcc">fraTabAcc</item>
+  				<item label="fraTabMd">fraTabMd</item>
+  			</xsl:with-param>
+  		</xsl:call-template>
+  	</xsl:if>
+  	
     <xsl:call-template name="iso19139CompleteTab">
       <xsl:with-param name="tabLink" select="$tabLink"/>
       <xsl:with-param name="schema" select="$schema"/>
@@ -57,30 +73,6 @@
 			<xsl:with-param name="edit" select="$edit"/>
 		</xsl:apply-templates>
 	</xsl:template>
-
-
-	<!-- Extra tabs for ISO Profil for France -->
-  <xsl:template mode="extraTab" match="/">
-		<xsl:param name="tabLink"/>
-		<xsl:param name="schema"/>
-
-    <!-- FRA tabs -->
-		<xsl:if test="/root/gui/config/metadata-tab/fra">
-		  <xsl:call-template name="mainTab">
-		    <xsl:with-param name="title" select="/root/gui/schemas/iso19139.fra/strings/fraTab"/>
-		    <xsl:with-param name="default">fraTabDesc</xsl:with-param>
-		    <xsl:with-param name="menu">
-		      <item label="fraTabDesc">fraTabDesc</item>
-		      <item label="fraTabTech">fraTabTech</item>
-		      <item label="fraTabQua">fraTabQua</item>
-		      <item label="fraTabAcc">fraTabAcc</item>
-		      <item label="fraTabMd">fraTabMd</item>
-		    </xsl:with-param>
-		  </xsl:call-template>
-		</xsl:if>
-	</xsl:template>
-
-
 
 	<!--
 		Redirection template for profil fra in order to process 
