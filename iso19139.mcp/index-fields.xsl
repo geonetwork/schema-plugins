@@ -130,7 +130,7 @@
 					<xsl:variable name="initiative" select="gmd:initiativeType/gmd:DS_InitiativeTypeCode/@codeListValue"/>
 					<!-- initiative field is used for searching -->
 					<xsl:if test="normalize-space($initiative)!=''">
-						<Field name="{$initiative}" string="{$code}" store="true" index="true"/>
+						<Field name="{concat('siblings_',$initiative)}" string="{$code}" store="true" index="true"/>
 					</xsl:if>
 				</xsl:if>
 			</xsl:for-each>
