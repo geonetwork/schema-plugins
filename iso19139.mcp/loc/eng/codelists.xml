@@ -369,6 +369,13 @@
 			<label>Project</label>
 			<description>Keyword identifies a project.</description>
 		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<!-- MCP -->
+		<entry>
+			<code>dataSource</code>
+			<label>Data Source</label>
+			<description>Keyword identifies data source eg. model, or aggregated/derived data.</description>
+		</entry>
 	</codelist>
 	<!-- ==================================================== -->
 	<codelist name="gmd:MD_MaintenanceFrequencyCode">
