@@ -357,7 +357,7 @@
 					<Field name="mimetype" string="{$mimetype}" store="false" index="true"/>
 				</xsl:if>
 			  
-				<xsl:if test="contains($protocol, 'WWW:DOWNLOAD')">
+				<xsl:if test="contains($protocol, 'WWW:DOWNLOAD') or matches($protocol, 'WWW:LINK.*downloaddata')">
 			    	<Field name="download" string="true" store="false" index="true"/>
 			  	</xsl:if>
 			  
