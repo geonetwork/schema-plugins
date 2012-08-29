@@ -219,7 +219,7 @@
 				</gmd:metadataStandardName>
 				
 				<gmd:metadataStandardVersion>
-					<gco:CharacterString>1.3-19139</gco:CharacterString>
+					<gco:CharacterString>1.5-experimental</gco:CharacterString>
 				</gmd:metadataStandardVersion>		
 		
 				<gmd:identificationInfo>

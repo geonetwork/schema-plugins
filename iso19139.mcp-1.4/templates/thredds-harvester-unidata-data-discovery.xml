@@ -9,7 +9,7 @@
                  gco:isoType="gmd:MD_Metadata"
                  xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd  http://bluenet3.antcrc.utas.edu.au/mcp http://bluenet3.antcrc.utas.edu.au/mcp-1.4/schema.xsd">
   <gmd:fileIdentifier>
-      <gco:CharacterString xmlns:srv="http://www.isotc211.org/2005/srv">4294e6ae-9c7c-462f-a7c5-6cbe0a7c8b90</gco:CharacterString>
+      <gco:CharacterString xmlns:srv="http://www.isotc211.org/2005/srv">cecca436-5c27-4169-a39b-239fc18588b8</gco:CharacterString>
   </gmd:fileIdentifier>
   <gmd:language>
       <gco:CharacterString xmlns:srv="http://www.isotc211.org/2005/srv">eng</gco:CharacterString>
@@ -48,7 +48,7 @@
          <gmd:citation>
             <gmd:CI_Citation>
                <gmd:title id="thredds.title">
-                  <gco:CharacterString>HARVESTING TEMPLATE - THREDDS - UNIDATA DISCOVERY</gco:CharacterString>
+                  <gco:CharacterString>MCP 1.4: HARVESTING TEMPLATE - THREDDS - UNIDATA DISCOVERY</gco:CharacterString>
                </gmd:title>
                <gmd:date id="thredds.resource.dates"/>
                <gmd:citedResponsibleParty id="thredds.responsible.parties">

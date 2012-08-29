@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mcp:MD_Metadata xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gmd="http://www.isotc211.org/2005/gmd" gco:isoType="gmd:MD_Metadata" xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://bluenet3.antcrc.utas.edu.au/mcp http://bluenet3.antcrc.utas.edu.au/mcp/schema.xsd">
+<mcp:MD_Metadata xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gmd="http://www.isotc211.org/2005/gmd" gco:isoType="gmd:MD_Metadata" xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://bluenet3.antcrc.utas.edu.au/mcp http://bluenet3.antcrc.utas.edu.au/mcp-1.5-experimental/schema.xsd">
   <gmd:fileIdentifier>
     <gco:CharacterString>053b7f20-972d-11dc-893b-00188b4c9af9</gco:CharacterString>
   </gmd:fileIdentifier>
@@ -77,7 +77,7 @@
     <gco:CharacterString>Australian Marine Community Profile of ISO 19115:2005/19139</gco:CharacterString>
   </gmd:metadataStandardName>
   <gmd:metadataStandardVersion>
-    <gco:CharacterString>MCP:BlueNet V1.5</gco:CharacterString>
+    <gco:CharacterString>1.5-experimental</gco:CharacterString>
   </gmd:metadataStandardVersion>
 	<gmd:referenceSystemInfo>
 		<gmd:MD_ReferenceSystem>
@@ -98,7 +98,7 @@
       <gmd:citation>
         <gmd:CI_Citation>
           <gmd:title>
-            <gco:CharacterString>MCP19139 - CORE (+ Vertical Extent) Metadata for Marine Geographic Datasets (MCP:BlueNet V1.5)</gco:CharacterString>
+            <gco:CharacterString>MCP 1.5-experimental: CORE (+ Vertical Extent) Metadata for Marine Geographic Datasets</gco:CharacterString>
           </gmd:title>
           <gmd:date>
             <gmd:CI_Date>

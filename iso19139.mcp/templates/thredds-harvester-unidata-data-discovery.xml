@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mcp:MD_Metadata xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:geonet="http://www.fao.org/geonetwork" gco:isoType="gmd:MD_Metadata" xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://bluenet3.antcrc.utas.edu.au/mcp http://bluenet3.antcrc.utas.edu.au/mcp/schema.xsd">
+<mcp:MD_Metadata xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:geonet="http://www.fao.org/geonetwork" gco:isoType="gmd:MD_Metadata" xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://bluenet3.antcrc.utas.edu.au/mcp http://bluenet3.antcrc.utas.edu.au/mcp-1.5-experimental/schema.xsd">
   <gmd:fileIdentifier>
       <gco:CharacterString xmlns:srv="http://www.isotc211.org/2005/srv">4294e6ae-9c7c-462f-a7c5-6cbe0a7c8b90</gco:CharacterString>
   </gmd:fileIdentifier>
@@ -33,14 +33,14 @@
 		<gco:CharacterString>Australian Marine Community Profile of ISO 19115:2005/19139</gco:CharacterString>
 	</gmd:metadataStandardName>
 	<gmd:metadataStandardVersion>
-		<gco:CharacterString>MCP:BlueNet V1.5</gco:CharacterString>
+		<gco:CharacterString>1.5-experimental</gco:CharacterString>
 	</gmd:metadataStandardVersion>
   <gmd:identificationInfo>
       <mcp:MD_DataIdentification gco:isoType="gmd:MD_DataIdentification">
          <gmd:citation>
             <gmd:CI_Citation>
                <gmd:title id="thredds.title">
-                  <gco:CharacterString>HARVESTING TEMPLATE - THREDDS - UNIDATA DISCOVERY</gco:CharacterString>
+                  <gco:CharacterString>MCP 1.5-experimental: HARVESTING TEMPLATE - THREDDS - UNIDATA DISCOVERY</gco:CharacterString>
                </gmd:title>
                <gmd:date id="thredds.resource.dates"/>
                <gmd:citedResponsibleParty id="thredds.responsible.parties">

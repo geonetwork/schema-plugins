@@ -89,11 +89,11 @@
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 			
 			<metadataStandardName>
-				<gco:CharacterString>BlueNet version of the Australian Marine Community Profile of ISO 19115:2005/19139</gco:CharacterString>
+				<gco:CharacterString>Australian Marine Community Profile of ISO 19115:2005/19139</gco:CharacterString>
 			</metadataStandardName>
 
 			<metadataStandardVersion>
-				<gco:CharacterString>MCP:BlueNet V1.4</gco:CharacterString>
+				<gco:CharacterString>1.4</gco:CharacterString>
 			</metadataStandardVersion>
 
 			<!-- spatRepInfo-->

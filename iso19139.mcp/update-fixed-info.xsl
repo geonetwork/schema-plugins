@@ -13,7 +13,7 @@
 	<xsl:include href="../iso19139/convert/functions.xsl"/>
 
 	<xsl:variable name="metadataStandardName" select="'Australian Marine Community Profile of ISO 19115:2005/19139'"/>
-	<xsl:variable name="metadataStandardVersion" select="'MCP:BlueNet V1.5'"/>
+	<xsl:variable name="metadataStandardVersion" select="'1.5-experimental'"/>
 
 	<!-- ================================================================= -->
 	
