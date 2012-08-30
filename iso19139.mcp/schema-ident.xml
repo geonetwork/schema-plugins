@@ -8,10 +8,10 @@
 	<autodetect xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco">
 		<elements>
 			<gmd:metadataStandardName>
-				<gco:CharacterString>Australian Marine Community Profile of ISO 19115:2005/19139</gco:CharacterString>
+				<gco:CharacterString>Australian Marine Community Profile of ISO 19115:2005/19139|Marine Community Profile of ISO 19115:2005/19139</gco:CharacterString>
 			</gmd:metadataStandardName>
 			<gmd:metadataStandardVersion>
-				<gco:CharacterString>1.5-experimental</gco:CharacterString>
+				<gco:CharacterString>1.5-experimental|MCP:BlueNet V1.5-experimental</gco:CharacterString>
 			</gmd:metadataStandardVersion>
 		</elements>
 	</autodetect>
