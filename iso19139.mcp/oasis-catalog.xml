@@ -4,9 +4,14 @@
 <!-- OASIS CATALOG FOR GEONETWORK TO REMAP VARIOUS XML IDs -->
 
 <!-- This used to be done in Java code, but with the use of these 
-	   maps you can customise this to suit yourself. -->
+	   maps you can customise this to suit yourself. 
 
-<!-- =============== ISO19139 MCP maps -->
+		 NOTE: all oasis catalog files are added to the XML resolver so
+		       you must not have duplicate entries - you cannot override 
+					 entries in other oasis catalogs 
+-->
+
+<!-- =============== ISO19139 MCP 1.5-experimental maps -->
 
 	<!-- These are to map schemaLocation hints to local schemas to make sure that
 			 GeoNetwork edits and validates against a schema it knows about -->
@@ -14,22 +19,12 @@
 	<system systemId="http://bluenet3.antcrc.utas.edu.au/mcp-1.5-experimental/schema.xsd" 
 	        uri="schema.xsd"/>
 
+	<!-- NOTE: Other schemaLocation mappings are done in the oasis catalog for the 
+	     ISO19139 schema -->
+
 	<!-- Code lists -->
-
-	<uri name="http://asdd.ga.gov.au/asdd/profileinfo/gmxCodelists.xml"
-			 uri="schema/resources/Codelist/gmxCodelists.xml"/>
-
-	<uri name="http://www.isotc211.org/2005/iso19119/resources/Codelist/gmxCodelists.xml"
-				uri="schema/resources/Codelist/gmxCodelists.xml"/>
-
-	<uri name="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml" 
-	     uri="schema/resources/Codelist/gmxCodelists.xml"/>
-
-	<uri name="http://bluenet3.antcrc.utas.edu.au/mcp/schema/resources/Codelist/gmxCodelists.xml" 
-	     uri="schema/resources/Codelist/gmxCodelists.xml"/>
 
 	<uri name="http://bluenet3.antcrc.utas.edu.au/mcp-1.5-experimental/schema/resources/Codelist/gmxCodelists.xml" 
 	     uri="schema/resources/Codelist/gmxCodelists.xml"/>
 
-	
 </catalog>

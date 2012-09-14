@@ -3,47 +3,24 @@
 
 <!-- OASIS CATALOG FOR GEONETWORK TO REMAP VARIOUS XML IDs -->
 
-	<!-- This used to be done in Java code, but with the use of these 
-			 maps you can customise this to suit yourself. -->
+<!-- This used to be done in Java code, but with the use of these 
+		 maps you can customise this to suit yourself.
 
-<!-- =============== ISO19135 and 19139 maps -->
+		 NOTE: all oasis catalog files are added to the XML resolver so
+		       you must not have duplicate entries - you cannot override 
+					 entries in other oasis catalogs 
+-->
+
+<!-- =============== ISO19135 maps -->
 
 	<!-- These are to map schemaLocation hints to local schemas to make sure that
        GeoNetwork edits and validates against a schema it knows about. -->
 
-	<system systemId="http://www.isotc211.org/2005/gmd/gmd.xsd" 
-	        uri="schema/gmd/gmd.xsd"/>
-	<system systemId="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gmd/gmd.xsd" 
-	        uri="schema/gmd/gmd.xsd"/>
-	<system systemId="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco/gco.xsd" 
-	        uri="schema/gco/gco.xsd"/>
-	<system systemId="http://www.isotc211.org/2005/gco/gco.xsd" 
-	        uri="schema/gco/gco.xsd"/>
-	<system systemId="http://www.isotc211.org/2005/gmx/gmx.xsd" 
-	        uri="schema/gmx/gmx.xsd"/>
-	<system systemId="http://www.isotc211.org/2005/gts/gts.xsd" 
-	        uri="schema/gts/gts.xsd"/>
-	<system systemId="http://www.isotc211.org/2005/gsr/gsr.xsd" 
-	        uri="schema/gsr/gsr.xsd"/>
-	<system systemId="http://www.isotc211.org/2005/gss/gss.xsd" 
-	        uri="schema/gss/gss.xsd"/>
 	<system systemId="http://www.isotc211.org/2005/grg/grg.xsd" 
 	        uri="schema/grg/grg.xsd"/>
 	<system systemId="http://www.isotc211.org/2005/grg/register.xsd" 
 	        uri="schema/grg/register.xsd"/>
 	<system systemId="http://geonetwork-opensource.org/schemas/register/register.xsd" 
 	        uri="schema/extensions/geonetworkExtensions.xsd"/>
-
-	<!-- gml (both known places for 3.1.1) -->
-
-	<system systemId="http://www.opengis.org/gml/gml.xsd" 
-	        uri="schema/gml/gml.xsd"/>
-	<system systemId="http://schemas.opengis.org/gml/3.1.1/base/gml.xsd" 
-	        uri="schema/gml/gml.xsd"/>
-
-	<!-- xlinks -->
-
-	<system systemId="http://www.w3.org/1999/xlink/xlinks.xsd" 
-	        uri="schema/xlink/xlinks.xsd"/>
 
 </catalog>
