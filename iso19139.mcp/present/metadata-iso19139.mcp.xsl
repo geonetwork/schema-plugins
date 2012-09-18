@@ -2112,6 +2112,11 @@
 								<xsl:with-param name="edit"   select="$edit"/>
 							</xsl:apply-templates>
  
+        			<xsl:apply-templates mode="elementEP" select="*/gmd:distributor|*/geonet:child[string(@name)='distributor']">
+          			<xsl:with-param name="schema" select="$schema"/>
+          			<xsl:with-param name="edit"   select="$edit"/>
+        			</xsl:apply-templates>
+
 							<xsl:apply-templates mode="elementEP" select="*/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine|*/gmd:transferOptions/gmd:MD_DigitalTransferOptions/geonet:child[string(@name)='onLine']">
 								<xsl:with-param name="schema" select="$schema"/>
 								<xsl:with-param name="edit"   select="$edit"/>
@@ -2124,6 +2129,11 @@
 								<xsl:with-param name="schema" select="$schema"/>
 								<xsl:with-param name="edit"   select="$edit"/>
 							</xsl:apply-templates>
+
+        			<xsl:apply-templates mode="elementEP" select="*/gmd:distributor|*/geonet:child[string(@name)='distributor']">
+          			<xsl:with-param name="schema" select="$schema"/>
+          			<xsl:with-param name="edit"   select="$edit"/>
+        			</xsl:apply-templates>
 
 							<xsl:apply-templates mode="element" select="*/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine|*/gmd:transferOptions/gmd:MD_DigitalTransferOptions/geonet:child[string(@name)='onLine']">
 								<xsl:with-param name="schema" select="$schema"/>
