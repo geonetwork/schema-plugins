@@ -26,10 +26,10 @@
 	<xsl:template match="mcp:MD_Metadata">
 		 <xsl:copy>
 		 	<xsl:copy-of select="@*[name()!='xsi:schemaLocation']"/>
+			<xsl:copy-of select="/root/env/schemaLocation/@xsi:schemaLocation"/>
 			<xsl:if test="not(@gco:isoType)">
 				<xsl:attribute name="gco:isoType">gmd:MD_Metadata</xsl:attribute>
 			</xsl:if>
-			<xsl:attribute name="xsi:schemaLocation">http://bluenet3.antcrc.utas.edu.au/mcp http://bluenet3.antcrc.utas.edu.au/mcp-1.5-experimental/schema.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd</xsl:attribute>
 		 	<xsl:choose>
 				<xsl:when test="not(gmd:fileIdentifier)">
 		 			<gmd:fileIdentifier>
