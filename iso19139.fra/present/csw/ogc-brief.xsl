@@ -13,8 +13,8 @@
 	<xsl:param name="displayInfo"/>
 	<xsl:param name="lang"/>
 	
-  <xsl:include href="../metadata-iso19139-utils.xsl"/>
-  
+	<xsl:include href="../../../iso19139/present/metadata-utils.xsl"/>
+	
 	<!-- ============================================================================= -->
 
 	<xsl:template match="gmd:MD_Metadata|*[@gco:isoType='gmd:MD_Metadata']">

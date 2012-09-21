@@ -6,12 +6,10 @@
 										xmlns:dct="http://purl.org/dc/terms/"
 										xmlns:gco="http://www.isotc211.org/2005/gco"
 										xmlns:gmd="http://www.isotc211.org/2005/gmd"
-										xmlns:gmx="http://www.isotc211.org/2005/gmx"
 										xmlns:srv="http://www.isotc211.org/2005/srv"
-										xmlns:gml="http://www.opengis.net/gml"
 										xmlns:geonet="http://www.fao.org/geonetwork"
 										xmlns:ows="http://www.opengis.net/ows"
-										exclude-result-prefixes="gmd srv gco gmx">
+										exclude-result-prefixes="gmd srv gco">
 
 	<xsl:param name="displayInfo"/>
 	<xsl:param name="lang"/>
@@ -68,7 +66,7 @@
 				
 				<!-- subject -->
 				
-				<xsl:for-each select="../../gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword">
+				<xsl:for-each select="../../gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword[not(@gco:nilReason)]">
 					<dc:subject>
 						<xsl:apply-templates mode="localised" select=".">
 								<xsl:with-param name="langId" select="$langId"/>
@@ -134,7 +132,7 @@
 				<dc:description>
 					<xsl:apply-templates mode="localised" select=".">
 						<xsl:with-param name="langId" select="$langId"/>
-					</xsl:apply-templates>				
+					</xsl:apply-templates>
 				</dc:description>
 			</xsl:for-each>
 
@@ -157,8 +155,8 @@
 
 			<!-- language -->
 
-			<xsl:for-each select="$identification/gmd:language/gco:CharacterString">
-				<dc:language><xsl:value-of select="."/></dc:language>
+			<xsl:for-each select="$identification/gmd:language">
+				<dc:language><xsl:value-of select="gco:CharacterString|gmd:LanguageCode/@codeListValue"/></dc:language>
 			</xsl:for-each>
 			
 			<!-- Lineage -->
@@ -189,13 +187,6 @@
 					</dc:format>
 				</xsl:for-each>
 			</xsl:for-each>				
-
-			<!-- temporal extent -->
-
-			<xsl:for-each select="$identification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod">
-				<dc:coverage>name="<xsl:value-of select="@gml:id"/>"; start="<xsl:value-of select="gml:beginPosition|gml:begin/gml:TimeInstant/gml:timePosition"/>"; end="<xsl:value-of select="gml:endPosition|gml:end/gml:TimeInstant/gml:timePosition"/>"
-				</dc:coverage>
-			</xsl:for-each>
 
 			<!-- bounding box -->
 
@@ -273,20 +264,13 @@
 								<xsl:attribute name="protocol"><xsl:value-of select="gmd:protocol/gco:CharacterString"/></xsl:attribute>
 							</xsl:if>
 							
-							<xsl:if test="normalize-space(gmd:name/*)!=''">
+							<xsl:if test="gmd:name">
 								<xsl:attribute name="name">
 									<xsl:for-each select="gmd:name">
-										<!-- <xsl:apply-templates mode="localised" select=".">
+										<xsl:apply-templates mode="localised" select=".">
 											<xsl:with-param name="langId" select="$langId"/>
-										</xsl:apply-templates> -->
-										<xsl:value-of select="gco:CharacterString|gmx:MimeFileType"/>
+										</xsl:apply-templates>
 									</xsl:for-each>
-								</xsl:attribute>
-							</xsl:if>
-							
-							<xsl:if test="gmd:name/gmx:MimeFileType/@type">
-								<xsl:attribute name="type">
-									<xsl:value-of select="gmd:name/gmx:MimeFileType/@type"/>
 								</xsl:attribute>
 							</xsl:if>
 							
