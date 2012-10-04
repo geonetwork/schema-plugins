@@ -11,7 +11,7 @@
 				<gco:CharacterString>Australian Marine Community Profile of ISO 19115:2005/19139|Marine Community Profile of ISO 19115:2005/19139</gco:CharacterString>
 			</gmd:metadataStandardName>
 			<gmd:metadataStandardVersion>
-				<gco:CharacterString>1.5-experimental|MCP:BlueNet V1.5-experimental</gco:CharacterString>
+				<gco:CharacterString>1.5-experimental|MCP:BlueNet V1.5-experimental|MCP:BlueNet V1.5</gco:CharacterString>
 			</gmd:metadataStandardVersion>
 		</elements>
 	</autodetect>
