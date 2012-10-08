@@ -119,7 +119,7 @@
 			<!-- the thesaurus it comes from                                       -->
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-			<xsl:for-each select="gmd:aggregateInformation/*">
+			<xsl:for-each select="gmd:aggregationInfo/*">
 				<xsl:variable name="code" select="string(gmd:aggregateDataSetIdentifier/*/gmd:code/*)"/>
 
 				<xsl:variable name="thesaurusId" select="gmd:aggregateDataSetIdentifier/*/gmd:authority/*/gmd:identifier/*/gmd:code/gmx:Anchor"/>
