@@ -227,18 +227,10 @@
 
 	<!-- ================================================================= -->
 
-	<xsl:template match="gmd:languageCode[gmd:LanguageCode/@codeList]" priority="10">
-		 <xsl:copy>
-		 	<gmd:LanguageCode codeList="http://www.isotc211.org/2005/resources/Codelist/ML_gmxCodelists.xml#LanguageCode" codeListValue="eng">English</gmd:LanguageCode>
-		 </xsl:copy>
-	</xsl:template>
-
-	<!-- ================================================================= -->
-
-	<xsl:template match="gmd:country[gmd:Country/@codeList]" priority="10">
-		 <xsl:copy>
-		 	<gmd:Country codeList="http://www.isotc211.org/2005/resources/Codelist/ML_gmxCodelists.xml#Country" codeListValue="AU">Australia</gmd:Country>
-		 </xsl:copy>
+	<xsl:template match="gmd:LanguageCode[@codeListValue]" priority="10">
+	 	<gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/">
+			<xsl:apply-templates select="@*[name(.)!='codeList']"/>
+		</gmd:LanguageCode>
 	</xsl:template>
 
 	<!-- ================================================================= -->
