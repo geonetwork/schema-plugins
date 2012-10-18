@@ -354,10 +354,10 @@
 				<gmd:URL>
 					<xsl:choose>
 						<xsl:when test="/root/env/config/downloadservice/simple='true' or contains(gmd:protocol/gco:CharacterString,'direct')">
-							<xsl:value-of select="concat(/root/env/siteURL,'/resources.get?id=',/root/env/id,'&amp;fname=',$fname,'&amp;access=private')"/>
+							<xsl:value-of select="concat(/root/env/siteURL,'/resources.get?uuid=',/root/env/uuid,'&amp;fname=',$fname,'&amp;access=private')"/>
 						</xsl:when>
 						<xsl:when test="/root/env/config/downloadservice/withdisclaimer='true'">
-							<xsl:value-of select="concat(/root/env/siteURL,'/file.disclaimer?id=',/root/env/id,'&amp;fname=',$fname,'&amp;access=private')"/>
+							<xsl:value-of select="concat(/root/env/siteURL,'/file.disclaimer?uuid=',/root/env/uuid,'&amp;fname=',$fname,'&amp;access=private')"/>
 						</xsl:when>
 						<xsl:otherwise> <!-- /root/env/config/downloadservice/leave='true' -->
 							<xsl:value-of select="gmd:linkage/gmd:URL"/>
@@ -406,7 +406,7 @@
 	<xsl:template match="gmx:FileName">
 		<xsl:copy>
 			<xsl:attribute name="src">
-				<xsl:value-of select="concat(/root/env/siteURL,'/resources.get?id=',/root/env/id,'&amp;fname=',.,'&amp;access=private')"/>
+				<xsl:value-of select="concat(/root/env/siteURL,'/resources.get?uuid=',/root/env/uuid,'&amp;fname=',.,'&amp;access=private')"/>
 			</xsl:attribute>
 			<xsl:value-of select="."/>
 		</xsl:copy>
