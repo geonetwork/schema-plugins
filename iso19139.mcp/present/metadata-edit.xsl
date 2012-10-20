@@ -128,7 +128,7 @@
 	<!-- mcp codelists -->
 	<!-- ================================================================= -->
 
-	<xsl:template mode="iso19139.mcp" match="*[*/@codeList and name(.)!='gmd:country' and name()!='gmd:languageCode']">
+	<xsl:template mode="iso19139.mcp" match="*[*/@codeList and name(.)!='gmd:country' and name()!='gmd:language' and name()!='gmd:languageCode']">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
