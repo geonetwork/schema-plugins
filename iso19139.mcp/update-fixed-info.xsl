@@ -8,7 +8,8 @@
 						xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 						xmlns:xlink="http://www.w3.org/1999/xlink"
 						xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"
-						xmlns:gmd="http://www.isotc211.org/2005/gmd">
+						xmlns:gmd="http://www.isotc211.org/2005/gmd"
+						exclude-result-prefixes="#all">
 
 	<xsl:include href="../iso19139/convert/functions.xsl"/>
 
