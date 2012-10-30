@@ -38,6 +38,22 @@
 
 	<!-- ================================================================= -->
 	
+	<xsl:template match="gmd:metadataStandardName">
+		<xsl:copy>
+			<gco:CharacterString>ISO 19115:2003/19139</gco:CharacterString>
+		</xsl:copy>
+	</xsl:template>
+
+	<!-- ================================================================= -->
+	
+	<xsl:template match="gmd:metadataStandardVersion">
+		<xsl:copy>
+			<gco:CharacterString>1.0</gco:CharacterString>
+		</xsl:copy>
+	</xsl:template>
+
+	<!-- ================================================================= -->
+	
 	<xsl:template match="@*|node()">
 		 <xsl:copy copy-namespaces="no">
 			  <xsl:apply-templates select="@*|node()"/>
