@@ -250,7 +250,7 @@
                 <gmd:URL/>
               </gmd:linkage>
               <gmd:protocol>
-                <gco:CharacterString>WWW:DOWNLOAD-1.0-http--downloaddata</gco:CharacterString>
+                <gco:CharacterString>WWW:DOWNLOAD-1.0-http--download</gco:CharacterString>
               </gmd:protocol>
               <gmd:name>
                 <gco:CharacterString/>
