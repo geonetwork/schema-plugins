@@ -1867,7 +1867,7 @@
 
 	<!-- ============================================================================= -->
 
-	<xsl:template mode="iso19139.mcp" match="gmd:party|geonet:child[string(@name)='party']">
+	<xsl:template mode="iso19139.mcp" match="mcp:party|geonet:child[string(@name)='party']">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
