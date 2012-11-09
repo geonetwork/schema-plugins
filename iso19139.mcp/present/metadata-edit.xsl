@@ -1858,13 +1858,23 @@
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:for-each select="mcp:party">
-			<xsl:call-template name="partyTemplate">
-				<xsl:with-param name="edit" select="$edit"/>
-				<xsl:with-param name="schema" select="$schema"/>
-			</xsl:call-template>
-		</xsl:for-each>
+		<xsl:apply-templates mode="elementEP" select="mcp:party|geonet:child[string(@name)='party']">
+			<xsl:with-param name="edit" select="$edit"/>
+			<xsl:with-param name="schema" select="$schema"/>
+		</xsl:apply-templates>
 
+	</xsl:template>
+
+	<!-- ============================================================================= -->
+
+	<xsl:template mode="iso19139.mcp" match="mcp:party|geonet:child[string(@name)='party']">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+
+		<xsl:call-template name="partyTemplate">
+			<xsl:with-param name="edit" select="$edit"/>
+			<xsl:with-param name="schema" select="$schema"/>
+		</xsl:call-template>
 	</xsl:template>
 
 	<!-- ============================================================================= -->
