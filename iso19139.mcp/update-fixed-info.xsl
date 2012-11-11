@@ -131,6 +131,7 @@
           <xsl:apply-templates select="mcp:revisionDate"/>
         </xsl:otherwise>
       </xsl:choose>
+      <xsl:apply-templates select="mcp:metadataContactInfo"/>
 		</xsl:copy>
 	</xsl:template>
 
