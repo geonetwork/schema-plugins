@@ -12,6 +12,16 @@
 		<substitute name="mcp:MD_DataIdentification"/>
 	</field>
 
+<!-- offer just the mcp version of extent -->
+	<field name="gmd:EX_Extent">
+		<substitute name="mcp:EX_Extent"/>
+	</field>
+
+<!-- offer just the mcp:CI_Organisation for mcp:AbstractCI_Party  -->
+	<field name="mcp:AbstractCI_Party">
+		<substitute name="mcp:CI_Organisation"/>
+	</field>
+
 <!-- just VerticalCS (exclude ML_VerticalCS) -->
 	<field name="gml:VerticalCS">
 	</field>
