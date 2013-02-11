@@ -12,7 +12,7 @@
 				<gco:CharacterString>Australian Marine Community Profile of ISO 19115:2005/19139|Marine Community Profile of ISO 19115:2005/19139</gco:CharacterString>
 			</gmd:metadataStandardName>
 			<gmd:metadataStandardVersion>
-				<gco:CharacterString>1.4|MCP:BlueNet V1.4|MCP:BlueNet V1.3</gco:CharacterString>
+				<gco:CharacterString>1.4|MCP:BlueNet V1.4|MCP:BlueNet V1.3|1.4-19139</gco:CharacterString>
 				<!-- Note: This schema accepts V1.3 records but these need to be 
 				           converted before they can be edited -->
 			</gmd:metadataStandardVersion>
