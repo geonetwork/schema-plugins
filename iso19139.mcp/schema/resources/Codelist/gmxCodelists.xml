@@ -1592,6 +1592,13 @@
 					<gml:identifier codeSpace="MCP version 1.4">dataObject</gml:identifier>
 				</CodeDefinition>
 			</codeEntry>
+<!-- MCP -->
+			<codeEntry>
+				<CodeDefinition gml:id="MD_ScopeCode_project">
+					<gml:description>information applies to a project</gml:description>
+					<gml:identifier codeSpace="MCP version 1.4">project</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
 		</CodeListDictionary>
 	</codelistItem>
 	<!--=== MD_SpatialRepresentationTypeCode ===-->
