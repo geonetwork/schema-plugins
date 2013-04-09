@@ -17,6 +17,7 @@
 
 	<!-- schema plugins to zip  -->
 	<property name="iso19139.anzlic" value="iso19139.anzlic"/>
+	<property name="iso19139.mcp-2.0" value="iso19139.mcp-2.0"/>
 	<property name="iso19139.mcp" value="iso19139.mcp"/>
 	<property name="iso19139.mcp-1.4" value="iso19139.mcp-1.4"/>
 	<property name="anzmeta" value="anzmeta"/>
@@ -40,6 +41,7 @@
 
 		<zip destfile="${dist}/${iso19139.anzlic}.zip" basedir="${iso19139.anzlic}" excludes=".svn" />
 		<zip destfile="${dist}/${iso19135}.zip" basedir="${iso19135}" excludes=".svn" />
+		<zip destfile="${dist}/${iso19139.mcp-2.0}.zip" basedir="${iso19139.mcp-2.0}" excludes=".svn" />
 		<zip destfile="${dist}/${iso19139.mcp}.zip" basedir="${iso19139.mcp}" excludes=".svn" />
 		<zip destfile="${dist}/${iso19139.mcp-1.4}.zip" basedir="${iso19139.mcp-1.4}" excludes=".svn" />
 		<zip destfile="${dist}/${anzmeta}.zip" basedir="${anzmeta}" excludes=".svn" />

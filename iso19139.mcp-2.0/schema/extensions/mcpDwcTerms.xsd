@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="0.1" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		elementFormDefault="qualified"
+    targetNamespace="http://rs.tdwg.org/dwc/terms/"
+    xmlns:dwc="http://rs.tdwg.org/dwc/terms/">
+   
+  <!-- from tdwg_basetypes.xsd -->
+	<xs:simpleType name="nonEmptyString">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+  <!-- subset of the TAXON domain from tdwg_dwc_class_terms.xsd -->
+	<xs:element name="Taxon">
+		<xs:complexType>
+			<xs:sequence>
+				<!-- elements from tdwg_dwcterms.xsd -->
+				<xs:element name="taxonID" type="dwc:nonEmptyString" minOccurs="1"/>
+				<xs:element name="scientificName" type="xs:string" minOccurs="1"/>
+				<xs:element name="vernacularName" type="xs:string" minOccurs="0"/>
+				<xs:element name="kingdom" type="xs:string" minOccurs="1"/>
+				<xs:element name="phylum" type="xs:string" minOccurs="1"/>
+				<xs:element name="class" type="xs:string" minOccurs="1"/>
+				<xs:element name="order" type="xs:string" minOccurs="1"/>
+				<xs:element name="family" type="xs:string" minOccurs="1"/>
+				<xs:element name="genus" type="xs:string" minOccurs="1"/>
+				<xs:element name="specificEpithet" type="xs:string" minOccurs="1"/>
+				<xs:element name="scientificNameAuthorship" type="xs:string" 
+										minOccurs="1"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

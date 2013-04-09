@@ -10,6 +10,9 @@
 		<delete dir="${buildDir}" verbose="true"/>
 
 		<ant target="clean-schema-dir">
+			<property name="schema" value="iso19139.mcp-2.0" />
+		</ant>
+		<ant target="clean-schema-dir">
 			<property name="schema" value="iso19139.mcp" />
 		</ant>
 		<ant target="clean-schema-dir">
@@ -51,6 +54,9 @@
 			<property name="rules" value="iso-mcp" />
 		</ant>
 		<ant target="compile-schematron">
+			<property name="rules" value="iso-mcp-2.0" />
+		</ant>
+		<ant target="compile-schematron">
 			<property name="rules" value="iso-codeListValidation" />
 		</ant>
 		<ant target="compile-schematron">
@@ -69,6 +75,15 @@
 		<ant target="publish-schematron">
 			<property name="rules" value="iso-codeListValidation" />
 			<property name="schema" value="iso19139.anzlic" />
+		</ant>
+		<!-- iso19139.mcp-2.0 -->
+		<ant target="publish-schematron">
+			<property name="rules" value="iso-mcp-2.0" />
+			<property name="schema" value="iso19139.mcp-2.0" />
+		</ant>
+		<ant target="publish-schematron">
+			<property name="rules" value="iso-codeListValidation" />
+			<property name="schema" value="iso19139.mcp-2.0" />
 		</ant>
 		<!-- iso19139.mcp -->
 		<ant target="publish-schematron">
