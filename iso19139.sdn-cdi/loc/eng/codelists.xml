@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<codelists>
+    <!-- Overrides iso19139 codelists -->
+    <codelist name="gmd:CI_OnLineFunctionCode">
+        <entry>
+            <code>download</code>
+            <label>Download</label>
+            <description>Online instructions for transferring data from one storage device or system to
+                another</description>
+        </entry>
+        <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <entry>
+            <code>information</code>
+            <label>Information</label>
+            <description>Online information about the resource</description>
+        </entry>
+        <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <entry>
+            <code>offlineAccess</code>
+            <label>Offline access</label>
+            <description>Online instructions for requesting the resource from the
+                provider</description>
+        </entry>
+        <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <entry>
+            <code>order</code>
+            <label>Order</label>
+            <description>Online order process for obtening the resource</description>
+        </entry>
+        <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <entry>
+            <code>search</code>
+            <label>Search</label>
+            <description>Online search interface for seeking out information about the
+                resource</description>
+        </entry>
+        <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <!-- SDN extension -->
+        <entry>
+            <code>downloadRegistration</code>
+            <label>Download registration</label>
+            <description>Manual interaction with an on-line system by registered users following successful authentication and authorisation</description>
+        </entry>
+        <entry>
+            <code>downloadUrl</code>
+            <label>Download URL</label>
+            <description>Direct access through the given URL endpoint using a specific web protocol</description>
+        </entry>
+    </codelist>
+    
+    
+    <codelist name="gmd:MD_CharacterSetCode">
+        <!-- SDN restricted -->
+        <entry>
+            <code>utf8</code>
+            <label>UTF8</label>
+            <description>8-bit variable size UCS Transfer Format, based on ISO/IEC 10646</description>
+        </entry>
+    </codelist>
+    
+    
+    <codelist name="gmd:MD_GeometricObjectTypeCode">
+        <!-- SDN restricted -->
+        <entry>
+            <code>curve</code>
+            <label>Curve</label>
+            <description>Bounded, 1-dimensional geometric primitive, representing the continuous image
+                of a line</description>
+        </entry>
+        <entry>
+            <code>point</code>
+            <label>Point</label>
+            <description>Zero-dimensional geometric primitive, representing a position but not having
+                an extent</description>
+        </entry>
+        <entry>
+            <code>surface</code>
+            <label>Surface</label>
+            <description>Bounded, connected 2-dimensional geometric primitive, representing the
+                continuous image of a region of a plane</description>
+        </entry>
+    </codelist>
+    
+    
+    <codelist name="gmd:MD_KeywordTypeCode">
+        <entry>
+            <code>discipline</code>
+            <label>Discipline</label>
+            <description>Keyword identifies a branch of instruction or specialized
+                learning</description>
+        </entry>
+        <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <entry>
+            <code>place</code>
+            <label>Place</label>
+            <description>Keyword identifies a location</description>
+        </entry>
+        <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <entry>
+            <code>stratum</code>
+            <label>Stratum</label>
+            <description>Keyword identifies the layer(s) of any deposited substance</description>
+        </entry>
+        <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <entry>
+            <code>temporal</code>
+            <label>Temporal</label>
+            <description>Keyword identifies a time period related to the dataset</description>
+        </entry>
+        <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <entry>
+            <code>theme</code>
+            <label>Theme</label>
+            <description>Keyword identifies a particular subject or topic</description>
+        </entry>
+        <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <!-- SDN extension -->
+        <entry>
+            <code>instrument</code>
+            <label>Instrument</label>
+            <description>Keyword describes or cateogorises sample collection or data production tools</description>
+        </entry>
+        <entry>
+            <code>project</code>
+            <label>Project</label>
+            <description>Keyword describes a strategic undertaking
+                encomapssing an organised set of activities</description>
+        </entry>
+        <entry>
+            <code>parameter</code>
+            <label>Parameter</label>
+            <description>Keyword identifies a phenomenon or group of phenomena in the dataset</description>
+        </entry>
+        <entry>
+            <code>platform</code>
+            <label>Platform</label>
+            <description>Keyword identifies a specific vehicle, object, structure
+                or organism capable of bearing instruments or tools
+                for the collection of physical, chemical, geological or
+                biological samples.
+            </description>
+        </entry>
+        <entry>
+            <code>platform_class</code>
+            <label>Platform class</label>
+            <description>Keyword identifies groups of vehicles, objects,
+                structures or organisms capable of bearing
+                instruments or tools for the collection of physical,
+                chemical, geological or biological samples.
+            </description>
+        </entry>
+        <entry>
+            <code>departure_place </code>
+            <label>Departure place</label>
+            <description>Keyword identifies a location where an activity starts
+            </description>
+        </entry>
+        <entry>
+            <code>departure_country</code>
+            <label>Departure country</label>
+            <description>Keyword identifies the country where an activity starts</description>
+        </entry>
+        <entry>
+            <code>arrival_place</code>
+            <label>Arrival place</label>
+            <description>Keyword identifies a location where an activity
+                finishes</description>
+        </entry>
+        <entry>
+            <code>arrival_country</code>
+            <label>Arrival country</label>
+            <description>Keyword identifies the country where an activity
+                begins</description>
+        </entry>
+        <entry>
+            <code>marsden_square</code>
+            <label>Marsden square</label>
+            <description>Keyword identifies a location as encoded geographic
+                co-ordinates for a rectangular polygon following
+                WMO conventions
+            </description>
+        </entry>
+    </codelist>
+    
+    <codelist name="gmd:MD_ScopeCode">
+        <entry>
+            <code>dataset</code>
+            <label>Dataset</label>
+            <description>Information applies to the dataset</description>
+        </entry>
+    </codelist>
+    
+    <!-- Add profile specific codelists -->
+</codelists>

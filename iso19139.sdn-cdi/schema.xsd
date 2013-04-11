@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.seadatanet.org" elementFormDefault="qualified"
+	xmlns:xyz="http://my/schema/target/namespace" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gmx="http://www.isotc211.org/2005/gmx"
+	xmlns:srv="http://www.isotc211.org/2005/srv">
+	<xs:include schemaLocation="schemas/SDN2_CDI_ISO19139_7.0.0.xsd"/>
+	<xs:import namespace="http://www.isotc211.org/2005/srv" schemaLocation="../iso19139/schema/srv/srv.xsd"/>
+	<xs:import namespace="http://www.isotc211.org/2005/gmx" schemaLocation="../iso19139/schema/gmx/gmx.xsd"/>
+</xs:schema>

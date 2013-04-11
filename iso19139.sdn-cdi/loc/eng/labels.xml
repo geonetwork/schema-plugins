@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<labels  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../labels.xsd" xmlns:gco="http://www.isotc211.org/2005/gco"
+  xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:srv="http://www.isotc211.org/2005/srv"
+  xmlns:gml="http://www.opengis.net/gml" xmlns:gts="http://www.isotc211.org/2005/gts"
+  xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:sdn="http://www.seadatanet.org">
+  <!-- Overrides iso19139 labels -->
+  <!-- Add profile specific labels -->
+  <element name="sdn:SDN_CRSCode">
+    <label>Co-ordinate reference systems used for positions (latitude/longitude or grid
+      references)</label>
+  </element>
+  <element name="sdn:SDN_ParameterDiscoveryCode">
+    <label>SeaDataNet Parameter Discovery Vocabulary</label>
+  </element>
+  <element name="sdn:SDN_DeviceCategoryCode">
+    <label>SeaDataNet device categories</label>
+  </element>
+  <element name="sdn:SDN_PlatformCategoryCode">
+    <label></label>
+  </element>
+  <element name="sdn:SDN_FormatNameCode">
+    <label>Formats used for data delivery by SeaDataNet</label>
+  </element>
+  <element name="sdn:SDN_ CountryCode">
+    <label>International Standards Organisation countries</label>
+  </element>
+  <element name="sdn:SDN_ EDMERPCode">
+    <label>European Directory of Marine Environmental Research Projects</label>
+  </element>
+  <element name="sdn:SDN_ EDMOCode">
+    <label>European Directory of Marine Organisations</label>
+  </element>
+  <element name="sdn:SDN_ EDMEDCode">
+    <label>European Directory of Marine Environmental Data</label>
+  </element>
+  
+  <element name="sdn:SDN_DataIdentification">
+    <label>Data identification</label>
+    <description>information required to identify a resource within SeaDataNet</description>
+  </element>
+  <element name="sdn:additionalDocumentation">
+    <label>Additional documentation</label>
+  </element>
+  <element name="sdn:SDN_Citation">
+    <label>SDN Citation</label>
+  </element>
+</labels>

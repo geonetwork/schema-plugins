@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.seadatanet.org" elementFormDefault="qualified"
+    version="7.0.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:gco="http://www.isotc211.org/2005/gco"
+    xmlns:sdn="http://www.seadatanet.org"
+    xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sch="http://www.ascc.net/xml/schematron"
+    xmlns:gmd="http://www.isotc211.org/2005/gmd">
+    <!-- 
+        /**
+        *
+        * This file is part of SeaDataNet metadata profile of ISO 19115.
+        *
+        * Copyright (C) 2012 Enrico Boldrini, Stefano Nativi
+        * CNR - Institute of Atmospheric Pollution Research
+        *
+        * schema version 7.0.0
+        */
+    -->
+    <!-- ================================= Annotation ================================ -->
+    <xs:annotation>
+        <xs:documentation>CDI profile schema definition. Valid CDI documents should validate against this
+            schema.</xs:documentation>
+    </xs:annotation>
+    <!-- ================================== Imports & Includes ================================== -->
+    <!-- Local links to schemas -->
+    <!--<xs:import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="gmd/gmd.xsd"/>
+    <xs:import namespace="http://www.isotc211.org/2005/gmx" schemaLocation="gmx/gmx.xsd"/>
+    <xs:import namespace="http://www.isotc211.org/2005/gco" schemaLocation="gco/gcoBase.xsd"/>-->
+
+    <!-- Remote official links to schemas -->
+    <!--<xs:import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://www.isotc211.org/schemas/2005/gmd/gmd.xsd"/>
+    <xs:import namespace="http://www.isotc211.org/2005/gmx" schemaLocation="http://www.isotc211.org/schemas/2005/gmx/gmx.xsd"/>
+    <xs:import namespace="http://www.isotc211.org/2005/gco" schemaLocation="http://www.isotc211.org/schemas/2005/gco/gcoBase.xsd"/>
+-->
+    <!-- Extended MD_Metadata element -->    
+    <!-- =========================================================================== -->
+    
+    <!-- bibliographic information -->
+    <xs:element name="additionalDocumentation" type="sdn:SDN_Citation_PropertyType"/>
+    
+    <xs:complexType name="SDN_DataIdentification_Type">
+        <xs:annotation>
+            <xs:documentation>Standardized resource reference</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="gmd:MD_DataIdentification_Type">
+                <xs:sequence>
+                    <xs:element name="additionalDocumentation" type="sdn:SDN_Citation_PropertyType" minOccurs="0"  maxOccurs="unbounded"/>
+                </xs:sequence>
+                <xs:attribute ref="gco:isoType" fixed="MD_DataIdentification_Type" use="required"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="SDN_DataIdentification" type="sdn:SDN_DataIdentification_Type" substitutionGroup="gmd:MD_DataIdentification"/>
+        
+    
+    <xs:complexType name="SDN_Citation_Type">
+        <xs:annotation>
+            <xs:documentation>Standardized resource reference</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="gmd:CI_Citation_Type">
+                <xs:sequence>                    
+                    <xs:element name="onlineReference" type="gmd:CI_OnlineResource_PropertyType" minOccurs="0"/>
+                </xs:sequence>
+                <xs:attribute ref="gco:isoType" fixed="CI_Citation_Type" use="required"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ........................................................................ -->
+    <xs:element name="SDN_Citation" type="sdn:SDN_Citation_Type"/>
+    <!-- ........................................................................ -->
+    <xs:complexType name="SDN_Citation_PropertyType">
+        <xs:sequence minOccurs="0">
+            <xs:element ref="sdn:SDN_Citation"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="gco:ObjectReference"/>
+        <xs:attribute ref="gco:nilReason"/>        
+    </xs:complexType>        
+
+
+    <!--  code lists definitions -->
+    <xs:element name="SDN_FormatNameCode" type="gco:CodeListValue_Type" substitutionGroup="gco:CharacterString"/>
+    
+    <xs:complexType name="SDN_FormatNameCode_PropertyType">
+        <xs:sequence minOccurs="0">
+            <xs:element ref="sdn:SDN_FormatNameCode"/>
+        </xs:sequence>
+        <xs:attribute ref="gco:nilReason"/>
+    </xs:complexType>
+
+    <xs:element name="SDN_HierarchyLevelNameCode" type="gco:CodeListValue_Type" substitutionGroup="gco:CharacterString"/>
+    
+    <xs:complexType name="SDN_HierarchyLevelNameCode_PropertyType">
+        <xs:sequence minOccurs="0">
+            <xs:element ref="sdn:SDN_HierarchyLevelNameCode"/>
+        </xs:sequence>
+        <xs:attribute ref="gco:nilReason"/>
+    </xs:complexType>
+
+    <xs:element name="SDN_DeviceCategoryCode" type="gco:CodeListValue_Type" substitutionGroup="gco:CharacterString"/>
+    
+    <xs:complexType name="SDN_DeviceCategoryCode_PropertyType">
+        <xs:sequence minOccurs="0">
+            <xs:element ref="sdn:SDN_DeviceCategoryCode"/>
+        </xs:sequence>
+        <xs:attribute ref="gco:nilReason"/>
+    </xs:complexType>
+    
+    <xs:element name="SDN_PlatformCategoryCode" type="gco:CodeListValue_Type" substitutionGroup="gco:CharacterString"/>
+    
+    <xs:complexType name="SDN_PlatformCategoryCode_PropertyType">
+        <xs:sequence minOccurs="0">
+            <xs:element ref="sdn:SDN_PlatformCategoryCode"/>
+        </xs:sequence>
+        <xs:attribute ref="gco:nilReason"/>
+    </xs:complexType>
+    
+    <xs:element name="SDN_ParameterDiscoveryCode" type="gco:CodeListValue_Type" substitutionGroup="gco:CharacterString"/>
+    
+    <xs:complexType name="SDN_ParameterDiscoveryCode_PropertyType">
+        <xs:sequence minOccurs="0">
+            <xs:element ref="sdn:SDN_ParameterDiscoveryCode"/>
+        </xs:sequence>
+        <xs:attribute ref="gco:nilReason"/>
+    </xs:complexType>
+    
+    <xs:element name="SDN_EDMERPCode" type="gco:CodeListValue_Type" substitutionGroup="gco:CharacterString"/>
+    
+    <xs:complexType name="SDN_EDMERPCode_PropertyType">
+        <xs:sequence minOccurs="0">
+            <xs:element ref="sdn:SDN_EDMERPCode"/>
+        </xs:sequence>
+        <xs:attribute ref="gco:nilReason"/>
+    </xs:complexType>
+
+    <xs:element name="SDN_EDMOCode" type="gco:CodeListValue_Type" substitutionGroup="gco:CharacterString"/>
+    
+    <xs:complexType name="SDN_EDMOCode_PropertyType">
+        <xs:sequence minOccurs="0">
+            <xs:element ref="sdn:SDN_EDMOCode"/>
+        </xs:sequence>
+        <xs:attribute ref="gco:nilReason"/>
+    </xs:complexType>
+    
+    <xs:element name="SDN_EDMEDCode" type="gco:CodeListValue_Type" substitutionGroup="gco:CharacterString"/>
+    
+    <xs:complexType name="SDN_EDMEDCode_PropertyType">
+        <xs:sequence minOccurs="0">
+            <xs:element ref="sdn:SDN_EDMEDCode"/>
+        </xs:sequence>
+        <xs:attribute ref="gco:nilReason"/>
+    </xs:complexType>
+    
+    <xs:element name="SDN_CRSCode" type="gco:CodeListValue_Type" substitutionGroup="gco:CharacterString"/>
+    
+    <xs:complexType name="SDN_CRSCode_PropertyType">
+        <xs:sequence minOccurs="0">
+            <xs:element ref="sdn:SDN_CRSCode"/>
+        </xs:sequence>
+        <xs:attribute ref="gco:nilReason"/>
+    </xs:complexType>
+    
+    <xs:element name="SDN_CountryCode" type="gco:CodeListValue_Type" substitutionGroup="gco:CharacterString"/>
+    
+    <xs:complexType name="SDN_CountryCode_PropertyType">
+        <xs:sequence minOccurs="0">
+            <xs:element ref="sdn:SDN_CountryCode"/>
+        </xs:sequence>
+        <xs:attribute ref="gco:nilReason"/>
+    </xs:complexType>
+
+</xs:schema>
