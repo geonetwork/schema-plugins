@@ -9,7 +9,7 @@
 	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 	<!--xsl:namespace-alias stylesheet-prefix="#default" result-prefix="gmd"/-->
 	
-<xsl:variable name="schemaLocation">http://www.isotc211.org/2005/gmd ../schemas/iso19139fra/gmd/gmd.xsd</xsl:variable>	
+	<xsl:variable name="schemaLocation">http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd</xsl:variable>	
 	
 	<!-- root element  -->
 	<xsl:template match="gmd:MD_Metadata">
@@ -95,13 +95,13 @@
 	<xsl:template match="fra:FRA_DataIdentification/fra:relatedCitation">
 	</xsl:template>
    
-	<xsl:template match="fra:FRA_Constraints/fra:Citation">
+	<xsl:template match="fra:FRA_Constraints/fra:citation">
 	</xsl:template>
 	
-	<xsl:template match="fra:FRA_LegalConstraints/fra:Citation">
+	<xsl:template match="fra:FRA_LegalConstraints/fra:citation">
 	</xsl:template>
 
-	<xsl:template match="fra:FRA_SecurityConstraints/fra:Citation">
+	<xsl:template match="fra:FRA_SecurityConstraints/fra:citation">
 	</xsl:template>
 	
 	<!-- Removed Validity values and UseBy for dates-->
