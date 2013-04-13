@@ -19,7 +19,7 @@
 	<!-- If this option exists in config-gui.xml then mcp:metadataContactInfo and
 	     mcp:resourceContactInfo are preferred over gmd:contact and 
 			 gmd:pointOfContact -->
-	<xsl:variable name="useExperimentalContacts" select="/root/gui/config/iso19139.mcp/useExperimentalContacts"/>
+	<xsl:variable name="useExperimentalContacts" select="/root/gui/config/iso19139.mcp-2.0/useExperimentalContacts"/>
 
 	<!-- codelists are handled directly from the gmxCodelists.xml file as we
 	     don't support localized codelists in the MCP and we don't want to
