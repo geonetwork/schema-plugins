@@ -132,10 +132,10 @@
 
 			<xsl:for-each select="mcp:dataParameters/mcp:DP_DataParameters/mcp:dataParameter">
 				<xsl:for-each select="mcp:DP_DataParameter/mcp:parameterName">
-					<Field name="dataparam" string="{mcp:DP_ParameterName/mcp:name/gco:CharacterString}" store="true" index="true"/>
+					<Field name="dataparam" string="{mcp:DP_Term/mcp:term/gco:CharacterString}" store="true" index="true"/>
 					
-					<xsl:if test="mcp:DP_ParameterName/mcp:type/mcp:DP_TypeCode/@codeListValue='longName'">
-						<Field name="longParamName" string="{mcp:DP_ParameterName/mcp:name/gco:CharacterString}" store="true" index="true"/>
+					<xsl:if test="mcp:DP_Term/mcp:type/mcp:DP_TypeCode/@codeListValue='longName'">
+						<Field name="longParamName" string="{mcp:DP_Term/mcp:term/gco:CharacterString}" store="true" index="true"/>
 					</xsl:if>
 				</xsl:for-each>
 			</xsl:for-each>
