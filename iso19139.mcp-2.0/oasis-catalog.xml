@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public">
+
+<!-- OASIS CATALOG FOR GEONETWORK TO REMAP VARIOUS XML IDs -->
+
+<!-- This used to be done in Java code, but with the use of these 
+	   maps you can customise this to suit yourself. 
+
+		 NOTE: all oasis catalog files are added to the XML resolver so
+		       you must not have duplicate entries - you cannot override 
+					 entries in other oasis catalogs 
+-->
+
+<!-- =============== ISO19139 MCP 2.0 maps -->
+
+	<!-- These are to map schemaLocation hints to local schemas to make sure that
+			 GeoNetwork edits and validates against a schema it knows about -->
+
+	<system systemId="http://schemas.aodn.org.au/mcp-2.0/schema.xsd" 
+	        uri="schema.xsd"/>
+
+	<system systemId="http://schemas.aodn.org.au/mcp-2.0/mcpDwcTerms.xsd" 
+	        uri="schema/extensions/mcpDwcTerms.xsd"/>
+
+	<!-- NOTE: Other schemaLocation mappings are done in the oasis catalog for the 
+	     ISO19139 schema -->
+
+	<!-- Code lists -->
+
+	<uri name="http://schemas.aodn.org.au/mcp-2.0/schema/resources/Codelist/gmxCodelists.xml" 
+	     uri="schema/resources/Codelist/gmxCodelists.xml"/>
+
+</catalog>
