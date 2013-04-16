@@ -26,8 +26,8 @@
 	     duplicate the codelists into another file -->
 	<xsl:variable name="codelistsmcp" select="document('../schema/resources/Codelist/gmxCodelists.xml')"/>
 
-	<xsl:variable name="dcurl" select="/root/gui/schemas/iso19139.mcp/strings/dataCommonsUrl"/>
-	<xsl:variable name="ccurl" select="/root/gui/schemas/iso19139.mcp/strings/creativeCommonsUrl"/>
+	<xsl:variable name="dcurl" select="/root/gui/schemas/iso19139.mcp-2.0/strings/dataCommonsUrl"/>
+	<xsl:variable name="ccurl" select="/root/gui/schemas/iso19139.mcp-2.0/strings/creativeCommonsUrl"/>
 
 	<!-- main template - the way into processing iso19139.mcp -->
   <xsl:template match="metadata-iso19139.mcp-2.0" name="metadata-iso19139.mcp-2.0">
