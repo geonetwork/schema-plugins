@@ -131,12 +131,16 @@
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 
 			<xsl:for-each select="mcp:dataParameters/mcp:DP_DataParameters/mcp:dataParameter">
-				<xsl:for-each select="mcp:DP_DataParameter/mcp:parameterName">
-					<Field name="dataparam" string="{mcp:DP_Term/mcp:term/gco:CharacterString}" store="true" index="true"/>
-					
-					<xsl:if test="mcp:DP_Term/mcp:type/mcp:DP_TypeCode/@codeListValue='longName'">
-						<Field name="longParamName" string="{mcp:DP_Term/mcp:term/gco:CharacterString}" store="true" index="true"/>
+				<xsl:for-each select="mcp:DP_DataParameter/mcp:parameterName/mcp:DP_Term">
+					<xsl:variable name="term" select="mcp:term/gco:CharacterString"/>
+					<Field name="dataParam" string="{$term}" store="true" index="true"/>
+					<xsl:if test="mcp:type/mcp:DP_TypeCode/@codeListValue='longName'">
+						<Field name="longParamName" string="{$term}" store="true" index="true"/>
 					</xsl:if>
+					<xsl:for-each select="mcp:vocabularyRelationship/mcp:DP_VocabularyRelationship">
+						<Field name="vocabTerm" string="{mcp:vocabularyTermURL/gmd:URL}" store="true" index="true"/>
+						<Field name="vocabTermList" string="{mcp:vocabularyListURL/gmd:URL}" store="true" index="true"/>
+					</xsl:for-each>
 				</xsl:for-each>
 			</xsl:for-each>
 
