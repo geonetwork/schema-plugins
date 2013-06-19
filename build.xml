@@ -24,6 +24,7 @@
 	<property name="anzmeta" value="anzmeta"/>
 	<property name="iso19135" value="iso19135"/>
 	<property name="eml-gbif" value="eml-gbif"/>
+	<property name="sensorML" value="sensorML"/>
 
 	<!-- Create the zip archives in the ${dist} directory -->
 	<target name="zip">
@@ -38,6 +39,7 @@
 		<zip destfile="${dist}/${anzmeta}.zip" basedir="${anzmeta}" excludes=".svn" />
 		<zip destfile="${dist}/${eml-gbif}.zip" basedir="${eml-gbif}" excludes=".svn" />
 		<zip destfile="${dist}/${iso19139.fra}.zip" basedir="${iso19139.fra}" excludes=".svn" />
+		<zip destfile="${dist}/${sensorML}.zip" basedir="${sensorML}" excludes=".svn" />
 		
 	</target>
 
