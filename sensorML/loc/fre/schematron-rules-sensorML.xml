@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strings>
+    <EC1>Une valeur est nécessaire pour: Emplacement du site - Données</EC1>
+    <EC2>Une valeur est nécessaire pour: Emplacement du site - Longitude</EC2>
+    <EC3>Une valeur est nécessaire pour: Emplacement du site - Latitude</EC3>
+    <ObservedPhenomenum>Une valeur est nécessaire pour: Phénomène observé</ObservedPhenomenum>
+    <SiteStatus>Une valeur est nécessaire pour: Statut actuel du site</SiteStatus>
+    <Format>Value is required for Format if URL is fill</Format>
+    <Description>Value is required for Description if URL is fill</Description>
+
+    <SiteID>Une valeur est nécessaire pour: ID du site</SiteID>
+    <SiteIDType>Une valeur est nécessaire pour: Type d'ID du site</SiteIDType>
+    <SiteType>Une valeur est nécessaire pour: Type de site</SiteType>
+    <ShortName>Une valeur est nécessaire pour: Nom abrégé du sit</ShortName>
+    <FullName>Une valeur est nécessaire pour: Nom complet du site</FullName>
+    <Keyword>Une valeur est nécessaire pour: Mot-clé</Keyword>
+    <OrganizationName>Une valeur est nécessaire pour: Nom de l'organisation</OrganizationName>
+    <IndividualName>Une valeur est nécessaire pour: Nom de la personne </IndividualName>
+    <ElectronicMailAddress>Une valeur est nécessaire pour: Courriel</ElectronicMailAddress>
+    <SiteLocationDatum>Une valeur est nécessaire pour: Emplacement du site - Données</SiteLocationDatum>
+    <SiteLocationLongitude>Une valeur est nécessaire pour: Emplacement du site - Longitude</SiteLocationLongitude>
+    <SiteLocationLatitude>Une valeur est nécessaire pour: Emplacement du site - Latitude</SiteLocationLatitude>
+    <EffectiveDate>Une valeur est nécessaire pour: Date d'entrée en vigueur des métadonnées</EffectiveDate>
+</strings>

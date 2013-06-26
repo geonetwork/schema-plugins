@@ -1,0 +1,853 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<labels 
+  xmlns:ec="http://www.ec.gc.ca/data_donnees/standards/schemas/MonitoringSite/1-0-0"
+xmlns:sml="http://www.opengis.net/sensorML" xmlns:swe="http://www.opengis.net/swe" xmlns:gml="http://www.opengis.net/gml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+	<element name="xlink:href" >
+		<label>URL</label>
+		<description>On-line information that can be used to contact the responsible individual or organization</description>
+	</element>
+
+    <element name="href" id="onlineResource">
+        <label>Adresse Internet</label>
+        <description>L'emplacement virtuel de la ressource peut être trouvé. Si l'ensemble de données est disponible en ligne, par Internet ou intranet, indiquer l'adresse Web ici. Pour télécharger l'ensemble de données au catalogue, ce champ sera déjà rempli avec une adresse URL donnée.</description>
+    </element>
+
+    <element name="href" id="contact">
+        <label>URL</label>
+        <description>Renseignements en ligne qui peuvent être utilisés pour communiquer avec la personne ou l'organisation responsable</description>
+    </element>
+
+	<element name="href" >
+		<label>URL</label>
+		<description>Renseignements en ligne qui peuvent être utilisés pour communiquer avec la personne ou l'organisation responsable</description>
+	</element>
+
+
+	<element name="referenceFrame" >
+		<label>Données</label>
+		<description>Le Système de référence des coordonnées (SRC) qui doit être utilisé pour interpréter la longitude et la latitude, p. ex., Système géodésique mondial (WGS 84), Système de référence géodésique de l'Amérique du Nord (NAD 83). Sélectionner une valeur à partir de la liste déroulante.</description>
+	</element>
+
+	<element name="swe:field" id="siteStatus">
+		<label>Statut actuel du site</label>
+		<description>La catégorie de surveillance menée au site. Sélectionner une valeur à partir de la liste déroulante.</description>
+	</element>
+
+	<element name="swe:field" id="observedBBOX">
+		<label>Zone de délimitation d'observation</label>
+		<description>La zone rectangulaire dans laquelle les observations de l'emplacement de surveillance ont eu ou auront lieu. Remplir la présente section si la zone d'observation du site est différente de l'emplacement du point central du site.</description>
+	</element>
+
+	<element name="swe:field" id="sensorStatus">
+		<label>Statut actuel du capteur</label>
+		<description>La situation opérationnelle actuelle du capteur. Sélectionner une valeur à partir de la liste déroulante.</description>
+	</element>
+
+	<element name="sml:classifier" id="siteEventType">
+		<label>Événement</label>
+		<description>Un événement important de l'historique du site. Sélectionner un événement à partir de la liste déroulante des types d'événement.</description>
+	</element>
+
+	<element name="sml:classifier" id="siteType">
+		<label>Type de site</label>
+		<description>La catégorie de surveillance menée au site. Sélectionner une valeur à partir de la liste déroulante.</description>
+	</element>
+
+	<element name="sml:classifier" id="sensorType">
+		<label>Type de capteur</label>
+		<description>Une catégorie du capteur selon la fonction. Sélectionner une valeur à partir de la liste déroulante.</description>
+	</element>
+
+    <element name="swe:coordinate" id="easting_sitePosition">
+        <label>Longitude</label>
+        <description>La longitude de la position du site en fractions décimales de degrés (positive est). </description>
+    </element>
+
+    <element name="swe:coordinate" id="northing_sitePosition">
+        <label>Latitude</label>
+        <description>La latitude de la position du site en fractions décimales de degrés (positive nord).</description>
+    </element>
+
+    <element name="swe:coordinate" id="altitude_sitePosition">
+        <label>Altitude</label>
+        <description>L'altitude de la position du site en mètres par rapport au niveau moyen de la mer.</description>
+    </element>
+
+
+    <element name="swe:coordinate" id="easting_sensorPosition">
+        <label>Longitude</label>
+        <description>La longitude de la position du capteur en fractions décimales de degrés (positive est).</description>
+    </element>
+
+    <element name="swe:coordinate" id="northing_sensorPosition">
+        <label>Latitude</label>
+        <description>La latitude de la position du capteur en fractions décimales de degrés (positive nord).</description>
+    </element>
+
+    <element name="swe:coordinate" id="altitude_sensorPosition">
+        <label>Altitude</label>
+        <description>L'altitude de la position du capteur en mètres par rapport au niveau moyen de la mer.</description>
+    </element>
+
+    <element name="swe:coordinate" id="n_sml:Component">
+        <label>En direction nord</label>
+        <description>Coordonnée limite au nord de la zone d'observation du capteur, exprimée en latitude en fractions décimales de degrés (positive nord).</description>
+    </element>
+
+    <element name="swe:coordinate" id="n_sml:System">
+        <label>En direction nord</label>
+        <description>Coordonnée limite au nord de la zone d'observation du site, exprimée en latitude en fractions décimales de degrés (positive nord). </description>
+    </element>
+
+    <element name="swe:coordinate" id="w_sml:Component">
+        <label>En direction ouest</label>
+        <description>Coordonnée limite à l'ouest de la zone d'observation du capteur, exprimée en longitude en fractions décimales de degrés (positive est).</description>
+    </element>
+
+    <element name="swe:coordinate" id="w_sml:System">
+        <label>En direction ouest</label>
+        <description>Coordonnée limite à l'ouest de la zone d'observation du site, exprimée en longitude en fractions décimales de degrés (positive est). </description>
+    </element>
+
+    <element name="swe:coordinate" id="e_sml:Component">
+        <label>En direction est</label>
+        <description>Coordonnée limite à l'est de la zone d'observation du capteur, exprimée en longitude en fractions décimales de degrés (positive est).</description>
+    </element>
+
+    <element name="swe:coordinate" id="e_sml:System">
+        <label>En direction est</label>
+        <description>Coordonnée limite à l'est de la zone d'observation du site, exprimée en longitude en fractions décimales de degrés (positive est).</description>
+    </element>
+
+    <element name="swe:coordinate" id="s_sml:Component">
+        <label>En direction sud</label>
+        <description>Coordonnée limite au sud de la zone d'observation du capteur, exprimée en latitude en fractions décimales de degrés (positive nord).</description>
+    </element>
+
+    <element name="swe:coordinate" id="s_sml:System">
+        <label>En direction sud</label>
+        <description>Coordonnée limite au sud de la zone d'observation du site, exprimée en latitude en fractions décimales de degrés (positive nord). </description>
+    </element>
+
+
+	<element name="gml:timePosition">
+		<label>Date d'entrée en vigueur des métadonnées</label>
+		<description>Saisir la date à laquelle les renseignements suivants décrivant le site et ses capteurs sont devenus ou deviendront valides. Insérer la date selon le format aaaa-mm-jj ou utiliser l'icône du calendrier afin de sélectionner la date.</description>
+	</element>
+
+	<!-- ==================================================== -->
+	<element name="ec:MonitoringSite">
+		<label>Monitoring station</label>
+		<description>Monitoring station</description>
+	</element>
+
+	<element name="swe:location">
+		<label>Location</label>
+		<description>Location</description>
+	</element>
+
+	<element name="swe:Text">
+		<label>Text</label>
+		<description>Text</description>
+	</element>
+
+
+	<element name="name" context="sml:input/@name">
+		<label>Phénomène observé</label>
+		<description>Une caractéristique ou un phénomène observé au site – une entrée à un ou plusieurs de ses capteurs. Sélectionner une valeur à partir de la liste déroulante.</description>
+	</element>
+
+    <element name="name" id="observedPhenomenon">
+        <label>Phénomène observé</label>
+        <description>Une caractéristique ou un phénomène observé au site – une entrée à un ou plusieurs de ses capteurs. Sélectionner une valeur à partir de la liste déroulante.</description>
+    </element>
+
+    <element name="name" id="observedPhenomenonSensor">
+        <label>Phénomène observé</label>
+        <description>Une caractéristique ou un phénomène observé par un capteur – une entrée du capteur. Sélectionner une valeur à partir de la liste déroulante.</description>
+    </element>
+
+	<element name="sml:input" id="observedPhenomenon">
+		<label>Phénomène observé</label>
+		<description>Une caractéristique ou un phénomène observé au site – une entrée à un ou plusieurs de ses capteurs. Sélectionner une valeur à partir de la liste déroulante.</description>
+	</element>
+
+	<element name="sml:Event">
+		<label>Événement</label>
+		<description>Un événement important de l'historique du site. Sélectionner un événement à partir de la liste déroulante des types d'événement.</description>
+	</element>
+
+	<element name="name" context="sml:Event">
+		<label>Événement</label>
+		<description>Un événement important de l'historique du site. Sélectionner un événement à partir de la liste déroulante des types d'événement.</description>
+	</element>
+
+	<element name="name" context="sml:EventList">
+		<label>History</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+
+
+	<!-- ==================================================== -->
+	<element name="sml:member">
+		<label>--------</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+
+    <element name="sml:member" id="siteOnlineResource">
+        <label>Document</label>
+        <description>root entity which defines metadata about a resource or resources</description>
+    </element>
+
+    <element name="sml:member" id="event">
+        <label>Événement</label>
+        <description>root entity which defines metadata about a resource or resources</description>
+    </element>
+
+    <element name="sml:member" id="dataset">
+        <label>Ensemble de données</label>
+        <description>Sélectionnez le nom d'un ensemble de données connexe auquel ce site de surveillance contribue.</description>
+    </element>
+
+
+    <!-- ==================================================== -->
+
+	<element name="sml:keywords">
+		<label>Mot-clés</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+
+	<element name="sml:keywords" id="english">
+		<label>Mot-clés Anglais</label>
+		<description>Un mot, un mot formalisé ou une expression couramment utilisés afin de décrire la nature du site. Pour sélectionner un mot à partir d'une liste de mots-clés prédéfinis, sélectionner un dictionnaire analogique ci- dessous. Vous pourrez également effectuer vos propres entrées de formulaire libres. Le mot-clé est un élément répétitif; saisir des mots clés autant qu'il est nécessaire afin de décrire le site.</description>
+	</element>
+
+	<element name="sml:keywords" id="french">
+		<label>Mot-clés Français</label>
+		<description>Un mot, un mot formalisé ou une expression couramment utilisés afin de décrire la nature du site. Pour sélectionner un mot à partir d'une liste de mots-clés prédéfinis, sélectionner un dictionnaire analogique ci- dessous. Vous pourrez également effectuer vos propres entrées de formulaire libres. Le mot-clé est un élément répétitif; saisir des mots clés autant qu'il est nécessaire afin de décrire le site.</description>
+	</element>
+
+	<!-- ==================================================== -->
+	<element name="sml:KeywordList">
+		<label>---</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="sml:keyword">
+		<label>Mot-clé</label>
+		<description>Un mot, un mot formalisé ou une expression couramment utilisés afin de décrire la nature du site. Pour sélectionner un mot à partir d'une liste de mots-clés prédéfinis, sélectionner un dictionnaire analogique ci- dessous. Vous pourrez également effectuer vos propres entrées de formulaire libres. Le mot-clé est un élément répétitif; saisir des mots clés autant qu'il est nécessaire afin de décrire le site.</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="sml:characteristics">
+		<label>CHARACTERISTICS: physical properties</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="swe:DataRecord">
+		<label>Data Record</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="sml:SensorML">
+		<label>SensorML</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:member">
+		<label>-----</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:System">
+		<label>System</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="Gml:id">
+		<label>ID </label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="Gml:description">
+		<label>Description</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:identification" id="site">
+		<label>Repérage de site</label>
+		<description>Renseignements qui permettent de déterminer et de classifier l'emplacement ou la station de surveillance.</description>
+	</element>
+
+	<element name="sml:identification" id="sensor">
+		<label>Repérage du capteur</label>
+		<description>Renseignements qui permettent de déterminer et de classifier un capteur.</description>
+	</element>
+
+      <!-- ==================================================== -->
+	<element name="sml:IdentifierList">
+		<label>IDENTIFIER INFO</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="Sml:identifier">
+		<label>Identifier (UUID)</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:identifier">
+		<label>---(Id details)</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+
+	<element name="sml:identifier" id="siteID">
+		<label>ID du site</label>
+		<description>Une valeur unique du type d'ID du site respectif.</description>
+	</element>
+
+	<element name="sml:identifier" id="siteIDGroup">
+		<label>Identifiant de site</label>
+		<description>A unique value for that Site ID Type</description>
+	</element>
+
+	<element name="sml:identifier" id="siteIDType">
+		<label>Type d'ID du site</label>
+		<description>Le type d'identificateur utilisé afin de déterminer le site. En règle générale, il existe ou l'on inclut une référence à l'intention de l'autorité responsable de la gestion du schème d'ID, p. ex., Réseau national de surveillance de la pollution atmosphérique (RNSPA).</description>
+	</element>
+
+	<element name="sml:identifier" id="siteShortName">
+		<label>Nom abrégé du site </label>
+		<description>Un nom abrégé ou court de l'emplacement de surveillance.</description>
+	</element>
+
+	<element name="sml:identifier" id="siteFullName">
+		<label>Nom complet du site</label>
+		<description>Un nom descriptif complet de l'emplacement de surveillance.</description>
+	</element>
+
+	<element name="sml:identifier" id="GeoNetwork-UUID">
+		<label>Identifiant de métadonnées</label>
+		<description>Une valeur unique du type d'ID du site respectif.</description>
+	</element>
+
+	<element name="sml:identifier" id="sensorShortName">
+		<label>Nom abrégé du capteur</label>
+		<description>Un nom abrégé du capteur.</description>
+	</element>
+
+	<element name="sml:identifier" id="sensorFullName">
+		<label>Nom complet du capteur</label>
+		<description>Un nom descriptif complet du capteur.</description>
+	</element>
+    <element name="sml:identifier" id="sensorIDGroup">
+        <label>Sensor Identifier</label>
+        <description>A unique value for the sensor ID specified</description>
+    </element>
+
+	<element name="sml:identifier" id="sensorIDType">
+		<label>Type d'ID du capteur</label>
+		<description>Le type d'identificateur utilisé afin de déterminer le capteur. En règle générale, il existe ou on inclut une référence à l'intention de l'autorité responsable de la gestion du schème d'ID, p. ex. Réseau national de surveillance de la pollution atmosphérique (RNSPA), numéro de série du fabricant, numéro de gestion des biens.</description>
+	</element>
+
+	<element name="sml:identifier" id="sensorID">
+		<label>ID du capteur</label>
+		<description>Une valeur unique du type d'ID du capteur précisé.</description>
+	</element>
+
+      <!-- ==================================================== -->
+	<element name="sml:Term">
+		<label>---</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:value">
+		<label>Value</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:classification">
+		<label>CLASSIFICATION</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:ClassifierList">
+		<label>---</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:classifier">
+		<label>---</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:validTime">
+		<label>Date d'entrée en vigueur des métadonnées</label>
+		<description>Saisir la date à laquelle les renseignements suivants décrivant le site et ses capteurs sont devenus ou deviendront valides. Insérer la date selon le format aaaa-mm-jj ou utiliser l'icône du calendrier afin de sélectionner la date.</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="gml:TimePeriod">
+		<label>Time Period</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="gml:id">
+		<label>id</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="gml:beginPosition">
+		<label>Start Time</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="swe:field">
+		<label>~~~~~</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="swe:Quantity">
+		<label>Quantity</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="swe:value">
+		<label>Value</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="swe:Category">
+		<label>Category</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:contact">
+		<label>Coordonnées</label>
+		<description>Fournir des détails au sujet de la personne ou de l'organisation avec laquelle il faut communiquer afin d'obtenir plus de renseignements sur le site. </description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:ResponsibleParty">
+		<label>Responsible Party</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:individualName">
+		<label>Nom de la personne</label>
+		<description>Nom de la personne responsable – nom, prénom, titre, séparé par un caractère de délimitation</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:organizationName">
+		<label>Nom de l'organisation</label>
+		<description>Nom de l'organisation responsable</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:contactInfo">
+		<label>Contact Info</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:phone">
+		<label>Phone</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:voice">
+		<label>Numéro de téléphone</label>
+		<description>Numéro de téléphone au moyen duquel les personnes peuvent communiquer avec l'organisation ou la personne responsable</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:facsimile">
+		<label>Numéro de télécopieur</label>
+		<description>Numéro d'un télécopieur de l'organisation ou de la personne responsable</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:address">
+		<label>Address</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:deliveryPoint">
+		<label>Adresse municipale</label>
+		<description>Inscrire l'adresse municipale de l'organisation ou de la personne responsable. Par ex. 123, rue Principale.</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:city">
+		<label>Ville</label>
+		<description>Ville de l'emplacement</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:administrativeArea">
+		<label>Province/État</label>
+		<description>État, province de l'emplacement</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:postalCode">
+		<label>Code postal</label>
+		<description>Code postal</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:country">
+		<label>Pays</label>
+		<description>Pays de l'adresse municipale</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:documentation">
+		<label>DOCUMENTATION</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:Document">
+		<label>Document</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+	 <!-- ==================================================== -->
+    <element name="sml:DocumentList" id="documents">
+        <label>Documentation du site</label>
+        <description>root entity which defines metadata about a resource or resources</description>
+    </element>
+    <!-- ==================================================== -->
+    <element name="sml:DocumentList" id="datasets">
+        <label>Ensembles de données connexes</label>
+        <description>root entity which defines metadata about a resource or resources</description>
+    </element>
+      <!-- ==================================================== -->
+	<element name="sml:date">
+		<label>Date</label>
+		<description>La date de l'événement au site. Saisir la date selon le format aaaa­mm­jj ou utiliser l'icône du calendrier afin de la sélectionner.</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:format">
+		<label>Format</label>
+		<description>Indiquer le nom du format de transfert de données.</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:location" id="site">
+		<label>Emplacement du site/Point milieu</label>
+		<description>La position du site ou le point central de la zone où les observations sont effectuées.</description>
+	</element>
+
+	<element name="sml:location" id="sensor">
+		<label>Emplacement du capteur</label>
+		<description></description>
+	</element>	
+      <!-- ==================================================== -->
+	<element name="sml:interfaces">
+		<label>INTERFACES</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:InterfaceList">
+		<label>----</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:interface">
+		<label>.</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:physicalLayer">
+		<label>Physical Layer</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:mechanicalLayer">
+		<label>Mechanical Layer</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:inputs">
+		<label>INPUTS</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:outputs">
+		<label>OUTPUTS</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:capabilities">
+		<label>CAPABILITIES</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:electronicMailAddress">
+		<label>Courriel</label>
+		<description>Adresse de la boîte aux lettres électronique de l'organisation ou de la personne responsable</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="gml:description">
+		<label>Remarque</label>
+		<description>Saisir tout texte descriptif ou explicatif supplémentaire au sujet de l'événement. </description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="gml:Point">
+		<label>Point</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="gml:coordinates">
+		<label>Coordinates</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:InterfaceList">
+		<label>----</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:InterfaceDefinition">
+		<label>Interface Definition</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="gml:description">
+		<label>Description</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:InputList">
+		<label>Phénomènes observé</label>
+		<description>Une caractéristique ou un phénomène observé par un capteur – une entrée du capteur. Sélectionner une valeur à partir de la liste déroulante.</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:input">
+		<label>Input</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="swe:ObservableProperty">
+		<label>Observable Property</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:OutputList">
+		<label>----</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:output">
+		<label>Output</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="swe:constraint">
+		<label>Constraint</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="swe:AllowedValues">
+		<label>Allowed Values</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="swe:interval">
+		<label>Interval</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="swe:quality">
+		<label>Quality</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:components">
+		<label>COMPONENTS</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:ComponentList">
+		<label>----</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:component">
+		<label>Component</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:Component">
+		<label>********************************************</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:parameters">
+		<label>PARAMETERS</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:ParameterList">
+		<label>----</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:parameter">
+		<label>Parameter</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="swe:QuantityRange">
+		<label>Quantity Range</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:securityConstraint">
+		<label>SECURITY CONSTRAINT</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:legalConstraint">
+		<label>LEGAL CONSTRAINT</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:Security">
+		<label>Security</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:Rights">
+		<label>Rights</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+
+
+	<element name="sml:history">
+		<label>Historique du site</label>
+		<description>Un enregistrement d'événements importants dans la vie de l'emplacement de surveillance, y compris les événements à une date ultérieure.</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="gml:boundedBy">
+		<label>Bounded By</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:codeSpace">
+		<label>CodeSpace</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="gml:metaDataProperty">
+		<label>Metadata Property</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="gml:relatedTime">
+		<label>Related Time</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="gml:endPosition">
+		<label>End Position</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="swe:uom">
+		<label>Unit of Measurement (UOM)</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="swe:SimpleDataRecord">
+		<label>SimpleDataRecord</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:ConditionalData">
+		<label>ConditionalData</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:ConditionalValue">
+		<label>Conditional Value</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:onlineResource">
+		<label>Online Resource</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:hoursOfService">
+		<label>Heures de service</label>
+		<description>Fournir un délai prescrit (y compris le fuseau horaire) pendant lequel on peut communiquer avec une organisation ou une personne</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:contactInstructions">
+		<label>Directives de la personne-ressource</label>
+		<description>Fournir toute directive supplémentaire nécessaire aux fins de communication avec la personne-ressource</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:positionName">
+		<label>Titre du poste</label>
+		<description>Rôle ou poste de la personne responsable</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:spatialReferenceFrame">
+		<label>Spatial Reference Frame</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:temporalReferenceFrame">
+		<label>Temporal Reference Frame</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:serviceLayer">
+		<label>Service Layer</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:applicationLayer">
+		<label>Application Layer</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:presentationLayer">
+		<label>Presentation Layer</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="swe:DataBlockDefinition">
+		<label>Data Block Definition</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="swe:components">
+		<label>Components (swe)</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="swe:encoding">
+		<label>Encoding</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:TextBlock">
+		<label>Text Block</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:sessionLayer">
+		<label>Session Layer</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:transportLayer">
+		<label>Transport Layer</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:networkLayer">
+		<label>Network Layer</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:dataLinkLayer">
+		<label>Data Link Layer</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+      <!-- ==================================================== -->
+
+
+</labels>

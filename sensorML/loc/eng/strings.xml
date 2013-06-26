@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strings>
+		<altitude>Altitude</altitude>
+    <bbox>The rectangular area within which the deployed sensor's observations have or will occur.  Complete this section if the observation area is different from the site point location.</bbox>
+		<blankTerm>Not set</blankTerm>
+		<term>Term</term>
+		<thesaurus>Thesaurus</thesaurus>
+</strings>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strings>
+    <EC1>Value is required for Datum</EC1>
+    <EC2>Value is required for Longitude</EC2>
+    <EC3>Value is required for Latitude</EC3>
+    <ObservedPhenomenum>Value is required for Observed phenomenum</ObservedPhenomenum>
+    <SiteStatus>Value is required for Site status</SiteStatus>
+    <Format>Value is required for Format if URL is fill</Format>
+    <Description>Value is required for Description if URL is fill</Description>
+
+    <SiteID>Site id is missing</SiteID>
+    <SiteIDType>Site id type is missing</SiteIDType>
+    <SiteType>Site type is missing</SiteType>
+    <ShortName>Short name is missing</ShortName>
+    <FullName>Full name is missing</FullName>
+    <Keyword>Keyword is missing</Keyword>
+    <OrganizationName>Organization name is missing</OrganizationName>
+
+    <IndividualName>Individual name is missing</IndividualName>
+    <ElectronicMailAddress>Electronic mail address is missing</ElectronicMailAddress>
+    <SiteLocationDatum>Site location datum is missing</SiteLocationDatum>
+    <SiteLocationLongitude>Site location longitude is missing</SiteLocationLongitude>
+    <SiteLocationLatitude>Site location latitude is missing</SiteLocationLatitude>
+    <EffectiveDate>Effective date is missing</EffectiveDate>
+</strings>

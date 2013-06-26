@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strings>
+    <english>Anglais</english>
+    <french>Français</french>
+    <bbox>La zone rectangulaire dans laquelle les observations de l'emplacement de surveillance ont eu ou auront lieu. Remplir la présente section si la zone d'observation du site est différente de l'emplacement du point central du site.</bbox>
+
+    <codelist_canadaAdminAreas>AB::BC::MB::NB::NL::NS::NT::NU::ON::PE::QC::SK::YT</codelist_canadaAdminAreas>
+    <codelist_usaAdminAreas> AL::AK::AR::AZ::CA::CO::CT::DE::DC::FL::GA::HI::ID::IL::IN::IA::KS::KY::LA::ME::MD::MA::MI::MN::MS::MO::MT::NE::NV::NH::NJ::NM::NY::NC::ND::OH::OK::OR::PA::RI::SC::SD::TN::TX::UT::VT::VA::WA::WV::WI::WY</codelist_usaAdminAreas>
+
+    <codelist_SiteTypeId>ACBIS::CABM::CAPMoN::ENVIRODAT::GAPS::HYDAT::HYDEX::IADN::NAPS::NARSTO::OSM::WSC::NAtChem::WDCA</codelist_SiteTypeId>
+
+    <stationtype>Type de Station</stationtype>
+
+    <can>CAN (Canada)</can>
+    <usa>É.-U. (États-Unis d'Amérique)</usa>
+</strings>
