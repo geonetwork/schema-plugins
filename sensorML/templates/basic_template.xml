@@ -185,6 +185,7 @@
 							<sml:InputList>
 								<sml:input name="">
 									<swe:ObservableProperty definition="">
+										<gml:name codeSpace=""></gml:name>
 									</swe:ObservableProperty>
 								</sml:input>
 							</sml:InputList>
