@@ -172,7 +172,9 @@
 					<xsl:with-param name="schema"   select="$schema"/>
 					<xsl:with-param name="edit"     select="false()"/>
 					<xsl:with-param name="title"    select="$title"/>
-					<xsl:with-param name="tooltip"  select="$tooltip"/>
+					<xsl:with-param name="showAttributes" select="false()"/>
+					<!-- FIXME: toolTip is unused -->
+					<xsl:with-param name="toolTip" select="$tooltip"/> 
 					<xsl:with-param name="text">
 						<table width="100%">
 				  		<tr>
@@ -185,8 +187,10 @@
 											<xsl:attribute name="style">display:block</xsl:attribute>
 											<table width="100%">
 												<tr>
-													<td width="50%"><b><xsl:value-of select="/root/gui/schemas/sensorML/strings/term"/>:</b> <xsl:value-of select="$definition"/></td>
-													<td width="50%"><b><xsl:value-of select="/root/gui/schemas/sensorML/strings/thesaurus"/>:</b> <xsl:value-of select="$thesaurus"/></td>
+													<td><b><xsl:value-of select="/root/gui/schemas/sensorML/strings/term"/>:</b> <xsl:value-of select="$definition"/></td>
+												</tr>
+												<tr>
+													<td><b><xsl:value-of select="/root/gui/schemas/sensorML/strings/thesaurus"/>:</b> <xsl:value-of select="$thesaurus"/></td>
 												</tr>
 											</table>
 										</xsl:if>
@@ -233,7 +237,7 @@
 								<tr>
 									<td width="60%">
 										<!-- The term text field -->
-										<input class="md" name="{$ref}" id="{$ref}" value="{$text}"/>
+										<input class="md" name="{$ref}" id="{$ref}" value="{$text}" size="50"/>
 										<!-- showThesaurusSelectionPanel:
 							     			- if gnThesaurus is empty: selector for all thesauri
 									 			- ref = input to place term value in
@@ -250,6 +254,7 @@
 							</table>
 						</td>
 				    <td>
+							<!-- may not display? -->
 							<div id="{$thesaurusId}" style="display:none;">
 								<table width="100%">
 									<tr>
@@ -330,15 +335,17 @@
 				<!-- Abstract -->
 				<xsl:choose>
 					<xsl:when test="$edit">
-						<xsl:apply-templates mode="elementEP" select="sml:member/*/sml:System/*/*/gml:description">
+						<xsl:apply-templates mode="sensorML" select="sml:member/*/sml:System/*/*/gml:description">
 							<xsl:with-param name="schema" select="$schema"/>
 							<xsl:with-param name="edit"   select="$edit"/>
+							<xsl:with-param name="id"     select="'abstract'"/>
 						</xsl:apply-templates>	
 					</xsl:when>
 					<xsl:otherwise>
-						<xsl:apply-templates mode="elementEP" select="sml:member/sml:System/gml:description">
+						<xsl:apply-templates mode="sensorML" select="sml:member/sml:System/gml:description">
 							<xsl:with-param name="schema" select="$schema"/>
 							<xsl:with-param name="edit"   select="$edit"/>
+							<xsl:with-param name="id"     select="'abstract'"/>
 						</xsl:apply-templates>	
 					</xsl:otherwise>
 				</xsl:choose>
@@ -959,15 +966,16 @@
 					<xsl:with-param name="edit"   select="$edit"/>
 					<xsl:with-param name="tooltip">
 						<xsl:call-template name="getTooltipTitle-sensorML">
-							<xsl:with-param name="name"   select="'href'"/>
+							<xsl:with-param name="name"   select="'xlink:href'"/>
 							<xsl:with-param name="schema" select="$schema"/>
-       	      <xsl:with-param name="id" select="'onlineResource'"/>
+							<xsl:with-param name="context" select="'sml:onlineResource'"/>
 						</xsl:call-template>
 					</xsl:with-param>
 					<xsl:with-param name="title">
 						<xsl:call-template name="getTitle-sensorML">
-							<xsl:with-param name="name"   select="'href'"/>
+							<xsl:with-param name="name"   select="'xlink:href'"/>
 							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="context" select="'sml:onlineResource'"/>
 						</xsl:call-template> 
 					</xsl:with-param>
 					<xsl:with-param name="text">
@@ -984,7 +992,9 @@
 								</xsl:if>
 							</xsl:when>
 							<xsl:otherwise>
-								<xsl:value-of select="sml:Document/sml:onlineResource/@xlink:href"/>
+								<xsl:if test="normalize-space(sml:Document/sml:onlineResource/@xlink:href)!=''">
+									<xsl:value-of select="concat($url,'/',sml:Document/sml:onlineResource/@xlink:href)"/>
+								</xsl:if>
 							</xsl:otherwise>
 						</xsl:choose>
 					</xsl:with-param>
@@ -1933,79 +1943,6 @@ id="{$id}"
 
 	<!-- ==================================================================== -->
 
-	<!--
-	<xsl:template mode="simpleElement" match="@*" priority="10">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"   select="false()"/>
-        <xsl:param name="id"     select="generate-id()"/>
-
-		<xsl:param name="title">
-			<xsl:call-template name="getTitle">
-				<xsl:with-param name="name"   select="name(.)"/>
-				<xsl:with-param name="schema" select="$schema"/>
-			</xsl:call-template>
-		</xsl:param>
-		<xsl:param name="tooltip">
-			<xsl:call-template name="getTooltipTitle-sensorML">
-				<xsl:with-param name="name"   select="name(.)"/>
-				<xsl:with-param name="schema" select="$schema"/>
-			</xsl:call-template>
-		</xsl:param>
-
-		<xsl:param name="text">
-			<xsl:call-template name="getAttributeText">
-				<xsl:with-param name="schema" select="$schema"/>
-				<xsl:with-param name="edit"   select="$edit"/>
-				<xsl:with-param name="tooltip"   select="$tooltip"/>
-			</xsl:call-template>
-		</xsl:param>
-		<xsl:param name="helpLink">
-			<xsl:call-template name="getHelpLink">
-				<xsl:with-param name="name"   select="name(.)"/>
-				<xsl:with-param name="schema" select="$schema"/>
-			</xsl:call-template>
-		</xsl:param>
-
-        <xsl:variable name="validationLink">
-            <xsl:variable name="ref" select="concat('#_',../geonet:element/@ref)"/>
-            <xsl:call-template name="validationLink">
-                <xsl:with-param name="ref" select="$ref"/>
-            </xsl:call-template>
-        </xsl:variable>
-
-		<xsl:choose>
-			<xsl:when test="$edit=true()">
-				<xsl:call-template name="editAttribute">
-					<xsl:with-param name="schema"   select="$schema"/>
-					<xsl:with-param name="title"    select="$title"/>
-					<xsl:with-param name="tooltip"  select="$tooltip"/>
-					<xsl:with-param name="text"     select="$text"/>
-					<xsl:with-param name="helpLink" select="$helpLink"/>
-                    <xsl:with-param name="id"       select="$id"/>
-                    <xsl:with-param name="validationLink"       select="$validationLink"/>
-				</xsl:call-template>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:call-template name="showSimpleElement">
-					<xsl:with-param name="schema"   select="$schema"/>
-					<xsl:with-param name="title"    select="$title"/>
-					<xsl:with-param name="tooltip"  select="$tooltip"/>
-					<xsl:with-param name="text"     select="$text"/>
-					<xsl:with-param name="helpLink" select="$helpLink"/>
-				</xsl:call-template>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:template>
-	-->
-	
-	<!-- =================================================================== -->
-	<!-- === Javascript used by functions in this presentation XSLT          -->
-	<!-- =================================================================== -->
-
-	<xsl:template name="sensorML-javascript"/>
-
-	<!-- ==================================================================== -->
-
 	<xsl:template name="getTitle-sensorML">
 		<xsl:param name="name" />
 		<xsl:param name="schema"/>
@@ -2026,9 +1963,9 @@ id="{$id}"
             <xsl:variable name="schematitleWithId" select="string(/root/gui/schemas/*[name(.)=$schema]/labels/element[@name=$name and not(@context) and @id=$id]/label)"/>
 
             <!-- Name in current schema with no id -->
-            <xsl:variable name="schematitle" select="string(/root/gui/schemas/*[name(.)=$schema]/labels/element[@name=$name and not(@context)]/label)"/>
+            <xsl:variable name="schematitle" select="string(/root/gui/schemas/*[name(.)=$schema]/labels/element[@name=$name and not(@context) and not(@id)]/label)"/>
 
-						<xsl:message>Passed <xsl:value-of select="concat($name,' (id: ',$id,')')"/> Candidates: <xsl:value-of select="concat($schematitleWithContext,':',$schematitleWithId,':',$schematitle)"/></xsl:message>
+						<xsl:message>Passed <xsl:value-of select="concat($name,' (id: ',$id,')',' (context: ',$context,')')"/> Candidates: <xsl:value-of select="concat($schematitleWithContext,':',$schematitleWithId,':',$schematitle)"/></xsl:message>
             <xsl:choose>
 
                 <xsl:when test="normalize-space($schematitleWithId)='' and
@@ -2342,7 +2279,9 @@ id="{$id}"
 			</xsl:for-each>
 
 			<xsl:for-each select="sml:member/sml:System/sml:documentation/sml:DocumentList/sml:member[@name='relatedDataset-GeoNetworkUUID']">
-				<dataset><xsl:value-of select="@xlink:href"/></dataset>
+				<xsl:if test="normalize-space(sml:Document/sml:onlineResource/@xlink:href)!=''">
+					<dataset><xsl:value-of select="concat($url,'/',sml:Document/sml:onlineResource/@xlink:href)"/></dataset>
+				</xsl:if>
 			</xsl:for-each>
 
 
@@ -2764,6 +2703,12 @@ id="{$id}"
 		</xsl:if>
 
 	</xsl:template>
+
+	<!-- =================================================================== -->
+  <!-- === Javascript used by functions in this presentation XSLT          -->
+	<!-- =================================================================== -->
+
+	<xsl:template name="sensorML-javascript"/>
 
 	<!-- ==================================================================== -->
 
