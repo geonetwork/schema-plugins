@@ -286,7 +286,13 @@
 					<xsl:with-param name="id" select="'site'"/>
 				</xsl:call-template>
 			</xsl:with-param>
-
+			<xsl:with-param name="tooltip">
+				<xsl:call-template name="getTooltipTitle-sensorML">
+					<xsl:with-param name="name"   select="'sml:identification'"/>
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="id" select="'site'"/>
+				 </xsl:call-template>
+			</xsl:with-param>
 			<xsl:with-param name="content">
 
 				<!-- Metadata identifier -->

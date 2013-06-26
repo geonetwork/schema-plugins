@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<labels xmlns:ec="http://www.ec.gc.ca/data_donnees/standards/schemas/MonitoringSite/1-0-0" xmlns:sml="http://www.opengis.net/sensorML" xmlns:swe="http://www.opengis.net/swe" xmlns:gml="http://www.opengis.net/gml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink">
-
-
-	
-
+<labels xmlns:sml="http://www.opengis.net/sensorML/1.0.1" 
+        xmlns:swe="http://www.opengis.net/swe/1.0.1" 
+				xmlns:gml="http://www.opengis.net/gml" 
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				xmlns:xlink="http://www.w3.org/1999/xlink">
 	<element name="xlink:href" context="sml:onlineResource/@xlink:href" >
 		<label>URL</label>
 		<description>Electronic location where documentation about the site can be found. If the document is available online on either the Internet or Intranet, enter the web address here.</description>
@@ -253,7 +252,7 @@
 		<description>root entity which defines metadata about a resource or resources</description>
 	</element>
       <!-- ==================================================== -->
-	<element name="Gml:id">
+	<element name="gml:id">
 		<label>ID </label>
 		<description>root entity which defines metadata about a resource or resources</description>
 	</element>
