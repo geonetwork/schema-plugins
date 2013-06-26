@@ -1161,6 +1161,9 @@
 
 	<!-- ==================================================================== -->
 
+	<!-- FIXME: Still has some EC references -->
+
+	<!--
 	<xsl:template mode="sensorML" match="swe:Position/@referenceFrame" priority="10">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
@@ -1212,11 +1215,11 @@ id="{$id}"
 								    </option>
 								</xsl:for-each>
 
-							    <!--<xsl:call-template name="output-tokens">
+							    <!- -<xsl:call-template name="output-tokens">
 									<xsl:with-param name="list"><xsl:value-of select="/root/gui/schemas/sensorML/strings/codelist_srids"/></xsl:with-param>
 										<xsl:with-param name="delimiter">::</xsl:with-param>
 							    	<xsl:with-param name="value" select="$value" />
-									</xsl:call-template>-->
+									</xsl:call-template>- ->
 						</select>
 
 					</xsl:when>
@@ -1229,6 +1232,7 @@ id="{$id}"
 
 		</xsl:apply-templates>	
 	</xsl:template>
+	-->
 
 	<!-- ==================================================================== -->
 
@@ -1394,11 +1398,11 @@ id="{$id}"
 
 	<!-- ==================================================================== -->
 
-	<xsl:template mode="sensorML" match="swe:field[@name='observedBBOX']" priority="10">
+	<xsl:template mode="sensorML" match="swe:field[@name='observedBBOX']" priority="60">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
-  
+ 
 				<!-- swe:coordinate can both contain easting or longitude -->	
 				<xsl:variable name="nEl">
 				<xsl:choose>
@@ -1470,1276 +1474,1196 @@ id="{$id}"
             </select>
           </xsl:if> -->
         </xsl:variable>
-        <xsl:choose>
-					<xsl:when test="$edit">
-						<xsl:call-template name="geoBoxGUISWE">
-              <xsl:with-param name="schema" select="$schema"/>
-              <xsl:with-param name="edit"   select="$edit"/>
-              <xsl:with-param name="id"   select="'observedBBOX'"/>
-              <xsl:with-param name="sEl" select="$sEl"/>
-              <xsl:with-param name="nEl" select="$nEl"/>
-              <xsl:with-param name="eEl" select="$eEl"/>
-              <xsl:with-param name="wEl" select="$wEl"/>
-              <xsl:with-param name="sValue" select="$sEl/swe:Quantity/swe:value/text()"/>
-              <xsl:with-param name="nValue" select="$nEl/swe:Quantity/swe:value/text()"/>
-              <xsl:with-param name="eValue" select="$eEl/swe:Quantity/swe:value/text()"/>
-              <xsl:with-param name="wValue" select="$wEl/swe:Quantity/swe:value/text()"/>
-				<!-- this one assumes easting/northing -->
-              <xsl:with-param name="sId" select=".//swe:Envelope/swe:lowerCorner/swe:Vector/swe:coordinate[@name='northing']//swe:Quantity/swe:value/geonet:element/@ref"/>
-              <xsl:with-param name="nId" select=".//swe:Envelope/swe:upperCorner/swe:Vector/swe:coordinate[@name='northing']//swe:Quantity/swe:value/geonet:element/@ref"/>
-              <xsl:with-param name="eId" select=".//swe:Envelope/swe:upperCorner/swe:Vector/swe:coordinate[@name='easting']//swe:Quantity/swe:value/geonet:element/@ref"/>
-              <xsl:with-param name="wId" select=".//swe:Envelope/swe:lowerCorner/swe:Vector/swe:coordinate[@name='easting']//swe:Quantity/swe:value/geonet:element/@ref"/>
-              <xsl:with-param name="descId" select="'observedBBOX'"/>
-              <xsl:with-param name="places" select="$places"/>
+				<xsl:call-template name="geoBoxGUISWE">
+          <xsl:with-param name="schema" select="$schema"/>
+          <xsl:with-param name="edit"   select="$edit"/>
+          <xsl:with-param name="id"   select="'observedBBOX'"/>
+          <xsl:with-param name="sEl" select="$sEl"/>
+          <xsl:with-param name="nEl" select="$nEl"/>
+          <xsl:with-param name="eEl" select="$eEl"/>
+          <xsl:with-param name="wEl" select="$wEl"/>
+          <xsl:with-param name="sId" select=".//swe:Envelope/swe:lowerCorner/swe:Vector/swe:coordinate[@name='northing']//swe:Quantity/swe:value/geonet:element/@ref"/>
+          <xsl:with-param name="nId" select=".//swe:Envelope/swe:upperCorner/swe:Vector/swe:coordinate[@name='northing']//swe:Quantity/swe:value/geonet:element/@ref"/>
+          <xsl:with-param name="eId" select=".//swe:Envelope/swe:upperCorner/swe:Vector/swe:coordinate[@name='easting']//swe:Quantity/swe:value/geonet:element/@ref"/>
+          <xsl:with-param name="wId" select=".//swe:Envelope/swe:lowerCorner/swe:Vector/swe:coordinate[@name='easting']//swe:Quantity/swe:value/geonet:element/@ref"/>
+          <xsl:with-param name="descId" select="'observedBBOX'"/>
+          <xsl:with-param name="places" select="$places"/>
+				</xsl:call-template>
+			</xsl:template>
+
+			<!-- ==================================================================== -->
+
+			<xsl:template mode="sensorML" match="sml:position//swe:coordinate[@name='easting']" priority="20">
+				<xsl:param name="schema"/>
+				<xsl:param name="edit"/>
+
+				<xsl:variable name="tooltip">
+					<xsl:call-template name="getTooltipTitle-sensorML">
+							<xsl:with-param name="name"   select="name(.)"/>
+							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="id" select="concat(@name, '_', ../../../../@name)"/>
+					</xsl:call-template>
+				</xsl:variable>
+
+				<xsl:apply-templates mode="simpleElement" select=".//swe:Quantity/swe:value">
+					<xsl:with-param name="schema"  select="$schema"/>
+					<xsl:with-param name="edit"    select="$edit"/>
+					<xsl:with-param name="tooltip"    select="$tooltip"/>
+
+					<xsl:with-param name="title">
+						<xsl:call-template name="getTitle-sensorML">
+							<xsl:with-param name="name"   select="name(.)"/>
+							<xsl:with-param name="schema" select="$schema"/>
+												<xsl:with-param name="id" select="concat(@name, '_', ../../../../@name)"/>
 						</xsl:call-template>
-					</xsl:when>
-          <xsl:otherwise>
-						<xsl:call-template name="geoBoxGUISWE">
-           		<xsl:with-param name="schema" select="$schema"/>
-           		<xsl:with-param name="edit"   select="$edit"/>
-           		<xsl:with-param name="id"   select="'observedBBOX'"/>
-           		<xsl:with-param name="sEl" select="$sEl"/>
-           		<xsl:with-param name="nEl" select="$nEl"/>
-           		<xsl:with-param name="eEl" select="$eEl"/>
-           		<xsl:with-param name="wEl" select="$wEl"/>
-           		<xsl:with-param name="sValue" select="$sEl/swe:Quantity/swe:value/text()"/>
-           		<xsl:with-param name="nValue" select="$nEl/swe:Quantity/swe:value/text()"/>
-           		<xsl:with-param name="eValue" select="$eEl/swe:Quantity/swe:value/text()"/>
-           		<xsl:with-param name="wValue" select="$wEl/swe:Quantity/swe:value/text()"/>
-           		<!-- this one assumes easting/northing -->
-           		<xsl:with-param name="sId" select=".//swe:Envelope/swe:lowerCorner/swe:Vector/swe:coordinate[@name='northing']//swe:Quantity/swe:value/geonet:element/@ref"/>
-           		<xsl:with-param name="nId" select=".//swe:Envelope/swe:upperCorner/swe:Vector/swe:coordinate[@name='northing']//swe:Quantity/swe:value/geonet:element/@ref"/>
-           		<xsl:with-param name="eId" select=".//swe:Envelope/swe:upperCorner/swe:Vector/swe:coordinate[@name='easting']//swe:Quantity/swe:value/geonet:element/@ref"/>
-           		<xsl:with-param name="wId" select=".//swe:Envelope/swe:lowerCorner/swe:Vector/swe:coordinate[@name='easting']//swe:Quantity/swe:value/geonet:element/@ref"/>
-           		<xsl:with-param name="descId" select="'observedBBOX'"/>
-           		<xsl:with-param name="places" select="$places"/>
-       			</xsl:call-template>
-					</xsl:otherwise>
-   			</xsl:choose>
-	</xsl:template>
+						
+						<!-- Don't display as mandatory in sensor section -->
+						<xsl:if test="$edit and not(contains(name(../../../../..), 'sml:Component'))">
+							<sup><font size="-1" color="#FF0000">&#xA0;*</font></sup> 
+					</xsl:if>
+					</xsl:with-param>
 
-	<!-- ==================================================================== -->
+				</xsl:apply-templates>
+			</xsl:template>
 
-	<xsl:template mode="sensorML" match="sml:position//swe:coordinate[@name='easting']" priority="20">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
+			<!-- ==================================================================== -->
 
-		<xsl:variable name="tooltip">
-			<xsl:call-template name="getTooltipTitle-sensorML">
-					<xsl:with-param name="name"   select="name(.)"/>
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="id" select="concat(@name, '_', ../../../../@name)"/>
-			</xsl:call-template>
-		</xsl:variable>
+			<xsl:template mode="sensorML" match="swe:lowerCorner//swe:coordinate[@name='easting']" priority="10">
+				<xsl:param name="schema"/>
+				<xsl:param name="edit"/>
 
-		<xsl:apply-templates mode="simpleElement" select=".//swe:Quantity/swe:value">
-			<xsl:with-param name="schema"  select="$schema"/>
-			<xsl:with-param name="edit"    select="$edit"/>
-			<xsl:with-param name="tooltip"    select="$tooltip"/>
+				<xsl:variable name="tooltip">
+					<xsl:call-template name="getTooltipTitle-sensorML">
+							<xsl:with-param name="name"   select="name(.)"/>
+							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="id" select="@name"/>
+					</xsl:call-template>
+				</xsl:variable>
 
-			<xsl:with-param name="title">
-				<xsl:call-template name="getTitle-sensorML">
-					<xsl:with-param name="name"   select="name(.)"/>
-					<xsl:with-param name="schema" select="$schema"/>
-                    <xsl:with-param name="id" select="concat(@name, '_', ../../../../@name)"/>
-				</xsl:call-template>
+				<xsl:apply-templates mode="simpleElement" select=".//swe:Quantity/swe:value">
+					<xsl:with-param name="schema"  select="$schema"/>
+					<xsl:with-param name="edit"    select="$edit"/>
+					<xsl:with-param name="tooltip"    select="$tooltip"/>
+
+					<xsl:with-param name="title">
+						<xsl:call-template name="getTitle-sensorML">
+							<xsl:with-param name="name"   select="name(.)"/>
+							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="id" select="'w'"/>
+						</xsl:call-template>
+					</xsl:with-param>
+
+				</xsl:apply-templates>
+			</xsl:template>
+
+
+			<xsl:template mode="sensorML" match="swe:upperCorner//swe:coordinate[@name='easting']" priority="10">
+				<xsl:param name="schema"/>
+				<xsl:param name="edit"/>
+
+				<xsl:variable name="tooltip">
+					<xsl:call-template name="getTooltipTitle-sensorML">
+							<xsl:with-param name="name"   select="name(.)"/>
+							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="id" select="@name"/>
+					</xsl:call-template>
+				</xsl:variable>
+
+				<xsl:apply-templates mode="simpleElement" select=".//swe:Quantity/swe:value">
+					<xsl:with-param name="schema"  select="$schema"/>
+					<xsl:with-param name="edit"    select="$edit"/>
+					<xsl:with-param name="tooltip"    select="$tooltip"/>
+
+					<xsl:with-param name="title">
+						<xsl:call-template name="getTitle-sensorML">
+							<xsl:with-param name="name"   select="name(.)"/>
+							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="id" select="'e'"/>
+						</xsl:call-template>
+					</xsl:with-param>
+
+				</xsl:apply-templates>
+			</xsl:template>
+
+			<xsl:template mode="sensorML" match="sml:position//swe:coordinate[@name='northing']" priority="20">
+				<xsl:param name="schema"/>
+				<xsl:param name="edit"/>
 				
-				<!-- Don't display as mandatory in sensor section -->
-				<xsl:if test="$edit and not(contains(name(../../../../..), 'sml:Component'))">
-					<sup><font size="-1" color="#FF0000">&#xA0;*</font></sup> 
-			</xsl:if>
-			</xsl:with-param>
+				<xsl:variable name="tooltip">
+					<xsl:call-template name="getTooltipTitle-sensorML">
+							<xsl:with-param name="name"   select="name(.)"/>
+							<xsl:with-param name="schema" select="$schema"/>
+										<xsl:with-param name="id" select="concat(@name, '_', ../../../../@name)"/>
+					</xsl:call-template>
+				</xsl:variable>
 
-		</xsl:apply-templates>
-	</xsl:template>
+				<xsl:apply-templates mode="simpleElement" select=".//swe:Quantity/swe:value">
+					<xsl:with-param name="schema"  select="$schema"/>
+					<xsl:with-param name="edit"    select="$edit"/>
+					<xsl:with-param name="tooltip"    select="$tooltip"/>
 
-	<!-- ==================================================================== -->
+					<xsl:with-param name="title">
+						<xsl:call-template name="getTitle-sensorML">
+							<xsl:with-param name="name"   select="name(.)"/>
+							<xsl:with-param name="schema" select="$schema"/>
+												<xsl:with-param name="id" select="concat(@name, '_', ../../../../@name)"/>
+						</xsl:call-template>
 
-	<xsl:template mode="sensorML" match="swe:lowerCorner//swe:coordinate[@name='easting']" priority="10">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
+						<!-- Don't display as mandatory in sensor section -->
+						<xsl:if test="$edit and not(contains(name(../../../../..), 'sml:Component'))">
+							<sup><font size="-1" color="#FF0000">&#xA0;*</font></sup>
+					</xsl:if>
+					</xsl:with-param>
 
-		<xsl:variable name="tooltip">
-			<xsl:call-template name="getTooltipTitle-sensorML">
-					<xsl:with-param name="name"   select="name(.)"/>
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="id" select="@name"/>
-			</xsl:call-template>
-		</xsl:variable>
+				</xsl:apply-templates>
+			</xsl:template>
 
-		<xsl:apply-templates mode="simpleElement" select=".//swe:Quantity/swe:value">
-			<xsl:with-param name="schema"  select="$schema"/>
-			<xsl:with-param name="edit"    select="$edit"/>
-			<xsl:with-param name="tooltip"    select="$tooltip"/>
+			<!-- ==================================================================== -->
 
-			<xsl:with-param name="title">
-				<xsl:call-template name="getTitle-sensorML">
-					<xsl:with-param name="name"   select="name(.)"/>
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="id" select="'w'"/>
-				</xsl:call-template>
-			</xsl:with-param>
+			<xsl:template mode="sensorML" match="swe:lowerCorner//swe:coordinate[@name='northing']" priority="10">
+				<xsl:param name="schema"/>
+				<xsl:param name="edit"/>
+				
+				<xsl:variable name="tooltip">
+					<xsl:call-template name="getTooltipTitle-sensorML">
+							<xsl:with-param name="name"   select="name(.)"/>
+							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="id" select="@name"/>
+					</xsl:call-template>
+				</xsl:variable>
 
-		</xsl:apply-templates>
-	</xsl:template>
+				<xsl:apply-templates mode="simpleElement" select=".//swe:Quantity/swe:value">
+					<xsl:with-param name="schema"  select="$schema"/>
+					<xsl:with-param name="edit"    select="$edit"/>
+					<xsl:with-param name="tooltip"    select="$tooltip"/>
 
+					<xsl:with-param name="title">
+						<xsl:call-template name="getTitle-sensorML">
+							<xsl:with-param name="name"   select="name(.)"/>
+							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="id" select="'s'"/>
+						</xsl:call-template>
+					</xsl:with-param>
 
-	<xsl:template mode="sensorML" match="swe:upperCorner//swe:coordinate[@name='easting']" priority="10">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
+				</xsl:apply-templates>
+			</xsl:template>
 
-		<xsl:variable name="tooltip">
-			<xsl:call-template name="getTooltipTitle-sensorML">
-					<xsl:with-param name="name"   select="name(.)"/>
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="id" select="@name"/>
-			</xsl:call-template>
-		</xsl:variable>
+			<!-- ==================================================================== -->
 
-		<xsl:apply-templates mode="simpleElement" select=".//swe:Quantity/swe:value">
-			<xsl:with-param name="schema"  select="$schema"/>
-			<xsl:with-param name="edit"    select="$edit"/>
-			<xsl:with-param name="tooltip"    select="$tooltip"/>
+			<xsl:template mode="sensorML" match="swe:upperCorner//swe:coordinate[@name='northing']" priority="10">
+				<xsl:param name="schema"/>
+				<xsl:param name="edit"/>
+				
+				<xsl:variable name="tooltip">
+					<xsl:call-template name="getTooltipTitle-sensorML">
+							<xsl:with-param name="name"   select="name(.)"/>
+							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="id" select="@name"/>
+					</xsl:call-template>
+				</xsl:variable>
 
-			<xsl:with-param name="title">
-				<xsl:call-template name="getTitle-sensorML">
-					<xsl:with-param name="name"   select="name(.)"/>
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="id" select="'e'"/>
-				</xsl:call-template>
-			</xsl:with-param>
+				<xsl:apply-templates mode="simpleElement" select=".//swe:Quantity/swe:value">
+					<xsl:with-param name="schema"  select="$schema"/>
+					<xsl:with-param name="edit"    select="$edit"/>
+					<xsl:with-param name="tooltip"    select="$tooltip"/>
 
-		</xsl:apply-templates>
-	</xsl:template>
+					<xsl:with-param name="title">
+						<xsl:call-template name="getTitle-sensorML">
+							<xsl:with-param name="name"   select="name(.)"/>
+							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="id" select="'n'"/>
+						</xsl:call-template>
+					</xsl:with-param>
 
-	<xsl:template mode="sensorML" match="sml:position//swe:coordinate[@name='northing']" priority="20">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-		
-		<xsl:variable name="tooltip">
-			<xsl:call-template name="getTooltipTitle-sensorML">
-					<xsl:with-param name="name"   select="name(.)"/>
-					<xsl:with-param name="schema" select="$schema"/>
-                <xsl:with-param name="id" select="concat(@name, '_', ../../../../@name)"/>
-			</xsl:call-template>
-		</xsl:variable>
+				</xsl:apply-templates>
+			</xsl:template>
 
-		<xsl:apply-templates mode="simpleElement" select=".//swe:Quantity/swe:value">
-			<xsl:with-param name="schema"  select="$schema"/>
-			<xsl:with-param name="edit"    select="$edit"/>
-			<xsl:with-param name="tooltip"    select="$tooltip"/>
+			<!-- ==================================================================== -->
 
-			<xsl:with-param name="title">
-				<xsl:call-template name="getTitle-sensorML">
-					<xsl:with-param name="name"   select="name(.)"/>
-					<xsl:with-param name="schema" select="$schema"/>
-                    <xsl:with-param name="id" select="concat(@name, '_', ../../../../@name)"/>
-				</xsl:call-template>
+			<xsl:template mode="sensorML" match="swe:coordinate[@name='altitude']" priority="10">
+				<xsl:param name="schema"/>
+				<xsl:param name="edit"/>
+				
+				<xsl:variable name="tooltip">
+					<xsl:call-template name="getTooltipTitle-sensorML">
+							<xsl:with-param name="name"   select="name(.)"/>
+							<xsl:with-param name="schema" select="$schema"/>
+										<xsl:with-param name="id" select="concat(@name, '_', ../../../../@name)"/>
+					</xsl:call-template>
+				</xsl:variable>
 
-				<!-- Don't display as mandatory in sensor section -->
-				<xsl:if test="$edit and not(contains(name(../../../../..), 'sml:Component'))">
-					<sup><font size="-1" color="#FF0000">&#xA0;*</font></sup>
-			</xsl:if>
-			</xsl:with-param>
+				<xsl:apply-templates mode="simpleElement" select=".//swe:Quantity/swe:value">
+					<xsl:with-param name="schema"  select="$schema"/>
+					<xsl:with-param name="edit"    select="$edit"/>
+					<xsl:with-param name="tooltip"    select="$tooltip"/>
 
-		</xsl:apply-templates>
-	</xsl:template>
+					<xsl:with-param name="title">
+						<xsl:call-template name="getTitle-sensorML">
+							<xsl:with-param name="name"   select="name(.)"/>
+							<xsl:with-param name="schema" select="$schema"/>
+												<xsl:with-param name="id" select="concat(@name, '_', ../../../../@name)"/>
+						</xsl:call-template>
+					</xsl:with-param>
 
-	<!-- ==================================================================== -->
+				</xsl:apply-templates>
+			</xsl:template>
 
-	<xsl:template mode="sensorML" match="swe:lowerCorner//swe:coordinate[@name='northing']" priority="10">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-		
-		<xsl:variable name="tooltip">
-			<xsl:call-template name="getTooltipTitle-sensorML">
-					<xsl:with-param name="name"   select="name(.)"/>
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="id" select="@name"/>
-			</xsl:call-template>
-		</xsl:variable>
+			<!-- ==================================================================== -->
 
-		<xsl:apply-templates mode="simpleElement" select=".//swe:Quantity/swe:value">
-			<xsl:with-param name="schema"  select="$schema"/>
-			<xsl:with-param name="edit"    select="$edit"/>
-			<xsl:with-param name="tooltip"    select="$tooltip"/>
+			<xsl:template mode="sensorML" match="swe:Envelope[@name='altitude']" priority="10">
+				<xsl:param name="schema"/>
+				<xsl:param name="edit"/>
 
-			<xsl:with-param name="title">
-				<xsl:call-template name="getTitle-sensorML">
-					<xsl:with-param name="name"   select="name(.)"/>
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="id" select="'s'"/>
-				</xsl:call-template>
-			</xsl:with-param>
+				<xsl:apply-templates mode="simpleElement" select=".//swe:Quantity/swe:value">
+					<xsl:with-param name="schema"  select="$schema"/>
+					<xsl:with-param name="edit"    select="$edit"/>
 
-		</xsl:apply-templates>
-	</xsl:template>
+					<xsl:with-param name="title">
+						<xsl:value-of select="/root/gui/schemas/sensorML/strings/altitude"/>
+					</xsl:with-param>
 
-	<!-- ==================================================================== -->
+				</xsl:apply-templates>
+			</xsl:template>
 
-	<xsl:template mode="sensorML" match="swe:upperCorner//swe:coordinate[@name='northing']" priority="10">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-		
-		<xsl:variable name="tooltip">
-			<xsl:call-template name="getTooltipTitle-sensorML">
-					<xsl:with-param name="name"   select="name(.)"/>
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="id" select="@name"/>
-			</xsl:call-template>
-		</xsl:variable>
+			<!-- ==================================================================== -->
 
-		<xsl:apply-templates mode="simpleElement" select=".//swe:Quantity/swe:value">
-			<xsl:with-param name="schema"  select="$schema"/>
-			<xsl:with-param name="edit"    select="$edit"/>
-			<xsl:with-param name="tooltip"    select="$tooltip"/>
+			<xsl:template mode="sensorML" match="sml:member[descendant::sml:ResponsibleParty]" priority="30">
+				<xsl:param name="schema"/>
+				<xsl:param name="edit"/>
+				
+				<!-- show sml:member with 'sml:ResponsibleParty' as title and content
+						 as children of sml:ResponsibleParty -->
+				<xsl:apply-templates mode="complexElement" select=".">
+					<xsl:with-param name="schema"  select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+					<xsl:with-param name="title">
+						<xsl:call-template name="getTitle-sensorML">
+							<xsl:with-param name="name"   select="'sml:ResponsibleParty'"/>
+							<xsl:with-param name="schema" select="$schema"/>
+						</xsl:call-template>
+					</xsl:with-param>
+					<xsl:with-param name="content">
+						<xsl:apply-templates mode="elementEP" select=".//sml:ResponsibleParty">
+							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="edit"   select="$edit"/>
+						</xsl:apply-templates>
+					</xsl:with-param>
+				</xsl:apply-templates>
+			</xsl:template>
 
-			<xsl:with-param name="title">
-				<xsl:call-template name="getTitle-sensorML">
-					<xsl:with-param name="name"   select="name(.)"/>
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="id" select="'n'"/>
-				</xsl:call-template>
-			</xsl:with-param>
+			<!-- ==================================================================== -->
 
-		</xsl:apply-templates>
-	</xsl:template>
-
-	<!-- ==================================================================== -->
-
-	<xsl:template mode="sensorML" match="swe:coordinate[@name='altitude']" priority="10">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-		
-		<xsl:variable name="tooltip">
-			<xsl:call-template name="getTooltipTitle-sensorML">
-					<xsl:with-param name="name"   select="name(.)"/>
-					<xsl:with-param name="schema" select="$schema"/>
-                <xsl:with-param name="id" select="concat(@name, '_', ../../../../@name)"/>
-			</xsl:call-template>
-		</xsl:variable>
-
-		<xsl:apply-templates mode="simpleElement" select=".//swe:Quantity/swe:value">
-			<xsl:with-param name="schema"  select="$schema"/>
-			<xsl:with-param name="edit"    select="$edit"/>
-			<xsl:with-param name="tooltip"    select="$tooltip"/>
-
-			<xsl:with-param name="title">
-				<xsl:call-template name="getTitle-sensorML">
-					<xsl:with-param name="name"   select="name(.)"/>
-					<xsl:with-param name="schema" select="$schema"/>
-                    <xsl:with-param name="id" select="concat(@name, '_', ../../../../@name)"/>
-				</xsl:call-template>
-			</xsl:with-param>
-
-		</xsl:apply-templates>
-	</xsl:template>
-
-	<!-- ==================================================================== -->
-
-	<xsl:template mode="sensorML" match="swe:Envelope[@name='altitude']" priority="10">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-
-		<xsl:apply-templates mode="simpleElement" select=".//swe:Quantity/swe:value">
-			<xsl:with-param name="schema"  select="$schema"/>
-			<xsl:with-param name="edit"    select="$edit"/>
-
-			<xsl:with-param name="title">
-				<xsl:value-of select="/root/gui/schemas/sensorML/strings/altitude"/>
-			</xsl:with-param>
-
-		</xsl:apply-templates>
-	</xsl:template>
-
-	<!-- ==================================================================== -->
-
-	<xsl:template mode="sensorML" match="sml:member[descendant::sml:ResponsibleParty]" priority="30">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-		
-		<!-- show sml:member with 'sml:ResponsibleParty' as title and content
-		     as children of sml:ResponsibleParty -->
-		<xsl:apply-templates mode="complexElement" select=".">
-			<xsl:with-param name="schema"  select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-			<xsl:with-param name="title">
-				<xsl:call-template name="getTitle-sensorML">
-					<xsl:with-param name="name"   select="'sml:ResponsibleParty'"/>
-					<xsl:with-param name="schema" select="$schema"/>
-				</xsl:call-template>
-			</xsl:with-param>
-			<xsl:with-param name="content">
-				<xsl:apply-templates mode="elementEP" select=".//sml:ResponsibleParty">
+			<xsl:template mode="sensorML" match="sml:ResponsibleParty">
+				<xsl:param name="schema"/>
+				<xsl:param name="edit"/>
+				
+				<xsl:apply-templates mode="elementEP" select="sml:individualName|geonet:child[string(@name)='individualName']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
-			</xsl:with-param>
-		</xsl:apply-templates>
-	</xsl:template>
-
-	<!-- ==================================================================== -->
-
-	<xsl:template mode="sensorML" match="sml:ResponsibleParty">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-		
-		<xsl:apply-templates mode="elementEP" select="sml:individualName|geonet:child[string(@name)='individualName']">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-		
-		<xsl:apply-templates mode="elementEP" select="sml:organizationName|geonet:child[string(@name)='organizationName']">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-	
-		<xsl:apply-templates mode="elementEP" select="sml:positionName|geonet:child[string(@name)='positionName']">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-		
-		<xsl:apply-templates mode="elementEP" select="sml:contactInfo|geonet:child[string(@name)='contactInfo']">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-	</xsl:template>
-
-	<!-- ==================================================================== -->
-
-	<xsl:template mode="sensorML" match="sml:contactInfo">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-		
-		<xsl:apply-templates mode="elementEP" select="sml:phone|geonet:child[string(@name)='phone']">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-
-		<xsl:apply-templates mode="elementEP" select="sml:address|geonet:child[string(@name)='address']">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-
-		<xsl:apply-templates mode="elementEP" select="sml:onlineResource|geonet:child[string(@name)='onlineResource']">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-
-		<xsl:apply-templates mode="elementEP" select="sml:hoursOfService|geonet:child[string(@name)='hoursOfService']">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-
-		<xsl:apply-templates mode="elementEP" select="sml:contactInstructions|geonet:child[string(@name)='contactInstructions']">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-	</xsl:template>
-
-	<!-- ==================================================================== -->
-
-	<xsl:template mode="sensorML" match="sml:phone">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-
-		<xsl:apply-templates mode="elementEP" select="sml:voice|geonet:child[string(@name)='voice']">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-
-		<xsl:apply-templates mode="elementEP" select="sml:facsimile|geonet:child[string(@name)='facsimile']">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-	</xsl:template>
-
-	<!-- ==================================================================== -->
-
-	<xsl:template mode="sensorML" match="sml:address">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-
-		<xsl:apply-templates mode="elementEP" select="sml:deliveryPoint|geonet:child[string(@name)='deliveryPoint']">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-
-		<xsl:apply-templates mode="elementEP" select="sml:city|geonet:child[string(@name)='city']">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-
-		<xsl:apply-templates mode="elementEP" select="sml:administrativeArea|geonet:child[string(@name)='administrativeArea']">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-
-		<xsl:apply-templates mode="elementEP" select="sml:postalCode|geonet:child[string(@name)='postalCode']">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-
-		<xsl:apply-templates mode="elementEP" select="sml:country|geonet:child[string(@name)='country']">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-
-		<xsl:apply-templates mode="elementEP" select="sml:electronicMailAddress|geonet:child[string(@name)='electronicMailAddress']">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-	</xsl:template>
-
-	<!-- ==================================================================== -->
-
-	<xsl:template mode="sensorML" match="sml:onlineResource" priority="10">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-
-		<xsl:variable name="tooltip">
-			<xsl:call-template name="getTooltipTitle-sensorML">
-					<xsl:with-param name="name"   select="'href'"/>
-					<xsl:with-param name="schema" select="$schema"/>
-			</xsl:call-template>
-		</xsl:variable>
-
-		<xsl:variable name="id" select="generate-id(.)"/>
-		<xsl:variable name="nextBrother" select="following-sibling::sml:onlineResource"/>
-
-		<xsl:variable name="addLink">
-				<xsl:value-of select="concat('addSensorMLXmlFragment(',$apos,geonet:element/@parent,$apos,',',$apos,name(.),$apos,',',$apos,'OnlineResource',$apos,',',$apos,'buttons_',$id,$apos,');')"/>
-		</xsl:variable>
-
-		<xsl:apply-templates mode="simpleElement" select="@xlink:href">
-			<xsl:with-param name="schema"  select="$schema"/>
-			<xsl:with-param name="edit"    select="$edit"/>
-			<xsl:with-param name="tooltip"    select="$tooltip"/>
-
-			<xsl:with-param name="title">
-				<xsl:call-template name="getTitle-sensorML">
-					<xsl:with-param name="name"   select="'href'"/>
-					<xsl:with-param name="schema" select="$schema"/>
-				</xsl:call-template>
-
-				<xsl:if test="$edit and not($nextBrother)">
-				&#160;<a id="add_{$id}" style="cursor:hand;cursor:pointer;" onclick="if (noDoubleClick()) {$addLink}" target="_blank"><img src="{/root/gui/url}/images/plus.gif" alt="{/root/gui/strings/add}" title="{/root/gui/strings/add}"/></a>
-				</xsl:if>
-			</xsl:with-param>
-
-		</xsl:apply-templates>
-	</xsl:template>
-	
-	<!-- ==================================================================== -->
-
-	<!-- the following templates eat up things we don't care about -->
-
-	<xsl:template mode="sensorML" match="swe:ObservableProperty" />
-	
-	<xsl:template mode="sensorML" match="@definition" priority="11" />
-	
-	<xsl:template mode="simpleElement" match="sml:SensorML/@*" priority="11" />
-	<xsl:template mode="simpleElement" match="geonet:attribute" priority="11" />
-
-	<!-- ==================================================================== -->
-
-	<xsl:template name="getTitle-sensorML">
-		<xsl:param name="name" />
-		<xsl:param name="schema"/>
-		<xsl:param name="id" select="''"/>
-
-		<xsl:param name="context" select="name(parent::node())" />
-
-        <xsl:variable name="fullContext">
-            <xsl:call-template name="getXPath" />
-        </xsl:variable>
-
-        <xsl:variable name="tooltip">
-           <!-- Name with context in current schema -->
-            <xsl:variable name="schematitleWithContext"
-                          select="string(/root/gui/schemas/*[name(.)=$schema]/labels/element[@name=$name and (@context=$fullContext or @context=$context)]/label)"/>
-
-            <!-- Name in current schema with id -->
-            <xsl:variable name="schematitleWithId" select="string(/root/gui/schemas/*[name(.)=$schema]/labels/element[@name=$name and not(@context) and @id=$id]/label)"/>
-
-            <!-- Name in current schema with no id -->
-            <xsl:variable name="schematitle" select="string(/root/gui/schemas/*[name(.)=$schema]/labels/element[@name=$name and not(@context) and not(@id)]/label)"/>
-
-						<xsl:message>Passed <xsl:value-of select="concat($name,' (id: ',$id,')',' (context: ',$context,')')"/> Candidates: <xsl:value-of select="concat($schematitleWithContext,':',$schematitleWithId,':',$schematitle)"/></xsl:message>
-            <xsl:choose>
-
-                <xsl:when test="normalize-space($schematitleWithId)='' and
-                				normalize-space($schematitle)='' and
-                                normalize-space($schematitleWithContext)=''">
-                    <xsl:value-of select="string(/root/gui/schemas/sensorML/labels/element[@name=$name][0]/label)"/>
-                </xsl:when>
-                <xsl:when test="normalize-space($schematitleWithContext)!=''">
-                        <xsl:value-of select="normalize-space($schematitleWithContext)"/>
-                </xsl:when>
-                <xsl:when test="normalize-space($schematitleWithId)!=''">
-                        <xsl:value-of select="normalize-space($schematitleWithId)"/>
-                </xsl:when>
-                <xsl:otherwise>
-                        <xsl:value-of select="normalize-space($schematitle)"/>
-                </xsl:otherwise>
-
-            </xsl:choose>
-        </xsl:variable>
-
-
-        <xsl:choose>
-            <xsl:when test="normalize-space($tooltip)!=''">
-                <xsl:value-of select="$tooltip"/>
-            </xsl:when>
-            <xsl:otherwise>                
-            </xsl:otherwise>
-        </xsl:choose>
-		
-    </xsl:template>
-
-	<!-- ==================================================================== -->
-
-	<xsl:template name="getTooltipTitle-sensorML">
-		<xsl:param name="name" />
-		<xsl:param name="schema"/>
-		<xsl:param name="id"></xsl:param>
-
-		<xsl:param name="context" select="name(parent::node())" />
-
-        <xsl:variable name="fullContext">
-            <xsl:call-template name="getXPath" />
-        </xsl:variable>
-
-        <xsl:variable name="tooltip">
-           <!-- Name with context in current schema -->
-            <xsl:variable name="schematitleWithContext"
-                          select="string(/root/gui/schemas/*[name(.)=$schema]/labels/element[@name=$name and (@context=$fullContext or @context=$context)]/description)"/>
-
-            <!-- Name in current schema -->
-            <xsl:variable name="schematitleWithId" select="string(/root/gui/schemas/*[name(.)=$schema]/labels/element[@name=$name and not(@context) and @id=$id]/description)"/>
-
-            <xsl:variable name="schematitle" select="string(/root/gui/schemas/*[name(.)=$schema]/labels/element[@name=$name and not(@context)]/description)"/>
-
-            <xsl:choose>
-
-                <xsl:when test="normalize-space($schematitleWithId)='' and
-                				normalize-space($schematitle)='' and
-                                normalize-space($schematitleWithContext)=''">
-                    <xsl:value-of select="string(/root/gui/schemas/sensorML/labels/element[@name=$name][0]/description)"/>
-                </xsl:when>
-                <xsl:when test="normalize-space($schematitleWithContext)!=''">
-                        <xsl:value-of select="normalize-space($schematitleWithContext)"/>
-                </xsl:when>
-                <xsl:when test="normalize-space($schematitleWithId)!=''">
-                        <xsl:value-of select="normalize-space($schematitleWithId)"/>
-                </xsl:when>
-                <xsl:otherwise>
-                        <xsl:value-of select="normalize-space($schematitle)"/>
-                </xsl:otherwise>
-
-            </xsl:choose>
-        </xsl:variable>
-
-
-        <xsl:choose>
-            <xsl:when test="normalize-space($tooltip)!=''">
-                <xsl:value-of select="$tooltip"/>
-            </xsl:when>
-            <xsl:otherwise>                
-            </xsl:otherwise>
-        </xsl:choose>
-	</xsl:template>
-
-	<!-- ==================================================================== -->
-	<!-- default: in simple mode display only the xml  -->
-	<!-- ==================================================================== -->
-
-	<xsl:template mode="sensorML" match="*|@*">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-		
-		<xsl:choose>
-			<xsl:when test="$edit=true()">
-				<xsl:apply-templates mode="element" select=".">
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="edit"   select="true()"/>
-				</xsl:apply-templates>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:variable name="empty">
-					<xsl:apply-templates mode="sensorMLIsEmpty" select="."/>
-				</xsl:variable>
-			
-				<xsl:if test="normalize-space($empty)!=''">
-					<xsl:apply-templates mode="element" select=".">
-						<xsl:with-param name="schema" select="$schema"/>
-						<xsl:with-param name="edit"   select="false()"/>
-					</xsl:apply-templates>
-				</xsl:if>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:template>
-
-
-	<!-- ==================================================================== -->
-	<!-- these elements should be boxed -->
-	<!-- ==================================================================== -->
-
-	<xsl:template mode="sensorML" match="sml:System|sml:identification|sml:classification|sml:characteristics|sml:capabilities|sml:documentation|gml:location|sml:interfaces|sml:inputs|sml:outputs|sml:components|sml:contactInfo|sml:address|sml:phone">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-		
-		<xsl:apply-templates mode="complexElement" select=".">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-	</xsl:template>
-	
-	<!-- ==================================================================== -->
-
-	<!-- ================================================================= -->
-	<!-- descriptions -->
-	<!-- ================================================================= -->
-
-	<xsl:template mode="sensorML" match="gml:description">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"/>
-		<xsl:param name="rows"/>
-		<xsl:param name="id"/>
-	
-		<xsl:message>sensorMLString: <xsl:value-of select="name()"/></xsl:message>
-
-		<xsl:call-template name="sensorMLString">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit" select="$edit"/>
-			<xsl:with-param name="rows" select="$rows"/>
-			<xsl:with-param name="id" select="$id"/>
-		</xsl:call-template>
-	</xsl:template>
-
-	<!-- ==================================================================== -->
-
-  <xsl:template name="sensorMLString">
-    <xsl:param name="schema"/>
-    <xsl:param name="edit"/>
-    <xsl:param name="rows" select="1"/>
-    <xsl:param name="cols" select="40"/>
-		<xsl:param name="id"/>
-
-    <xsl:variable name="title">
-      <xsl:call-template name="getTitle-sensorML">
-        <xsl:with-param name="name"   select="name(.)"/>
-        <xsl:with-param name="schema" select="$schema"/>
-        <xsl:with-param name="id" select="$id"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:variable name="helpLink">
-      <xsl:call-template name="getHelpLink">
-        <xsl:with-param name="name"   select="name(.)"/>
-        <xsl:with-param name="schema" select="$schema"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:variable name="text">
-       <xsl:call-template name="getElementText">
-         <xsl:with-param name="edit"   select="$edit"/>
-         <xsl:with-param name="schema" select="$schema"/>
-         <xsl:with-param name="rows"   select="$rows"/>
-         <xsl:with-param name="cols"   select="$cols"/>
-       </xsl:call-template>
-    </xsl:variable>
-    <xsl:apply-templates mode="simpleElement" select=".">
-      <xsl:with-param name="schema"   select="$schema"/>
-      <xsl:with-param name="edit"     select="$edit"/>
-      <xsl:with-param name="title"    select="$title"/>
-      <xsl:with-param name="helpLink" select="$helpLink"/>
-      <xsl:with-param name="editAttributes" select="false()"/>
-      <xsl:with-param name="text"     select="$text"/>
-    </xsl:apply-templates>
-  </xsl:template>
-	
-  <!-- ================================================================== -->
-  <!-- gml:TimePeriod and gml:TimeInstant (format = %Y-%m-%dThh:mm:ss)	  -->
-  <!-- ================================================================== -->
-
-  <xsl:template mode="sensorML" match="gml:TimeInstant[gml:timePosition]" priority="2">
-    <xsl:param name="schema"/>
-    <xsl:param name="edit"/>
-
-    <xsl:for-each select="gml:beginPosition|gml:endPosition|gml:timePosition">
-    <xsl:choose>
-      <xsl:when test="$edit=true()">
-        <xsl:apply-templates mode="simpleElement" select=".">
-          <xsl:with-param name="schema"  select="$schema"/>
-          <xsl:with-param name="edit"   select="$edit"/>
-          <xsl:with-param name="text">
-            <xsl:variable name="ref" select="geonet:element/@ref"/>
-
-			<xsl:variable name="format">
-				<xsl:text>%Y-%m-%d</xsl:text>
-			</xsl:variable>
-
-            <xsl:call-template name="calendar">
-				<xsl:with-param name="ref" select="$ref"/>
-				<xsl:with-param name="date" select="text()"/>
-				<xsl:with-param name="format" select="$format"/>
-			</xsl:call-template>
-
-          </xsl:with-param>
-        </xsl:apply-templates>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:apply-templates mode="simpleElement" select=".">
-          <xsl:with-param name="schema"  select="$schema"/>
-          <xsl:with-param name="text">
-            <xsl:value-of select="text()"/>
-          </xsl:with-param>
-        </xsl:apply-templates>
-      </xsl:otherwise>
-    </xsl:choose>
-    </xsl:for-each>
-  </xsl:template>
-
-	<!-- ================================================================= -->
-	<!-- === sensorML CHOICE_ELEMENT handling === -->
-	<!-- ================================================================= -->
-
-  <xsl:template mode="sensorML" match="*[contains(name(),'CHOICE_ELEMENT')]|*[contains(name(),'GROUP_ELEMENT')]|*[contains(name(),'SEQUENCE_ELEMENT')]|sml:member|sml:Term|sml:KeywordList|sml:ClassifierList|swe:Text" priority="2">
-    <xsl:param name="schema"/>
-    <xsl:param name="edit"/>
-    <xsl:param name="contact"/>
-	
-		<xsl:variable name="nongeonet" select="*[not(starts-with(string(name(.)),'geonet'))]"/>
-		<xsl:choose>
-			<xsl:when test="$nongeonet">
-				<xsl:for-each select="*[not(starts-with(name(.),'geonet'))]">
-					<xsl:apply-templates mode="elementEP" select=".">
-						<xsl:with-param name="schema"  select="$schema"/>
-						<xsl:with-param name="edit"   select="$edit"/>
-						<xsl:with-param name="contact"   select="$contact"/>
-					</xsl:apply-templates>
-				</xsl:for-each>
-			</xsl:when>
-			<xsl:otherwise>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:template>
-
-	<!-- Avoid boxing of these elements -->
-	<xsl:template mode="elementEP" match="sml:keywords|swe:Vector">
-		<xsl:param name="schema"/>
-    	<xsl:param name="edit"/>
-		<xsl:param name="contact"/>
-
-    	<xsl:apply-templates mode="elementEP" select="*">
-				<xsl:with-param name="schema" select="$schema"/>
-				<xsl:with-param name="edit" select="$edit"/>
-				<xsl:with-param name="contact" select="$contact"/>
-		</xsl:apply-templates>
-			
-	</xsl:template>
-
-	<!-- ================================================================= -->
-	<!-- === sensorML brief formatting === -->
-	<!-- ================================================================= -->
-
-	<xsl:template name="sensorMLBrief">
-		<xsl:variable name="id" select="geonet:info/id"/>
-			
-		<xsl:variable name="title" select="sml:member/sml:System/sml:identification/sml:IdentifierList/sml:identifier[@name='siteFullName']/sml:Term/sml:value" />
-		<xsl:variable name="abstract" select="sml:member/sml:System/gml:description" />
-
-		<metadata>
-			<title><xsl:value-of select="$title"/></title>
-			<abstract><xsl:value-of select="$abstract"/></abstract>
-			
-			<xsl:for-each select="sml:member/sml:System/sml:documentation/sml:DocumentList/sml:member[@name='siteOnlineResource']">
-				<xsl:if test="sml:Document/sml:onlineResource/@xlink:href != ''">
-					<link type="download">
-						<xsl:attribute name="title" select="sml:Document/gml:description"/>
-						<xsl:attribute name="href" select="sml:Document/sml:onlineResource/@xlink:href"/>
-					</link>
-				</xsl:if>
-			</xsl:for-each>
-			
-			<xsl:for-each select="sml:member/sml:System/sml:keywords/sml:KeywordList/sml:keyword[text()]">
-				<keyword><xsl:value-of select="."/></keyword>
-			</xsl:for-each>
-
-			
-			<xsl:for-each select="sml:member/sml:System/sml:capabilities/swe:DataRecord/swe:field[@name='siteStatus']/swe:Text/swe:value">
-				<status><xsl:value-of select="."/></status>
-			</xsl:for-each>
-
-			<xsl:for-each select="sml:member/sml:System/sml:classification/sml:ClassifierList/sml:classifier[@name='siteType']/sml:Term/sml:value">
-				<category><xsl:value-of select="."/></category>
-			</xsl:for-each>
-
-			<xsl:for-each select="sml:member/sml:System/sml:inputs/sml:InputList/sml:input">
-				<observedphenomenum><xsl:value-of select="@name"/></observedphenomenum>
-			</xsl:for-each>
-
-			<xsl:for-each select="sml:member/sml:System/sml:documentation/sml:DocumentList/sml:member[@name='relatedDataset-GeoNetworkUUID']">
-				<xsl:if test="normalize-space(sml:Document/sml:onlineResource/@xlink:href)!=''">
-					<dataset><xsl:value-of select="concat($url,'/',sml:Document/sml:onlineResource/@xlink:href)"/></dataset>
-				</xsl:if>
-			</xsl:for-each>
-
-
-       <xsl:for-each select="sml:member/sml:System/sml:documentation/sml:DocumentList/sml:member[@name='thumbnail']/sml:Document">
-					<xsl:variable name="fileName"  select="sml:onlineResource/@xlink:href"/>
-                <xsl:if test="$fileName != ''">
-                    <xsl:choose>
-                        <xsl:when test="contains($fileName ,'://')">
-                            <image type="unknown"><xsl:value-of select="$fileName"/></image>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <image type="thumbnail">
-                                <xsl:value-of select="concat(/root/gui/locService,'/resources.get?id=',$id,'&amp;fname=',$fileName,'&amp;access=public')"/>
-                            </image>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:if>
-            </xsl:for-each>
-
-			<xsl:copy-of select="geonet:info"/>
-		</metadata>
-	</xsl:template>	
-	
-	<!-- =============================================================== -->
-	<!-- utilities -->
-	<!-- =============================================================== -->
-	
-	<xsl:template mode="sensorMLIsEmpty" match="*|@*">
-		<xsl:choose>
-			<!-- normal element -->
-			<xsl:when test="*">
-				<xsl:apply-templates mode="sensorMLIsEmpty"/>
-			</xsl:when>
-			<!-- text element -->
-			<xsl:when test="string-length(.)!=0">txt</xsl:when>
-			<!-- empty element -->
-			<xsl:otherwise>
-				<!-- codelist? -->
-				<xsl:if test="@codeList">
-					<xsl:if test="@codeListValue!=''">cdl</xsl:if>
-				</xsl:if>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:template>
-
-	<!-- ==================================================================== -->
-
-	<xsl:template mode="simpleElementTextArea" match="*">
-		<xsl:param name="schema"/>
-		<xsl:param name="edit"   select="false()"/>
-		<xsl:param name="rows" select="'10'" />
-
-		<xsl:param name="title">
-			<xsl:call-template name="getTitle">
-				<xsl:with-param name="name"   select="name(.)"/>
-				<xsl:with-param name="schema" select="$schema"/>
-			</xsl:call-template>
-		</xsl:param>
-		<xsl:param name="tooltip">
-			<xsl:call-template name="getTooltipTitle-sensorML">
-				<xsl:with-param name="name"   select="name(.)"/>
-				<xsl:with-param name="schema" select="$schema"/>
-			</xsl:call-template>
-		</xsl:param>
-
-		<xsl:param name="text">
-			<xsl:call-template name="getElementText">
-				<xsl:with-param name="schema" select="$schema"/>
-				<xsl:with-param name="edit"   select="$edit"/>
-				<xsl:with-param name="tooltip"   select="$tooltip"/>
-				<xsl:with-param name="rows" select="$rows"/>
-			</xsl:call-template>
-		</xsl:param>
-		<xsl:param name="helpLink">
-			<xsl:call-template name="getHelpLink">
-				<xsl:with-param name="name"   select="name(.)"/>
-				<xsl:with-param name="schema" select="$schema"/>
-			</xsl:call-template>
-		</xsl:param>
-		
-		<xsl:choose>
-			<xsl:when test="$edit=true()">
-				<xsl:call-template name="editSimpleElement">
-					<xsl:with-param name="schema"   select="$schema"/>
-					<xsl:with-param name="title"    select="$title"/>
-					<xsl:with-param name="tooltip"  select="$tooltip"/>
-					<xsl:with-param name="text"     select="$text"/>
-					<xsl:with-param name="helpLink" select="$helpLink"/>					
-				</xsl:call-template>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:call-template name="showSimpleElement">
-					<xsl:with-param name="schema"   select="$schema"/>
-					<xsl:with-param name="title"    select="$title"/>
-					<xsl:with-param name="tooltip"  select="$tooltip"/>
-					<xsl:with-param name="text"     select="$text"/>
-					<xsl:with-param name="helpLink" select="$helpLink"/>
-				</xsl:call-template>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:template>
-
-	<!-- ==================================================================== -->
-
-	<xsl:template name="output-tokens">
-	    <xsl:param name="list" />
-	    <xsl:param name="delimiter" />
-	    <xsl:param name="value" />
-
-	    <xsl:variable name="newlist">
-			<xsl:choose>
-				<xsl:when test="contains($list, $delimiter)"><xsl:value-of select="normalize-space($list)" /></xsl:when>
 				
-				<xsl:otherwise><xsl:value-of select="concat(normalize-space($list), $delimiter)"/></xsl:otherwise>
-			</xsl:choose>
-		</xsl:variable>
-	    <xsl:variable name="first" select="substring-before($newlist, $delimiter)" />
-	    <xsl:variable name="remaining" select="substring-after($newlist, $delimiter)" />
-	    
-		<option value="{$first}">
-			<xsl:if test="$value = $first">
-				<xsl:attribute name="selected"/>
-			</xsl:if>
-	    	<xsl:value-of select="$first" />
-	   	</option>
+				<xsl:apply-templates mode="elementEP" select="sml:organizationName|geonet:child[string(@name)='organizationName']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+			
+				<xsl:apply-templates mode="elementEP" select="sml:positionName|geonet:child[string(@name)='positionName']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+				
+				<xsl:apply-templates mode="elementEP" select="sml:contactInfo|geonet:child[string(@name)='contactInfo']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+			</xsl:template>
 
-	    <xsl:if test="$remaining">
-	        <xsl:call-template name="output-tokens">
-	            <xsl:with-param name="list" select="$remaining" />
-				<xsl:with-param name="delimiter"><xsl:value-of select="$delimiter"/></xsl:with-param>
-				<xsl:with-param name="value"><xsl:value-of select="$value"/></xsl:with-param>
-	        </xsl:call-template>
-	    </xsl:if>
-	</xsl:template>
+			<!-- ==================================================================== -->
+
+			<xsl:template mode="sensorML" match="sml:contactInfo">
+				<xsl:param name="schema"/>
+				<xsl:param name="edit"/>
+				
+				<xsl:apply-templates mode="elementEP" select="sml:phone|geonet:child[string(@name)='phone']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+
+				<xsl:apply-templates mode="elementEP" select="sml:address|geonet:child[string(@name)='address']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+
+				<xsl:apply-templates mode="elementEP" select="sml:onlineResource|geonet:child[string(@name)='onlineResource']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+
+				<xsl:apply-templates mode="elementEP" select="sml:hoursOfService|geonet:child[string(@name)='hoursOfService']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+
+				<xsl:apply-templates mode="elementEP" select="sml:contactInstructions|geonet:child[string(@name)='contactInstructions']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+			</xsl:template>
+
+			<!-- ==================================================================== -->
+
+			<xsl:template mode="sensorML" match="sml:phone">
+				<xsl:param name="schema"/>
+				<xsl:param name="edit"/>
+
+				<xsl:apply-templates mode="elementEP" select="sml:voice|geonet:child[string(@name)='voice']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+
+				<xsl:apply-templates mode="elementEP" select="sml:facsimile|geonet:child[string(@name)='facsimile']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+			</xsl:template>
+
+			<!-- ==================================================================== -->
+
+			<xsl:template mode="sensorML" match="sml:address">
+				<xsl:param name="schema"/>
+				<xsl:param name="edit"/>
+
+				<xsl:apply-templates mode="elementEP" select="sml:deliveryPoint|geonet:child[string(@name)='deliveryPoint']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+
+				<xsl:apply-templates mode="elementEP" select="sml:city|geonet:child[string(@name)='city']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+
+				<xsl:apply-templates mode="elementEP" select="sml:administrativeArea|geonet:child[string(@name)='administrativeArea']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+
+				<xsl:apply-templates mode="elementEP" select="sml:postalCode|geonet:child[string(@name)='postalCode']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+
+				<xsl:apply-templates mode="elementEP" select="sml:country|geonet:child[string(@name)='country']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+
+				<xsl:apply-templates mode="elementEP" select="sml:electronicMailAddress|geonet:child[string(@name)='electronicMailAddress']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+			</xsl:template>
+
+			<!-- ==================================================================== -->
+
+			<xsl:template mode="sensorML" match="sml:onlineResource" priority="10">
+				<xsl:param name="schema"/>
+				<xsl:param name="edit"/>
+
+				<xsl:variable name="tooltip">
+					<xsl:call-template name="getTooltipTitle-sensorML">
+							<xsl:with-param name="name"   select="'href'"/>
+							<xsl:with-param name="schema" select="$schema"/>
+					</xsl:call-template>
+				</xsl:variable>
+
+				<xsl:variable name="id" select="generate-id(.)"/>
+				<xsl:variable name="nextBrother" select="following-sibling::sml:onlineResource"/>
+
+				<xsl:variable name="addLink">
+						<xsl:value-of select="concat('addSensorMLXmlFragment(',$apos,geonet:element/@parent,$apos,',',$apos,name(.),$apos,',',$apos,'OnlineResource',$apos,',',$apos,'buttons_',$id,$apos,');')"/>
+				</xsl:variable>
+
+				<xsl:apply-templates mode="simpleElement" select="@xlink:href">
+					<xsl:with-param name="schema"  select="$schema"/>
+					<xsl:with-param name="edit"    select="$edit"/>
+					<xsl:with-param name="tooltip"    select="$tooltip"/>
+
+					<xsl:with-param name="title">
+						<xsl:call-template name="getTitle-sensorML">
+							<xsl:with-param name="name"   select="'href'"/>
+							<xsl:with-param name="schema" select="$schema"/>
+						</xsl:call-template>
+
+						<xsl:if test="$edit and not($nextBrother)">
+						&#160;<a id="add_{$id}" style="cursor:hand;cursor:pointer;" onclick="if (noDoubleClick()) {$addLink}" target="_blank"><img src="{/root/gui/url}/images/plus.gif" alt="{/root/gui/strings/add}" title="{/root/gui/strings/add}"/></a>
+						</xsl:if>
+					</xsl:with-param>
+
+				</xsl:apply-templates>
+			</xsl:template>
+			
+			<!-- ==================================================================== -->
+
+			<!-- the following templates eat up things we don't care about -->
+
+			<xsl:template mode="sensorML" match="swe:ObservableProperty" />
+			
+			<xsl:template mode="sensorML" match="@definition" priority="11" />
+			
+			<xsl:template mode="simpleElement" match="sml:SensorML/@*" priority="11" />
+			<xsl:template mode="simpleElement" match="geonet:attribute" priority="11" />
+
+			<!-- ==================================================================== -->
+
+			<xsl:template name="getTitle-sensorML">
+				<xsl:param name="name" />
+				<xsl:param name="schema"/>
+				<xsl:param name="id" select="''"/>
+
+				<xsl:param name="context" select="name(parent::node())" />
+
+						<xsl:variable name="fullContext">
+								<xsl:call-template name="getXPath" />
+						</xsl:variable>
+
+						<xsl:variable name="tooltip">
+							 <!-- Name with context in current schema -->
+								<xsl:variable name="schematitleWithContext"
+															select="string(/root/gui/schemas/*[name(.)=$schema]/labels/element[@name=$name and (@context=$fullContext or @context=$context)]/label)"/>
+
+								<!-- Name in current schema with id -->
+								<xsl:variable name="schematitleWithId" select="string(/root/gui/schemas/*[name(.)=$schema]/labels/element[@name=$name and not(@context) and @id=$id]/label)"/>
+
+								<!-- Name in current schema with no id -->
+								<xsl:variable name="schematitle" select="string(/root/gui/schemas/*[name(.)=$schema]/labels/element[@name=$name and not(@context) and not(@id)]/label)"/>
+
+								<xsl:message>Passed <xsl:value-of select="concat($name,' (id: ',$id,')',' (context: ',$context,')')"/> Candidates: <xsl:value-of select="concat($schematitleWithContext,':',$schematitleWithId,':',$schematitle)"/></xsl:message>
+								<xsl:choose>
+
+										<xsl:when test="normalize-space($schematitleWithId)='' and
+														normalize-space($schematitle)='' and
+																		normalize-space($schematitleWithContext)=''">
+												<xsl:value-of select="string(/root/gui/schemas/sensorML/labels/element[@name=$name][0]/label)"/>
+										</xsl:when>
+										<xsl:when test="normalize-space($schematitleWithContext)!=''">
+														<xsl:value-of select="normalize-space($schematitleWithContext)"/>
+										</xsl:when>
+										<xsl:when test="normalize-space($schematitleWithId)!=''">
+														<xsl:value-of select="normalize-space($schematitleWithId)"/>
+										</xsl:when>
+										<xsl:otherwise>
+														<xsl:value-of select="normalize-space($schematitle)"/>
+										</xsl:otherwise>
+
+								</xsl:choose>
+						</xsl:variable>
 
 
+						<xsl:choose>
+								<xsl:when test="normalize-space($tooltip)!=''">
+										<xsl:value-of select="$tooltip"/>
+								</xsl:when>
+								<xsl:otherwise>                
+								</xsl:otherwise>
+						</xsl:choose>
+				
+				</xsl:template>
+
+			<!-- ==================================================================== -->
+
+			<xsl:template name="getTooltipTitle-sensorML">
+				<xsl:param name="name" />
+				<xsl:param name="schema"/>
+				<xsl:param name="id"></xsl:param>
+
+				<xsl:param name="context" select="name(parent::node())" />
+
+						<xsl:variable name="fullContext">
+								<xsl:call-template name="getXPath" />
+						</xsl:variable>
+
+						<xsl:variable name="tooltip">
+							 <!-- Name with context in current schema -->
+								<xsl:variable name="schematitleWithContext"
+															select="string(/root/gui/schemas/*[name(.)=$schema]/labels/element[@name=$name and (@context=$fullContext or @context=$context)]/description)"/>
+
+								<!-- Name in current schema -->
+								<xsl:variable name="schematitleWithId" select="string(/root/gui/schemas/*[name(.)=$schema]/labels/element[@name=$name and not(@context) and @id=$id]/description)"/>
+
+								<xsl:variable name="schematitle" select="string(/root/gui/schemas/*[name(.)=$schema]/labels/element[@name=$name and not(@context)]/description)"/>
+
+								<xsl:choose>
+
+										<xsl:when test="normalize-space($schematitleWithId)='' and
+														normalize-space($schematitle)='' and
+																		normalize-space($schematitleWithContext)=''">
+												<xsl:value-of select="string(/root/gui/schemas/sensorML/labels/element[@name=$name][0]/description)"/>
+										</xsl:when>
+										<xsl:when test="normalize-space($schematitleWithContext)!=''">
+														<xsl:value-of select="normalize-space($schematitleWithContext)"/>
+										</xsl:when>
+										<xsl:when test="normalize-space($schematitleWithId)!=''">
+														<xsl:value-of select="normalize-space($schematitleWithId)"/>
+										</xsl:when>
+										<xsl:otherwise>
+														<xsl:value-of select="normalize-space($schematitle)"/>
+										</xsl:otherwise>
+
+								</xsl:choose>
+						</xsl:variable>
+
+
+						<xsl:choose>
+								<xsl:when test="normalize-space($tooltip)!=''">
+										<xsl:value-of select="$tooltip"/>
+								</xsl:when>
+								<xsl:otherwise>                
+								</xsl:otherwise>
+						</xsl:choose>
+			</xsl:template>
+
+			<!-- ==================================================================== -->
+			<!-- default: in simple mode display only the xml  -->
+			<!-- ==================================================================== -->
+
+			<xsl:template mode="sensorML" match="*|@*">
+				<xsl:param name="schema"/>
+				<xsl:param name="edit"/>
+				
+				<xsl:choose>
+					<xsl:when test="$edit=true()">
+						<xsl:apply-templates mode="element" select=".">
+							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="edit"   select="true()"/>
+						</xsl:apply-templates>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:variable name="empty">
+							<xsl:apply-templates mode="sensorMLIsEmpty" select="."/>
+						</xsl:variable>
+					
+						<xsl:if test="normalize-space($empty)!=''">
+							<xsl:apply-templates mode="element" select=".">
+								<xsl:with-param name="schema" select="$schema"/>
+								<xsl:with-param name="edit"   select="false()"/>
+							</xsl:apply-templates>
+						</xsl:if>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:template>
+
+
+			<!-- ==================================================================== -->
+			<!-- these elements should be boxed -->
+			<!-- ==================================================================== -->
+
+			<xsl:template mode="sensorML" match="sml:System|sml:identification|sml:classification|sml:characteristics|sml:capabilities|sml:documentation|gml:location|sml:interfaces|sml:inputs|sml:outputs|sml:components|sml:contactInfo|sml:address|sml:phone">
+				<xsl:param name="schema"/>
+				<xsl:param name="edit"/>
+				
+				<xsl:apply-templates mode="complexElement" select=".">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+			</xsl:template>
+			
+			<!-- ==================================================================== -->
+
+			<!-- ================================================================= -->
+			<!-- descriptions -->
+			<!-- ================================================================= -->
+
+			<xsl:template mode="sensorML" match="gml:description">
+				<xsl:param name="schema"/>
+				<xsl:param name="edit"/>
+				<xsl:param name="rows"/>
+				<xsl:param name="id"/>
+			
+				<xsl:call-template name="sensorMLString">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit" select="$edit"/>
+					<xsl:with-param name="rows" select="$rows"/>
+					<xsl:with-param name="id" select="$id"/>
+				</xsl:call-template>
+			</xsl:template>
+
+			<!-- ==================================================================== -->
+
+			<xsl:template name="sensorMLString">
+				<xsl:param name="schema"/>
+				<xsl:param name="edit"/>
+				<xsl:param name="rows" select="1"/>
+				<xsl:param name="cols" select="40"/>
+				<xsl:param name="id"/>
+
+				<xsl:variable name="title">
+					<xsl:call-template name="getTitle-sensorML">
+						<xsl:with-param name="name"   select="name(.)"/>
+						<xsl:with-param name="schema" select="$schema"/>
+						<xsl:with-param name="id" select="$id"/>
+					</xsl:call-template>
+				</xsl:variable>
+				<xsl:variable name="helpLink">
+					<xsl:call-template name="getHelpLink">
+						<xsl:with-param name="name"   select="name(.)"/>
+						<xsl:with-param name="schema" select="$schema"/>
+					</xsl:call-template>
+				</xsl:variable>
+				<xsl:variable name="text">
+					 <xsl:call-template name="getElementText">
+						 <xsl:with-param name="edit"   select="$edit"/>
+						 <xsl:with-param name="schema" select="$schema"/>
+						 <xsl:with-param name="rows"   select="$rows"/>
+						 <xsl:with-param name="cols"   select="$cols"/>
+					 </xsl:call-template>
+				</xsl:variable>
+				<xsl:apply-templates mode="simpleElement" select=".">
+					<xsl:with-param name="schema"   select="$schema"/>
+					<xsl:with-param name="edit"     select="$edit"/>
+					<xsl:with-param name="title"    select="$title"/>
+					<xsl:with-param name="helpLink" select="$helpLink"/>
+					<xsl:with-param name="editAttributes" select="false()"/>
+					<xsl:with-param name="text"     select="$text"/>
+				</xsl:apply-templates>
+			</xsl:template>
+			
+			<!-- ================================================================== -->
+			<!-- gml:TimePeriod and gml:TimeInstant (format = %Y-%m-%dThh:mm:ss)	  -->
+			<!-- ================================================================== -->
+
+			<xsl:template mode="sensorML" match="gml:TimeInstant[gml:timePosition]" priority="2">
+				<xsl:param name="schema"/>
+				<xsl:param name="edit"/>
+
+				<xsl:for-each select="gml:beginPosition|gml:endPosition|gml:timePosition">
+				<xsl:choose>
+					<xsl:when test="$edit=true()">
+						<xsl:apply-templates mode="simpleElement" select=".">
+							<xsl:with-param name="schema"  select="$schema"/>
+							<xsl:with-param name="edit"   select="$edit"/>
+							<xsl:with-param name="text">
+								<xsl:variable name="ref" select="geonet:element/@ref"/>
+
+					<xsl:variable name="format">
+						<xsl:text>%Y-%m-%d</xsl:text>
+					</xsl:variable>
+
+								<xsl:call-template name="calendar">
+						<xsl:with-param name="ref" select="$ref"/>
+						<xsl:with-param name="date" select="text()"/>
+						<xsl:with-param name="format" select="$format"/>
+					</xsl:call-template>
+
+							</xsl:with-param>
+						</xsl:apply-templates>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:apply-templates mode="simpleElement" select=".">
+							<xsl:with-param name="schema"  select="$schema"/>
+							<xsl:with-param name="text">
+								<xsl:value-of select="text()"/>
+							</xsl:with-param>
+						</xsl:apply-templates>
+					</xsl:otherwise>
+				</xsl:choose>
+				</xsl:for-each>
+			</xsl:template>
+
+			<!-- ================================================================= -->
+			<!-- === sensorML CHOICE_ELEMENT handling === -->
+			<!-- ================================================================= -->
+
+			<xsl:template mode="sensorML" match="*[contains(name(),'CHOICE_ELEMENT')]|*[contains(name(),'GROUP_ELEMENT')]|*[contains(name(),'SEQUENCE_ELEMENT')]|sml:member|sml:Term|sml:KeywordList|sml:ClassifierList|swe:Text" priority="2">
+				<xsl:param name="schema"/>
+				<xsl:param name="edit"/>
+				<xsl:param name="contact"/>
+			
+				<xsl:variable name="nongeonet" select="*[not(starts-with(string(name(.)),'geonet'))]"/>
+				<xsl:choose>
+					<xsl:when test="$nongeonet">
+						<xsl:for-each select="*[not(starts-with(name(.),'geonet'))]">
+							<xsl:apply-templates mode="elementEP" select=".">
+								<xsl:with-param name="schema"  select="$schema"/>
+								<xsl:with-param name="edit"   select="$edit"/>
+								<xsl:with-param name="contact"   select="$contact"/>
+							</xsl:apply-templates>
+						</xsl:for-each>
+					</xsl:when>
+					<xsl:otherwise>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:template>
+
+			<!-- Avoid boxing of these elements -->
+			<xsl:template mode="elementEP" match="sml:keywords|swe:Vector">
+				<xsl:param name="schema"/>
+					<xsl:param name="edit"/>
+				<xsl:param name="contact"/>
+
+					<xsl:apply-templates mode="elementEP" select="*">
+						<xsl:with-param name="schema" select="$schema"/>
+						<xsl:with-param name="edit" select="$edit"/>
+						<xsl:with-param name="contact" select="$contact"/>
+				</xsl:apply-templates>
+					
+			</xsl:template>
+
+			<!-- ================================================================= -->
+			<!-- === sensorML brief formatting === -->
+			<!-- ================================================================= -->
+
+			<xsl:template name="sensorMLBrief">
+				<xsl:variable name="id" select="geonet:info/id"/>
+					
+				<xsl:variable name="title" select="sml:member/sml:System/sml:identification/sml:IdentifierList/sml:identifier[@name='siteFullName']/sml:Term/sml:value" />
+				<xsl:variable name="abstract" select="sml:member/sml:System/gml:description" />
+
+				<metadata>
+					<title><xsl:value-of select="$title"/></title>
+					<abstract><xsl:value-of select="$abstract"/></abstract>
+					
+					<xsl:for-each select="sml:member/sml:System/sml:documentation/sml:DocumentList/sml:member[@name='siteOnlineResource']">
+						<xsl:if test="sml:Document/sml:onlineResource/@xlink:href != ''">
+							<link type="download">
+								<xsl:attribute name="title" select="sml:Document/gml:description"/>
+								<xsl:attribute name="href" select="sml:Document/sml:onlineResource/@xlink:href"/>
+							</link>
+						</xsl:if>
+					</xsl:for-each>
+					
+					<xsl:for-each select="sml:member/sml:System/sml:keywords/sml:KeywordList/sml:keyword[text()]">
+						<keyword><xsl:value-of select="."/></keyword>
+					</xsl:for-each>
+
+					
+					<xsl:for-each select="sml:member/sml:System/sml:capabilities/swe:DataRecord/swe:field[@name='siteStatus']/swe:Text/swe:value">
+						<status><xsl:value-of select="."/></status>
+					</xsl:for-each>
+
+					<xsl:for-each select="sml:member/sml:System/sml:classification/sml:ClassifierList/sml:classifier[@name='siteType']/sml:Term/sml:value">
+						<category><xsl:value-of select="."/></category>
+					</xsl:for-each>
+
+					<xsl:for-each select="sml:member/sml:System/sml:inputs/sml:InputList/sml:input">
+						<observedphenomenum><xsl:value-of select="@name"/></observedphenomenum>
+					</xsl:for-each>
+
+					<xsl:for-each select="sml:member/sml:System/sml:documentation/sml:DocumentList/sml:member[@name='relatedDataset-GeoNetworkUUID']">
+						<xsl:if test="normalize-space(sml:Document/sml:onlineResource/@xlink:href)!=''">
+							<dataset><xsl:value-of select="concat($url,'/',sml:Document/sml:onlineResource/@xlink:href)"/></dataset>
+						</xsl:if>
+					</xsl:for-each>
+
+
+					 <xsl:for-each select="sml:member/sml:System/sml:documentation/sml:DocumentList/sml:member[@name='thumbnail']/sml:Document">
+							<xsl:variable name="fileName"  select="sml:onlineResource/@xlink:href"/>
+										<xsl:if test="$fileName != ''">
+												<xsl:choose>
+														<xsl:when test="contains($fileName ,'://')">
+																<image type="unknown"><xsl:value-of select="$fileName"/></image>
+														</xsl:when>
+														<xsl:otherwise>
+																<image type="thumbnail">
+																		<xsl:value-of select="concat(/root/gui/locService,'/resources.get?id=',$id,'&amp;fname=',$fileName,'&amp;access=public')"/>
+																</image>
+														</xsl:otherwise>
+												</xsl:choose>
+										</xsl:if>
+								</xsl:for-each>
+
+					<xsl:copy-of select="geonet:info"/>
+				</metadata>
+			</xsl:template>	
+			
+			<!-- =============================================================== -->
+			<!-- utilities -->
+			<!-- =============================================================== -->
+			
+			<xsl:template mode="sensorMLIsEmpty" match="*|@*">
+				<xsl:choose>
+					<!-- normal element -->
+					<xsl:when test="*">
+						<xsl:apply-templates mode="sensorMLIsEmpty"/>
+					</xsl:when>
+					<!-- text element -->
+					<xsl:when test="string-length(.)!=0">txt</xsl:when>
+					<!-- empty element -->
+					<xsl:otherwise>
+						<!-- codelist? -->
+						<xsl:if test="@codeList">
+							<xsl:if test="@codeListValue!=''">cdl</xsl:if>
+						</xsl:if>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:template>
+
+			<!-- ==================================================================== -->
+
+			<xsl:template mode="simpleElementTextArea" match="*">
+				<xsl:param name="schema"/>
+				<xsl:param name="edit"   select="false()"/>
+				<xsl:param name="rows" select="'10'" />
+
+				<xsl:param name="title">
+					<xsl:call-template name="getTitle">
+						<xsl:with-param name="name"   select="name(.)"/>
+						<xsl:with-param name="schema" select="$schema"/>
+					</xsl:call-template>
+				</xsl:param>
+				<xsl:param name="tooltip">
+					<xsl:call-template name="getTooltipTitle-sensorML">
+						<xsl:with-param name="name"   select="name(.)"/>
+						<xsl:with-param name="schema" select="$schema"/>
+					</xsl:call-template>
+				</xsl:param>
+
+				<xsl:param name="text">
+					<xsl:call-template name="getElementText">
+						<xsl:with-param name="schema" select="$schema"/>
+						<xsl:with-param name="edit"   select="$edit"/>
+						<xsl:with-param name="tooltip"   select="$tooltip"/>
+						<xsl:with-param name="rows" select="$rows"/>
+					</xsl:call-template>
+				</xsl:param>
+				<xsl:param name="helpLink">
+					<xsl:call-template name="getHelpLink">
+						<xsl:with-param name="name"   select="name(.)"/>
+						<xsl:with-param name="schema" select="$schema"/>
+					</xsl:call-template>
+				</xsl:param>
+				
+				<xsl:choose>
+					<xsl:when test="$edit=true()">
+						<xsl:call-template name="editSimpleElement">
+							<xsl:with-param name="schema"   select="$schema"/>
+							<xsl:with-param name="title"    select="$title"/>
+							<xsl:with-param name="tooltip"  select="$tooltip"/>
+							<xsl:with-param name="text"     select="$text"/>
+							<xsl:with-param name="helpLink" select="$helpLink"/>					
+						</xsl:call-template>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:call-template name="showSimpleElement">
+							<xsl:with-param name="schema"   select="$schema"/>
+							<xsl:with-param name="title"    select="$title"/>
+							<xsl:with-param name="tooltip"  select="$tooltip"/>
+							<xsl:with-param name="text"     select="$text"/>
+							<xsl:with-param name="helpLink" select="$helpLink"/>
+						</xsl:call-template>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:template>
+
+	<!-- ==================================================================== -->
 
 	<!-- Display the extent widget composed of
-	* 4 input text fields with bounds coordinates
-	* a coordinate system switcher. Coordinates are stored in WGS84 but could be displayed 
-	or editied in antother projection. 
-	* copied (and renamed) from geoBoxGUI in metadata.xsl - that one only seems to works for iso19139)
-	-->
+			* 4 input text fields with bounds coordinates
+			* a coordinate system switcher. Coordinates are stored in WGS84 but could be displayed or edited in antother projection. 
+			* copied (and renamed) from geoBoxGUI in metadata.xsl - that one only seems to works for iso19139)
+			-->
 	<xsl:template name="geoBoxGUISWE">
-	<xsl:param name="schema"/>
-	<xsl:param name="edit"/>
-	<xsl:param name="nEl"/>
-	<xsl:param name="nId"/>
-	<xsl:param name="nValue"/>
-	<xsl:param name="sEl"/>
-	<xsl:param name="sId"/>
-	<xsl:param name="sValue"/>
-	<xsl:param name="wEl"/>
-	<xsl:param name="wId"/>
-	<xsl:param name="wValue"/>
-	<xsl:param name="eEl"/>
-	<xsl:param name="eId"/>
-	<xsl:param name="eValue"/>
-	<xsl:param name="descId"/>
-	<xsl:param name="id"/>
+			<xsl:param name="schema"/>
+			<xsl:param name="edit"/>
+			<xsl:param name="nEl"/>
+			<xsl:param name="nId"/>
+			<xsl:param name="sEl"/>
+			<xsl:param name="sId"/>
+			<xsl:param name="wEl"/>
+			<xsl:param name="wId"/>
+			<xsl:param name="eEl"/>
+			<xsl:param name="eId"/>
+			<xsl:param name="descId"/>
+			<xsl:param name="id"/>
 
 
-	<xsl:variable name="eltRef">
-	  <!--<xsl:choose>
-	    <xsl:when test="$edit=true()">
-	      <xsl:value-of select="$id"/>
-	    </xsl:when>
-	    <xsl:otherwise>-->
-	      <xsl:value-of select="generate-id(.)"/>
-	    <!--</xsl:otherwise>
-	  </xsl:choose>-->
-	</xsl:variable>
+			<xsl:variable name="eltRef" select="generate-id(.)"/>
 
-	    <tr>
-	      <td colspan="3">
-	        <!-- Loop on all projections defined in config-gui.xml -->
-	        <xsl:for-each select="/root/gui/config/map/proj/crs">
-	          <!-- Set label from loc file -->
-	          <label for="{@code}_{$eltRef}">
-	            <xsl:variable name="code" select="@code"/>
-	            <xsl:choose>
-	              <xsl:when test="/root/gui/strings/*[@code=$code]">
-	                <xsl:value-of select="/root/gui/strings/*[@code=$code]"/>
-	              </xsl:when>
-	              <xsl:otherwise>
-	                <xsl:value-of select="@code"/>
-	              </xsl:otherwise>
-	            </xsl:choose>
-	            <input id="{@code}_{$eltRef}" class="proj" type="radio" name="proj_{$eltRef}"
-	              value="{@code}">
-	              <xsl:if test="@default='1'">
-	                <xsl:attribute name="checked">checked</xsl:attribute>
-	              </xsl:if>
-	            </input>
-	          </label>
-	        </xsl:for-each>
-
-	      </td>
-	    </tr>
-
-	      <tr>
-	        <td colspan="3" align="center">
-                <input type="hidden" id="{concat('_',$nId)}" name="{concat('_',$nId)}" value="{$nEl/text()}"/>
-			  <xsl:choose>
-	              <xsl:when test="$edit">
-                      <xsl:variable name="tooltip-north">
-                          <xsl:call-template name="getTooltipTitle-sensorML">
-                              <xsl:with-param name="name"   select="'swe:coordinate'"/>
-                              <xsl:with-param name="schema" select="$schema"/>
-                              <xsl:with-param name="id" select="concat('n_', name(../../../../..))"/>
-                          </xsl:call-template>
-                      </xsl:variable>
-                      <xsl:variable name="title-north">
-                          <xsl:call-template name="getTitle-sensorML">
-                              <xsl:with-param name="name"   select="'swe:coordinate'"/>
-                              <xsl:with-param name="schema" select="$schema"/>
-                              <xsl:with-param name="id" select="concat('n_', name(../../../../..))"/>
-                          </xsl:call-template>
-                      </xsl:variable>
-					<label for="{$nId}" title="{$tooltip-north}"><xsl:value-of select="$title-north"/></label>
-	                <input type="text" class="md" title="{$tooltip-north}" id="{$nId}" value="{$nEl/text()}"/>
-	              </xsl:when>
-	              <xsl:otherwise>
-	                <xsl:value-of select="$nEl/text()"/>
-	              </xsl:otherwise>
-	            </xsl:choose>
-			  
-	        </td>
-	      </tr>
-
-	    <tr>
-
-	        <td  style="vertical-align:middle">
-              <input type="hidden" id="{concat('_',$wId)}" name="{concat('_',$wId)}"  value="{$wEl/text()}"/>
-	         <xsl:choose>
-	              <xsl:when test="$edit">
-                      <xsl:variable name="tooltip-west">
-                          <xsl:call-template name="getTooltipTitle-sensorML">
-                              <xsl:with-param name="name"   select="'swe:coordinate'"/>
-                              <xsl:with-param name="schema" select="$schema"/>
-                              <xsl:with-param name="id" select="concat('w_', name(../../../../..))"/>
-                          </xsl:call-template>
-                      </xsl:variable>
-                      <xsl:variable name="title-west">
-                          <xsl:call-template name="getTitle-sensorML">
-                              <xsl:with-param name="name"   select="'swe:coordinate'"/>
-                              <xsl:with-param name="schema" select="$schema"/>
-                              <xsl:with-param name="id" select="concat('w_', name(../../../../..))"/>
-                          </xsl:call-template>
-                      </xsl:variable>
-					<label for="{$wId}" title="{$tooltip-west}"><xsl:value-of select="$title-west"/></label><br/>
-	                <input type="text" class="md" title="{$tooltip-west}" id="{$wId}" value="{$wEl/text()}"/>
-	              </xsl:when>
-	              <xsl:otherwise>
-	                <xsl:value-of select="$wEl/text()"/>
-	              </xsl:otherwise>
-	            </xsl:choose>
-	        </td>
-
-	      <td >
-	        <xsl:variable name="wID">
-	          <xsl:choose>
-	            <xsl:when test="$edit=true()">
-	              <xsl:value-of select="$wId"/>
-	            </xsl:when>
-	            <xsl:otherwise>w<xsl:value-of select="$eltRef"/></xsl:otherwise>
-	          </xsl:choose>
-	        </xsl:variable>
-
-	        <xsl:variable name="eID">
-	          <xsl:choose>
-	            <xsl:when test="$edit=true()">
-	              <xsl:value-of select="$eId"/>
-	            </xsl:when>
-	            <xsl:otherwise>e<xsl:value-of select="$eltRef"/></xsl:otherwise>
-	          </xsl:choose>
-	        </xsl:variable>
-
-	        <xsl:variable name="nID">
-	          <xsl:choose>
-	            <xsl:when test="$edit=true()">
-	              <xsl:value-of select="$nId"/>
-	            </xsl:when>
-	            <xsl:otherwise>n<xsl:value-of select="$eltRef"/></xsl:otherwise>
-	          </xsl:choose>
-	        </xsl:variable>
-
-	        <xsl:variable name="sID">
-	          <xsl:choose>
-	            <xsl:when test="$edit=true()">
-	              <xsl:value-of select="$sId"/>
-	            </xsl:when>
-	            <xsl:otherwise>s<xsl:value-of select="$eltRef"/></xsl:otherwise>
-	          </xsl:choose>
-	        </xsl:variable>
-
-			<xsl:variable name="geom">
+			<!-- calculate some IDs that can be used for both edit and view mode -->
+			<xsl:variable name="wID">
 				<xsl:choose>
-				<xsl:when test="$wEl/text()+$eEl/text()=0">
-					<!-- default extent Canada -->
-					<!--<xsl:value-of select="concat('Polygon((', -141.00300, ' ', 41.67550,',',-52.61740,' ',41.67550,',',-52.61740,' ',83.11390,',',-141.00300,' ',83.11390,',',-141.00300,' ',41.67550, '))')"/>-->
-
+					<xsl:when test="$edit=true()">
+						<xsl:value-of select="$wId"/>
 					</xsl:when>
-				<xsl:otherwise>
-					<xsl:value-of select="concat('Polygon((', $wEl/text(), ' ', $sEl/text(),',',$eEl/text(),' ',$sEl/text(),',',$eEl/text(),' ',$nEl/text(),',',$wEl/text(),' ',$nEl/text(),',',$wEl/text(),' ',$sEl/text(), '))')"/>
-				</xsl:otherwise>
+					<xsl:otherwise>
+						<xsl:value-of select="concat('w',$eltRef)"/>
+					</xsl:otherwise>
 				</xsl:choose>
-            </xsl:variable>
-	        
-	        <xsl:call-template name="showMap">
-	          <xsl:with-param name="edit" select="$edit"/>
-	          <xsl:with-param name="mode" select="'bbox'"/>
-	          <xsl:with-param name="coords" select="$geom"/>
-	          <xsl:with-param name="watchedBbox" select="concat($wId, ',', $sId, ',', $eId, ',', $nId)"/>
-	          <xsl:with-param name="eltRef" select="$eltRef"/>
-	          <xsl:with-param name="descRef" select="$descId"/>
-			  <xsl:with-param name="width" select="'400px'"/>
-	        </xsl:call-template>
-	      </td>
-	     
-	        <td  style="vertical-align:middle">
-                <input type="hidden" id="{concat('_',$eId)}" name="{concat('_',$eId)}" value="{$eEl/text()}"/>
-	          <xsl:choose>
-	              <xsl:when test="$edit">
-                      <xsl:variable name="tooltip-east">
-                          <xsl:call-template name="getTooltipTitle-sensorML">
-                              <xsl:with-param name="name"   select="'swe:coordinate'"/>
-                              <xsl:with-param name="schema" select="$schema"/>
-                              <xsl:with-param name="id" select="concat('e_', name(../../../../..))"/>
-                          </xsl:call-template>
-                      </xsl:variable>
-                      <xsl:variable name="title-east">
-                          <xsl:call-template name="getTitle-sensorML">
-                              <xsl:with-param name="name"   select="'swe:coordinate'"/>
-                              <xsl:with-param name="schema" select="$schema"/>
-                              <xsl:with-param name="id" select="concat('e_', name(../../../../..))"/>
-                          </xsl:call-template>
-                      </xsl:variable>
-				    <label for="{$eId}" title="{$tooltip-east}"><xsl:value-of select="$title-east"/></label><br/>
-	                <input type="text" class="md" title="${$tooltip-east}"  id="{$eId}" value="{$eEl/text()}"/>
+			</xsl:variable>
 
-	              </xsl:when>
-	              <xsl:otherwise>
-	                <xsl:value-of select="$eEl/text()"/>
-	              </xsl:otherwise>
-	            </xsl:choose>
-	        </td>
-	     
-	    </tr>
-	 
-	      <tr>
-	        <td colspan="3" align="center">
-                <input type="hidden" id="{concat('_',$sId)}" name="{concat('_',$sId)}"  value="{$sEl/text()}"/>
-	          <xsl:choose>
-	              <xsl:when test="$edit">
-                      <xsl:variable name="tooltip-south">
-                          <xsl:call-template name="getTooltipTitle-sensorML">
-                              <xsl:with-param name="name"   select="'swe:coordinate'"/>
-                              <xsl:with-param name="schema" select="$schema"/>
-                              <xsl:with-param name="id" select="concat('s_', name(../../../../..))"/>
-                          </xsl:call-template>
-                      </xsl:variable>
-                      <xsl:variable name="title-south">
-                          <xsl:call-template name="getTitle-sensorML">
-                              <xsl:with-param name="name"   select="'swe:coordinate'"/>
-                              <xsl:with-param name="schema" select="$schema"/>
-                              <xsl:with-param name="id" select="concat('s_', name(../../../../..))"/>
-                          </xsl:call-template>
-                      </xsl:variable>
-					<label for="{$sId}" title="{$tooltip-south}"><xsl:value-of select="$title-south"/></label>
-	                <input type="text" class="md" title="{$tooltip-south}" id="{$sId}" value="{$sEl/text()}"/>
-	              </xsl:when>
-	              <xsl:otherwise>
-	                <xsl:value-of select="$sEl/text()"/>
-	              </xsl:otherwise>
-	            </xsl:choose>
-	        </td>
-	      </tr>
+			<xsl:variable name="eID">
+				<xsl:choose>
+					<xsl:when test="$edit=true()">
+						<xsl:value-of select="$eId"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="concat('e',$eltRef)"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:variable>
 
-	</xsl:template>
+			<xsl:variable name="nID">
+				<xsl:choose>
+					<xsl:when test="$edit=true()">
+						<xsl:value-of select="$nId"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="concat('n',$eltRef)"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:variable>
 
-	<!-- ==================================================================== -->
+			<xsl:variable name="sID">
+				<xsl:choose>
+					<xsl:when test="$edit=true()">
+						<xsl:value-of select="$sId"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="concat(s,$eltRef)"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:variable>
 
-	<xsl:template name="sensorML-relatedResources">
-		<xsl:param name="edit"/>
+					<tr>
+						<td colspan="3">
+							<!-- Loop on all projections defined in config-gui.xml -->
+							<xsl:for-each select="/root/gui/config/map/proj/crs">
+								<!-- Set label from loc file -->
+								<label for="{@code}_{$eltRef}">
+									<xsl:variable name="code" select="@code"/>
+									<xsl:choose>
+										<xsl:when test="/root/gui/strings/*[@code=$code]">
+											<xsl:value-of select="/root/gui/strings/*[@code=$code]"/>
+										</xsl:when>
+										<xsl:otherwise>
+											<xsl:value-of select="@code"/>
+										</xsl:otherwise>
+									</xsl:choose>
+									<input id="{@code}_{$eltRef}" class="proj" type="radio" name="proj_{$eltRef}"
+										value="{@code}">
+										<xsl:if test="@default='1'">
+											<xsl:attribute name="checked">checked</xsl:attribute>
+										</xsl:if>
+									</input>
+								</label>
+							</xsl:for-each>
 
-		<xsl:variable name="metadata" select="/root/sml:SensorML"/>
-		<xsl:if test="geonet:info/schema = 'sensorML'">
+						</td>
+					</tr>
 
-			<xsl:variable name="uuid" select="$metadata/geonet:info/uuid"/>
-			
-			
-			<!-- Related elements -->			
-			<xsl:variable name="relatedDatasetsForSensorMLRecords" select="/root/gui/relation/sensorMLDataset/response/*[geonet:info]"/> <!-- Usually feature catalogues -->
+						<tr>
+							<td colspan="3" align="center">
+										<input type="hidden" id="{concat('_',$nID)}" name="{concat('_',$nID)}" value="{$nEl/text()}"/>
+													<xsl:variable name="tooltip-north">
+															<xsl:call-template name="getTooltipTitle-sensorML">
+																	<xsl:with-param name="name"   select="'swe:coordinate'"/>
+																	<xsl:with-param name="schema" select="$schema"/>
+																	<xsl:with-param name="id" select="concat('n_', name(../../../../..))"/>
+															</xsl:call-template>
+													</xsl:variable>
+													<xsl:variable name="title-north">
+															<xsl:call-template name="getTitle-sensorML">
+																	<xsl:with-param name="name"   select="'swe:coordinate'"/>
+																	<xsl:with-param name="schema" select="$schema"/>
+																	<xsl:with-param name="id" select="concat('n_', name(../../../../..))"/>
+															</xsl:call-template>
+													</xsl:variable>
+							<label for="{$nID}" title="{$tooltip-north}"><xsl:value-of select="$title-north"/></label>
+								<xsl:choose>
+										<xsl:when test="$edit">
+											<input type="text" class="md" title="{$tooltip-north}" id="{$nID}" value="{$nEl/text()}"/>
+										</xsl:when>
+										<xsl:otherwise>
+											<input type="text" class="md" title="{$tooltip-north}" id="{$nID}" value="{$nEl/text()}" readonly="enabled"/>
+										</xsl:otherwise>
+									</xsl:choose>
+						
+							</td>
+						</tr>
 
+					<tr>
 
-            <!-- <xsl:variable name="relatedRecords" select="/root/gui/relation/fcats/response/*[geonet:info]"/> -->
-	
-			<xsl:if test="$relatedDatasetsForSensorMLRecords or $edit">
+							<td  style="vertical-align:middle">
+									<input type="hidden" id="{concat('_',$wID)}" name="{concat('_',$wID)}"  value="{$wEl/text()}"/>
+													<xsl:variable name="tooltip-west">
+															<xsl:call-template name="getTooltipTitle-sensorML">
+																	<xsl:with-param name="name"   select="'swe:coordinate'"/>
+																	<xsl:with-param name="schema" select="$schema"/>
+																	<xsl:with-param name="id" select="concat('w_', name(../../../../..))"/>
+															</xsl:call-template>
+													</xsl:variable>
+													<xsl:variable name="title-west">
+															<xsl:call-template name="getTitle-sensorML">
+																	<xsl:with-param name="name"   select="'swe:coordinate'"/>
+																	<xsl:with-param name="schema" select="$schema"/>
+																	<xsl:with-param name="id" select="concat('w_', name(../../../../..))"/>
+															</xsl:call-template>
+													</xsl:variable>
+							<label for="{$wID}" title="{$tooltip-west}"><xsl:value-of select="$title-west"/></label><br/>
+							 <xsl:choose>
+										<xsl:when test="$edit">
+											<input type="text" class="md" title="{$tooltip-west}" id="{$wID}" value="{$wEl/text()}"/>
+										</xsl:when>
+										<xsl:otherwise>
+											<input type="text" class="md" title="{$tooltip-west}" id="{$wID}" value="{$wEl/text()}" readonly="enabled"/>
+										</xsl:otherwise>
+									</xsl:choose>
+							</td>
 
-		        <div class="relatedElements">
-					<!-- Related datasets for sensorML -->
-					<xsl:if test="($relatedDatasetsForSensorMLRecords or $edit) and geonet:info/schema = 'sensorML'">
-							<h3><xsl:value-of select="/root/gui/strings/Relateddata"/></h3>
+						<td >
+
+					<xsl:variable name="geom" select="concat('Polygon((', $wEl/text(), ' ', $sEl/text(),',',$eEl/text(),' ',$sEl/text(),',',$eEl/text(),' ',$nEl/text(),',',$wEl/text(),' ',$nEl/text(),',',$wEl/text(),' ',$sEl/text(), '))')"/>
 							
-								<xsl:for-each select="$relatedDatasetsForSensorMLRecords">
-									<img src="{/root/gui/url}/images/database.png"  title="{/root/gui/strings/associateService}" align="absmiddle" alt="{/root/gui/strings/dataset}"/>
-								<a class="arrow" href="metadata.show?uuid={geonet:info/uuid}">
-										<xsl:call-template name="getMetadataTitle">
-											<xsl:with-param name="uuid" select="geonet:info/uuid"/>
-										</xsl:call-template>
-									</a><br/>
-								</xsl:for-each>
-							
+							<xsl:call-template name="showMap">
+								<xsl:with-param name="edit" select="$edit"/>
+								<xsl:with-param name="mode" select="'bbox'"/>
+								<xsl:with-param name="coords" select="$geom"/>
+								<xsl:with-param name="watchedBbox" select="concat($wID, ',', $sID, ',', $eID, ',', $nID)"/>
+								<xsl:with-param name="eltRef" select="$eltRef"/>
+								<xsl:with-param name="descRef" select="$descId"/>
+						<xsl:with-param name="width" select="'400px'"/>
+							</xsl:call-template>
+						</td>
+					 
+							<td  style="vertical-align:middle">
+										<input type="hidden" id="{concat('_',$eID)}" name="{concat('_',$eID)}" value="{$eEl/text()}"/>
+													<xsl:variable name="tooltip-east">
+															<xsl:call-template name="getTooltipTitle-sensorML">
+																	<xsl:with-param name="name"   select="'swe:coordinate'"/>
+																	<xsl:with-param name="schema" select="$schema"/>
+																	<xsl:with-param name="id" select="concat('e_', name(../../../../..))"/>
+															</xsl:call-template>
+													</xsl:variable>
+													<xsl:variable name="title-east">
+															<xsl:call-template name="getTitle-sensorML">
+																	<xsl:with-param name="name"   select="'swe:coordinate'"/>
+																	<xsl:with-param name="schema" select="$schema"/>
+																	<xsl:with-param name="id" select="concat('e_', name(../../../../..))"/>
+															</xsl:call-template>
+													</xsl:variable>
+								<label for="{$eID}" title="{$tooltip-east}"><xsl:value-of select="$title-east"/></label><br/>
+								<xsl:choose>
+										<xsl:when test="$edit">
+											<input type="text" class="md" title="${$tooltip-east}"  id="{$eID}" value="{$eEl/text()}"/>
+
+										</xsl:when>
+										<xsl:otherwise>
+											<input type="text" class="md" title="${$tooltip-east}"  id="{$eID}" value="{$eEl/text()}" readonly="enabled"/>
+										</xsl:otherwise>
+									</xsl:choose>
+							</td>
+					 
+					</tr>
+			 
+						<tr>
+							<td colspan="3" align="center">
+										<input type="hidden" id="{concat('_',$sID)}" name="{concat('_',$sID)}"  value="{$sEl/text()}"/>
+													<xsl:variable name="tooltip-south">
+															<xsl:call-template name="getTooltipTitle-sensorML">
+																	<xsl:with-param name="name"   select="'swe:coordinate'"/>
+																	<xsl:with-param name="schema" select="$schema"/>
+																	<xsl:with-param name="id" select="concat('s_', name(../../../../..))"/>
+															</xsl:call-template>
+													</xsl:variable>
+													<xsl:variable name="title-south">
+															<xsl:call-template name="getTitle-sensorML">
+																	<xsl:with-param name="name"   select="'swe:coordinate'"/>
+																	<xsl:with-param name="schema" select="$schema"/>
+																	<xsl:with-param name="id" select="concat('s_', name(../../../../..))"/>
+															</xsl:call-template>
+													</xsl:variable>
+							<label for="{$sID}" title="{$tooltip-south}"><xsl:value-of select="$title-south"/></label>
+								<xsl:choose>
+										<xsl:when test="$edit">
+											<input type="text" class="md" title="{$tooltip-south}" id="{$sID}" value="{$sEl/text()}"/>
+										</xsl:when>
+										<xsl:otherwise>
+											<input type="text" class="md" title="{$tooltip-south}" id="{$sID}" value="{$sEl/text()}" readonly="enabled"/>
+										</xsl:otherwise>
+									</xsl:choose>
+							</td>
+
+						</tr>
+
+			</xsl:template>
+
+			<!-- ==================================================================== -->
+
+			<xsl:template name="sensorML-relatedResources">
+				<xsl:param name="edit"/>
+
+				<xsl:variable name="metadata" select="/root/sml:SensorML"/>
+				<xsl:if test="geonet:info/schema = 'sensorML'">
+
+					<xsl:variable name="uuid" select="$metadata/geonet:info/uuid"/>
+					
+					
+					<!-- Related elements -->			
+					<xsl:variable name="relatedDatasetsForSensorMLRecords" select="/root/gui/relation/sensorMLDataset/response/*[geonet:info]"/> <!-- Usually feature catalogues -->
+
+
+								<!-- <xsl:variable name="relatedRecords" select="/root/gui/relation/fcats/response/*[geonet:info]"/> -->
+			
+					<xsl:if test="$relatedDatasetsForSensorMLRecords or $edit">
+
+								<div class="relatedElements">
+							<!-- Related datasets for sensorML -->
+							<xsl:if test="($relatedDatasetsForSensorMLRecords or $edit) and geonet:info/schema = 'sensorML'">
+									<h3><xsl:value-of select="/root/gui/strings/Relateddata"/></h3>
+									
+										<xsl:for-each select="$relatedDatasetsForSensorMLRecords">
+											<img src="{/root/gui/url}/images/database.png"  title="{/root/gui/strings/associateService}" align="absmiddle" alt="{/root/gui/strings/dataset}"/>
+										<a class="arrow" href="metadata.show?uuid={geonet:info/uuid}">
+												<xsl:call-template name="getMetadataTitle">
+													<xsl:with-param name="uuid" select="geonet:info/uuid"/>
+												</xsl:call-template>
+											</a><br/>
+										</xsl:for-each>
+									
+							</xsl:if>
+						</div>
 					</xsl:if>
-				</div>
-			</xsl:if>
 
-		</xsl:if>
+				</xsl:if>
 
-	</xsl:template>
+			</xsl:template>
 
-	<!-- =================================================================== -->
-  <!-- === Javascript used by functions in this presentation XSLT          -->
-	<!-- =================================================================== -->
+			<!-- =================================================================== -->
+			<!-- === Javascript used by functions in this presentation XSLT          -->
+			<!-- =================================================================== -->
 
-	<xsl:template name="sensorML-javascript"/>
+			<xsl:template name="sensorML-javascript"/>
 
-	<!-- ==================================================================== -->
+			<!-- ==================================================================== -->
 
-  <xsl:template mode="sensorML" match="@geonet:addedObj " priority="2" />
+			<xsl:template mode="sensorML" match="@geonet:addedObj " priority="2" />
 
-	<!-- ==================================================================== -->
-	<!-- Functions -->
-	<!-- ==================================================================== -->
+			<!-- ==================================================================== -->
+			<!-- Functions -->
+			<!-- ==================================================================== -->
 
-	<!-- return separator character used in thesaurus URI -->
-	<xsl:function name="geonet:getSeparatorChar" as="xs:string">
-		<xsl:param name="uriString"/>
-		<xsl:choose>
-			<xsl:when test="contains($uriString,'/')">
-				<xsl:value-of select="'/'"/>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:value-of select="':'"/>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:function>
+			<!-- return separator character used in thesaurus URI -->
+			<xsl:function name="geonet:getSeparatorChar" as="xs:string">
+				<xsl:param name="uriString"/>
+				<xsl:choose>
+					<xsl:when test="contains($uriString,'/')">
+						<xsl:value-of select="'/'"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="':'"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:function>
 
-	<!-- get options from Thesaurus -->
-	<xsl:function name="geonet:getOptionsFromThesaurus">
-		<xsl:param name="thesaurusName"/>
+			<!-- get options from Thesaurus -->
+			<xsl:function name="geonet:getOptionsFromThesaurus">
+				<xsl:param name="thesaurusName"/>
 
-		<xsl:variable name="theUrl" select="$thesaurusList/response/thesauri/thesaurus[key=$thesaurusName]/url"/>
-		<xsl:variable name="thesaurus" select="document($theUrl)"/>
+				<xsl:variable name="theUrl" select="$thesaurusList/response/thesauri/thesaurus[key=$thesaurusName]/url"/>
+				<xsl:variable name="thesaurus" select="document($theUrl)"/>
 
-		<xsl:for-each select="$thesaurus/rdf:RDF/skos:Concept[not(skos:narrower)]">
-			<xsl:sequence select="concat(skos:prefLabel[xml:lang='en']|skos:prefLabel,'==',@rdf:about)"/>
-		</xsl:for-each>
-	</xsl:function>
+				<xsl:for-each select="$thesaurus/rdf:RDF/skos:Concept[not(skos:narrower)]">
+					<xsl:sequence select="concat(skos:prefLabel[xml:lang='en']|skos:prefLabel,'==',@rdf:about)"/>
+				</xsl:for-each>
+			</xsl:function>
 </xsl:stylesheet>
