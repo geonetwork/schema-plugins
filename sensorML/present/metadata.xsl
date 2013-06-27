@@ -93,9 +93,9 @@
 
 		<xsl:variable name="nameText" select="normalize-space(@name)"/>
 		<xsl:variable name="nameRef" select="concat('_',geonet:element/@ref,'_name')"/>
-		<xsl:variable name="ref" select="concat('_',swe:ObservableProperty/gml:name/geonet:element/@ref)"/> 
-		<xsl:variable name="thesaurus" select="swe:ObservableProperty/gml:name/@codeSpace"/>
-		<xsl:variable name="thesaurusRef" select="concat('_',swe:ObservableProperty/gml:name/geonet:element/@ref,'_codeSpace')"/>
+		<xsl:variable name="ref" select="concat('_',swe:ObservableProperty//gml:name/geonet:element/@ref)"/> 
+		<xsl:variable name="thesaurus" select="swe:ObservableProperty//gml:name/@codeSpace"/>
+		<xsl:variable name="thesaurusRef" select="concat('_',swe:ObservableProperty//gml:name/geonet:element/@ref,'_codeSpace')"/>
 		<xsl:variable name="definition" select="swe:ObservableProperty/@definition"/>
 		<xsl:variable name="defTermRef" select="concat('_', swe:ObservableProperty/geonet:element/@ref, '_definition')"/>
 		<xsl:message>Thesaurus: <xsl:value-of select="$thesaurus"/> Key: <xsl:value-of select="$thesaurusList/response/thesauri/thesaurus[ends-with(key,$thesaurus) and $thesaurus!='']/url"/></xsl:message>
@@ -106,7 +106,7 @@
 			<xsl:with-param name="label" select="name()"/>
 			<xsl:with-param name="nameRef" select="$nameRef"/>
 			<xsl:with-param name="nameText" select="$nameText"/>
-			<xsl:with-param name="text" select="swe:ObservableProperty/gml:name"/>
+			<xsl:with-param name="text" select="swe:ObservableProperty//gml:name"/>
 			<xsl:with-param name="ref" select="$ref"/>
 			<xsl:with-param name="definition" select="$definition"/>
 			<xsl:with-param name="defTermRef" select="$defTermRef"/>
@@ -2544,11 +2544,11 @@ id="{$id}"
 								<label for="{$eID}" title="{$tooltip-east}"><xsl:value-of select="$title-east"/></label><br/>
 								<xsl:choose>
 										<xsl:when test="$edit">
-											<input type="text" class="md" title="${$tooltip-east}"  id="{$eID}" value="{$eEl/text()}"/>
+											<input type="text" class="md" title="{$tooltip-east}"  id="{$eID}" value="{$eEl/text()}"/>
 
 										</xsl:when>
 										<xsl:otherwise>
-											<input type="text" class="md" title="${$tooltip-east}"  id="{$eID}" value="{$eEl/text()}" readonly="enabled"/>
+											<input type="text" class="md" title="{$tooltip-east}"  id="{$eID}" value="{$eEl/text()}" readonly="enabled"/>
 										</xsl:otherwise>
 									</xsl:choose>
 							</td>
