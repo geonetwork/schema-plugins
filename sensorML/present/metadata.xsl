@@ -985,7 +985,7 @@
 								<xsl:variable name="ref" select="concat('_',sml:Document/sml:onlineResource/geonet:element/@ref,'_xlinkCOLONhref')"/>
 								<input type="hidden" class="md" name="{$nameAttributeRef}" id="{$nameAttributeRef}" value="siteOnlineResource"/>
 								<input type="text" class="md" title="{/root/gui/strings/searchforarecord}" size="40" name="{$ref}" id="{$ref}" value="{$value}"/>
-								<img src="{/root/gui/url}/images/find.png" alt="{/root/gui/strings/searchforarecord}" title="{/root/gui/strings/searchforarecord}." onclick="javascript:csiro.showLinkedMetadataSelectionPanelForSensorML('{$ref}', '{$nameAttributeRef}', 'relatedDataset-GeoNetworkUUID');"  /><br/>
+								<img src="{/root/gui/url}/images/find.png" alt="{/root/gui/strings/searchforarecord}" title="{/root/gui/strings/searchforarecord}." onclick="javascript:csiro.showRelatedDatasetSelectionPanel('{$ref}', '{$nameAttributeRef}', 'relatedDataset-GeoNetworkUUID');"  /><br/>
 								<!-- If available display the title -->
 								<xsl:if test="/root/gui/relation/*/response//metadata[geonet:info/uuid/text()=$value]/title!=''">
 									<xsl:value-of select="/root/gui/relation/*/response//metadata[geonet:info/uuid/text()=$value]/title"/>
