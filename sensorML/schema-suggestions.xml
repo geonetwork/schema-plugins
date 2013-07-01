@@ -7,25 +7,31 @@
 		<suggest name="sml:value"/>  <!-- element -->
 	</field>
 	
+	<field name="swe:Text">
+		<suggest name="definition"/> <!-- anyURI --> <!-- attribute -->
+		<suggest name="xlink:href"/> 
+	</field>
+
 	<field name="sml:codeSpace">  <!-- element with type from swe -->
 		<suggest name="xlink:href"/>
 	</field>
 
-	<field name="swe:Text">
-		<suggest name="definition"/> <!-- attribute -->
-		<suggest name="gml:name"/> <!-- GML element with codeSpace attribute -->
-		<suggest name="swe:value"/>
+	<field name="sml:input">
+		<suggest name="name"/> <!-- attribute -->
+		<suggest name="xlink:href"/> <!-- attribute -->          
+		<suggest name="swe:ObservableProperty"/>
 	</field>
-	
+
+	<field name="sml:output">
+		<suggest name="name"/> <!-- attribute -->
+		<suggest name="xlink:href"/> <!-- attribute -->          
+		<suggest name="swe:ObservableProperty"/>
+	</field>
+
 	<field name="swe:ObservableProperty">
 		<suggest name="definition"/> <!-- attribute -->
-		<suggest name="gml:name"/> <!-- GML element with codeSpace attribute -->
 	</field>
-	
-	<field name="gml:name">
-		<suggest name="codeSpace"/> <!-- attribute -->
-	</field>
-	
+
 	<field name="sml:classifier">
 		<suggest name="sml:Term"/>
 		<suggest name="name"/> <!-- attribute -->
@@ -51,10 +57,6 @@
 		<suggest name="name"/> <!-- attribute -->
 	</field>
 	
-	<field name="sml:input">
-		<suggest name="name"/> <!-- attribute -->
-	</field>
-
 	<field name="sml:Event">
 		<suggest name="sml:date"/>
 		<suggest name="gml:description"/>
@@ -71,6 +73,14 @@
 
 	<field name="sml:ClassifierList">
 		<suggest name="sml:classifier"/>
+	</field>
+
+	<field name="sml:inputs">
+		<suggest name="sml:InputList"/>
+	</field>
+
+	<field name="sml:InputList">
+		<suggest name="sml:input"/>
 	</field>
 
 	<field name="sml:Document">

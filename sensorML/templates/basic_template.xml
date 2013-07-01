@@ -53,9 +53,7 @@
 								<sml:capabilities>
 									<swe:DataRecord definition="urn:ogc:def:property:capabilities">
 										<swe:field name="siteStatus">
-											<swe:Text definition="">
-												<gml:name codeSpace=""></gml:name>
-											</swe:Text>
+											<swe:Text definition=""/>
 										</swe:field>
 										<swe:field name="observedBBOX">
 														<swe:Envelope definition="urn:ogc:def:property:OGC:1.0:observedBBOX">
@@ -183,10 +181,8 @@
 							</sml:position>
 						<sml:inputs>
 							<sml:InputList>
-								<sml:input name="">
-									<swe:ObservableProperty definition="">
-										<gml:name codeSpace=""></gml:name>
-									</swe:ObservableProperty>
+								<sml:input name="" xlink:href="">
+									<swe:ObservableProperty definition=""/>
 								</sml:input>
 							</sml:InputList>
 						</sml:inputs>
@@ -240,9 +236,7 @@
 												<sml:capabilities>
 													<swe:DataRecord definition="urn:ogc:def:property:capabilities">
 														<swe:field name="sensorStatus">
-															<swe:Text definition="">
-																<gml:name codeSpace=""></gml:name>
-															</swe:Text>
+															<swe:Text definition=""/>
 														</swe:field>
 														<swe:field name="observedBBOX">
 																		<swe:Envelope definition="urn:ogc:def:property:OGC:1.0:observedBBOX">
@@ -310,10 +304,8 @@
 											</sml:position>
 										<sml:inputs>
 											<sml:InputList>
-												<sml:input name="">
-													<swe:ObservableProperty definition="">
-														<gml:name codeSpace=""></gml:name>
-													</swe:ObservableProperty>
+												<sml:input name="" xlink:href="">
+													<swe:ObservableProperty definition=""/>
 												</sml:input>
 											</sml:InputList>
 										</sml:inputs>

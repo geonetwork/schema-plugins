@@ -87,15 +87,14 @@
 
 	<!-- ==================================================================== -->
 
-	<xsl:template mode="sensorML" match="sml:*[swe:ObservableProperty]">
+	<xsl:template mode="sensorML" match="sml:input[swe:ObservableProperty]|sml:output[swe:ObservableProperty]">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
-		<xsl:variable name="nameText" select="normalize-space(@name)"/>
-		<xsl:variable name="nameRef" select="concat('_',geonet:element/@ref,'_name')"/>
-		<xsl:variable name="ref" select="concat('_',swe:ObservableProperty//gml:name/geonet:element/@ref)"/> 
-		<xsl:variable name="thesaurus" select="swe:ObservableProperty//gml:name/@codeSpace"/>
-		<xsl:variable name="thesaurusRef" select="concat('_',swe:ObservableProperty//gml:name/geonet:element/@ref,'_codeSpace')"/>
+		<xsl:variable name="text" select="normalize-space(@name)"/>
+		<xsl:variable name="ref" select="concat('_',geonet:element/@ref,'_name')"/>
+		<xsl:variable name="thesaurus" select="@xlink:href"/>
+		<xsl:variable name="thesaurusRef" select="concat('_',geonet:element/@ref,'_xlinkCOLONhref')"/>
 		<xsl:variable name="definition" select="swe:ObservableProperty/@definition"/>
 		<xsl:variable name="defTermRef" select="concat('_', swe:ObservableProperty/geonet:element/@ref, '_definition')"/>
 		<xsl:message>Thesaurus: <xsl:value-of select="$thesaurus"/> Key: <xsl:value-of select="$thesaurusList/response/thesauri/thesaurus[ends-with(key,$thesaurus) and $thesaurus!='']/url"/></xsl:message>
@@ -104,9 +103,9 @@
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 			<xsl:with-param name="label" select="name()"/>
-			<xsl:with-param name="nameRef" select="$nameRef"/>
-			<xsl:with-param name="nameText" select="$nameText"/>
-			<xsl:with-param name="text" select="swe:ObservableProperty//gml:name"/>
+			<xsl:with-param name="nameRef" select="''"/>
+			<xsl:with-param name="nameText" select="''"/>
+			<xsl:with-param name="text" select="$text"/>
 			<xsl:with-param name="ref" select="$ref"/>
 			<xsl:with-param name="definition" select="$definition"/>
 			<xsl:with-param name="defTermRef" select="$defTermRef"/>
@@ -247,14 +246,16 @@
 											<img src="{/root/gui/url}/images/find.png" alt="{/root/gui/schemas/sensorML/strings/thesaurusPicker}" title="{/root/gui/schemas/sensorML/strings/thesaurusPicker}"/>
 										</a>
 									</td>
-									<td width="40%">
-										(Name: <input class="md" name="{$nameRef}" id="{$nameRef}" value="{$nameText}"/>)
-									</td>
+									<xsl:if test="normalize-space($nameRef)!=''">
+										<td width="40%">
+											(Name: <input class="md" name="{$nameRef}" id="{$nameRef}" value="{$nameText}"/>)
+										</td>
+									</xsl:if>
 								</tr>
 							</table>
 						</td>
 				    <td>
-							<!-- may not display? -->
+							<!-- may not display ever really - should be in drop down -->
 							<div id="{$thesaurusId}" style="display:none;">
 								<table width="100%">
 									<tr>
@@ -1239,7 +1240,7 @@ id="{$id}"
 	<xsl:template mode="sensorML" match="sml:IdentifierList|sml:ClassifierList|sml:InputList" priority="10">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
-	
+
 		<xsl:apply-templates mode="complexElement" select=".">
 			<xsl:with-param name="schema"  select="$schema"/>
 			<xsl:with-param name="edit"    select="$edit"/>
@@ -1251,7 +1252,7 @@ id="{$id}"
 			</xsl:with-param>
 			<xsl:with-param name="content">
 			
-				<xsl:for-each select="sml:identifier[@name!='GeoNetwork-UUID' and @name!=$ogcID]|sml:classifier|sml:input">
+				<xsl:for-each select="sml:identifier[@name!='GeoNetwork-UUID' and @name!=$ogcID]|sml:classifier|sml:input|geonet:child[string(@name='input')]">
 					<xsl:apply-templates mode="elementEP" select=".">
 						<xsl:with-param name="schema"  select="$schema"/>
 						<xsl:with-param name="edit"    select="$edit"/>
@@ -1907,7 +1908,7 @@ id="{$id}"
 
 			<!-- the following templates eat up things we don't care about -->
 
-			<xsl:template mode="sensorML" match="swe:ObservableProperty" />
+			<!-- <xsl:template mode="sensorML" match="swe:ObservableProperty" /> -->
 			
 			<xsl:template mode="sensorML" match="@definition" priority="11" />
 			
