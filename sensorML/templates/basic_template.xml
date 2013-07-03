@@ -21,7 +21,7 @@
 					              <sml:value></sml:value>
 					             </sml:Term>
 										</sml:identifier>
-										<sml:identifier name="siteName">
+										<sml:identifier name="siteShortName">
 											<sml:Term definition="">
 												<sml:codeSpace xlink:href=""/>
 												<sml:value></sml:value>
@@ -53,7 +53,9 @@
 								<sml:capabilities>
 									<swe:DataRecord definition="urn:ogc:def:property:capabilities">
 										<swe:field name="siteStatus">
-											<swe:Text definition=""/>
+											<swe:Text definition="">
+												<swe:value></swe:value>
+											</swe:Text>
 										</swe:field>
 										<swe:field name="observedBBOX">
 														<swe:Envelope definition="urn:ogc:def:property:OGC:1.0:observedBBOX">
@@ -138,7 +140,7 @@
 										<sml:member name="siteEvent">
 											<sml:Event>
 												<sml:date/>
-												<gml:description/>
+												<gml:description></gml:description>
 												<sml:classification>
 													<sml:ClassifierList>
 														<sml:classifier name="siteEventType">
@@ -236,7 +238,9 @@
 												<sml:capabilities>
 													<swe:DataRecord definition="urn:ogc:def:property:capabilities">
 														<swe:field name="sensorStatus">
-															<swe:Text definition=""/>
+															<swe:Text definition="">
+																<swe:value/>
+															</swe:Text>
 														</swe:field>
 														<swe:field name="observedBBOX">
 																		<swe:Envelope definition="urn:ogc:def:property:OGC:1.0:observedBBOX">

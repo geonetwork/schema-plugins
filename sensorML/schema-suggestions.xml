@@ -49,7 +49,7 @@
 	</field>
 	
 	<field name="sml:component">
-		<suggest name="sml:Component"/>
+		<suggest name="xlink:href"/>
 		<suggest name="name"/> <!-- attribute -->
 	</field>
 	
