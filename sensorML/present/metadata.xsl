@@ -15,6 +15,7 @@
 
 
   <xsl:include href="metadata-fop.xsl"/>
+  <xsl:include href="metadata-subtemplates.xsl"/>
 	
 	<xsl:variable name="ogcURL" select="'http://www.opengis.net/def'"/>
 	<xsl:variable name="ogcID" select="concat($ogcURL,'/identifier/OGC/uniqueID')"/>
@@ -2180,12 +2181,27 @@
 			<!-- ================================================================= -->
 
 			<xsl:template name="sensorMLBrief">
+				<metadata>
+					<xsl:choose>
+						<xsl:when test="geonet:info/isTemplate='s'">
+							<xsl:call-template name="sensorML-subtemplate"/>
+							<xsl:copy-of select="geonet:info" copy-namespaces="no"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:call-template name="sensorML-brief"/>
+						</xsl:otherwise>
+					</xsl:choose>
+				</metadata>
+			</xsl:template>
+
+			<!-- ================================================================= -->
+
+			<xsl:template name="sensorML-brief">
 				<xsl:variable name="id" select="geonet:info/id"/>
 					
 				<xsl:variable name="title" select="sml:member/sml:System/sml:identification/sml:IdentifierList/sml:identifier[@name='siteFullName']/sml:Term/sml:value" />
 				<xsl:variable name="abstract" select="sml:member/sml:System/gml:description" />
 
-				<metadata>
 					<title><xsl:value-of select="$title"/></title>
 					<abstract><xsl:value-of select="$abstract"/></abstract>
 					
@@ -2239,7 +2255,6 @@
 								</xsl:for-each>
 
 					<xsl:copy-of select="geonet:info"/>
-				</metadata>
 			</xsl:template>	
 			
 			<!-- =============================================================== -->
@@ -2607,14 +2622,24 @@
 			</xsl:template>
 
 	<!-- =================================================================== -->
+	<!-- subtemplates -->
+	<!-- =================================================================== -->
+
+	<xsl:template mode="sensorML" match="*[geonet:info/isTemplate='s']" priority="3">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+
+		<xsl:apply-templates mode="element" select=".">
+			<xsl:with-param name="schema" select="$schema"/>
+			<xsl:with-param name="edit"   select="$edit"/>
+		</xsl:apply-templates>
+	</xsl:template>
+
+	<!-- =================================================================== -->
 	<!-- === Javascript used by functions in this presentation XSLT          -->
 	<!-- =================================================================== -->
 
-			<xsl:template name="sensorML-javascript"/>
-
-	<!-- ==================================================================== -->
-
-			<xsl:template mode="sensorML" match="@geonet:addedObj " priority="2" />
+	<xsl:template name="sensorML-javascript"/>
 
 	<!-- ==================================================================== -->
 	<!-- Functions -->

@@ -5,4 +5,14 @@
 		<blankTerm>Not set</blankTerm>
 		<term>Term</term>
 		<thesaurus>Thesaurus</thesaurus>
+
+		<!-- fop strings for producing PDF -->
+		<Siteidentification>Site Identification</Siteidentification>
+		<ObservationBoundingBox>Observation Bounding Box</ObservationBoundingBox>
+		<Dataresources>Resources</Dataresources>
+		<Relateddata>Related Datasets</Relateddata>
+		<Additionalinformation>Additional Information</Additionalinformation>
+		<Metadatarecord>Metadata Record</Metadatarecord>
+		<NoSensorInformationAvailable>No Sensor Components</NoSensorInformationAvailable>
+		<Contact>Contact</Contact>
 </strings>
