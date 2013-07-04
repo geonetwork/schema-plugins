@@ -6,6 +6,11 @@
 				xmlns:xlink="http://www.w3.org/1999/xlink">
 
 			<!-- ==================================================== -->
+	<element name="referenceFrame">
+		<label>Datum</label>
+		<description>The Coordinate Reference System (CRS) that should be used to interpret the longitude and latitude, e.g. WGS 84, NAD 83.</description>
+	</element>
+			<!-- ==================================================== -->
 	<element name="sml:onlineResource" >
 		<label>Online Resource</label>
 		<description>Description of an Online Resource</description>
@@ -69,34 +74,34 @@
 		<description>A category of sensor based on function. Select a value from the drop-down list</description>
 	</element>
 			<!-- ==================================================== -->
-	<element name="swe:coordinate" id="easting_sitePosition">
+	<element name="swe:coordinate" id="easting_site">
 		<label>Longitude</label>
 		<description>The longitude of the site's position in decimal degrees (positive east)</description>
 	</element>
 			<!-- ==================================================== -->
-	<element name="swe:coordinate" id="northing_sitePosition">
+	<element name="swe:coordinate" id="northing_site">
 		<label>Latitude</label>
 		<description>The latitude of the site's position in decimal degrees (positive north)</description>
 	</element>
 			<!-- ==================================================== -->
-	<element name="swe:coordinate" id="altitude_sitePosition">
+	<element name="swe:coordinate" id="altitude_site">
 		<label>Altitude</label>
 		<description>The elevation of the site's position in metres relative to mean sea level</description>
 	</element>
 			<!-- ==================================================== -->
-  <element name="swe:coordinate" id="easting_sensorPosition">
+  <element name="swe:coordinate" id="easting_sensor">
     <label>Longitude</label>
     <description>The longitude of the sensor's position in decimal degrees (positive east)</description>
   </element>
 			<!-- ==================================================== -->
-  <element name="swe:coordinate" id="northing_sensorPosition">
+  <element name="swe:coordinate" id="northing_sensor">
     <label>Latitude</label>
-    <description>The latitude of the sensor's  position in decimal degrees (positive north)</description>
+    <description>The latitude of the sensor's position in decimal degrees (positive north)</description>
   </element>
 			<!-- ==================================================== -->
-  <element name="swe:coordinate" id="altitude_sensorPosition">
+  <element name="swe:coordinate" id="altitude_sensor">
     <label>Altitude</label>
-    <description>The elevation of the sensor's  position in metres relative to mean sea level</description>
+    <description>The elevation of the sensor's position in metres relative to mean sea level</description>
   </element>
 			<!-- ==================================================== -->
   <element name="swe:coordinate" id="n_sensor">

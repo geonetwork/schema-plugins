@@ -5,14 +5,20 @@
 		<blankTerm>Not set</blankTerm>
 		<term>Term</term>
 		<thesaurus>Thesaurus</thesaurus>
+		<thesaurusPicker>Click here to bring up the thesaurus term search/pick panel</thesaurusPicker>
+		<crsPicker>Click here to bring up the coordinate reference system (CRS) search/pick panel</crsPicker>
 
 		<!-- fop strings for producing PDF -->
-		<Siteidentification>Site Identification</Siteidentification>
-		<ObservationBoundingBox>Observation Bounding Box</ObservationBoundingBox>
-		<Dataresources>Resources</Dataresources>
-		<Relateddata>Related Datasets</Relateddata>
-		<Additionalinformation>Additional Information</Additionalinformation>
-		<Metadatarecord>Metadata Record</Metadatarecord>
-		<NoSensorInformationAvailable>No Sensor Components</NoSensorInformationAvailable>
-		<Contact>Contact</Contact>
+		<siteIdentification>Site Identification</siteIdentification>
+		<identifiers>Identifiers</identifiers>
+		<classifiers>Classifiers</classifiers>
+		<keywords>Keywords</keywords>
+		<observationBoundingBox>Observation Bounding Box</observationBoundingBox>
+		<pointLocation>Sensor Site Location</pointLocation>
+		<dataResources>Resources</dataResources>
+		<relatedData>Related Datasets</relatedData>
+		<additionalInformation>Additional Information</additionalInformation>
+		<metadataRecord>Metadata Record</metadataRecord>
+		<noSensorInformationAvailable>No Sensor Components</noSensorInformationAvailable>
+		<contact>Contact</contact>
 </strings>
