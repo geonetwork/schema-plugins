@@ -92,21 +92,123 @@
 				<xsl:with-param name="label" select="/root/gui/schemas/sensorML/strings/pointLocation"/>
 				<xsl:with-param name="block">
 
-     			<xsl:apply-templates mode="simpleElementFop"
+     			<xsl:apply-templates mode="simpleElementFop-sensorML"
       			select="sml:member/sml:System/sml:position/swe:Position/@referenceFrame">
 						<xsl:with-param name="schema" select="$schema"/>
 					</xsl:apply-templates>
 
       		<xsl:for-each	select="sml:member/sml:System/sml:position/swe:Position/swe:location/swe:Vector/swe:coordinate">
-     				<xsl:apply-templates mode="simpleElementFop"
+     				<xsl:apply-templates mode="simpleElementFop-sensorML"
       				select="swe:Quantity/swe:value">
+							<xsl:with-param name="name"   select="name()"/>
 							<xsl:with-param name="schema" select="$schema"/>
-							<xsl:with-param name="title"  select="@name"/>
+							<xsl:with-param name="id"     select="concat(@name,'_site')"/>
 						</xsl:apply-templates>
 					</xsl:for-each>
 
 				</xsl:with-param>
    		</xsl:call-template> 
+
+			<!-- observed bounding box of site -->
+			<xsl:call-template name="blockElementFop">
+				<xsl:with-param name="label" select="/root/gui/schemas/sensorML/strings/observationBoundingBox"/>
+				<xsl:with-param name="block">
+
+      		<xsl:for-each	select="sml:member/sml:System/sml:capabilities/swe:DataRecord/swe:field[@name='observedBBOX']/swe:Envelope/*/swe:Vector/swe:coordinate">
+     				<xsl:apply-templates mode="simpleElementFop-sensorML"
+      				select="swe:Quantity/swe:value">
+							<xsl:with-param name="name"   select="name()"/>
+							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="id">
+								<xsl:call-template name="bboxId">
+									<xsl:with-param name="suffix" select="'site'"/>
+								</xsl:call-template>
+							</xsl:with-param>
+
+						</xsl:apply-templates>
+					</xsl:for-each>
+
+				</xsl:with-param>
+   		</xsl:call-template> 
+
+			<!-- Event History of sensor site -->
+     	<xsl:for-each	select="sml:member/sml:System/sml:history/sml:EventList/sml:member">
+				<xsl:call-template name="blockElementFop">
+					<xsl:with-param name="label">
+						<xsl:call-template name="getTitle-sensorML">
+							<xsl:with-param name="name"   select="name()"/>
+							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="id"     select="@name"/>
+						</xsl:call-template>
+					</xsl:with-param>
+					<xsl:with-param name="block">
+						<!-- event date in sml:date -->
+     				<xsl:apply-templates mode="simpleElementFop-sensorML"
+									select="sml:Event/sml:date">
+							<xsl:with-param name="schema" select="$schema"/>
+						</xsl:apply-templates>
+
+						<!-- event description in gml:description -->
+     				<xsl:apply-templates mode="simpleElementFop-sensorML"
+									select="sml:Event/gml:description">
+							<xsl:with-param name="schema" select="$schema"/>
+						</xsl:apply-templates>
+
+						<!-- event classifiers in sml:classifier -->
+						<xsl:for-each select="sml:Event/sml:classification/sml:ClassifierList/sml:classifier">
+							<xsl:call-template name="handleTerm">
+								<xsl:with-param name="schema" select="$schema"/>
+							</xsl:call-template>
+						</xsl:for-each>
+					</xsl:with-param>
+				</xsl:call-template>
+
+				<xsl:call-template name="add-gap"/>
+			</xsl:for-each> <!-- Event History -->
+
+			<!-- Documents relating to/about site -->
+     	<xsl:for-each	select="sml:member/sml:System/sml:documentation/sml:DocumentList/sml:member">
+				<xsl:call-template name="blockElementFop">
+					<xsl:with-param name="label">
+						<xsl:call-template name="getTitle-sensorML">
+							<xsl:with-param name="name"   select="name()"/>
+							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="id"     select="@name"/>
+						</xsl:call-template>
+					</xsl:with-param>
+					<xsl:with-param name="block">
+						<!-- related document -->
+     				<xsl:apply-templates mode="simpleElementFop-sensorML"
+									select="sml:Document/sml:onlineResource/@xlink:href">
+							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="text">
+								<xsl:choose>
+									<xsl:when test="normalize-space(sml:Document/sml:onlineResource/@xlink:href)!='' and @name='relatedDataset-GeoNetworkUUID'">
+										<xsl:value-of select="concat($url,'/',sml:Document/sml:onlineResource/@xlink:href)"/>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:value-of select="sml:Document/sml:onlineResource/@xlink:href"/>
+									</xsl:otherwise>
+								</xsl:choose>
+							</xsl:with-param>
+						</xsl:apply-templates>
+
+						<!-- document description in gml:description -->
+     				<xsl:apply-templates mode="simpleElementFop-sensorML"
+									select="sml:Document/gml:description">
+							<xsl:with-param name="schema" select="$schema"/>
+						</xsl:apply-templates>
+
+						<!-- document format in sml:format -->
+     				<xsl:apply-templates mode="simpleElementFop-sensorML"
+									select="sml:Document/sml:format">
+							<xsl:with-param name="schema" select="$schema"/>
+						</xsl:apply-templates>
+					</xsl:with-param>
+				</xsl:call-template>
+
+				<xsl:call-template name="add-gap"/>
+			</xsl:for-each> <!-- Site Documents -->
 
 			<xsl:call-template name="add-gap"/>
 
@@ -123,6 +225,27 @@
 				<fo:block/>
 			</fo:table-cell>
 		</fo:table-row>
+	</xsl:template>
+
+	<!-- =================================================================== -->
+
+	<xsl:template name="bboxId">
+		<xsl:param name="suffix"/>
+
+		<xsl:choose>
+			<xsl:when test="(@name='easting' or @name='longitude') and ancestor::swe:lowerCorner">
+				<xsl:value-of select="concat('w_',$suffix)"/>
+			</xsl:when>
+			<xsl:when test="(@name='northing' or @name='latitude') and ancestor::swe:lowerCorner">
+				<xsl:value-of select="concat('s_',$suffix)"/>
+			</xsl:when>
+			<xsl:when test="(@name='easting' or @name='longitude') and ancestor::swe:upperCorner">
+				<xsl:value-of select="concat('e_',$suffix)"/>
+			</xsl:when>
+			<xsl:when test="(@name='northing' or @name='latitude') and ancestor::swe:upperCorner">
+				<xsl:value-of select="concat('n_',$suffix)"/>
+			</xsl:when>
+		</xsl:choose>
 	</xsl:template>
 
 	<!-- =================================================================== -->
@@ -153,27 +276,20 @@
 
 	<!-- template to help with putting in simpleElements from sensorML -->
   <xsl:template mode="simpleElementFop-sensorML" match="*|@*">
-		<xsl:param name="title" select="''"/>
+		<xsl:param name="name" select="name()"/>
 		<xsl:param name="schema"/>
 		<xsl:param name="id"/>
 
-		<xsl:message>Doing <xsl:value-of select="name()"/> Title: <xsl:value-of select="$title"/> ID: <xsl:value-of select="$id"/></xsl:message>
+		<xsl:message>Doing <xsl:value-of select="name()"/> ID: <xsl:value-of select="$id"/></xsl:message>
 
 		<xsl:apply-templates mode="simpleElementFop" select=".">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="title">
-				<xsl:choose>
-					<xsl:when test="normalize-space($title)=''">
-						<xsl:call-template name="getTitle-sensorML">
-				  		<xsl:with-param name="name"   select="name()"/>
-							<xsl:with-param name="schema" select="$schema"/>
-							<xsl:with-param name="id"     select="$id"/>
-						</xsl:call-template>
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:value-of select="$title"/>
-					</xsl:otherwise>
-				</xsl:choose>
+				<xsl:call-template name="getTitle-sensorML">
+			 		<xsl:with-param name="name"   select="$name"/>
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="id"     select="$id"/>
+				</xsl:call-template>
 			</xsl:with-param>
 			<xsl:with-param name="text" select="normalize-space(string())"/>
     </xsl:apply-templates>

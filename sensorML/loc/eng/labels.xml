@@ -181,7 +181,12 @@
       <!-- ==================================================== -->
 	<element name="gml:description" context="sml:Event">
 		<label>Description</label>
-		<description>Description of Event</description>
+		<description>Description of event</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="gml:description" context="sml:Document">
+		<label>Description</label>
+		<description>Description of document</description>
 	</element>
       <!-- ==================================================== -->
 	<element name="sml:identification" id="site">

@@ -14,7 +14,8 @@
 		<classifiers>Classifiers</classifiers>
 		<keywords>Keywords</keywords>
 		<observationBoundingBox>Observation Bounding Box</observationBoundingBox>
-		<pointLocation>Sensor Site Location</pointLocation>
+		<pointLocation>Site Location</pointLocation>
+		<history>History</history>
 		<dataResources>Resources</dataResources>
 		<relatedData>Related Datasets</relatedData>
 		<additionalInformation>Additional Information</additionalInformation>

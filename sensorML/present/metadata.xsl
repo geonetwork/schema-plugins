@@ -935,6 +935,20 @@
 				</xsl:call-template>
 			</xsl:with-param>
 			<xsl:with-param name="content">
+
+				<!-- display/edit name attribute which is the event name -->
+				<xsl:apply-templates mode="simpleAttribute" select="@name">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+					<xsl:with-param name="title">
+						<xsl:call-template name="getTitle-sensorML">
+							<xsl:with-param name="name"   select="'name'"/>
+							<xsl:with-param name="schema" select="$schema"/>
+							<xsl:with-param name="context"     select="'sml:Event'"/>
+						</xsl:call-template>
+					</xsl:with-param>
+				</xsl:apply-templates>
+
 				<!-- event date -->
 				<xsl:apply-templates mode="elementEP" select="sml:Event/sml:date|sml:Event/geonet:child[string(@name)='date']">
 					<xsl:with-param name="schema" select="$schema"/>
@@ -1079,9 +1093,14 @@
 								</xsl:if>
 							</xsl:when>
 							<xsl:otherwise>
-								<xsl:if test="normalize-space(sml:Document/sml:onlineResource/@xlink:href)!=''">
-									<xsl:value-of select="concat($url,'/',sml:Document/sml:onlineResource/@xlink:href)"/>
-								</xsl:if>
+								<xsl:choose>
+									<xsl:when test="normalize-space(sml:Document/sml:onlineResource/@xlink:href)!='' and $documentName='relatedDataset-GeoNetworkUUID'">
+										<xsl:value-of select="concat($url,'/',sml:Document/sml:onlineResource/@xlink:href)"/>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:value-of select="sml:Document/sml:onlineResource/@xlink:href"/>
+									</xsl:otherwise>
+								</xsl:choose>
 							</xsl:otherwise>
 						</xsl:choose>
 					</xsl:with-param>

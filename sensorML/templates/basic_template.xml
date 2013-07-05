@@ -122,8 +122,14 @@
 
 								<sml:documentation>
 									<sml:DocumentList>
-										<sml:member name="relatedDataset-GeoNetworkUUID" xlink:href="" xlink:actuate="none" xlink:show="none"/>  
-
+										<sml:member name="relatedDataset-GeoNetworkUUID">  
+											<sml:Document>
+												<gml:description></gml:description>
+												<sml:format></sml:format>
+												<sml:onlineResource 
+												xlink:type="simple" xlink:href="" xlink:show="new"/>	
+											</sml:Document>
+										</sml:member>
 										<sml:member name="siteOnlineResource">
 											<sml:Document>
 												<gml:description></gml:description>
