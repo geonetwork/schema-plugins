@@ -29,6 +29,6 @@
 	<!-- xlinks -->
 
 	<system systemId="http://www.w3.org/1999/xlink/xlinks.xsd" 
-	        uri="schema/xlink/xlinks.xsd"/>
+	        uri="schema/xlink/1.0.0/xlinks.xsd"/>
 
 </catalog>
