@@ -15,8 +15,8 @@
 
 	<xsl:template match="/">
 		<Document>
-            <Field name="_locale" string="eng" store="true" index="true"/>
-            <Field name="_docLocale" string="eng" store="true" index="true"/>
+      <Field name="_locale" string="eng" store="true" index="true"/>
+      <Field name="_docLocale" string="eng" store="true" index="true"/>
 
 			<xsl:apply-templates select="sml:SensorML" mode="metadata"/>
 		</Document>
@@ -47,14 +47,14 @@
 
 			</xsl:for-each>
 
-            <xsl:for-each select="sml:System/sml:validTime/gml:TimeInstant/gml:timePosition">
-                <Field name="createDate" string="{string(.)}" store="true" index="true" token="false"/>
-                <Field name="changeDate" string="{string(.)}" store="true" index="true" token="false"/>
-                <Field name="tempExtentBegin" string="{string(.)}" store="false" index="true"/>
-            </xsl:for-each>
+      <xsl:for-each select="sml:System/sml:validTime/gml:TimeInstant/gml:timePosition">
+          <Field name="createDate" string="{string(.)}" store="true" index="true" token="false"/>
+          <Field name="changeDate" string="{string(.)}" store="true" index="true" token="false"/>
+          <Field name="tempExtentBegin" string="{string(.)}" store="false" index="true"/>
+      </xsl:for-each>
 
-			<!-- observed phenomenum -->
-			<xsl:for-each select="sml:System/sml:inputs/sml:InputList/sml:input/swe:ObservableProperty[@definition='http://www.ec.gc.ca/data_donnees/standards/codes/1-0/observedPhenomenon']">
+			<!-- observed phenomenom -->
+			<xsl:for-each select="sml:System/sml:inputs/sml:InputList/sml:input/swe:ObservableProperty">
 				<Field name="observedPhenomenon" string="{string(../@name)}" store="true" index="true"/>
 			</xsl:for-each>
 
@@ -63,15 +63,15 @@
 				<Field name="siteStatus" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
 
-            <!-- observed bbox -->
-            <xsl:for-each select="sml:System/sml:capabilities/swe:DataRecord/swe:field[@name='observedBBOX']/swe:Envelope">
-                <xsl:apply-templates select="." mode="latLonBbox"/>
-            </xsl:for-each>
+      <!-- observed bbox -->
+      <xsl:for-each select="sml:System/sml:capabilities/swe:DataRecord/swe:field[@name='observedBBOX']/swe:Envelope">
+         <xsl:apply-templates select="." mode="latLonBbox"/>
+      </xsl:for-each>
 
-            <!-- site position -->
-            <xsl:for-each select="sml:System/sml:position[@name='sitePosition']/swe:Position">
-                <xsl:apply-templates select="." mode="latLonPosition"/>
-            </xsl:for-each>
+      <!-- site position -->
+      <xsl:for-each select="sml:System/sml:position[@name='sitePosition']/swe:Position">
+        <xsl:apply-templates select="." mode="latLonPosition"/>
+      </xsl:for-each>
 
 
             <!-- organization name -->
@@ -79,26 +79,23 @@
 				<Field name="orgName" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
 
-            <!-- related dataset-uuid (parentUuid field in index) -->
-            <xsl:for-each select="sml:System/sml:documentation/sml:DocumentList/sml:member[@name='relatedDataset-GeoNetworkUUID']">
-                <Field name="parentUuid" string="{string(@xlink:href)}" store="true" index="true" token="false"/>
-            </xsl:for-each>
+      <!-- related dataset-uuid (parentUuid field in index) -->
+      <xsl:for-each select="sml:System/sml:documentation/sml:DocumentList/sml:member[@name='relatedDataset-GeoNetworkUUID']">
+        <Field name="parentUuid" string="{string(@xlink:href)}" store="true" index="true" token="false"/>
+      </xsl:for-each>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
-
 			<xsl:for-each select="sml:System/sml:classification/sml:ClassifierList/sml:classifier[@name='siteType']/sml:Term/sml:value">
 				<Field name="type" string="{string(.)}" store="true" index="true" token="false"/>
-				<Field name="ecInformationCategory" string="{string(.)}" store="true" index="true" token="false"/>
-                <Field name="ecInformationCategorySiteMon" string="{string(.)}" store="true" index="true" token="false"/>
 			</xsl:for-each>
 
-            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-            <xsl:for-each select="sml:System/sml:history/sml:EventList/sml:member/sml:Event/sml:classification/sml:ClassifierList/sml:classifier[@name='siteEventType']/sml:Term/sml:value">
-                <Field name="ecSiteEvent" string="{string(.)}" store="true" index="true" token="false"/>
-            </xsl:for-each>
+      <xsl:for-each select="sml:System/sml:history/sml:EventList/sml:member/sml:Event/sml:classification/sml:ClassifierList/sml:classifier[@name='siteEventType']/sml:Term/sml:value">
+        <Field name="siteEvent" string="{string(.)}" store="true" index="true" token="false"/>
+      </xsl:for-each>
 
-            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+      <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 	
 			<xsl:for-each select="sml:System/gml:description">
 				<Field name="abstract" string="{string(.)}" store="true" index="true" token="true"/>
@@ -107,6 +104,7 @@
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 
 			<xsl:for-each select="sml:System">
+				<!-- ?? -->
 				<xsl:apply-templates select="gml:location/gml:Point" mode="latLon"/>
 
 				<xsl:for-each select="sml:validTime">
