@@ -390,7 +390,7 @@
 				<xsl:call-template name="getTitle-sensorML">
 					<xsl:with-param name="name"   select="name(..)"/>
 					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="id"     select="../@name"/>
+					<xsl:with-param name="context" select="name(../..)"/>
 				</xsl:call-template>
 			</xsl:with-param>
 			<xsl:with-param name="block">
@@ -579,8 +579,9 @@
 	<xsl:template mode="sensorML-fop" match="sml:keyword">
 		<xsl:param name="schema"/>
 
- 		<xsl:apply-templates mode="simpleElementFop" select=".">
+ 		<xsl:apply-templates mode="simpleElementFop-sensorML" select=".">
 			<xsl:with-param name="schema" select="$schema"/>
+			<xsl:with-param name="id" select="'siteKeyword'"/>
 		</xsl:apply-templates>
 	</xsl:template>
 
