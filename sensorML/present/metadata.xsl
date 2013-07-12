@@ -820,14 +820,15 @@
 
 		<!-- Sensor location -->
 		<xsl:call-template name="complexElementGuiWrapper">
-
+			<xsl:with-param name="schema"     select="$schema"/>
 			<xsl:with-param name="title">
 				<xsl:call-template name="getTitle-sensorML">
 					<xsl:with-param name="name"   select="'sml:location'"/>
 					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="id" select="'sensor'"/>
+					<xsl:with-param name="id"     select="'sensor'"/>
 				</xsl:call-template>
 			</xsl:with-param>
+			<xsl:with-param name="realname"   select="'sml:location_sensor'"/>
 
 			<xsl:with-param name="content">
 
@@ -845,7 +846,7 @@
 
 				<!-- BBOX --> 		
 				<xsl:call-template name="complexElementGuiWrapper">
-
+					<xsl:with-param name="schema"     select="$schema"/>
 					<xsl:with-param name="title">
 						<xsl:call-template name="getTitle-sensorML">
 							<xsl:with-param name="name"   select="'swe:field'"/>
@@ -853,7 +854,7 @@
 							<xsl:with-param name="id" select="'observedBBOX'"/>
 						</xsl:call-template>
 					</xsl:with-param>
-
+					<xsl:with-param name="realname"   select="'swe:field_observedBBOX'"/>
 					<xsl:with-param name="content">
 						
 						<xsl:for-each select="*/*/sml:capabilities/swe:DataRecord|sml:capabilities/swe:DataRecord">

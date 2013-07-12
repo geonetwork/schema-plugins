@@ -376,7 +376,7 @@
       <!-- ==================================================== -->
 	<element name="sml:location_sensor">
 		<label>Sensor Location / Centroid</label>
-		<description></description>
+		<description>The position of the sensor (not needed if the sensor is located at a site or on a platform)</description>
 	</element>	
       <!-- ==================================================== -->
 	<element name="sml:electronicMailAddress">
