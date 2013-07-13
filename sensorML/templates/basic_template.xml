@@ -63,14 +63,14 @@
 																<swe:Vector>
 																	<swe:coordinate name="easting">
 																				<swe:Quantity axisID="x">
-																					<swe:uom code="m"/>
-																					<swe:value>-0.0</swe:value>
+																					<swe:uom code="degree"/>
+																					<swe:value>-180.0</swe:value>
 																				</swe:Quantity>
 																	</swe:coordinate>
 																	<swe:coordinate name="northing">
 																				<swe:Quantity axisID="y">
-																					<swe:uom code="m"/>
-																					<swe:value>-0.0</swe:value>
+																					<swe:uom code="degree"/>
+																					<swe:value>-90.0</swe:value>
 																				</swe:Quantity>
 																	</swe:coordinate>
 																</swe:Vector>
@@ -79,14 +79,14 @@
 																<swe:Vector>
 																	<swe:coordinate name="easting">
 																				<swe:Quantity axisID="x">
-																					<swe:uom code="m"/>
-																					<swe:value>-0.0</swe:value>
+																					<swe:uom code="degree"/>
+																					<swe:value>180.0</swe:value>
 																				</swe:Quantity>
 																	</swe:coordinate>
 																	<swe:coordinate name="northing">
 																				<swe:Quantity axisID="y">
-																					<swe:uom code="m"/>
-																					<swe:value>-0.0</swe:value>
+																					<swe:uom code="degree"/>
+																					<swe:value>90.0</swe:value>
 																				</swe:Quantity>
 																	</swe:coordinate>
 																</swe:Vector>
@@ -162,18 +162,18 @@
 									</sml:EventList>
 								</sml:history>
 							<sml:position name="sitePosition">
-								<swe:Position referenceFrame="WGS 84 -  World Geodetic System 1984">
+								<swe:Position referenceFrame="">
 									<swe:location>
 										<swe:Vector>
 											<swe:coordinate name="easting">
 														<swe:Quantity axisID="x">
-															<swe:uom code="m"/>
+															<swe:uom code="degree"/>
 															<swe:value>-0.0</swe:value>
 														</swe:Quantity>
 											</swe:coordinate>
 											<swe:coordinate name="northing">
 														<swe:Quantity axisID="y">
-															<swe:uom code="m"/>
+															<swe:uom code="degree"/>
 															<swe:value>-0.0</swe:value>
 														</swe:Quantity>
 											</swe:coordinate>
@@ -254,14 +254,14 @@
 																				<swe:Vector>
 																					<swe:coordinate name="easting">
 																								<swe:Quantity axisID="x">
-																									<swe:uom code="m"/>
-																									<swe:value>-0.0</swe:value>
+																									<swe:uom code="degree"/>
+																									<swe:value>-180.0</swe:value>
 																								</swe:Quantity>
 																					</swe:coordinate>
 																					<swe:coordinate name="northing">
 																								<swe:Quantity axisID="y">
-																									<swe:uom code="m"/>
-																									<swe:value>-0.0</swe:value>
+																									<swe:uom code="degree"/>
+																									<swe:value>-90.0</swe:value>
 																								</swe:Quantity>
 																					</swe:coordinate>
 																				</swe:Vector>
@@ -270,14 +270,14 @@
 																				<swe:Vector>
 																					<swe:coordinate name="easting">
 																								<swe:Quantity axisID="x">
-																									<swe:uom code="m"/>
-																									<swe:value>-0.0</swe:value>
+																									<swe:uom code="degree"/>
+																									<swe:value>180.0</swe:value>
 																								</swe:Quantity>
 																					</swe:coordinate>
 																					<swe:coordinate name="northing">
 																								<swe:Quantity axisID="y">
-																									<swe:uom code="m"/>
-																									<swe:value>-0.0</swe:value>
+																									<swe:uom code="degree"/>
+																									<swe:value>90.0</swe:value>
 																								</swe:Quantity>
 																					</swe:coordinate>
 																				</swe:Vector>
@@ -292,13 +292,13 @@
 														<swe:Vector>
 															<swe:coordinate name="easting">
 																		<swe:Quantity axisID="x">
-																			<swe:uom code="m"/>
+																			<swe:uom code="degree"/>
 																			<swe:value>-0.0</swe:value>
 																		</swe:Quantity>
 															</swe:coordinate>
 															<swe:coordinate name="northing">
 																		<swe:Quantity axisID="y">
-																			<swe:uom code="m"/>
+																			<swe:uom code="degree"/>
 																			<swe:value>-0.0</swe:value>
 																		</swe:Quantity>
 															</swe:coordinate>

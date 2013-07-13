@@ -1377,97 +1377,63 @@
 		<xsl:param name="edit"/>
 
  
-				<!-- swe:coordinate can both contain easting or longitude -->	
-				<xsl:variable name="nEl">
-				<xsl:choose>
-                  <xsl:when test=".//swe:Envelope/swe:upperCorner/swe:Vector/swe:coordinate[@name='latitude']">
-					<xsl:value-of select=".//swe:Envelope/swe:upperCorner/swe:Vector/swe:coordinate[@name='latitude']"/>
-				  </xsl:when>
-                  <xsl:otherwise>
-					<xsl:value-of select=".//swe:Envelope/swe:upperCorner/swe:Vector/swe:coordinate[@name='northing']"/>
-				  </xsl:otherwise>
-                </xsl:choose>
-				</xsl:variable>
-				
-				<xsl:variable name="sEl">
-				<xsl:choose>
-                  <xsl:when test=".//swe:Envelope/swe:lowerCorner/swe:Vector/swe:coordinate[@name='latitude']">
-					<xsl:value-of select=".//swe:Envelope/swe:lowerCorner/swe:Vector/swe:coordinate[@name='latitude']"/>
-				  </xsl:when>
-                  <xsl:otherwise>
-					<xsl:value-of select=".//swe:Envelope/swe:lowerCorner/swe:Vector/swe:coordinate[@name='northing']"/>
-				  </xsl:otherwise>
-                </xsl:choose>
-				</xsl:variable>
-				
-				<xsl:variable name="wEl">
-				<xsl:choose>
-                  <xsl:when test=".//swe:Envelope/swe:lowerCorner/swe:Vector/swe:coordinate[@name='longitude']">
-					<xsl:value-of select=".//swe:Envelope/swe:lowerCorner/swe:Vector/swe:coordinate[@name='longitude']"/>
-				  </xsl:when>
-                  <xsl:otherwise>
-					<xsl:value-of select=".//swe:Envelope/swe:lowerCorner/swe:Vector/swe:coordinate[@name='easting']"/>
-				  </xsl:otherwise>
-                </xsl:choose>
-				</xsl:variable>
-				
-				<xsl:variable name="eEl">
-				<xsl:choose>
-                  <xsl:when test=".//swe:Envelope/swe:upperCorner/swe:Vector/swe:coordinate[@name='longitude']">
-					<xsl:value-of select=".//swe:Envelope/swe:upperCorner/swe:Vector/swe:coordinate[@name='longitude']"/>
-				  </xsl:when>
-                  <xsl:otherwise>
-					<xsl:value-of select=".//swe:Envelope/swe:upperCorner/swe:Vector/swe:coordinate[@name='easting']"/>
-				  </xsl:otherwise>
-                </xsl:choose>
-				</xsl:variable>
+		<!-- swe:coordinate can be named northing or latitude -->
+		<xsl:variable name="nEl" select=".//swe:Envelope/swe:upperCorner/swe:Vector/swe:coordinate[@name='latitude' or @name='northing']//swe:Quantity/swe:value"/>
+		<xsl:variable name="sEl" select=".//swe:Envelope/swe:lowerCorner/swe:Vector/swe:coordinate[@name='latitude' or @name='northing']//swe:Quantity/swe:value"/>
+    <xsl:variable name="sId" select=".//swe:Envelope/swe:lowerCorner/swe:Vector/swe:coordinate[@name='latitude' or @name='northing']//swe:Quantity/swe:value/geonet:element/@ref"/>
+    <xsl:variable name="nId" select=".//swe:Envelope/swe:upperCorner/swe:Vector/swe:coordinate[@name='latitude' or @name='northing']//swe:Quantity/swe:value/geonet:element/@ref"/>
 
-  
-  <!-- regions combobox -->
-        <xsl:variable name="places">
-          <!-- <xsl:if test="$edit=true() and /root/gui/regions/record">
-            <xsl:variable name="ref" select="geonet:element/@ref"/>
-            <xsl:variable name="keyword" select="string(.)"/>
+		<!-- swe:coordinate can be named easting or longitude -->
+		<xsl:variable name="wEl" select=".//swe:Envelope/swe:lowerCorner/swe:Vector/swe:coordinate[@name='longitude' or @name='easting']//swe:Quantity/swe:value"/>
+		<xsl:variable name="eEl" select=".//swe:Envelope/swe:upperCorner/swe:Vector/swe:coordinate[@name='longitude' or @name='easting']//swe:Quantity/swe:value"/>
+    <xsl:variable name="eId" select=".//swe:Envelope/swe:upperCorner/swe:Vector/swe:coordinate[@name='longitude' or @name='easting']//swe:Quantity/swe:value/geonet:element/@ref"/>
+    <xsl:variable name="wId" select=".//swe:Envelope/swe:lowerCorner/swe:Vector/swe:coordinate[@name='longitude' or @name='easting']//swe:Quantity/swe:value/geonet:element/@ref"/>
+
+		<!-- regions combobox -->
+    <xsl:variable name="places">
+      <xsl:if test="$edit=true() and /root/gui/regions/record">
             
-            <xsl:variable name="selection" select="concat(gmd:westBoundLongitude/gco:Decimal,';',gmd:eastBoundLongitude/gco:Decimal,';',gmd:southBoundLatitude/gco:Decimal,';',gmd:northBoundLatitude/gco:Decimal)"/>
-            <xsl:variable name="lang" select="/root/gui/language"/>
-            
-            <select name="place" size="1" onChange="javascript:setRegion('{gmd:westBoundLongitude/gco:Decimal/geonet:element/@ref}', '{gmd:eastBoundLongitude/gco:Decimal/geonet:element/@ref}', '{gmd:southBoundLatitude/gco:Decimal/geonet:element/@ref}', '{gmd:northBoundLatitude/gco:Decimal/geonet:element/@ref}', this.options[this.selectedIndex], {geonet:element/@ref}, '{../../gmd:description/gco:CharacterString/geonet:element/@ref}')" class="md">
-              <option value=""/>
-              <xsl:for-each select="/root/gui/regions/record">
-                <xsl:sort select="label/child::*[name() = $lang]" order="ascending"/>
+        <xsl:variable name="selection" select="concat($wEl,';',$eEl,';',$sEl,';',$nEl)"/>
+        <xsl:variable name="lang" select="/root/gui/language"/>
+							
+        <select name="place" size="1" onChange="javascript:setRegion('{$wId}', '{$eId}', '{$sId}', '{$nId}', this.options[this.selectedIndex], {geonet:element/@ref}, '')" class="md">
+          <option value=""/>
+          <xsl:for-each select="/root/gui/regions/record">
+           <xsl:sort select="label/child::*[name() = $lang]" order="ascending"/>
                 
-                <xsl:variable name="value" select="concat(west,',',east,',',south,',',north)"/>
-                <option value="{$value}">
-                  <xsl:if test="$value=$selection">
-                    <xsl:attribute name="selected"/>
-                  </xsl:if>
-                  <xsl:value-of select="label/child::*[name() = $lang]"/>
-                </option>
-              </xsl:for-each>
-            </select>
-          </xsl:if> -->
-        </xsl:variable>
-				<xsl:call-template name="geoBoxGUISWE">
-          <xsl:with-param name="schema" select="$schema"/>
-          <xsl:with-param name="edit"   select="$edit"/>
-          <xsl:with-param name="id"   select="'observedBBOX'"/>
-          <xsl:with-param name="sEl" select="$sEl"/>
-          <xsl:with-param name="nEl" select="$nEl"/>
-          <xsl:with-param name="eEl" select="$eEl"/>
-          <xsl:with-param name="wEl" select="$wEl"/>
-          <xsl:with-param name="sId" select=".//swe:Envelope/swe:lowerCorner/swe:Vector/swe:coordinate[@name='northing']//swe:Quantity/swe:value/geonet:element/@ref"/>
-          <xsl:with-param name="nId" select=".//swe:Envelope/swe:upperCorner/swe:Vector/swe:coordinate[@name='northing']//swe:Quantity/swe:value/geonet:element/@ref"/>
-          <xsl:with-param name="eId" select=".//swe:Envelope/swe:upperCorner/swe:Vector/swe:coordinate[@name='easting']//swe:Quantity/swe:value/geonet:element/@ref"/>
-          <xsl:with-param name="wId" select=".//swe:Envelope/swe:lowerCorner/swe:Vector/swe:coordinate[@name='easting']//swe:Quantity/swe:value/geonet:element/@ref"/>
-          <xsl:with-param name="descId" select="'observedBBOX'"/>
-          <xsl:with-param name="places" select="$places"/>
-				</xsl:call-template>
-			</xsl:template>
+           <xsl:variable name="value" select="concat(west,',',east,',',south,',',north)"/>
+           <option value="{$value}">
+             <xsl:if test="$value=$selection">
+              <xsl:attribute name="selected"/>
+             </xsl:if>
+             <xsl:value-of select="label/child::*[name() = $lang]"/>
+           </option>
+          </xsl:for-each>
+        </select>
+      </xsl:if>
+    </xsl:variable>
+
+		<!-- show geo box -->
+		<xsl:call-template name="geoBoxGUISWE">
+      <xsl:with-param name="schema" select="$schema"/>
+      <xsl:with-param name="edit"   select="$edit"/>
+      <xsl:with-param name="id"   select="geonet:element/@ref"/>
+      <xsl:with-param name="sEl" select="$sEl"/>
+      <xsl:with-param name="nEl" select="$nEl"/>
+      <xsl:with-param name="eEl" select="$eEl"/>
+      <xsl:with-param name="wEl" select="$wEl"/>
+      <xsl:with-param name="sId" select="$sId"/>
+      <xsl:with-param name="nId" select="$nId"/>
+      <xsl:with-param name="eId" select="$eId"/>
+      <xsl:with-param name="wId" select="$wId"/>
+      <xsl:with-param name="descId" select="''"/>
+      <xsl:with-param name="places" select="$places"/>
+		</xsl:call-template>
+	</xsl:template>
 
 	<!-- ==================================================================== -->
 
-	<xsl:template mode="sensorML" match="swe:coordinate[(@name='easting' or @name='northing' or @name='altitude') and ancestor::swe:location]" priority="20">
+	<xsl:template mode="sensorML" match="swe:coordinate[(@name='easting' or @name='northing' or @name='altitude' or @name='latitude' or @name='longitude') and ancestor::swe:location]" priority="20">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
@@ -1482,135 +1448,61 @@
 			</xsl:choose>
 		</xsl:variable>
 
-		<xsl:apply-templates mode="simpleElement" select="*/*/swe:Quantity/swe:value|swe:Quantity/swe:value">
-			<xsl:with-param name="schema"  select="$schema"/>
-			<xsl:with-param name="edit"    select="$edit"/>
-			<xsl:with-param name="helpLink">
-				<xsl:call-template name="getHelpLink-sensorML">
-					<xsl:with-param name="name"   select="name(.)"/>
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="id" select="concat(@name,'_',$context)"/>
-				</xsl:call-template>
-			</xsl:with-param>
-			<xsl:with-param name="title">
-				<xsl:call-template name="getTitle-sensorML">
-					<xsl:with-param name="name"   select="name(.)"/>
-					<xsl:with-param name="schema" select="$schema"/>
-					<xsl:with-param name="id" select="concat(@name,'_',$context)"/>
-				</xsl:call-template>
-						
-				<!-- Don't display as mandatory in sensor section -->
-				<xsl:if test="$edit and $context!='sensor'">
-					<sup><font size="-1" color="#FF0000">&#xA0;*</font></sup> 
-				</xsl:if>
-			</xsl:with-param>
+		<xsl:variable name="coordName"   select="name()"/>
+		<xsl:variable name="coordNameId" select="concat(@name,'_',$context)"/>
 
-		</xsl:apply-templates>
+		<xsl:for-each select="*/*/swe:Quantity|swe:Quantity">
+			<xsl:apply-templates mode="simpleElement" select="swe:value">
+				<xsl:with-param name="schema"  select="$schema"/>
+				<xsl:with-param name="edit"    select="$edit"/>
+				<xsl:with-param name="helpLink">
+					<xsl:call-template name="getHelpLink-sensorML">
+						<xsl:with-param name="name"   select="$coordName"/>
+						<xsl:with-param name="schema" select="$schema"/>
+						<xsl:with-param name="id"     select="$coordNameId"/>
+					</xsl:call-template>
+				</xsl:with-param>
+				<xsl:with-param name="title">
+					<xsl:call-template name="getTitle-sensorML">
+						<xsl:with-param name="name"   select="$coordName"/>
+						<xsl:with-param name="schema" select="$schema"/>
+						<xsl:with-param name="id"     select="$coordNameId"/>
+					</xsl:call-template>
+							
+					<!-- Don't display as mandatory in sensor section -->
+					<xsl:if test="$edit and $context!='sensor'">
+						<sup><font size="-1" color="#FF0000">&#xA0;*</font></sup> 
+					</xsl:if>
+				</xsl:with-param>
+				<xsl:with-param name="text">
+					<table width="100%">
+						<tr>
+							<td width="50%">
+								<xsl:choose>
+									<xsl:when test="$edit">
+								<input name="{concat('_',swe:value/geonet:element/@ref)}" value="{string(swe:value)}" columns="20" class="md"/>
+									</xsl:when>
+									<xsl:otherwise>
+								<xsl:value-of select="string(swe:value)"/>
+									</xsl:otherwise>
+								</xsl:choose>
+							</td>
+							<td width="50%">
+								<xsl:choose>
+									<xsl:when test="$edit">
+								<xsl:value-of select="concat(/root/gui/schemas/sensorML/strings/units,': ')"/><input name="{concat('_',swe:uom/geonet:element/@ref,'_code')}" value="{string(swe:uom/@code)}" columns="20" class="md"/>
+									</xsl:when>
+									<xsl:otherwise>
+								<xsl:value-of select="concat(/root/gui/schemas/sensorML/strings/units,': ',normalize-space(swe:uom/@code))"/>
+									</xsl:otherwise>
+								</xsl:choose>
+							</td>
+						</tr>
+					</table>
+				</xsl:with-param>
+			</xsl:apply-templates>
+		</xsl:for-each>
 	</xsl:template>
-
-	<!-- ==================================================================== -->
-
-			<xsl:template mode="sensorML" match="swe:lowerCorner//swe:coordinate[@name='easting']" priority="10">
-				<xsl:param name="schema"/>
-				<xsl:param name="edit"/>
-
-				<xsl:apply-templates mode="simpleElement" select=".//swe:Quantity/swe:value">
-					<xsl:with-param name="schema"  select="$schema"/>
-					<xsl:with-param name="edit"    select="$edit"/>
-					<xsl:with-param name="title">
-						<xsl:call-template name="getTitle-sensorML">
-							<xsl:with-param name="name"   select="name()"/>
-							<xsl:with-param name="schema" select="$schema"/>
-							<xsl:with-param name="id" select="'w'"/>
-						</xsl:call-template>
-					</xsl:with-param>
-					<xsl:with-param name="helpLink">
-						<xsl:call-template name="getHelpLink-sensorML">
-							<xsl:with-param name="name"   select="name()"/>
-							<xsl:with-param name="schema" select="$schema"/>
-							<xsl:with-param name="id" select="'w'"/>
-						</xsl:call-template>
-					</xsl:with-param>
-				</xsl:apply-templates>
-			</xsl:template>
-
-	<!-- ==================================================================== -->
-
-			<xsl:template mode="sensorML" match="swe:upperCorner//swe:coordinate[@name='easting']" priority="10">
-				<xsl:param name="schema"/>
-				<xsl:param name="edit"/>
-
-				<xsl:apply-templates mode="simpleElement" select=".//swe:Quantity/swe:value">
-					<xsl:with-param name="schema"  select="$schema"/>
-					<xsl:with-param name="edit"    select="$edit"/>
-					<xsl:with-param name="title">
-						<xsl:call-template name="getTitle-sensorML">
-							<xsl:with-param name="name"   select="name(.)"/>
-							<xsl:with-param name="schema" select="$schema"/>
-							<xsl:with-param name="id" select="'e'"/>
-						</xsl:call-template>
-					</xsl:with-param>
-					<xsl:with-param name="helpLink">
-						<xsl:call-template name="getHelpLink-sensorML">
-							<xsl:with-param name="name"   select="name(.)"/>
-							<xsl:with-param name="schema" select="$schema"/>
-							<xsl:with-param name="id" select="'e'"/>
-						</xsl:call-template>
-					</xsl:with-param>
-				</xsl:apply-templates>
-			</xsl:template>
-
-	<!-- ==================================================================== -->
-
-			<xsl:template mode="sensorML" match="swe:lowerCorner//swe:coordinate[@name='northing']" priority="10">
-				<xsl:param name="schema"/>
-				<xsl:param name="edit"/>
-				
-				<xsl:apply-templates mode="simpleElement" select=".//swe:Quantity/swe:value">
-					<xsl:with-param name="schema"  select="$schema"/>
-					<xsl:with-param name="edit"    select="$edit"/>
-					<xsl:with-param name="title">
-						<xsl:call-template name="getTitle-sensorML">
-							<xsl:with-param name="name"   select="name(.)"/>
-							<xsl:with-param name="schema" select="$schema"/>
-							<xsl:with-param name="id" select="'s'"/>
-						</xsl:call-template>
-					</xsl:with-param>
-					<xsl:with-param name="helpLink">
-						<xsl:call-template name="getHelpLink-sensorML">
-							<xsl:with-param name="name"   select="name(.)"/>
-							<xsl:with-param name="schema" select="$schema"/>
-							<xsl:with-param name="id" select="'s'"/>
-						</xsl:call-template>
-					</xsl:with-param>
-				</xsl:apply-templates>
-			</xsl:template>
-
-	<!-- ==================================================================== -->
-
-			<xsl:template mode="sensorML" match="swe:upperCorner//swe:coordinate[@name='northing']" priority="10">
-				<xsl:param name="schema"/>
-				<xsl:param name="edit"/>
-				
-				<xsl:apply-templates mode="simpleElement" select=".//swe:Quantity/swe:value">
-					<xsl:with-param name="schema"  select="$schema"/>
-					<xsl:with-param name="edit"    select="$edit"/>
-					<xsl:with-param name="title">
-						<xsl:call-template name="getTitle-sensorML">
-							<xsl:with-param name="name"   select="name(.)"/>
-							<xsl:with-param name="schema" select="$schema"/>
-							<xsl:with-param name="id" select="'n'"/>
-						</xsl:call-template>
-					</xsl:with-param>
-					<xsl:with-param name="helpLink">
-						<xsl:call-template name="getHelpLink-sensorML">
-							<xsl:with-param name="name"   select="name(.)"/>
-							<xsl:with-param name="schema" select="$schema"/>
-							<xsl:with-param name="id" select="'n'"/>
-						</xsl:call-template>
-					</xsl:with-param>
-				</xsl:apply-templates>
-			</xsl:template>
 
 	<!-- ==================================================================== -->
 
@@ -2276,21 +2168,30 @@
 			* copied (and renamed) from geoBoxGUI in metadata.xsl - that one only seems to works for iso19139)
 			-->
 	<xsl:template name="geoBoxGUISWE">
-			<xsl:param name="schema"/>
-			<xsl:param name="edit"/>
-			<xsl:param name="nEl"/>
-			<xsl:param name="nId"/>
-			<xsl:param name="sEl"/>
-			<xsl:param name="sId"/>
-			<xsl:param name="wEl"/>
-			<xsl:param name="wId"/>
-			<xsl:param name="eEl"/>
-			<xsl:param name="eId"/>
-			<xsl:param name="descId"/>
-			<xsl:param name="id"/>
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+		<xsl:param name="nEl"/>
+		<xsl:param name="nId"/>
+		<xsl:param name="sEl"/>
+		<xsl:param name="sId"/>
+		<xsl:param name="wEl"/>
+		<xsl:param name="wId"/>
+		<xsl:param name="eEl"/>
+		<xsl:param name="eId"/>
+		<xsl:param name="descId"/>
+		<xsl:param name="id"/>
+		<xsl:param name="places"/>
 
-
-			<xsl:variable name="eltRef" select="generate-id(.)"/>
+		<xsl:variable name="eltRef">
+     <xsl:choose>
+       <xsl:when test="$edit=true()">
+         <xsl:value-of select="$id"/>
+       </xsl:when>
+       <xsl:otherwise>
+         <xsl:value-of select="generate-id(.)"/>
+       </xsl:otherwise>
+     </xsl:choose>
+    </xsl:variable>
 
 			<!-- calculate some IDs that can be used for both edit and view mode -->
 			<xsl:variable name="wID">
@@ -2377,7 +2278,8 @@
 					</tr>
 
 						<tr>
-							<td colspan="3" align="center">
+							<td/>
+							<td align="center">
 										<input type="hidden" id="{concat('_',$nID)}" name="{concat('_',$nID)}" value="{$nEl/text()}"/>
 													<xsl:variable name="tooltip-north">
 															<xsl:call-template name="getTooltipTitle-sensorML">
@@ -2396,13 +2298,16 @@
 							<label for="{$nID}" title="{$tooltip-north}"><xsl:value-of select="$title-north"/></label>
 								<xsl:choose>
 										<xsl:when test="$edit">
-											<input type="text" class="md" title="{$tooltip-north}" id="{$nID}" value="{$nEl/text()}"/>
+											<input type="text" class="md" title="{$tooltip-north}" id="{$nID}" value="{$nEl/text()}" onkeyup="validateNonEmpty(this);"/>
 										</xsl:when>
 										<xsl:otherwise>
 											<input type="text" class="md" title="{$tooltip-north}" id="{$nID}" value="{$nEl/text()}" readonly="enabled"/>
 										</xsl:otherwise>
 									</xsl:choose>
 						
+							</td>
+							<td>
+								<xsl:copy-of select="$places"/>
 							</td>
 						</tr>
 
@@ -2427,7 +2332,7 @@
 							<label for="{$wID}" title="{$tooltip-west}"><xsl:value-of select="$title-west"/></label><br/>
 							 <xsl:choose>
 										<xsl:when test="$edit">
-											<input type="text" class="md" title="{$tooltip-west}" id="{$wID}" value="{$wEl/text()}"/>
+											<input type="text" class="md" title="{$tooltip-west}" id="{$wID}" value="{$wEl/text()}" onkeyup="validateNonEmpty(this);"/>
 										</xsl:when>
 										<xsl:otherwise>
 											<input type="text" class="md" title="{$tooltip-west}" id="{$wID}" value="{$wEl/text()}" readonly="enabled"/>
@@ -2469,7 +2374,7 @@
 								<label for="{$eID}" title="{$tooltip-east}"><xsl:value-of select="$title-east"/></label><br/>
 								<xsl:choose>
 										<xsl:when test="$edit">
-											<input type="text" class="md" title="{$tooltip-east}"  id="{$eID}" value="{$eEl/text()}"/>
+											<input type="text" class="md" title="{$tooltip-east}"  id="{$eID}" value="{$eEl/text()}" onkeyup="validateNonEmpty(this);"/>
 
 										</xsl:when>
 										<xsl:otherwise>
@@ -2500,7 +2405,7 @@
 							<label for="{$sID}" title="{$tooltip-south}"><xsl:value-of select="$title-south"/></label>
 								<xsl:choose>
 										<xsl:when test="$edit">
-											<input type="text" class="md" title="{$tooltip-south}" id="{$sID}" value="{$sEl/text()}"/>
+											<input type="text" class="md" title="{$tooltip-south}" id="{$sID}" value="{$sEl/text()}" onkeyup="validateNonEmpty(this);"/>
 										</xsl:when>
 										<xsl:otherwise>
 											<input type="text" class="md" title="{$tooltip-south}" id="{$sID}" value="{$sEl/text()}" readonly="enabled"/>
