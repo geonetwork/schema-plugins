@@ -149,7 +149,7 @@
 		<description>Enter the date on which the following information describing the site and its sensors became or will become valid.  Insert date in YYYY-MM-DD format or use the calendar icon to select the date</description>
 	</element>
 			<!-- ==================================================== -->
-	<element name="sml:input" context="sml:InputList">
+	<element name="sml:input_observedPhenomenon">
 		<label>Observed Phenomenon</label>
 		<description>A feature or phenomenon observed at the site or by the sensor.</description>
 	</element>

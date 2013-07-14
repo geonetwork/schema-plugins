@@ -107,7 +107,7 @@
 			<xsl:with-param name="edit"   select="$edit"/>
 			<xsl:with-param name="label" select="name()"/>
 			<xsl:with-param name="nameRef" select="''"/>
-			<xsl:with-param name="nameText" select="''"/>
+			<xsl:with-param name="nameText" select="'observedPhenomenon'"/>
 			<xsl:with-param name="text" select="$text"/>
 			<xsl:with-param name="ref" select="$ref"/>
 			<xsl:with-param name="definition" select="$definition"/>
@@ -2386,7 +2386,8 @@
 					</tr>
 			 
 						<tr>
-							<td colspan="3" align="center">
+							<td/>
+							<td align="center">
 										<input type="hidden" id="{concat('_',$sID)}" name="{concat('_',$sID)}"  value="{$sEl/text()}"/>
 													<xsl:variable name="tooltip-south">
 															<xsl:call-template name="getTooltipTitle-sensorML">
@@ -2412,6 +2413,7 @@
 										</xsl:otherwise>
 									</xsl:choose>
 							</td>
+							<td/>
 
 						</tr>
 
