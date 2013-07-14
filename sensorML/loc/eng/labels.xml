@@ -154,6 +154,11 @@
 		<description>A feature or phenomenon observed at the site or by the sensor.</description>
 	</element>
 			<!-- ==================================================== -->
+	<element name="sml:input" context="sml:InputList">
+		<label>Observed Phenomenon</label>
+		<description>A feature or phenomenon observed at the site or by the sensor.</description>
+	</element>
+			<!-- ==================================================== -->
 	<element name="swe:ObservableProperty">
 		<label>Observable Property</label>
 		<description>A feature or phenomenon observed as an input to a sensor.</description>
