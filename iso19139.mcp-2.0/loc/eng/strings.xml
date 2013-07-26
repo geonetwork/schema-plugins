@@ -65,6 +65,7 @@
 	</externalMessage>
 	<link default="true">Link</link>
 	<link protocol="WWW:LINK-1.0-http--downloaddata">Data Link</link>
+	<maxTerms js="true">Max Terms</maxTerms>
 	<metadataBadResponse1> - ERROR: Cannot understand the response received from the remote server</metadataBadResponse1> 
 	<metadataBadResponse2>Unable to show this record!</metadataBadResponse2>
 	<messageDownload>Thanks for your interest. Click on the download button to retrieve the following file(s):</messageDownload>
@@ -103,6 +104,8 @@
 	<taxon>Taxonomic Names</taxon>
 	<taxonSearch>Search APC/AFD for Taxonomic Names</taxonSearch>
 	<temporalExtent>Time Span:</temporalExtent>
+	<termSelectionWindowTitle js="true">Term selection</termSelectionWindowTitle>
+	<usedInDataset js="true">Used In Dataset</usedInDataset>
 	<uuid>Universal Unique Identifier (UUID)</uuid>
 	<xml_iso19139.mcp>Save this metadata as an ISO19139 Marine Community Profile XML file</xml_iso19139.mcp>
 	<xml_iso19139.mcp-1.4>Save this metadata as a Version 1.4 ISO19139 Marine Community Profile XML file</xml_iso19139.mcp-1.4>
