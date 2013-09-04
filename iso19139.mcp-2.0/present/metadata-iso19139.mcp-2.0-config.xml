@@ -12,11 +12,11 @@
             <typeCode>longName</typeCode>
         </element>
         <element name="mcp:parameterUnits">
-            <thesaurus>register.discipline.73a13885-a35b-488a-b11a-0ca45e66592f.rdf</thesaurus>
+            <thesaurus>register.discipline.73a13885-a35b-488a-b11a-0ca45e66592f</thesaurus>
             <typeCode>longName</typeCode>
         </element>
         <element name="mcp:parameterDeterminationInstrument">
-            <thesaurus>register.discipline.9aed836d-8ca9-46d6-a0b9-b93630cab805.rdf</thesaurus>
+            <thesaurus>register.discipline.9aed836d-8ca9-46d6-a0b9-b93630cab805</thesaurus>
             <typeCode>longName</typeCode>
         </element>
         <!--
