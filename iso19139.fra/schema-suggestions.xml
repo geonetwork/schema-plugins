@@ -230,10 +230,12 @@
         <suggest name="gmd:date"/>
     </field>
     
+    <!-- This is not supported. Date or DateTime 
+    will be suggested in the editor.
     <field name="gmd:date">
         <suggest name="gco:Date"/>
     </field>
-    
+    -->
     
     
     <!-- Resolution -->
