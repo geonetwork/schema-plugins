@@ -231,12 +231,10 @@
 			</xsl:for-each>
 	
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
+			<!-- Index distinct organisation names                                 -->
+			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 			
-			<xsl:variable name="orgNames" select="gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString"/>
-
-			<!-- index distinct organisation names only -->
-			
-			<xsl:for-each-group select="$orgNames" group-by="$orgNames">
+			<xsl:for-each-group select="gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString" group-by=".">
 				<Field name="orgName" string="{string(current-grouping-key())}" store="true" index="true"/>
 			</xsl:for-each-group>
 			
