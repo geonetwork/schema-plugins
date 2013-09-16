@@ -142,6 +142,11 @@
 						<Field name="vocabTermList" string="{mcp:vocabularyListURL/gmd:URL}" store="true" index="true"/>
 					</xsl:for-each>
 				</xsl:for-each>
+				
+				<xsl:for-each select="mcp:DP_DataParameter/mcp:platform/mcp:DP_Term">
+					<xsl:variable name="term" select="mcp:term/gco:CharacterString"/>
+					<Field name="platform" string="{$term}" store="true" index="true"/>
+				</xsl:for-each>
 			</xsl:for-each>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
