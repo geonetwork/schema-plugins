@@ -239,10 +239,13 @@
 			</xsl:for-each>
 	
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
-			<!-- Index distinct organisation names                                 -->
+			<!-- Index distinct responsible/point of contact organisation names    -->
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 			
-			<xsl:for-each-group select="gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString" group-by=".">
+			<xsl:variable name="pointOfContactOrganisations" select="gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:organisationName/*"/>
+			<xsl:variable name="responsiblePartyOrganisations" select="gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:organisationName/*"/>
+			
+			<xsl:for-each-group select="$pointOfContactOrganisations|$responsiblePartyOrganisations" group-by=".">
 				<Field name="orgName" string="{string(current-grouping-key())}" store="true" index="true"/>
 			</xsl:for-each-group>
 			
