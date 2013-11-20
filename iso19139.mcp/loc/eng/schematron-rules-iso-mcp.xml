@@ -25,6 +25,8 @@
     <M28>[ISOFTDS19139:2005-TableA1-Row21] - DomainCode</M28>
     <M29>[ISOFTDS19139:2005-TableA1-Row22] - ShortName</M29>
     <M30>[ISOFTDS19139:2005-TableA1-Row15] - Check point description required if available</M30>
+    <M32>A name is required for and organisation</M32>
+    <M33>A name or position is required for and individual</M33>
     <M61>[ISOFTDS19139:2005-TableA1] - HierarchyLevelName must be documented if hierarchyLevel does not contain "dataset"</M61>
     
     
