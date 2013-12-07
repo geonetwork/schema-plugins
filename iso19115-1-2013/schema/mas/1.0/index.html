@@ -1,0 +1,48 @@
+<html xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Metadata for Application Schema (MAS) Version: 1.0</title>
+   </head>
+   <body>
+      <h1>Metadata for Application Schema (MAS) Version: 1.0</h1><img src="mas.png"><h2>Description</h2>
+      <p>MAS 1.0 is an XML Schema implementation derived from ISO 19115-1, Geographic Information - Metadata - Part 1: Fundamentals. 
+         
+         The XML schema was encoded using the encoding rules described in ISO/TS 19139:2007, Clause 8.
+      </p>
+      <p><i>NOTE: The namespace URI of Metadata for Application Schema (MAS) Version: 1.0 doesn't reflect the version number of the XML Schema Implementation. The policy of
+            ISO/TC 211 has evolved in order to reflect the versioning of the XML Schema Implementation
+            as part of the namespace URI.</i></p>
+      <h2>XML Schema of mas 1.0</h2>
+      <p><b>mas.xsd</b> is the root XML Schema document, i.e., the XML Schema document to be referenced by
+         XML documents containing XML elements in the mas 1.0 namespace or by XML Schema documents importing the mas 1.0 namespace. This XML schema includes (indirectly) all the implemented concepts of
+         the mas namespace, but it does not contain the declaration of any types.
+      </p>
+      <p><i>NOTE: The XML Schemca for mas 1.0 are available <a href="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas.zip">here</a> as part of a zip archive regrouping all the XML Schema Implementations defined in
+            ISO/TS 19139:2007. They are also available for remote access on the <a href="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas.zip">ISO ITTF Repository</a>.</i></p>
+      <h2>Other XML Schema for mas 1.0</h2>
+      <p><b>applicationSchema.xsd</b> implements the UML conceptual schema defined in , 6.5.13. It was created using the encoding rules defined in ISO 19118 and extended in ISO
+         19139 and contains the following classes: MD_ApplicationSchemaInformation
+      </p>
+      <h2>Related XML Namespaces for mas 1.0</h2> The mas 1.0 namespace imports these other namespaces: 
+      <table border="1" cellpadding="3" cellspacing="3">
+         <tr>
+            <th>Name</th>
+            <th>Standard Prefix</th>
+            <th>Namespace Location</th>
+            <th>Schema Location</th>
+         </tr>
+         <tr>
+            <td>Citation</td>
+            <td>cit</td>
+            <td>http://www.isotc211.org/2005/cit/1.0/2013-03-28</td>
+            <td>../../cit/1.0/cit.xsd</td>
+         </tr>
+         <tr>
+            <td>Metadata for Common Classes</td>
+            <td>mcc</td>
+            <td>http://www.isotc211.org/2005/mcc/1.0/2013-03-28</td>
+            <td>../../mcc/1.0/mcc.xsd</td>
+         </tr>
+      </table>
+   </body>
+</html>
