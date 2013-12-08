@@ -9,4 +9,5 @@
   <temporalRef>Informacje o odniesieniu czasowym</temporalRef>
   <constraintInfo>Ograniczenia dostępu</constraintInfo>
   <xml_iso19139>Zapisz plik metadanych jako XML zgodny z ISO19139</xml_iso19139>
+  <resourceLineageTab>Lineage</resourceLineageTab>
 </strings>

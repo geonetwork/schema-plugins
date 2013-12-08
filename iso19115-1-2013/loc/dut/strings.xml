@@ -8,4 +8,5 @@
   <refDate>Reference date</refDate>
   <temporalRef>Temporal information</temporalRef>
   <constraintInfo>Access constraint information</constraintInfo>
+  <resourceLineageTab>Lineage</resourceLineageTab>
 </strings>

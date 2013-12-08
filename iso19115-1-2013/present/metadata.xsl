@@ -1823,7 +1823,7 @@
 
 			<xsl:call-template name="displayTab">
 				<xsl:with-param name="tab"     select="'resourceLineage'"/>
-				<xsl:with-param name="text"    select="/root/gui/strings/resourceLineageTab"/>
+				<xsl:with-param name="text"    select="/root/gui/schemas/iso19115-1-2013/strings/resourceLineageTab"/>
 				<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
 				<xsl:with-param name="tabLink" select="$tabLink"/>
 			</xsl:call-template>
