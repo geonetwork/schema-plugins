@@ -4,7 +4,7 @@
     xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2013-03-28"
     xmlns:lan="http://www.isotc211.org/2005/lan/1.0/2013-03-28"
     xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2013-03-28"
-    xmlns:mri="http://www.isotc211.org/2005/mrc/1.0/2013-03-28"
+    xmlns:mri="http://www.isotc211.org/2005/mri/1.0/2013-03-28"
     xmlns:gco="http://www.isotc211.org/2005/gco"
     xmlns:gml="http://www.opengis.net/gml/3.2"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
