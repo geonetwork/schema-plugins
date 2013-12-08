@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<xsl:stylesheet version="1.0" xmlns:gmd="http://www.isotc211.org/2005/gmd"
-										xmlns:gco="http://www.isotc211.org/2005/gco"
-										xmlns:gml="http://www.opengis.net/gml"
-										xmlns:srv="http://www.isotc211.org/2005/srv"
-										xmlns:java="java:org.fao.geonet.util.XslUtil"
-										xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+<xsl:stylesheet version="1.0" 
+            xmlns:mds="http://www.isotc211.org/2005/mds/1.0/2013-03-28" 
+            xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2013-03-28" 
+            xmlns:dqm="http://www.isotc211.org/2005/dqm/1.0/2013-03-28" 
+            xmlns:lan="http://www.isotc211.org/2005/lan/1.0/2013-03-28" 
+            xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2013-03-28" 
+            xmlns:mrc="http://www.isotc211.org/2005/mrc/1.0/2013-03-28" 
+            xmlns:mco="http://www.isotc211.org/2005/mco/1.0/2013-03-28" 
+            xmlns:mri="http://www.isotc211.org/2005/mri/1.0/2013-03-28"
+            xmlns:mrs="http://www.isotc211.org/2005/mrs/1.0/2013-03-28"
+            xmlns:mrl="http://www.isotc211.org/2005/mrl/1.0/2013-03-28"
+            xmlns:mrd="http://www.isotc211.org/2005/mrd/1.0/2013-03-28"
+            xmlns:srv="http://www.isotc211.org/2005/srv/2.0/2013-03-28"
+						xmlns:gcx="http://www.isotc211.org/2005/gcx/1.0/2013-03-28"
+						xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2013-03-28"
+						xmlns:gml="http://www.opengis.net/gml/3.2"
+            xmlns:gco="http://www.isotc211.org/2005/gco" 
+						xmlns:java="java:org.fao.geonet.util.XslUtil"
+						xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 										>
 
 	<!--This file defines what parts of the metadata are indexed by Lucene
@@ -40,9 +53,8 @@
            <!-- 
            		Create a language document only if PT_Locale defined (ie. is a multilingual document)
            		and mds:defaultLocale contains the main metadata language. -->
-           	<xsl:if test="/*[name(.)='mds:MD_Metadata' or contains(@gco:isoType,'MD_Metadata)']/mds:defaultLocale/lan:PT_Locale
-           					and count(/*[name(.)='mds:MD_Metadata' or contains(@gco:isoType,'MD_Metadata')]/
-           						lan:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode[@codeListValue = $isoDocLangId]) = 0">
+           	<xsl:if test="/*[name(.)='mds:MD_Metadata' or contains(@gco:isoType,'MD_Metadata')]/mds:defaultLocale/lan:PT_Locale
+           		and count(/*[name(.)='mds:MD_Metadata' or contains(@gco:isoType,'MD_Metadata')]/lan:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode[@codeListValue = $isoDocLangId]) = 0">
             	<xsl:call-template name="document">
             		<xsl:with-param name="isoLangId" select="$isoDocLangId"></xsl:with-param>
             		<xsl:with-param name="langId" select="java:twoCharLangCode(normalize-space(string($isoDocLangId)))"></xsl:with-param>
