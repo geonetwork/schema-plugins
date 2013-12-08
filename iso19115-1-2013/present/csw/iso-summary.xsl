@@ -5,12 +5,12 @@
 										xmlns:mds="http://www.isotc211.org/2005/mds/1.0/2013-03-28"
 										xmlns:mri="http://www.isotc211.org/2005/mri/1.0/2013-03-28"
 										xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2013-03-28"
-										xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2013-03-28"
 										xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2013-03-28"
 										xmlns:srv="http://www.isotc211.org/2005/srv/2.0/2013-03-28"
                     xmlns:mco="http://www.isotc211.org/2005/mco/1.0/2013-03-28"
                     xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2013-03-28"
                     xmlns:mrd="http://www.isotc211.org/2005/mrd/1.0/2013-03-28"
+                    xmlns:mrl="http://www.isotc211.org/2005/mrl/1.0/2013-03-28"
 										xmlns:gco="http://www.isotc211.org/2005/gco"
 										xmlns:ows="http://www.opengis.net/ows"
 										xmlns:geonet="http://www.fao.org/geonetwork">
@@ -91,9 +91,10 @@
 
 	<!-- =================================================================== -->
 
-	<xsl:template match="dqm:DQ_DataQuality">
+	<xsl:template match="mrl:LI_Lineage">
 		<xsl:copy>
-			<xsl:apply-templates select="dqm:lineage"/>
+			<xsl:apply-templates select="mrl:statement"/>
+			<xsl:apply-templates select="mrl:scope"/>
 		</xsl:copy>
 	</xsl:template>
 

@@ -8,7 +8,6 @@
 										xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2013-03-28"
 										xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2013-03-28"
 										xmlns:srv="http://www.isotc211.org/2005/srv/2.0/2013-03-28"
-                    xmlns:mri="http://www.isotc211.org/2005/mri/1.0/2013-03-28"
 										xmlns:gco="http://www.isotc211.org/2005/gco"
 										xmlns:ows="http://www.opengis.net/ows"
 										xmlns:geonet="http://www.fao.org/geonetwork">

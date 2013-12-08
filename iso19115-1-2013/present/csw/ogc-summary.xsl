@@ -11,7 +11,6 @@
 	xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2013-03-28"
 	xmlns:srv="http://www.isotc211.org/2005/srv/2.0/2013-03-28"
   xmlns:mco="http://www.isotc211.org/2005/mco/1.0/2013-03-28"
-  xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2013-03-28"
   xmlns:mrd="http://www.isotc211.org/2005/mrd/1.0/2013-03-28"
   xmlns:mrs="http://www.isotc211.org/2005/mrs/1.0/2013-03-28"
 	xmlns:gco="http://www.isotc211.org/2005/gco"
@@ -29,7 +28,7 @@
 		
 		<xsl:variable name="info" select="geonet:info"/>
 		<xsl:variable name="langId">
-			<xsl:call-template name="getLangId">
+			<xsl:call-template name="getLangId19115-1-2013">
 				<xsl:with-param name="langGui" select="$lang"/>
 				<xsl:with-param name="md" select="."/>
 			</xsl:call-template>

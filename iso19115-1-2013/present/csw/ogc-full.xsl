@@ -7,7 +7,7 @@
 										xmlns:dct="http://purl.org/dc/terms/"
 										xmlns:gco="http://www.isotc211.org/2005/gco"
                     xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2013-03-28" 
-                    xmlns:dqm="http://www.isotc211.org/2005/dqm/1.0/2013-03-28"
+                    xmlns:mrl="http://www.isotc211.org/2005/mrl/1.0/2013-03-28"
                     xmlns:lan="http://www.isotc211.org/2005/lan/1.0/2013-03-28" 
                     xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2013-03-28" 
                     xmlns:mrc="http://www.isotc211.org/2005/mrc/1.0/2013-03-28" 
@@ -22,7 +22,7 @@
                     xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2013-03-28"
 										xmlns:geonet="http://www.fao.org/geonetwork"
 										xmlns:ows="http://www.opengis.net/ows"
-										exclude-result-prefixes="gmd srv gco">
+										exclude-result-prefixes="mds srv cit mrl lan mcc mrc mco mri mrs mrd gcx gex gco">
 
 	<xsl:param name="displayInfo"/>
 	<xsl:param name="lang"/>
@@ -35,7 +35,7 @@
 		
 		<xsl:variable name="info" select="geonet:info"/>
 		<xsl:variable name="langId">
-			<xsl:call-template name="getLangId">
+			<xsl:call-template name="getLangId19115-1-2013">
 				<xsl:with-param name="langGui" select="$lang"/>
 				<xsl:with-param name="md" select="."/>
 			</xsl:call-template>
@@ -112,7 +112,7 @@
 					<dct:modified><xsl:value-of select="."/></dct:modified>
 				</xsl:for-each>
 
-				<xsl:for-each select="cit:citedResponsibleParty/cit:CI_Responsibility[gmd:role/gmd:CI_RoleCode/@codeListValue='originator']/gmd:organisationName">
+				<xsl:for-each select="cit:citedResponsibleParty/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue='originator']/cit:party/cit:CI_Organisation/cit:name">
 					<dc:creator>
 						<xsl:apply-templates mode="localised" select=".">
 							<xsl:with-param name="langId" select="$langId"/>
@@ -120,7 +120,7 @@
 					</dc:creator>
 				</xsl:for-each>
 
-				<xsl:for-each select="gmd:citedResponsibleParty/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue='publisher']/gmd:organisationName">
+				<xsl:for-each select="cit:citedResponsibleParty/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue='publisher']/cit:party/cit:CI_Organisation/cit:name">
 					<dc:publisher>
 						<xsl:apply-templates mode="localised" select=".">
 							<xsl:with-param name="langId" select="$langId"/>
@@ -128,7 +128,7 @@
 					</dc:publisher>
 				</xsl:for-each>
 
-				<xsl:for-each select="gmd:citedResponsibleParty/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue='author']/gmd:organisationName">
+				<xsl:for-each select="cit:citedResponsibleParty/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue='author']/cit:party/cit:CI_Organisation/cit:name">
 					<dc:contributor>
 						<xsl:apply-templates mode="localised" select=".">
 							<xsl:with-param name="langId" select="$langId"/>
@@ -140,7 +140,7 @@
 			
 			<!-- abstract -->
 
-			<xsl:for-each select="$identification/gmd:abstract">
+			<xsl:for-each select="$identification/mri:abstract">
 				<dct:abstract>
 					<xsl:apply-templates mode="localised" select=".">
 						<xsl:with-param name="langId" select="$langId"/>
@@ -155,13 +155,13 @@
 
 			<!-- rights -->
 
-			<xsl:for-each select="$identification/gmd:resourceConstraints/gmd:MD_LegalConstraints|
-				gmd:resourceConstraints/*[@gco:isoType='gmd:MD_LegalConstraints']">
-				<xsl:for-each select="*/gmd:MD_RestrictionCode/@codeListValue">
+			<xsl:for-each select="$identification/mri:resourceConstraints/mco:MD_LegalConstraints|
+				mri:resourceConstraints/*[@gco:isoType='mri:MD_LegalConstraints']">
+				<xsl:for-each select="*/mri:MD_RestrictionCode/@codeListValue">
 					<dc:rights><xsl:value-of select="."/></dc:rights>
 				</xsl:for-each>
 
-				<xsl:for-each select="$identification/otherConstraints">
+				<xsl:for-each select="mri:otherConstraints">
 					<dc:rights>
 						<xsl:apply-templates mode="localised" select=".">
 							<xsl:with-param name="langId" select="$langId"/>
@@ -172,13 +172,13 @@
 
 			<!-- language -->
 
-			<xsl:for-each select="$identification/gmd:language">
-				<dc:language><xsl:value-of select="gco:CharacterString|gmd:LanguageCode/@codeListValue"/></dc:language>
+			<xsl:for-each select="$identification/mri:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue">
+				<dc:language><xsl:value-of select="."/></dc:language>
 			</xsl:for-each>
 			
 			<!-- Lineage -->
 			
-			<xsl:for-each select="gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:lineage/gmd:LI_Lineage/gmd:statement">
+			<xsl:for-each select="mds:resourceLineage/mrl:LI_Lineage/mrl:statement">
 				<dc:source>
 					<xsl:apply-templates mode="localised" select=".">
 						<xsl:with-param name="langId" select="$langId"/>
@@ -188,15 +188,15 @@
 			
 			<!-- Parent Identifier -->
 			
-			<xsl:for-each select="gmd:parentIdentifier/gco:CharacterString">
+			<xsl:for-each select="mds:parentMetadata/mcc:MD_Identifier/mcc:code/gco:CharacterString">
 				<dc:relation><xsl:value-of select="."/></dc:relation>
 			</xsl:for-each>
 
 
 			<!-- Distribution - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 			
-			<xsl:for-each select="gmd:distributionInfo/gmd:MD_Distribution">
-				<xsl:for-each select="gmd:distributionFormat/gmd:MD_Format/gmd:name">
+			<xsl:for-each select="mds:distributionInfo/mrd:MD_Distribution">
+				<xsl:for-each select="mrd:distributionFormat/mrd:MD_Format/mrd:name">
 					<dc:format>
 						<xsl:apply-templates mode="localised" select=".">
 							<xsl:with-param name="langId" select="$langId"/>
@@ -207,12 +207,10 @@
 
 			<!-- bounding box -->
 
-			<xsl:for-each select="$identification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox">
-				<xsl:variable name="rsi"  select="/gmd:MD_Metadata/gmd:referenceSystemInfo/gmd:MD_ReferenceSystem/
-					gmd:referenceSystemIdentifier/gmd:RS_Identifier|/gmd:MD_Metadata/gmd:referenceSystemInfo/
-					*[@gco:isoType='MD_ReferenceSystem']/gmd:referenceSystemIdentifier/gmd:RS_Identifier"/>
-				<xsl:variable name="auth" select="$rsi/gmd:codeSpace/gco:CharacterString"/>
-				<xsl:variable name="id"   select="$rsi/gmd:code/gco:CharacterString"/>
+			<xsl:for-each select="$identification/mri:extent/gex:EX_Extent/gex:geographicElement/gex:EX_GeographicBoundingBox">
+				<xsl:variable name="rsi"  select="/mds:MD_Metadata/mds:referenceSystemInfo/*/mrs:referenceSystemIdentifier/mcc:MD_Identifier"/>
+				<xsl:variable name="auth" select="$rsi/mcc:codeSpace/gco:CharacterString"/>
+				<xsl:variable name="id"   select="$rsi/mcc:code/gco:CharacterString"/>
 				<xsl:variable name="crs" select="concat('urn:ogc:def:crs:', $auth, '::', $id)"/>
 
 				<ows:BoundingBox>
@@ -224,11 +222,11 @@
 					</xsl:attribute>
 					
 					<ows:LowerCorner>
-						<xsl:value-of select="concat(gmd:eastBoundLongitude/gco:Decimal, ' ', gmd:southBoundLatitude/gco:Decimal)"/>
+						<xsl:value-of select="concat(gex:eastBoundLongitude/gco:Decimal, ' ', gex:southBoundLatitude/gco:Decimal)"/>
 					</ows:LowerCorner>
 	
 					<ows:UpperCorner>
-						<xsl:value-of select="concat(gmd:westBoundLongitude/gco:Decimal, ' ', gmd:northBoundLatitude/gco:Decimal)"/>
+						<xsl:value-of select="concat(gex:westBoundLongitude/gco:Decimal, ' ', gex:northBoundLatitude/gco:Decimal)"/>
 					</ows:UpperCorner>
 				</ows:BoundingBox>
 			</xsl:for-each>
@@ -248,14 +246,14 @@
 				http://wiki.osgeo.org/wiki/DCLite4G (TODO)
 				-->
 			<xsl:for-each select="
-				gmd:identificationInfo/srv:SV_ServiceIdentification[srv:serviceType/gco:LocalName='OGC:WMS']|
-				gmd:identificationInfo/*[contains(@gco:isoType, 'SV_ServiceIdentification') and srv:serviceType/gco:LocalName='OGC:WMS'] ">
+				mds:identificationInfo/srv:SV_ServiceIdentification[srv:serviceType/gco:LocalName='OGC:WMS']|
+				mds:identificationInfo/*[contains(@gco:isoType, 'SV_ServiceIdentification') and srv:serviceType/gco:LocalName='OGC:WMS'] ">
 				
-				<xsl:variable name="connectPoint" select="srv:containsOperations/srv:SV_OperationMetadata/srv:connectPoint/gmd:CI_OnlineResource/gmd:linkage/gmd:URL"/>
+				<xsl:variable name="connectPoint" select="srv:containsOperations/srv:SV_OperationMetadata/srv:connectPoint/cit:CI_OnlineResource/cit:linkage/*"/>
 				<xsl:variable name="serviceUrl">
 					<xsl:choose>
 						<xsl:when test="$connectPoint=''">
-							<xsl:value-of select="../gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:linkage/gmd:URL"/>
+							<xsl:value-of select="../mds:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource/cit:linkage/*"/>
 						</xsl:when>
 						<xsl:otherwise>
 							<xsl:value-of select="$connectPoint"/>
@@ -273,17 +271,17 @@
 			</xsl:for-each>
 			
 			
-			<xsl:for-each select="gmd:distributionInfo/gmd:MD_Distribution">
-				<xsl:for-each select="gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource">
-					<xsl:if test="gmd:linkage">
+			<xsl:for-each select="mds:distributionInfo/mrd:MD_Distribution">
+				<xsl:for-each select="mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource">
+					<xsl:if test="cit:linkage">
 						<dc:URI>
-							<xsl:if test="gmd:protocol">
-								<xsl:attribute name="protocol"><xsl:value-of select="gmd:protocol/gco:CharacterString"/></xsl:attribute>
+							<xsl:if test="cit:protocol">
+								<xsl:attribute name="protocol"><xsl:value-of select="cit:protocol/gco:CharacterString"/></xsl:attribute>
 							</xsl:if>
 							
-							<xsl:if test="gmd:name">
+							<xsl:if test="cit:name">
 								<xsl:attribute name="name">
-									<xsl:for-each select="gmd:name">
+									<xsl:for-each select="cit:name">
 										<xsl:apply-templates mode="localised" select=".">
 											<xsl:with-param name="langId" select="$langId"/>
 										</xsl:apply-templates>
@@ -291,9 +289,9 @@
 								</xsl:attribute>
 							</xsl:if>
 							
-							<xsl:if test="gmd:description">
+							<xsl:if test="cit:description">
 								<xsl:attribute name="description">
-									<xsl:for-each select="gmd:description">
+									<xsl:for-each select="cit:description">
 										<xsl:apply-templates mode="localised" select=".">
 											<xsl:with-param name="langId" select="$langId"/>
 										</xsl:apply-templates>
@@ -301,23 +299,23 @@
 								</xsl:attribute>
 							</xsl:if>
 							
-							<xsl:value-of select="gmd:linkage/gmd:URL"/>
+							<xsl:value-of select="cit:linkage/*"/>
 						</dc:URI>
 					</xsl:if>
 				</xsl:for-each>
 			</xsl:for-each>
 
-			<xsl:for-each select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:graphicOverview/gmd:MD_BrowseGraphic">
-				<xsl:variable name="fileName" select="gmd:fileName/gco:CharacterString"/>
-				<xsl:variable name="fileDescr" select="gmd:fileDescription/gco:CharacterString"/>
+			<xsl:for-each select="mds:identificationInfo/mri:MD_DataIdentification/mri:graphicOverview/mcc:MD_BrowseGraphic">
+				<xsl:variable name="fileName" select="mcc:fileName/gco:CharacterString"/>
+				<xsl:variable name="fileDescr" select="mcc:fileDescription/gco:CharacterString"/>
 				
 				<xsl:if test="$fileName!=''">
 					<dc:URI>
 						<xsl:choose>
-							<xsl:when test="contains(gmd:fileName/gco:CharacterString, '.gif')">
+							<xsl:when test="contains(mcc:fileName/gco:CharacterString, '.gif')">
 								<xsl:attribute name="protocol">image/gif</xsl:attribute>
 							</xsl:when>
-							<xsl:when test="contains(gmd:fileName/gco:CharacterString, '.png')">
+							<xsl:when test="contains(mcc:fileName/gco:CharacterString, '.png')">
 								<xsl:attribute name="protocol">image/png</xsl:attribute>
 							</xsl:when>
 						</xsl:choose>
