@@ -1,14 +1,20 @@
 Initial commit ISO/FDIS 19115-1:2013
-Small enhancements to 2.10.x and trunk which allow parsing of this schema an
-(in particular for gml-3.2.1 metadata extents) to come shortly
     
 Note:
-    
+   
+    - indexing, editing/viewing, CSW
     - only works in classic editor for now
     - some functions still to be checked
-    - no localization for languages other than english and locale breaks at pres
-    - no labels for element names (this is deliberate as the aim here is to get 
+    - no localization for languages other than english
+    - no labels for element names (this is deliberate as the aim here is to get
+      this schema available in GeoNetwork for understanding of 19115-1:2013)
     - lots of editor functions have basic or no support at present
     
-This is an initial commit - not working at present so don't plug it into you
-production instance!
+This is an initial commit - not working at present in 2.10.2 so don't plug it into your production instance! 2.10.3 should support it. Alternatively you can
+download the ANZMEST installer (a patched version of 2.10.2 with these changes
+and ISO19115-1:2013 as an install option) from:
+
+http://bluenetdev.its.utas.edu.au/download/geonetwork-2.10.2-anzmest-installer-withiso19115-1-2013.jar
+
+Comments and questions to geonetwork-developers or geonetwork-users mailing
+lists.
