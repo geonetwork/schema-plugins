@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:mda="http://www.isotc211.org/2005/mda/1.0/2013-03-28" xmlns:mds="http://www.isotc211.org/2005/mds/1.0/2013-03-28" elementFormDefault="qualified" targetNamespace="http://www.isotc211.org/2005/mda/1.0/2013-03-28" version="1.0">
   <include schemaLocation="mda.xsd"/>
-  <import namespace="http://www.isotc211.org/2005/gco" schemaLocation="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco/gco.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gco" schemaLocation="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco-gml3.2.x/gco.xsd"/>
   <import namespace="http://www.isotc211.org/2005/mds/1.0/2013-03-28" schemaLocation="../../mds/1.0/mds.xsd"/>
   <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
   <element abstract="true" name="AbstractDS_Aggregate" substitutionGroup="mda:AbstractDS_Resource" type="mda:AbstractDS_Aggregate_Type">

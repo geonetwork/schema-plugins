@@ -3,7 +3,7 @@
     <documentation>Handcrafted</documentation>
   </annotation>
   <include schemaLocation="gcx.xsd"/>
-  <import namespace="http://www.isotc211.org/2005/gco" schemaLocation="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco/gco.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gco" schemaLocation="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco-gml3.2.x/gco.xsd"/>
   <import namespace="http://www.isotc211.org/2005/mcc/1.0/2013-03-28" schemaLocation="../../mcc/1.0/mcc.xsd"/>
   <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
   <element name="Anchor" substitutionGroup="gco:CharacterString" type="gcx:Anchor_Type"/>

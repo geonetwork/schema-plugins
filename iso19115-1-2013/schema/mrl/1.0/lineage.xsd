@@ -2,7 +2,7 @@
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2013-03-28" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2013-03-28" xmlns:mri="http://www.isotc211.org/2005/mri/1.0/2013-03-28" xmlns:mrl="http://www.isotc211.org/2005/mrl/1.0/2013-03-28" elementFormDefault="qualified" targetNamespace="http://www.isotc211.org/2005/mrl/1.0/2013-03-28" version="1.0">
   <include schemaLocation="mrl.xsd"/>
   <import namespace="http://www.isotc211.org/2005/cit/1.0/2013-03-28" schemaLocation="../../cit/1.0/cit.xsd"/>
-  <import namespace="http://www.isotc211.org/2005/gco" schemaLocation="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco/gco.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gco" schemaLocation="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco-gml3.2.x/gco.xsd"/>
   <import namespace="http://www.isotc211.org/2005/gts" schemaLocation="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gts/gts.xsd"/>
   <import namespace="http://www.isotc211.org/2005/mcc/1.0/2013-03-28" schemaLocation="../../mcc/1.0/mcc.xsd"/>
   <import namespace="http://www.isotc211.org/2005/mri/1.0/2013-03-28" schemaLocation="../../mri/1.0/mri.xsd"/>

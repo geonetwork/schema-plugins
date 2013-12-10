@@ -11,7 +11,7 @@
   <uri name="http://www.isotc211.org/2005/gco/gco.xsd" 
        uri="schema/others/gco/gco.xsd">
 
-	<uri name="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco/gco.xsd" 
+	<uri name="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco-gml3.2.x/gco.xsd" 
 			 uri="schema/others/gco/gco.xsd"/>
 
   <uri name="http://www.isotc211.org/2005/gss/gss.xsd" 
@@ -59,7 +59,7 @@
 	<system systemId="http://www.isotc211.org/2005/mds/1.0/mds.xsd" 
 					uri="schema/mds/1.0/mds.xsd"/>
 
-	<system systemId="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco/gco.xsd" 
+	<system systemId="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco-gml3.2.x/gco.xsd" 
 					uri="schema/others/gco/gco.xsd"/>
 
 	<system systemId="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19136_Schemas/gml.xsd" 
