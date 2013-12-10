@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<labels xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../labels.xsd" xmlns:gco="http://www.isotc211.org/2005/gco"
+    xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:srv="http://www.isotc211.org/2005/srv"
+    xmlns:gml="http://www.opengis.net/gml" xmlns:gts="http://www.isotc211.org/2005/gts"
+    xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:xyz="http://my/schema/target/namespace">
+    <!-- Overrides iso19139 labels -->
+    
+    <!-- Profile specific labels -->
+    <element name="sdn:SDN_DataIdentification">
+        <label>Identification information (data and service identification)</label>
+        <help>Information required to identify a 
+      resource.</help>
+    </element>
+    <element name="sdn:SDN_Objective">
+        <label>SDN Objective</label>
+    </element>
+
+    <element name="gmd:extent" context="sdn:SDN_DataIdentification">
+        <label>Extent</label>
+    </element>
+
+    <!-- gmi elements-->
+    <element name="gmi:MI_Metadata">
+        <label>Metadata</label>
+    </element>
+    <element name="acquisitionInformation">
+        <label>Acquistion information</label>
+    </element>
+    <element name="gmi:MI_AcquisitionInformation">
+        <label>Acquistion information</label>
+        <description>Designations for the measuring 
+            instruments, the platform carrying 
+            them, and the mission to which the 
+            data contributes 
+        </description>
+    </element>
+    <element name="gmi:MI_Objective">
+        <label>Objective</label>
+        <description>Describes the characteristics, spatial
+            and temporal extent of the intended
+            object to be observed
+        </description>
+    </element>
+    <element name="gmi:MI_Instrument">
+        <label>Instrument</label>
+    </element>
+    <element name="gmi:mountedOn">
+        <label>Mounted on</label>
+    </element>
+    <element name="gmi:MI_Operation">
+        <label>Operation</label>
+        <description>Designations for the operation used to 
+            acquire the dataset 
+        </description>
+    </element>
+    <element name="gmi:MI_Plan">
+        <label>Plan</label>
+        <description/>
+    </element>
+    <element name="gmi:MI_Platform">
+        <label>Platform</label>
+    </element>
+    <element name="gmi:sponsor">
+        <label>Sponsor</label>
+    </element>
+    <element name="gmi:MI_Requirement">
+        <label>Requirement</label>
+        <description/>
+    </element>
+    <element name="gmi:MI_Event">
+        <label>Event</label>
+        <description>Identification of a significant collection
+            point within an operation
+        </description>
+    </element>
+    <element name="gmi:acquisitionPlan">
+        <label>Acquisition plan</label>
+        <description/>
+    </element>
+    <element name="gmi:acquisitionRequirement">
+        <label>Acquisition requirement</label>
+        <description/>
+    </element>
+    <element name="gmi:childOperation">
+        <label>Child operation</label>
+        <description>Sub-missions that make up part of a 
+            larger mission 
+        </description>
+    </element>
+    <element name="gmi:citation">
+        <label>Citation</label>
+        <description></description>
+    </element>
+    <element name="gmi:description">
+        <label>Description</label>
+        <description/>
+    </element>
+    <element name="gmi:environmentalConditions">
+        <label>Environmental conditions</label>
+        <description/>
+    </element>
+    <element name="gmi:expiryDate">
+        <label>Expiry date</label>
+        <description/>
+    </element>
+    <element name="gmi:extent">
+        <label>Extent</label>
+        <description/>
+    </element>
+    <element name="gmi:function">
+        <label>Function</label>
+        <description/>
+    </element>
+    <element name="gmi:identifier">
+        <label>Identifier</label>
+        <description>Event name or number
+        </description>
+    </element>
+    <element name="gmi:instrument">
+        <label>Instrument</label>
+        <description>General information about the 
+            instrument used in data acquisition 
+        </description>
+    </element>
+    <element name="gmi:objective">
+        <label>Objective</label>
+        <description>Identification of the area or object to 
+            be sensed
+        </description>
+    </element>
+    <element name="gmi:objectiveOccurrence">
+        <label>Objective occurrence</label>
+        <description/>
+    </element>
+    <element name="gmi:operation">
+        <label>Operation</label>
+        <description>General information about an 
+            identifiable activity which provided the 
+            data 
+        </description>
+    </element>
+    <element name="gmi:pass">
+        <label>Pass</label>
+        <description/>
+    </element>
+    <element name="gmi:plan">
+        <label>Plan</label>
+        <description/>
+    </element>
+    <element name="gmi:platform">
+        <label>Platform</label>
+        <description>Designation of the platform used to 
+            acquire the dataset</description>
+    </element>
+    <element name="gmi:priority">
+        <label>Priority</label>
+        <description/>
+    </element>
+    <element name="gmi:recipient">
+        <label>Recipient</label>
+        <description/>
+    </element>
+    <element name="gmi:requestedDate">
+        <label>Requested date</label>
+        <description/>
+    </element>
+    <element name="gmi:requestor">
+        <label>Requestor</label>
+        <description/>
+    </element>
+    <element name="gmi:satisfiedRequirement">
+        <label>Satisfied requirement</label>
+        <description/>
+    </element>
+    <element name="gmi:satisifiedPlan">
+        <label>Satisfied plan</label>
+        <description/>
+    </element>
+    <element name="gmi:sensingInstrument">
+        <label>Sensing instrument</label>
+        <description/>
+    </element>
+    <element name="gmi:significantEvent">
+        <label>Significant event</label>
+        <description/>
+    </element>
+    <element name="gmi:status">
+        <label>Status</label>
+        <description/>
+    </element>
+    <element name="gmi:time">
+        <label>Time</label>
+    </element>
+    <element name="gmi:type">
+        <label>Type</label>
+        <description></description>
+    </element>
+</labels>

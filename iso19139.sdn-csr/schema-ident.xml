@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://geonetwork-opensource.org/schemas/schema-ident http://geonetwork-opensource.org/schemas/schema-ident/schema-ident.xsd"
+	xmlns="http://geonetwork-opensource.org/schemas/schema-ident">
+	<name>iso19139.sdn-csr</name>
+	<id>6c103cb0-58c2-11e3-949a-0800200c9a66</id>
+	<version>1.0</version>
+	<depends>iso19139</depends>
+	<!-- Profile XSD location -->
+	<schemaLocation>http://www.seadatanet.org http://schemas.seadatanet.org/Standards-Software/Metadata-formats/SDN2_CSR_ISO19139_3.0.0.xsd</schemaLocation>
+	<autodetect xmlns:gmd="http://www.isotc211.org/2005/gmd" 
+		xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gmi="http://www.isotc211.org/2005/gmi">
+		<elements>
+			<gmd:fileIdentifier>
+				<gco:CharacterString>urn:SDN:CSR:.*</gco:CharacterString>
+			</gmd:fileIdentifier>
+		</elements>
+	</autodetect>
+	<readwriteUuid>false</readwriteUuid>
+</schema>
