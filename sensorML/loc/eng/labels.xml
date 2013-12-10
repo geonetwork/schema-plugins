@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<labels xmlns:sml="http://www.opengis.net/sensorML/1.0.1" 
+        xmlns:swe="http://www.opengis.net/swe/1.0.1" 
+				xmlns:gml="http://www.opengis.net/gml" 
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				xmlns:xlink="http://www.w3.org/1999/xlink">
+
+			<!-- ==================================================== -->
+	<element name="referenceFrame">
+		<label>Datum</label>
+		<description>The Coordinate Reference System (CRS) that should be used to interpret the longitude and latitude, e.g. WGS 84, NAD 83.</description>
+	</element>
+			<!-- ==================================================== -->
+	<element name="sml:onlineResource" >
+		<label>Online Resource</label>
+		<description>Description of an Online Resource</description>
+   </element>
+			<!-- ==================================================== -->
+	<element name="xlink:href" context="sml:onlineResource" >
+		<label>URL</label>
+		<description>Network location of an online resource</description>
+   </element>
+			<!-- ==================================================== -->
+	<element name="xlink:href" context="sml:DocumentList" >
+		<label>URL</label>
+		<description>Network location of an online document</description>
+   </element>
+			<!-- ==================================================== -->
+	<element name="xlink:href" context="sml:contactInfo" >
+		<label>URL</label>
+		<description>Network location of a resource relating to contact information</description>
+   </element>
+			<!-- ==================================================== -->
+	<element name="swe:field_siteStatus">
+		<label>Current Site Status</label>
+		<description>The present operational status of the site.  Select a value from the drop-down list</description>
+		<helper>
+      <option value="active">Active</option>
+      <option value="inactive">Inactive</option>
+    </helper>
+	</element>
+			<!-- ==================================================== -->
+	<element name="swe:field_observedBBOX">
+		<label>Observation Bounding Box</label>
+		<description>The bounding box within which the sensor site/platform observations have or will occur.  Complete this section if the site/platform observation area is different than the site's central point location/centroid.</description>
+	</element>
+			<!-- ==================================================== -->
+	<element name="swe:field_sensorStatus">
+		<label>Current Sensor Status</label>
+		<description>The present operational status of the sensor. Select a value from the drop-down list</description>
+		<helper>
+      <option value="active">Active</option>
+      <option value="inactive">Inactive</option>
+    </helper>
+	</element>
+			<!-- ==================================================== -->
+	<element name="sml:member" context="sml:EventList">
+		<label>Event</label>
+		<description>A significant event in the history of the site.</description>
+	</element>
+			<!-- ==================================================== -->
+	<element name="sml:classifier_siteEventType">
+		<label>Event Classifier</label>
+		<description>A classifier describing an historical event at the site.</description>
+	</element>
+			<!-- ==================================================== -->
+	<element name="sml:classifier_siteType">
+		<label>Site Type</label>
+		<description>The category of monitoring carried out at the site.  Select a value from the drop-down list</description>
+	</element>
+			<!-- ==================================================== -->
+	<element name="sml:classifier_sensorType">
+		<label>Sensor Type</label>
+		<description>A category of sensor based on function. Select a value from the drop-down list</description>
+	</element>
+			<!-- ==================================================== -->
+	<element name="swe:coordinate_easting_site">
+		<label>Longitude</label>
+		<description>The longitude of the site's position in decimal degrees (positive east)</description>
+	</element>
+			<!-- ==================================================== -->
+	<element name="swe:coordinate_northing_site">
+		<label>Latitude</label>
+		<description>The latitude of the site's position in decimal degrees (positive north)</description>
+	</element>
+			<!-- ==================================================== -->
+	<element name="swe:coordinate_altitude_site">
+		<label>Altitude</label>
+		<description>The elevation of the site's position in metres relative to mean sea level</description>
+	</element>
+			<!-- ==================================================== -->
+  <element name="swe:coordinate_easting_sensor">
+    <label>Longitude</label>
+    <description>The longitude of the sensor's position in decimal degrees (positive east)</description>
+  </element>
+			<!-- ==================================================== -->
+  <element name="swe:coordinate_northing_sensor">
+    <label>Latitude</label>
+    <description>The latitude of the sensor's position in decimal degrees (positive north)</description>
+  </element>
+			<!-- ==================================================== -->
+  <element name="swe:coordinate_altitude_sensor">
+    <label>Altitude</label>
+    <description>The elevation of the sensor's position in metres relative to mean sea level</description>
+  </element>
+			<!-- ==================================================== -->
+  <element name="swe:coordinate_n_sensor">
+		<label>North Bound</label>
+		<description>Northern most coordinate of the limit of the sensor observation area, expressed in latitude in decimal degrees (positive north)</description>
+	</element>
+			<!-- ==================================================== -->
+  <element name="swe:coordinate_n_site">
+    <label>North Bound</label>
+    <description>Northern most coordinate of the limit of the site observation area, expressed in latitude in decimal degrees (positive north)</description>
+  </element>
+			<!-- ==================================================== -->
+	<element name="swe:coordinate_w_sensor">
+		<label>West Bound</label>
+		<description>Western most coordinate of the limit of the sensor observation area, expressed in longitude in decimal degrees (positive east)</description>
+	</element>
+			<!-- ==================================================== -->
+  <element name="swe:coordinate_w_site">
+    <label>West Bound</label>
+    <description>Western most coordinate of the limit of the site observation area, expressed in longitude in decimal degrees (positive east)</description>
+  </element>
+			<!-- ==================================================== -->
+	<element name="swe:coordinate_e_sensor">
+		<label>East Bound</label>
+		<description>Eastern most coordinate of the limit of the sensor observation area, expressed in longitude in decimal degrees (positive east)</description>
+	</element>
+			<!-- ==================================================== -->
+  <element name="swe:coordinate_e_site">
+    <label>East Bound</label>
+    <description>Eastern most coordinate of the limit of the site observation area, expressed in longitude in decimal degrees (positive east)</description>
+  </element>
+			<!-- ==================================================== -->
+	<element name="swe:coordinate_s_sensor">
+		<label>South Bound</label>
+		<description>Southern most coordinate of the limit of the sensor observation area, expressed in latitude in decimal degrees (positive north)</description>
+	</element>
+			<!-- ==================================================== -->
+  <element name="swe:coordinate_s_site">
+    <label>South Bound</label>
+    <description>Southern most coordinate of the limit of the site observation area, expressed in latitude in decimal degrees (positive north)</description>
+   </element>
+			<!-- ==================================================== -->
+	<element name="gml:timePosition">
+		<label>Metadata Effective Date</label>
+		<description>Enter the date on which the following information describing the site and its sensors became or will become valid.  Insert date in YYYY-MM-DD format or use the calendar icon to select the date</description>
+	</element>
+			<!-- ==================================================== -->
+	<element name="sml:input_observedPhenomenon">
+		<label>Observed Phenomenon</label>
+		<description>A feature or phenomenon observed at the site or by the sensor.</description>
+	</element>
+			<!-- ==================================================== -->
+	<element name="sml:input" context="sml:InputList">
+		<label>Observed Phenomenon</label>
+		<description>A feature or phenomenon observed at the site or by the sensor.</description>
+	</element>
+			<!-- ==================================================== -->
+	<element name="swe:ObservableProperty">
+		<label>Observable Property</label>
+		<description>A feature or phenomenon observed as an input to a sensor.</description>
+	</element>
+			<!-- ==================================================== -->
+	<element name="name" context="sml:EventList">
+		<label>Event name</label>
+		<description>Name of the historical event</description>
+	</element>
+			<!-- ==================================================== -->
+	<element name="sml:member_siteOnlineResource">
+		<label>Document</label>
+		<description>Reference to document relating to the site usually via a URL</description>
+	</element>
+			<!-- ==================================================== -->
+	<element name="sml:member_document">
+		<label>Document</label>
+		<description>Reference to document usually via a URL</description>
+	</element>
+			<!-- ==================================================== -->
+	<element name="sml:keyword_siteKeyword">
+		<label>Keyword</label>
+		<description>Commonly used word(s), or formalized word(s) or phrase(s) used to describe the sensor site. Keyword is a repeatable element; add as many keywords as necessary to describe the sensor site.</description>
+	</element>
+			<!-- ==================================================== -->
+  <element name="sml:keyword_sensorKeyword">
+    <label>Keyword</label>
+    <description>Commonly used word(s), or formalized word(s) or phrase(s) used to describe the  type and usage of the sensor. Keyword is a repeatable element; add as many keywords as necessary to describe the sensor.</description>
+  </element>
+      <!-- ==================================================== -->
+	<element name="sml:member_relatedDataset-GeoNetworkUUID">
+		<label>Related Dataset</label>
+		<description>UUID of related dataset</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="gml:description" context="sml:Event">
+		<label>Description</label>
+		<description>Description of event</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="gml:description" context="sml:Document">
+		<label>Description</label>
+		<description>Description of document</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:identification_site">
+		<label>Site Identification</label>
+		<description>Information that identifies and classifies the sensor site or platform</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:identification_sensor">
+		<label>Sensor Identification</label>
+		<description>Information that identifies and classifies a sensor</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:EventList">
+		<label>Events</label>
+		<description>List of events from site history</description>
+	</element>
+			<!-- ==================================================== -->
+	<element name="sml:ClassifierList">
+		<label>Classifiers</label>
+		<description>List of classifier information about the site or sensor</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:IdentifierList">
+		<label>Identifiers</label>
+		<description>List of identifier information about the site or sensor</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:InputList">
+		<label>Inputs</label>
+		<description>List of inputs sensed at site or by sensor</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:identifier_siteID">
+		<label>Site ID</label>
+		<description>A unique value for the respective Site ID Type</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:identifier_siteShortName">
+		<label>Short Site Name</label>
+		<description>A short or abbreviated name for the sensor site/platform</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:identifier_siteFullName">
+		<label>Full Site Name</label>
+		<description>A full descriptive name for the sensor site/platform</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:identifier_GeoNetwork-UUID">
+		<label>Metadata Identifier</label>
+		<description>A unique value for the metadata record</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:identifier_sensorShortName">
+		<label>Short Sensor Name</label>
+		<description>A short or abbreviated name for the sensor</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:identifier_sensorFullName">
+		<label>Full Sensor Name</label>
+		<description>A full descriptive name for the sensor</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:identifier_sensorIDType">
+		<label>Sensor ID Type</label>
+		<description>The type of identifier used to identify the sensor.  Typically is or includes a reference to the authority managing the ID scheme, e.g. NAPS, Manufacturer Serial Number, Asset Management Number</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:identifier_sensorID">
+		<label>Sensor ID</label>
+		<description>A unique value for the type of sensor ID specified</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:identifier">
+		<label>Identifier</label>
+		<description>A unique value for the site/platform or sensor</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:classification">
+		<label>Classifiers</label>
+		<description>List of classification values</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:ClassifierList">
+		<label>Classifiers</label>
+		<description>List of classification values</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:classifier">
+		<label>Classifier</label>
+		<description>Classification value</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:contact">
+		<label>Contact Information</label>
+		<description>Details about the person or organization to be contacted for further information on the sensor deployment site/platform</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:individualName">
+		<label>Individual Name</label>
+		<description>Name of the responsible person – surname, given name, title, separated by a delimiter</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:organizationName">
+		<label>Organization Name</label>
+		<description>Name of the responsible organization</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:contactInfo">
+		<label>Contact Info</label>
+		<description>Contact Information Elements</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:phone">
+		<label>Phone</label>
+		<description>Contact phone details (voice and facsimile)</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:voice">
+		<label>Telephone Number</label>
+		<description>Telephone number by which individuals can speak to the responsible organization or individual</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:facsimile">
+		<label>Fax Number</label>
+		<description>Telephone number of a fax machine for the responsible organization or individual</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:address">
+		<label>Address</label>
+		<description>Address information</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:deliveryPoint">
+		<label>Street Address</label>
+		<description>Enter the street address for the responsible organization or individual I.e. 123 Main St.</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:city">
+		<label>City</label>
+		<description>City of the location</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:administrativeArea">
+		<label>State</label>
+		<description>State or province of the location</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:postalCode">
+		<label>Postal Code</label>
+		<description>Postal code or ZIP code</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:country">
+		<label>Country</label>
+		<description>Country of the physical address</description>
+	</element>
+      <!-- ==================================================== -->
+  <element name="sml:DocumentList_documents">
+		<label>Site Documentation</label>
+		<description>List of documents relating to the site usually via URL</description>
+	</element>
+			<!-- ==================================================== -->
+  <element name="sml:DocumentList_datasets">
+		<label>Related Datasets</label>
+		<description>List of related datasets</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:date">
+		<label>Date</label>
+		<description>The date of the site event. Enter in YYYY-MM-DD format or use the calendar icon to select the date</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:location_site">
+		<label>Site Location / Centroid</label>
+		<description>The position of the site or the central point of the area where observations are made</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:location_sensor">
+		<label>Sensor Location / Centroid</label>
+		<description>The position of the sensor (not needed if the sensor is located at a site or on a platform)</description>
+	</element>	
+      <!-- ==================================================== -->
+	<element name="sml:electronicMailAddress">
+		<label>Email</label>
+		<description>Address of the electronic mailbox of the responsible organization or individual</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="gml:description_abstract">
+		<label>Note</label>
+		<description>Enter any additional descriptive or explanatory text about the site/platform or sensor</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="gml:description_siteOnlineResource">
+		<label>Description</label>
+		<description>Enter any additional descriptive or explanatory text about the document</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:component" context="sml:ComponentList">
+		<label>Sensor</label>
+		<description>Description of a sensor including: keywords, identifiers, classifiers, status, location and inputs</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="name" context="sml:ComponentList">
+		<label>Sensor Name</label>
+		<description>Name of sensor component</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="xlink:href" context="sml:component">
+		<label>Sensor Link</label>
+		<description>Link to sensorML component</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:Component">
+		<label>Sensor</label>
+		<description>Metadata about a Sensor</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:history">
+		<label>Site History</label>
+		<description>A record of significant events in the life of the monitoring site, including future-dated ones</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:hoursOfService">
+		<label>Hours of Service</label>
+		<description>Provide a time period (including time zone) when an organization or individual can be contacted</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:contactInstructions">
+		<label>Contact Instructions</label>
+		<description>Provide any additional instructions necessary for communicating with the contact</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:positionName">
+		<label>Position Name</label>
+		<description>Role or position of the responsible person</description>
+	</element>
+      <!-- ==================================================== -->
+	<element name="sml:format">
+		<label>Format</label>
+		<description>Format of document</description>
+	</element>
+
+
+</labels>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strings>
+    <SiteID>Value is required for Site id</SiteID>
+    <SiteIDType>Value is required for Site id type</SiteIDType>
+    <SiteType>Value is required for Site type</SiteType>
+    <ShortNameEnglish>English value is Short name</ShortNameEnglish>
+    <FullNameEnglish>English value is required for Full name</FullNameEnglish>
+    <KeywordEnglish>English value is required for Keyword</KeywordEnglish>
+    <OrganizationNameEnglish>English value is required for Organization Name</OrganizationNameEnglish>
+    <ShortNameFrench>French value is required for Short name</ShortNameFrench>
+    <FullNameFrench>French value is required for Full name</FullNameFrench>
+    <KeywordFrench>French value is required for Keyword</KeywordFrench>
+    <OrganizationNameFrench>French value is required for Organization name</OrganizationNameFrench>
+    <SiteStatus>Value is required for Site status</SiteStatus>
+    <ObservedPhenomenum>Value is required for Observed phenomenum</ObservedPhenomenum>
+    <IndividualName>Value is required for Individual Name</IndividualName>
+    <ElectronicMailAddress>Value is required for Electronic Mail Address</ElectronicMailAddress>
+    <SiteLocationDatum>Value is required for Site Location Datum</SiteLocationDatum>
+    <SiteLocationLongitude>Value is required for Site Location Longitude</SiteLocationLongitude>
+    <SiteLocationLatitude>Value is required for Site Location Latitude</SiteLocationLatitude>
+    <EffectiveDate>Value is required for Effective Date</EffectiveDate>
+
+    <EventNote>English and French values are required for Event - Note</EventNote>
+    <DocumentURL>English and French values are required for Document - URL</DocumentURL>
+    <DocumentDes>English and French values are required for Document - Description</DocumentDes>
+    <PositionName>English and French values are required for Contact - Position Name</PositionName>
+    <URL>English and French values are required for Contact - URL</URL>
+    <HoursOfService>English and French values are required for Contact - Hours of Service</HoursOfService>
+    <ContactInstructions>English and French values are required for Contact - Contact Instructions</ContactInstructions>
+    <SensorShortName>English and French values are required for Sensor Short Name</SensorShortName>
+    <SensorFullName>English and French values are required for Sensor Full Name</SensorFullName>
+    <SensorKeyword>English and French values are required for Sensor Keyword</SensorKeyword>
+</strings>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://geonetwork-opensource.org/schemas/schema-ident" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://geonetwork-opensource.org/schemas/schema-ident http://geonetwork-opensource.org/schemas/schema-ident/schema-ident.xsd">
+	<name>sensorML</name>
+	<id>8cc7a922-dbb4-4e9a-bfea-d406b57deb04</id>
+	<version>1.0.1</version>
+	<schemaLocation>http://www.opengis.net/sensorML/1.0.1 http://www.opengis.net/sensorML/1.0.1/sensorML.xsd http://www.opengis.net/swe/1.0.1 http://www.opengis.net/swe/1.0.1/swe.xsd http://www.opengis.net/gml http://schemas.opengis.org/gml/3.1.1/base/gml.xsd http://www.w3.org/1999/xlink http://www.w3.org/1999/xlink/xlinks.xsd</schemaLocation>
+	<autodetect xmlns:sml="http://www.opengis.net/sensorML/1.0.1">
+		<elements type="root">
+			<sml:SensorML/>
+		</elements>
+	</autodetect>
+</schema>

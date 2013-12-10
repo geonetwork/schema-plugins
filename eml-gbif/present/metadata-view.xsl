@@ -81,7 +81,7 @@
 
 
        	<span class="madeBy">
-         	<xsl:value-of select="/root/gui/strings/changeDate"/>
+         	<xsl:value-of select="concat(/root/gui/strings/changeDate,' ')"/>
 					<xsl:choose>
 						<xsl:when test="additionalMetadata/metadata/gbif/dateStamp">
 							<xsl:value-of select="additionalMetadata/metadata/gbif/dateStamp"/>

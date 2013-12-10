@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<fields>
+	<!-- as we want to choose sml:Component only when adding new sensor
+	     components to a site or platform 
+	<field name="sml:_Process">
+		<substitute name="sml:Component"/>
+	</field> 
+	Not really though.... -->
+</fields>

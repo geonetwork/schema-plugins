@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.opengis.net/sensorML/1.0.1" elementFormDefault="qualified"
+			  xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			  xmlns:gml="http://www.opengis.net/gml" 
+			  xmlns:sml="http://www.opengis.net/sensorML/1.0.1" 
+			  xmlns:swe="http://www.opengis.net/swe/1.0.1"
+			  xmlns:xml="http://www.w3.org/XML/1998/namespace">
+
+	<xs:include schemaLocation="schema/sensorML/1.0.1/sensorML.xsd"/>
+
+	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="schema/gml/3.1.1/base/gml.xsd"/>	
+	<xs:import namespace="http://www.opengis.net/swe/1.0.1" schemaLocation="schema/sweCommon/1.0.1/swe.xsd"/>
+
+	<!-- add a blank type to deal with this dumb declaration -->
+	<xs:complexType name="xs:anyType">
+	</xs:complexType>
+	
+</xs:schema>

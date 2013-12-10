@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<fields>
+	<field name="sml:Term">
+		<suggest name="definition"/> <!-- anyURI --> <!-- attribute -->
+		<suggest name="sml:codeSpace"/>  <!-- element with type from swe -->
+		<suggest name="sml:value"/>  <!-- element -->
+	</field>
+	
+	<field name="swe:Text">
+		<suggest name="definition"/> <!-- anyURI --> <!-- attribute -->
+		<suggest name="xlink:href"/> 
+	</field>
+
+	<field name="sml:codeSpace">  <!-- element with type from swe -->
+		<suggest name="xlink:href"/>
+	</field>
+
+	<field name="sml:input">
+		<suggest name="name"/> <!-- attribute -->
+		<suggest name="xlink:href"/> <!-- attribute -->          
+		<suggest name="swe:ObservableProperty"/>
+	</field>
+
+	<field name="sml:output">
+		<suggest name="name"/> <!-- attribute -->
+		<suggest name="xlink:href"/> <!-- attribute -->          
+		<suggest name="swe:ObservableProperty"/>
+	</field>
+
+	<field name="swe:ObservableProperty">
+		<suggest name="definition"/> <!-- attribute -->
+	</field>
+
+	<field name="sml:classifier">
+		<suggest name="sml:Term"/>
+		<suggest name="name"/> <!-- attribute -->
+	</field>
+	
+	<field name="sml:KeywordList">
+		<suggest name="keyword"/>
+		<suggest name="id"/> <!-- attribute -->
+		<suggest name="codeSpace"/> <!-- attribute -->
+	</field>
+	
+	<field name="sml:identifier">
+		<suggest name="sml:Term"/>
+		<suggest name="name"/> <!-- attribute -->
+	</field>
+	
+	<field name="sml:component">
+		<suggest name="xlink:href"/>
+		<suggest name="name"/> <!-- attribute -->
+	</field>
+	
+	<field name="swe:field">
+		<suggest name="name"/> <!-- attribute -->
+	</field>
+	
+	<field name="sml:Event">
+		<suggest name="sml:date"/>
+		<suggest name="gml:description"/>
+		<suggest name="sml:EventHSIGROUP_ELEMENT2"/>
+	</field>
+
+	<field name="sml:EventHSIGROUP_ELEMENT2">
+		<suggest name="sml:classification"/>
+	</field>
+
+	<field name="sml:classification">
+		<suggest name="sml:ClassifierList"/>
+	</field>
+
+	<field name="sml:ClassifierList">
+		<suggest name="sml:classifier"/>
+	</field>
+
+	<field name="sml:inputs">
+		<suggest name="sml:InputList"/>
+	</field>
+
+	<field name="sml:InputList">
+		<suggest name="sml:input"/>
+	</field>
+
+	<field name="sml:Document">
+		<suggest name="gml:description"/>
+		<suggest name="sml:format"/>
+		<suggest name="sml:onlineResource"/>
+		<suggest name="version"/> <!-- attribute -->
+	</field>
+
+	<field name="sml:onlineResource">
+		<suggest name="xlink:href"/> <!-- attribute -->
+	</field>
+
+	<field name="sml:contactInfo">
+		<suggest name="sml:phone"/>
+		<suggest name="sml:address"/>
+		<suggest name="sml:onlineResource"/>
+		<suggest name="sml:hoursOfService"/>
+		<suggest name="sml:contactInstructions"/>
+	</field>
+
+	<field name="sml:phone">
+		<suggest name="sml:voice"/>
+		<suggest name="sml:facsimile"/>
+	</field>
+
+	<field name="sml:address">
+		<suggest name="sml:deliveryPoint"/>
+		<suggest name="sml:city"/>
+		<suggest name="sml:postalCode"/>
+		<suggest name="sml:country"/>
+		<suggest name="sml:electronicMailAddress"/>
+	</field>
+
+	<field name="sml:Component">
+		<suggest name="sml:ComponentTypeSEQUENCE_ELEMENT0"/>
+		<suggest name="sml:ComponentTypeGROUP_ELEMENT1"/>
+		<suggest name="sml:ComponentTypeCHOICE_ELEMENT4"/>
+		<suggest name="sml:inputs"/>
+	</field>
+
+	<field name="sml:ComponentTypeSEQUENCE_ELEMENT0">
+		<suggest name="gml:description"/>
+	</field>
+
+	<field name="sml:ComponentTypeGROUP_ELEMENT1">
+		<suggest name="sml:ComponentTypeGROUP_ELEMENT2"/>
+		<suggest name="sml:ComponentTypeGROUP_ELEMENT4"/>
+	</field>
+
+	<field name="sml:ComponentTypeGROUP_ELEMENT2">
+		<suggest name="sml:keywords"/>
+		<suggest name="sml:identification"/>
+		<suggest name="sml:classification"/>
+	</field>
+
+	<field name="sml:ComponentTypeGROUP_ELEMENT4">
+		<suggest name="sml:capabilities"/>
+	</field>
+
+	<field name="sml:System">
+		<suggest name="sml:SystemTypeSEQUENCE_ELEMENT0"/>
+	</field>
+
+	<field name="sml:SystemTypeSEQUENCE_ELEMENT1">
+		<suggest name="gml:description"/>
+	</field>
+
+	<!-- FIXME: Add in sml:position suggestion -->
+</fields>

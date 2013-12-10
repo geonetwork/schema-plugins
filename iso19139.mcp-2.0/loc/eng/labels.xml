@@ -60,7 +60,7 @@
 	</element>
 	<!-- ==================================================== -->
 	<element name="mcp:dataParameter">
-		<label>Data Parameter Info</label>
+		<label>Data Parameter</label>
 		<description>Details about a specific Parameter, including he various names and labels used for that parameter; the unit-of-measurement (UOM) used; the minimum and maximum values measured in the dataset, and a description of the parameter the definitions of the parameters information</description>
 	</element>
 	<!-- ==================================================== -->
@@ -155,6 +155,21 @@
 </li>
 <p>Test involves visible detection of an item at 1, 3, and 5 feet, under the water surface.  The item placed under the water is a plate inscribed with a shape enclosing 4 dots; and that shape is of varying sizes.</p>
     </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:parameterDeterminationInstrument">
+		<label>Determination Instrument</label>
+		<description>Name and information about an instrument used in the determination of an observed or measured parameter</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:parameterAnalysisMethod">
+		<label>Analysis Method</label>
+		<description>Name and information about an analysis method used in the determination of an observed or measured parameter</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:platform">
+		<label>Platform</label>
+		<description>Name and information about a platform used to observe or measure a parameter</description>
 	</element>
 	<!-- ==================================================== -->
 	<element name="mcp:MD_Commons">

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strings>
+		<altitude>Altitude</altitude>
+    <bbox>The rectangular area within which the deployed sensor's observations have or will occur.  Complete this section if the observation area is different from the site point location.</bbox>
+		<blankTerm>Not set</blankTerm>
+		<term>Term</term>
+		<thesaurus>Thesaurus</thesaurus>
+		<thesaurusPicker>Click here to bring up the thesaurus term search/pick panel</thesaurusPicker>
+		<crsPicker>Click here to bring up the coordinate reference system (CRS) search/pick panel</crsPicker>
+		<units>Units</units>
+
+		<!-- fop strings for producing PDF -->
+		<component>Sensor</component>
+		<contact>Contact</contact>
+		<classifiers>Classifiers</classifiers>
+		<documents>Documents</documents>
+		<history>History</history>
+		<identifiers>Identifiers</identifiers>
+		<inputs>Inputs</inputs>
+		<keywords>Keywords</keywords>
+		<observationBoundingBox>Observation Bounding Box</observationBoundingBox>
+		<pointLocation>Location</pointLocation>
+		<siteIdentification>Site Identification</siteIdentification>
+</strings>

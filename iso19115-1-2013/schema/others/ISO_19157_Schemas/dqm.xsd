@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.isotc211.org/2005/dqm/1.0/2013-03-28" elementFormDefault="qualified" version="0.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:dqm="http://www.isotc211.org/2005/dqm/1.0/2013-03-28" xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2013-03-28" xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2013-03-28" xmlns:mrs="http://www.isotc211.org/2005/mrs/1.0/2013-03-28" xmlns:mri="http://www.isotc211.org/2005/mri/1.0/2013-03-28" xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2013-03-28">
+	<!-- ================================= Annotation ================================ -->
+	<xs:annotation>
+		<xs:documentation>
+    This file was generated from ISO TC/211 UML class diagrams == 01-26-2005 12:40:01 ====== 
+    Updated to use dqm namespace, remove lineage (see mrl namespace) and refer to ISO19115-1:2013 for citations, extents etc - Dec, 2013 - Simon Pigot
+    </xs:documentation>
+	</xs:annotation>
+	<!-- ================================== Imports ================================== -->
+	<xs:import namespace="http://www.isotc211.org/2005/gco" schemaLocation="http://www.isotc211.org/2005/gco/gco.xsd"/>
+	<xs:import namespace="http://www.isotc211.org/2005/cit/1.0/2013-03-28" schemaLocation="http://www.isotc211.org/2005/cit/1.0/cit.xsd"/>
+	<xs:import namespace="http://www.isotc211.org/2005/gex/1.0/2013-03-28" schemaLocation="http://www.isotc211.org/2005/gex/1.0/gex.xsd"/>
+	<xs:import namespace="http://www.isotc211.org/2005/mrs/1.0/2013-03-28" schemaLocation="http://www.isotc211.org/2005/mrs/1.0/mrs.xsd"/>
+	<xs:import namespace="http://www.isotc211.org/2005/mri/1.0/2013-03-28" schemaLocation="http://www.isotc211.org/2005/mri/1.0/mri.xsd"/>
+	<xs:import namespace="http://www.isotc211.org/2005/mcc/1.0/2013-03-28" schemaLocation="http://www.isotc211.org/2005/mcc/1.0/mcc.xsd"/>
+	<xs:import namespace="http://www.isotc211.org/2005/mcc/1.0/2013-03-28" schemaLocation="http://www.isotc211.org/2005/mcc/1.0/mcc.xsd"/>
+	<!-- ########################################################################### -->
+	<!-- ########################################################################### -->
+	<!-- ================================== Classes ================================= -->
+	<xs:complexType name="DQ_ConformanceResult_Type">
+		<xs:annotation>
+			<xs:documentation>quantitative_result from Quality Procedures - renamed to remove implied use limitiation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="dqm:AbstractDQ_Result_Type">
+				<xs:sequence>
+					<xs:element name="specification" type="cit:CI_Citation_PropertyType"/>
+					<xs:element name="explanation" type="gco:CharacterString_PropertyType"/>
+					<xs:element name="pass" type="gco:Boolean_PropertyType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="DQ_ConformanceResult" type="dqm:DQ_ConformanceResult_Type" substitutionGroup="dqm:AbstractDQ_Result"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_ConformanceResult_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:DQ_ConformanceResult"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="DQ_QuantitativeResult_Type">
+		<xs:annotation>
+			<xs:documentation>Quantitative_conformance_measure from Quality Procedures.  -  - Renamed to remove implied use limitation -  - OCL - -- result is type specified by valueDomain - result.tupleType = valueDomain</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="dqm:AbstractDQ_Result_Type">
+				<xs:sequence>
+					<xs:element name="valueType" type="gco:RecordType_PropertyType" minOccurs="0"/>
+					<xs:element name="valueUnit" type="gco:UnitOfMeasure_PropertyType"/>
+					<xs:element name="errorStatistic" type="gco:CharacterString_PropertyType" minOccurs="0"/>
+					<xs:element name="value" type="gco:Record_PropertyType" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="DQ_QuantitativeResult" type="dqm:DQ_QuantitativeResult_Type" substitutionGroup="dqm:AbstractDQ_Result"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_QuantitativeResult_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:DQ_QuantitativeResult"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="AbstractDQ_Result_Type" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="gco:AbstractObject_Type">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="AbstractDQ_Result" type="dqm:AbstractDQ_Result_Type" abstract="true"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_Result_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:AbstractDQ_Result"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="DQ_TemporalValidity_Type">
+		<xs:complexContent>
+			<xs:extension base="dqm:AbstractDQ_TemporalAccuracy_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="DQ_TemporalValidity" type="dqm:DQ_TemporalValidity_Type" substitutionGroup="dqm:AbstractDQ_TemporalAccuracy"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_TemporalValidity_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:DQ_TemporalValidity"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="DQ_TemporalConsistency_Type">
+		<xs:complexContent>
+			<xs:extension base="dqm:AbstractDQ_TemporalAccuracy_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="DQ_TemporalConsistency" type="dqm:DQ_TemporalConsistency_Type" substitutionGroup="dqm:AbstractDQ_TemporalAccuracy"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_TemporalConsistency_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:DQ_TemporalConsistency"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="DQ_AccuracyOfATimeMeasurement_Type">
+		<xs:complexContent>
+			<xs:extension base="dqm:AbstractDQ_TemporalAccuracy_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="DQ_AccuracyOfATimeMeasurement" type="dqm:DQ_AccuracyOfATimeMeasurement_Type" substitutionGroup="dqm:AbstractDQ_TemporalAccuracy"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_AccuracyOfATimeMeasurement_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:DQ_AccuracyOfATimeMeasurement"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="DQ_QuantitativeAttributeAccuracy_Type">
+		<xs:complexContent>
+			<xs:extension base="dqm:AbstractDQ_ThematicAccuracy_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="DQ_QuantitativeAttributeAccuracy" type="dqm:DQ_QuantitativeAttributeAccuracy_Type" substitutionGroup="dqm:AbstractDQ_ThematicAccuracy"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_QuantitativeAttributeAccuracy_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:DQ_QuantitativeAttributeAccuracy"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="DQ_NonQuantitativeAttributeAccuracy_Type">
+		<xs:complexContent>
+			<xs:extension base="dqm:AbstractDQ_ThematicAccuracy_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="DQ_NonQuantitativeAttributeAccuracy" type="dqm:DQ_NonQuantitativeAttributeAccuracy_Type" substitutionGroup="dqm:AbstractDQ_ThematicAccuracy"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_NonQuantitativeAttributeAccuracy_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:DQ_NonQuantitativeAttributeAccuracy"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="DQ_ThematicClassificationCorrectness_Type">
+		<xs:complexContent>
+			<xs:extension base="dqm:AbstractDQ_ThematicAccuracy_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="DQ_ThematicClassificationCorrectness" type="dqm:DQ_ThematicClassificationCorrectness_Type" substitutionGroup="dqm:AbstractDQ_ThematicAccuracy"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_ThematicClassificationCorrectness_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:DQ_ThematicClassificationCorrectness"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="DQ_RelativeInternalPositionalAccuracy_Type">
+		<xs:complexContent>
+			<xs:extension base="dqm:AbstractDQ_PositionalAccuracy_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="DQ_RelativeInternalPositionalAccuracy" type="dqm:DQ_RelativeInternalPositionalAccuracy_Type" substitutionGroup="dqm:AbstractDQ_PositionalAccuracy"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_RelativeInternalPositionalAccuracy_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:DQ_RelativeInternalPositionalAccuracy"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="DQ_GriddedDataPositionalAccuracy_Type">
+		<xs:complexContent>
+			<xs:extension base="dqm:AbstractDQ_PositionalAccuracy_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="DQ_GriddedDataPositionalAccuracy" type="dqm:DQ_GriddedDataPositionalAccuracy_Type" substitutionGroup="dqm:AbstractDQ_PositionalAccuracy"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_GriddedDataPositionalAccuracy_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:DQ_GriddedDataPositionalAccuracy"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="DQ_AbsoluteExternalPositionalAccuracy_Type">
+		<xs:complexContent>
+			<xs:extension base="dqm:AbstractDQ_PositionalAccuracy_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="DQ_AbsoluteExternalPositionalAccuracy" type="dqm:DQ_AbsoluteExternalPositionalAccuracy_Type" substitutionGroup="dqm:AbstractDQ_PositionalAccuracy"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_AbsoluteExternalPositionalAccuracy_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:DQ_AbsoluteExternalPositionalAccuracy"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="DQ_TopologicalConsistency_Type">
+		<xs:complexContent>
+			<xs:extension base="dqm:AbstractDQ_LogicalConsistency_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="DQ_TopologicalConsistency" type="dqm:DQ_TopologicalConsistency_Type" substitutionGroup="dqm:AbstractDQ_LogicalConsistency"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_TopologicalConsistency_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:DQ_TopologicalConsistency"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="DQ_FormatConsistency_Type">
+		<xs:complexContent>
+			<xs:extension base="dqm:AbstractDQ_LogicalConsistency_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="DQ_FormatConsistency" type="dqm:DQ_FormatConsistency_Type" substitutionGroup="dqm:AbstractDQ_LogicalConsistency"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_FormatConsistency_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:DQ_FormatConsistency"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="DQ_DomainConsistency_Type">
+		<xs:complexContent>
+			<xs:extension base="dqm:AbstractDQ_LogicalConsistency_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="DQ_DomainConsistency" type="dqm:DQ_DomainConsistency_Type" substitutionGroup="dqm:AbstractDQ_LogicalConsistency"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_DomainConsistency_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:DQ_DomainConsistency"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="DQ_ConceptualConsistency_Type">
+		<xs:complexContent>
+			<xs:extension base="dqm:AbstractDQ_LogicalConsistency_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="DQ_ConceptualConsistency" type="dqm:DQ_ConceptualConsistency_Type" substitutionGroup="dqm:AbstractDQ_LogicalConsistency"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_ConceptualConsistency_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:DQ_ConceptualConsistency"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="DQ_CompletenessOmission_Type">
+		<xs:complexContent>
+			<xs:extension base="dqm:AbstractDQ_Completeness_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="DQ_CompletenessOmission" type="dqm:DQ_CompletenessOmission_Type" substitutionGroup="dqm:AbstractDQ_Completeness"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_CompletenessOmission_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:DQ_CompletenessOmission"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="DQ_CompletenessCommission_Type">
+		<xs:complexContent>
+			<xs:extension base="dqm:AbstractDQ_Completeness_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="DQ_CompletenessCommission" type="dqm:DQ_CompletenessCommission_Type" substitutionGroup="dqm:AbstractDQ_Completeness"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_CompletenessCommission_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:DQ_CompletenessCommission"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="AbstractDQ_TemporalAccuracy_Type" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="dqm:AbstractDQ_Element_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="AbstractDQ_TemporalAccuracy" type="dqm:AbstractDQ_TemporalAccuracy_Type" abstract="true" substitutionGroup="dqm:AbstractDQ_Element"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_TemporalAccuracy_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:AbstractDQ_TemporalAccuracy"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="AbstractDQ_ThematicAccuracy_Type" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="dqm:AbstractDQ_Element_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="AbstractDQ_ThematicAccuracy" type="dqm:AbstractDQ_ThematicAccuracy_Type" abstract="true" substitutionGroup="dqm:AbstractDQ_Element"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_ThematicAccuracy_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:AbstractDQ_ThematicAccuracy"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="AbstractDQ_PositionalAccuracy_Type" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="dqm:AbstractDQ_Element_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="AbstractDQ_PositionalAccuracy" type="dqm:AbstractDQ_PositionalAccuracy_Type" abstract="true" substitutionGroup="dqm:AbstractDQ_Element"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_PositionalAccuracy_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:AbstractDQ_PositionalAccuracy"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="AbstractDQ_LogicalConsistency_Type" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="dqm:AbstractDQ_Element_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="AbstractDQ_LogicalConsistency" type="dqm:AbstractDQ_LogicalConsistency_Type" abstract="true" substitutionGroup="dqm:AbstractDQ_Element"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_LogicalConsistency_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:AbstractDQ_LogicalConsistency"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="AbstractDQ_Completeness_Type" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="dqm:AbstractDQ_Element_Type"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="AbstractDQ_Completeness" type="dqm:AbstractDQ_Completeness_Type" abstract="true" substitutionGroup="dqm:AbstractDQ_Element"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_Completeness_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:AbstractDQ_Completeness"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="AbstractDQ_Element_Type" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="gco:AbstractObject_Type">
+				<xs:sequence>
+					<xs:element name="nameOfMeasure" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="measureIdentification" type="mcc:MD_Identifier_PropertyType" minOccurs="0"/>
+					<xs:element name="measureDescription" type="gco:CharacterString_PropertyType" minOccurs="0"/>
+					<xs:element name="evaluationMethodType" type="dqm:DQ_EvaluationMethodTypeCode_PropertyType" minOccurs="0"/>
+					<xs:element name="evaluationMethodDescription" type="gco:CharacterString_PropertyType" minOccurs="0"/>
+					<xs:element name="evaluationProcedure" type="cit:CI_Citation_PropertyType" minOccurs="0"/>
+					<xs:element name="dateTime" type="gco:DateTime_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="result" type="dqm:DQ_Result_PropertyType" maxOccurs="2"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="AbstractDQ_Element" type="dqm:AbstractDQ_Element_Type" abstract="true"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_Element_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:AbstractDQ_Element"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="DQ_DataQuality_Type">
+		<xs:complexContent>
+			<xs:extension base="gco:AbstractObject_Type">
+				<xs:sequence>
+					<xs:element name="scope" type="dqm:DQ_Scope_PropertyType"/>
+					<xs:element name="report" type="dqm:DQ_Element_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="DQ_DataQuality" type="dqm:DQ_DataQuality_Type"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_DataQuality_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:DQ_DataQuality"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:complexType name="DQ_Scope_Type">
+		<xs:complexContent>
+			<xs:extension base="gco:AbstractObject_Type">
+				<xs:sequence>
+					<xs:element name="level" type="mcc:MD_ScopeCode_PropertyType"/>
+					<xs:element name="extent" type="gex:EX_Extent_PropertyType" minOccurs="0"/>
+					<xs:element name="levelDescription" type="mcc:MD_ScopeDescription_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="DQ_Scope" type="dqm:DQ_Scope_Type"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_Scope_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:DQ_Scope"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<!-- ........................................................................ -->
+	<xs:element name="DQ_EvaluationMethodTypeCode" type="gco:CodeListValue_Type" substitutionGroup="gco:CharacterString"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="DQ_EvaluationMethodTypeCode_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="dqm:DQ_EvaluationMethodTypeCode"/>
+		</xs:sequence>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+</xs:schema>

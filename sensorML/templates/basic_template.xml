@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sml:SensorML xmlns:sml="http://www.opengis.net/sensorML/1.0.1" xmlns:swe="http://www.opengis.net/swe/1.0.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0.1" xsi:schemaLocation="http://www.opengis.net/sensorML/1.0.1 http://www.opengis.net/sensorML/1.0.1/sensorML.xsd http://www.opengis.net/swe/1.0.1 http://www.opengis.net/swe/1.0.1/swe.xsd http://www.opengis.net/gml http://schemas.opengis.org/gml/3.1.1/base/gml.xsd http://www.w3.org/1999/xlink http://www.w3.org/1999/xlink/xlinks.xsd">
+			<sml:member>
+					<sml:System>
+								<gml:description>OGC SensorML Template: Includes deployment site/platform information with sensors for deployment/site</gml:description>
+								<sml:keywords>
+									<sml:KeywordList>
+										<sml:keyword/>
+									</sml:KeywordList>
+								</sml:keywords>
+								<sml:identification>
+									<sml:IdentifierList>
+										<sml:identifier name="GeoNetwork-UUID">
+											<sml:Term>
+												<sml:value>2001cf1c-d5d9-4cf2-966f-0cbd3d9f9177</sml:value>
+											</sml:Term>
+										</sml:identifier>
+										<sml:identifier name="siteID">
+											<sml:Term definition="">
+												<sml:codeSpace xlink:href=""/>
+					              <sml:value></sml:value>
+					             </sml:Term>
+										</sml:identifier>
+										<sml:identifier name="siteShortName">
+											<sml:Term definition="">
+												<sml:codeSpace xlink:href=""/>
+												<sml:value></sml:value>
+											</sml:Term>
+										</sml:identifier>
+										<sml:identifier name="siteFullName">
+											<sml:Term definition="">
+												<sml:codeSpace xlink:href=""/>
+												<sml:value>Template for SensorML Deployment Site/Platform</sml:value>
+											</sml:Term>
+										</sml:identifier>
+									</sml:IdentifierList>
+								</sml:identification>
+								<sml:classification>
+									<sml:ClassifierList>
+										<sml:classifier name="siteType">
+											<sml:Term definition="">
+												<sml:codeSpace xlink:href=""/>
+												<sml:value/>
+											</sml:Term>
+										</sml:classifier>
+									</sml:ClassifierList>
+								</sml:classification>
+								<sml:validTime>
+									<gml:TimeInstant>
+										<gml:timePosition/>
+									</gml:TimeInstant>
+								</sml:validTime>
+								<sml:capabilities>
+									<swe:DataRecord definition="urn:ogc:def:property:capabilities">
+										<swe:field name="siteStatus">
+											<swe:Text definition="">
+												<swe:value></swe:value>
+											</swe:Text>
+										</swe:field>
+										<swe:field name="observedBBOX">
+														<swe:Envelope definition="urn:ogc:def:property:OGC:1.0:observedBBOX">
+															<swe:lowerCorner>
+																<swe:Vector>
+																	<swe:coordinate name="easting">
+																				<swe:Quantity axisID="x">
+																					<swe:uom code="degree"/>
+																					<swe:value>-180.0</swe:value>
+																				</swe:Quantity>
+																	</swe:coordinate>
+																	<swe:coordinate name="northing">
+																				<swe:Quantity axisID="y">
+																					<swe:uom code="degree"/>
+																					<swe:value>-90.0</swe:value>
+																				</swe:Quantity>
+																	</swe:coordinate>
+																</swe:Vector>
+															</swe:lowerCorner>
+															<swe:upperCorner>
+																<swe:Vector>
+																	<swe:coordinate name="easting">
+																				<swe:Quantity axisID="x">
+																					<swe:uom code="degree"/>
+																					<swe:value>180.0</swe:value>
+																				</swe:Quantity>
+																	</swe:coordinate>
+																	<swe:coordinate name="northing">
+																				<swe:Quantity axisID="y">
+																					<swe:uom code="degree"/>
+																					<swe:value>90.0</swe:value>
+																				</swe:Quantity>
+																	</swe:coordinate>
+																</swe:Vector>
+															</swe:upperCorner>
+														</swe:Envelope>
+										</swe:field>
+									</swe:DataRecord>
+								</sml:capabilities>
+								<sml:contact>
+											<sml:ResponsibleParty>
+												<sml:individualName/>
+												<sml:organizationName/>
+												<sml:positionName/>
+												<sml:contactInfo>
+													<sml:phone>
+														<sml:voice/>
+														<sml:facsimile/>
+													</sml:phone>
+													<sml:address>
+														<sml:deliveryPoint/>
+														<sml:city/>
+														<sml:administrativeArea/>
+														<sml:postalCode/>
+														<sml:country></sml:country>
+														<sml:electronicMailAddress/>
+													</sml:address>
+													<sml:onlineResource xlink:href=""/>
+													<sml:hoursOfService/>
+													<sml:contactInstructions/>
+												</sml:contactInfo>
+											</sml:ResponsibleParty>
+								</sml:contact>
+
+								<sml:documentation>
+									<sml:DocumentList>
+										<sml:member name="relatedDataset-GeoNetworkUUID">  
+											<sml:Document>
+												<gml:description></gml:description>
+												<sml:format></sml:format>
+												<sml:onlineResource 
+												xlink:type="simple" xlink:href="" xlink:show="new"/>	
+											</sml:Document>
+										</sml:member>
+										<sml:member name="siteOnlineResource">
+											<sml:Document>
+												<gml:description></gml:description>
+												<sml:format></sml:format>
+												<sml:onlineResource 
+												xlink:type="simple" xlink:href="" xlink:show="new"/>	
+											</sml:Document>
+										</sml:member>	
+									</sml:DocumentList>
+								</sml:documentation>
+
+								<sml:history>
+									<sml:EventList>
+										<sml:member name="siteEvent">
+											<sml:Event>
+												<sml:date/>
+												<gml:description></gml:description>
+												<sml:classification>
+													<sml:ClassifierList>
+														<sml:classifier name="siteEventType">
+															<sml:Term definition="">
+																<sml:codeSpace xlink:href=""/>
+																<sml:value/>
+															</sml:Term>
+														</sml:classifier>
+													</sml:ClassifierList>
+												</sml:classification>
+											</sml:Event>
+										</sml:member>
+									</sml:EventList>
+								</sml:history>
+							<sml:position name="sitePosition">
+								<swe:Position referenceFrame="">
+									<swe:location>
+										<swe:Vector>
+											<swe:coordinate name="easting">
+														<swe:Quantity axisID="x">
+															<swe:uom code="degree"/>
+															<swe:value>-0.0</swe:value>
+														</swe:Quantity>
+											</swe:coordinate>
+											<swe:coordinate name="northing">
+														<swe:Quantity axisID="y">
+															<swe:uom code="degree"/>
+															<swe:value>-0.0</swe:value>
+														</swe:Quantity>
+											</swe:coordinate>
+											<swe:coordinate name="altitude">
+														<swe:Quantity axisID="z">
+															<swe:uom code="m"/>
+															<swe:value>-0.0</swe:value>
+														</swe:Quantity>
+											</swe:coordinate>
+										</swe:Vector>
+									</swe:location>
+								</swe:Position>
+							</sml:position>
+						<sml:inputs>
+							<sml:InputList>
+								<sml:input name="" xlink:href="">
+									<swe:ObservableProperty definition=""/>
+								</sml:input>
+							</sml:InputList>
+						</sml:inputs>
+						<sml:components>
+							<sml:ComponentList>
+								<sml:component name="">
+									<sml:Component>
+												<sml:keywords>
+													<sml:KeywordList>
+														<sml:keyword/>
+													</sml:KeywordList>
+												</sml:keywords>
+												<sml:identification>
+													<sml:IdentifierList>
+														<sml:identifier name="sensorIDType">
+															<sml:Term definition="">
+																<sml:codeSpace xlink:href=""/>
+																<sml:value/>
+															</sml:Term>
+														</sml:identifier>
+														<sml:identifier name="sensorID">
+															<sml:Term definition="">
+																<sml:codeSpace xlink:href=""/>
+																<sml:value/>
+															</sml:Term>
+														</sml:identifier>
+														<sml:identifier name="sensorShortName">
+															<sml:Term definition="">
+																<sml:codeSpace xlink:href=""/>
+																<sml:value/>
+															</sml:Term>
+														</sml:identifier>
+														<sml:identifier name="sensorFullName">
+															<sml:Term definition="">
+																<sml:codeSpace xlink:href=""/>
+																<sml:value/>
+															</sml:Term>
+														</sml:identifier>
+													</sml:IdentifierList>
+												</sml:identification>
+												<sml:classification>
+													<sml:ClassifierList>
+														<sml:classifier name="sensorType">
+															<sml:Term definition="">
+																<sml:codeSpace xlink:href=""/>
+																<sml:value/>
+															</sml:Term>
+														</sml:classifier>
+													</sml:ClassifierList>
+												</sml:classification>
+												<sml:capabilities>
+													<swe:DataRecord definition="urn:ogc:def:property:capabilities">
+														<swe:field name="sensorStatus">
+															<swe:Text definition="">
+																<swe:value/>
+															</swe:Text>
+														</swe:field>
+														<swe:field name="observedBBOX">
+																		<swe:Envelope definition="urn:ogc:def:property:OGC:1.0:observedBBOX">
+																			<swe:lowerCorner>
+																				<swe:Vector>
+																					<swe:coordinate name="easting">
+																								<swe:Quantity axisID="x">
+																									<swe:uom code="degree"/>
+																									<swe:value>-180.0</swe:value>
+																								</swe:Quantity>
+																					</swe:coordinate>
+																					<swe:coordinate name="northing">
+																								<swe:Quantity axisID="y">
+																									<swe:uom code="degree"/>
+																									<swe:value>-90.0</swe:value>
+																								</swe:Quantity>
+																					</swe:coordinate>
+																				</swe:Vector>
+																			</swe:lowerCorner>
+																			<swe:upperCorner>
+																				<swe:Vector>
+																					<swe:coordinate name="easting">
+																								<swe:Quantity axisID="x">
+																									<swe:uom code="degree"/>
+																									<swe:value>180.0</swe:value>
+																								</swe:Quantity>
+																					</swe:coordinate>
+																					<swe:coordinate name="northing">
+																								<swe:Quantity axisID="y">
+																									<swe:uom code="degree"/>
+																									<swe:value>90.0</swe:value>
+																								</swe:Quantity>
+																					</swe:coordinate>
+																				</swe:Vector>
+																			</swe:upperCorner>
+																		</swe:Envelope>
+														</swe:field>
+													</swe:DataRecord>
+												</sml:capabilities>
+											<sml:position name="sensorPosition">
+												<swe:Position referenceFrame="">
+													<swe:location>
+														<swe:Vector>
+															<swe:coordinate name="easting">
+																		<swe:Quantity axisID="x">
+																			<swe:uom code="degree"/>
+																			<swe:value>-0.0</swe:value>
+																		</swe:Quantity>
+															</swe:coordinate>
+															<swe:coordinate name="northing">
+																		<swe:Quantity axisID="y">
+																			<swe:uom code="degree"/>
+																			<swe:value>-0.0</swe:value>
+																		</swe:Quantity>
+															</swe:coordinate>
+															<swe:coordinate name="altitude">
+																		<swe:Quantity axisID="z">
+																			<swe:uom code="m"/>
+																			<swe:value>-0.0</swe:value>
+																		</swe:Quantity>
+															</swe:coordinate>
+														</swe:Vector>
+													</swe:location>
+												</swe:Position>
+											</sml:position>
+										<sml:inputs>
+											<sml:InputList>
+												<sml:input name="" xlink:href="">
+													<swe:ObservableProperty definition=""/>
+												</sml:input>
+											</sml:InputList>
+										</sml:inputs>
+									</sml:Component>
+								</sml:component>
+							</sml:ComponentList>
+						</sml:components>
+					</sml:System>
+			</sml:member>
+		</sml:SensorML>

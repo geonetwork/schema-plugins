@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public">
+
+<!-- OASIS CATALOG FOR GEONETWORK TO REMAP VARIOUS XML IDs -->
+
+	<!-- This used to be done in Java code, but with the use of these 
+			 maps you can customise this to suit yourself. -->
+
+<!-- =============== SensorML maps -->
+
+	<!-- These are to map schemaLocation hints to local schemas to make sure that
+       GeoNetwork edits and validates against a schema it knows about. -->
+
+  <system systemId="http://www.w3.org/2001/xml.xsd"
+            uri="schema/xml.xsd"/>
+
+	<system systemId="http://www.opengis.net/sensorML/1.0.1/sensorML.xsd" 
+	        uri="schema/sensorML/1.0.1/sensorML.xsd"/>
+	<system systemId="http://www.opengis.net/swe/1.0.1/swe.xsd" 
+	        uri="schema/sweCommon/1.0.1/swe.xsd"/>
+
+	<!-- gml (both known places for 3.1.1) -->
+
+	<system systemId="http://www.opengis.org/gml/gml.xsd" 
+	        uri="schema/gml/3.1.1/base/gml.xsd"/>
+	<system systemId="http://schemas.opengis.org/gml/3.1.1/base/gml.xsd" 
+	        uri="schema/gml/3.1.1/base/gml.xsd"/>
+
+	<!-- xlinks -->
+
+	<system systemId="http://www.w3.org/1999/xlink/xlinks.xsd" 
+	        uri="schema/xlink/1.0.0/xlinks.xsd"/>
+
+</catalog>
