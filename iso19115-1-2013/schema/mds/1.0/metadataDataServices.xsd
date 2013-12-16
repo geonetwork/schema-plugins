@@ -2,7 +2,7 @@
   <include schemaLocation="mds.xsd"/>
   <import namespace="http://www.isotc211.org/2005/cit/1.0/2013-03-28" schemaLocation="../../cit/1.0/cit.xsd"/>
   <import namespace="http://www.isotc211.org/2005/dqm/1.0/2013-03-28" schemaLocation="http://geonetwork-opensource.org/schemas/ISO_19157_Schemas/dqm.xsd"/>
-  <import namespace="http://www.isotc211.org/2005/gco" schemaLocation="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco/gco.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gco" schemaLocation="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco-gml3.2.x/gco.xsd"/>
   <import namespace="http://www.isotc211.org/2005/lan/1.0/2013-03-28" schemaLocation="../../lan/1.0/lan.xsd"/>
   <import namespace="http://www.isotc211.org/2005/mcc/1.0/2013-03-28" schemaLocation="../../mcc/1.0/mcc.xsd"/>
   <import namespace="http://www.isotc211.org/2005/mri/1.0/2013-03-28" schemaLocation="../../mri/1.0/mri.xsd"/>

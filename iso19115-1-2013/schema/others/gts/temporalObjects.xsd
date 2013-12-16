@@ -6,7 +6,7 @@
 	</xs:annotation>
 	<!-- ================================== Imports ================================== -->
 	<xs:import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19136_Schemas/gml.xsd"/>
-	<xs:import namespace="http://www.isotc211.org/2005/gco" schemaLocation="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco/gco.xsd"/>
+	<xs:import namespace="http://www.isotc211.org/2005/gco" schemaLocation="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco-gml3.2.x/gco.xsd"/>
 	<xs:include schemaLocation="gts.xsd"/>
 	<!-- ########################################################################### -->
 	<!-- ########################################################################### -->
