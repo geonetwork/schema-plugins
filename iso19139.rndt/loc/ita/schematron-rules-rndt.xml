@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strings>
+	<!--FILE IDENTIFIER-->
+	<M1>Informazioni sui dati - Identificatore del file</M1>
+	<alert.M1><div>L'elemento fileIdentifier è mancante, incompleto o ha un valore errato</div></alert.M1>
+	<!--METADATA LANGUAGE-->
+	<M2>Informazioni sui dati - Lingua dei metadati</M2>
+	<alert.M2><div>L'elemento Language (Lingua dei metadati) è mancante, incompleto o ha un valore errato</div></alert.M2>
+	<!--PARENT IDENTIFIER-->
+	<M3>Informazioni sui dati - Id file precedente</M3>
+	<alert.M3><div>L'elemento parentIdentifier è mancante, incompleto o ha un valore errato</div></alert.M3>
+	<!--HIERARCHY LEVEL-->
+	<M4>Informazioni sui dati - Livello gerarchico</M4>
+	<alert.M4><div>L'elemento hierarchyLevel è mancante, incompleto o ha un valore errato</div></alert.M4>
+	<!--METADATA STANDARD NAME-->
+	<M5>Informazioni sui dati - Nome dello standard</M5>
+	<alert.M5><div>L'elemento metadataStandardName è mancante, incompleto o ha un valore errato. Il valore dell'elemento deve essere uguale a 'DM - Regole tecniche RNDT'</div></alert.M5>
+	<!--METADATA STANDARD NAME-->
+	<M6>Informazioni sui dati - Versione dello standard</M6>
+	<alert.M6><div>L'elemento metadataStandardVersion è mancante, incompleto o ha un valore errato. Il valore dell'elemento deve essere uguale a '10 novembre 2011'</div></alert.M6>
+	<!--METADATA CHARACTER SET-->
+	<M7>Informazioni sui dati - Set dei caratteri dei metadati</M7>
+	<alert.M7><div>L'elemento characterSet è mancante, incompleto o ha un valore errato</div></alert.M7>
+	<!--DATA/SERVICE IDENTIFICATION - DATE TYPE-->
+	<M8>Identificazione dei Dati/Servizi - Tipo Data</M8>
+	<alert.M8><div>L'elemento dateType è mancante, incompleto o ha un valore errato</div></alert.M8>
+	<!--DATA/SERVICE IDENTIFICATION -  RESPONSIBLE PARTY-->
+	<M9>Identificazione dei Dati/Servizi - Responsabile dei metadati (Punto di contatto)</M9>
+	<alert.M9><div>L'elemento CI_ResponsibleParty è mancante, incompleto o ha un valore errato. Il metadato deve contenere gli elementi organisationName,role e electronicMailAddress e almeno uno tra gli elemnti phone e onlineResource</div></alert.M9>
+	<!--DATA/SERVICE IDENTIFICATION - IDENTIFIER-->
+	<M13>Identificazione dei Dati/Servizi - Identificatore</M13>
+	<alert.M13><div>L'elemento RS_Identifier è mancante, incompleto o ha un valore errato</div></alert.M13>
+	<!--DATA/SERVICE IDENTIFICATION - SERIES-->
+	<M14>Identificazione dei Dati/Servizi - Id livello superiore</M14>
+	<alert.M14><div>L'elemento series è mancante, incompleto o ha un valore errato</div></alert.M14>
+	<!--DATA/SERVICE IDENTIFICATION - DATASET RESPONSIBLE PARTY -->	
+	<M15>Identificazione dei Dati/Servizi - Responsabile del dato/servizio</M15>
+	<alert.M15><div>L'elemento citedResponsibleParty è mancante, incompleto o ha un valore errato. Il metadato deve contenere gli elementi organisationName,role e electronicMailAddress e almeno uno tra gli elementi phone e onlineResource</div></alert.M15>
+	<!--DATA/SERVICE IDENTIFICATION - PRESENTATION FORM-->
+	<M30>Identificazione dei Dati/Servizi - Formato di presentazione</M30>
+	<alert.M30><div>L'elemento presentationForm è mancante, incompleto o ha un valore errato</div></alert.M30>
+	<!--DATA/SERVICE IDENTIFICATION - SPATIAL REPRESENTATION TYPE-->
+	<M31>Identificazione dei Dati/Servizi - Tipo di rappresentazione spaziale</M31>
+	<alert.M31><div>L'elemento spatialRepresentationType è mancante, incompleto o ha un valore errato</div></alert.M31>
+	<!--DATA/SERVICE IDENTIFICATION - SPATIAL RESOLUTION-->
+	<M32>Identificazione dei Dati/Servizi - Risoluzione spaziale</M32>
+	<alert.M32><div>L'elemento spatialResolution è mancante, incompleto o ha un valore errato</div></alert.M32>
+	<!--DATA/SERVICE IDENTIFICATION - GEOGRAPHIC LOCATION-->
+	<M33>Identificazione dei Dati/Servizi - Estensione - Localizzazione geografica</M33>
+	<alert.M33><div>L'elemento geographicElement è mancante, incompleto o ha un valore errato</div></alert.M33>
+	<!--DATA/SERVICE QUALITY - SCOPE-->
+	<M34>Qualità dei dati - Livello di qualità</M34>
+	<alert.M34><div>L'elemento Scope è mancante, incompleto o ha un valore errato</div></alert.M34>
+	<!--DATA/SERVICE QUALITY - POSITIONAL ACCURACY-->
+	<M35>Qualità dei dati - Accuratezza posizionale</M35>
+	<alert.M35><div>L'elemento DQ_AbsoluteExternalPositionalAccuracy è mancante, incompleto o ha un valore errato</div></alert.M35>
+	<!--DATA/SERVICE QUALITY - LINEAGE-->
+	<M36>Qualità dei dati - Genealogia</M36>
+	<alert.M36><div>L'elemento Lineage è mancante, incompleto o ha un valore errato</div></alert.M36>
+	<!--DATA/SERVICE QUALITY -  CONFORMANCE REPORT - SPECIFICATION-->
+	<M37>Qualità dei dati - Conformità - specifiche</M37>
+	<alert.M37><div>L'elemento DQ_ConformanceResult è mancante, incompleto o ha un valore errato</div></alert.M37>
+	<!--REFERENCE SYSTEM-->
+	<M38>Sistema di riferimento spaziale</M38>
+	<alert.M38><div>L'elemento referenceSystemInfo è mancante, incompleto o ha un valore errato</div></alert.M38>
+	<!--DATA/SERVICE IDENTIFICATION - KEYWORDS-->
+	<M39>Identificazione dei Dati/Servizi - Parole Chiave</M39>
+	<alert.M39><div>L'elemento descriptiveKeywords è mancante, incompleto o ha un valore errato</div></alert.M39>
+	<!--DISTRIBUTION INFO - DISTRIBUTION FORMAT-->
+	<M45>Distribuzione dei dati - Formato di distribuzione</M45>
+	<alert.M45><div>L'elemento distributionFormat è mancante, incompleto o ha un valore errato</div></alert.M45>
+	<!--DISTRIBUTION INFO - DISTRIBUTOR-->
+	<M46>Distribuzione dei dati - Distributore</M46>
+	<alert.M46><div>L'elemento distributor è mancante, incompleto o ha un valore errato. Il metadato deve contenere gli elementi organisationName,role e electronicMailAddress e almeno uno tra gli elementi phone e onlineResource</div></alert.M46>
+	<!--CONSTRAINTS - USE LIMITATIONS-->
+	<M50>Vincoli sui Dati - Limitazione d'uso</M50>
+	<alert.M50><div>L'elemento useLimitation è mancante, incompleto o ha un valore errato</div></alert.M50>
+	<!--CONSTRAINTS - ACCESS CONSTRAINTS-->
+	<M51>Vincoli sui Dati - Vincoli di accesso</M51>
+	<alert.M51><div>L'elemento accessConstraints è mancante, incompleto o ha un valore errato</div></alert.M51>
+	<!--CONSTRAINTS - ACCESS CONSTRAINTS-->
+	<M52>Vincoli sui Dati - Vincoli di fruibilità</M52>
+	<alert.M52><div>useConstraints è mancante, incompleto o ha un valore errato</div></alert.M52>
+	<!--CONSTRAINTS - OTHER CONSTRAINTS-->
+	<M53>Vincoli sui Dati - Altri Vincoli</M53>
+	<alert.M53><div>L'elemento otherConstraints è mancante, incompleto o ha un valore errato</div></alert.M53>
+	<!--CONTENT INFO - CONTENT TYPE (RASTER DATA)-->
+	<M60>Informazioni sul contenuto - Tipo di contenuto (solo per Dati Raster)</M60>
+	<alert.M60><div>L'elemento contentType è mancante, incompleto o ha un valore errato</div></alert.M60>
+	<!--CONTENT INFO - ATTRIBUTE DESCRIPTION (RASTER DATA)-->
+	<M61>Informazioni sul contenuto - Descrizione degli attributi (solo per Dati Raster)</M61>
+	<alert.M61><div>L'elemento attributeDescription è mancante, incompleto o ha un valore errato</div></alert.M61>
+	<!--SPATIAL REPRESENTATION INFO - DIMENSIONS NUMBER (RASTER DATA)-->
+	<M62>Rappresentazione spaziale - Numero di dimensioni (solo per Dati Raster)</M62>
+	<alert.M62><div>L'elemento numberOfDimensions è mancante, incompleto o ha un valore errato</div></alert.M62>
+	<!--SPATIAL REPRESENTATION INFO - AXIS DIMENSION PROPERTIES (RASTER DATA)-->
+	<M63>Rappresentazione spaziale - Proprietà dimensioni (solo per Dati Raster)</M63>
+	<alert.M63><div>L'elemento axisDimensionProperties è mancante, incompleto o ha un valore errato</div></alert.M63>
+	<!--SPATIAL REPRESENTATION INFO - CELL GEOEMTRY (RASTER DATA)-->
+	<M64>Rappresentazione spaziale - Geometria della Cella (solo per Dati Raster)</M64>
+	<alert.M64><div>L'elemento cellGeometry è mancante, incompleto o ha un valore errato</div></alert.M64>
+	<!--SPATIAL REPRESENTATION INFO - TRANSFORMATION PARAMETER AVAILABILITY (RASTER DATA)-->
+	<M65>Rappresentazione spaziale - Disponibilità coefficienti della trasformazione (solo per Dati Raster)</M65>
+	<alert.M65><div>L'elemento transformationParameterAvailability è mancante, incompleto o ha un valore errato</div></alert.M65>
+	<!--SPATIAL REPRESENTATION INFO - CHECK POINT AVAILABILITY (GEORECTIFIED RASTER DATA)-->
+	<M66>Rappresentazione spaziale - Disponibilità dei check-points (solo per Dati Raster Georettificati)</M66>
+	<alert.M66><div>L'elemento checkPointAvailability è mancante, incompleto o ha un valore errato</div></alert.M66>
+	<!--METADATA DATE FORMAT-->
+	<M99>Data dei metadati - Formato</M99>
+	<alert.M99>La data del metadato deve essere documentata attraverso l'elemento gco:Date</alert.M99>
+	<!--DATE FORMAT-->
+	<M100>Data - Formato</M100>
+	<alert.M100>La date devono essere documentate attraverso l'elemento gco:Date</alert.M100>
+	<!--COD IPA-->
+	<M101>Identificativi - Codice IPA</M101>
+	<alert.M101>Gli identificatavi devono avere come prefisso il codice IPA dell'Amministrazione Responsabile. Verificare che sia stato correttamente configurato il SiteId di GeoNetwork.</alert.M101>
+	<!--COD IPA - PARENT IDENTIFIER-->
+	<M102>Id file precedente - Codice IPA</M102>
+	<alert.M102>L'identificatore del file precedente deve avere come prefisso il codice IPA dell'Amministrazione Responsabile.</alert.M102>
+	<!--COD IPA - IDENTIFIER-->
+	<M103>Id della risorsa - Codice IPA</M103>
+	<alert.M103>L'identificatore della risorsa deve avere come prefisso il codice IPA dell'Amministrazione Responsabile.</alert.M103>
+	<!--COD IPA - SERIES-->
+	<M104>Id livello superiore - Codice IPA</M104>
+	<alert.M104>L'identificatore del livello superiore deve avere come prefisso il codice IPA dell'Amministrazione Responsabile.</alert.M104>
+	<!--NIL REASON-->
+	<M110>Attributo errato</M110>
+	<alert.M110>Nessun elemento del metadato può utilizzare l'attributo gco:nilReason</alert.M110>
+</strings>

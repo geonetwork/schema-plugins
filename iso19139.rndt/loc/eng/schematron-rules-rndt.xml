@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strings>
+	<!--FILE IDENTIFIER-->
+	<M1>File Identifier</M1>
+	<alert.M1><div> fileIdentifier element is missing or has a wrong value</div></alert.M1>
+	<!--METADATA LANGUAGE-->
+	<M2>Metadata Language</M2>
+	<alert.M2><div> Language (Metadata) element is missing or has a wrong value</div></alert.M2>
+	<!--PARENT IDENTIFIER-->
+	<M3>Parent Identifier</M3>
+	<alert.M3><div> parentIdentifier element is missing or has a wrong value</div></alert.M3>
+	<!--HIERARCHY LEVEL-->
+	<M4>Hierarchy Level</M4>
+	<alert.M4><div> hierarchyLevel element is missing or has a wrong value</div></alert.M4>
+	<!--METADATA STANDARD NAME-->
+	<M5>Metadata Standard</M5>
+	<alert.M5><div> metadataStandardName must be present and equal to 'DM - Regole tecniche RNDT'</div></alert.M5>
+	<!--METADATA STANDARD NAME-->
+	<M6>Metadata Standard Version</M6>
+	<alert.M6><div> metadataStandardVersion must be present and equal to '10 novembre 2011'</div></alert.M6>
+	<!--METADATA CHARACTER SET-->
+	<M7>Metadata Character Set</M7>
+	<alert.M7><div> characterSet element is missing or has a wrong value</div></alert.M7>
+	<!--DATA/SERVICE IDENTIFICATION - DATE TYPE-->
+	<M8>Data/service Identification - Date Type</M8>
+	<alert.M8><div> dateType element is missing or has a wrong value</div></alert.M8>
+	<!--DATA/SERVICE IDENTIFICATION -  RESPONSIBLE PARTY-->
+	<M9>Data/service Identification - Metadata Responsible Party (Point of Contact)</M9>
+	<alert.M9><div> CI_ResponsibleParty element is missing or has a wrong value. Metadata Responsible Party must contain organisationName,role,and electronicMailAddress elements and at least one of phone and onlineResource elements</div></alert.M9>
+	<!--DATA/SERVICE IDENTIFICATION - IDENTIFIER-->
+	<M13>Data/service Identification - Identifier</M13>
+	<alert.M13><div> RS_Identifier element is missing or has a wrong value</div></alert.M13>
+	<!--DATA/SERVICE IDENTIFICATION - SERIES-->
+	<M14>Data/service Identification - Series</M14>
+	<alert.M14><div> series element is missing or has a wrong value</div></alert.M14>
+	<!--DATA/SERVICE IDENTIFICATION - DATASET RESPONSIBLE PARTY (POINT OF CONTACT)-->	
+	<M15>Data/service Identification - Dataset Responsible Party</M15>
+	<alert.M15><div> citedResponsibleParty element is missing or has a wrong value. Dataset Responsible Party must contain organisationName,role,and electronicMailAddress elements and at least one of phone and onlineResource elements</div></alert.M15>
+	<!--DATA/SERVICE IDENTIFICATION - PRESENTATION FORM-->
+	<M30>Data/service Identification - Presentation Form</M30>
+	<alert.M30><div> PresentationFromCode element is missing or has a wrong value</div></alert.M30>
+	<!--DATA/SERVICE IDENTIFICATION - SPATIAL REPRESENTATION TYPE-->
+	<M31>Data/service Identification - Spatial Representation Type</M31>
+	<alert.M31><div> Spatial Representation Type element is missing or has a wrong value</div></alert.M31>
+	<!--DATA/SERVICE IDENTIFICATION - SPATIAL RESOLUTION-->
+	<M32>Data/service Identification - Spatial Resolution</M32>
+	<alert.M32><div> Spatial Resolution element is missing or has a wrong value</div></alert.M32>
+	<!--DATA/SERVICE IDENTIFICATION - GEOGRAPHIC LOCATION-->
+	<M33>Data/service Identification - Geographic Location</M33>
+	<alert.M33><div> Geographic Location element is missing or has a wrong value</div></alert.M33>
+	<!--DATA/SERVICE QUALITY - SCOPE-->
+	<M34>Data/Service Quality - - Scope</M34>
+	<alert.M34><div> Scope element is missing or has a wrong value</div></alert.M34>
+	<!--DATA/SERVICE QUALITY - POSITIONAL ACCURACY-->
+	<M35>Data/Service Quality - Positional accuracy</M35>
+	<alert.M35><div> Positional accuracy element is missing or has a wrong value</div></alert.M35>
+	<!--DATA/SERVICE QUALITY - LINEAGE-->
+	<M36>Data/Service Quality - Lineage</M36>
+	<alert.M36><div> Lineage element is missing or has a wrong value</div></alert.M36>
+	<!--DATA/SERVICE QUALITY -  CONFORMANCE REPORT - SPECIFICATION-->
+	<M37>Data/Service Quality - Conformance Report - Specification</M37>
+	<alert.M37><div> Conformance Report - Specification element is missing or has a wrong value</div></alert.M37>
+	<!--DATA/SERVICE QUALITY - REFERENCE SYSTEM-->
+	<M38>Data/Service Quality - Reference System</M38>
+	<alert.M38><div> Reference System element is missing or has a wrong value</div></alert.M38>
+	<!--DATA/SERVICE IDENTIFICATION - KEYWORDS-->
+	<M39>Data/service Identification - Keywords</M39>
+	<alert.M39><div> DescriptiveKeywords element is missing or has a wrong value</div></alert.M39>
+	<!--DISTRIBUTION INFO - DISTRIBUTION FORMAT-->
+	<M45>Distribution Info - Distribution Format</M45>
+	<alert.M45><div> DistributionFormat element is missing or has a wrong value</div></alert.M45>
+	<!--DISTRIBUTION INFO - DISTRIBUTOR-->
+	<M46>Distribution Info - Distributor</M46>
+	<alert.M46><div> Distributor element is missing or has a wrong value. Distributor must contain organisationName,role,and electronicMailAddress elements and at least one of phone and onlineResource elements</div></alert.M46>
+	<!--CONSTRAINTS - USE LIMITATIONS-->
+	<M50>Constraints - Use Limitations</M50>
+	<alert.M50><div> Uselimitations element is missing or has a wrong value</div></alert.M50>
+	<!--CONSTRAINTS - ACCESS CONSTRAINTS-->
+	<M51>Constraints - Access Constraints</M51>
+	<alert.M51><div> AccessConstraints element is missing or has a wrong value</div></alert.M51>
+	<!--CONSTRAINTS - ACCESS CONSTRAINTS-->
+	<M52>Constraints - Use Constraints</M52>
+	<alert.M52><div> UseConstraints element is missing or has a wrong value</div></alert.M52>
+	<!--CONSTRAINTS - OTHER CONSTRAINTS-->
+	<M53>Constraints - Other Constraints</M53>
+	<alert.M53><div> otherConstraints element is missing or has a wrong value</div></alert.M53>
+	<!--CONTENT INFO - CONTENT TYPE (RASTER DATA)-->
+	<M60>Content Info - Content Type (Raster Data only)</M60>
+	<alert.M60><div> ContentType element is missing or has a wrong value</div></alert.M60>
+	<!--CONTENT INFO - ATTRIBUTE DESCRIPTION (RASTER DATA)-->
+	<M61>Content Info - Content Type (Raster Data only)</M61>
+	<alert.M61><div> AttributeDescription element is missing or has a wrong value</div></alert.M61>
+	<!--SPATIAL REPRESENTATION INFO - DIMENSIONS NUMBER (RASTER DATA)-->
+	<M62>Spatial Representation - Dimensions Number (Raster Data only)</M62>
+	<alert.M62><div> NumberOfDimensions element is missing or has a wrong value</div></alert.M62>
+	<!--SPATIAL REPRESENTATION INFO - AXIS DIMENSION PROPERTIES (RASTER DATA)-->
+	<M63>Spatial Representation - Dimensions Properties (Raster Data only)</M63>
+	<alert.M63><div> AxisDimensionProperties element is missing or has a wrong value</div></alert.M63>
+	<!--SPATIAL REPRESENTATION INFO - CELL GEOEMTRY (RASTER DATA)-->
+	<M64>Spatial Representation - Cell Geometry (Raster Data only)</M64>
+	<alert.M64><div>CellGeometry element is missing or has a wrong value</div></alert.M64>
+	<!--SPATIAL REPRESENTATION INFO - TRANSFORMATION PARAMETER AVAILABILITY (RASTER DATA)-->
+	<M65>Spatial Representation - Transformation Parameter Availability (Raster Data only)</M65>
+	<alert.M65><div> TransformationParameterAvailability element is missing or has a wrong value</div></alert.M65>
+	<!--SPATIAL REPRESENTATION INFO - CHECK POINT AVAILABILITY (GEORECTIFIED RASTER DATA)-->
+	<M66>Spatial Representation - Transformation Parameter Availability (Georectified Raster Data only)</M66>
+	<alert.M66><div> CheckPointAvailability element is missing or has a wrong value</div></alert.M66>
+	<!--METADATA DATE FORMAT-->
+	<M99>Date</M99>
+	<alert.M99>Metadata date must be documented through element gco:Date</alert.M99>
+	<!--DATE FORMAT-->
+	<M100>Date</M100>
+	<alert.M100>Dates must be documented through gco:Date</alert.M100>
+	<!--COD IPA-->
+	<M101>Identifiers - IPA code</M101>
+	<alert.M101>Identifiers must be prefixed with IPA Respansabile Administration code. Make sure you have properly configured GeoNetwork SiteId parameter.</alert.M101>
+	<!--COD IPA - PARENT IDENTIFIER-->
+	<M102>Parent Identifier - IPA code</M102>
+	<alert.M102>Parent Identifier must be prefixed with IPA Respansabile Administration code.</alert.M102>
+	<!--COD IPA - IDENTIFIER-->
+	<M103>Resource Identifier - IPA code</M103>
+	<alert.M103>Resource Identifier must be prefixed with IPA Respansabile Administration code.</alert.M103>
+	<!--COD IPA - SERIES-->
+	<M104>Series - IPA code</M104>
+	<alert.M104>Series identifier must be prefixed with IPA Respansabile Administration code.</alert.M104>
+	<!--NIL REASON-->
+	<M110>Attribute not allowed</M110>
+	<alert.M110>No must have attribute gco:nilReason</alert.M110>
+</strings>
