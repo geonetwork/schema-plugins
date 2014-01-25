@@ -19,8 +19,10 @@
   xmlns:mri="http://www.isotc211.org/2005/mri/1.0/2013-03-28"
   xmlns:mmi="http://www.isotc211.org/2005/mmi/1.0/2013-03-28"
   xmlns:mrc="http://www.isotc211.org/2005/mrc/1.0/2013-03-28"
+  xmlns:mco="http://www.isotc211.org/2005/mco/1.0/2013-03-28"
   xmlns:mrd="http://www.isotc211.org/2005/mrd/1.0/2013-03-28"
   xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2013-03-28"
+  xmlns:lan="http://www.isotc211.org/2005/lan/1.0/2013-03-28"
   xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2013-03-28"
   xmlns:dqm="http://www.isotc211.org/2005/dqm/1.0/2013-03-28"
   xmlns:gml="http://www.opengis.net/gml/3.2" 
@@ -65,12 +67,12 @@
 
       <!-- Metadata change date.
       "The date is encoded as a literal in "YYYY-MM-DD" form (ISO 8601 Date and Time Formats)." -->
-      <xsl:variable name="date" select="substring-before(mds:dateInfo/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']cit:date/gco:DateTime, 'T')"/>
+      <xsl:variable name="date" select="substring-before(mds:dateInfo/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']/cit:date/gco:DateTime, 'T')"/>
       <dct:modified><xsl:value-of select="$date"/></dct:modified>
       <dct:issued><xsl:value-of select="$date"/></dct:issued>
       <!-- xpath: mds:dateInfo/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']cit:date/gco:DateTime -->
       
-      <xsl:call-template name="add-reference">
+      <xsl:call-template name="add-reference-19115-1-2013">
         <xsl:with-param name="uuid" select="mds:metadataIdentifier/mcc:MD_Identifier[mcc:codeSpace/gco:CharacterString='urn:uuid']/mcc:code/gco:CharacterString"/>
       </xsl:call-template>
     </dcat:CatalogRecord>
@@ -81,7 +83,7 @@
   
   
   <!-- Add references for HTML and XML metadata record link -->
-  <xsl:template name="add-reference">
+  <xsl:template name="add-reference-19115-1-2013">
     <xsl:param name="uuid"/>
     
     <dct:references>
@@ -215,7 +217,7 @@
   -->
   <xsl:template match="srv:SV_ServiceIdentification|*[contains(@gco:isoType, 'SV_ServiceIdentification')]" mode="to-dcat">
     <rdf:Description rdf:about="{$url}/resource/{iso19115-1-2013:getResourceCode(../../.)}">
-      <xsl:call-template name="to-dcat"/>
+      <xsl:call-template name="to-dcat-19115-1-2013"/>
     </rdf:Description>
   </xsl:template>
   
@@ -229,14 +231,14 @@
   -->
   <xsl:template match="mri:MD_DataIdentification|*[contains(@gco:isoType, 'MD_DataIdentification')]" mode="to-dcat">
     <dcat:Dataset rdf:about="{$url}/resource/{iso19115-1-2013:getResourceCode(../../.)}">
-      <xsl:call-template name="to-dcat"/>
+      <xsl:call-template name="to-dcat-19115-1-2013"/>
     </dcat:Dataset>
   </xsl:template>
   
   
   
   <!-- Build a dcat record for a dataset or service -->
-  <xsl:template name="to-dcat">
+  <xsl:template name="to-dcat-19115-1-2013">
     <!-- "A unique identifier of the dataset." -->
     <dct:identifier><xsl:value-of select="iso19115-1-2013:getResourceCode(../../.)"/></dct:identifier>
     <!-- xpath: mri:identificationInfo/*/mri:citation/*/cit:identifier/*/mcc:code --> 
