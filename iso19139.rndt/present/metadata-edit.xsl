@@ -16,6 +16,27 @@
 	<xsl:include href="metadata-view.xsl"/>
 	<xsl:include href="metadata-rndt.xsl"/>
 
+  <xsl:template name="iso19139.rndtCompleteTab">
+    <xsl:param name="tabLink"/>
+    <xsl:param name="schema"/>
+
+    <!-- RNDT tab -->
+    <xsl:call-template name="mainTab">
+      <xsl:with-param name="title" select="/root/gui/schemas/iso19139.rndt/strings/rndtTab"/>
+      <xsl:with-param name="default">rndt</xsl:with-param>
+      <xsl:with-param name="menu">
+        <item label="rndtTab">rndt</item>
+      </xsl:with-param>
+    </xsl:call-template>
+    
+    <xsl:call-template name="iso19139CompleteTab">
+      <xsl:with-param name="tabLink" select="$tabLink"/>
+      <xsl:with-param name="schema" select="$schema"/>
+    </xsl:call-template>
+
+  </xsl:template>  
+		
+	
 	<xsl:template name="view-with-header-iso19139.rndt">
 		<xsl:param name="tabs"/>
 		<xsl:call-template name="md-content">
