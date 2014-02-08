@@ -106,6 +106,14 @@
 
 	<!-- ================================================================= -->
 	
+	<xsl:template match="gmd:fileIdentifier" priority="10">
+		<xsl:copy>
+			<gco:CharacterString><xsl:value-of select="/root/env/uuid"/></gco:CharacterString>
+		</xsl:copy>
+	</xsl:template>
+
+	<!-- ================================================================= -->
+	
 	<xsl:template match="gmd:metadataStandardName" priority="10">
 		<xsl:copy>
 			<gco:CharacterString><xsl:value-of select="$metadataStandardName"/></gco:CharacterString>
