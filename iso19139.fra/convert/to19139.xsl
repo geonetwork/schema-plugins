@@ -23,23 +23,20 @@
 		</gmd:MD_Metadata>
 	</xsl:template>
 
-	<!--Copy -->
-	<xsl:template match="*" priority="-10">
-		<xsl:element name="{name()}">
-			<xsl:apply-templates select="@*|node()"/>
-		</xsl:element>
-		<!--xsl:copy xmlns:gmd="http://www.isotc211.org/2005/gmd">
-			<xsl:apply-templates select="@*|node()"/>
-		</xsl:copy-->
-	</xsl:template>
-	
-	<xsl:template match="@*">
-		<xsl:if test="not (local-name() = 'type')">
-			<xsl:attribute name="{name()}">
-				<xsl:value-of select="."/>
-			</xsl:attribute>
-		</xsl:if>
-	</xsl:template>
+  <!-- Copy all -->
+  <xsl:template match="@*|node()" priority="-10">
+    <xsl:copy>
+      <xsl:apply-templates select="@*|node()"/>
+    </xsl:copy>
+  </xsl:template>
+
+
+  <!-- Remap schema element -->
+  <xsl:template match="*[@gco:isoType]" priority="100">
+    <xsl:element name="{@gco:isoType}">
+      <xsl:apply-templates select="*"/>
+    </xsl:element>
+  </xsl:template>
 	
 	<xsl:template match="gmd:metadataStandardName">	
 		<gmd:metadataStandardName>
@@ -112,7 +109,6 @@
 	</xsl:template>
 	
 	<!-- QEUsability element removed -->
-	<xsl:template match="gmi:QE_Usability">
-	</xsl:template>
+	<xsl:template match="gmi:QE_Usability|fra:relatedCitation"/>
 	
 </xsl:stylesheet>

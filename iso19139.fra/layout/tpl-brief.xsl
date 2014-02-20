@@ -21,6 +21,6 @@
   </xsl:template>
 
   <xsl:template name="iso19139.fra-brief">
-    <xsl:call-template name="iso19139-brief"
+    <xsl:call-template name="iso19139-brief"/>
   </xsl:template>
 </xsl:stylesheet>
