@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<codelists xmlns:gmd="http://www.isotc211.org/2005/gmd">
+	<!-- ==================================================== -->
+	<!-- RNDT -->
+	<codelist name="gmd:CI_DateTypeCode">		
+		<entry>
+			<code>creation</code>
+			<label>Creazione</label>
+			<description>Data che identifica quando la risorsa è stata creata</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>publication</code>
+			<label>Pubblicazione</label>
+			<description>Data che identifica quando la risorsa è stata pubblicata</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>revision</code>
+			<label>Revisione</label>
+			<description>Data che identifica quando la risorsa è stata esaminata o
+				riesaminata e migliorata o emendata
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>rilievo</code>
+			<label>Rilievo</label>
+			<description>Data che identifica l’osservazione del fenomeno (es. volo)</description>
+		</entry>
+	</codelist>
+	<!-- ==================================================== -->
+	<!-- RNDT -->
+	<codelist name="gmd:MD_DimensionNameTypeCode">		
+		<entry>
+			<code>row</code>
+			<label>Riga</label>
+			<description>Asse delle ordinate (y)</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>column</code>
+			<label>Colonna</label>
+			<description>Asse delle ascisse (x)</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>vertical</code>
+			<label>Verticale</label>
+			<description>Asse verticale (z)</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+	</codelist>
+	<!-- ==================================================== -->
+	<!-- RNDT -->
+	<codelist name="gmd:MD_ScopeCode">
+		<entry>
+			<code>dataset</code>
+			<label>Dataset</label>
+			<description>Le informazioni si applicano ad un dataset</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>series</code>
+			<label>Serie</label>
+			<description>Le informazioni si applicano ad una serie</description>
+		</entry>
+
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>service</code>
+			<label>Service</label>
+			<description>Le informazioni si applicano alla capacità che un ente fornitore di servizi mette a disposizione di un ente di servizio utente attraverso una serie di interfacce che definiscono un comportamento, come un caso d'uso</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+		<entry>
+			<code>tile</code>
+			<label>Tile</label>
+			<description>Le informazioni si applicano ad un tile, un sottoinsieme spaziale dei dati geografici</description>
+		</entry>		
+	</codelist>
+	<!-- ==================================================== -->
+	<!-- RNDT -->
+	<codelist name="gmd:MD_RestrictionCode">
+		<entry>
+			<code>copyright</code>
+			<label>Proprietà intellettuale dei dati
+			</label>
+			<description>Diritto esclusivo alla pubblicazione,
+				produzione o vendita dei diritti di un lavoro letterario, artistico,
+				musicale, o dell’uso di una stampa commerciale, 
+				assegnato dalla legge per un determinato periodo di
+				tempo ad un autore, compositore, artista, distributore.
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>patent</code>
+			<label>Brevetto</label>
+			<description>Diritto esclusivo a produrre, vendere, usare o autorizzare
+				un’invenzione o una scoperta</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>patentPending</code>
+			<label>In attesa di brevetto</label>
+			<description>Informazioni prodotte o vendute in attesa di brevetto.</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>trademark</code>
+			<label>Marchio registrato</label>
+			<description>Nome, simbolo o altro dispositivo che identifica un prodotto, registrato ufficialmente e limitato legalmente
+				all’uso del proprietario o fornitore.</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>license</code>
+			<label>Licenza</label>
+			<description>Permesso formale a fare qualcosa.</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>intellectualPropertyRights</code>
+			<label>Diritti di proprietà intellettuale</label>
+			<description>Diritti al beneficio finanziario e al controllo della distribuzione di una
+				proprietà non tangibile che è il risultato della creatività</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>restricted</code>
+			<label>Dato a conoscibilità limitata
+			</label>
+			<description>Dato la cui conoscibilità è riservata
+				per legge o regolamento a specifici
+				soggetti o categorie di soggetti (cfr.
+				art. 1 Codice A.D.)
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>otherRestrictions</code>
+			<label>Altri vincoli</label>
+			<description>Limitazioni non riportate nella lista</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>datoPubblico</code>
+			<label>Dato pubblico</label>
+			<description>Dato formato o comunque trattato da una Pubblica Amministrazione conoscibile da chiunque (cfr. art. 1 Codice A.D.)</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+	</codelist>
+	<!-- ==================================================== -->
+	<!-- RNDT -->
+	<codelist name="gmd:MD_SpatialRepresentationTypeCode">	
+		<entry>
+			<code>vector</code>
+			<label>Dati vettoriali</label>
+			<description>I dati vettoriali sono utilizzati per rappresentare dati territoriali</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>grid</code>
+			<label>Dati raster</label>
+			<description>I dati raster sono utilizzati per rappresentare dati territoriali</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>textTable</code>
+			<label>Tabella di dati alfanumerici</label>
+			<description>Le tabelle di dati alfanumerici sono utilizzati per rappresentare i dati territoriali</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>tin</code>
+			<label>TIN</label>
+			<description>Triangulated Irregular Network (Rete irregolare triangolata)</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+	</codelist>
+	<!-- ==================================================== -->
+	<!-- RNDT -->
+	<codelist name="gmd:MD_TopicCategoryCode">
+		<entry>
+			<code>farming</code>
+			<label>Agricoltura</label>
+			<description>Allevamento di animali e/o coltivazione di piante
+				Esempi:agricoltura, irrigazioni, acquacoltura, piantagioni, parassiti e malattie che interessano i raccolti e il bestiame</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>biota</code>
+			<label>Biologia</label>
+			<description>Flora e/o fauna nell’ambiente naturale
+				Esempi: fauna selvatica, vegetazione, scienze biologiche, ecologia, habitat
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>boundaries</code>
+			<label>Confini</label>
+			<description>Descrizione legale del territorio
+				Esempi: limiti politici e amministrativi</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>climatologyMeteorologyAtmosphere</code>
+			<label>Climatologia e meteorologia</label>
+			<description>Processi e  fenomeni dell’atmosfera
+				Esempi: annuvolamento, clima,  condizioni atmosferiche, cambiamenti climatici, precipitazioni</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>economy</code>
+			<label>Economia</label>
+			<description>Attività economiche
+				Esempi: produzione, lavoro, commercio, reddito, industria, turismo, ecoturismo, silvicoltura,
+				pesca, esplorazione e sfruttamento delle risorse come minerali, petrolio e gas.</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>elevation</code>
+			<label>Quote e prodotti derivati</label>
+			<description>Quote sopra o sotto il livello del mare
+				Esempi: altitudine, DEM, batimetria, pendenze e prodotti derivati</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>environment</code>
+			<label>Ambiente</label>
+			<description>Risorse ambientali, protezione e conservazione dell’ambiente
+				Esempi: inquinamento ambientale, trattamento dei rifiuti, valutazione di impatto ambientale,
+				monitoraggio del rischio ambientale, riserve naturali, paesaggio
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>geoscientificInformation</code>
+			<label>Informazioni geoscientifiche</label>
+			<description>Informazioni riguardanti le Scienze della Terra
+				Esempi: entità e processi geofisici, geologia, minerali,
+				struttura e origine delle rocce terrestri, rischi di terremoti,
+				attività vulcanica, suoli, idrogeologia, erosione.
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>health</code>
+			<label>Salute</label>
+			<description>Salute, servizi sanitari,	ecologia umana e sicurezza
+				Esempi: malattie, fattori che interessano la salute, igiene, abuso di sostanze, 
+				salute fisica e mentale, servizi sanitari</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>imageryBaseMapsEarthCover</code>
+			<label>Mappe di base</label>
+			<description>Mappe di base
+				Esempi: copertura territoriale, carte topografiche, immagini</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>intelligenceMilitary</code>
+			<label>Informazioni militari</label>
+			<description>Basi, strutture e attività militari
+				Esempi: addestramento, trasporto militare, raccolta di informazioni</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>inlandWaters</code>
+			<label>Acque interne</label>
+			<description>Caratteristiche delle acque
+				interne, sistemi di drenaggio e
+				loro caratteristiche
+				Esempi: fiumi e ghiacciai,laghi salati,  piani    di
+				utilizzazione      dell’acqua,
+				dighe, correnti, inondazioni,
+				qualità dell’acqua
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>location</code>
+			<label>Posizione</label>
+			<description>Informazioni e servizi sulla
+				localizzazione
+				Esempi:      indirizzi,    reti
+				geodetiche, punti di controllo,
+				zone e servizi postali,
+				toponimi
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>oceans</code>
+			<label>Acque marine</label>
+			<description>Entità e caratteristiche dei
+				corpi d’acqua salata (escluse
+				le acque interne)
+				Esempi: maree, informazioni
+				sulle linee di costa
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>planningCadastre</code>
+			<label>Pianificazione del territorio e catasto</label>
+			<description>Pianificazione del territorio
+				Esempi: carte dell’uso del
+				suolo, carte di zonizzazione,
+				indagini catastali, proprietà
+				terriere
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>society</code>
+			<label>Società</label>
+			<description>Caratteristiche    sociali   e
+				culturali
+				Esempi:          antropologia,
+				archeologia,       educazione,
+				costumi, dati demografici,
+				aree e attività per la
+				ricreazione, valutazione di
+				impatto sociale, giustizia,
+				informazioni fiscali
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>structure</code>
+			<label>Strutture</label>
+			<description>Costruzioni, manufatti
+				Esempi:      palazzi,  musei,
+				chiese, fabbriche, monumenti,
+				negozi, torri
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>transportation</code>
+			<label>Trasporto</label>
+			<description>Mezzi e servizi per il
+				trasporto delle persone e/o
+				delle merci
+				Esempi: strade, aeroporti,
+				carte nautiche, posizione dei
+				veicoli, carte aeronautiche,
+				ferrovie
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>utilitiesCommunication</code>
+			<label>Reti, infrastrutture e servizi di comunicazione</label>
+			<description>Energia, acqua e sistemi dei
+				rifiuti, infrastrutture e servizi
+				di comunicazione
+				Esempi:          idro-elettricità,
+				sorgenti         di      energia
+				geotermica,         solare       e
+				nucleare, potabilizzazione e
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+	</codelist>	
+	<!-- ==================================================== -->
+</codelists>

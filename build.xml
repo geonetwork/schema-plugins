@@ -22,6 +22,7 @@
 	<property name="iso19139.fra" value="iso19139.fra"/>
 	<property name="iso19139.mcp-1.4" value="iso19139.mcp-1.4"/>
 	<property name="iso19139.mcp-2.0" value="iso19139.mcp-2.0"/>
+	<property name="iso19139.rndt" value="iso19139.rndt"/>
 	<property name="anzmeta" value="anzmeta"/>
 	<property name="iso19135" value="iso19135"/>
 	<property name="eml-gbif" value="eml-gbif"/>
@@ -42,7 +43,7 @@
 		<zip destfile="${dist}/${eml-gbif}.zip" basedir="${eml-gbif}" excludes=".svn" />
 		<zip destfile="${dist}/${iso19139.fra}.zip" basedir="${iso19139.fra}" excludes=".svn" />
 		<zip destfile="${dist}/${sensorML}.zip" basedir="${sensorML}" excludes=".svn" />
-		
+		<zip destfile="${dist}/${iso19139.rndt}.zip" basedir="${iso19139.rndt}" excludes=".svn" />		
 	</target>
 
 </project>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strings>
+
+    <rules name="schematron-rules-rndt">RNDT rules</rules>
+
+    <rndt2rndt>Export this metadata as RNDT file</rndt2rndt>
+    <rndt2iso19139>Export this metadata as ISO19139 XML file</rndt2iso19139>
+    <rndt2dc>Export this metadata as Dublin Core file</rndt2dc>
+
+  <rndtTab>RNDT view</rndtTab>
+<!--  <rndtTabDesc>Description</rndtTabDesc>
+  <rndtTabTech>Technical info.</rndtTabTech>
+  <rndtTabQua>Quality</rndtTabQua>
+  <rndtTabAcc>Access constraints</rndtTabAcc>
+  <rndtTabMd>Metadata</rndtTabMd>-->
+</strings>

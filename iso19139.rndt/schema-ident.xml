@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://geonetwork-opensource.org/schemas/schema-ident" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://geonetwork-opensource.org/schemas/schema-ident http://geonetwork-opensource.org/schemas/schema-ident/schema-ident.xsd">
+	<!-- Italian geographic metadata schema based on ISO19139 (RNDT)-->
+	<name>iso19139.rndt</name>
+	<id>cce12b40-3bf2-11e3-aa6e-0800200c9a66</id>
+	<version>1.0</version>
+	<depends>iso19139</depends>
+	<schemaLocation>http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd</schemaLocation>
+	<autodetect xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco">
+		<elements>
+			<gmd:metadataStandardName>
+				<gco:CharacterString>DM - Regole tecniche RNDT</gco:CharacterString>
+			</gmd:metadataStandardName>
+			<gmd:metadataStandardVersion>
+				<gco:CharacterString>10 novembre 2011</gco:CharacterString>
+			</gmd:metadataStandardVersion>
+		</elements>
+	</autodetect>
+	<readwriteUuid>true</readwriteUuid>
+</schema>

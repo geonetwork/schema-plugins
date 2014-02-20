@@ -1,0 +1,28 @@
+<!-- 
+	Describes conversions to other schemas 
+-->
+<conversions>
+    <!-- service xml_csw-record does not perform any further conversion after applying XSL -->
+
+    <!-- converts the gml URI to the gml/3.2 -->
+    <!-- set the parentidentifier if null -->
+	<converter name="rndt2rndt"
+               service="xml_csw-record"
+               nsUri="http://www.isotc211.org/2005/gmd"
+               schemaLocation="www.isotc211.org/2005/gmd/gmd.xsd"
+               xslt="xml_rndt2rndt.xsl"/>
+
+    <!-- reset the metadatastandardname and version -->
+    <converter name="rndt2iso19139"
+               service="xml_csw-record"
+               nsUri="http://www.isotc211.org/2005/gmd"
+               schemaLocation="www.isotc211.org/2005/gmd/gmd.xsd"
+               xslt="xml_rndt2iso19139.xsl"/>
+
+    <!-- Same as original iso19139 to dc converter -->
+    <converter name="rndt2dc"
+               service="xml_csw-record"
+               nsUri="http://www.openarchives.org/OAI/2.0/"
+               schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc.xsd"
+               xslt="xml_rndt2dc.xsl"/>
+</conversions>

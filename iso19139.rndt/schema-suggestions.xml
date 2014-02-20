@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fields>	
+  <!-- <field name="gmd:contactInstructions">
+    <suggest name="gco:CharacterString"/>
+    <suggest name="gmx:FileName"/>
+  </field> -->
+  
+	<!-- <field name="gmd:otherCitationDetails">
+		<suggest name="gco:CharacterString"/>
+		<suggest name="gmx:FileName"/>
+	</field> -->
+	
+	<field name="gmd:language">
+		<!-- RNDT -->
+		<!-- <suggest name="gco:CharacterString"/> -->
+		<suggest name="gmd:LanguageCode"/>
+	</field>
+	
+	<!-- <field name="gmx:FileName">
+		<suggest name="src"/>
+	</field> --> 
+	
+	<!-- Service -->
+	<!-- RNDT -->
+	<field name="srv:couplingType">
+		<suggest name="srv:SV_CouplingType"/>
+	</field>
+	
+
+    <!-- Distribution -->		
+		<field name="gmd:MD_Distribution">
+		<!-- RNDT -->
+		<suggest name="gmd:distributionFormat"/>
+		<suggest name="gmd:distributor"/>
+		<!-- RNDT -->
+        <suggest name="gmd:transferOptions"/>
+    </field>
+    
+    <field name="gmd:transferOptions">
+        <suggest name="gmd:MD_DigitalTransferOptions"/>
+    </field>
+    
+    <field name="gmd:MD_DigitalTransferOptions">
+        <suggest name="gmd:onLine"/>
+    </field>
+    
+    <field name="gmd:onLine">
+        <suggest name="gmd:CI_OnlineResource"/>
+    </field>
+    
+    <field name="gmd:CI_OnlineResource">
+		<!-- RNDT -->
+		<!-- <suggest name="gmd:protocol"/> -->
+		<suggest name="gmd:linkage"/>
+		<!-- <suggest name="gmd:name"/> comment even if mandatory and useful for WMS
+		<suggest name="gmd:description"/> -->
+	</field>
+	
+	<!-- RNDT -->
+	<field name="gmd:linkage">
+		<suggest name="gmd:URL"/>
+	</field>
+	
+  
+    
+    
+    <!-- ResponsibleParty -->
+	
+    <field name="gmd:CI_ResponsibleParty">
+		<suggest name="gmd:organisationName"/>
+		<suggest name="gmd:contactInfo"/>
+		<!-- RNDT -->
+		<suggest name="gmd:role"/>
+	</field>
+	
+	<field name="gmd:CI_Contact">
+		<!-- RNDT -->
+		<suggest name="gmd:phone"/>
+		<suggest name="gmd:address"/>
+		<suggest name="gmd:onlineResource"/>
+	</field>
+	
+	<field name="gmd:CI_Telephone">
+		<suggest name="gmd:voice"/>
+		<!-- RNDT -->
+		<!-- <suggest name="gmd:facsimile"/> -->
+	</field>
+	
+	<field name="gmd:CI_Address">
+		<!--<suggest name="gmd:deliveryPoint"/>
+		<suggest name="gmd:city"/>
+		<suggest name="gmd:postalCode"/>
+		<suggest name="gmd:country"/>-->
+		<suggest name="gmd:electronicMailAddress"/>
+	</field>
+	
+  
+  
+  
+    <!-- Keywords -->
+	<field name="gmd:MD_Keywords">
+		<!-- RNDT -->
+		<suggest name="gmd:keyword"/>
+		<suggest name="gmd:thesaurusName"/>
+	</field>
+	
+    <field name="gmd:keyword">
+		<!-- RNDT -->
+        <suggest name="gco:CharacterString"/>
+    </field>
+	
+	<!-- RNDT -->
+	<field name="gmd:thesaurusName">
+        <suggest name="gmd:CI_Citation"/>
+    </field>
+	
+  
+    <field name="gmd:extent">
+        <suggest name="gmd:EX_Extent"/>
+    </field>   
+    
+    
+    <!-- Extent -->
+	<field name="gmd:EX_Extent">
+		<!-- RNDT -->
+		<!-- <suggest name="gmd:description"/> -->
+        <suggest name="gmd:geographicElement"/>
+        <suggest name="gmd:temporalElement"/>
+		<suggest name="gmd:verticalElement"/>
+	</field>
+
+	<!--<field name="gmd:geographicElement">
+        <suggest name="gmd:EX_GeographicBoundingBox"/>
+    </field>-->
+    
+    <field name="gmd:EX_TemporalExtent">
+        <suggest name="gmd:extent"/>
+    </field>
+	
+    <field name="gml:TimePeriod">
+		<suggest name="gml:beginPosition"/>
+		<suggest name="gml:endPosition"/>	
+	</field>
+	
+	
+	<!--<field name="gmd:polygon">
+		<suggest name="gml:Polygon"/>
+	</field> -->
+	
+	<field name="gmd:EX_GeographicBoundingBox">
+		<suggest name="gmd:westBoundLongitude"/>
+		<suggest name="gmd:eastBoundLongitude"/>	
+		<suggest name="gmd:southBoundLatitude"/>
+		<suggest name="gmd:northBoundLatitude"/>
+	</field>
+	
+	<!-- RNDT -->
+	<!-- 
+	<field name="gmd:attributes">
+		<suggest name="uuidref"/>
+	</field>
+
+	<field name="gmd:features">
+		<suggest name="uuidref"/>
+	</field>
+
+	<field name="gmd:featureInstances">
+		<suggest name="uuidref"/>
+	</field>
+
+	<field name="gmd:attributeInstances">
+		<suggest name="uuidref"/>
+	</field> 
+
+	<field name="gmd:propertyType">
+		<suggest name="uuidref"/>
+	</field>
+
+	<field name="gmd:featureType">
+		<suggest name="uuidref"/>
+	</field>
+
+	<field name="gmd:featureAttribute">
+		<suggest name="uuidref"/>
+	</field>-->
+
+	<field name="srv:operatesOn">
+		<suggest name="uuidref"/>
+	</field>
+
+	<!-- RNDT -->
+	<!-- <field name="gml:Polygon">
+		<suggest name="srsName"/>
+	</field> 
+	
+	<field name="gml:descriptionReference">
+		<suggest name="xlink:href"/>
+	</field> -->
+
+
+  <field name="gmd:MD_Constraints">
+    <suggest name="gmd:useLimitation"/>
+  </field>
+  
+  <field name="gmd:MD_LegalConstraints">
+	<!-- RNDT -->
+    <!-- <suggest name="gmd:useLimitation"/> -->
+    <suggest name="gmd:accessConstraints"/>
+    <suggest name="gmd:useConstraints"/>
+    <suggest name="gmd:otherContraints"/>
+  </field>
+  
+  <field name="gmd:MD_SecurityContraints">
+    <suggest name="gmd:classification"/>
+	<!-- RNDT -->
+    <!-- <suggest name="gmd:useLimitation"/> -->
+  </field>
+  
+
+
+    <!-- Quality
+    <field name="gmd:report">
+        <suggest name="gmd:DQ_DomainConsistency"/>
+    </field> -->
+
+    <field name="gmd:DQ_DomainConsistency">
+        <suggest name="gmd:result"/>
+    </field>
+
+    <field name="gmd:DQ_ConformanceResult">
+        <suggest name="gmd:specification"/>
+        <suggest name="gmd:pass"/>
+        <suggest name="gmd:explanation"/>
+    </field>
+    
+    
+    
+    
+    <!-- Constraint -->
+<!--     <field name="fra:FRA_Constraints">
+        <suggest name="gmd:useLimitation"/>
+    </field>
+
+    <field name="fra:FRA_LegalConstraints">
+        <suggest name="gmd:useLimitation"/>
+        <suggest name="gmd:accessConstraints"/>
+        <suggest name="gmd:useConstraints"/>
+        <suggest name="gmd:otherContraints"/>
+    </field>
+
+    <field name="fra:FRA_SecurityContraints">
+        <suggest name="gmd:classification"/>
+        <suggest name="gmd:useLimitation"/>
+    </field> -->
+
+
+    <!-- Date -->
+    <field name="gmd:CI_Date">
+        <suggest name="gmd:date"/>
+		<suggest name="gmd:dateType"/>
+    </field>
+    
+    <!-- This is not supported. Date or DateTime 
+    will be suggested in the editor.
+    <field name="gmd:date">
+        <suggest name="gco:Date"/>
+    </field>
+    -->
+    
+    
+    <!-- Resolution -->
+    <field name="gmd:spatialResolution">
+        <suggest name="gmd:MD_Resolution"/>
+    </field>
+	
+	<field name="ggmd:MD_Resolution">
+        <suggest name="gmd:distance"/>
+		<suggest name="gmd:equivalentScale"/>
+    </field>
+	
+	
+	<field name="gmd:RS_Identifier">
+		<suggest name="gmd:codeSpace"/>
+	</field>
+</fields>

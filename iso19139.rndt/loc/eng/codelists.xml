@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<codelists xmlns:gmd="http://www.isotc211.org/2005/gmd">
+	<!-- ==================================================== -->
+	<!-- RNDT -->
+	<codelist name="gmd:CI_DateTypeCode">
+		<entry>
+			<code>creation</code>
+			<label>Creation</label>
+			<description>Date identifies when the resource was brought into existence</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>publication</code>
+			<label>Publication</label>
+			<description>Date identifies when the resource was issued</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>revision</code>
+			<label>Revision</label>
+			<description>Date identifies when the resource was examined or re-examined and improved or
+				amended</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>rilievo</code>
+			<label>Rilievo</label>
+			<description>Date that identifies the the observation (eg flight)</description>
+		</entry>
+	</codelist>
+	<!-- ==================================================== -->
+	<!-- RNDT -->
+	<codelist name="gmd:MD_CharacterSetCode">
+		<entry>
+			<code>ucs2</code>
+			<label>UCS2</label>
+			<description>16-bit fixed size Universal Character Set, based on ISO/IEC
+			10646</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>ucs4</code>
+			<label>UCS4</label>
+			<description>32-bit fixed size Universal Character Set, based on ISO/IEC
+			10646</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>utf7</code>
+			<label>UTF7</label>
+			<description>7-bit variable size UCS Transfer Format, based on ISO/IEC 10646</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>utf8</code>
+			<label>UTF8</label>
+			<description>8-bit variable size UCS Transfer Format, based on ISO/IEC 10646</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>utf16</code>
+			<label>UTF16</label>
+			<description>16-bit variable size UCS Transfer Format, based on ISO/IEC 10646</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>8859part1</code>
+			<label>8859 Part 1</label>
+			<description>ISO/IEC 8859-1, Information technology - 8-bit single byte coded graphic
+				character sets - Part 1 : Latin alphabet No.1</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>8859part2</code>
+			<label>8859 Part 2</label>
+			<description>ISO/IEC 8859-2, Information technology - 8-bit single byte coded graphic
+				character sets - Part 2 : Latin alphabet No.2</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>8859part3</code>
+			<label>8859 Part 3</label>
+			<description>ISO/IEC 8859-3, Information technology - 8-bit single byte coded graphic
+				character sets - Part 3 : Latin alphabet No.3</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>8859part4</code>
+			<label>8859 Part 4</label>
+			<description>ISO/IEC 8859-4, Information technology - 8-bit single byte coded graphic
+				character sets - Part 4 : Latin alphabet No.4</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>8859part5</code>
+			<label>8859 Part 5</label>
+			<description>ISO/IEC 8859-5, Information technology - 8-bit single byte coded graphic
+				character sets - Part 5 : Latin/Cyrillic alphabet</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>8859part6</code>
+			<label>8859 Part 6</label>
+			<description>ISO/IEC 8859-6, Information technology - 8-bit single byte coded graphic
+				character sets - Part 6 : Latin/Arabic alphabet</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>8859part7</code>
+			<label>8859 Part 7</label>
+			<description>ISO/IEC 8859-7, Information technology - 8-bit single byte coded graphic
+				character sets - Part 7 : Latin/Greek alphabet</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>8859part8</code>
+			<label>8859 Part 8</label>
+			<description>ISO/IEC 8859-8, Information technology - 8-bit single byte coded graphic
+				character sets - Part 8 : Latin/Hebrew alphabet</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>8859part9</code>
+			<label>8859 Part 9</label>
+			<description>ISO/IEC 8859-9, Information technology - 8-bit single byte coded graphic
+				character sets - Part 9 : Latin alphabet No.5</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>8859part10</code>
+			<label>8859 Part 10</label>
+			<description>ISO/IEC 8859-10, Information technology - 8-bit single byte coded graphic
+				character sets - Part 10 : Latin alphabet No.6</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>8859part11</code>
+			<label>8859 Part 11</label>
+			<description>ISO/IEC 8859-11, Information technology - 8-bit single byte coded graphic
+				character sets - Part 11 : Latin/Thai alphabet</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>8859part13</code>
+			<label>8859 Part 13</label>
+			<description>ISO/IEC 8859-13, Information technology - 8-bit single byte coded graphic
+				character sets - Part 13 : Latin alphabet No.7</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>8859part14</code>
+			<label>8859 Part 14</label>
+			<description>ISO/IEC 8859-14, Information technology - 8-bit single byte coded graphic
+				character sets - Part 14 : Latin alphabet No.8 (Celtic)</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>8859part15</code>
+			<label>8859 Part 15</label>
+			<description>ISO/IEC 8859-15, Information technology - 8-bit single byte coded graphic
+				character sets - Part 15 : Latin alphabet No.9</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>8859part16</code>
+			<label>8859 Part 16</label>
+			<description>ISO/IEC 8859-16, Information technology - 8-bit single byte coded graphic
+				character sets - Part 16 : Latin alphabet No.10</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>jis</code>
+			<label>JIS</label>
+			<description>Japanese code set used for electronic transmission</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>shiftJIS</code>
+			<label>Shift JIS</label>
+			<description>Japanese code set used on MS-DOS machines</description>
+		</entry>		
+	</codelist>
+	<!-- ==================================================== -->
+	<!-- RNDT -->
+	<codelist name="gmd:MD_DimensionNameTypeCode">		
+		<entry>
+			<code>row</code>
+			<label>Row</label>
+			<description>Ordinate (y) axis</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>column</code>
+			<label>Column</label>
+			<description>Abscissa (x) axis</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>vertical</code>
+			<label>Vertical</label>
+			<description>Vertical (z) axis</description>
+		</entry>		
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+	</codelist>
+	<!-- ==================================================== -->
+	<!-- RNDT -->
+	<codelist name="gmd:MD_ScopeCode">
+		<entry>
+			<code>dataset</code>
+			<label>Dataset</label>
+			<description>Information applies to the dataset</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>series</code>
+			<label>Series</label>
+			<description>Information applies to the series</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->		
+		<entry>
+			<code>service</code>
+			<label>Service</label>
+			<description>Information applies to a capability which a service provider entity makes
+				available to a service user entity through a set of interfaces that define a behaviour,
+				such as a use case</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>tile</code>
+			<label>Tile</label>
+			<description>Information applies to a tile, a spatial subset of geographic
+			data</description>
+		</entry>
+	</codelist>
+	<!-- ==================================================== -->
+	<!-- RNDT -->
+	<codelist name="gmd:MD_RestrictionCode">
+		<entry>
+			<code>copyright</code>
+			<label>Copyright</label>
+			<description>Exclusive right to the publication, production, or sale of the rights to a
+				literary, dramatic, musical, or artistic work, or to the use of a commercial print or
+				label, granted by law for a specified period of time to an author, composer, artist,
+				distributor</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>patent</code>
+			<label>Patent</label>
+			<description>Government has granted exclusive right to make, sell, use or license an
+				invention or discovery</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>patentPending</code>
+			<label>Pending patent</label>
+			<description>Produced or sold information awaiting a patent</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>trademark</code>
+			<label>Trademark</label>
+			<description>A name, symbol, or other device identifying a product, officially registered
+				and legally restricted to the use of the owner or manufacturer</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>license</code>
+			<label>License</label>
+			<description>Formal permission to do something</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>intellectualPropertyRights</code>
+			<label>Intellectual property rights</label>
+			<description>Rights to financial benefit from and control of distribution of non-tangible
+				property that is a result of creativity</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>restricted</code>
+			<label>Restricted</label>
+			<description>Withheld from general circulation or disclosure</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>otherRestrictions</code>
+			<label>Other restrictions</label>
+			<description>Limitation not listed</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>datopubblico</code>
+			<label>Public Data</label>
+			<description>Public Data</description>
+		</entry>
+	</codelist>
+	<!-- ==================================================== -->
+	<!-- RNDT -->
+	<codelist name="gmd:MD_SpatialRepresentationTypeCode">
+		<entry>
+			<code>vector</code>
+			<label>Vector</label>
+			<description>Vector data is used to represent geographic data</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>grid</code>
+			<label>Grid</label>
+			<description>Grid data is used to represent geographic data</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>textTable</code>
+			<label>Text, table</label>
+			<description>Textual or tabular data is used to represent geographic data</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>tin</code>
+			<label>TIN</label>
+			<description>Triangulated irregular network</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+	</codelist>
+	<!-- ==================================================== -->
+</codelists>
