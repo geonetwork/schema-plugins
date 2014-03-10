@@ -5,7 +5,7 @@
                 xmlns:gfc="http://www.isotc211.org/2005/gfc" xmlns:gmd="http://www.isotc211.org/2005/gmd"
                 xmlns:gml="http://www.opengis.net/gml" xmlns:gmi="http://www.isotc211.org/2005/gmi"
                 xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:xlink="http://www.w3.org/1999/xlink"
-                xmlns:gts="http://www.isotc211.org/2005/gts"
+                xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:geonet="http://www.fao.org/geonetwork"
                 exclude-result-prefixes="fra gmi" xmlns:srv="http://www.isotc211.org/2005/srv">
   <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
@@ -108,5 +108,8 @@
 
   <!-- QEUsability element removed -->
   <xsl:template match="gmi:QE_Usability"/>
+
+  <!-- Remove geonet:* elements. -->
+  <xsl:template match="geonet:*" priority="2"/>
 
 </xsl:stylesheet>
