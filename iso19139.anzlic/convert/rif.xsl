@@ -7,11 +7,10 @@
                  xmlns:geonet="http://www.fao.org/geonetwork"
                  xmlns:gmx="http://www.isotc211.org/2005/gmx"
                  xmlns:oai="http://www.openarchives.org/OAI/2.0/"  
-                 xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"  
                  xmlns:fn="http://www.w3.org/2005/xpath-functions"
                  xmlns="http://ands.org.au/standards/rif-cs/registryObjects">
 
-<!-- stylesheet to convert iso19139.mcp in OAI-PMH ListRecords response to RIF-CS -->
+<!-- stylesheet to convert iso19139.anzlic in OAI-PMH ListRecords response to RIF-CS -->
 
 <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
@@ -21,7 +20,7 @@
     <xsl:apply-templates/>
 </xsl:template>
 
-<xsl:template match="mcp:MD_Metadata">
+<xsl:template match="gmd:MD_Metadata">
 	<xsl:element name="registryObjects">
 		<xsl:attribute name="xsi:schemaLocation">
         	<xsl:text>http://ands.org.au/standards/rif-cs/registryObjects http://services.ands.org.au/documentation/rifcs/schema/registryObjects.xsd</xsl:text>
