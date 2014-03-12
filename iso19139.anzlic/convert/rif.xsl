@@ -386,7 +386,7 @@ Doing stuff for names
 <!--
 	CREATE COLLECTION OBJECT
 -->
-<xsl:template match="mcp:MD_Metadata" mode="collection">
+<xsl:template match="gmd:MD_Metadata" mode="collection">
 
 
 <!-- the originating source --> 
@@ -397,8 +397,8 @@ Doing stuff for names
 
 
     <!-- Originating source, as ANDS demands it, must be a unique string that can identify the institution where the record comes from.  We are currently adopting the use of
-         the URL from a MCP record's pointOfContact.  If non is present, then we'll just use the aodn MEST's URL -->
-    <xsl:variable name="originatingSource" select="gmd:identificationInfo/mcp:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL"/>
+         the URL from the record's pointOfContact.  If non is present, then we'll just use the aodn MEST's URL -->
+    <xsl:variable name="originatingSource" select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL"/>
 	
 	<xsl:variable name="originatingSourceElement">
 		<xsl:element name="originatingSource">
@@ -413,12 +413,12 @@ Doing stuff for names
 		</xsl:element>
 	</xsl:variable>
 	
-	<xsl:variable name="ge" select="gmd:identificationInfo/mcp:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement"/>
-	<xsl:variable name="te" select="gmd:identificationInfo/mcp:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/mcp:EX_TemporalExtent"/>
-	<xsl:variable name="ve" select="gmd:identificationInfo/mcp:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement"/>
+	<xsl:variable name="ge" select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement"/>
+	<xsl:variable name="te" select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent"/>
+	<xsl:variable name="ve" select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement"/>
 	
     <xsl:if test="not($te='')">
-        <xsl:variable name="te" select="gmd:identificationInfo/mcp:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElementi/gmd:EX_TemporalExtent"/>
+        <xsl:variable name="te" select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElementi/gmd:EX_TemporalExtent"/>
     </xsl:if>
     <xsl:variable name="formattedFrom">
 		<xsl:choose>
@@ -502,7 +502,7 @@ Doing stuff for names
 					<xsl:attribute name="type">
 						<xsl:text>full</xsl:text>
 					</xsl:attribute>
-					<xsl:apply-templates select="gmd:identificationInfo/mcp:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:title"/>
+					<xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:title"/>
 				</xsl:element>
 			</xsl:element>
 
@@ -522,7 +522,7 @@ Doing stuff for names
 					<!-- spatial elements  -->
 					<xsl:apply-templates select="$ge/gmd:EX_GeographicBoundingBox"/>
 					
-					<xsl:apply-templates select="gmd:identificationInfo/mcp:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:description"/>
+					<xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:description"/>
 
 					<xsl:apply-templates select="$ge/gmd:EX_BoundingPolygon/gmd:polygon/gml:Polygon/gml:exterior/gml:LinearRing/gml:coordinates[text()!='']"/>
 
@@ -601,9 +601,9 @@ Doing stuff for names
 				</xsl:element>
 			</xsl:for-each-group>
 			
-            <xsl:apply-templates select="gmd:identificationInfo/mcp:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords"/>
-			<xsl:apply-templates select="gmd:identificationInfo/mcp:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode"/>
-			<xsl:apply-templates select="gmd:identificationInfo/mcp:MD_DataIdentification/gmd:abstract"/>
+            <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords"/>
+			<xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode"/>
+			<xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:abstract"/>
 			<xsl:apply-templates select="gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:lineage"/>
 			
 
@@ -627,7 +627,7 @@ Doing stuff for names
                 </xsl:if>
             </xsl:for-each>
 
-<xsl:if test="$te/mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod">
+<xsl:if test="$te/gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod">
 				
 				<xsl:if test="not($from='') and $formattedFrom=''">
 					<xsl:element name="description">
@@ -775,7 +775,7 @@ Doing stuff for names
 				</xsl:element>
 
 
-                <xsl:for-each-group select="//mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword" group-by="substring-before(substring-after(., 'EARTH SCIENCE &gt; '), '&gt;')">
+                <xsl:for-each-group select="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword" group-by="substring-before(substring-after(., 'EARTH SCIENCE &gt; '), '&gt;')">
                     <xsl:call-template name="splitSubject">
                         <xsl:with-param name="string" select="current-grouping-key()"/>
                     </xsl:call-template>
