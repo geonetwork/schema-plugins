@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<fields>
+ <field name="gmd:AbstractMD_Identification">
+  <substitute name="gmi:MD_DataIdentification_Type"/>
+ </field>
+</fields>
