@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmi:MI_Metadata gco:isoType="gmd:MD_Metadata" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco" 
+xmlns:gml="http://www.opengis.net/gml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:gmi="http://sdi.eurac.edu/metadata/iso19139-2/schema/gmi" xmlns:gss="http://www.isotc211.org/2005/gss"
+xsi:schemaLocation="http://sdi.eurac.edu/metadata/iso19139-2/schema/gmi http://sdi.eurac.edu/metadata/iso19139-2/schema/gmi/gmi.xsd">
+<gmd:language>
+<gco:CharacterString>eng</gco:CharacterString>
+</gmd:language>
+<gmd:hierarchyLevel>
+<gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset"/>
+</gmd:hierarchyLevel>
+
+<gmd:contact>
+<gmd:CI_ResponsibleParty>
+<gmd:organisationName>
+<gco:CharacterString>EURAC Research - Institute for Applied Remote Sensing</gco:CharacterString>
+</gmd:organisationName>
+<gmd:contactInfo>
+<gmd:CI_Contact>
+<gmd:address>
+<gmd:CI_Address>
+<gmd:electronicMailAddress>
+<gco:CharacterString>remote.sensing@eurac.edu</gco:CharacterString>
+</gmd:electronicMailAddress>
+</gmd:CI_Address>
+</gmd:address>
+</gmd:CI_Contact>
+</gmd:contactInfo>
+<gmd:role>
+<gmd:CI_RoleCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_RoleCode" codeListValue="publisher"/>
+</gmd:role>
+</gmd:CI_ResponsibleParty>
+</gmd:contact>
+<gmd:dateStamp>
+<gco:DateTime xmlns:srv="http://www.isotc211.org/2005/gmx">2013-07-24T08:09:42Z</gco:DateTime>
+</gmd:dateStamp>
+<gmd:dataSetURI>
+<gco:CharacterString>http://landsat.usgs.gov</gco:CharacterString>
+</gmd:dataSetURI>
+<gmd:spatialRepresentationInfo>
+<gmi:MI_Georectified>
+<gmd:numberOfDimensions>
+<gco:Integer>2</gco:Integer>
+</gmd:numberOfDimensions>
+<gmd:cellGeometry>
+<gmd:MD_CellGeometryCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_CellGeometryCode" codeListValue="area">area</gmd:MD_CellGeometryCode>
+</gmd:cellGeometry>
+<gmd:transformationParameterAvailability>
+<gco:Boolean>true</gco:Boolean>
+</gmd:transformationParameterAvailability>
+<gmd:checkPointAvailability>
+<gco:Boolean>true</gco:Boolean>
+</gmd:checkPointAvailability>
+<gmd:checkPointDescription>
+<gco:CharacterString>LE71930282003203ASN02_GCP.txt</gco:CharacterString>
+</gmd:checkPointDescription>
+<gmd:cornerPoints>
+<gml:Point gml:id="N65643">
+<gml:coordinates>494100.000	5207700.000</gml:coordinates>
+</gml:Point>
+</gmd:cornerPoints>
+<gmd:cornerPoints>
+<gml:Point gml:id="N65649">
+<gml:coordinates>732000.000	5207700.000</gml:coordinates>
+</gml:Point>
+</gmd:cornerPoints>
+<gmd:cornerPoints>
+<gml:Point gml:id="N65655">
+<gml:coordinates>494100.000	4990500.000</gml:coordinates>
+</gml:Point>
+</gmd:cornerPoints>
+<gmd:cornerPoints>
+<gml:Point gml:id="N65661">
+<gml:coordinates>732000.000	4990500.000</gml:coordinates>
+</gml:Point>
+</gmd:cornerPoints>
+<gmd:pointInPixel>
+<gmd:MD_PixelOrientationCode>center</gmd:MD_PixelOrientationCode>
+</gmd:pointInPixel>
+<gmd:transformationDimensionMapping>
+<gco:CharacterString>unknown</gco:CharacterString>
+</gmd:transformationDimensionMapping>
+</gmi:MI_Georectified>
+</gmd:spatialRepresentationInfo>
+<gmd:referenceSystemInfo>
+<gmi:MD_CRS>
+<gmi:projection>
+<gmd:RS_Identifier>
+<gmd:code>
+<gco:CharacterString>UTM</gco:CharacterString>
+</gmd:code>
+</gmd:RS_Identifier>
+</gmi:projection>
+<gmi:ellipsoid>
+<gmd:RS_Identifier>
+<gmd:code>
+<gco:CharacterString>WGS84</gco:CharacterString>
+</gmd:code>
+</gmd:RS_Identifier>
+</gmi:ellipsoid>
+<gmi:datum>
+<gmd:RS_Identifier>
+<gmd:code>
+<gco:CharacterString>WGS84</gco:CharacterString>
+</gmd:code>
+</gmd:RS_Identifier>
+</gmi:datum>
+<gmi:projectionParameters>
+<gmi:zone>
+<gco:Integer>32</gco:Integer>
+</gmi:zone>
+</gmi:projectionParameters>
+</gmi:MD_CRS>
+</gmd:referenceSystemInfo>
+<gmd:identificationInfo>
+<gmd:MD_DataIdentification>
+<gmd:citation>
+<gmd:CI_Citation>
+<gmd:title>
+<gco:CharacterString>Landsat Template</gco:CharacterString>
+</gmd:title>
+<gmd:alternateTitle>
+<gco:CharacterString>Landsat Template based on ISO 19139-2</gco:CharacterString>
+</gmd:alternateTitle>
+<gmd:date>
+<gmd:CI_Date>
+<gmd:date>
+<gco:DateTime>2013-07-24T08:09:42Z</gco:DateTime>
+</gmd:date>
+<gmd:dateType>
+<gmd:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation"/>
+</gmd:dateType>
+</gmd:CI_Date>
+</gmd:date>
+<gmd:identifier>
+<gmd:MD_Identifier>
+<gmd:code>
+<gco:CharacterString>LE71930282003203ASN02</gco:CharacterString>
+</gmd:code>
+</gmd:MD_Identifier>
+</gmd:identifier>
+</gmd:CI_Citation>
+</gmd:citation>
+<gmd:abstract>
+<gco:CharacterString>Landsat represents the world's longest continuously acquired collection of 
+			space-based moderate-resolution land remote sensing data.</gco:CharacterString>
+</gmd:abstract>
+<gmd:pointOfContact>
+<gmd:CI_ResponsibleParty>
+<gmd:organisationName>
+<gco:CharacterString>Image courtesy of the U.S. Geological Survey</gco:CharacterString>
+</gmd:organisationName>
+<gmd:contactInfo>
+<gmd:CI_Contact>
+<gmd:address>
+<gmd:CI_Address>
+<gmd:electronicMailAddress>
+<gco:CharacterString>remote.sensing@eurac.edu</gco:CharacterString>
+</gmd:electronicMailAddress>
+</gmd:CI_Address>
+</gmd:address>
+<gmd:onlineResource>
+<gmd:CI_OnlineResource>
+<gmd:linkage>
+<gmd:URL>http://landsat.usgs.gov</gmd:URL>
+</gmd:linkage>
+</gmd:CI_OnlineResource>
+</gmd:onlineResource>
+</gmd:CI_Contact>
+</gmd:contactInfo>
+<gmd:role>
+<gmd:CI_RoleCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_RoleCode" codeListValue="pointOfContact"/>
+</gmd:role>
+</gmd:CI_ResponsibleParty>
+</gmd:pointOfContact>
+<gmd:descriptiveKeywords>
+<gmd:MD_Keywords>
+<gmd:keyword>
+<gco:CharacterString>Satellite Image</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>Landsat</gco:CharacterString>
+</gmd:keyword>
+<gmd:keyword>
+<gco:CharacterString>Environmental monitoring facilities</gco:CharacterString>
+</gmd:keyword>
+<gmd:type>
+<gmd:MD_KeywordTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme"/>
+</gmd:type>
+<gmd:thesaurusName>
+<gmd:CI_Citation>
+<gmd:title>
+<gco:CharacterString>GEMET - INSPIRE themes, version 1.0</gco:CharacterString>
+</gmd:title>
+<gmd:date>
+<gmd:CI_Date>
+<gmd:date>
+<gco:Date>2008-06-01</gco:Date>
+</gmd:date>
+<gmd:dateType>
+<gmd:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication"/>
+</gmd:dateType>
+</gmd:CI_Date>
+</gmd:date>
+</gmd:CI_Citation>
+</gmd:thesaurusName>
+</gmd:MD_Keywords>
+</gmd:descriptiveKeywords>
+<gmd:resourceConstraints>
+<gmd:MD_LegalConstraints>
+<gmd:useLimitation>
+<gco:CharacterString>otherRestrictions</gco:CharacterString>
+</gmd:useLimitation>
+<gmd:accessConstraints>
+<gmd:MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions"/>
+</gmd:accessConstraints>
+<gmd:useConstraints>
+<gmd:MD_RestrictionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions"/>
+</gmd:useConstraints>
+<gmd:otherConstraints>
+<gco:CharacterString>no limitation</gco:CharacterString>
+</gmd:otherConstraints>
+</gmd:MD_LegalConstraints>
+</gmd:resourceConstraints>
+<gmd:language>
+<gco:CharacterString>"eng"</gco:CharacterString>
+</gmd:language>
+<gmd:characterSet>
+<gmd:MD_CharacterSetCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8"/>
+</gmd:characterSet>
+<gmd:topicCategory>
+<gmd:MD_TopicCategoryCode>imageryBaseMapsEarthCover</gmd:MD_TopicCategoryCode>
+</gmd:topicCategory>
+<gmd:extent>
+<gmd:EX_Extent>
+<gmd:description>
+<gco:CharacterString/>
+</gmd:description>
+<gmd:geographicElement>
+<gmd:EX_GeographicBoundingBox>
+<gmd:westBoundLongitude>
+<gco:Decimal>8.92236</gco:Decimal>
+</gmd:westBoundLongitude>
+<gmd:eastBoundLongitude>
+<gco:Decimal>11.94513</gco:Decimal>
+</gmd:eastBoundLongitude>
+<gmd:southBoundLatitude>
+<gco:Decimal>45.06794</gco:Decimal>
+</gmd:southBoundLatitude>
+<gmd:northBoundLatitude>
+<gco:Decimal>47.02279</gco:Decimal>
+</gmd:northBoundLatitude>
+</gmd:EX_GeographicBoundingBox>
+</gmd:geographicElement>
+</gmd:EX_Extent>
+</gmd:extent>
+</gmd:MD_DataIdentification>
+</gmd:identificationInfo>
+<gmd:contentInfo>
+<gmi:MI_ImageDescription>
+<gmd:attributeDescription>
+<gco:RecordType>Band Description</gco:RecordType>
+</gmd:attributeDescription>
+<gmd:contentType>
+<gmd:MD_CoverageContentTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/gmxCodelists.xml#MD_CoverageContentTypeCode" codeListValue="image"/>
+</gmd:contentType>
+<gmd:dimension>
+<gmi:MI_Band>
+<gmd:sequenceIdentifier>
+<gco:MemberName>
+<gco:aName>
+<gco:CharacterString>Spectral band</gco:CharacterString>
+</gco:aName>
+<gco:attributeType>
+<gco:TypeName>
+<gco:aName>
+<gco:CharacterString>Band 1</gco:CharacterString>
+</gco:aName>
+</gco:TypeName>
+</gco:attributeType>
+</gco:MemberName>
+</gmd:sequenceIdentifier>
+<gmd:descriptor>
+<gco:CharacterString>LE71930282003203ASN02_B1</gco:CharacterString>
+</gmd:descriptor>
+<gmd:offset>
+<gco:Real>-6.200</gco:Real>
+</gmd:offset>
+</gmi:MI_Band>
+</gmd:dimension>
+<gmd:dimension>
+<gmi:MI_Band>
+<gmd:sequenceIdentifier>
+<gco:MemberName>
+<gco:aName>
+<gco:CharacterString>Spectral band</gco:CharacterString>
+</gco:aName>
+<gco:attributeType>
+<gco:TypeName>
+<gco:aName>
+<gco:CharacterString>Band 2</gco:CharacterString>
+</gco:aName>
+</gco:TypeName>
+</gco:attributeType>
+</gco:MemberName>
+</gmd:sequenceIdentifier>
+<gmd:descriptor>
+<gco:CharacterString>LE71930282003203ASN02_B2</gco:CharacterString>
+</gmd:descriptor>
+<gmd:offset>
+<gco:Real>-6.400</gco:Real>
+</gmd:offset>
+</gmi:MI_Band>
+</gmd:dimension>
+<gmd:dimension>
+<gmi:MI_Band>
+<gmd:sequenceIdentifier>
+<gco:MemberName>
+<gco:aName>
+<gco:CharacterString>Spectral band</gco:CharacterString>
+</gco:aName>
+<gco:attributeType>
+<gco:TypeName>
+<gco:aName>
+<gco:CharacterString>Band 3</gco:CharacterString>
+</gco:aName>
+</gco:TypeName>
+</gco:attributeType>
+</gco:MemberName>
+</gmd:sequenceIdentifier>
+<gmd:descriptor>
+<gco:CharacterString>LE71930282003203ASN02_B3</gco:CharacterString>
+</gmd:descriptor>
+<gmd:offset>
+<gco:Real>-5.000</gco:Real>
+</gmd:offset>
+</gmi:MI_Band>
+</gmd:dimension>
+<gmd:dimension>
+<gmi:MI_Band>
+<gmd:sequenceIdentifier>
+<gco:MemberName>
+<gco:aName>
+<gco:CharacterString>Spectral band</gco:CharacterString>
+</gco:aName>
+<gco:attributeType>
+<gco:TypeName>
+<gco:aName>
+<gco:CharacterString>Band 4</gco:CharacterString>
+</gco:aName>
+</gco:TypeName>
+</gco:attributeType>
+</gco:MemberName>
+</gmd:sequenceIdentifier>
+<gmd:descriptor>
+<gco:CharacterString>LE71930282003203ASN02_B4</gco:CharacterString>
+</gmd:descriptor>
+<gmd:offset>
+<gco:Real>-5.100</gco:Real>
+</gmd:offset>
+</gmi:MI_Band>
+</gmd:dimension>
+<gmd:dimension>
+<gmi:MI_Band>
+<gmd:sequenceIdentifier>
+<gco:MemberName>
+<gco:aName>
+<gco:CharacterString>Spectral band</gco:CharacterString>
+</gco:aName>
+<gco:attributeType>
+<gco:TypeName>
+<gco:aName>
+<gco:CharacterString>Band 5</gco:CharacterString>
+</gco:aName>
+</gco:TypeName>
+</gco:attributeType>
+</gco:MemberName>
+</gmd:sequenceIdentifier>
+<gmd:descriptor>
+<gco:CharacterString>LE71930282003203ASN02_B5</gco:CharacterString>
+</gmd:descriptor>
+<gmd:offset>
+<gco:Real>-1.000</gco:Real>
+</gmd:offset>
+</gmi:MI_Band>
+</gmd:dimension>
+<gmd:dimension>
+<gmi:MI_Band>
+<gmd:sequenceIdentifier>
+<gco:MemberName>
+<gco:aName>
+<gco:CharacterString>Spectral band</gco:CharacterString>
+</gco:aName>
+<gco:attributeType>
+<gco:TypeName>
+<gco:aName>
+<gco:CharacterString>Band 6 VCID 1</gco:CharacterString>
+</gco:aName>
+</gco:TypeName>
+</gco:attributeType>
+</gco:MemberName>
+</gmd:sequenceIdentifier>
+<gmd:descriptor>
+<gco:CharacterString>LE71930282003203ASN02_B6_VCID_1</gco:CharacterString>
+</gmd:descriptor>
+<gmd:offset>
+<gco:Real>0.000</gco:Real>
+</gmd:offset>
+</gmi:MI_Band>
+</gmd:dimension>
+<gmd:dimension>
+<gmi:MI_Band>
+<gmd:sequenceIdentifier>
+<gco:MemberName>
+<gco:aName>
+<gco:CharacterString>Spectral band</gco:CharacterString>
+</gco:aName>
+<gco:attributeType>
+<gco:TypeName>
+<gco:aName>
+<gco:CharacterString>Band 6 VCID 2</gco:CharacterString>
+</gco:aName>
+</gco:TypeName>
+</gco:attributeType>
+</gco:MemberName>
+</gmd:sequenceIdentifier>
+<gmd:descriptor>
+<gco:CharacterString>LE71930282003203ASN02_B6_VCID_2</gco:CharacterString>
+</gmd:descriptor>
+<gmd:offset>
+<gco:Real>3.200</gco:Real>
+</gmd:offset>
+</gmi:MI_Band>
+</gmd:dimension>
+<gmd:dimension>
+<gmi:MI_Band>
+<gmd:sequenceIdentifier>
+<gco:MemberName>
+<gco:aName>
+<gco:CharacterString>Spectral band</gco:CharacterString>
+</gco:aName>
+<gco:attributeType>
+<gco:TypeName>
+<gco:aName>
+<gco:CharacterString>Band 7</gco:CharacterString>
+</gco:aName>
+</gco:TypeName>
+</gco:attributeType>
+</gco:MemberName>
+</gmd:sequenceIdentifier>
+<gmd:descriptor>
+<gco:CharacterString>LE71930282003203ASN02_B7</gco:CharacterString>
+</gmd:descriptor>
+<gmd:offset>
+<gco:Real>-0.350</gco:Real>
+</gmd:offset>
+</gmi:MI_Band>
+</gmd:dimension>
+<gmd:dimension>
+<gmi:MI_Band>
+<gmd:sequenceIdentifier>
+<gco:MemberName>
+<gco:aName>
+<gco:CharacterString>Spectral band</gco:CharacterString>
+</gco:aName>
+<gco:attributeType>
+<gco:TypeName>
+<gco:aName>
+<gco:CharacterString>Band 8</gco:CharacterString>
+</gco:aName>
+</gco:TypeName>
+</gco:attributeType>
+</gco:MemberName>
+</gmd:sequenceIdentifier>
+<gmd:descriptor>
+<gco:CharacterString>LE71930282003203ASN02_B8</gco:CharacterString>
+</gmd:descriptor>
+<gmd:offset>
+<gco:Real>-4.700</gco:Real>
+</gmd:offset>
+</gmi:MI_Band>
+</gmd:dimension>
+<gmd:dimension>
+<gmi:MI_Band/>
+</gmd:dimension>
+<gmd:dimension>
+<gmi:MI_Band/>
+</gmd:dimension>
+<gmd:dimension>
+<gmi:MI_Band/>
+</gmd:dimension>
+<gmd:dimension>
+<gmi:MI_Band/>
+</gmd:dimension>
+<gmd:dimension>
+<gmi:MI_Band/>
+</gmd:dimension>
+<gmd:dimension>
+<gmi:MI_Band/>
+</gmd:dimension>
+<gmd:illuminationElevationAngle>
+<gco:Real>58.15700454</gco:Real>
+</gmd:illuminationElevationAngle>
+<gmd:illuminationAzimuthAngle>
+<gco:Real>136.15029645</gco:Real>
+</gmd:illuminationAzimuthAngle>
+<gmd:imagingCondition/>
+<gmd:imageQualityCode>
+<gmd:MD_Identifier>
+<gmd:code>
+<gco:CharacterString>9</gco:CharacterString>
+</gmd:code>
+</gmd:MD_Identifier>
+</gmd:imageQualityCode>
+<gmd:cloudCoverPercentage>
+<gco:Real>12.00</gco:Real>
+</gmd:cloudCoverPercentage>
+<gmd:radiometricCalibrationDataAvailability>
+<gco:Boolean>true</gco:Boolean>
+</gmd:radiometricCalibrationDataAvailability>
+<gmd:cameraCalibrationInformationAvailability>
+<gco:Boolean>true</gco:Boolean>
+</gmd:cameraCalibrationInformationAvailability>
+</gmi:MI_ImageDescription>
+</gmd:contentInfo>
+<gmd:distributionInfo>
+<gmd:MD_Distribution>
+<gmd:distributionFormat>
+<gmd:MD_Format>
+<gmd:name>
+<gco:CharacterString>GEOTIFF</gco:CharacterString>
+</gmd:name>
+<gmd:version>
+<gco:CharacterString>LE71930282003203ASN02</gco:CharacterString>
+</gmd:version>
+</gmd:MD_Format>
+</gmd:distributionFormat>
+<gmd:transferOptions>
+<gmd:MD_DigitalTransferOptions>
+<gmd:onLine>
+<gmd:CI_OnlineResource>
+<gmd:linkage>
+<gmd:URL>http://abz01dmi.eurac.edu/STORAGE/LE71930282003203ASN02.tar.gz</gmd:URL>
+</gmd:linkage>
+<gmd:protocol>
+<gco:CharacterString>WWW:DOWNLOAD-1.0-ftp--download</gco:CharacterString>
+</gmd:protocol>
+<gmd:name>
+<gco:CharacterString>LE71930282003203ASN02</gco:CharacterString>
+</gmd:name>
+<gmd:function>
+<gmd:CI_OnLineFunctionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_OnLineFunctionCode" codeListValue=""/>
+</gmd:function>
+</gmd:CI_OnlineResource>
+</gmd:onLine>
+</gmd:MD_DigitalTransferOptions>
+</gmd:transferOptions>
+</gmd:MD_Distribution>
+</gmd:distributionInfo>
+<gmd:dataQualityInfo>
+<gmd:DQ_DataQuality>
+<gmd:scope>
+<gmd:DQ_Scope>
+<gmd:level>
+<gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</gmd:MD_ScopeCode>
+</gmd:level>
+</gmd:DQ_Scope>
+</gmd:scope>
+<gmd:report>
+<gmd:DQ_DomainConsistency>
+<gmd:result>
+<gmd:DQ_ConformanceResult>
+<gmd:specification>
+<gmd:CI_Citation>
+<gmd:title>
+<gco:CharacterString>INSPIRE Implementing rules</gco:CharacterString>
+</gmd:title>
+<gmd:date>
+<gmd:CI_Date>
+<gmd:date>
+<gco:Date>2000-01-01</gco:Date>
+</gmd:date>
+<gmd:dateType>
+<gmd:CI_DateTypeCode codeListValue="publication" codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode"/>
+</gmd:dateType>
+</gmd:CI_Date>
+</gmd:date>
+</gmd:CI_Citation>
+</gmd:specification>
+<gmd:explanation>
+<gco:CharacterString>N/A</gco:CharacterString>
+</gmd:explanation>
+<gmd:pass>
+<gco:Boolean>1</gco:Boolean>
+</gmd:pass>
+</gmd:DQ_ConformanceResult>
+</gmd:result>
+</gmd:DQ_DomainConsistency>
+</gmd:report>
+<gmd:report>
+<gmd:DQ_GriddedDataPositionalAccuracy>
+<gmd:evaluationMethodDescription>
+<gco:CharacterString>GEOMETRIC RMSE MODEL</gco:CharacterString>
+</gmd:evaluationMethodDescription>
+<gmd:result>
+<gmd:DQ_QuantitativeResult>
+<gmd:valueUnit>
+<gml:BaseUnit gml:id="N65736">
+<gml:identifier codeSpace="http://urn.opengis.net/">meter
+												</gml:identifier>
+<gml:name>meter</gml:name>
+<gml:unitsSystem/>
+</gml:BaseUnit>
+</gmd:valueUnit>
+<gmd:value>
+<gco:Record>4.116</gco:Record>
+</gmd:value>
+</gmd:DQ_QuantitativeResult>
+</gmd:result>
+</gmd:DQ_GriddedDataPositionalAccuracy>
+</gmd:report>
+<gmd:report>
+<gmd:DQ_GriddedDataPositionalAccuracy>
+<gmd:evaluationMethodDescription>
+<gco:CharacterString>GEOMETRIC RMSE MODEL Y</gco:CharacterString>
+</gmd:evaluationMethodDescription>
+<gmd:result>
+<gmd:DQ_QuantitativeResult>
+<gmd:valueUnit>
+<gml:BaseUnit gml:id="N65739">
+<gml:identifier codeSpace="http://urn.opengis.net/">meter
+												</gml:identifier>
+<gml:name>meter</gml:name>
+<gml:unitsSystem/>
+</gml:BaseUnit>
+</gmd:valueUnit>
+<gmd:value>
+<gco:Record>3.210</gco:Record>
+</gmd:value>
+</gmd:DQ_QuantitativeResult>
+</gmd:result>
+</gmd:DQ_GriddedDataPositionalAccuracy>
+</gmd:report>
+<gmd:report>
+<gmd:DQ_GriddedDataPositionalAccuracy>
+<gmd:evaluationMethodDescription>
+<gco:CharacterString>GEOMETRIC RMSE MODEL X</gco:CharacterString>
+</gmd:evaluationMethodDescription>
+<gmd:result>
+<gmd:DQ_QuantitativeResult>
+<gmd:valueUnit>
+<gml:BaseUnit gml:id="N65742">
+<gml:identifier codeSpace="http://urn.opengis.net/">meter
+												</gml:identifier>
+<gml:name>meter</gml:name>
+<gml:unitsSystem/>
+</gml:BaseUnit>
+</gmd:valueUnit>
+<gmd:value>
+<gco:Record>2.577</gco:Record>
+</gmd:value>
+</gmd:DQ_QuantitativeResult>
+</gmd:result>
+</gmd:DQ_GriddedDataPositionalAccuracy>
+</gmd:report>
+<gmd:lineage>
+<gmd:LI_Lineage>
+<gmd:statement>
+<gco:CharacterString>Algorithm package used to process the data: Add algorithm
+						</gco:CharacterString>
+</gmd:statement>
+</gmd:LI_Lineage>
+</gmd:lineage>
+</gmd:DQ_DataQuality>
+</gmd:dataQualityInfo>
+<gmi:acquisitionInfo>
+<gmi:MI_AcquisitionInformation>
+<gmi:instrument>
+<gmi:MI_Instrument>
+<gmi:citation>
+<gmd:CI_Citation>
+<gmd:title>
+<gco:CharacterString>EURAC Landsat Template</gco:CharacterString>
+</gmd:title>
+<gmd:alternateTitle>
+<gco:CharacterString>EURAC Landsat Template based on ISO-19139-2</gco:CharacterString>
+</gmd:alternateTitle>
+<gmd:date>
+<gmd:CI_Date>
+<gmd:date>
+<gco:DateTime>2013-07-24T08:09:42Z</gco:DateTime>
+</gmd:date>
+<gmd:dateType>
+<gmd:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation"/>
+</gmd:dateType>
+</gmd:CI_Date>
+</gmd:date>
+<gmd:identifier>
+<gmd:MD_Identifier>
+<gmd:code>
+<gco:CharacterString>LE71930282003203ASN02</gco:CharacterString>
+</gmd:code>
+</gmd:MD_Identifier>
+</gmd:identifier>
+</gmd:CI_Citation>
+</gmi:citation>
+<gmi:identifier>
+<gmd:MD_Identifier>
+<gmd:code>
+<gco:CharacterString>LE71930282003203ASN02</gco:CharacterString>
+</gmd:code>
+</gmd:MD_Identifier>
+</gmi:identifier>
+<gmi:type></gmi:type>
+<gmi:description>
+<gco:CharacterString>SAM</gco:CharacterString>
+</gmi:description>
+</gmi:MI_Instrument>
+</gmi:instrument>
+<gmi:platform>
+<gmi:MI_Platform>
+<gmi:citation>
+<gmd:CI_Citation>
+<gmd:title>
+<gco:CharacterString>EURAC Landsat Template</gco:CharacterString>
+</gmd:title>
+<gmd:alternateTitle>
+<gco:CharacterString>EURAC Landsat Template based on ISO-19139-2</gco:CharacterString>
+</gmd:alternateTitle>
+<gmd:date>
+<gmd:CI_Date>
+<gmd:date>
+<gco:DateTime>2013-07-24T08:09:42Z</gco:DateTime>
+</gmd:date>
+<gmd:dateType>
+<gmd:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation"/>
+</gmd:dateType>
+</gmd:CI_Date>
+</gmd:date>
+<gmd:identifier>
+<gmd:MD_Identifier>
+<gmd:code>
+<gco:CharacterString>LE71930282003203ASN02</gco:CharacterString>
+</gmd:code>
+</gmd:MD_Identifier>
+</gmd:identifier>
+</gmd:CI_Citation>
+</gmi:citation>
+<gmi:identifier>
+<gmd:MD_Identifier>
+<gmd:code>
+<gco:CharacterString>LE71930282003203ASN02</gco:CharacterString>
+</gmd:code>
+</gmd:MD_Identifier>
+</gmi:identifier>
+<gmi:description>
+<gco:CharacterString>LANDSAT_7</gco:CharacterString>
+</gmi:description>
+<gmi:sponsor><gmd:CI_ResponsibleParty>
+<gmd:organisationName>
+<gco:CharacterString>Image courtesy of the U.S. Geological Survey</gco:CharacterString>
+</gmd:organisationName>
+<gmd:contactInfo>
+<gmd:CI_Contact>
+<gmd:address>
+<gmd:CI_Address>
+<gmd:electronicMailAddress>
+<gco:CharacterString>remote.sensing@eurac.edu</gco:CharacterString>
+</gmd:electronicMailAddress>
+</gmd:CI_Address>
+</gmd:address>
+<gmd:onlineResource>
+<gmd:CI_OnlineResource>
+<gmd:linkage>
+<gmd:URL>http://landsat.usgs.gov</gmd:URL>
+</gmd:linkage>
+</gmd:CI_OnlineResource>
+</gmd:onlineResource>
+</gmd:CI_Contact>
+</gmd:contactInfo>
+<gmd:role>
+<gmd:CI_RoleCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_RoleCode" codeListValue="pointOfContact"/>
+</gmd:role>
+</gmd:CI_ResponsibleParty></gmi:sponsor>
+</gmi:MI_Platform>
+</gmi:platform>
+</gmi:MI_AcquisitionInformation>
+</gmi:acquisitionInfo>
+</gmi:MI_Metadata>

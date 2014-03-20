@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strings>
+	<clear>Clear</clear>
+	<contact>Contact</contact>
+	<distributionOnlineInfo>Distribution and On-line Resource(s)</distributionOnlineInfo>
+	<deprecatedTimeStrings>Deprecated - use time elements above</deprecatedTimeStrings>
+	<lineage>Lineage</lineage>
+	<metadataInfo>Metadata Info</metadataInfo>
+	<referenceSystemInfo>Reference System Info</referenceSystemInfo>
+	<spatialExtentTab>Spatial Extent</spatialExtentTab>
+	<temporalExtentTab>Temporal Ext.</temporalExtentTab>
+
+	<!-- creative and data commons - URLs etc -->
+	<creativeCommonsLicense>Creative Commons License</creativeCommonsLicense>
+	<creativeCommonsLicenseOptions>Creative Commons License Options</creativeCommonsLicenseOptions>
+	<creativeCommonsLicenseSelector>Creative Commons License Selector</creativeCommonsLicenseSelector>
+	<creativeCommonsUrl>http://creativecommons.org</creativeCommonsUrl>
+	<currentLicense>Current License</currentLicense>
+	<dataCommonsLicense>Data Commons License</dataCommonsLicense>
+	<dataCommonsLicenseOptions>Data Commons License Options</dataCommonsLicenseOptions>
+	<dataCommonsLicenseSelector>Data Commons License Selector</dataCommonsLicenseSelector>
+	<dataCommonsUrl>http://bluenet.antcrc.utas.edu.au/datacommons</dataCommonsUrl>
+	<iCreativeCommonsUrl>http://i.creativecommons.org</iCreativeCommonsUrl>
+	<licenseSelector>License Selector</licenseSelector>
+	<licenseSelectorJurisdiction>1. Select/Change the copyright jurisdiction</licenseSelectorJurisdiction>
+	<licenseSelectorSelector>2. Select/Change the License</licenseSelectorSelector>
+
+	<!-- form help strings -->
+	<dataparamHelp>Pick data parameters from existing metadata records</dataparamHelp>
+	<keywordsHelpRemote>Enter a keyword (Australian users of Marine data should use the Keyword MARINE to limit the remote search)</keywordsHelpRemote>
+	<taxonHelp>Pick taxonomic names from existing metadata records</taxonHelp>
+	<!-- new strings - SP 2.5 -->
+	<showRemoteHTML>Show HTML from remote server</showRemoteHTML>
+	<acceptanceMessage>By pressing the Accept button below you are agreeing to abide by the constraints shown on this page</acceptanceMessage>
+	<canBeViewed>Records published to these groups</canBeViewed>
+	<cannotBeViewed>Records NOT published to these groups</cannotBeViewed>
+	<credit>Credit</credit>
+	<creditHelp>Pick individuals/organisations given credit in existing metadata records</creditHelp>
+	<creditlink>Search for other records with this Credit</creditlink>
+
+	<!-- logo management NB Not part of eurac but must be added -->
+	<changeLogos>Change logo</changeLogos>
+	<logo>Logo</logo>
+	<logoManagement>Logo management</logoManagement>
+	<logoManDes>Add/modify/delete and show alternate logos</logoManDes>
+	<massiveChangeLogoTitle>Massive Change Logos Operation</massiveChangeLogoTitle>
+
+	<!-- When copying metadata NB Not part of eurac but must be added -->
+	<copyThumbnail>Copy thumbnails?</copyThumbnail>
+	<copyResources>Copy downloadable files?</copyResources>
+
+	<!-- other strings NB Not part of eurac but must be added -->
+	<dataDownload>Data for Download</dataDownload>
+	<datafordownload>Data for download</datafordownload>
+	<dataparam>Data Parameter</dataparam>
+	<displayRemoteHtml>Display remote html?</displayRemoteHtml>
+	<editorViewer>Metadata Viewer/Editor</editorViewer>
+	<editorInUse js="true">Editor is in use - 'Save and close' or 'Cancel' first</editorInUse>
+	<downloadEmail>Download Email</downloadEmail>
+	<extended>Show Advanced Search</extended>
+	<externalButton>Take me to the MEST Search Page</externalButton>
+	<externalMessage>
+		<h1>Welcome to the BlueNet MEST!</h1>
+		<p>The search result shown below is just one search that can be run on the catalogue. To find out more follow this link:</p>
+	</externalMessage>
+	<link default="true">Link</link>
+	<link protocol="WWW:LINK-1.0-http--downloaddata">Data Link</link>
+	<metadataBadResponse1> - ERROR: Cannot understand the response received from the remote server</metadataBadResponse1> 
+	<metadataBadResponse2>Unable to show this record!</metadataBadResponse2>
+	<messageDownload>Thanks for your interest. Click on the download button to retrieve the following file(s):</messageDownload>
+	<noResourceConstraints>WARNING: NO Resource Constraints have been defined in the Metadata record - constraints on data usage have not been defined!</noResourceConstraints>
+	<protocolChoice show="y" value="WWW:LINK-1.0-http--metadata-URL">Metadata URL</protocolChoice>
+	<protocolChoice show="y" value="WWW:LINK-1.0-http--downloaddata">Data for download (URL)</protocolChoice>
+	<protocolChoice show="y" value="WWW:LINK-1.0-http--samples">Showcase product (URL)</protocolChoice>
+	<protocolChoice show="y" value="WWW:LINK-1.0-http--related">Related link (URL)</protocolChoice>
+	<protocolChoice show="-" value="WWW:DOWNLOAD-1.0-http--downloadother">Other File for download</protocolChoice>
+	<protocolChoice show="-" value="WWW:DOWNLOAD-1.0-ftp--downloaddata">Data File for download through FTP</protocolChoice>
+	<protocolChoice show="-" value="WWW:DOWNLOAD-1.0-ftp--downloadother">Other File for download through FTP</protocolChoice>
+	<rangeSeparator>to</rangeSeparator>
+	<regionLong>The bounding box of the resource</regionLong>
+	<regionLong2>the bounding box of</regionLong2>
+	<regionLong3>shown below:</regionLong3>
+	<registrationInformation>Enter registration information</registrationInformation>
+	<registrationIdentification>Enter registration details</registrationIdentification>
+	<registrationNotFound js="true">No user found with that username, password and/or email</registrationNotFound>
+	<registered>Yes</registered>
+	<notRegistered>No</notRegistered>
+	<orEmail>or Email</orEmail>
+	<registrationStatus>Are you already registered?</registrationStatus>
+	<usernameMandatory js="true">Please enter a username</usernameMandatory> 
+	<passwordOrEmail js="true">Please enter the password or email address for this user</passwordOrEmail>
+	<emailAddressInvalid js="true">Please enter a valid email address</emailAddressInvalid>
+	<siblingidentifierlink>Show Sibling records</siblingidentifierlink>
+	<simpleRegTitle>Tell us about yourself...</simpleRegTitle>
+	<simpleMetadataTitle js="true">I want to make my data available...</simpleMetadataTitle>
+	<simpleMetadataMandatoryFields js="true">Please fill in the Individual Name, Organisation Name, Delivery Point, State, Postcode, Country, Email, Title and Abstract</simpleMetadataMandatoryFields>
+	<simpleMetadataDepositorEmailInvalid js="true">Email address of individual providing data/metadata is invalid</simpleMetadataDepositorEmailInvalid>
+	<simpleMetadataDSEmailInvalid js="true">Email address of contact for Data Set is invalid</simpleMetadataDSEmailInvalid>
+	<submitSimpleRegistration>Next</submitSimpleRegistration>
+	<registerTitle>Self-Registration Form</registerTitle>
+	<registrationDetails>Key registration details entered: </registrationDetails>
+	<remoteType default="true">Remote</remoteType>
+	<taxon>Taxonomic Names</taxon>
+	<taxonSearch>Search APC/AFD for Taxonomic Names</taxonSearch>
+	<temporalExtent>Time Span:</temporalExtent>
+	<uuid>Universal Unique Identifier (UUID)</uuid>
+	<xml_iso19139-2>Save this metadata as an ISO19139-2 /Eurac Community Profile XML file</xml_iso19139-2>
+	<organisation>Organisation</organisation>
+	<individual>Individual</individual>
+  <euracTabTech>Technical info.</euracTabTech>
+  <acquisitionInfoTab>Acquisition info.</acquisitionInfoTab>
+</strings>

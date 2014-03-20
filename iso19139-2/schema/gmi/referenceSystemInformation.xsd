@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="http://sdi.eurac.edu/metadata/iso19139-2/schema/gmi" xmlns:gmi="http://sdi.eurac.edu/metadata/iso19139-2/schema/gmi"
+	xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gss="http://www.isotc211.org/2005/gss"
+	version="0.1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- ================================= Annotation ================================ -->
+	<xs:annotation>
+		<xs:documentation>This file was created by Innerebner Markus and Ekaterina Chuprikova</xs:documentation>
+	</xs:annotation>
+	<!-- ================================== Imports ================================== -->
+	<xs:import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="../../../iso19139/schema/gmd/gmd.xsd" />
+	<xs:import namespace="http://www.isotc211.org/2005/gco" schemaLocation="../../../iso19139/schema/gco/gco.xsd" />
+	<!-- ########################################################################### -->
+	<!-- ########################################################################### -->
+	<!-- ================================== Classes ================================= -->
+
+	<!-- ================================== CRS ===================================== -->
+	<xs:complexType name="MD_CRS_Type">
+		<xs:annotation>
+			<xs:documentation />
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="gmd:MD_ReferenceSystem_Type">
+				<xs:sequence>
+					<xs:element name="projection" type="gmd:RS_Identifier_PropertyType" minOccurs="0" />
+					<xs:element name="ellipsoid" type="gmd:RS_Identifier_PropertyType" minOccurs="0" />
+					<xs:element name="datum" type="gmd:RS_Identifier_PropertyType" minOccurs="0" />
+					<xs:element name="projectionParameters" type="gmi:MD_ProjectionParameters_Type" minOccurs="0" />
+					<xs:element name="ellipsoidParameters" type="gmi:MD_EllipsoidParameters_Type" minOccurs="0" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--....................................................................... -->
+	<xs:element name="MD_CRS" type="gmi:MD_CRS_Type" substitutionGroup="gmd:MD_ReferenceSystem" />
+	<xs:complexType name="MD_CRS_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="gmi:MD_CRS" />
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference" />
+		<xs:attribute ref="gco:nilReason" />
+	</xs:complexType>
+	<!-- =========================================================================== -->
+
+	<!-- ========================== ProjectionParameters ================================ -->
+	<xs:complexType name="MD_ProjectionParameters_Type">
+		<xs:annotation>
+			<xs:documentation />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="zone" type="gco:Integer_PropertyType" minOccurs="0" />
+			<xs:element name="standardParallel" type="gco:Decimal_PropertyType" minOccurs="0" maxOccurs="2" />
+			<xs:element name="longitudeOfCentralMeridian" type="gco:Decimal_PropertyType" minOccurs="0" />
+			<xs:element name="latitudeOfProjectionOrigin" type="gco:Decimal_PropertyType" minOccurs="0" />
+			<xs:element name="falseEasting" type="gco:Real_PropertyType" minOccurs="0" />
+			<xs:element name="falseNorthing" type="gco:Real_PropertyType" minOccurs="0" />
+			<xs:element name="falseEastingNorthingUnits" type="gco:UomLength_PropertyType" minOccurs="0" />
+			<xs:element name="scaleFactorAtEquator" type="gco:Real_PropertyType" minOccurs="0" />
+			<xs:element name="heightOfProspectivePointAboveSurface" type="gco:Real_PropertyType" minOccurs="0" />
+			<xs:element name="longitudeOfProjectionCenter" type="gco:Decimal_PropertyType" minOccurs="0" />
+			<xs:element name="latitudeOfProjectionCenter" type="gco:Decimal_PropertyType" minOccurs="0" />
+			<xs:element name="scaleFactorAtCenterLine" type="gco:Real_PropertyType" minOccurs="0" />
+			<xs:element name="straightVerticalLongitudeFromPole" type="gco:Decimal_PropertyType" minOccurs="0" />
+			<xs:element name="scaleFactorAtProjectionOrigin" type="gco:Real_PropertyType" minOccurs="0" />
+			<xs:element name="obliqueLineAzimuthParameter" type="gmi:MD_ObliqueLineAzimuth_Type" minOccurs="0" />
+			<xs:element name="obliqueLinePointParameter" type="gmi:MD_ObliqueLinePoint_Type" minOccurs="0" maxOccurs="2" />
+		</xs:sequence>
+	</xs:complexType>
+	<!--....................................................................... -->
+	<xs:element name="MD_ProjectionParameters" type="gmi:MD_ProjectionParameters_Type" />
+	<!-- =========================================================================== -->
+
+	<!-- ============================= ObliqueLineAzimuth ========================== -->
+	<xs:complexType name="MD_ObliqueLineAzimuth_Type">
+		<xs:annotation>
+			<xs:documentation />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="azimuthAngle" type="gco:Real_PropertyType" />
+			<xs:element name="azimuthMeasurePointLongitude" type="gco:Decimal_PropertyType" />
+		</xs:sequence>
+	</xs:complexType>
+	<!--....................................................................... -->
+	<xs:element name="MD_ObliqueLineAzimuth" type="gmi:MD_ObliqueLineAzimuth_Type" />
+	<!--....................................................................... -->
+	<!-- =========================================================================== -->
+
+	<!-- ================================ ObliqueLinePoint ========================= -->
+	<xs:complexType name="MD_ObliqueLinePoint_Type">
+		<xs:annotation>
+			<xs:documentation />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="obliqueLineLatitude" type="gco:Decimal_PropertyType" />
+			<xs:element name="obliqueLineLongitude" type="gco:Decimal_PropertyType" />
+		</xs:sequence>
+	</xs:complexType>
+	<!--....................................................................... -->
+	<xs:element name="MD_ObliqueLinePoint" type="gmi:MD_ObliqueLinePoint_Type" />
+	<!-- =========================================================================== -->
+
+	<!-- ========================== EllipsoidParameters ============================ -->
+	<xs:complexType name="MD_EllipsoidParameters_Type">
+		<xs:annotation>
+			<xs:documentation />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="semiMajorAxis" type="gco:Real_PropertyType" />
+			<xs:element name="axisUnits" type="gco:UomLength_PropertyType" />
+			<xs:element name="denominatorOfFlatteningRatio" type="gco:Real_PropertyType" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<!--....................................................................... -->
+	<xs:element name="MD_EllipsoidParameters" type="gmi:MD_EllipsoidParameters_Type">
+		<xs:annotation>
+			<xs:documentation>*** "denominatorOfFlatteningRatio" is mandatory if not a spheroid</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!-- =========================================================================== -->
+
+
+
+</xs:schema>
+	
+	

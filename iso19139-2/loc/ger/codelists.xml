@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	
+ * Hide in edit mode : If some codelist needs to be hidden
+ in edit mode, the hideInEditMode attribute could be added
+ to any entries.
+ 
+ eg.
+	<entry hideInEditMode="true">
+	
+ This will restrict the number of available entries for end
+ user editors and keep all records ISO compatible when using
+ codelist (eg. harvested records could use codelist hidden
+ in local node and needs to be displayed in view mode).
+ 
+ By default, this attribute is not used.
+-->
+<codelists xmlns:gmd="http://www.isotc211.org/2005/gmd">
+	<!-- ==================================================== -->
+	<codelist name="gmd:MD_ScopeCode">
+		<entry>
+			<code>attribute</code>
+			<label>Attribute</label>
+			<description>Information applies to the attribute class</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>attributeType</code>
+			<label>Attribute type</label>
+			<description>Information applies to the characteristic of a feature</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>collectionHardware</code>
+			<label>Collection hardware</label>
+			<description>Information applies to the collection hardware class</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>collectionSession</code>
+			<label>Collection session</label>
+			<description>Information applies to the collection session</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>dataset</code>
+			<label>Dataset</label>
+			<description>Information applies to the dataset</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>series</code>
+			<label>Series</label>
+			<description>Information applies to the series</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>nonGeographicDataset</code>
+			<label>Non geographic dataset</label>
+			<description>Information applies to non-geographic data</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>dimensionGroup</code>
+			<label>Dimension group</label>
+			<description>Information applies to a dimension group</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>feature</code>
+			<label>Feature</label>
+			<description>Information applies to a feature</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>featureType</code>
+			<label>Feature type</label>
+			<description>Information applies to a feature type</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>propertyType</code>
+			<label>Property type</label>
+			<description>Information applies to a property type</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>fieldSession</code>
+			<label>Field session</label>
+			<description>Information applies to a field session</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>software</code>
+			<label>Software</label>
+			<description>Information applies to a computer program or routine</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>service</code>
+			<label>Service</label>
+			<description>Information applies to a capability which a service provider entity makes available to a service user entity through a set of interfaces that define a behaviour, such as a use case</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>model</code>
+			<label>Model</label>
+			<description>Information applies to a copy or imitation of an existing or hypothetical object</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>tile</code>
+			<label>Tile</label>
+			<description>Information applies to a tile, a spatial subset of geographic data</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<!-- new scope codes from GA -->
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>modelSession</code>
+			<label>Model Session</label>
+			<description>Information applies to a model session or model run for a particular model</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>document</code>
+			<label>Document</label>
+			<description>Information applies to a document such as a publication, report, record etc.</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>profile</code>
+			<label>Profile</label>
+			<description>Information applies to a profile of an ISO TC 211 standard or specification</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>dataRepository</code>
+			<label>Data Repository</label>
+			<description>Information applies to a data repository such as a Catalogue Service, Relational Database, Web Registry</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>codeList</code>
+			<label>Code List</label>
+			<description>Information applies to a code list according to the CT_CodelistCatalogue format</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>project</code>
+			<label>Project</label>
+			<description>Information applies to a project or programme</description>
+		</entry>
+		<!-- EURAC -->
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>observed</code>
+			<label>Observed</label>
+			<description>Information applies to observed data</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>derived</code>
+			<label>Derived</label>
+			<description>Information applies to derived data</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>publication</code>
+			<label>Publication</label>
+			<description>Information applies to publications</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>dataObject</code>
+			<label>Data Object</label>
+			<description>Information applies to data objects</description>
+		</entry>
+	</codelist>
+	<!-- ==================================================== -->
+	<codelist name="gmd:CI_DateTypeCode">
+		<entry>
+			<code>creation</code>
+			<label>Creation</label>
+			<description>Date identifies when the resource was brought into existence</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>publication</code>
+			<label>Publication</label>
+			<description>Date identifies when the resource was issued</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>revision</code>
+			<label>Revision</label>
+			<description>Date identifies when the resource was examined or re-examined and improved or amended</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<!-- EURAC -->
+		<entry>
+			<code>unknown</code>
+			<label>Unknown</label>
+			<description>It is unknown what the date identifies</description>
+		</entry>
+	</codelist>
+	<!-- ==================================================== -->
+	<codelist name="gmd:CI_RoleCode">
+		<entry>
+			<code>resourceProvider</code>
+			<label>Resource provider</label>
+			<description>Party that supplies the resource</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>custodian</code>
+			<label>Custodian</label>
+			<description>Party that accepts accountability and responsability for the data and ensures appropriate care and maintenance of the resource</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>owner</code>
+			<label>Owner</label>
+			<description>Party that owns the resource</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>user</code>
+			<label>User</label>
+			<description>Party who uses the resource</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>distributor</code>
+			<label>Distributor</label>
+			<description>Party who distributes the resource</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>originator</code>
+			<label>Originator</label>
+			<description>Party who created the resource</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>pointOfContact</code>
+			<label>Point of contact</label>
+			<description>Party who can be contacted for acquiring knowledge about or acquisition of the resource</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>principalInvestigator</code>
+			<label>Principal investigator</label>
+			<description>Key party responsible for gathering information and conducting research</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>processor</code>
+			<label>Processor</label>
+			<description>Party wha has processed the data in a manner such that the resource has been modified</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>publisher</code>
+			<label>Publisher</label>
+			<description>Party who published the resource</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>author</code>
+			<label>Author</label>
+			<description>Party who authored the resource</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<!-- EURAC -->
+		<entry>
+			<code>coInvestigator</code>
+			<label>Co-investigator</label>
+			<description>One of the key parties responsible for gathering information and conducting research</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>researchAssistant</code>
+			<label>Research assistant</label>
+			<description>Party who helped gather information and conduct research</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>licensor</code>
+			<label>Licensor</label>
+			<description>Party responsible for licensing</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>ipOwner</code>
+			<label>IP Owner</label>
+			<description>Party who owns the intellectual property</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>metadataContact</code>
+			<label>Metadata Contact</label>
+			<description>party who can be contacted about the metadata</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>moralRightsOwner</code>
+			<label>Moral Rights Owner</label>
+			<description>Party who owns the moral rights</description>
+		</entry>
+	</codelist>
+	<!-- ==================================================== -->
+	<codelist name="gmd:MD_KeywordTypeCode">
+		<entry>
+			<code>discipline</code>
+			<label>Discipline</label>
+			<description>Keyword identifies a branch of instruction or specialized
+			learning</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>place</code>
+			<label>Place</label>
+			<description>Keyword identifies a location</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>stratum</code>
+			<label>Stratum</label>
+			<description>Keyword identifies the layer(s) of any deposited substance</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>temporal</code>
+			<label>Temporal</label>
+			<description>Keyword identifies a time period related to the dataset</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>theme</code>
+			<label>Theme</label>
+			<description>Keyword identifies a particular subject or topic</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<!-- EURAC -->
+		<entry>
+			<code>taxon</code>
+			<label>Taxon</label>
+			<description>Keyword identifies a taxonomy</description>
+		</entry>
+	</codelist>
+	<!-- ==================================================== -->
+	<codelist name="gmd:MD_MaintenanceFrequencyCode">
+		<entry>
+			<code>continual</code>
+			<label>Continual</label>
+			<description>Data is repeatedly and frequently updated</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>daily</code>
+			<label>Daily</label>
+			<description>Data is updated each day</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>weekly</code>
+			<label>Weekly</label>
+			<description>Data is updated on a weekly basis</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>fortnightly</code>
+			<label>Fortnightly</label>
+			<description>Data is updated every two weeks</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>monthly</code>
+			<label>Monthly</label>
+			<description>Data is updated each month</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>quarterly</code>
+			<label>Quarterly</label>
+			<description>Data is updated every three months</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>biannually</code>
+			<label>Biannually</label>
+			<description>Data is updated twice each year</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>annually</code>
+			<label>Annually</label>
+			<description>Data is updated every year</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>asNeeded</code>
+			<label>As needed</label>
+			<description>Data is updated as deemed necessary</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>irregular</code>
+			<label>Irregular</label>
+			<description>Data is updated in intervals that are uneven in duration</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>notPlanned</code>
+			<label>Not planned</label>
+			<description>There are no plans to update the data</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>unknown</code>
+			<label>Unknown</label>
+			<description>Frequency of maintenance for the data is not known</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<!-- EURAC -->
+		<entry>
+			<code>hourly</code>
+			<label>Hourly</label>
+			<description>Data is updated hourly</description>
+		</entry>
+	</codelist>
+
+
+</codelists>

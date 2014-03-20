@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<labels xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gco="http://www.isotc211.org/2005/gco"
+	xmlns:gml="http://www.opengis.net/gml" xmlns:gmi="http://sdi.eurac.edu/metadata/iso19139-2/schema/gmi" xmlns:srv="http://www.isotc211.org/2005/srv"
+	xmlns:gmie="http://sdi.eurac.edu/metadata/iso19139-2/schema/gmie">
+
+	<!-- ==================================================== -->
+	<element name="gmi:MI_Metadata">
+		<label>Metadata (EURAC)</label>
+		<description>root entity which defines metadata about a resource or
+			resources</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:MI_Georectified">
+		<label>Grid Information</label>
+		<description>Spatial representation information about the grid</description>
+	</element>
+
+	<!-- ==================================================== -->
+	<element name="gmi:MI_GCP">
+		<label>Ground Control Points</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:MI_GCPCollection">
+		<label>Ground Control Points collection</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:collectionIdentification">
+		<label>Collection Identification</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:collectionName">
+		<label>Collection Name</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:coordinateReferenceSystem">
+		<label>Coordinate Reference System</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:gcp">
+		<label>Ground Control Points</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:geographicCoordinates">
+		<label>Geographic Coordinates</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:DirectPosition">
+		<label>Direct Position</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:accuracyReport">
+		<label>Accuracy Report</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:MI_Georeferenceable">
+		<label>Georeferenceable</label>
+		<description></description>
+	</element>
+
+	<!-- ==================================================== -->
+	<element name="gmi:MD_CRS">
+		<label>Reference System</label>
+		<description>Reference System Information</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:projection">
+		<label>Projection</label>
+		<description>Information about the cartographic projection</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:ellipsoid">
+		<label>Ellipsoid</label>
+		<description>Information about the reference ellipsoid</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:datum">
+		<label>Datum</label>
+		<description>Information about the datum</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:projectionParameters">
+		<label>Projection parameters</label>
+		<description>Information about the projection parameters</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:zone">
+		<label>Zone</label>
+		<description>Information about the zone</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:standardParallel">
+		<label>standard Parallel</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:longitudeOfCentralMeridian">
+		<label>longitude Of Central Meridian</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:latitudeOfProjectionOrigin">
+		<label>latitude Of Projection Origin</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:falseEasting">
+		<label>false Easting</label>
+		<description></description>
+	</element>
+	<element name="gmi:falseNorthing">
+		<label>False Northing</label>
+		<description></description>
+	</element>
+	<element name="gmi:falseEastingNorthingUnits">
+		<label>False Easting Northing Units</label>
+		<description></description>
+	</element>
+	<element name="scaleFactorAtEquator">
+		<label>Scale Factor At Equator</label>
+		<description></description>
+	</element>
+	<element name="gmi:heightOfProspectivePointAboveSurface">
+		<label>Height Of Prospective Point Above Surface</label>
+		<description></description>
+	</element>
+	<element name="gmi:longitudeOfProjectionCenter">
+		<label>Longitude Of Projection Center</label>
+		<description></description>
+	</element>
+	<element name="gmi:latitudeOfProjectionCenter">
+		<label>Latitude Of Projection Center</label>
+		<description></description>
+	</element>
+	<element name="gmi:scaleFactorAtCenterLine">
+		<label>Scale Factor At Center Line</label>
+		<description></description>
+	</element>
+	<element name="gmi:straightVerticalLongitudeFromPole">
+		<label>Straight Vertical Longitude From Pole</label>
+		<description></description>
+	</element>
+	<element name="gmi:scaleFactorAtProjectionOrigin">
+		<label>Scale Factor At Projection Origin</label>
+		<description></description>
+	</element>
+	<element name="gmi:obliqueLineAzimuthParameter">
+		<label>Oblique Line Azimuth Parameter</label>
+		<description></description>
+	</element>
+	<element name="gmi:obliqueLinePointParameter">
+		<label>Oblique Line Point Parameter</label>
+		<description></description>
+	</element>
+
+
+	<element name="gmi:obliqueLineLatitude">
+		<label>oblique Line Latitude</label>
+		<description></description>
+	</element>
+	<element name="gmi:obliqueLineLongitude">
+		<label>oblique Line Longitude</label>
+		<description></description>
+	</element>
+
+	<element name="gmi:azimuthAngle">
+		<label>azimuth Angle</label>
+		<description></description>
+	</element>
+	<element name="gmi:azimuthMeasurePointLongitude">
+		<label>azimuth Measure Point Longitude</label>
+		<description></description>
+	</element>
+
+
+	<element name="gmi:MD_EllipsoidParameters">
+		<label>Ellipsoid Parameters</label>
+		<description></description>
+	</element>
+	<element name="gmi:semiMajorAxis">
+		<label>Semi Major Axis</label>
+		<description></description>
+	</element>
+	<element name="gmi:axisUnits">
+		<label>Axis Units</label>
+		<description></description>
+	</element>
+	<element name="gmi:denominatorOfFlatteningRatio">
+		<label>Denominator Of Flattening Ratio</label>
+		<description></description>
+	</element>
+
+
+	<!-- ==================================================== -->
+	<element name="gmi:orientationParameterDescription">
+		<label>Orientation</label>
+		<description>Orientation used in creating the image</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:MI_ImageDescription">
+		<label>Image Description</label>
+		<description>Information about the image characteristics.</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:MI_CoverageDescription">
+		<label>Coverage Description</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:MI_RangeElementDescription">
+		<label>Range Element Description</label>
+		<description></description>
+	</element>
+	<element name="gmi:name">
+		<label>Name</label>
+		<description></description>
+	</element>
+	<element name="gmi:definition">
+		<label>Definition</label>
+		<description></description>
+	</element>
+	<element name="gmi:rangeElement">
+		<label>Range Element</label>
+		<description></description>
+	</element>
+
+
+	<!-- ==================================================== -->
+	<element name="gmi:MI_Band">
+		<label>Band Information</label>
+		<description>Information about the band characteristics.</description>
+	</element>
+
+	<element name="gmi:bandBoundaryDefinition">
+		<label>band Boundary Definition</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:nominalSpatialResolution">
+		<label>nominal Spatial Resolution</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:transferFunctionType">
+		<label>transfer Function Type</label>
+		<description></description>
+	</element>
+		<!-- ==================================================== -->
+	<element name="gmi:transmittedPolarisation">
+		<label>transmitted Polarisation</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:detectedPolarisation">
+		<label>detected Polarisation</label>
+		<description></description>
+	</element>
+
+
+	<element name="gmi:MI_BandDefinition">
+		<label>Band Definition</label>
+		<description></description>
+	</element>
+
+
+
+
+
+	<!-- ==================================================== -->
+	<element name="gmi:acquisitionInfo">
+		<label>Acquisition Information</label>
+		<description>Acquisition Information</description>
+	</element>
+
+	<!-- ==================================================== -->
+	<element name="gmi:MI_AcquisitionInformation">
+		<label>Acquisition information description</label>
+		<description>Acquisition information description</description>
+	</element>
+
+
+	<!-- ==================================================== -->
+	<element name="gmi:MI_Platform">
+		<label>Platform</label>
+		<description>Platform</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:platform">
+		<label>Platform</label>
+		<description></description>
+	</element>
+	<element name="gmi:sponsor">
+		<label>sponsor</label>
+		<description></description>
+	</element>
+
+
+	<!-- ==================================================== -->
+	<element name="gmi:MI_Instrument">
+		<label>Instrument</label>
+		<description>Instrument</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:instrument">
+		<label>Instrument</label>
+		<description></description>
+	</element>	
+	
+		<element name="gmi:mountedOn">
+		<label>Mounted On</label>
+		<description></description>
+	</element>	
+	
+	
+	<!-- ==================================================== -->
+	<element name="gmi:MI_EnvironmentalRecord">
+		<label>Environmental Record</label>
+		<description>Environmental Record</description>
+	</element>
+	<element name="gmi:environmentalConditions">
+		<label>Environmental Record</label>
+		<description>Environmental Record</description>
+	</element>
+	<element name="gmi:averageAirTemperature">
+		<label>average Air Temperature</label>
+		<description></description>
+	</element>
+	<element name="gmi:maxRelativeHumidity">
+		<label>max Relative Humidity</label>
+		<description></description>
+	</element>
+	<element name="gmi:maxAltitude">
+		<label>max Altitude</label>
+		<description></description>
+	</element>
+	<element name="gmi:meteorologicalConditions">
+		<label>meteorological Conditions</label>
+		<description></description>
+	</element>
+
+
+
+
+
+
+
+
+	<!-- ==================================================== -->
+	<element name="gmi:MI_Objective">
+		<label>Objective</label>
+		<description>Objective</description>
+	</element>
+	<element name="gmi:objective">
+		<label>Objective</label>
+		<description>Objective</description>
+	</element>
+
+	<element name="gmi:function">
+		<label>function</label>
+		<description></description>
+	</element>
+	<element name="gmi:pass">
+		<label>pass</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:MI_PlatformPass">
+		<label>Platform Pass</label>
+		<description></description>
+	</element>
+	<element name="gmi:extent">
+		<label>extent</label>
+		<description></description>
+	</element>
+	<element name="gmi:relatedEvent">
+		<label>related Event</label>
+		<description></description>
+	</element>
+
+
+	<element name="gmi:sensingInstrument">
+		<label>sensing Instrument</label>
+		<description></description>
+	</element>
+	<element name="gmi:objectiveOccurrence">
+		<label>objective Occurrence</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:MI_Event">
+		<label>Event</label>
+		<description></description>
+	</element>
+		<element name="gmi:trigger">
+		<label>trigger</label>
+		<description></description>
+	</element>
+	<element name="gmi:context">
+		<label>context</label>
+		<description></description>
+	</element>
+	<element name="gmi:sequence">
+		<label>sequence</label>
+		<description></description>
+	</element>
+	<element name="gmi:time">
+		<label>time</label>
+		<description></description>
+	</element>
+	<element name="gmi:expectedObjective">
+		<label>expected Objective</label>
+		<description></description>
+	</element>
+	<element name="gmi:relatedSensor">
+		<label>related Sensor</label>
+		<description></description>
+	</element>
+	<element name="gmi:relatedPass">
+		<label>related Pass</label>
+		<description></description>
+	</element>
+
+
+
+
+
+	<!-- ==================================================== -->
+	<element name="gmi:MI_Requirement">
+		<label>Requirement</label>
+		<description>Requirement</description>
+	</element>
+	<element name="gmi:acquisitionRequirement">
+		<label>Requirement</label>
+		<description>Requirement</description>
+	</element>
+		<element name="gmi:priority">
+		<label>Priority</label>
+		<description></description>
+	</element>
+	<element name="gmi:requestedDate">
+		<label>requested Date</label>
+		<description></description>
+	</element>
+	<element name="gmi:satisifiedPlan">
+		<label>satisified Plan</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:MI_RequestedDate">
+		<label>Requested Date</label>
+		<description></description>
+	</element>
+	<element name="gmi:requestedDateOfCollection">
+		<label>requested Date Of Collection</label>
+		<description></description>
+	</element>
+	<element name="gmi:latestAcceptableDate">
+		<label>latest Acceptable Date</label>
+		<description></description>
+	</element>
+
+
+	<!-- ==================================================== -->
+	<element name="gmi:MI_Operation">
+		<label>Operation</label>
+		<description>Operation</description>
+	</element>
+	<element name="gmi:operation">
+		<label>Operation</label>
+		<description>Operation</description>
+	</element>
+	<element name="gmi:childOperation">
+		<label>Type</label>
+		<description></description>
+	</element>
+	<element name="gmi:significantEvent">
+		<label>Type</label>
+		<description></description>
+	</element>
+	<element name="gmi:parentOperation">
+		<label>Type</label>
+		<description></description>
+	</element>
+
+
+	<!-- ==================================================== -->
+	<element name="gmi:MI_Plan">
+		<label>Plan</label>
+		<description>Plan</description>
+	</element>
+	<element name="gmi:acquisitionPlan">
+		<label>Plan</label>
+		<description>Plan</description>
+	</element>
+	<element name="gmi:satisfiedRequirement">
+		<label>satisfiedRequirement</label>
+		<description></description>
+	</element>
+
+
+
+	<!-- ==================================================== -->
+	<element name="gmi:resolution">
+		<label>Resolution</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:description">
+		<label>Description</label>
+		<description>Description</description>
+	</element>
+
+	<!-- ==================================================== -->
+	<element name="gmi:type">
+		<label>Type</label>
+		<description>Type</description>
+	</element>
+
+	<!-- ==================================================== -->
+	<element name="gmi:citation">
+		<label>Type</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:identifier">
+		<label>Type</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:status">
+		<label>Type</label>
+		<description></description>
+	</element>
+
+
+	<!-- ==================================================== -->
+	<element name="gmi:LE_ProcessStep">
+		<label>Process Step</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:LE_Source">
+		<label>Source</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:LE_ProcessStepReport">
+		<label>Process Step Report</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:LE_Processing">
+		<label>Processing</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:MX_DataFile">
+		<label>DataFile</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:fileFormat">
+		<label>File Format</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:softwareReference">
+		<label>Software Reference</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:procedureDescription">
+		<label>Procedure Description</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:documentation">
+		<label>Documentation</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:runTimeParameters">
+		<label>Run Time Parameters</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:algorithm">
+		<label>Algorithm</label>
+		<description></description>
+	</element>
+
+	<!-- ==================================================== -->
+	<element name="gmi:QE_CoverageResult">
+		<label>Coverage Result</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:spatialRepresentationType">
+		<label>Spatial Representation Type</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:resultSpatialRepresentation">
+		<label>Result Spatial Representation</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:resultContentDescription">
+		<label>Result Content Descriptionpe</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:resultFormat">
+		<label>Result Format</label>
+		<description></description>
+	</element>	
+	<!-- ==================================================== -->
+	<element name="gmi:resultFile">
+		<label>Result File</label>
+		<description></description>
+	</element>
+
+	<!-- ==================================================== -->
+	<element name="gmi:fileType">
+		<label>File Type</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:LE_Algorithm">
+		<label>Algorithm</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:citation">
+		<label>Citation</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:processedLevel">
+		<label>Processed Level</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:resolution">
+		<label>Resolution</label>
+		<description></description>
+	</element>
+
+	<!-- ==================================================== -->
+	<element name="gmi:QE_Usability">
+		<label>Usability</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:LE_NominalResolution">
+		<label>Nominal Resolution</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:scanningResolution">
+		<label>Scanning Resolution</label>
+		<description></description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmi:groundResolution">
+		<label>Ground Resolution</label>
+		<description></description>
+	</element>
+
+
+	<!-- ================== other ====================== -->
+
+	<!-- ==================================================== -->
+	<element name="gco:Integer">
+		<label>Integer</label>
+		<description>Please input an Integer value</description>
+	</element>
+	<!-- ==================================================== --> 
+	<element name="gco:Real">
+		<label>Real</label>
+		<description>Please input a Real value</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gco:Boolean">
+		<label>Yes / No</label>
+		<description>Please tick if the answer is yes</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gco:Decimal">
+		<label>Decimal</label>
+		<description>Please input decimal number</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmd:errorStatistic">
+		<label>Degree</label>
+		<description>This is the degree of conformity of the resource to the implementing
+			rules adopted under Article 7(1) of Directive 2007/2/EC
+			or other
+			specification. The value domain of this metadata element is defined in Part
+			D.</description>
+		<helper>
+			<option>Not Evaluated</option>
+			<option>Not Conformant</option>
+			<option>Conformant</option>
+		</helper>
+	</element>
+	<!-- ==================================================== -->
+	<element name="gmd:DQ_QuantitiativeResult">
+		<label>Degree</label>
+		<description>Please choose one conformant degree</description>
+	</element>
+	<!-- ==================================================== -->
+
+</labels>
