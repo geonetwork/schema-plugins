@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmd:MD_Metadata xmlns:gts="http://www.isotc211.org/2005/gts"
+                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
+                 xmlns:srv="http://www.isotc211.org/2005/srv"
+                 xmlns:gmi="http://www.isotc211.org/2005/gmi"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:gml="http://www.opengis.net/gml"
+                 xmlns:napm="http://www.geoconnections.org/nap/napMetadataTools/napXsd/napm"
+                 xmlns:naplio="http://www.lio.ontario.ca/naplio"
+                 xmlns:gco="http://www.isotc211.org/2005/gco"
+                 xmlns:gfc="http://www.isotc211.org/2005/gfc"
+                 xmlns:gmd="http://www.isotc211.org/2005/gmd"
+                 xmlns:xlink="http://www.w3.org/1999/xlink">
+	<gmd:fileIdentifier>
+		<gco:CharacterString>35046cf1-ed1e-473e-beb3-3bad769116cf</gco:CharacterString>
+	</gmd:fileIdentifier>
+	<gmd:language gco:nilReason="missing">
+		<gco:CharacterString>eng</gco:CharacterString>
+	</gmd:language>
+	<gmd:characterSet>
+		<gmd:MD_CharacterSetCode codeList="http://www.geoconnections.org/developersCorner/nap/metadata/register/registerItemClasses.html#IC_95" codeListValue=""/>
+	</gmd:characterSet>
+	<gmd:hierarchyLevel>
+		<gmd:MD_ScopeCode codeList="http://www.geoconnections.org/developersCorner/nap/metadata/register/registerItemClasses.html#MD_ScopeCode" codeListValue="dataset"/>
+	</gmd:hierarchyLevel>
+	<gmd:contact>
+		<gmd:CI_ResponsibleParty>
+			<gmd:individualName gco:nilReason="missing">
+				<gco:CharacterString/>
+			</gmd:individualName>
+			<gmd:organisationName gco:nilReason="missing">
+				<gco:CharacterString/>
+			</gmd:organisationName>
+			<gmd:positionName gco:nilReason="missing">
+				<gco:CharacterString/>
+			</gmd:positionName>
+			<gmd:contactInfo>
+				<gmd:CI_Contact>
+					<gmd:phone>
+						<gmd:CI_Telephone>
+							<gmd:voice gco:nilReason="missing">
+								<gco:CharacterString/>
+							</gmd:voice>
+							<gmd:facsimile gco:nilReason="missing">
+								<gco:CharacterString/>
+							</gmd:facsimile>
+						</gmd:CI_Telephone>
+					</gmd:phone>
+					<gmd:address>
+						<gmd:CI_Address>
+							<gmd:deliveryPoint gco:nilReason="missing">
+								<gco:CharacterString/>
+							</gmd:deliveryPoint>
+							<gmd:city gco:nilReason="missing">
+								<gco:CharacterString/>
+							</gmd:city>
+							<gmd:administrativeArea gco:nilReason="missing">
+								<gco:CharacterString/>
+							</gmd:administrativeArea>
+							<gmd:postalCode gco:nilReason="missing">
+								<gco:CharacterString/>
+							</gmd:postalCode>
+							<gmd:country gco:nilReason="missing">
+								<gco:CharacterString/>
+							</gmd:country>
+							<gmd:electronicMailAddress gco:nilReason="missing">
+								<gco:CharacterString/>
+							</gmd:electronicMailAddress>
+						</gmd:CI_Address>
+					</gmd:address>
+				</gmd:CI_Contact>
+			</gmd:contactInfo>
+			<gmd:role>
+				<gmd:CI_RoleCode codeList="http://www.geoconnections.org/developersCorner/nap/metadata/register/registerItemClasses.html#CI_RoleCode" codeListValue=""/>
+			</gmd:role>
+		</gmd:CI_ResponsibleParty>
+	</gmd:contact>
+	<gmd:dateStamp>
+		<gco:DateTime>2011-05-03T15:42:54</gco:DateTime>
+	</gmd:dateStamp>
+	<gmd:metadataStandardName>
+		<gco:CharacterString>North American Profile of ISO 19115 Geographic Information Metadata</gco:CharacterString>
+	</gmd:metadataStandardName>
+	<gmd:metadataStandardVersion>
+		<gco:CharacterString>Government of Ontario(GO)-ITS 72 - Version 2</gco:CharacterString>
+	</gmd:metadataStandardVersion>
+	<gmd:dataSetURI gco:nilReason="missing">
+		<gco:CharacterString/>
+	</gmd:dataSetURI>
+	<gmd:locale>
+		<gmd:PT_Locale id="FR">
+			<gmd:languageCode>
+				<gmd:LanguageCode codeList="#LanguageCode" codeListValue="fre">French</gmd:LanguageCode>
+			</gmd:languageCode>
+			<gmd:country>
+				<gmd:Country codeList="#Country" codeListValue="CAN">Canada</gmd:Country>
+			</gmd:country>
+			<gmd:characterEncoding>
+				<gmd:MD_CharacterSetCode codeList="http://www.geoconnections.org/developersCorner/nap/metadata/register/registerItemClasses.html#IC_95" codeListValue="utf8">utf8</gmd:MD_CharacterSetCode>
+			</gmd:characterEncoding>
+		</gmd:PT_Locale>
+	</gmd:locale>
+	<gmd:identificationInfo>
+		<naplio:NAPLIO_DataIdentification gco:isoType="gmd:MD_DataIdentification">
+			<gmd:citation>
+				<gmd:CI_Citation>
+					<gmd:title xsi:type="gmd:PT_FreeText_PropertyType">
+						<gco:CharacterString>NAP:ISO 19115  Geographic Information Metadata(Min Vector Template v5)</gco:CharacterString>
+						<gmd:PT_FreeText>
+							<gmd:textGroup>
+								<gmd:LocalisedCharacterString locale="#FR">NAP:ISO 19115  Geographic Information Metadata(Vector)</gmd:LocalisedCharacterString>
+							</gmd:textGroup>
+						</gmd:PT_FreeText>
+					</gmd:title>
+					<gmd:date>
+						<gmd:CI_Date>
+							<gmd:date>
+								<gco:Date/>
+							</gmd:date>
+							<gmd:dateType>
+								<gmd:CI_DateTypeCode codeList="http://www.geoconnections.org/developersCorner/nap/metadata/register/registerItemClasses.html#CI_DateTypeCode" codeListValue=""/>
+							</gmd:dateType>
+						</gmd:CI_Date>
+					</gmd:date>
+					<gmd:citedResponsibleParty>
+						<gmd:CI_ResponsibleParty>
+							<gmd:individualName gco:nilReason="missing">
+								<gco:CharacterString/>
+							</gmd:individualName>
+							<gmd:organisationName gco:nilReason="missing">
+								<gco:CharacterString/>
+							</gmd:organisationName>
+							<gmd:positionName gco:nilReason="missing">
+								<gco:CharacterString/>
+							</gmd:positionName>
+							<gmd:contactInfo>
+								<gmd:CI_Contact>
+									<gmd:phone>
+										<gmd:CI_Telephone>
+											<gmd:voice gco:nilReason="missing">
+												<gco:CharacterString/>
+											</gmd:voice>
+											<gmd:facsimile gco:nilReason="missing">
+												<gco:CharacterString/>
+											</gmd:facsimile>
+										</gmd:CI_Telephone>
+									</gmd:phone>
+									<gmd:address>
+										<gmd:CI_Address>
+											<gmd:deliveryPoint gco:nilReason="missing">
+												<gco:CharacterString/>
+											</gmd:deliveryPoint>
+											<gmd:city gco:nilReason="missing">
+												<gco:CharacterString/>
+											</gmd:city>
+											<gmd:administrativeArea gco:nilReason="missing">
+												<gco:CharacterString/>
+											</gmd:administrativeArea>
+											<gmd:postalCode gco:nilReason="missing">
+												<gco:CharacterString/>
+											</gmd:postalCode>
+											<gmd:country gco:nilReason="missing">
+												<gco:CharacterString/>
+											</gmd:country>
+											<gmd:electronicMailAddress gco:nilReason="missing">
+												<gco:CharacterString/>
+											</gmd:electronicMailAddress>
+										</gmd:CI_Address>
+									</gmd:address>
+								</gmd:CI_Contact>
+							</gmd:contactInfo>
+							<gmd:role>
+								<gmd:CI_RoleCode codeList="http://www.geoconnections.org/developersCorner/nap/metadata/register/registerItemClasses.html#CI_RoleCode" codeListValue=""/>
+							</gmd:role>
+						</gmd:CI_ResponsibleParty>
+					</gmd:citedResponsibleParty>
+				</gmd:CI_Citation>
+			</gmd:citation>
+			<gmd:abstract xsi:type="gmd:PT_FreeText_PropertyType" gco:nilReason="missing">
+				<gco:CharacterString/>
+				<gmd:PT_FreeText>
+					<gmd:textGroup>
+						<gmd:LocalisedCharacterString locale="#FR"/>
+					</gmd:textGroup>
+				</gmd:PT_FreeText>
+			</gmd:abstract>
+			<gmd:status>
+				<gmd:MD_ProgressCode codeList="http://www.geoconnections.org/developersCorner/nap/metadata/register/registerItemClasses.html#MD_ProgressCode" codeListValue=""/>
+			</gmd:status>
+			<gmd:language gco:nilReason="missing">
+				<gco:CharacterString/>
+			</gmd:language>
+			<gmd:environmentDescription gco:nilReason="missing">
+				<gco:CharacterString/>
+			</gmd:environmentDescription>
+			<gmd:extent>
+				<gmd:EX_Extent>
+					<gmd:geographicElement>
+						<gmd:EX_GeographicBoundingBox>
+							<gmd:westBoundLongitude>
+								<gco:Decimal>-95.1569900512695</gco:Decimal>
+							</gmd:westBoundLongitude>
+							<gmd:eastBoundLongitude>
+								<gco:Decimal>-74.3079833984375</gco:Decimal>
+							</gmd:eastBoundLongitude>
+							<gmd:southBoundLatitude>
+								<gco:Decimal>41.6722984313965</gco:Decimal>
+							</gmd:southBoundLatitude>
+							<gmd:northBoundLatitude>
+								<gco:Decimal>56.8501167297363</gco:Decimal>
+							</gmd:northBoundLatitude>
+						</gmd:EX_GeographicBoundingBox>
+					</gmd:geographicElement>
+				</gmd:EX_Extent>
+			</gmd:extent>
+
+      <!--<naplio:opsExtensions>
+        <naplio:OPS_Extensions>
+          <naplio:location>
+            <gco:CharacterString></gco:CharacterString>
+          </naplio:location>
+          <naplio:audience>
+            <naplio:OPS_AudienceTypeCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue=""/>
+          </naplio:audience>
+          <naplio:recordsRetentionScheduleID>
+            <gco:CharacterString></gco:CharacterString>
+          </naplio:recordsRetentionScheduleID>
+        </naplio:OPS_Extensions>
+      </naplio:opsExtensions>-->
+		</naplio:NAPLIO_DataIdentification>
+	</gmd:identificationInfo>
+</gmd:MD_Metadata>

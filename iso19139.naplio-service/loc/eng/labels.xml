@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<labels  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../labels.xsd" xmlns:gco="http://www.isotc211.org/2005/gco"
+  xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:srv="http://www.isotc211.org/2005/srv"
+  xmlns:gml="http://www.opengis.net/gml" xmlns:gts="http://www.isotc211.org/2005/gts"
+  xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:naplio="http://www.lio.ontario.ca/naplio">
+  <!-- Overrides iso19139 labels -->
+
+  <!-- Add profile specific labels -->
+  <element name="naplio:NAPLIO_ServiceIdentification">
+    <label>NAP Service Identification Info</label>
+    <description>NAP Service Identification Info</description>
+  </element>
+  <element name="naplio:opsExtensions">
+
+    <label>Ontario Public Service Metadata Extensions</label>
+    <description>Ontario Public Service Metadata Extensions.</description>
+  </element>
+  <element name="naplio:OPS_Extensions">
+    <label>OPS Extensions</label>
+    <description>Ontario Public Service Metadata Extensions.</description>
+  </element>
+  <element name="naplio:location">
+    <label>Physical Location of the Data</label>
+    <description>Location of the data source.</description>
+  </element>
+  <element name="naplio:audience">
+    <label>Intended Audience for the Data</label>
+    <description>Audience of the data source.</description>
+  </element>
+  <element name="naplio:recordsRetentionScheduleID">
+    <label>Record Retention Schedule ID Number</label>
+    <description>Records Retention Schedule ID of the data source.</description>
+  </element>
+</labels>
