@@ -68,12 +68,12 @@
 	<gmd:dateStamp>
 		<gco:DateTime>2008-04-25T20:51:27</gco:DateTime>
 	</gmd:dateStamp>
-	<gmd:metadataStandardName>
-		<gco:CharacterString>ISO 19115:2003/19139</gco:CharacterString>
-	</gmd:metadataStandardName>
-	<gmd:metadataStandardVersion>
-		<gco:CharacterString>1.0</gco:CharacterString>
-	</gmd:metadataStandardVersion>
+  <gmd:metadataStandardName>
+    <gco:CharacterString>ANZLIC Metadata Profile: An Australian/New Zealand Profile of AS/NZS ISO 19115:2005, Geographic information - Metadata</gco:CharacterString>
+  </gmd:metadataStandardName>
+  <gmd:metadataStandardVersion>
+    <gco:CharacterString>1.1</gco:CharacterString>
+  </gmd:metadataStandardVersion>
 	<gmd:identificationInfo>
 		<srv:SV_ServiceIdentification>
 			<gmd:citation>
