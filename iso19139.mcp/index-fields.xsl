@@ -175,7 +175,15 @@
 
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 
-	<xsl:template mode="index" match="mcp:resourceContactInfo/mcp:CI_Responsibility//mcp:party/mcp:CI_Organisation/mcp:name[@gco:nilReason!='missing']/gco:CharacterString">
+	<xsl:template mode="index" match="mcp:resourceContactInfo[1]/mcp:CI_Responsibility/mcp:role/*/@codeListValue">
+
+    <Field name="responsiblePartyRole" string="{string(.)}" store="false" index="true"/>
+
+	</xsl:template>
+
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
+
+	<xsl:template mode="index" match="mcp:resourceContactInfo/mcp:CI_Responsibility//mcp:party/mcp:CI_Organisation/mcp:name[not(@gco:nilReason)]/gco:CharacterString">
 
 		<xsl:variable name="org" select="string(.)"/>
 
@@ -200,7 +208,7 @@
 		
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 		
-	<xsl:template mode="index" match="mcp:metadataContactInfo/mcp:CI_Responsibility/mcp:party/mcp:CI_Organisation/mcp:name[@gco:nilReason!='missing']/gco:CharacterString">
+	<xsl:template mode="index" match="mcp:metadataContactInfo/mcp:CI_Responsibility//mcp:party/mcp:CI_Organisation/mcp:name[not(@gco:nilReason)]/gco:CharacterString">
 
 		<xsl:variable name="org" select="."/>
 
