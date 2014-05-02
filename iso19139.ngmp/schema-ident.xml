@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema 
+	xmlns="http://geonetwork-opensource.org/schemas/schema-ident" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://geonetwork-opensource.org/schemas/schema-ident http://raw.github.com/geonetwork/core-geonetwork/2.10.x/web/src/main/webapp/xml/validation/schemaPlugins/schema-ident.xsd">
+
+	<name>iso19139.ngmp</name>
+	<id>98db8fd3-e2ac-4425-99b0-b3662f7728f2</id>
+	<version>1.0</version>
+
+	<depends>iso19139</depends> 
+	<schemaLocation>urn:int:nato:geometoc:geo:metadata:ngmp:1.0 http://nmrr.nc3a.nato.int/filerepo/GeoMetOc/metadata/ngmp/1.0/ngmp.xsd</schemaLocation>
+
+	<autodetect xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco">
+          <elements>
+            <gmd:metadataStandardName>
+                <gco:CharacterString>STANAG 2586</gco:CharacterString>
+            </gmd:metadataStandardName>
+            <gmd:metadataStandardVersion>
+                <gco:CharacterString>Edition 1</gco:CharacterString>
+            </gmd:metadataStandardVersion>
+          </elements>
+	</autodetect>
+    <readwriteUuid>true</readwriteUuid>
+</schema>

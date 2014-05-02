@@ -1,0 +1,918 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmd:MD_Metadata xmlns:ngmp="urn:int:nato:geometoc:geo:metadata:ngmp:1.0"
+                 xmlns:gmd="http://www.isotc211.org/2005/gmd"
+                 xmlns:gml="http://www.opengis.net/gml"
+                 xmlns:gco="http://www.isotc211.org/2005/gco"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                 xsi:schemaLocation="
+                        http://www.isotc211.org/2005/gmd            http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gmd/gmd.xsd
+                        http://www.opengis.net/gml                  http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19136_Schemas/gml.xsd
+                        http://www.isotc211.org/2005/gco            http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco/gco.xsd
+                        urn:int:nato:geometoc:geo:metadata:ngmp:1.0 https://nmrr.nc3a.nato.int/filerepo/GeoMetOc/metadata/ngmp/1.0/ngmp.xsd">
+
+    <!-- NOTE about GML URI:
+         STANAG defines the GML URI to be http://www.opengis.net/gml/3.2, but most of GN internals work with http://www.opengis.net/gml
+         Internally NGMP metadata will have the /gml URI, as in this template.
+         Anytime NGMP documents will be exported,  /gml URI will be converted into /gml/3.2
+    -->
+
+    <!-- Metadata uuid, mandatory -->
+    <!-- Format is  {HHHHHHHH-HHHH-HHHH-HHHH-HHHHHHHHHHHH} braces included, here H is an hex digit-->
+    <!-- MDSID [1] -->
+    <gmd:fileIdentifier>
+        <gco:CharacterString></gco:CharacterString>
+    </gmd:fileIdentifier>
+
+    <!-- Metadata language, mandatory -->
+    <!-- We can keep this fixed as "eng" -->
+    <!-- MDLANG [1] -->
+    <gmd:language>
+        <gmd:LanguageCode codeListValue="eng"
+                          codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#LanguageCode">eng</gmd:LanguageCode>
+    </gmd:language>
+
+    <!-- Metadata encoding, mandatory -->
+    <!-- We can keep this fixed as "utf8" -->
+    <!-- MDCSET [1] -->
+    <gmd:characterSet>
+        <gmd:MD_CharacterSetCode codeListValue="utf8"
+                                 codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#MD_CharacterSetCode">utf8</gmd:MD_CharacterSetCode>
+    </gmd:characterSet>
+
+    <!-- Resource type, mandatory -->
+    <!-- We may keep this fixed as "dataset" -->
+    <!-- RSTYPE [1]: Only the first instance is in the scope of NGMP -->
+    <gmd:hierarchyLevel>
+        <gmd:MD_ScopeCode codeListValue="dataset"
+                          codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#MD_ScopeCode">dataset</gmd:MD_ScopeCode>
+    </gmd:hierarchyLevel>
+
+    <!-- Point of contact for the metadata. -->
+    <!-- At least one is required. -->
+    <!-- Other responsible parties may be added with different roles (author, processor, owner, ...): see table 39, page A-42 -->
+    <!-- We may keep this first element as fixed, and add other when/if required. It's a complex element, so no placeholder here.-->
+    <!-- MDPOC [1..*] -->
+    <gmd:contact>
+        <gmd:CI_ResponsibleParty>
+            <!-- MDPOC.PtOrgName -->
+            <gmd:organisationName>
+                <gco:CharacterString></gco:CharacterString>
+            </gmd:organisationName>
+            <gmd:contactInfo>
+                <gmd:CI_Contact>
+                    <gmd:phone>
+                        <gmd:CI_Telephone>
+                            <gmd:voice>
+                                <gco:CharacterString></gco:CharacterString>
+                            </gmd:voice>
+                            <gmd:facsimile>
+                                <gco:CharacterString></gco:CharacterString>
+                            </gmd:facsimile>
+                        </gmd:CI_Telephone>
+                    </gmd:phone>
+                    <gmd:address>
+                        <gmd:CI_Address>
+                            <gmd:deliveryPoint>
+                                <gco:CharacterString></gco:CharacterString>
+                            </gmd:deliveryPoint>
+                            <gmd:city>
+                                <gco:CharacterString></gco:CharacterString>
+                            </gmd:city>
+                            <gmd:administrativeArea gco:nilReason="missing">
+                                <gco:CharacterString/>
+                            </gmd:administrativeArea>
+                            <gmd:postalCode>
+                                <gco:CharacterString></gco:CharacterString>
+                            </gmd:postalCode>
+                            <gmd:country>
+                                <gco:CharacterString></gco:CharacterString>
+                            </gmd:country>
+                            <gmd:electronicMailAddress>
+                                <gco:CharacterString></gco:CharacterString>
+                            </gmd:electronicMailAddress>
+                        </gmd:CI_Address>
+                    </gmd:address>
+                    <gmd:onlineResource>
+                        <gmd:CI_OnlineResource>
+                            <gmd:linkage>
+                                <gmd:URL></gmd:URL>
+                            </gmd:linkage>
+                            <gmd:protocol>
+                                <gco:CharacterString>WWW:LINK-1.0-http--link</gco:CharacterString>
+                            </gmd:protocol>
+                            <gmd:name gco:nilReason="missing">
+                                <gco:CharacterString/>
+                            </gmd:name>
+                            <gmd:description gco:nilReason="missing">
+                                <gco:CharacterString/>
+                            </gmd:description>
+                        </gmd:CI_OnlineResource>
+                    </gmd:onlineResource>
+                </gmd:CI_Contact>
+            </gmd:contactInfo>
+
+            <gmd:role>
+                <!-- Table 39, page A-42 -->
+                <gmd:CI_RoleCode codeListValue="pointOfContact"
+                                 codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#CI_RoleCode">pointOfContact</gmd:CI_RoleCode>
+            </gmd:role>
+
+        </gmd:CI_ResponsibleParty>
+    </gmd:contact>
+
+    <!-- Date of creation or last update of the metadata. -->
+    <!-- Mandatory -->
+    <!-- MDDATE [1] -->
+    <gmd:dateStamp>
+        <gco:Date>__MDDATE__</gco:Date>
+    </gmd:dateStamp>
+
+    <!-- Info about the metadata stadard. -->
+    <!-- Mandatory, fixed value -->
+    <!-- MDSTD [1]: There shall be an instance of gmd:metadataStandardName having the 'STANAG 2586' value and an
+    instance of having the value "Edition 1" -->
+    <!-- MDSTD.CiTitle [1] -->
+    <gmd:metadataStandardName>
+        <gco:CharacterString>STANAG 2586</gco:CharacterString>
+    </gmd:metadataStandardName>
+    <!-- Info about the metadata stadard. -->
+    <!-- Mandatory, fixed value -->
+    <!-- MDSTD.CiEdition [1] -->
+    <gmd:metadataStandardVersion>
+        <gco:CharacterString>Edition 1</gco:CharacterString>
+    </gmd:metadataStandardVersion>
+
+    <!-- Spatial or temporal RS used in the resource -->
+    <!-- e.g. "EPSG:4326" -->
+    <!-- RSRSYS [1..*] -->
+    <gmd:referenceSystemInfo>
+        <gmd:MD_ReferenceSystem>
+            <gmd:referenceSystemIdentifier>
+                <gmd:RS_Identifier>
+                    <gmd:code>
+                        <gco:CharacterString></gco:CharacterString>
+                    </gmd:code>
+                </gmd:RS_Identifier>
+            </gmd:referenceSystemIdentifier>
+        </gmd:MD_ReferenceSystem>
+    </gmd:referenceSystemInfo>
+
+    <gmd:identificationInfo>
+        <gmd:MD_DataIdentification>
+            <gmd:citation>
+                <gmd:CI_Citation>
+                    <!-- Unique name by which the resource is known -->
+                    <!-- Mandatory -->
+                    <!-- RSTITLE [1] -->
+                    <gmd:title>
+                        <gco:CharacterString></gco:CharacterString>
+                    </gmd:title>
+                    <!-- Alternate title -->
+                    <!-- Optional -->
+                    <!-- RSALT [0..1] -->
+                    <!--                    <gmd:alternateTitle>
+                                            <gco:CharacterString>REP11 REP11A CTD</gco:CharacterString>
+                                        </gmd:alternateTitle>
+                    -->
+                    <!-- Resource ==dato, creation date -->
+                    <!-- Mandatory -->
+                    <!-- e.g. 2011-01-08 -->
+                    <!-- RSCDAT [1] -->
+                    <!-- GP:??? differza con MDDATE, quando e' stato creato il dato -->
+                    <gmd:date>
+                        <gmd:CI_Date>
+                            <gmd:date>
+                                <gco:Date></gco:Date>
+                            </gmd:date>
+                            <gmd:dateType>
+                                <gmd:CI_DateTypeCode codeListValue="creation"
+                                                     codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#CI_DateTypeCode">creation</gmd:CI_DateTypeCode>
+                            </gmd:dateType>
+                        </gmd:CI_Date>
+                    </gmd:date>
+
+                    <!-- If RSID is set -->
+                    <!--                    <gmd:identifier>
+                        <gmd:MD_Identifier>
+                             RSID [0..1]
+                            <gmd:code>
+                                <gco:CharacterString>{fd37cf40-d927-11e0-9572-0800200c9a66}</gco:CharacterString>
+                            </gmd:code>
+                        </gmd:MD_Identifier>
+                    </gmd:identifier>-->
+                    <!-- RSSERI [0..1]: Mandated if RSSHNA is set -->
+                    <!--                    <gmd:series>
+                        <gmd:CI_Series>
+                            <gmd:name>
+                                <gco:CharacterString>AOR MISC 020</gco:CharacterString>
+                            </gmd:name>
+                        </gmd:CI_Series>
+                    </gmd:series>-->
+                </gmd:CI_Citation>
+            </gmd:citation>
+
+            <!-- Description of the resource -->
+            <!-- Mandatory -->
+            <!-- RSABSTR [1] -->
+            <!-- GP:??? chiedere al data keeper: free text -->
+            <gmd:abstract>
+                <gco:CharacterString></gco:CharacterString>
+            </gmd:abstract>
+
+            <!-- Resource status -->
+            <!-- Optional -->
+            <!-- Refer to table 32 page A-38 -->
+            <!-- RSSTAT [0..1] -->
+            <!-- GP:??? chidere ale -->
+            <gmd:status>
+                <gmd:MD_ProgressCode codeListValue=""
+                                     codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#MD_ProgressCode"></gmd:MD_ProgressCode>
+            </gmd:status>
+
+            <!-- Resource originator -->
+            <!-- All data are from CMRE, so no need to put a placeholder here -->
+
+            <!-- If RSOORG[0..1] and/or RSONAT[0..1] -->
+            <gmd:pointOfContact>
+                <gmd:CI_ResponsibleParty>
+                    <!-- RSOORG if set, else RSONAT -->
+                    <gmd:organisationName>
+                        <gco:CharacterString></gco:CharacterString>
+                    </gmd:organisationName>
+                    <!-- if RSONAT is set -->
+                    <!--
+                                         <gmd:contactInfo>
+                                            <gmd:CI_Contact>
+                                                <gmd:address>
+                                                    <gmd:CI_Address>
+                                                        <gmd:country>
+                                                            <gco:CharacterString></gco:CharacterString>
+                                                        </gmd:country>
+                                                    </gmd:CI_Address>
+                                                </gmd:address>
+                                            </gmd:CI_Contact>
+                                        </gmd:contactInfo>
+                    -->
+                    <gmd:role>
+                        <gmd:CI_RoleCode codeListValue="originator"
+                                         codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#CI_RoleCode">originator</gmd:CI_RoleCode>
+                    </gmd:role>
+                </gmd:CI_ResponsibleParty>
+            </gmd:pointOfContact>
+
+            <!-- Resource custodian -->
+            <!-- We may have the fixed value "nurc" here -->
+            <!-- Custodian body list is in table 40 page A-43 -->
+
+            <!-- For each RSCUST [0..*] -->
+            <!-- GP:??? ask ale for nurc or cmre, fixed in the template -->
+            <gmd:pointOfContact>
+                <gmd:CI_ResponsibleParty>
+                    <!-- RSCUST -->
+                    <gmd:organisationName>
+                        <ngmp:NGMP_CustodianCode codeListValue="nurc"
+                                                 codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#NGMP_CustodianCode"></ngmp:NGMP_CustodianCode>
+                    </gmd:organisationName>
+                    <gmd:role>
+                        <gmd:CI_RoleCode codeListValue="custodian"
+                                         codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#CI_RoleCode">custodian</gmd:CI_RoleCode>
+                    </gmd:role>
+                </gmd:CI_ResponsibleParty>
+            </gmd:pointOfContact>
+
+            <!-- Maintenance frequency -->
+            <!-- Mandatory -->
+            <!-- e.g. probably "notplanned" is a good choice for these data -->
+            <!-- Table 33 pag A-39-->
+
+            <gmd:resourceMaintenance>
+                <gmd:MD_MaintenanceInformation>
+                    <!-- RSMFRQ [1] -->
+                    <gmd:maintenanceAndUpdateFrequency>
+                        <gmd:MD_MaintenanceFrequencyCode codeListValue=""
+                                                         codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#MD_MaintenanceFrequencyCode"></gmd:MD_MaintenanceFrequencyCode>
+                    </gmd:maintenanceAndUpdateFrequency>
+                </gmd:MD_MaintenanceInformation>
+            </gmd:resourceMaintenance>
+
+            <!-- Graphic overview -->
+            <!-- Optional -->
+            <!-- GP:??? only one graphic overview???? What if there is no graphic overview, probably the placeholder should incorporate the xml tags as well-->
+            <!-- GP:??? us eplaceholder here i want to set from the script thumbnail, plot, TSplot, vertical plot -->
+            <!-- THUMB [0..1] -->
+
+            <gmd:graphicOverview>
+                <gmd:MD_BrowseGraphic>
+                    <gmd:fileName>
+                        <gco:CharacterString></gco:CharacterString>
+                    </gmd:fileName>
+                    <gmd:fileDescription>
+                        <gco:CharacterString>thumbnail</gco:CharacterString>
+                    </gmd:fileDescription>
+                </gmd:MD_BrowseGraphic>
+            </gmd:graphicOverview>
+
+
+            <!-- Keywords. These are from fixed codelists -->
+            <!-- eg: vector2D -->
+            <!-- Table 23 Page A-30 -->
+
+            <!-- DGITYP [0..1] -->
+            <gmd:descriptiveKeywords>
+                <gmd:MD_Keywords>
+                    <gmd:keyword>
+                        <ngmp:NGMP_GeospatialInformationTypeCode codeListValue=""
+                                                                 codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#NGMP_GeospatialInformationTypeCode"></ngmp:NGMP_GeospatialInformationTypeCode>
+                    </gmd:keyword>
+                    <gmd:thesaurusName>
+                        <gmd:CI_Citation>
+                            <gmd:title>
+                                <gco:CharacterString>NGMP_GeospatialInformationTypeCode</gco:CharacterString>
+                            </gmd:title>
+                            <gmd:date>
+                                <gmd:CI_Date>
+                                    <gmd:date>
+                                        <gco:Date>2011-09-16</gco:Date>
+                                    </gmd:date>
+                                    <gmd:dateType>
+                                        <gmd:CI_DateTypeCode codeListValue="creation"
+                                                             codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#CI_DateTypeCode">creation</gmd:CI_DateTypeCode>
+                                    </gmd:dateType>
+                                </gmd:CI_Date>
+                            </gmd:date>
+                        </gmd:CI_Citation>
+                    </gmd:thesaurusName>
+                </gmd:MD_Keywords>
+            </gmd:descriptiveKeywords>
+
+            <!-- Keywords. These are from fixed codelists -->
+            <!-- eg: georeferenced -->
+            <!-- Table 22 Page A-30 -->
+
+            <!-- RSGFLV [0..1] -->
+            <gmd:descriptiveKeywords>
+                <gmd:MD_Keywords>
+                    <gmd:keyword>
+                        <ngmp:NGMP_GeoreferencingLevelCode codeListValue=""
+                                                           codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#NGMP_GeoreferencingLevelCode"></ngmp:NGMP_GeoreferencingLevelCode>
+                    </gmd:keyword>
+                    <gmd:thesaurusName>
+                        <gmd:CI_Citation>
+                            <gmd:title>
+                                <gco:CharacterString>NGMP_GeoreferencingLevelCode</gco:CharacterString>
+                            </gmd:title>
+                            <gmd:date>
+                                <gmd:CI_Date>
+                                    <gmd:date>
+                                        <gco:Date>2011-09-16</gco:Date>
+                                    </gmd:date>
+                                    <gmd:dateType>
+                                        <gmd:CI_DateTypeCode codeListValue="creation"
+                                                             codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#CI_DateTypeCode">creation</gmd:CI_DateTypeCode>
+                                    </gmd:dateType>
+                                </gmd:CI_Date>
+                            </gmd:date>
+                        </gmd:CI_Citation>
+                    </gmd:thesaurusName>
+                </gmd:MD_Keywords>
+            </gmd:descriptiveKeywords>
+
+            <!-- Keywords. These are from fixed codelists -->
+            <!-- In our case, we can assume "digital" is always ok -->
+            <!-- Table 24 Page A-31 -->
+
+            <!-- RSPREF [0..1] -->
+            <gmd:descriptiveKeywords>
+                <gmd:MD_Keywords>
+                    <gmd:keyword>
+                        <ngmp:NGMP_RepresentationFormCode codeListValue="digital"
+                                                          codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#NGMP_RepresentationFormCode">digital</ngmp:NGMP_RepresentationFormCode>
+                    </gmd:keyword>
+                    <gmd:thesaurusName>
+                        <gmd:CI_Citation>
+                            <gmd:title>
+                                <gco:CharacterString>NGMP_RepresentationFormCode</gco:CharacterString>
+                            </gmd:title>
+                            <gmd:date>
+                                <gmd:CI_Date>
+                                    <gmd:date>
+                                        <gco:Date>2011-09-16</gco:Date>
+                                    </gmd:date>
+                                    <gmd:dateType>
+                                        <gmd:CI_DateTypeCode codeListValue="creation"
+                                                             codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#CI_DateTypeCode">creation</gmd:CI_DateTypeCode>
+                                    </gmd:dateType>
+                                </gmd:CI_Date>
+                            </gmd:date>
+                        </gmd:CI_Citation>
+                    </gmd:thesaurusName>
+                </gmd:MD_Keywords>
+            </gmd:descriptiveKeywords>
+
+
+            <!-- Keywords. These are from fixed codelists -->
+            <!-- We may not need this one -->
+            <!-- Table 21 Page A-29 -->
+            <!-- GP:??? ask ale if we need this -->
+            <!-- RSDTLVL [0..1] -->
+            <!--            <gmd:descriptiveKeywords>
+                            <gmd:MD_Keywords>
+                                <gmd:keyword>
+                                    <ngmp:NGMP_DataLevelCode codeListValue="L1"
+                                                             codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#NGMP_DataLevelCode">L1</ngmp:NGMP_DataLevelCode>
+                                </gmd:keyword>
+                                <gmd:thesaurusName>
+                                    <gmd:CI_Citation>
+                                        <gmd:title>
+                                            <gco:CharacterString>NGMP_DataLevelCode</gco:CharacterString>
+                                        </gmd:title>
+                                        <gmd:date>
+                                            <gmd:CI_Date>
+                                                <gmd:date>
+                                                    <gco:Date>2011-09-16</gco:Date>
+                                                </gmd:date>
+                                                <gmd:dateType>
+                                                    <gmd:CI_DateTypeCode codeListValue="creation"
+                                                                         codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#CI_DateTypeCode">creation</gmd:CI_DateTypeCode>
+                                                </gmd:dateType>
+                                            </gmd:CI_Date>
+                                        </gmd:date>
+                                    </gmd:CI_Citation>
+                                </gmd:thesaurusName>
+                            </gmd:MD_Keywords>
+                        </gmd:descriptiveKeywords>
+            -->
+
+            <!-- Keywords. These are from fixed codelists -->
+            <!-- We may not need this one  -->
+            <!-- eg: "ldb" -->
+            <!-- Table 30 Page A-37 -->
+            <!-- GP:??? ask ale if we need this -->
+            <!-- RSBASLVL [0..1] -->
+            <!--            <gmd:descriptiveKeywords>
+                            <gmd:MD_Keywords>
+                                <gmd:keyword>
+                                    <ngmp:NGMP_BaselineLevelCode codeListValue="ldb"
+                                                                 codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#NGMP_DataLevelCode">ldb</ngmp:NGMP_BaselineLevelCode>
+                                </gmd:keyword>
+                                <gmd:thesaurusName>
+                                    <gmd:CI_Citation>
+                                        <gmd:title>
+                                            <gco:CharacterString>NGMP_BaselineLevelCode</gco:CharacterString>
+                                        </gmd:title>
+                                        <gmd:date>
+                                            <gmd:CI_Date>
+                                                <gmd:date>
+                                                    <gco:Date>2011-09-16</gco:Date>
+                                                </gmd:date>
+                                                <gmd:dateType>
+                                                    <gmd:CI_DateTypeCode codeListValue="creation"
+                                                                         codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#CI_DateTypeCode">creation</gmd:CI_DateTypeCode>
+                                                </gmd:dateType>
+                                            </gmd:CI_Date>
+                                        </gmd:date>
+                                    </gmd:CI_Citation>
+                                </gmd:thesaurusName>
+                            </gmd:MD_Keywords>
+                        </gmd:descriptiveKeywords>
+            -->
+
+            <!-- Keywords. These are from fixed codelists -->
+            <!-- Mandatory. "otherGI" is the default value -->
+            <!-- Only part of the SDB/ODB data (See RSBASLV) is actually designated. -->
+            <!-- Table 31 Page A-37 -->
+            <!-- GP:??? ask ale if we need this -->
+            <!-- RSDESTP [1] -->
+            <gmd:descriptiveKeywords>
+                <gmd:MD_Keywords>
+                    <gmd:keyword>
+                        <ngmp:NGMP_DesignationTypeCode codeListValue="otherGI"
+                                                       codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#NGMP_DataLevelCode">otherGI</ngmp:NGMP_DesignationTypeCode>
+                    </gmd:keyword>
+                    <gmd:thesaurusName>
+                        <gmd:CI_Citation>
+                            <gmd:title>
+                                <gco:CharacterString>NGMP_DesignationTypeCode</gco:CharacterString>
+                            </gmd:title>
+                            <gmd:date>
+                                <gmd:CI_Date>
+                                    <gmd:date>
+                                        <gco:Date>2011-09-16</gco:Date>
+                                    </gmd:date>
+                                    <gmd:dateType>
+                                        <gmd:CI_DateTypeCode codeListValue="creation"
+                                                             codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#CI_DateTypeCode">creation</gmd:CI_DateTypeCode>
+                                    </gmd:dateType>
+                                </gmd:CI_Date>
+                            </gmd:date>
+                        </gmd:CI_Citation>
+                    </gmd:thesaurusName>
+                </gmd:MD_Keywords>
+
+            </gmd:descriptiveKeywords>
+
+            <!-- Keywords: other keywords as needed for metadata searching purposes -->
+            <!-- e.g.: wind, temperature, ... -->
+            <!-- if not needed, skip the whole next gmd:descriptiveKeywords element-->
+            <!-- GP:??? the place holder should be from gmd:keyword to /gmd:keyword -->
+            <gmd:descriptiveKeywords>
+                <gmd:MD_Keywords>
+                    <!-- repeat next line as many times as needed to add the various keywords-->
+                    <gmd:keyword>
+                        <gco:CharacterString>sample keyword</gco:CharacterString>
+                    </gmd:keyword>
+                </gmd:MD_Keywords>
+            </gmd:descriptiveKeywords>
+
+            <!-- constraints -->
+            <!-- Probably "unclassified" is a good fixed value here -->
+            <!-- Table 34 Page A-40 -->
+            <!-- GP:??? explain better -->
+            <gmd:resourceConstraints>
+                <gmd:MD_SecurityConstraints>
+                    <!-- RSCLVL [0..1]: Shall be set if RSCSYS is set -->
+                    <gmd:classification>
+                        <gmd:MD_ClassificationCode codeListValue="unclassified"
+                                                   codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#MD_ClassificationCode">unclassified</gmd:MD_ClassificationCode>
+                    </gmd:classification>
+                    <!-- RSCSYS [0..1]: Shall be set if RSCLVL is set. -->
+                    <gmd:classificationSystem>
+                        <!-- To be implemented either as a NGMP_NatoBodyCode or as as CharacterString containing a 3-character country
+                        code from STANAG 1059 -->
+                        <ngmp:NGMP_NatoBodyCode codeListValue="nato"
+                                                codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#NGMP_NatoBodyCode">nato</ngmp:NGMP_NatoBodyCode>
+                        <!--                        <gco:CharacterString>NLD</gco:CharacterString>-->
+                    </gmd:classificationSystem>
+                </gmd:MD_SecurityConstraints>
+            </gmd:resourceConstraints>
+
+            <gmd:resourceConstraints>
+                <ngmp:NGMP_Constraints>
+                    <ngmp:releasibility>
+                        <ngmp:NGMP_Releasibility>
+                            <!-- RSEL = resource releasibility addressee -->
+                            <!-- it's public, we will not list any addressee -->
+                            <!-- For each RSREL [0..*] -->
+                            <!--
+                                                        <ngmp:addressee>
+                                                            <gmd:CI_ResponsibleParty>
+                                                                <gmd:organisationName>
+                            -->
+                            <!-- To be implemented either as a NGMP_NatoBodyCode, NGMP_NGMP_ReleasibilityCode or as a
+                            CharacterString containing a 3-character country code from STANAG 1059
+                            <gmd:CharacterString>FRA</gmd:CharacterString>
+                            <ngmp:NGMP_NatoBodyCode codeListValue="nato"
+                            codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#NGMP_NatoBodyCode">nato</ngm
+                            p:NGMP_NatoBodyCode>
+                            <ngmp:NGMP_ReleasibilityCode codeListValue="public"
+                            codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#NGMP_ReleasibilityCode">public</n
+                            gmp:NGMP_ReleasibilityCode>
+                            -->
+                            <!--
+                                                                    <ngmp:NGMP_NatoBodyCode codeListValue="nato"
+                                                                                            codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#NGMP_NatoBodyCode">nato</ngmp:NGMP_NatoBodyCode>
+                                                                </gmd:organisationName>
+                                                                <gmd:role>
+                                                                    <gmd:CI_RoleCode codeListValue="user"
+                                                                                     codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#CI_RoleCode">user</gmd:CI_RoleCode>
+                                                                </gmd:role>
+                                                            </gmd:CI_ResponsibleParty>
+                                                        </ngmp:addressee>
+                            -->
+
+                            <!-- Table 37 Page A-41 -->
+                            <!-- RSACLV [1] -->
+                            <ngmp:statement>
+                                <ngmp:NGMP_AccessibilityLevelCode codeListValue="public"
+                                                                  codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#NGMP_AccessibilityLevelCode">public</ngmp:NGMP_AccessibilityLevelCode>
+                            </ngmp:statement>
+                        </ngmp:NGMP_Releasibility>
+                    </ngmp:releasibility>
+                </ngmp:NGMP_Constraints>
+            </gmd:resourceConstraints>
+
+            <!-- RSUSE [0..*] : Any resourceConstraints/MD_Constraints/useLimitation applies -->
+            <!-- GP:??? ask -->
+            <!-- eliminare tag . use limitation: eg not for navigation, etc-->
+            <gmd:resourceConstraints>
+                <gmd:MD_Constraints>
+                    <gmd:useLimitation>
+                        <gco:CharacterString>NOT FOR TARGETING</gco:CharacterString>
+                    </gmd:useLimitation>
+                </gmd:MD_Constraints>
+            </gmd:resourceConstraints>
+
+            <!-- RSLCST [0..*] : Any resourceConstraints/* where * is MD_LegalConstraints or one of its subtypes -->
+            <!-- GP:??? we want to specify the copyright string here from the python script -->
+            <gmd:resourceConstraints>
+                <gmd:MD_LegalConstraints>
+                    <!-- RSLCST.LcStatement [0..*] -->
+                    <gmd:useLimitation>
+                        <gco:CharacterString>copyright</gco:CharacterString> <!-- was "copyright" -->
+                    </gmd:useLimitation>
+                </gmd:MD_LegalConstraints>
+            </gmd:resourceConstraints>
+
+            <!-- Table 27 Page A-32 -->
+            <!-- eg: "textTable" for CSV or TSV files -->
+            <!-- RSRPTP [0..1] -->
+            <gmd:spatialRepresentationType>
+                <gmd:MD_SpatialRepresentationTypeCode codeListValue=""
+                                                      codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#MD_SpatialRepresentationTypeCode"></gmd:MD_SpatialRepresentationTypeCode>
+            </gmd:spatialRepresentationType>
+
+
+            <!-- RSGSD : For point data, the ground sample distance is the degree of confidence in the point's location. -->
+            <!-- UoM is fixed in metres -->
+
+            <gmd:spatialResolution>
+                <gmd:MD_Resolution>
+                    <gmd:distance>
+                        <gco:Distance uom="urn:ogc:def:uom:EPSG::9001"></gco:Distance>
+                    </gmd:distance>
+                </gmd:MD_Resolution>
+            </gmd:spatialResolution>
+
+            <!-- RSSCALE [0..*]: Mandated if RSGSD is not set -->
+            <!--            <gmd:spatialResolution>
+                            <gmd:MD_Resolution>
+                                <gmd:equivalentScale>
+                                    <gmd:MD_RepresentativeFraction>
+                                        <gmd:denominator>
+                                            <gco:Integer>250000</gco:Integer>
+                                        </gmd:denominator>
+                                    </gmd:MD_RepresentativeFraction>
+                                </gmd:equivalentScale>
+                            </gmd:MD_Resolution>
+                        </gmd:spatialResolution>
+            -->
+
+            <!-- Resource (data) language, mandatory -->
+            <!-- We can keep this fixed as "eng" -->
+
+            <!-- RSLANG [1] -->
+            <gmd:language>
+                <gmd:LanguageCode codeListValue="eng"
+                                  codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#LanguageCode">eng</gmd:LanguageCode>
+            </gmd:language>
+
+            <!-- Resource (data) encoding, mandatory -->
+            <!-- We can keep this fixed as "utf8" -->
+
+            <!-- RSCSET [1..*] -->
+            <gmd:characterSet>
+                <gmd:MD_CharacterSetCode codeListValue="utf8"
+                                         codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#MD_CharacterSetCode">utf8</gmd:MD_CharacterSetCode>
+            </gmd:characterSet>
+
+            <!-- Table 29 page A-36 -->
+            <!-- eg: oceans -->
+            <!-- RSTOPIC [1..*] -->
+
+            <gmd:topicCategory>
+                <gmd:MD_TopicCategoryCode></gmd:MD_TopicCategoryCode>
+            </gmd:topicCategory>
+
+            <!-- RSBBOX [1..*] -->
+            <gmd:extent>
+                <gmd:EX_Extent>
+                    <gmd:geographicElement>
+                        <gmd:EX_GeographicBoundingBox>
+                            <!-- RSBBOX.West -->
+                            <gmd:westBoundLongitude>
+                                <gco:Decimal>-180</gco:Decimal>
+                            </gmd:westBoundLongitude>
+                            <!-- RSBBOX.East -->
+                            <gmd:eastBoundLongitude>
+                                <gco:Decimal>180</gco:Decimal>
+                            </gmd:eastBoundLongitude>
+                            <!-- RSBBOX.South -->
+                            <gmd:southBoundLatitude>
+                                <gco:Decimal>-90</gco:Decimal>
+                            </gmd:southBoundLatitude>
+                            <!-- RSBBOX.North -->
+                            <gmd:northBoundLatitude>
+                                <gco:Decimal>90</gco:Decimal>
+                            </gmd:northBoundLatitude>
+                        </gmd:EX_GeographicBoundingBox>
+                    </gmd:geographicElement>
+
+                    <!-- Data temporal extent -->
+                    <!-- Exclude the whole gmd:temporalElement if not used -->
+                    <!-- e.g.  2011-08-15T08:36:00 -->
+
+                    
+<!--                    <gmd:temporalElement>
+                      <gmd:EX_TemporalExtent>
+                        <gmd:extent>
+                          <gml:TimePeriod>
+                            <gml:beginPosition>__MIN_TIME__</gml:beginPosition>
+                            <gml:endPosition>__MAX_TIME__</gml:endPosition>
+                          </gml:TimePeriod>
+                        </gmd:extent>
+                      </gmd:EX_TemporalExtent>
+                   </gmd:temporalElement>-->
+                    
+
+<!--                    __TEMPORAL_EXTENT__-->
+
+
+                    <!-- Data vertical extent -->
+                    <!-- Exclude the whole gmd:verticalElement if not used -->
+                    <!-- Ref system is 5715, msl depth in meters -->
+                    <!-- TODO: find out if a refsys exists with UoM as hPa -->
+
+                    <gmd:verticalElement>
+                        <gmd:EX_VerticalExtent>
+                            <gmd:minimumValue>
+                                <gco:Real>__MIN_VERT__</gco:Real><!-- 1m -->
+                            </gmd:minimumValue>
+                            <gmd:maximumValue>
+                                <gco:Real>__MAX_VERT__</gco:Real> <!--100m -->
+                            </gmd:maximumValue>
+                            <gmd:verticalCRS xlink:href="http://www.epsg-registry.org/export.htm?gml=urn:ogc:def:crs:EPSG::5715" xlink:title="msl depth in meters" xlink:actuate="onRequest"/>
+                        </gmd:EX_VerticalExtent>
+                    </gmd:verticalElement>
+
+                </gmd:EX_Extent>
+            </gmd:extent>
+        </gmd:MD_DataIdentification>
+    </gmd:identificationInfo>
+
+    <!-- information about the data format -->
+    <!-- eg: title = Seasave, version = V7 -->
+
+    <gmd:distributionInfo>
+        <gmd:MD_Distribution>
+            <!-- RSDFMT [1..*] -->
+            <gmd:distributionFormat>
+                <gmd:MD_Format>
+                    <!-- RSDFMT.CiTitle -->
+                    <gmd:name>
+                        <gco:CharacterString></gco:CharacterString>
+                    </gmd:name>
+                    <!-- RSDFMT.CiEdition -->
+                    <gmd:version>
+                        <gco:CharacterString></gco:CharacterString>
+                    </gmd:version>
+                </gmd:MD_Format>
+            </gmd:distributionFormat>
+            <gmd:transferOptions>
+
+                <!-- These are the info for downloading the resources -->
+
+                <!-- one MD_DigitalTransferOptions for each resource -->
+                <gmd:MD_DigitalTransferOptions>
+                    <gmd:onLine>
+                        <gmd:CI_OnlineResource>
+                            <!-- resource URL -->
+                            <gmd:linkage>
+                                <gmd:URL></gmd:URL>
+                            </gmd:linkage>
+                            <!-- this a string defined in GeoNetwork. We may have other kind of protocol/resource
+                            (eg: link to a WMS getMap service, ) if needed.-->
+                            <gmd:protocol>
+                                <gco:CharacterString>WWW:LINK-1.0-http--related</gco:CharacterString>
+                            </gmd:protocol>
+                            <!-- resource name -->
+                            <gmd:name>
+                                <gco:CharacterString></gco:CharacterString>
+                            </gmd:name>
+                            <!-- resource description - optional -->
+                            <!-- if note defined remove the whole gmd:description element -->
+                            <gmd:description>
+                               <gco:CharacterString>__RESOURCE_DESC__</gco:CharacterString>
+                            </gmd:description>
+                        </gmd:CI_OnlineResource>
+                    </gmd:onLine>
+                </gmd:MD_DigitalTransferOptions>
+
+            </gmd:transferOptions>
+        </gmd:MD_Distribution>
+
+    </gmd:distributionInfo>
+
+    <gmd:dataQualityInfo>
+        <gmd:DQ_DataQuality>
+            <gmd:scope>
+                <gmd:DQ_Scope>
+                    <gmd:level>
+                        <gmd:MD_ScopeCode codeListValue="dataset"
+                                          codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#MD_ScopeCode">dataset</gmd:MD_ScopeCode>
+                    </gmd:level>
+                </gmd:DQ_Scope>
+            </gmd:scope>
+            <gmd:lineage>
+                <gmd:LI_Lineage>
+                    <!-- This is a statement on process history
+                    and/or overall quality of the resource.
+                    Where appropriate it may include a
+                    statement whether the data set has
+                    been validated or quality assured,
+                    whether it is the official version (if
+                    multiple versions exist), -->
+                    <!-- RSLING [1] -->
+                    <gmd:statement>
+                        <gco:CharacterString></gco:CharacterString>
+                    </gmd:statement>
+                    <!-- If RSDESTD and RSDESTA -->
+                    <!--                    <gmd:processStep>
+                        <gmd:LI_ProcessStep>
+                            <gmd:description>
+                                <gco:CharacterString>Resource Designation</gco:CharacterString>
+                            </gmd:description>
+                             RSDESTD [0..1]
+                            <gmd:dateTime>
+                                <gco:DateTime>2010-10-01T00:00:00</gco:DateTime>
+                            </gmd:dateTime>
+                            <gmd:processor>
+                                <gmd:CI_ResponsibleParty>
+                                     Resource Designation Authority
+                                     RSDESTA [0..1]
+                                    <gmd:organisationName>
+                                        <ngmp:NGMP_CustodianCode codeListValue="nurc"
+                                                                 codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#NGMP_CustodianCode">NURC</ngmp:NGMP_CustodianCode>
+                                    </gmd:organisationName>
+                                    <gmd:role>
+                                        <gmd:CI_RoleCode codeListValue="processor"
+                                                         codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#CI_RoleCode">processor</gmd:CI_RoleCode>
+                                    </gmd:role>
+                                </gmd:CI_ResponsibleParty>
+                            </gmd:processor>
+                        </gmd:LI_ProcessStep>
+                    </gmd:processStep>-->
+                    <!-- RSSRC [0..*] -->
+                    <!--                    <gmd:source>
+                        <gmd:LI_Source>
+                            <gmd:description>
+                                <gco:CharacterString>
+                                    Detailed description of the source data
+                                    or preferably combination of series –
+                                    sheet name – edition – edition date of
+                                    the source, enabling a loose reference
+                                    to the source.
+                                </gco:CharacterString>
+                            </gmd:description>
+                        </gmd:LI_Source>
+                    </gmd:source>-->
+                </gmd:LI_Lineage>
+            </gmd:lineage>
+        </gmd:DQ_DataQuality>
+    </gmd:dataQualityInfo>
+
+    <!-- Constraints on the metadata -->
+
+    <!-- If MDCLVL and MDCSYS are set -->
+    <gmd:metadataConstraints>
+        <gmd:MD_SecurityConstraints>
+            <!-- Table 34 page A-40 -->
+            <!-- Since on the internet, unclassified -->
+            <!-- MDCLVL [0..1]: Shall be set if MDCSYS is set -->
+            <gmd:classification>
+                <gmd:MD_ClassificationCode codeListValue="unclassified"
+                                           codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#MD_ClassificationCode">unclassified</gmd:MD_ClassificationCode>
+            </gmd:classification>
+            <!-- MDCSYS [0..1]: Shall be set if MDCLVL is set. -->
+            <gmd:classificationSystem>
+                <!-- Table 35 page A-40 -->
+                <!-- To be implemented either as a NGMP_NatoBodyCode or as as CharacterString containing a 3-character country
+                code from STANAG 1059
+                <gmd:CharacterString>FRA</gmd:CharacterString>
+                -->
+                <ngmp:NGMP_NatoBodyCode codeListValue="nato"
+                                        codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#NGMP_NatoBodyCode">nato</ngmp:NGMP_NatoBodyCode>
+            </gmd:classificationSystem>
+        </gmd:MD_SecurityConstraints>
+    </gmd:metadataConstraints>
+
+    <!-- If MDREL is set -->
+    <gmd:metadataConstraints>
+        <ngmp:NGMP_Constraints>
+            <ngmp:releasibility>
+                <ngmp:NGMP_Releasibility>
+                    <!-- For each MDREL [0..*] -->
+                    <ngmp:addressee>
+                        <gmd:CI_ResponsibleParty>
+                            <gmd:organisationName>
+                                <!-- To be implemented either as a NGMP_NatoBodyCode, NGMP_NGMP_ReleasibilityCode or as a
+                                CharacterString containing a 3-character country code from STANAG 1059
+                                <gmd:CharacterString>FRA</gmd:CharacterString>
+                                <ngmp:NGMP_NatoBodyCode codeListValue="nato"
+                                codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#NGMP_NatoBodyCode">nato</ngm
+                                p:NGMP_NatoBodyCode>
+                                -->
+                                <ngmp:NGMP_ReleasibilityCode codeListValue="public"
+                                                             codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#NGMP_ReleasibilityCode">public</ngmp:NGMP_ReleasibilityCode>
+                            </gmd:organisationName>
+                            <gmd:role>
+                                <gmd:CI_RoleCode codeListValue="user"
+                                                 codeList="http://eden.ign.fr/xsd/ngmp/20110916/resources/codelist/ngmpCodelists.xml#CI_RoleCode">user</gmd:CI_RoleCode>
+                            </gmd:role>
+                        </gmd:CI_ResponsibleParty>
+                    </ngmp:addressee>
+                </ngmp:NGMP_Releasibility>
+            </ngmp:releasibility>
+        </ngmp:NGMP_Constraints>
+    </gmd:metadataConstraints>
+</gmd:MD_Metadata>

@@ -1,0 +1,14 @@
+NATO Geospatial Metadata Profile (NGMP)
+
+Some info on the profile can be found here:
+   http://www.assistdocs.com/search/document_details.cfm?ident_number=280165
+   http://eden.ign.fr/xsd/ngmp?set_language=en&cl=en
+
+This plugin only implements: 
+- the XSD schema, 
+- the presentation XSL files, 
+- the conversion XSL files (export, CSW), 
+- the schematron rules.
+
+No editing capabilities are implemented.
+
