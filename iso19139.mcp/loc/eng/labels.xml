@@ -8,117 +8,122 @@
 			xmlns:srv="http://www.isotc211.org/2005/srv">
 	
 	<!-- ==================================================== -->
-	<element name="mcp:MD_Metadata">
+	<element name="mcp:MD_Metadata" id="9000.0">
 		<label>Metadata (MCP)</label>
 		<description>root entity which defines metadata about a resource or resources</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:MD_DataIdentification">
-		<label>Data identification (MCP)</label>
-		<description>information required to identify an Australian Marine Community Profile dataset (Australian Marine Community Profile extension to ISO19115/19139)</description>
-	</element>
-	<!-- ==================================================== -->
-	<element name="mcp:currency">
-		<label>Temporal Currency</label>
-		<description>Describes the temporal currency of the resource (Australian Marine Community Profile extension to ISO19115/19139)</description>
-	</element>
-	<!-- ==================================================== -->
-	<element name="mcp:revisionDate">
+	<element name="mcp:revisionDate" id="9001.0">
 		<label>Revision Date</label>
 		<description>Date the metadata was last revised (Australian Marine Community Profile extension to ISO19115/19139)</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:samplingFrequency">
+	<element name="mcp:MD_DataIdentification" id="9010.0">
+		<label>Data identification (MCP)</label>
+		<description>information required to identify an Australian Marine Community Profile dataset (Australian Marine Community Profile extension to ISO19115/19139)</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:samplingFrequency" id="9011.0">
 		<label>Sampling Frequency</label>
 		<description>To describe the frequency of the sampled resource (Australian Marine Community Profile extension to ISO19115/19139)</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:temporalAggregation">
-		<label>Temporal Aggregation</label>
-		<description>Describes the temporal aggregation of the resource (Australian Marine Community Profile extension to ISO19115/19139)</description>
-	</element>
-	<!-- ==================================================== -->
-	<element name="mcp:EX_TemporalExtent">
+	<element name="mcp:EX_TemporalExtent" id="9020.0">
 		<label>Temporal Extent (MCP)</label>
 		<description>time period covered by the content of the dataset</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:beginTime">
+	<element name="mcp:beginTime" id="9021.0">
 		<label>Begin Time</label>
 		<description>start of time period covered by the dataset (deprecated - use gml: elements in the extent element instead)</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:endTime">
+	<element name="mcp:endTime" id="9022.0">
 		<label>End Time</label>
 		<description>end of time period covered by the dataset (deprecated - use gml: elements in the extent element instead)</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:dataParameters">
+	<element name="mcp:currency" id="9023.0">
+		<label>Temporal Currency</label>
+		<description>Describes the temporal currency of the resource (Australian Marine Community Profile extension to ISO19115/19139)</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:temporalAggregation" id="9024.0">
+		<label>Temporal Aggregation</label>
+		<description>Describes the temporal aggregation of the resource (Australian Marine Community Profile extension to ISO19115/19139)</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:dataParameters" id="9040.0">
 		<label>Data Parameters</label>
 		<description>Describes the Parameters or variables included in dataset</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:dataParameter">
+	<element name="mcp:dataParameter" id="9041.0">
 		<label>Data Parameter Info</label>
 		<description>Details about a specific Parameter, including he various names and labels used for that parameter; the unit-of-measurement (UOM) used; the minimum and maximum values measured in the dataset, and a description of the parameter the definitions of the parameters information</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:parameterName">
+	<element name="mcp:parameterName" id="9042.0">
 		<label>Parameter Name</label>
 		<description>Specific Parameter's name or label.  Details include whether this is a shortname, longname, code or "other".  It also the details of a vocabulary list (if one is known) that the label or name belongs to, and the label's definition</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:name">
+	<element name="mcp:name" id="9043.0" context="mcp:DP_ParameterName">
 		<label>Name</label>
-		<description>Name of Parameter or Unit of Measurement (UOM) depending on parent</description>
+		<description>Name of Parameter</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:type">
+	<element name="mcp:name" id="9044.0" context="mcp:DP_UnitsName">
+		<label>Name</label>
+		<description>Name of Unit Of Measure (UOM)</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:type" id="9045.0">
 		<label>Type</label>
 		<description>Type of Name - typically: long, short, code or other</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:usedInDataset">
+	<element name="mcp:usedInDataset" id="9046.0">
 		<label>Used in dataset?</label>
 		<description>Specific Parameter or UOM name being discussed in this element</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:vocabularyListURL">
+	<element name="mcp:vocabularyListURL" id="9047.0">
 		<label>Names VocabularyList URL</label>
 		<description>Version of the parameter vocabulary list that includes and defines this name;   Only use this, if the name actually is defined in a parameter or "UOM" vocabulary list that is available from the web</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:vocabularyListVersion">
+	<element name="mcp:vocabularyListVersion" id="9048.0">
 		<label>Names VocabularyList Version</label>
 		<description>Version of the parameter vocabulary list that includes and defines this name;</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:vocabularyListAuthority">
+	<element name="mcp:vocabularyListAuthority" id="9049.0">
 		<label>Names VocabularyList Authority</label>
 		<description>Authority usually means a body or organisation regulating a vocabulary list.  Use this field if the shortname or longname or param-code are defined in a parameter or "UOM" vocabulary list that is defined, maintained or regulated by a particular body or organisation</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:parameterMinimumValue">
+	<element name="mcp:parameterMinimumValue" id="9050.0">
 		<label>Min.Value in dataset</label>
 		<description>Minimum value measured - for this parameter, within this dataset</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:parameterMaximumValue">
+	<element name="mcp:parameterMaximumValue" id="9051.0">
 		<label>Max.Value in dataset</label>
 		<description>Maximum value measured - for this parameter, within this dataset</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:parameterDescription">
+	<element name="mcp:parameterDescription" id="9052.0">
 		<label>Parameter Description</label>
 		<description>Description of Param</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:localDefinition">
+	<element name="mcp:localDefinition" id="9053.0">
 		<label>Local definition</label>
 		<description>Local definition of Param or UOM; Used where an external vocabulary hasn't been used, or where an external vocab's definition is insufficient</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:parameterUnits">
+	<element name="mcp:parameterUnits" id="9054.0">
 		<label>Parameter unit of measurement</label>
 		<description><p>Includes names and labels for the UOM, as well as details of vocabulary Lists that include the label, and defnitions.</p>
              <p>This can be a standard UOM such as SI units; or might be a relative/local measurement. An example of the latter is:</p>
@@ -131,22 +136,22 @@
     </description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:MD_Commons">
+	<element name="mcp:MD_Commons" id="9060.0">
 		<label>Commons License</label>
 		<description>Commons Constraints on metadata or resource eg. creative commons</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:MD_CreativeCommons">
+	<element name="mcp:MD_CreativeCommons" id="9061.0">
 		<label>Creative Commons License (deprecated)</label>
 		<description>Creative Commons License (deprecated)</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:MD_DataCommons">
+	<element name="mcp:MD_DataCommons" id="9062.0">
 		<label>Data Commons License (deprecated)</label>
 		<description>Data Commons License (deprecated)</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:attributionConstraints">
+	<element name="mcp:attributionConstraints" id="9064.0">
 		<label>Attribution Constraints</label>
 		<description>
 Describes how and when the resource should be attributed as well as who the
@@ -156,137 +161,147 @@ data is referred to in a paper.
     </description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:derivativeConstraints">
+	<element name="mcp:derivativeConstraints" id="9065.0">
 		<label>Derivative Constraints</label>
 		<description>
 Describes the constraints on products that may be derived from this resource.
     </description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:commercialUseConstraints">
+	<element name="mcp:commercialUseConstraints" id="9066.0">
 		<label>Commercial Use Constraints</label>
 		<description>
 Describes what the constraints are if you want to make use of this resource commercially.  
     </description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:collectiveWorksConstraints">
+	<element name="mcp:collectiveWorksConstraints" id="9067.0">
 		<label>Collective Work Constraints </label>
 		<description>
 Describes what the constraints are if you wish to include this resource in a collective work.
     </description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:otherConstraints">
+	<element name="mcp:otherConstraints" id="9068.0">
 		<label>Other Constraints </label>
 		<description>
 Describes any constraints on using this resource that are not captured by the other constraint fields.
     </description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:taxonomicElement">
-		<label>Taxonomic Element</label>
-		<description>
-Taxonomic Element is a container for the Taxonomic coverage of the resource.
-    </description>
-	</element>
-	<!-- ==================================================== -->
-	<element name="mcp:EX_TaxonomicCoverage">
-		<label>Taxonomic Coverage</label>
-		<description>
-Taxonomic Coverage of the resource.
-    </description>
-	</element>
-	<!-- ==================================================== -->
-	<element name="mcp:taxonConcepts">
-		<label>Link to Taxonomic Information</label>
-		<description>
-This is a link to an xml description of a species name (or higher level ranks) from one or more classification systems that is or is used in the resource. Supported at present are links to the Australian Plant Census/Database (APC/APD) and the Australian Fauna Database (AFD).
-    </description>
-	</element>
-	<!-- ==================================================== -->
-	<element name="mcp:presentationLink">
-		<label>HTML presentation of Taxonomic Information</label>
-		<description>
-This is a link to an html description of a species name (or higher level ranks) from one or more classification systems that is or is used in the resource. Supported at present are links to the Australian Plant Census/Database (APC/APD) and the Australian Fauna Database (AFD).
-    </description>
-	</element>
-	<!-- ==================================================== -->
-	<element name="mcp:commonsType">
+	<element name="mcp:commonsType" id="9069.0">
 		<label>Commons License</label>
 		<description>
 Describes the type of commons license that describes the conditions of usage. Can be applied to metadata or resource.
     </description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:EX_Extent">
+	<element name="mcp:taxonomicElement" id="9090.0">
+		<label>Taxonomic Element</label>
+		<description>
+Taxonomic Element is a container for the Taxonomic coverage of the resource.
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:EX_TaxonomicCoverage" id="9091.0">
+		<label>Taxonomic Coverage</label>
+		<description>
+Taxonomic Coverage of the resource.
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:taxonConcepts" id="9092.0">
+		<label>Link to Taxonomic Information</label>
+		<description>
+This is a link to an xml description of a species name (or higher level ranks) from one or more classification systems that is or is used in the resource. Supported at present are links to the Australian Plant Census/Database (APC/APD) and the Australian Fauna Database (AFD).
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:presentationLink" id="9093.0">
+		<label>HTML presentation of Taxonomic Information</label>
+		<description>
+This is a link to an html description of a species name (or higher level ranks) from one or more classification systems that is or is used in the resource. Supported at present are links to the Australian Plant Census/Database (APC/APD) and the Australian Fauna Database (AFD).
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:EX_Extent" id="9100.0">
 		<label>Extent</label>
 		<description>Information about spatial, vertical, temporal and taxonomic extent</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:extent">
+	<element name="mcp:extent" id="9101.0">
 		<label>Extent</label>
 		<description>Information about spatial, vertical, temporal and taxonomic extent</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:contactInfo">
+	<element name="mcp:contactInfo" id="9102.0">
 		<label>Contact Information</label>
 		<description>Address of the responsible party</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:party">
+	<element name="mcp:party" id="9103.0">
 		<label>Responsible party</label>
 		<description>Details and contact information for a responsible party (Organisation or individual)</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:individual">
+	<element name="mcp:individual" id="9104.0">
 		<label>Responsible individual</label>
 		<description>Details and contact information for a responsible individual within an organisation</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:CI_Individual">
+	<element name="mcp:CI_Individual" id="9105.0">
 		<label>Responsible individual</label>
 		<description>Details and contact information for a responsible individual (possibly within an organisation)</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:CI_Organisation">
+	<element name="mcp:CI_Organisation" id="9106.0">
 		<label>Responsible organisation</label>
 		<description>Details and contact information for a responsible organisation (may contain details of responsible individuals)</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:role">
+	<element name="mcp:role" id="9107.0">
 		<label>Role</label>
 		<description>Function performed by the responsible party</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:metadataContactInfo">
+	<element name="mcp:metadataContactInfo" id="9108.0">
 		<label>Metadata Contact</label>
 		<description>Contact information for those parties who have a role in producing. maintaining and looking after the metadata.</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:resourceContactInfo">
+	<element name="mcp:resourceContactInfo" id="9109.0">
 		<label>Resource Contact</label>
 		<description>Contact information for those parties who have a role in producing. maintaining and looking after the resource.</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:responsibleParty">
+	<element name="mcp:responsibleParty" id="9110.0">
 		<label>Responsible Party</label>
 		<description>Contact information for those parties who have been cited as responsible for the resource.</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:CI_Responsibility">
+	<element name="mcp:CI_Responsibility" id="9111.0">
 		<label>Responsibility</label>
 		<description>Contact information for those parties who have been cited as responsible for the resource.</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:CI_Citation">
+	<element name="mcp:CI_Citation" id="9112.0">
 		<label>Citation</label>
 		<description>Citation information.</description>
 	</element>
 	<!-- ==================================================== -->
-	<element name="mcp:positionName">
+	<element name="mcp:positionName" id="9113.0">
 		<label>Position Name</label>
 		<description>Position of the individual within the organisation</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:name" id="9114.0" context="mcp:CI_Organisation">
+		<label>Name</label>
+		<description>Organisation Name</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:name" id="9115.0" context="mcp:CI_Individual">
+		<label>Name</label>
+		<description>Individual Name</description>
 	</element>
 	<!-- ==================================================== -->
 	
