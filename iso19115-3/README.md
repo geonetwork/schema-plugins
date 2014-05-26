@@ -1,0 +1,110 @@
+# ISO 19115-3 schema plugin
+
+This is the ISO19115-3 schema plugin for GeoNetwork 2.11.x or greater version.
+
+## Warning:
+
+The XML schema is not the final version.
+
+## Reference documents:
+
+* http://www.iso.org/iso/catalogue_detail.htm?csnumber=53798
+* http://www.iso.org/iso/catalogue_detail.htm?csnumber=32579
+
+## Description:
+
+This plugin supports:
+
+* indexing
+* editing (Angular editor)
+* viewing
+* CSW
+* no localization for languages
+* from/to ISO19139 conversion
+
+
+This plugin does not support:
+* editor associated resources
+* link to directory
+* ... still lots of features to be checked
+
+
+## Metadata rules:
+
+### Metadata identifier
+
+The metadata identifier is stored in the element mdb:MD_Metadata/mdb:metadataIdentifier.
+Only the code is set by default but more complete description may be defined (see authority,
+codeSpace, version, description).
+
+```
+<mdb:metadataIdentifier>
+  <mcc:MD_Identifier>
+    <mcc:code>
+      <gco:CharacterString>{{MetadataUUID}}</gco:CharacterString>
+    </mcc:code>
+  </mcc:MD_Identifier>
+</mdb:metadataIdentifier>
+```
+
+### Parent metadata
+
+The parent metadata records is referenced using the following form from the editor:
+
+```
+<mdb:parentMetadata uuidref="{{ParentMetadataUUID}}}"/>
+```
+
+Nevertheless, the citation code is also indexed.
+
+
+
+## CSW requests:
+
+If requesting an ISO record using the gmd namespace, metadata are converted to ISO19139.
+```
+<?xml version="1.0"?>
+<csw:GetRecordById xmlns:csw="http://www.opengis.net/cat/csw/2.0.2"
+  service="CSW"
+  version="2.0.2"
+  outputSchema="http://www.isotc211.org/2005/gmd">
+    <csw:Id>cecd1ebf-719e-4b1f-b6a7-86c17ed02c62</csw:Id>
+    <csw:ElementSetName>brief</csw:ElementSetName>
+</csw:GetRecordById>
+```
+
+To retrieve the record in ISO19115-3, use outputSchema = own to not to apply conversion.
+
+
+
+
+## GeoNetwork version to use with this plugin
+
+This is a draft implementation for testing mainly. It'll not be supported in 2.10.x series
+so don't plug it into it! develop branch should support it.
+
+In 2.11+ version, in catalog settings, add to metadata/editor/schemaConfig the editor configuration
+for the schema:
+
+```
+"iso19115-3":{
+  "defaultTab":"default",
+  "displayToolTip":false,
+  "related":{
+    "display":true,
+    "categories":[]},
+  "suggestion":{"display":true},
+  "validation":{"display":true}}
+```
+
+## Community
+
+Comments and questions to geonetwork-developers or geonetwork-users mailing lists.
+
+
+## Contributors
+
+* Simon Pigot (CSIRO)
+* François Prunayre (titellus)
+* Ted Habermann (hdfgroup)
+
