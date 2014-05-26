@@ -1,0 +1,1274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<codelists xmlns:naplio="http://www.lio.ontario.ca/naplio" xmlns:napm="http://www.geoconnections.org/nap/napMetadataTools/napXsd/napm">
+  <!-- Overrides iso19139 codelists -->
+  <codelist name="gmd:CI_DateTypeCode">
+    <entry>
+      <code>creation</code>
+      <label>Creation</label>
+      <description>Date identifies when the resource was brought into existence</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>publication</code>
+      <label>Publication</label>
+      <description>Date identifies when the resource was issued</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>revision</code>
+      <label>Revision</label>
+      <description>Date identifies when the resource was examined or re-examined and improved or
+        amended</description>
+    </entry>
+    <!-- ISO NAP GO-ITS72 PROFILE ONLY -->
+    <entry>
+      <code>notAvailable</code>
+      <label>Not Available</label>
+      <description>date identifies when the resource became not obtainable</description>
+    </entry>
+    <entry>
+      <code>inForce</code>
+      <label>In Force</label>
+      <description>date identifies when the resource became in force </description>
+    </entry>
+    <entry>
+      <code>adopted</code>
+      <label>Adopted</label>
+      <description>date identifies when the resource has been adopted </description>
+    </entry>
+    <entry>
+      <code>deprecated</code>
+      <label>Deprecated</label>
+      <description>date identifies when the resource has been disaproved</description>
+    </entry>
+    <entry>
+      <code>superseded</code>
+      <label>Superseded</label>
+      <description>date identifies when the resource has been replaced by another resource</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+  </codelist>
+  <!-- ==================================================== -->
+  <codelist name="gmd:CI_OnLineFunctionCode">
+    <entry>
+      <code>download</code>
+      <label>Download</label>
+      <description>Online instructions for transferring data from one storage device or system to
+        another</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>information</code>
+      <label>Information</label>
+      <description>Online information about the resource</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>offlineAccess</code>
+      <label>Offline access</label>
+      <description>Online instructions for requesting the resource from the
+        provider</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>order</code>
+      <label>Order</label>
+      <description>Online order process for obtening the resource</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>search</code>
+      <label>Search</label>
+      <description>Online search interface for seeking out information about the
+        resource</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- ISO NAP GO-ITS72 PROFILE ONLY -->
+    <entry>
+      <code>upload</code>
+      <label>Upload</label>
+      <description>online instructions for transfering data or file from a local storage device or system to another (e.g. mainframe or remote computer) via network </description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <entry>
+      <code>webService</code>
+      <label>Web service</label>
+      <description>online instructions for the connection to a Web service (e.g. Web Services Description Language file) providing an on-line geographic service other than a Web map service</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <entry>
+      <code>emailService</code>
+      <label>Email service</label>
+      <description>online instructions for the connection to an email service providing geographic services from emails</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <entry>
+      <code>browsing</code>
+      <label>Browsing</label>
+      <description>online interface for exploring and seeking information about the resource from a Web browser </description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>fileAccess</code>
+      <label>File access</label>
+      <description>direct retrieval of a file from a remote system, typically through the use of http or ftp protocol (or their secure variants)</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>webMapService</code>
+      <label>Web map service</label>
+      <description>online instructions for the connection to a Web -based map request service, which may return custom georeferenced map images, streamed features, raster data, or surface data to a mapping client</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+  </codelist>
+  <!-- ==================================================== -->
+  <codelist name="gmd:CI_PresentationFormCode">
+    <entry>
+      <code>documentDigital</code>
+      <label>Digital document</label>
+      <description>Digital representation of a primarily textual item (can contain illustrations
+        also)</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>imageDigital</code>
+      <label>Digital image</label>
+      <description>Representation of a primarily textual item (can contain illustrations also) on
+        paper, photograhic material, or other media</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>documentHardcopy</code>
+      <label>Hardcopy document</label>
+      <description>Likeness of natural or man-made features, objects, and activities acquired
+        through the sensing of visual or any other segment of the electromagnetic spectrum by
+        sensors, such as thermal infrared, and high resolution radar and stored in digital
+        format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>imageHardcopy</code>
+      <label>Hardcopy image</label>
+      <description>Likeness of natural or man-made features, objects, and activities acquired
+        through the sensing of visual or any other segment of the electromagnetic spectrum by
+        sensors, such as thermal infrared, and high resolution radar and reproduced on paper,
+        photographic material, or other media for use directly by the human user</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>mapDigital</code>
+      <label>Digital map</label>
+      <description>Map represented in raster or vector form</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>mapHardcopy</code>
+      <label>Hardcopy map</label>
+      <description>Map printed on paper, photographic material, or other media for use directly
+        by the human user</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>modelDigital</code>
+      <label>Digital model</label>
+      <description>Multi-dimensional digital representation of a feature, process,
+        etc.</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>modelHardcopy</code>
+      <label>Hardcopy model</label>
+      <description>3-dimensional, physical model</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>profileDigital</code>
+      <label>Digital profile</label>
+      <description>Vertical cross-section in digital form</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>profileHardcopy</code>
+      <label>Hardcopy profile</label>
+      <description>Vertical cross-section printed on paper, etc.</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>tableDigital</code>
+      <label>Digital table</label>
+      <description>Digital representation of facts or figures systematically displayed,
+        especially in columns</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>tableHardcopy</code>
+      <label>Hardcopy table</label>
+      <description>Representation of facts or figures systematically displayed, especially in
+        columns, printed onpapers, photographic material, or other media</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>videoDigital</code>
+      <label>Digital video</label>
+      <description>Digital video recording</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>videoHardcopy</code>
+      <label>Hardcopy video</label>
+      <description>Video recording on film</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- ISO NAP GO-ITS72 PROFILE ONLY -->
+    <entry>
+      <code>audioDigital</code>
+      <label>Audiod digital</label>
+      <description>digital audio recording</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>audioHardcopy</code>
+      <label>Audio hardcopy</label>
+      <description>audio recording delivered by analog media, such as a magnetic tape</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>multimediaDigital</code>
+      <label>Multimedia digital</label>
+      <description>information representation using simultaneously various digital modes for text, sound, image</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>multimediaHardcopy</code>
+      <label>Multimedia hardcopy</label>
+      <description>information representation using simultaneously various analog modes for text, sound, image</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>diagramDigital</code>
+      <label>Diagram digital</label>
+      <description>information represented graphically by charts such as pie chart, bar chart, and other type of diagrams and recorded in digital format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>diagramHardcopy</code>
+      <label>Diagram hardcopy</label>
+      <description>information represented graphically by charts such as pie chart, bar chart, and other type of diagrams and printed on paper, phototographic material, or other media</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+  </codelist>
+  <!-- ==================================================== -->
+  <codelist name="gmd:CI_RoleCode">
+    <entry>
+      <code>resourceProvider</code>
+      <label>Resource provider</label>
+      <description>Party that supplies the resource</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>custodian</code>
+      <label>Custodian</label>
+      <description>Party that accepts accountability and responsability for the data and ensures
+        appropriate care and maintenance of the resource</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>owner</code>
+      <label>Owner</label>
+      <description>Party that owns the resource</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>user</code>
+      <label>User</label>
+      <description>Party who uses the resource</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>distributor</code>
+      <label>Distributor</label>
+      <description>Party who distributes the resource</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>originator</code>
+      <label>Originator</label>
+      <description>Party who created the resource</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>pointOfContact</code>
+      <label>Point of contact</label>
+      <description>Party who can be contacted for acquiring knowledge about or acquisition of the
+        resource</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>principalInvestigator</code>
+      <label>Principal investigator</label>
+      <description>Key party responsible for gathering information and conducting
+        research</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>processor</code>
+      <label>Processor</label>
+      <description>Party wha has processed the data in a manner such that the resource has been
+        modified</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>publisher</code>
+      <label>Publisher</label>
+      <description>Party who published the resource</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>author</code>
+      <label>Author</label>
+      <description>Party who authored the resource</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- ISO NAP GO-ITS72 PROFILE ONLY -->
+    <entry>
+      <code>collaborator</code>
+      <label>Collaborator</label>
+      <description>party who contributed to the resource other than the principal investigator</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>editor</code>
+      <label>Editor</label>
+      <description>party who reviewed or modified the resource to improve the content</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>mediator</code>
+      <label>Mediator</label>
+      <description>a class of entity that mediates access to the resource and for whom the resource is intended or useful</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>rightsHolder</code>
+      <label>Rights Holder</label>
+      <description>a person or organization owning or managing rights over the resource</description>
+    </entry>
+  </codelist>
+  <!-- ==================================================== -->
+  <codelist name="gmd:MD_MaintenanceFrequencyCode">
+    <entry>
+      <code>continual</code>
+      <label>Continual</label>
+      <description>Data is repeatedly and frequently updated</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>daily</code>
+      <label>Daily</label>
+      <description>Data is updated each day</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>weekly</code>
+      <label>Weekly</label>
+      <description>Data is updated on a weekly basis</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>fortnightly</code>
+      <label>Fortnightly</label>
+      <description>Data is updated every two weeks</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>monthly</code>
+      <label>Monthly</label>
+      <description>Data is updated each month</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>quarterly</code>
+      <label>Quarterly</label>
+      <description>Data is updated every three months</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>biannually</code>
+      <label>Biannually</label>
+      <description>Data is updated twice each year</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>annually</code>
+      <label>Annually</label>
+      <description>Data is updated every year</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>asNeeded</code>
+      <label>As needed</label>
+      <description>Data is updated as deemed necessary</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>irregular</code>
+      <label>Irregular</label>
+      <description>Data is updated in intervals that are uneven in duration</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>notPlanned</code>
+      <label>Not planned</label>
+      <description>There are no plans to update the data</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>unknown</code>
+      <label>Unknown</label>
+      <description>Frequency of maintenance for the data is not known</description>
+    </entry>
+    <!-- ISO NAP GO-ITS72 PROFILE ONLY -->
+    <entry>
+      <code>semimonthly</code>
+      <label>Semi-monthly</label>
+      <description>data is updated twice a month</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  </codelist>
+  <!-- ==================================================== -->
+  <codelist name="gmd:MD_MediumFormatCode">
+    <entry>
+      <code>cpio</code>
+      <label>CPIO</label>
+      <description>CoPy In / Out (UNIX file format and command)</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>tar</code>
+      <label>TAR</label>
+      <description>Tape ARchive</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>highSierra</code>
+      <label>High sierra</label>
+      <description>High sierra file system</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>iso9660</code>
+      <label>ISO9660</label>
+      <description>Information processing volume and file structure of CD-ROM</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>iso9660RockRidge</code>
+      <label>ISO9660 Rock Ridge</label>
+      <description>Rock ridge interchange protocol (UNIX)</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>iso9660AppleHFS</code>
+      <label>ISO9660 Apple HFS</label>
+      <description>Hierarchical file system (Macintosh)</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- ISO NAP GO-ITS72 PROFILE ONLY -->
+    <entry>
+      <code>UDF</code>
+      <label>UDF</label>
+      <description>Universal Disk Format file system for storing files on optical media</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+  </codelist>
+  <!-- ==================================================== -->
+  <codelist name="gmd:MD_MediumNameCode">
+    <entry>
+      <code>cdRom</code>
+      <label>CDROM</label>
+      <description>Read-only optical disk</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>dvd</code>
+      <label>DVD</label>
+      <description>Digital versatile disk</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>dvdRom</code>
+      <label>DVDROM</label>
+      <description>Digital versatile disk, read only</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>3halfInchFloppy</code>
+      <label>3 Half Inch Floppy</label>
+      <description>3,5 inch magnetic disk</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>5quarterInchFloppy</code>
+      <label>5 Quarter Inch Floppy</label>
+      <description>5,25 inch magnetic disk</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>7trackTape</code>
+      <label>7 Track tape</label>
+      <description>7 track magnetic tape</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>9trackTape</code>
+      <label>9 track tape</label>
+      <description>9 track magnetic tape</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>3480Cartridge</code>
+      <label>3480 Cartridge</label>
+      <description>3480 cartridge tape drive</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>3490Cartridge</code>
+      <label>3490 Cartridge</label>
+      <description>3490 cartridge tape drive</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>3580Cartridge</code>
+      <label>3580 Cartridge</label>
+      <description>3580 cartridge tape drive</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>4mmCartridgeTape</code>
+      <label>4 mm Cartridge tape</label>
+      <description>4 millimetre magnetic tape</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>8mmCartridgeTape</code>
+      <label>8 mm Cartridge tape</label>
+      <description>8 millimetre magnetic tape</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>1quarterInchCartridgeTape</code>
+      <label>1 Quarter inch cartridge tape</label>
+      <description>0,25 inch magnetic tape</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>digitalLinearTap</code>
+      <label>Digital linear tape</label>
+      <description>Half inch cartridge streaming tape drive</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>onLine</code>
+      <label>Online</label>
+      <description>Direct computer linkage</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>satellite</code>
+      <label>Satellite</label>
+      <description>Linkage through a satellite communication system</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>telephoneLink</code>
+      <label>Telephone link</label>
+      <description>Communication through a telephone network</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>hardcopy</code>
+      <label>Hardcopy</label>
+      <description>Pamphlet or leaflet giving descriptive information</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- ISO NAP GO-ITS72 PROFILE ONLY -->
+    <entry>
+      <code>hardcopyDiazoPolyester08</code>
+      <label>Hardcopy diazo polyester08 link</label>
+      <description>diazo on 0,08 millimetre polyester</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>hardcopyCardMicrofilm</code>
+      <label>Hardcopy card microfilm</label>
+      <description>microfilm card</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>hardcopyMicrofilm240</code>
+      <label>Hardcopy microfilm 240</label>
+      <description>microfilm 240 millimetre</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>hardcopyMicrofilm35</code>
+      <label>Hardcopy microfilm 35</label>
+      <description>microfilm 35mm</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>hardcopyMicrofilm70</code>
+      <label>Hardcopy microfilm 70</label>
+      <description>microfilm 70mm</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>hardcopyMicrofilmGeneral</code>
+      <label>Hardcopy microfilm general</label>
+      <description>microfilm general</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>hardcopyMicrofilmMicrofiche</code>
+      <label>Hardcopy microfilm microfiche</label>
+      <description>microfilm microfiche</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>hardcopyNegativePhoto</code>
+      <label>Hardcopy negative photo</label>
+      <description>negative photography</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>hardcopyPaper</code>
+      <label>Hardcopy paper</label>
+      <description>printing on paper</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>hardcopyDiazo</code>
+      <label>Hardcopy diazo</label>
+      <description>diazo printing on paper</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>hardcopyPhoto</code>
+      <label>Hardcopy photo</label>
+      <description>printing on photographic paper</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>hardcopyTracedPaper</code>
+      <label>Hardcopy traced paper</label>
+      <description>drawing on paper</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>hardDisk</code>
+      <label>Hard disk</label>
+      <description>mass storage temporarily plug to a computer for massive data transmission</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>USBFlashDrive</code>
+      <label>USB flash drive</label>
+      <description>flash memory data storage devices integrated with a USB (universal serial bus) interface</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>1quarterInchCartridgeTape</code>
+      <label>1 quarter inch cartridge tape</label>
+      <description>:  0,25 inch magnetic tape</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  </codelist>
+  <!-- ==================================================== -->
+  <codelist name="gmd:MD_ProgressCode">
+    <entry>
+      <code>completed</code>
+      <label>Completed</label>
+      <description>Production of the data has been completed</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>historicalArchive</code>
+      <label>Historical archive</label>
+      <description>Data has been stored in an offline storage facility</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>obsolete</code>
+      <label>Obsolete</label>
+      <description>Data is no longer relevant</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>onGoing</code>
+      <label>On going</label>
+      <description>Data is continually being updated</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>planned</code>
+      <label>Planned</label>
+      <description>Fixed date has been established upon or by which the data will be created or
+        updated</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>required</code>
+      <label>Required</label>
+      <description>Data needs to be generated or updated</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>underDevelopment</code>
+      <label>Under development</label>
+      <description>Data is currently in the process of being created</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- ISO NAP GO-ITS72 PROFILE ONLY -->
+    <entry>
+      <code>proposed</code>
+      <label>Proposed</label>
+      <description>data about which parties have demontrated interests but funding is not secured and partnerships are sought</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  </codelist>
+  <!-- ==================================================== -->
+  <codelist name="gmd:MD_RestrictionCode">
+    <entry>
+      <code>copyright</code>
+      <label>Copyright</label>
+      <description>Exclusive right to the publication, production, or sale of the rights to a
+        literary, dramatic, musical, or artistic work, or to the use of a commercial print or
+        label, granted by law for a specified period of time to an author, composer, artist,
+        distributor</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>patent</code>
+      <label>Patent</label>
+      <description>Government has granted exclusive right to make, sell, use or license an
+        invention or discovery</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>patentPending</code>
+      <label>Pending patent</label>
+      <description>Produced or sold information awaiting a patent</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>trademark</code>
+      <label>Trademark</label>
+      <description>A name, symbol, or other device identifying a product, officially registered
+        and legally restricted to the use of the owner or manufacturer</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>license</code>
+      <label>License</label>
+      <description>Formal permission to do something</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>intellectualPropertyRights</code>
+      <label>Intellectual property rights</label>
+      <description>Rights to financial benefit from and control of distribution of non-tangible
+        property that is a result of creativity</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>restricted</code>
+      <label>Restricted</label>
+      <description>Withheld from general circulation or disclosure</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>otherRestrictions</code>
+      <label>Other restrictions</label>
+      <description>Limitation not listed</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- ISO NAP GO-ITS72 PROFILE ONLY -->
+    <entry>
+      <code>licenseUnrestricted</code>
+      <label>License unrestricted</label>
+      <description>formal permission not limited to use the resource</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>licenseEndUser</code>
+      <label>License end user</label>
+      <description>formal permission to a person or an entity to use the ressource and that may differ from the person that orders or purchases it</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>licenseDistributor</code>
+      <label>License distributor</label>
+      <description>formal permission to a person or an entity to commercialize or distribute the ressource</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>privacy</code>
+      <label>Privacy</label>
+      <description>set of phenomena, either physical or mental, that are private</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>statutory</code>
+      <label>Statutory</label>
+      <description>prescribed by law</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>confidential</code>
+      <label>Confidential</label>
+      <description>secret and reserved to a limited number of people that shall not make the content known</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>sensitivity</code>
+      <label>Sensitivity</label>
+      <description>data of which divulgation, alteration, lost or destruction may prevent or expose to risks a service or an organization and as such becomes particularly vulnerable concerned with highly classified government information or involving discretionary authority over important policy matters</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+  </codelist>
+
+
+  <!-- Add profile specific codelists -->
+  <codelist name="napm:napMD_FileFormatCode">
+    <entry>
+      <code>bil</code>
+      <label>Bil</label>
+      <description>BIL (band interleaved by line) format line data are arranged in the order of band number and repeated with respect to line number </description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>bmp</code>
+      <label>Bmp</label>
+      <description>bit mapped picture/BitMap</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>bsq</code>
+      <label>Bsq</label>
+      <description>BSQ format (band sequential) image data (pixel number and line number) of each band are separately arranged</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>bzip2</code>
+      <label>Bzip2</label>
+      <description>bzip2 compressing format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>cdr</code>
+      <label>Cdr</label>
+      <description>corel file format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>cgm</code>
+      <label>Cgm</label>
+      <description>Computer Graphics Metafile format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>cover</code>
+      <label>Cover</label>
+      <description>Arc/Info coverage format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>csv</code>
+      <label>Csv</label>
+      <description>comma separated value</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>dbf</code>
+      <label>Dbf</label>
+      <description>dbase file format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>dgn</code>
+      <label>Dgn</label>
+      <description>microstation graphic file format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>doc</code>
+      <label>Doc</label>
+      <description>microsoft word file format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>dwg</code>
+      <label>Dwg</label>
+      <description>autocad drawing format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+    <entry>
+      <code>dxf</code>
+      <label>Dxf</label>
+      <description>autocad data exchange format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>e00</code>
+      <label>e00</label>
+      <description>arc/info exchange format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>ecw</code>
+      <label>Ecw</label>
+      <description>ermapper compressed format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>eps</code>
+      <label>Eps</label>
+      <description>encapsulated postscript file format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>ers</code>
+      <label>Ers</label>
+      <description>ermapper file format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>gdb</code>
+      <label>Gdb</label>
+      <description>arcgis geodatabase file format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>geotiff</code>
+      <label>Geotiff</label>
+      <description>georeference tagged interchange file format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>gif</code>
+      <label>Gif</label>
+      <description>graphic interchange format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>gml</code>
+      <label>Gml</label>
+      <description>geography markup language</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>grid</code>
+      <label>Grid</label>
+      <description>regular data grids are rectangular, not sparse, matrices that contain column and row</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>gzip</code>
+      <label>Gzip</label>
+      <description>GNU zip compression utility designed to be a replacement for compress</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>html</code>
+      <label>Html</label>
+      <description>hypertext markup language</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>jpg</code>
+      <label>Jpg</label>
+      <description>joint photographic experts group format (JPG)</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>mdb</code>
+      <label>Mdb</label>
+      <description>microsoft access database file format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>mif</code>
+      <label>Mif</label>
+      <description>mapinfo interchange format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>pbm</code>
+      <label>Pbm</label>
+      <description>portable bitmap format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>pdf</code>
+      <label>Pdf</label>
+      <description>portable document format (adobe)</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>png</code>
+      <label>Png</label>
+      <description>portable network graphics bitmap</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>ps</code>
+      <label>Ps</label>
+      <description>postscript format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>rtf</code>
+      <label>Rtf</label>
+      <description>rich text format file</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>sdc</code>
+      <label>Sdc</label>
+      <description>smart data compression format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>shp</code>
+      <label>Shp</label>
+      <description>arcview shape file format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>sid</code>
+      <label>Sid</label>
+      <description>multi-resolution seamless image database file format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>svg</code>
+      <label>Svg</label>
+      <description>scalable vector graphic file format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>tab</code>
+      <label>Tab</label>
+      <description>mapinfo file format (tab file)</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>tar</code>
+      <label>Tar</label>
+      <description>tape archive file format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>tiff</code>
+      <label>Tiff</label>
+      <description>tag image file format (TIFF) bitmap</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>txt</code>
+      <label>Txt</label>
+      <description>text file format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>xhtml</code>
+      <label>Xhtml</label>
+      <description>Extensible HyperText Markup Language</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>xls</code>
+      <label>Xls</label>
+      <description>microsoft excell file format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>xml</code>
+      <label>Xml</label>
+      <description>extensible markup language</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>xwd</code>
+      <label>Xwd</label>
+      <description>dump X Window file format</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>zip</code>
+      <label>Zip</label>
+      <description>archive file format (zip)</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>wpd</code>
+      <label>Wpd</label>
+      <description>wordperfect file format from corel</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+  </codelist>
+  <!-- ==================================================== -->
+  <codelist name="naplio:OPS_AudienceTypeCode">
+    <entry>
+      <code>aboriginalPeoples</code>
+      <label>Aboriginal peoples</label>
+      <description>Aboriginal peoples of Ontario</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>business</code>
+      <label>Business</label>
+      <description>business</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>children</code>
+      <label>Children</label>
+      <description>children</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>educators</code>
+      <label>Educators</label>
+      <description>educators</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>employers</code>
+      <label>Employers</label>
+      <description>employers</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>fundingApplicants</code>
+      <label>Funding Applicants</label>
+      <description>Funding Applicants</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>generalPublic</code>
+      <label>General Public</label>
+      <description>General Public</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>government</code>
+      <label>Government</label>
+      <description>government</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>immigrants</code>
+      <label>Immigrants</label>
+      <description>immigrants</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>jobSeekers</code>
+      <label>Job Seekers</label>
+      <description>Job Seekers</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>media</code>
+      <label>Media</label>
+      <description>media</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>nonCanadians</code>
+      <label>Non-Canadians</label>
+      <description>Non-Canadians</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>nonGovernmentalOrganizations</code>
+      <label>Non-governmental Organizations</label>
+      <description>Non-governmental Organizations</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>parents</code>
+      <label>Parents</label>
+      <description>Parents</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>personsWithDisabilities</code>
+      <label>Persons With Disabilities</label>
+      <description>Persons With Disabilities</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>ruralCommunity</code>
+      <label>Rural Community</label>
+      <description>Rural Community</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>seniors</code>
+      <label>Seniors</label>
+      <description>Seniors</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>scientists</code>
+      <label>Scientists</label>
+      <description>Scientists</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>students</code>
+      <label>Students</label>
+      <description>Students</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>travellers</code>
+      <label>Travellers</label>
+      <description>Travellers</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>veterans</code>
+      <label>Veterans</label>
+      <description>Veterans</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>visitorsToCanada</code>
+      <label>Visitors To Canada</label>
+      <description>Visitors To Canada</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>women</code>
+      <label>Women</label>
+      <description>Women</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <entry>
+      <code>youth</code>
+      <label>Youth</label>
+      <description>Youth</description>
+    </entry>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+  </codelist>
+</codelists>

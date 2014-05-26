@@ -25,6 +25,12 @@
   <gmd:dateStamp>
     <gco:DateTime/>
   </gmd:dateStamp>
+  <gmd:metadataStandardName>
+    <gco:CharacterString>ANZLIC Metadata Profile: An Australian/New Zealand Profile of AS/NZS ISO 19115:2005, Geographic information - Metadata</gco:CharacterString>
+  </gmd:metadataStandardName>
+  <gmd:metadataStandardVersion>
+    <gco:CharacterString>1.1</gco:CharacterString>
+  </gmd:metadataStandardVersion>
   <gmd:identificationInfo>
     <gmd:MD_DataIdentification>
       <gmd:citation>

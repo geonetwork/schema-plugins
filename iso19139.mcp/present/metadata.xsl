@@ -1633,7 +1633,7 @@
 						<xsl:with-param name="edit"   select="$edit"/>
 					</xsl:apply-templates>
 
-					<xsl:apply-templates mode="elementEP" select="gmd:resourceContactInfo|geonet:child[string(@name)='resourceContactInfo']">
+					<xsl:apply-templates mode="elementEP" select="mcp:resourceContactInfo|geonet:child[string(@name)='resourceContactInfo']">
 						<xsl:with-param name="schema" select="$schema"/>
 						<xsl:with-param name="edit"   select="$edit"/>
 					</xsl:apply-templates>

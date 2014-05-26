@@ -1,0 +1,6 @@
+GeoNetwork NAPLIO dataset pluggable schema.
+
+Dependency: GeoNetwork North American pluggable schema.
+
+Schema used by OMNR (Ontario Ministry of Natural Resources) for dataset metadata.
+

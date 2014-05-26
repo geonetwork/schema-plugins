@@ -1,0 +1,5 @@
+GeoNetwork NAPLIO service pluggable schema.
+
+Dependency: GeoNetwork North American pluggable schema.
+
+Schema used by OMNR (Ontario Ministry of Natural Resources) for service metadata.

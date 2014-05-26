@@ -8,7 +8,7 @@
 	<!-- ================================================================= -->
 	
 	<xsl:template match="/root">
-		 <xsl:apply-templates select="mcp:MD_Metadata"/>
+		 <xsl:apply-templates select="*[name() != 'env']"/>
 	</xsl:template>
 
 	<!-- ================================================================= -->

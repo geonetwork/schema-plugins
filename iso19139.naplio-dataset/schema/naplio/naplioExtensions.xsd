@@ -1,0 +1,128 @@
+<xs:schema targetNamespace="http://www.lio.ontario.ca/naplio" elementFormDefault="qualified" version="0.1"
+            xmlns:naplio="http://www.lio.ontario.ca/naplio"
+	    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		   	xmlns:xlink="http://www.w3.org/1999/xlink" 
+			xmlns:gco="http://www.isotc211.org/2005/gco" 
+			xmlns:gmd="http://www.isotc211.org/2005/gmd"
+			xmlns:srv="http://www.isotc211.org/2005/srv">
+
+	<!-- ================================= Annotation ================================ -->
+	<xs:annotation>
+		<xs:documentation>This file was created 2010/12/20 so as to achieve GO-ITS72 compliance.</xs:documentation>
+	</xs:annotation>
+
+	<!-- ================================== Imports ================================== -->
+	<xs:import namespace="http://www.isotc211.org/2005/gco" schemaLocation="../gco/gco.xsd"/>
+	<xs:import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="../gmd/gmd.xsd"/>
+	<xs:import namespace="http://www.isotc211.org/2005/srv" schemaLocation="../srv/srv.xsd"/>
+
+<!-- ====================================================================== -->
+<!-- create naplio substitue for gmd:MD_Metadata -->
+<!-- ====================================================================== -->
+
+ 	<xs:complexType name="MD_Metadata_Type">
+		<xs:annotation>
+			<xs:documentation>
+				Extends the metadata element to substitute namespace with root.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="gmd:MD_Metadata_Type">
+				<xs:attribute ref="gco:isoType" use="required" fixed="gmd:MD_Metadata"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="MD_Metadata" substitutionGroup="gmd:MD_Metadata" type="naplio:MD_Metadata_Type"/>
+
+	<xs:complexType name="MD_Metadata_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="naplio:MD_Metadata"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType> 
+    <!-- ====================================================================== -->
+    <!-- =========================================================================== -->
+    <xs:complexType name="NAPLIO_DataIdentification_Type">
+        <xs:complexContent>
+            <xs:extension base="gmd:MD_DataIdentification_Type">
+                <xs:sequence>
+                    <xs:element name="opsExtensions" type="naplio:OPS_Extensions_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+                <xs:attribute ref="gco:isoType" use="required" fixed="gmd:MD_DataIdentification"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ........................................................................ -->
+    <xs:element name="NAPLIO_DataIdentification" type="naplio:NAPLIO_DataIdentification_Type" substitutionGroup="gmd:AbstractMD_Identification"/>
+    <!-- ........................................................................ -->
+    <xs:complexType name="NAPLIO_DataIdentification_PropertyType">
+        <xs:sequence>
+            <xs:element ref="naplio:NAPLIO_DataIdentification" minOccurs="1"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="gco:ObjectReference"/>
+        <xs:attribute ref="gco:nilReason"/>
+    </xs:complexType>
+<!-- ........................................................................ -->
+  <!-- =========================================================================== -->
+    <xs:complexType name="NAPLIO_ServiceIdentification_Type">
+        <xs:complexContent>
+            <xs:extension base="srv:SV_ServiceIdentification_Type">
+                <xs:sequence>
+                    <xs:element name="opsExtensions" type="naplio:OPS_Extensions_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+                <xs:attribute ref="gco:isoType" use="required" fixed="srv:SV_ServiceIdentification"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!-- ........................................................................ -->
+    <xs:element name="NAPLIO_ServiceIdentification" type="naplio:NAPLIO_ServiceIdentification_Type" substitutionGroup="srv:SV_ServiceIdentification"/>
+    <!-- ........................................................................ -->
+    <xs:complexType name="NAPLIO_ServiceIdentification_PropertyType">
+        <xs:sequence>
+            <xs:element ref="naplio:NAPLIO_ServiceIdentification" minOccurs="1"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="gco:ObjectReference"/>
+        <xs:attribute ref="gco:nilReason"/>
+    </xs:complexType>
+<!-- ........................................................................ -->
+	<xs:complexType name="OPS_Extensions_Type">
+		<xs:annotation>
+			<xs:documentation>Elements to complete the GO-ITS72 compliance</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="gco:AbstractObject_Type">
+				<xs:sequence>
+					<xs:element name="location" type="gco:CharacterString_PropertyType" minOccurs="0"/>
+					<xs:element name="audience" type="naplio:OPS_AudienceTypeCode_PropertyType" minOccurs="0"/>
+					<xs:element name="recordsRetentionScheduleID" type="gco:CharacterString_PropertyType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="OPS_Extensions" type="naplio:OPS_Extensions_Type"/>
+	<!-- ........................................................................ -->
+	<!-- =========================================================================== -->
+	<xs:complexType name="OPS_Extensions_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="naplio:OPS_Extensions"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+
+	<!-- =========================================================================== -->
+	<!-- ........................................................................ -->
+	<xs:element name="OPS_AudienceTypeCode" type="gco:CodeListValue_Type" substitutionGroup="gco:CharacterString"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="OPS_AudienceTypeCode_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="naplio:OPS_AudienceTypeCode"/>
+		</xs:sequence>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+
+</xs:schema>
