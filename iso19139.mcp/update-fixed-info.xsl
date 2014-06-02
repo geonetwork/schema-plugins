@@ -216,7 +216,7 @@
 
 	<xsl:template match="gmd:dateStamp">
 		<xsl:choose>
-			<xsl:when test="/root/env/changeDate">
+			<xsl:when test="/root/env/changeDate and normalize-space(text())!=''">
 				<gmd:dateStamp>
 					<gco:DateTime><xsl:value-of select="/root/env/changeDate"/></gco:DateTime>
 				</gmd:dateStamp>
