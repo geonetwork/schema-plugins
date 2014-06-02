@@ -6,7 +6,10 @@
 
   <xsl:include href="utility-tpl-multilingual.xsl"/>
 
-  <xsl:template name="get-iso19139.naplio-service-geopublisher-config">
-    <xsl:call-template name="get-iso19139-geopublisher-config"/>
+  <xsl:template name="get-iso19139.naplio-service-online-source-config">
+    <xsl:param name="pattern"/>
+    <xsl:call-template name="get-iso19139-online-source-config">
+      <xsl:with-param name="pattern" select="$pattern"/>
+    </xsl:call-template>
   </xsl:template>
 </xsl:stylesheet>

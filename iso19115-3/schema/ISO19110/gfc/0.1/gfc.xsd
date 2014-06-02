@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cat="http://www.isotc211.org/2005/cat/1.0/2013-06-24" xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2013-06-24" xmlns:gfc="http://www.isotc211.org/2005/gfc/0.1/2013-06-24" elementFormDefault="qualified" targetNamespace="http://www.isotc211.org/2005/gfc/0.1/2013-06-24" version="0.1">
+  <include schemaLocation="featureCataloging.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/cat/1.0/2013-06-24" schemaLocation="../../../ISO19115-3/cat/1.0/cat.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/cit/1.0/2013-06-24" schemaLocation="../../../ISO19115-3/cit/1.0/cit.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+</schema>
