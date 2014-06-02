@@ -13,7 +13,10 @@
     <xsl:apply-templates select="mdb:MD_Metadata|*[contains(@gco:isoType, 'MD_Metadata')]"/>
   </xsl:template>
 
-  <xsl:template match="mri:MD_DataIdentification|*[contains(@gco:isoType, 'MD_DataIdentification')]">
+  <xsl:template match="mri:MD_DataIdentification|
+    *[contains(@gco:isoType, 'MD_DataIdentification')]|
+    srv:SV_ServiceIdentification|
+    *[contains(@gco:isoType, 'SV_ServiceIdentification')]">
     <xsl:copy>
       <xsl:copy-of select="@*"/>
       <xsl:apply-templates select="mri:citation"/>
@@ -44,46 +47,9 @@
       <xsl:apply-templates select="mri:environmentDescription"/>
       <xsl:apply-templates select="mri:supplementalInformation"/>
 
-      <xsl:copy-of select="*[namespace-uri()!='http://www.isotc211.org/2005/mdb/1.0/2013-06-24']"/>
-    </xsl:copy>
-  </xsl:template>
-
-  <xsl:template
-    match="srv:SV_ServiceIdentification|*[contains(@gco:isoType, 'SV_ServiceIdentification')]">
-    <xsl:copy>
-      <xsl:copy-of select="@*"/>
-      <xsl:apply-templates select="mri:citation"/>
-      <xsl:apply-templates select="mri:abstract"/>
-      <xsl:apply-templates select="mri:purpose"/>
-      <xsl:apply-templates select="mri:credit"/>
-      <xsl:apply-templates select="mri:status"/>
-      <xsl:apply-templates select="mri:pointOfContact"/>
-      <xsl:apply-templates select="mri:spatialRepresentationType"/>
-      <xsl:apply-templates select="mri:spatialResolution"/>
-      <xsl:apply-templates select="mri:temporalResolution"/>
-      <xsl:apply-templates select="mri:topicCategory"/>
-      <xsl:apply-templates select="mri:extent"/>
-      <xsl:apply-templates select="mri:additionalDocumentation"/>
-      <xsl:apply-templates select="mri:processingLevel"/>
-      <xsl:apply-templates select="mri:resourceMaintenance"/>
-      <xsl:apply-templates select="mri:graphicOverview"/>
-
-      <xsl:call-template name="fill"/>
-
-      <xsl:apply-templates select="mri:resourceFormat"/>
-      <xsl:apply-templates select="mri:descriptiveKeywords"/>
-      <xsl:apply-templates select="mri:resourceSpecificUsage"/>
-      <xsl:apply-templates select="mri:resourceConstraints"/>
-      <xsl:apply-templates select="mri:associatedResource"/>
-
       <xsl:apply-templates select="srv:*"/>
-
-      <xsl:copy-of
-        select="*[namespace-uri() != 'http://www.isotc211.org/2005/mdb/1.0/2013-06-24' and 
-                  namespace-uri() != 'http://www.isotc211.org/2005/srv/2.0/2013-06-24']"/>
     </xsl:copy>
   </xsl:template>
-
 
   <xsl:template name="fill">
     <mri:graphicOverview>
