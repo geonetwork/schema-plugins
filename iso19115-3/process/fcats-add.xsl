@@ -12,8 +12,8 @@ attached it to the metadata for data.
                 xmlns:gn="http://www.fao.org/geonetwork"
                 xmlns:xlink="http://www.w3.org/1999/xlink">
 
-  <xsl:param name="uuidref"></xsl:param>
-  <xsl:param name="siteUrl"></xsl:param>
+  <xsl:param name="uuidref"/>
+  <xsl:param name="siteUrl"/>
 
   <xsl:template match="/mdb:MD_Metadata|*[@gco:isoType='mdb:MD_Metadata']">
     <xsl:copy>
