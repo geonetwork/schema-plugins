@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:srv="http://www.isotc211.org/2005/srv/2.0/2013-06-24"
-  xmlns:mds="http://www.isotc211.org/2005/mds/1.0/2013-06-24"
+  xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2013-06-24"
   xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2013-06-24"
   xmlns:mri="http://www.isotc211.org/2005/mri/1.0/2013-06-24"
   xmlns:mrl="http://www.isotc211.org/2005/mrl/1.0/2013-06-24"
@@ -30,7 +30,7 @@
     <xsl:call-template name="md-content">
       <xsl:with-param name="title">
         <xsl:apply-templates mode="localised"
-          select="mds:identificationInfo/*/mri:citation/cit:CI_Citation/cit:title">
+          select="mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:title">
           <xsl:with-param name="langId" select="$langId"/>
         </xsl:apply-templates>
       </xsl:with-param>
@@ -38,7 +38,7 @@
       <xsl:with-param name="abstract">
         <xsl:call-template name="addLineBreaksAndHyperlinks">
           <xsl:with-param name="txt">
-            <xsl:apply-templates mode="localised" select="mds:identificationInfo/*/mri:abstract">
+            <xsl:apply-templates mode="localised" select="mdb:identificationInfo/*/mri:abstract">
               <xsl:with-param name="langId" select="$langId"/>
             </xsl:apply-templates>
           </xsl:with-param>
@@ -76,20 +76,20 @@
           <xsl:with-param name="content">
             <xsl:apply-templates mode="iso19115-3-simpleviewmode"
               select="
-                mds:identificationInfo/*/mri:citation/cit:CI_Citation/cit:date
-                |mds:identificationInfo/*/mri:extent/*/gex:temporalElement
+                mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:date
+                |mdb:identificationInfo/*/mri:extent/*/gex:temporalElement
                 "/>
             <xsl:apply-templates mode="iso19115-3-simpleviewmode"
                   select="
-                  mds:identificationInfo/*/mri:defaultLocale/lan:PT_Locale/lan:language
-                  |mds:identificationInfo/*/mri:citation/cit:CI_Citation/cit:edition
-                  |mds:identificationInfo/*/mri:topicCategory
-                  |mds:identificationInfo/*/mri:descriptiveKeywords
-                  |mds:identificationInfo/*/cit:graphic[1]
-                  |mds:identificationInfo/*/mri:extent/gex:EX_Extent/gex:geographicElement
+                  mdb:identificationInfo/*/mri:defaultLocale/lan:PT_Locale/lan:language
+                  |mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:edition
+                  |mdb:identificationInfo/*/mri:topicCategory
+                  |mdb:identificationInfo/*/mri:descriptiveKeywords
+                  |mdb:identificationInfo/*/cit:graphic[1]
+                  |mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:geographicElement
                   "/>
             <xsl:apply-templates mode="iso19115-3-simpleviewmode"
-              select="mds:referenceSystemInfo/*/mrs:referenceSystemIdentifier"/>
+              select="mdb:referenceSystemInfo/*/mrs:referenceSystemIdentifier"/>
           </xsl:with-param>
         </xsl:call-template>
 
@@ -98,7 +98,7 @@
           <xsl:with-param name="title" select="/root/gui/schemas/iso19115-3/strings/contactInfo"/>
           <xsl:with-param name="content">
             <xsl:apply-templates mode="iso19115-3-simpleviewmode"
-              select="mds:identificationInfo/*/mri:pointOfContact"/>
+              select="mdb:identificationInfo/*/mri:pointOfContact"/>
           </xsl:with-param>
         </xsl:call-template>
 
@@ -106,7 +106,7 @@
           <xsl:with-param name="title" select="/root/gui/schemas/iso19115-3/strings/mdContactInfo"/>
           <xsl:with-param name="content">
             <xsl:apply-templates mode="iso19115-3-simpleviewmode"
-              select="mds:contact"/>
+              select="mdb:contact"/>
           </xsl:with-param>
         </xsl:call-template>
 
@@ -115,24 +115,24 @@
           <xsl:with-param name="content">
             <xsl:apply-templates mode="iso19115-3-simpleviewmode"
               select="
-              mds:identificationInfo/*/mri:spatialResolution[1]
-              |mds:identificationInfo/*/mri:spatialRepresentationType
-              |mds:resourceLineage/mrl:LI_Lineage/mrl:statement
-              |mds:identificationInfo/*/mri:resourceConstraints[1]
+              mdb:identificationInfo/*/mri:spatialResolution[1]
+              |mdb:identificationInfo/*/mri:spatialRepresentationType
+              |mdb:resourceLineage/mrl:LI_Lineage/mrl:statement
+              |mdb:identificationInfo/*/mri:resourceConstraints[1]
               "
             > </xsl:apply-templates>
           </xsl:with-param>
         </xsl:call-template>
 
         <xsl:variable name="modifiedDate"
-                      select="mds:dateInfo/
+                      select="mdb:dateInfo/
                                 cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue = 'revision']/
                                 cit:date/*[1]"/>
         <span class="madeBy">
           <xsl:value-of select="/root/gui/strings/changeDate"/>&#160;<xsl:value-of 
             select="if (contains($modifiedDate, 'T')) then substring-before($modifiedDate, 'T') else $modifiedDate"/> | 
           <xsl:value-of select="/root/gui/strings/uuid"/>&#160;
-          <xsl:value-of select="mds:metadataIdentifier/
+          <xsl:value-of select="mdb:metadataIdentifier/
                                   mcc:MD_Identifier[mcc:codeSpace/gco:CharacterString = 'urn:uuid']/
                                   mcc:code"/>
         </span>
@@ -141,7 +141,7 @@
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template mode="iso19115-3-simpleviewmode" match="mds:identificationInfo/*/mri:citation/cit:CI_Citation/cit:date[1]"
+  <xsl:template mode="iso19115-3-simpleviewmode" match="mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:date[1]"
     priority="10000">
     <xsl:call-template name="simpleElementSimpleGUI">
       <xsl:with-param name="title" select="/root/gui/schemas/iso19115-3/strings/refDate"/>
@@ -157,7 +157,7 @@
     </xsl:call-template>
   </xsl:template>
   
-  <xsl:template mode="iso19115-3-simpleviewmode" match="mds:identificationInfo/*/mri:extent/*/gex:temporalElement"
+  <xsl:template mode="iso19115-3-simpleviewmode" match="mdb:identificationInfo/*/mri:extent/*/gex:temporalElement"
     priority="100">
     <xsl:call-template name="simpleElementSimpleGUI">
       <xsl:with-param name="title" select="/root/gui/schemas/iso19115-3/strings/temporalRef"/>
@@ -175,7 +175,7 @@
     </xsl:call-template>
   </xsl:template>
   
-  <xsl:template mode="iso19115-3-simpleviewmode" match="mds:identificationInfo/*/gmd:resourceConstraints[1]"
+  <xsl:template mode="iso19115-3-simpleviewmode" match="mdb:identificationInfo/*/gmd:resourceConstraints[1]"
     priority="100">
     <xsl:call-template name="simpleElementSimpleGUI">
       <xsl:with-param name="title" select="/root/gui/schemas/iso19115-3/strings/constraintInfo"/>
@@ -192,7 +192,7 @@
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template mode="iso19115-3-simpleviewmode" match="mds:contact|mds:identificationInfo/*/mri:pointOfContact" priority="100">
+  <xsl:template mode="iso19115-3-simpleviewmode" match="mdb:contact|mdb:identificationInfo/*/mri:pointOfContact" priority="100">
     <xsl:call-template name="simpleElementSimpleGUI">
       <xsl:with-param name="title">
         <xsl:for-each select="*/cit:role/cit:CI_RoleCode/@codeListValue">
@@ -240,7 +240,7 @@
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template mode="iso19115-3-simpleviewmode" match="mds:identificationInfo/*/mri:descriptiveKeywords/mri:MD_Keywords"
+  <xsl:template mode="iso19115-3-simpleviewmode" match="mdb:identificationInfo/*/mri:descriptiveKeywords/mri:MD_Keywords"
     priority="90">
     <xsl:call-template name="simpleElementSimpleGUI">
       <xsl:with-param name="title">
@@ -275,7 +275,7 @@
                 <xsl:with-param name="langId">
                   <xsl:call-template name="getLangId">
                     <xsl:with-param name="langGui" select="/root/gui/language"/>
-                    <xsl:with-param name="md" select="ancestor-or-self::*[name(.)='mds:MD_Metadata' or @gco:isoType='mds:MD_Metadata']" />
+                    <xsl:with-param name="md" select="ancestor-or-self::*[name(.)='mdb:MD_Metadata' or @gco:isoType='mdb:MD_Metadata']" />
                   </xsl:call-template>
                 </xsl:with-param>
               </xsl:call-template>
@@ -296,7 +296,7 @@
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template mode="iso19115-3-simpleviewmode" match="mds:referenceSystemInfo/*/mrs:referenceSystemIdentifier">
+  <xsl:template mode="iso19115-3-simpleviewmode" match="mdb:referenceSystemInfo/*/mrs:referenceSystemIdentifier">
     <xsl:call-template name="simpleElementSimpleGUI">
       <xsl:with-param name="title">
         <xsl:call-template name="getTitle">
@@ -319,7 +319,7 @@
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template mode="iso19115-3-simpleviewmode" match="mds:resourceLineage/mrl:LI_Lineage/mrl:statement"
+  <xsl:template mode="iso19115-3-simpleviewmode" match="mdb:resourceLineage/mrl:LI_Lineage/mrl:statement"
     priority="90">
     <xsl:call-template name="simpleElementSimpleGUI">
       <xsl:with-param name="title">
@@ -366,7 +366,7 @@
 
 
 
-  <xsl:template mode="iso19115-3-simpleviewmode" match="mds:identificationInfo/*/mri:defaultLocale/lan:PT_Locale/lan:language" priority="99">
+  <xsl:template mode="iso19115-3-simpleviewmode" match="mdb:identificationInfo/*/mri:defaultLocale/lan:PT_Locale/lan:language" priority="99">
     <xsl:call-template name="simpleElementSimpleGUI">
       <xsl:with-param name="title">
         <xsl:call-template name="getTitle">
@@ -412,7 +412,7 @@
   </xsl:template>
 
   <xsl:template mode="iso19115-3-simpleviewmode"
-    match="mds:identificationInfo/*/mri:extent/gex:EX_Extent/gex:geographicElement" priority="99">
+    match="mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:geographicElement" priority="99">
     <xsl:apply-templates mode="iso19115-3" select="gex:EX_GeographicBoundingBox">
       <xsl:with-param name="schema" select="$schema"/>
       <xsl:with-param name="edit" select="false()"/>
@@ -649,13 +649,13 @@
   
   <!-- these elements should be boxed -->
   <xsl:template mode="iso19115-3-simple"
-    match="mds:identificationInfo|gmd:distributionInfo
+    match="mdb:identificationInfo|gmd:distributionInfo
     |mri:descriptiveKeywords|mri:thesaurusName
-    |mds:spatialRepresentationInfo
-    |mri:pointOfContact|mds:contact
-    |mds:dataQualityInfo
+    |mdb:spatialRepresentationInfo
+    |mri:pointOfContact|mdb:contact
+    |mdb:dataQualityInfo
     |mco:MD_Constraints|mco:MD_LegalConstraints|mco:MD_SecurityConstraints
-    |mds:referenceSystemInfo|mri:equivalentScale|gmd:projection|gmd:ellipsoid
+    |mdb:referenceSystemInfo|mri:equivalentScale|gmd:projection|gmd:ellipsoid
     |mri:extent|gmd:geographicBox|gex:EX_TemporalExtent
     |gmd:MD_Distributor
     |srv:containsOperations|srv:SV_CoupledResource|gmd:metadataConstraints"

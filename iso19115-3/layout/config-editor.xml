@@ -19,10 +19,10 @@
 
   <!-- Form field type configuration. Default is text. -->
   <fields>
-    <for name="mri:abstract" use="textarea"/>
+    <for name="mrl:abstract" use="textarea"/>
     <for name="gmd:checkPointDescription" use="textarea"/>
-    <for name="mri:credit" use="textarea"/>
-    <for name="gmd:description" use="textarea"/>
+    <for name="mrl:credit" use="textarea"/>
+    <for name="mrd:description" use="textarea"/>
     <for name="gmd:evaluationMethodDescription" use="textarea"/>
     <for name="gmd:explanation" use="textarea"/>
     <for name="gmd:handlingDescription" use="textarea"/>
@@ -31,8 +31,8 @@
     <for name="gmd:purpose" use="textarea"/>
     <for name="gmd:orderingInstructions" use="textarea"/>
     <for name="gmd:otherConstraints" use="textarea"/>
-    <for name="mri:statement" use="textarea"/>
-    <for name="mri:supplementalInformation" use="textarea"/>
+    <for name="mrl:statement" use="textarea"/>
+    <for name="mrl:supplementalInformation" use="textarea"/>
     <for name="gmd:specificUsage" use="textarea"/>
     <for name="gmd:userNote" use="textarea"/>
     <for name="mco:useLimitation" use="textarea"/>
@@ -62,11 +62,21 @@
 
     <for name="mdb:referenceSystemInfo" addDirective="data-gn-crs-selector"/>
 
-    <for name="gmd:contact" addDirective="data-gn-directory-entry-selector"/>
-    <for name="gmd:pointOfContact" addDirective="data-gn-directory-entry-selector"/>
-    <for name="gmd:distributor" addDirective="data-gn-directory-entry-selector"/>
-    <for name="gmd:processor" addDirective="data-gn-directory-entry-selector"/>
-    <for name="gmd:citedResponsibleParty" addDirective="data-gn-directory-entry-selector"/>
+    <for name="mdb:contact" addDirective="data-gn-directory-entry-selector">
+      <directiveAttributes data-tag-name="cit:CI_Responsibility"/>
+    </for>
+    <for name="mri:pointOfContact" addDirective="data-gn-directory-entry-selector">
+      <directiveAttributes data-tag-name="cit:CI_Responsibility"/>
+    </for>
+    <for name="mrd:distributor" addDirective="data-gn-directory-entry-selector">
+      <directiveAttributes data-tag-name="cit:CI_Responsibility"/>
+    </for>
+    <for name="gmd:processor" addDirective="data-gn-directory-entry-selector">
+      <directiveAttributes data-tag-name="cit:CI_Responsibility"/>
+    </for>
+    <for name="cit:citedResponsibleParty" addDirective="data-gn-directory-entry-selector">
+      <directiveAttributes data-tag-name="cit:CI_Responsibility"/>
+    </for>
     
     <for name="gmd:descriptiveKeywords" addDirective="data-gn-thesaurus-selector"/>
   </fields>
@@ -93,6 +103,7 @@
     <name>mrd:onLine</name>
     <name>mdb:referenceSystemInfo</name>
     <name>mri:equivalentScale</name>
+    <name>mri:graphicOverview</name>
     <name>msr:projection</name>
     <name>mdb:extent</name>
     <name>cit:extent</name>
@@ -102,6 +113,7 @@
     <name>srv:containsOperations</name>
     <name>srv:SV_CoupledResource</name>
     <name>mdb:metadataConstraints</name>
+    <name>mri:associatedResource</name>
   </fieldsWithFieldset>
 
   <multilingualFields>
@@ -118,6 +130,7 @@
     to restrict the list.
     -->
     <exclude>
+      <!-- TODO: Update list -->
       <name>gmd:identifier</name>
       <name>gmd:metadataStandardName</name>
       <name>gmd:metadataStandardVersion</name>

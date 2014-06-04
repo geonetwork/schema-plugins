@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl ="http://www.w3.org/1999/XSL/Transform"
   xmlns:srv="http://www.isotc211.org/2005/srv/2.0/2013-06-24"
-  xmlns:mds="http://www.isotc211.org/2005/mds/1.0/2013-06-24"
+  xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2013-06-24"
   xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2013-06-24"
   xmlns:mri="http://www.isotc211.org/2005/mri/1.0/2013-06-24"
   xmlns:mrs="http://www.isotc211.org/2005/mrs/1.0/2013-06-24"
@@ -86,7 +86,7 @@
 	<!--=====================================================================-->
 
 	<xsl:template mode="iso19115-3"
-		match="mds:graphicOverview[mcc:MD_BrowseGraphic/mcc:fileDescription/gco:CharacterString='thumbnail' or mcc:MD_BrowseGraphic/mcc:fileDescription/gco:CharacterString='large_thumbnail']"
+		match="mdb:graphicOverview[mcc:MD_BrowseGraphic/mcc:fileDescription/gco:CharacterString='thumbnail' or mcc:MD_BrowseGraphic/mcc:fileDescription/gco:CharacterString='large_thumbnail']"
 		priority="20" />
 
 	<!-- Do not try do display element with no children in view mode -->
@@ -102,7 +102,7 @@
 	<!-- these elements should be boxed -->
 	<!-- ===================================================================== -->
 
-	<xsl:template mode="iso19115-3" match="mds:identificationInfo|mds:distributionInfo|mri:descriptiveKeywords|mri:thesaurusName|mds:spatialRepresentationInfo|mri:pointOfContact|mds:dataQualityInfo|mds:resourceLineage|mds:referenceSystemInfo|mri:equivalentScale|msr:projection|mds:extent|cit:extent|gex:geographicBox|gex:EX_TemporalExtent|mrd:MD_Distributor|srv:containsOperations|srv:SV_CoupledResource|mds:metadataConstraints">
+	<xsl:template mode="iso19115-3" match="mdb:identificationInfo|mdb:distributionInfo|mri:descriptiveKeywords|mri:thesaurusName|mdb:spatialRepresentationInfo|mri:pointOfContact|mdb:dataQualityInfo|mdb:resourceLineage|mdb:referenceSystemInfo|mri:equivalentScale|msr:projection|mdb:extent|cit:extent|gex:geographicBox|gex:EX_TemporalExtent|mrd:MD_Distributor|srv:containsOperations|srv:SV_CoupledResource|mdb:metadataConstraints">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
@@ -346,7 +346,7 @@
 
 	<!-- ============================================================================= -->
 
-	<xsl:template mode="iso19115-3" match="mds:metadataIdentifier[mcc:MD_Identifier/mcc:codeSpace/gco:CharacterString='urn:uuid']" priority="2">
+	<xsl:template mode="iso19115-3" match="mdb:metadataIdentifier[mcc:MD_Identifier/mcc:codeSpace/gco:CharacterString='urn:uuid']" priority="2">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
@@ -469,12 +469,12 @@
 	<!-- Metadata -->
 	<!-- ==================================================================== -->
 
-	<xsl:template mode="iso19115-3" match="mds:MD_Metadata|*[@gco:isoType='gmd:MD_Metadata']">
+	<xsl:template mode="iso19115-3" match="mdb:MD_Metadata|*[@gco:isoType='gmd:MD_Metadata']">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 		<xsl:param name="embedded"/>
 
-		<xsl:variable name="dataset" select="mds:metadataScope/mcc:MD_ScopeCode/@codeListValue='dataset' or normalize-space(mds:metadataScope/mcc:MD_ScopeCode/@codeListValue)=''"/>
+		<xsl:variable name="dataset" select="mdb:metadataScope/mcc:MD_ScopeCode/@codeListValue='dataset' or normalize-space(mdb:metadataScope/mcc:MD_ScopeCode/@codeListValue)=''"/>
 
 		<!-- thumbnail -->
 		<tr>
@@ -512,7 +512,7 @@
 
 			<!-- identification tab -->
 			<xsl:when test="$currTab='identification'">
-				<xsl:apply-templates mode="elementEP" select="mds:identificationInfo|geonet:child[string(@name)='identificationInfo']">
+				<xsl:apply-templates mode="elementEP" select="mdb:identificationInfo|geonet:child[string(@name)='identificationInfo']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
@@ -520,7 +520,7 @@
 
 			<!-- maintenance tab -->
 			<xsl:when test="$currTab='maintenance'">
-				<xsl:apply-templates mode="elementEP" select="mds:metadataMaintenance|geonet:child[string(@name)='metadataMaintenance']">
+				<xsl:apply-templates mode="elementEP" select="mdb:metadataMaintenance|geonet:child[string(@name)='metadataMaintenance']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
@@ -528,7 +528,7 @@
 
 			<!-- constraints tab -->
 			<xsl:when test="$currTab='constraints'">
-				<xsl:apply-templates mode="elementEP" select="mds:metadataConstraints|geonet:child[string(@name)='metadataConstraints']">
+				<xsl:apply-templates mode="elementEP" select="mdb:metadataConstraints|geonet:child[string(@name)='metadataConstraints']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
@@ -536,7 +536,7 @@
 
 			<!-- spatial tab -->
 			<xsl:when test="$currTab='spatial'">
-				<xsl:apply-templates mode="elementEP" select="mds:spatialRepresentationInfo|geonet:child[string(@name)='spatialRepresentationInfo']">
+				<xsl:apply-templates mode="elementEP" select="mdb:spatialRepresentationInfo|geonet:child[string(@name)='spatialRepresentationInfo']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
@@ -544,7 +544,7 @@
 
 			<!-- refSys tab -->
 			<xsl:when test="$currTab='refSys'">
-				<xsl:apply-templates mode="elementEP" select="mds:referenceSystemInfo|geonet:child[string(@name)='referenceSystemInfo']">
+				<xsl:apply-templates mode="elementEP" select="mdb:referenceSystemInfo|geonet:child[string(@name)='referenceSystemInfo']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
@@ -552,7 +552,7 @@
 
 			<!-- distribution tab -->
 			<xsl:when test="$currTab='distribution'">
-				<xsl:apply-templates mode="elementEP" select="mds:distributionInfo|geonet:child[string(@name)='distributionInfo']">
+				<xsl:apply-templates mode="elementEP" select="mdb:distributionInfo|geonet:child[string(@name)='distributionInfo']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
@@ -560,7 +560,7 @@
 
 			<!-- embedded distribution tab -->
 			<xsl:when test="$currTab='distribution2'">
-				<xsl:apply-templates mode="elementEP" select="mds:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions">
+				<xsl:apply-templates mode="elementEP" select="mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
@@ -568,7 +568,7 @@
 
 			<!-- dataQuality tab -->
 			<xsl:when test="$currTab='dataQuality'">
-				<xsl:apply-templates mode="elementEP" select="mds:dataQualityInfo|geonet:child[string(@name)='dataQualityInfo']">
+				<xsl:apply-templates mode="elementEP" select="mdb:dataQualityInfo|geonet:child[string(@name)='dataQualityInfo']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
@@ -576,7 +576,7 @@
 
 			<!-- lineage tab -->
 			<xsl:when test="$currTab='resourceLineage'">
-				<xsl:apply-templates mode="elementEP" select="mds:resourceLineage|geonet:child[string(@name)='resourceLineage']">
+				<xsl:apply-templates mode="elementEP" select="mdb:resourceLineage|geonet:child[string(@name)='resourceLineage']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
@@ -584,7 +584,7 @@
 
 			<!-- appSchInfo tab -->
 			<xsl:when test="$currTab='appSchInfo'">
-				<xsl:apply-templates mode="elementEP" select="mds:applicationSchemaInfo|geonet:child[string(@name)='applicationSchemaInfo']">
+				<xsl:apply-templates mode="elementEP" select="mdb:applicationSchemaInfo|geonet:child[string(@name)='applicationSchemaInfo']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
@@ -592,7 +592,7 @@
 
 			<!-- porCatInfo tab -->
 			<xsl:when test="$currTab='porCatInfo'">
-				<xsl:apply-templates mode="elementEP" select="mds:portrayalCatalogueInfo|geonet:child[string(@name)='portrayalCatalogueInfo']">
+				<xsl:apply-templates mode="elementEP" select="mdb:portrayalCatalogueInfo|geonet:child[string(@name)='portrayalCatalogueInfo']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
@@ -600,7 +600,7 @@
 
 			<!-- contentInfo tab -->
 			<xsl:when test="$currTab='contentInfo'">
-				<xsl:apply-templates mode="elementEP" select="mds:contentInfo|geonet:child[string(@name)='contentInfo']">
+				<xsl:apply-templates mode="elementEP" select="mdb:contentInfo|geonet:child[string(@name)='contentInfo']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
@@ -608,7 +608,7 @@
 
 			<!-- extensionInfo tab -->
 			<xsl:when test="$currTab='extensionInfo'">
-				<xsl:apply-templates mode="elementEP" select="mds:metadataExtensionInfo|geonet:child[string(@name)='metadataExtensionInfo']">
+				<xsl:apply-templates mode="elementEP" select="mdb:metadataExtensionInfo|geonet:child[string(@name)='metadataExtensionInfo']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
@@ -662,7 +662,7 @@
 
 		<!-- dataset or resource info in its own box -->
 
-		<xsl:for-each select="mds:identificationInfo/*">
+		<xsl:for-each select="mdb:identificationInfo/*">
 			<xsl:call-template name="complexElementGuiWrapper">
 				<xsl:with-param name="title">
 					<xsl:choose>
@@ -764,13 +764,13 @@
 				<xsl:with-param name="id" select="generate-id(/root/gui/schemas/iso19139/labels/element[@name='gmd:LI_Lineage']/label)"/>
 				<xsl:with-param name="content">
 
-					<xsl:for-each select="mds:dataQualityInfo/dqm:DQ_DataQuality">
+					<xsl:for-each select="mdb:dataQualityInfo/dqm:DQ_DataQuality">
 						<xsl:apply-templates mode="elementEP" select="dqm:scope|geonet:child[string(@name)='scope']">
 							<xsl:with-param name="schema" select="$schema"/>
 							<xsl:with-param name="edit"   select="$edit"/>
 						</xsl:apply-templates>
 
-						<xsl:apply-templates mode="elementEP" select="mds:resourceLineage|geonet:child[string(@name)='resourceLineage']">
+						<xsl:apply-templates mode="elementEP" select="mdb:resourceLineage|geonet:child[string(@name)='resourceLineage']">
 							<xsl:with-param name="schema" select="$schema"/>
 							<xsl:with-param name="edit"   select="$edit"/>
 						</xsl:apply-templates>
@@ -790,7 +790,7 @@
 				<xsl:with-param name="id" select="generate-id(/root/gui/schemas/iso19139/labels/element[@name='gmd:referenceSystemInfo']/label)"/>
 				<xsl:with-param name="content">
 
-				<xsl:for-each select="mds:referenceSystemInfo/mrs:MD_ReferenceSystem">
+				<xsl:for-each select="mdb:referenceSystemInfo/mrs:MD_ReferenceSystem">
 					<xsl:apply-templates mode="elementEP" select="mrs:referenceSystemIdentifier/mcc:MD_Identifier/mcc:code|mrs:referenceSystemIdentifier/mcc:MD_Identifier/geonet:child[string(@name)='code']">
 						<xsl:with-param name="schema" select="$schema"/>
 						<xsl:with-param name="edit"   select="$edit"/>
@@ -816,7 +816,7 @@
     		<xsl:with-param name="id" select="generate-id(/root/gui/schemas/iso19139/labels/element[@name='gmd:distributionInfo']/label)"/>
       	<xsl:with-param name="content">
 
-				<xsl:for-each select="mds:distributionInfo">
+				<xsl:for-each select="mdb:distributionInfo">
         	<xsl:apply-templates mode="elementEP" select="*/mrd:distributionFormat|*/geonet:child[string(@name)='distributionFormat']">
           	<xsl:with-param name="schema" select="$schema"/>
           	<xsl:with-param name="edit"   select="$edit"/>
@@ -832,7 +832,7 @@
       	<xsl:with-param name="schema" select="$schema"/>
       	<xsl:with-param name="group" select="/root/gui/strings/distributionTab"/>
       	<xsl:with-param name="edit" select="$edit"/>
-      	<xsl:with-param name="realname" select="'mds:distributionInfo'"/>
+      	<xsl:with-param name="realname" select="'mdb:distributionInfo'"/>
     	</xsl:call-template>
 			
 		</xsl:if>
@@ -844,24 +844,24 @@
 			<xsl:with-param name="id" select="generate-id(/root/gui/schemas/iso19139/labels/element[@name='gmd:MD_Metadata']/label)"/>
 			<xsl:with-param name="content">
 
-				<xsl:apply-templates mode="elementEP" select="mds:metadataIdentifier|geonet:child[string(@name)='metadataIdentifier']">
+				<xsl:apply-templates mode="elementEP" select="mdb:metadataIdentifier|geonet:child[string(@name)='metadataIdentifier']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
 
-				<xsl:apply-templates mode="elementEP" select="mds:parentMetadata|geonet:child[string(@name)='parentMetadata']">
+				<xsl:apply-templates mode="elementEP" select="mdb:parentMetadata|geonet:child[string(@name)='parentMetadata']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
 
-				<xsl:apply-templates mode="elementEP" select="mds:metadataScope|geonet:child[string(@name)='metadataScope']">
+				<xsl:apply-templates mode="elementEP" select="mdb:metadataScope|geonet:child[string(@name)='metadataScope']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
 
 				<!-- metadata contact info in its own box -->
 
-				<xsl:for-each select="mds:contact">
+				<xsl:for-each select="mdb:contact">
 
 					<xsl:call-template name="complexElementGuiWrapper">
 						<xsl:with-param name="title" select="/root/gui/schemas/iso19139/labels/element[@name='gmd:contact']/label"/>
@@ -904,18 +904,18 @@
 
 				<!-- more metadata elements -->
 
-				<xsl:apply-templates mode="elementEP" select="mds:dateInfo|geonet:child[string(@name)='dateInfo']">
+				<xsl:apply-templates mode="elementEP" select="mdb:dateInfo|geonet:child[string(@name)='dateInfo']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
 
 				<xsl:if test="$core and $dataset">
-					<xsl:apply-templates mode="elementEP" select="mds:metadataStandard|geonet:child[string(@name)='metadataStandard']">
+					<xsl:apply-templates mode="elementEP" select="mdb:metadataStandard|geonet:child[string(@name)='metadataStandard']">
 						<xsl:with-param name="schema" select="$schema"/>
 						<xsl:with-param name="edit"   select="$edit"/>
 					</xsl:apply-templates>
 
-					<xsl:apply-templates mode="elementEP" select="mds:metadataProfile|geonet:child[string(@name)='metadataProfile']">
+					<xsl:apply-templates mode="elementEP" select="mdb:metadataProfile|geonet:child[string(@name)='metadataProfile']">
 						<xsl:with-param name="schema" select="$schema"/>
 						<xsl:with-param name="edit"   select="$edit"/>
 					</xsl:apply-templates>
@@ -937,57 +937,57 @@
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
-		<xsl:apply-templates mode="elementEP" select="mds:identificationInfo|geonet:child[string(@name)='identificationInfo']">
+		<xsl:apply-templates mode="elementEP" select="mdb:identificationInfo|geonet:child[string(@name)='identificationInfo']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:spatialRepresentationInfo|geonet:child[string(@name)='spatialRepresentationInfo']">
+		<xsl:apply-templates mode="elementEP" select="mdb:spatialRepresentationInfo|geonet:child[string(@name)='spatialRepresentationInfo']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:referenceSystemInfo|geonet:child[string(@name)='referenceSystemInfo']">
+		<xsl:apply-templates mode="elementEP" select="mdb:referenceSystemInfo|geonet:child[string(@name)='referenceSystemInfo']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:contentInfo|geonet:child[string(@name)='contentInfo']">
+		<xsl:apply-templates mode="elementEP" select="mdb:contentInfo|geonet:child[string(@name)='contentInfo']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:distributionInfo|geonet:child[string(@name)='distributionInfo']">
+		<xsl:apply-templates mode="elementEP" select="mdb:distributionInfo|geonet:child[string(@name)='distributionInfo']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:dataQualityInfo|geonet:child[string(@name)='dataQualityInfo']">
+		<xsl:apply-templates mode="elementEP" select="mdb:dataQualityInfo|geonet:child[string(@name)='dataQualityInfo']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:resourceLineage|geonet:child[string(@name)='resourceLineage']">
+		<xsl:apply-templates mode="elementEP" select="mdb:resourceLineage|geonet:child[string(@name)='resourceLineage']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:portrayalCatalogueInfo|geonet:child[string(@name)='portrayalCatalogueInfo']">
+		<xsl:apply-templates mode="elementEP" select="mdb:portrayalCatalogueInfo|geonet:child[string(@name)='portrayalCatalogueInfo']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:metadataConstraints|geonet:child[string(@name)='metadataConstraints']">
+		<xsl:apply-templates mode="elementEP" select="mdb:metadataConstraints|geonet:child[string(@name)='metadataConstraints']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:applicationSchemaInfo|geonet:child[string(@name)='applicationSchemaInfo']">
+		<xsl:apply-templates mode="elementEP" select="mdb:applicationSchemaInfo|geonet:child[string(@name)='applicationSchemaInfo']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:metadataMaintenance|geonet:child[string(@name)='metadataMaintenance']">
+		<xsl:apply-templates mode="elementEP" select="mdb:metadataMaintenance|geonet:child[string(@name)='metadataMaintenance']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
@@ -996,52 +996,52 @@
 			<xsl:with-param name="title" select="'Metadata Info'"/>
 			<xsl:with-param name="content">
 
-				<xsl:apply-templates mode="elementEP" select="mds:metadataIdentifier|geonet:child[string(@name)='metadataIdentifier']">
+				<xsl:apply-templates mode="elementEP" select="mdb:metadataIdentifier|geonet:child[string(@name)='metadataIdentifier']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
 
-				<xsl:apply-templates mode="elementEP" select="mds:defaultLocale|geonet:child[string(@name)='defaultLocale']">
+				<xsl:apply-templates mode="elementEP" select="mdb:defaultLocale|geonet:child[string(@name)='defaultLocale']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
 
-				<xsl:apply-templates mode="elementEP" select="mds:otherLocale|geonet:child[string(@name)='otherLocale']">
+				<xsl:apply-templates mode="elementEP" select="mdb:otherLocale|geonet:child[string(@name)='otherLocale']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
 
-				<xsl:apply-templates mode="elementEP" select="mds:parentMetadata|geonet:child[string(@name)='parentMetadata']">
+				<xsl:apply-templates mode="elementEP" select="mdb:parentMetadata|geonet:child[string(@name)='parentMetadata']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
 
-				<xsl:apply-templates mode="elementEP" select="mds:metadataScope|geonet:child[string(@name)='metadataScope']">
+				<xsl:apply-templates mode="elementEP" select="mdb:metadataScope|geonet:child[string(@name)='metadataScope']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
 
-				<xsl:apply-templates mode="elementEP" select="mds:contact|geonet:child[string(@name)='contact']">
+				<xsl:apply-templates mode="elementEP" select="mdb:contact|geonet:child[string(@name)='contact']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
 
-				<xsl:apply-templates mode="elementEP" select="mds:metadataStandard|geonet:child[string(@name)='metadataStandard']">
+				<xsl:apply-templates mode="elementEP" select="mdb:metadataStandard|geonet:child[string(@name)='metadataStandard']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
 
-				<xsl:apply-templates mode="elementEP" select="mds:metadataProfile|geonet:child[string(@name)='metadataProfile']">
+				<xsl:apply-templates mode="elementEP" select="mdb:metadataProfile|geonet:child[string(@name)='metadataProfile']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
 
-				<xsl:apply-templates mode="elementEP" select="mds:alternativeMetadataReference|geonet:child[string(@name)='alternativeMetadataReference']">
+				<xsl:apply-templates mode="elementEP" select="mdb:alternativeMetadataReference|geonet:child[string(@name)='alternativeMetadataReference']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
 
-				<xsl:apply-templates mode="elementEP" select="mds:metadataLinkage|geonet:child[string(@name)='metadataLinkage']">
+				<xsl:apply-templates mode="elementEP" select="mdb:metadataLinkage|geonet:child[string(@name)='metadataLinkage']">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
@@ -1055,7 +1055,7 @@
 	<!-- metadata Extension Information - dead last because its boring and
 		 can clutter up the rest of the metadata record! -->
 
-		<xsl:apply-templates mode="elementEP" select="mds:metadataExtensionInfo|geonet:child[string(@name)='metadataExtensionInfo']">
+		<xsl:apply-templates mode="elementEP" select="mdb:metadataExtensionInfo|geonet:child[string(@name)='metadataExtensionInfo']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
@@ -1093,52 +1093,52 @@
 				<!-- if the parent is root then display fields not in tabs -->
 				<xsl:choose>
 					<xsl:when test="name(..)='root'">
-						<xsl:apply-templates mode="elementEP" select="mds:metadataIdentifier|geonet:child[string(@name)='metadataIdentifier']">
+						<xsl:apply-templates mode="elementEP" select="mdb:metadataIdentifier|geonet:child[string(@name)='metadataIdentifier']">
 							<xsl:with-param name="schema" select="$schema"/>
 							<xsl:with-param name="edit"   select="$edit"/>
 						</xsl:apply-templates>
 
-						<xsl:apply-templates mode="elementEP" select="mds:defaultLocale|geonet:child[string(@name)='defaultLocale']">
+						<xsl:apply-templates mode="elementEP" select="mdb:defaultLocale|geonet:child[string(@name)='defaultLocale']">
 							<xsl:with-param name="schema" select="$schema"/>
 							<xsl:with-param name="edit"   select="$edit"/>
 						</xsl:apply-templates>
 
-						<xsl:apply-templates mode="elementEP" select="mds:otherLocale|geonet:child[string(@name)='otherLocale']">
+						<xsl:apply-templates mode="elementEP" select="mdb:otherLocale|geonet:child[string(@name)='otherLocale']">
 							<xsl:with-param name="schema" select="$schema"/>
 							<xsl:with-param name="edit"   select="$edit"/>
 						</xsl:apply-templates>
 
-						<xsl:apply-templates mode="elementEP" select="mds:parentMetadata|geonet:child[string(@name)='parentMetadata']">
+						<xsl:apply-templates mode="elementEP" select="mdb:parentMetadata|geonet:child[string(@name)='parentMetadata']">
 							<xsl:with-param name="schema" select="$schema"/>
 							<xsl:with-param name="edit"   select="$edit"/>
 						</xsl:apply-templates>
 
-						<xsl:apply-templates mode="elementEP" select="mds:metadataScope|geonet:child[string(@name)='metadataScope']">
+						<xsl:apply-templates mode="elementEP" select="mdb:metadataScope|geonet:child[string(@name)='metadataScope']">
 							<xsl:with-param name="schema" select="$schema"/>
 							<xsl:with-param name="edit"   select="$edit"/>
 						</xsl:apply-templates>
 
-						<xsl:apply-templates mode="elementEP" select="mds:dateInfo|geonet:child[string(@name)='dateInfo']">
+						<xsl:apply-templates mode="elementEP" select="mdb:dateInfo|geonet:child[string(@name)='dateInfo']">
 							<xsl:with-param name="schema" select="$schema"/>
 							<xsl:with-param name="edit"   select="$edit"/>
 						</xsl:apply-templates>
 
-						<xsl:apply-templates mode="elementEP" select="mds:metadataStandard|geonet:child[string(@name)='metadataStandard']">
+						<xsl:apply-templates mode="elementEP" select="mdb:metadataStandard|geonet:child[string(@name)='metadataStandard']">
 							<xsl:with-param name="schema" select="$schema"/>
 							<xsl:with-param name="edit"   select="$edit"/>
 						</xsl:apply-templates>
 
-						<xsl:apply-templates mode="elementEP" select="mds:metadataProfile|geonet:child[string(@name)='metadataProfile']">
+						<xsl:apply-templates mode="elementEP" select="mdb:metadataProfile|geonet:child[string(@name)='metadataProfile']">
 							<xsl:with-param name="schema" select="$schema"/>
 							<xsl:with-param name="edit"   select="$edit"/>
 						</xsl:apply-templates>
 
-						<xsl:apply-templates mode="elementEP" select="mds:alternativeMetadataReference|geonet:child[string(@name)='alternativeMetadataReference']">
+						<xsl:apply-templates mode="elementEP" select="mdb:alternativeMetadataReference|geonet:child[string(@name)='alternativeMetadataReference']">
 							<xsl:with-param name="schema" select="$schema"/>
 							<xsl:with-param name="edit"   select="$edit"/>
 						</xsl:apply-templates>
 
-						<xsl:apply-templates mode="elementEP" select="mds:metadataLinkage|geonet:child[string(@name)='metadataLinkage']">
+						<xsl:apply-templates mode="elementEP" select="mdb:metadataLinkage|geonet:child[string(@name)='metadataLinkage']">
 							<xsl:with-param name="schema" select="$schema"/>
 							<xsl:with-param name="edit"   select="$edit"/>
 						</xsl:apply-templates>
@@ -1162,29 +1162,29 @@
 	<!-- ============================================================================= -->
 	<!--
 	simple mode; ISO order is:
-	- mds:metadataIdentifier
-	- mds:defaultLocale
-	- mds:parentMetadata
-	- mds:metadataScope
-	- mds:contact
-	- mds:dateInfo
-	- mds:metadataStandard
-	- mds:metadataProfile
-	- mds:alternativeMetadataReference
-	- mds:otherLocale
-	- mds:metadataLinkage
-	- mds:spatialRepresentationInfo
-	- mds:referenceSystemInfo
-	- mds:metadataExtensionInfo
-	- mds:identificationInfo
-	- mds:contentInfo
-	- mds:distributionInfo
-	- mds:dataQualityInfo
-	- mds:resourceLineage
-	- mds:portrayalCatalogueInfo
-	- mds:metadataConstraints
-	- mds:applicationSchemaInfo
-	- mds:metadataMaintenance
+	- mdb:metadataIdentifier
+	- mdb:defaultLocale
+	- mdb:parentMetadata
+	- mdb:metadataScope
+	- mdb:contact
+	- mdb:dateInfo
+	- mdb:metadataStandard
+	- mdb:metadataProfile
+	- mdb:alternativeMetadataReference
+	- mdb:otherLocale
+	- mdb:metadataLinkage
+	- mdb:spatialRepresentationInfo
+	- mdb:referenceSystemInfo
+	- mdb:metadataExtensionInfo
+	- mdb:identificationInfo
+	- mdb:contentInfo
+	- mdb:distributionInfo
+	- mdb:dataQualityInfo
+	- mdb:resourceLineage
+	- mdb:portrayalCatalogueInfo
+	- mdb:metadataConstraints
+	- mdb:applicationSchemaInfo
+	- mdb:metadataMaintenance
 	-->
 	<!-- ============================================================================= -->
 
@@ -1192,47 +1192,47 @@
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
-		<xsl:apply-templates mode="elementEP" select="mds:identificationInfo|geonet:child[string(@name)='identificationInfo']">
+		<xsl:apply-templates mode="elementEP" select="mdb:identificationInfo|geonet:child[string(@name)='identificationInfo']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:distributionInfo|geonet:child[string(@name)='distributionInfo']">
+		<xsl:apply-templates mode="elementEP" select="mdb:distributionInfo|geonet:child[string(@name)='distributionInfo']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:spatialRepresentationInfo|geonet:child[string(@name)='spatialRepresentationInfo']">
+		<xsl:apply-templates mode="elementEP" select="mdb:spatialRepresentationInfo|geonet:child[string(@name)='spatialRepresentationInfo']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:referenceSystemInfo|geonet:child[string(@name)='referenceSystemInfo']">
+		<xsl:apply-templates mode="elementEP" select="mdb:referenceSystemInfo|geonet:child[string(@name)='referenceSystemInfo']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:applicationSchemaInfo|geonet:child[string(@name)='applicationSchemaInfo']">
+		<xsl:apply-templates mode="elementEP" select="mdb:applicationSchemaInfo|geonet:child[string(@name)='applicationSchemaInfo']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:portrayalCatalogueInfo|geonet:child[string(@name)='portrayalCatalogueInfo']">
+		<xsl:apply-templates mode="elementEP" select="mdb:portrayalCatalogueInfo|geonet:child[string(@name)='portrayalCatalogueInfo']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:dataQualityInfo|geonet:child[string(@name)='dataQualityInfo']">
+		<xsl:apply-templates mode="elementEP" select="mdb:dataQualityInfo|geonet:child[string(@name)='dataQualityInfo']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:resourceLineage|geonet:child[string(@name)='resourceLineage']">
+		<xsl:apply-templates mode="elementEP" select="mdb:resourceLineage|geonet:child[string(@name)='resourceLineage']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:metadataConstraints|geonet:child[string(@name)='metadataConstraints']">
+		<xsl:apply-templates mode="elementEP" select="mdb:metadataConstraints|geonet:child[string(@name)='metadataConstraints']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
@@ -1248,12 +1248,12 @@
 			<xsl:with-param name="schema" select="$schema"/>
 		</xsl:call-template>
 
-		<xsl:apply-templates mode="elementEP" select="mds:contentInfo|geonet:child[string(@name)='contentInfo']">
+		<xsl:apply-templates mode="elementEP" select="mdb:contentInfo|geonet:child[string(@name)='contentInfo']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:metadataExtensionInfo|geonet:child[string(@name)='metadataExtensionInfo']">
+		<xsl:apply-templates mode="elementEP" select="mdb:metadataExtensionInfo|geonet:child[string(@name)='metadataExtensionInfo']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
@@ -1266,62 +1266,62 @@
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
-		<xsl:apply-templates mode="elementEP" select="mds:metadataIdentifier|geonet:child[string(@name)='metadataIdentifier']">
+		<xsl:apply-templates mode="elementEP" select="mdb:metadataIdentifier|geonet:child[string(@name)='metadataIdentifier']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:defaultLocale|geonet:child[string(@name)='defaultLocale']">
+		<xsl:apply-templates mode="elementEP" select="mdb:defaultLocale|geonet:child[string(@name)='defaultLocale']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:otherLocale|geonet:child[string(@name)='otherLocale']">
+		<xsl:apply-templates mode="elementEP" select="mdb:otherLocale|geonet:child[string(@name)='otherLocale']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:parentMetadata|geonet:child[string(@name)='parentMetadata']">
+		<xsl:apply-templates mode="elementEP" select="mdb:parentMetadata|geonet:child[string(@name)='parentMetadata']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:metadataScope|geonet:child[string(@name)='metadataScope']">
+		<xsl:apply-templates mode="elementEP" select="mdb:metadataScope|geonet:child[string(@name)='metadataScope']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:metadataStandard|geonet:child[string(@name)='metadataStandard']">
+		<xsl:apply-templates mode="elementEP" select="mdb:metadataStandard|geonet:child[string(@name)='metadataStandard']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:metadataProfile|geonet:child[string(@name)='metadataProfile']">
+		<xsl:apply-templates mode="elementEP" select="mdb:metadataProfile|geonet:child[string(@name)='metadataProfile']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:alternativeMetadataReference|geonet:child[string(@name)='alternativeMetadataReference']">
+		<xsl:apply-templates mode="elementEP" select="mdb:alternativeMetadataReference|geonet:child[string(@name)='alternativeMetadataReference']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:metadataLinkage|geonet:child[string(@name)='metadataLinkage']">
+		<xsl:apply-templates mode="elementEP" select="mdb:metadataLinkage|geonet:child[string(@name)='metadataLinkage']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:metadataConstraints|geonet:child[string(@name)='metadataConstraints']">
+		<xsl:apply-templates mode="elementEP" select="mdb:metadataConstraints|geonet:child[string(@name)='metadataConstraints']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:metadataMaintenance|geonet:child[string(@name)='metadataMaintenance']">
+		<xsl:apply-templates mode="elementEP" select="mdb:metadataMaintenance|geonet:child[string(@name)='metadataMaintenance']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
 
-		<xsl:apply-templates mode="elementEP" select="mds:contact|geonet:child[string(@name)='contact']">
+		<xsl:apply-templates mode="elementEP" select="mdb:contact|geonet:child[string(@name)='contact']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
@@ -1353,8 +1353,8 @@
 		<xsl:variable name="id" select="$info/id"/>
 		<xsl:variable name="uuid" select="$info/uuid"/>
 
-		<xsl:if test="normalize-space(mds:parentMetadata/mcc:MD_Identifier/mcc:code/*)!=''">
-			<parentId><xsl:value-of select="mds:parentMetadata/mcc:MD_Identifier/mcc:code/*"/></parentId>
+		<xsl:if test="normalize-space(mdb:parentMetadata/mcc:MD_Identifier/mcc:code/*)!=''">
+			<parentId><xsl:value-of select="mdb:parentMetadata/mcc:MD_Identifier/mcc:code/*"/></parentId>
 		</xsl:if>
 
 		<xsl:variable name="langId">
@@ -1364,13 +1364,13 @@
 			</xsl:call-template>
 		</xsl:variable>
 
-		<xsl:apply-templates mode="briefster" select="mds:identificationInfo/*">
+		<xsl:apply-templates mode="briefster" select="mdb:identificationInfo/*">
 			<xsl:with-param name="id" select="$id"/>
 			<xsl:with-param name="langId" select="$langId"/>
 			<xsl:with-param name="info" select="$info"/>
 		</xsl:apply-templates>
 
-		<xsl:for-each select="mds:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource">
+		<xsl:for-each select="mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource">
 			<xsl:variable name="protocol" select="cit:protocol[1]/gco:CharacterString"/>
 			<xsl:variable name="linkage"  select="normalize-space(cit:linkage/*)"/>
 			<xsl:variable name="name">
@@ -1470,7 +1470,7 @@
 			</xsl:choose>
 		</xsl:for-each>
 
-		<xsl:for-each select="mds:contact/*">
+		<xsl:for-each select="mdb:contact/*">
 			<xsl:variable name="role" select="cit:role/*/@codeListValue"/>
 			<xsl:if test="normalize-space($role)!=''">
 				<responsibleParty role="{geonet:getCodeListValue(/root/gui/schemas, 'iso19139', 'gmd:CI_RoleCode', $role)}" appliesTo="metadata">
@@ -1480,7 +1480,7 @@
 		</xsl:for-each>
 
 		<metadatacreationdate>
-			<xsl:value-of select="mds:dateStamp/*"/>
+			<xsl:value-of select="mdb:dateStamp/*"/>
 		</metadatacreationdate>
 
 		<geonet:info>
@@ -1504,7 +1504,7 @@
 			-->
 			<category internal="true">
 				<xsl:choose>
-					<xsl:when test="mds:identificationInfo/srv:SV_ServiceIdentification">service</xsl:when>
+					<xsl:when test="mdb:identificationInfo/srv:SV_ServiceIdentification">service</xsl:when>
 					<xsl:otherwise>dataset</xsl:otherwise>
 				</xsl:choose>
 			</category>
@@ -1887,19 +1887,19 @@
 		* ISO 19139 define how to store multilingual content in a metadata
 		record.
 		1) A record is defined by a main language set in 
-mds:MD_Metadata/mds:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode 
+mdb:MD_Metadata/mdb:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode 
     element. All gco:CharacterString are then defined in that language. 
 		2) In order to add translation editor
-		should add a mds:defaultLocale element in mds:MD_Metadata:  
-		<mds:defaultLocale>
+		should add a mdb:defaultLocale element in mdb:MD_Metadata:  
+		<mdb:defaultLocale>
 			<lan:PT_Locale id="FR">
 				<lan:language>
 					<lan:LanguageCode codeList="#FR" codeListValue="fra"/>
 				</lan:language>
 				<lan:characterEncoding/>
 			</lan:PT_Locale>
-		</mds:defaultLocale>
-		3) Once declared in mds:defaultLocale, all gco:CharacterString could
+		</mdb:defaultLocale>
+		3) Once declared in mdb:defaultLocale, all gco:CharacterString could
 		be translated using the following mechanism:
 			* add xsi:type attribute (@see DataManager.updatedLocalizedTextElement)
 			* add lan:PT_FreeText element linked to locale using the locale attribute.
@@ -1919,7 +1919,7 @@ mds:MD_Metadata/mds:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode
 		* available locales in metadata records are not displayed in view
 		mode, only used in editing mode in order to add multilingual content.
 	-->
-	<xsl:template mode="iso19115-3" match="mds:defaultLocale|geonet:child[string(@name)='defaultLocale']" priority="1">
+	<xsl:template mode="iso19115-3" match="mdb:defaultLocale|geonet:child[string(@name)='defaultLocale']" priority="1">
 		<xsl:param name="schema" />
 		<xsl:param name="edit" />
 		<xsl:choose>
@@ -2084,7 +2084,7 @@ mds:MD_Metadata/mds:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode
 			<xsl:call-template name="getLangId19115-1-2013">
 				<xsl:with-param name="langGui" select="/root/gui/language" />
 				<xsl:with-param name="md"
-					select="ancestor-or-self::*[name(.)='mds:MD_Metadata' or contains(@gco:isoType,'MD_Metadata')]" />
+					select="ancestor-or-self::*[name(.)='mdb:MD_Metadata' or contains(@gco:isoType,'MD_Metadata')]" />
 			</xsl:call-template>
 		</xsl:variable>
 
@@ -2097,12 +2097,12 @@ mds:MD_Metadata/mds:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode
 				<xsl:variable name="ptFreeTextTree" select="exslt:node-set($tmpFreeText)" />
 
 				<xsl:variable name="mainLang"
-				  select="string(/root/*/mds:defaultLocal/lan:language/lan:LanguageCode/@codeListValue)" />
+				  select="string(/root/*/mdb:defaultLocal/lan:language/lan:LanguageCode/@codeListValue)" />
 				<xsl:variable name="mainLangId">
 					<xsl:call-template name="getLangIdFromMetadata19115-1-2013">
 						<xsl:with-param name="lang" select="$mainLang" />
 						<xsl:with-param name="md"
-							select="ancestor-or-self::*[name(.)='mds:MD_Metadata' or contains(@gco:isoType,'MD_Metadata')]" />
+							select="ancestor-or-self::*[name(.)='mdb:MD_Metadata' or contains(@gco:isoType,'MD_Metadata')]" />
 					</xsl:call-template>
 				</xsl:variable>
 
@@ -2269,9 +2269,9 @@ mds:MD_Metadata/mds:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode
 	-->
 	<xsl:template name="PT_FreeText_Tree_19115-1-2013">
 		<xsl:variable name="mainLang"
-		select="string(/root/*/mds:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue)" />
+		select="string(/root/*/mdb:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue)" />
 		<xsl:variable name="languages"
-			select="/root/*/mds:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue" />
+			select="/root/*/mdb:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue" />
 
 		<xsl:variable name="currentNode" select="node()" />
 		<xsl:for-each select="$languages">
@@ -2280,7 +2280,7 @@ mds:MD_Metadata/mds:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode
 			<xsl:variable name="code">
 				<xsl:call-template name="getLangCode19115-1-2013">
 					<xsl:with-param name="md"
-						select="ancestor-or-self::*[name(.)='mds:MD_Metadata' or contains(@gco:isoType,'MD_Metadata')]" />
+						select="ancestor-or-self::*[name(.)='mdb:MD_Metadata' or contains(@gco:isoType,'MD_Metadata')]" />
 					<xsl:with-param name="langId" select="substring($langId,2)" />
 				</xsl:call-template>
 			</xsl:variable>

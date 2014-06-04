@@ -24,6 +24,19 @@
 
   <xsl:template name="iso19115-3CompleteTab"/>
 
+  <!-- main template - the way into processing iso19139 -->
+  <xsl:template name="metadata-iso19115-3">
+    <xsl:param name="schema"/>
+    <xsl:param name="edit" select="false()"/>
+    <xsl:param name="embedded"/>
+
+    <xsl:apply-templates mode="iso19115-3" select="." >
+      <xsl:with-param name="schema" select="$schema"/>
+      <xsl:with-param name="edit"   select="$edit"/>
+      <xsl:with-param name="embedded" select="$embedded" />
+    </xsl:apply-templates>
+  </xsl:template>
+
   <xsl:template name="iso19115-3GetIsoLanguage" mode="iso19115-3GetIsoLanguage" match="*">
     <xsl:param name="schema"/>
     <xsl:param name="edit"/>

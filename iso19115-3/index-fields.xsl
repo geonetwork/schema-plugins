@@ -23,6 +23,7 @@
 	<xsl:include href="../iso19139/convert/functions.xsl"/>
 	<xsl:include href="convert/functions.xsl"/>
 	<xsl:include href="../../../xsl/utils-fn.xsl"/>
+  <xsl:include href="index-subtemplate-fields.xsl"/>
 	
 	<!-- This file defines what parts of the metadata are indexed by Lucene
 	     Searches can be conducted on indexes defined here. 
@@ -75,8 +76,8 @@
             <Field name="_title" string="{string($_defaultTitle)}" store="true" index="true" />
 
 			<xsl:apply-templates select="*[name(.)='mdb:MD_Metadata' or @gco:isoType='mdb:MD_Metadata']" mode="metadata"/>
-			
-			<xsl:apply-templates mode="index" select="*[name(.)='mdb:MD_Metadata' or @gco:isoType='mdb:MD_Metadata']"/>
+
+			<xsl:apply-templates mode="index" select="*"/>
 			
 		</Document>
 	</xsl:template>

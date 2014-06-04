@@ -18,7 +18,14 @@
   
   <xsl:include href="../iso19139/convert/functions.xsl"/>
   <xsl:include href="convert/functions.xsl"/>
-  
+
+
+  <!-- If no metadata linkage exist, build one based on
+  the metadata UUID. -->
+  <xsl:variable name="createMetadataLinkage" select="true()"/>
+  <xsl:variable name="url" select="/root/env/siteURL"/>
+  <xsl:variable name="uuid" select="/root/env/uuid"/>
+
   <xsl:template match="/root">
     <xsl:apply-templates select="mdb:MD_Metadata"/>
   </xsl:template>
@@ -96,6 +103,29 @@
       <xsl:apply-templates select="mdb:alternativeMetadataReference"/>
       <xsl:apply-templates select="mdb:otherLocale"/>
       <xsl:apply-templates select="mdb:metadataLinkage"/>
+
+      <xsl:variable name="pointOfTruthUrl" select="concat($url, '/search?uuid=', $uuid)"/>
+
+      <xsl:if test="$createMetadataLinkage and count(mdb:metadataLinkage/cit:CI_OnlineResource/cit:linkage/*[. = $pointOfTruthUrl]) = 0">
+        <!-- TODO: This should only be updated for not harvested records ? -->
+        <mdb:metadataLinkage>
+          <cit:CI_OnlineResource>
+            <cit:linkage>
+              <!-- TODO: define a URL pattern and use it here -->
+              <!-- TODO: URL could be multilingual ? -->
+              <gco:CharacterString><xsl:value-of select="$pointOfTruthUrl"/></gco:CharacterString>
+            </cit:linkage>
+            <!-- TODO: Could be relevant to add description of the
+            point of truth for the metadata linkage but this
+            needs to be language dependant. -->
+            <cit:function>
+              <cit:CI_OnLineFunctionCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_OnLineFunctionCode"
+                                         codeListValue="completeMetadata"/>
+            </cit:function>
+          </cit:CI_OnlineResource>
+        </mdb:metadataLinkage>
+      </xsl:if>
+
       <xsl:apply-templates select="mdb:spatialRepresentationInfo"/>
       <xsl:apply-templates select="mdb:referenceSystemInfo"/>
       <xsl:apply-templates select="mdb:metadataExtensionInfo"/>

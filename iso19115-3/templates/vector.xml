@@ -234,26 +234,6 @@
           </mmi:maintenanceAndUpdateFrequency>
         </mmi:MD_MaintenanceInformation>
       </mri:resourceMaintenance>
-      <mri:graphicOverview>
-        <mcc:MD_BrowseGraphic>
-          <mcc:fileName>
-            <gco:CharacterString/>
-          </mcc:fileName>
-          <mcc:fileDescription>
-            <gco:CharacterString>thumbnail</gco:CharacterString>
-          </mcc:fileDescription>
-        </mcc:MD_BrowseGraphic>
-      </mri:graphicOverview>
-      <mri:graphicOverview>
-        <mcc:MD_BrowseGraphic>
-          <mcc:fileName>
-            <gco:CharacterString/>
-          </mcc:fileName>
-          <mcc:fileDescription>
-            <gco:CharacterString>large_thumbnail</gco:CharacterString>
-          </mcc:fileDescription>
-        </mcc:MD_BrowseGraphic>
-      </mri:graphicOverview>
       <mri:descriptiveKeywords>
         <mri:MD_Keywords>
           <mri:keyword>
