@@ -11,4 +11,11 @@
 	<xml_iso19135>Save this metadata as an ISO19135 XML file</xml_iso19135>
 	<xml_iso19135Tooai_dc>Save this metadata as an OAI Dublin Core XML file</xml_iso19135Tooai_dc>
 	<xml_iso19135ToSKOS>Save this metadata as a SKOS XML file</xml_iso19135ToSKOS>
+
+
+
+  <advanced>Full</advanced>
+  <default>Register</default>
+  <xml>XML</xml>
+  <addItem>Add item</addItem>
 </strings>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../config-editor.xsd"
+  xmlns:gn="http://www.fao.org/geonetwork"
+  xmlns:grg="http://www.isotc211.org/2005/grg"
+  xmlns:gmd="http://www.isotc211.org/2005/gmd"
+  xmlns:gco="http://www.isotc211.org/2005/gco"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <!-- Form field type configuration. Default is text. -->
+  <fields>
+    <for name="grg:contentSummary" use="textarea"/>
+    <for name="grg:definition" use="textarea"/>
+
+    <for name="gco:Distance" use="number"/>
+    <for name="gco:Decimal" use="number"/>
+    <for name="gco:Integer" use="number"/>
+    <for name="gco:Boolean" use="checkbox"/>
+
+
+    <for name="gco:Date" use="data-gn-date-picker"/>
+    <for name="gco:DateTime" use="data-gn-date-picker"/>
+  </fields>
+
+
+  <fieldsWithFieldset>
+    <name>grg:containedItem</name>
+    <name>grg:fieldOfApplication</name>
+  </fieldsWithFieldset>
+
+  <multilingualFields>
+    <!-- In multilingual mode, define which mode
+    the widget should have. If expanded, then one
+    field per language is displayed. -->
+    <expanded>
+      <name>grg:name</name>
+    </expanded>
+    <!-- All fields in ISO could be multilingual.
+    Define element to exlcude. 
+    -->
+    <exclude>
+    </exclude>
+  </multilingualFields>
+
+
+  <!-- View configuration -->
+  <views>
+    <view name="default">
+      <tab id="default" default="true" mode="flat">
+        <section>
+          <field xpath="/grg:RE_Register/grg:name"/>
+          <field xpath="/grg:RE_Register/grg:contentSummary"/>
+          <section template="iso19135-table-of-content"/>
+          <!--<section name="concepts"
+                   xpath="/grg:RE_Register/grg:containedItem"
+                    or="containedItem"
+                    in="/grg:RE_Register"/>-->
+
+          <action type="add" name="addItem"
+                  or="containedItem" in="/grg:RE_Register">
+            <template>
+              <snippet>
+                <grg:containedItem>
+                  <grg:RE_RegisterItem>
+                    <grg:itemIdentifier>
+                      <gco:Integer>1</gco:Integer>
+                    </grg:itemIdentifier>
+                    <grg:name>
+                      <gco:CharacterString>-</gco:CharacterString>
+                    </grg:name>
+                    <grg:status>
+                      <grg:RE_ItemStatus></grg:RE_ItemStatus>
+                    </grg:status>
+                    <grg:dateAccepted>
+                      <gco:Date></gco:Date>
+                    </grg:dateAccepted>
+                    <grg:definition>
+                      <gco:CharacterString></gco:CharacterString>
+                    </grg:definition>
+                    <grg:specificationLineage>
+                      <grg:RE_Reference>
+                        <grg:itemIdentifierAtSource>
+                          <gco:CharacterString/>
+                        </grg:itemIdentifierAtSource>
+                        <grg:similarity>
+                          <grg:RE_SimilarityToSource codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#RE_SimilarityToSource"
+                                                     codeListValue=""/>
+                        </grg:similarity>
+                        <grg:sourceCitation/>
+                      </grg:RE_Reference>
+                    </grg:specificationLineage>
+                  </grg:RE_RegisterItem>
+                </grg:containedItem>
+              </snippet>
+            </template>
+          </action>
+        </section>
+      </tab>
+    </view>
+    <view name="advanced">
+      <tab id="advanced">
+        <section xpath="/grg:RE_Register"/>
+      </tab>
+    </view>
+    <view name="xml">
+      <tab id="xml" default="true"/>
+    </view>
+  </views>
+</editor>

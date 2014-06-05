@@ -24,6 +24,7 @@
 	<!-- ========================================================================================= -->
 
 	<xsl:template match="*" mode="metadata">
+    <Field name="type" string="register" store="true" index="true"/>
 
 		<Field name="title" string="{string(grg:name/gco:CharacterString)}" store="true" index="true"/>
     <!-- not tokenized title for sorting -->
