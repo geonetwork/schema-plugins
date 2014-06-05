@@ -58,12 +58,12 @@
 
   <!-- TODO : improve editor in simple mode -->
   <xsl:template mode="mode-iso19135"
-                match="grg:fieldOfApplication"
+                match="grg:fieldOfApplication[$tab='default']"
                 priority="2000"
       ></xsl:template>
 
   <xsl:template mode="mode-iso19135"
-                match="grg:specificationLineage"
+                match="grg:specificationLineage[$tab='default']"
                 priority="2000">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
@@ -71,22 +71,36 @@
 
     <xsl:variable name="listOfRelations"
                   select="gn-fn-metadata:getCodeListValues($schema, 'grg:RE_SimilarityToSource', $codelists, .)"/>
+    <xsl:variable name="typeOfRelation"
+                  select="grg:RE_Reference/grg:similarity/grg:RE_SimilarityToSource"/>
+    <xsl:variable name="itemIdentifier" select="grg:RE_Reference/grg:itemIdentifierAtSource/gco:CharacterString"/>
 
-    <div class="form-group" id="gn-el-{gn:element/@ref}">
+    <div class="form-group">
       <label class="col-sm-2 control-label">
         <xsl:value-of select="gn-fn-metadata:getLabel($schema, 'grg:specificationLineage', $labels)/label"/>
       </label>
       <div class="col-sm-3">
-        <select name="">
+        <xsl:value-of select="$typeOfRelation"/>
+        <select name="_{$typeOfRelation/gn:element/@ref}_codeListValue">
           <xsl:for-each select="$listOfRelations/entry">
-            <option value="{code}"><xsl:value-of select="label"/></option>
+            <option value="{code}">
+              <xsl:if test="code = $typeOfRelation/@codeListValue">
+                <xsl:attribute name="selected" select="'selected'"/>
+              </xsl:if>
+              <xsl:value-of select="label"/>
+            </option>
           </xsl:for-each>
         </select>
       </div>
       <div class="col-sm-5">
-        <select name="">
+        <select name="_{$itemIdentifier/gn:element/@ref}">
           <xsl:for-each select="$metadata//grg:RE_RegisterItem">
-            <option value="{grg:itemIdentifier/gco:CharacterString}"><xsl:value-of select="grg:name/gco:CharacterString"/></option>
+            <option value="{grg:itemIdentifier/gco:Integer/text()}">
+              <xsl:if test="$itemIdentifier/text() = grg:itemIdentifier/gco:Integer/text()">
+                <xsl:attribute name="selected" select="'selected'"/>
+              </xsl:if>
+              <xsl:value-of select="grg:name/gco:CharacterString"/>
+            </option>
           </xsl:for-each>
         </select>
       </div>
