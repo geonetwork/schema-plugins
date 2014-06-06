@@ -156,8 +156,7 @@
 
     <xsl:variable name="elementName" select="name()"/>
 
-    <!--<xsl:variable name="hasPTFreeText" select="count(gmd:PT_FreeText) > 0"/>-->
-    <xsl:variable name="hasPTFreeText" select="false()"/>
+    <xsl:variable name="hasPTFreeText" select="count(cit:PT_FreeText) > 0"/>
 
     <xsl:variable name="isMultilingualElement"
                   select="$metadataIsMultilingual and
@@ -167,7 +166,7 @@
 
     <!-- For some fields, always display attributes.
     TODO: move to editor config ? -->
-    <xsl:variable name="forceDisplayAttributes" select="count(gmx:FileName) > 0"/>
+    <xsl:variable name="forceDisplayAttributes" select="false()"/>
 
     <!-- TODO: Support gmd:LocalisedCharacterString -->
     <xsl:variable name="theElement" select="gco:CharacterString|gco:Integer|gco:Decimal|
@@ -221,23 +220,19 @@
           <!-- Or the PT_FreeText element matching the main language -->
           <value ref="{$theElement/gn:element/@ref}" lang="{$metadataLanguage}"><xsl:value-of select="gco:CharacterString"/></value>
 
-          <!-- the existing translation
-          <xsl:for-each select="gmd:PT_FreeText/gmd:textGroup/gmd:LocalisedCharacterString">
+          <!-- the existing translation -->
+          <xsl:for-each select="cit:PT_FreeText/cit:textGroup/cit:LocalisedCharacterString">
             <value ref="{gn:element/@ref}" lang="{substring-after(@locale, '#')}"><xsl:value-of select="."/></value>
           </xsl:for-each>
-          FIXME
-          -->
 
           <!-- and create field for none translated language -->
           <xsl:for-each select="$metadataOtherLanguages/lang">
             <xsl:variable name="currentLanguageId" select="@id"/>
-            <!-- FIXME
             <xsl:if test="count($theElement/parent::node()/
-                gmd:PT_FreeText/gmd:textGroup/
-                gmd:LocalisedCharacterString[@locale = concat('#',$currentLanguageId)]) = 0">
+                            cit:PT_FreeText/cit:textGroup/
+                              cit:LocalisedCharacterString[@locale = concat('#',$currentLanguageId)]) = 0">
               <value ref="lang_{@id}_{$theElement/parent::node()/gn:element/@ref}" lang="{@id}"></value>
             </xsl:if>
-            -->
           </xsl:for-each>
         </values>
       </xsl:if>
@@ -328,7 +323,6 @@
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
     <xsl:param name="codelists" select="$codelists" required="no"/>
-<xsl:message>### ENUM ? </xsl:message>
     <xsl:call-template name="render-element">
       <xsl:with-param name="label"
                       select="gn-fn-metadata:getLabel($schema, name(), $labels, name(..), '', '')/label"/>

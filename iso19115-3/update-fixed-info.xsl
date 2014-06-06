@@ -367,7 +367,7 @@
   <xsl:template match="lan:PT_Locale">
     <xsl:element name="lan:{local-name()}">
       <xsl:variable name="id" select="upper-case(
-        substring(lan:languageCode/lan:LanguageCode/@codeListValue, 1, 3))"/>
+        substring(lan:language/lan:LanguageCode/@codeListValue, 1, 3))"/>
       
       <xsl:apply-templates select="@*"/>
       <xsl:if test="normalize-space(@id)='' or normalize-space(@id)!=$id">
