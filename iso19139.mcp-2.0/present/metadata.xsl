@@ -26,7 +26,7 @@
 	<xsl:variable name="ccurl-2.0" select="/root/gui/schemas/iso19139.mcp-2.0/strings/creativeCommonsUrl"/>
 
 	<!-- include mcp specific configuration -->
-	<xsl:variable name="mcpconfig" select="document('metadata-iso19139.mcp-2.0-config.xml')"/>
+	<xsl:variable name="mcpconfig" select="document('metadata-config.xml')"/>
 
 	<!-- main template - the way into processing iso19139.mcp-2.0 -->
   <xsl:template match="metadata-iso19139.mcp-2.0" name="metadata-iso19139.mcp-2.0">
