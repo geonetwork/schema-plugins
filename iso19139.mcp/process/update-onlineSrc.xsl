@@ -3,7 +3,8 @@
 Stylesheet used to update metadata for a service and 
 attached it to the metadata for data.
 -->
-<xsl:stylesheet version="2.0" 			xmlns:gmd="http://www.isotc211.org/2005/gmd"	
+<xsl:stylesheet version="2.0" 			
+										xmlns:gmd="http://www.isotc211.org/2005/gmd"	
 										xmlns:gco="http://www.isotc211.org/2005/gco"
 										xmlns:gts="http://www.isotc211.org/2005/gts"
 										xmlns:gml="http://www.opengis.net/gml"
@@ -83,8 +84,14 @@ attached it to the metadata for data.
 				gmd:describes|
 				gmd:propertyType|
 				gmd:featureType|
-				gmd:featureAttribute"/>
-			
+				gmd:featureAttribute
+				"/>
+
+			<!-- copy elements from any profile that adds them to MD_Metadata -->
+      <xsl:for-each
+        select="*[namespace-uri()!='http://www.isotc211.org/2005/gmd' and namespace-uri()!='http://www.fao.org/geonetwork']">
+        <xsl:copy-of select="."/>
+      </xsl:for-each>
 		</xsl:copy>
 	</xsl:template>
 </xsl:stylesheet>
