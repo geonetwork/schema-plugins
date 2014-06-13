@@ -19,10 +19,10 @@
 
   <!-- i18n information -->
   <xsl:variable name="wxs-info-loc">
-    <msg id="a" xml:lang="en">OGC WMS or WFS service </msg>
-    <msg id="b" xml:lang="en"> is described in online resource section. Run this process to add operations information</msg>
-    <msg id="a" xml:lang="fr">Le service WMS ou WFS </msg>
-    <msg id="b" xml:lang="fr"> est décrit dans la section resource en ligne. Exécuter cette action pour ajouter ou remplacer les informations relatives aux opérations</msg>
+    <msg id="a" xml:lang="eng">OGC WMS or WFS service </msg>
+    <msg id="b" xml:lang="eng"> is described in online resource section. Run this process to add operations information</msg>
+    <msg id="a" xml:lang="fre">Le service WMS ou WFS </msg>
+    <msg id="b" xml:lang="fre"> est décrit dans la section resource en ligne. Exécuter cette action pour ajouter ou remplacer les informations relatives aux opérations</msg>
   </xsl:variable>
 
   <!-- Process parameters and variables-->
@@ -71,7 +71,7 @@
     <xsl:param name="root"/>
     
     <xsl:variable name="srv"
-      select="$root//*[local-name(.)='SV_ServiceIdentification' or @gco:isoType='srv:SV_ServiceIdentification']"/>
+      select="$root//*[local-name(.)='SV_ServiceIdentification' or contains(@gco:isoType, 'SV_ServiceIdentification')]"/>
     
     <xsl:variable name="onlineResources"
       select="$root//gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource[(contains(gmd:protocol/gco:CharacterString, 'OGC:WMS')
@@ -107,10 +107,7 @@
 
   <!-- Here set extent and graphicOverview -->
   <xsl:template
-    match="gmd:identificationInfo/gmd:MD_DataIdentification|
-        gmd:identificationInfo/*[@gco:isoType='gmd:MD_DataIdentification']|
-        gmd:identificationInfo/srv:SV_ServiceIdentification|
-        gmd:identificationInfo/*[@gco:isoType='srv:SV_ServiceIdentification']"
+    match="gmd:identificationInfo/*"
     priority="2">
 
     <xsl:copy>

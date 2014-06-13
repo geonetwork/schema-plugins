@@ -9,11 +9,11 @@
 
   <!-- i18n information -->
   <xsl:variable name="wms-info-loc">
-    <msg id="a" xml:lang="en">WMS service </msg>
-    <msg id="b" xml:lang="en"> is described in online resource section. Run to update extent, CRS or graphic overview
+    <msg id="a" xml:lang="eng">WMS service </msg>
+    <msg id="b" xml:lang="eng"> is described in online resource section. Run to update extent, CRS or graphic overview
       for this WMS service for the layer named:</msg>
-    <msg id="a" xml:lang="fr">Le service de visualisation </msg>
-    <msg id="b" xml:lang="fr"> est décrit dans la section resource en ligne. Exécuter cette action pour mettre à jour l'étendue, les systèmes de projection
+    <msg id="a" xml:lang="fre">Le service de visualisation </msg>
+    <msg id="b" xml:lang="fre"> est décrit dans la section resource en ligne. Exécuter cette action pour mettre à jour l'étendue, les systèmes de projection
       ou les aperçus pour ce service et la couche nommée : </msg>
   </xsl:variable>
 
@@ -60,7 +60,7 @@
       select="$root//gmd:onLine/gmd:CI_OnlineResource[contains(gmd:protocol/gco:CharacterString, 'OGC:WMS') 
                                             and normalize-space(gmd:linkage/gmd:URL)!='']"/>
     <xsl:variable name="srv"
-      select="$root//*[local-name(.)='SV_ServiceIdentification' or @gco:isoType='srv:SV_ServiceIdentification']"/>
+      select="$root//*[local-name(.)='SV_ServiceIdentification' or contains(@gco:isoType, 'SV_ServiceIdentification')]"/>
     
     <!-- Check if server is up and new value are available 
      <xsl:variable name="capabilities"
@@ -102,15 +102,12 @@
 
   <!-- Here set extent and graphicOverview -->
   <xsl:template
-    match="gmd:identificationInfo/gmd:MD_DataIdentification|
-        gmd:identificationInfo/*[@gco:isoType='gmd:MD_DataIdentification']|
-        gmd:identificationInfo/srv:SV_ServiceIdentification|
-        gmd:identificationInfo/*[@gco:isoType='srv:SV_ServiceIdentification']"
+    match="gmd:identificationInfo/*"
     priority="2">
 
     <xsl:variable name="srv"
       select="local-name(.)='SV_ServiceIdentification'
-            or @gco:isoType='srv:SV_ServiceIdentification'"/>
+            or contains(@gco:isoType, 'SV_ServiceIdentification')"/>
 
 
     <xsl:copy>

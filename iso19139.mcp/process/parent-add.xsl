@@ -6,7 +6,6 @@ Stylesheet used to update metadata adding a reference to a parent record.
 	xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gts="http://www.isotc211.org/2005/gts"
 	xmlns:gml="http://www.opengis.net/gml" xmlns:srv="http://www.isotc211.org/2005/srv"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:geonet="http://www.fao.org/geonetwork">
 
 	<!-- Parent metadata record UUID -->
@@ -52,9 +51,13 @@ Stylesheet used to update metadata adding a reference to a parent record.
 		    gmd:describes|
 		    gmd:propertyType|
 		    gmd:featureType|
-		    gmd:featureAttribute|
-				mcp:revisionDate|
-				mcp:metadataContactInfo"/>
+		    gmd:featureAttribute"/>
+
+			<!-- copy elements from any profile that adds them to MD_Metadata -->
+      <xsl:for-each
+        select="*[namespace-uri()!='http://www.isotc211.org/2005/gmd' and namespace-uri()!='http://www.fao.org/geonetwork']">
+        <xsl:copy-of select="."/>
+      </xsl:for-each>
 
 		</xsl:copy>
 	</xsl:template>

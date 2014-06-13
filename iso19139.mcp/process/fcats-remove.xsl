@@ -9,8 +9,13 @@ detach a dataset metadata
 	<xsl:param name="uuidref"/>
 
 	<!-- Detach -->
-	<xsl:template match="srv:operatesOn[@uuidref=$uuidref]" priority="2"/>
-	<xsl:template match="srv:coupledResource[srv:SV_CoupledResource/srv:identifier/gco:CharacterString=$uuidref]" priority="2"/>
+    <!-- Remove attributes uuidref and xlink:href -->
+	<xsl:template match="gmd:contentInfo/gmd:MD_FeatureCatalogueDescription/gmd:featureCatalogueCitation[@uuidref=$uuidref]" priority="2">
+        <xsl:copy>
+            <xsl:apply-templates select="node()"/>
+        </xsl:copy>
+    </xsl:template>
+
 
 	<!-- Do a copy of every nodes and attributes -->
 	<xsl:template match="@*|node()">
