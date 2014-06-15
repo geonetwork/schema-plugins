@@ -30,25 +30,14 @@
     <xsl:param name="base" as="node()"/>
     <xsl:param name="overrideLabel" as="xs:string" required="no" select="''"/>
 
-		<!-- process in profile mode first -->
-		<xsl:variable name="mcpElements">
-    	<xsl:apply-templates mode="mode-iso19139.mcp" select="$base">
-      	<xsl:with-param name="overrideLabel" select="$overrideLabel"/>
-    	</xsl:apply-templates>
-		</xsl:variable>
+		<!-- process in iso19139 mode - but we can override any templates
+		     defined for iso19139 by importing that stylesheet into our
+				 mcp stylesheet - that way the iso19139 templates will have
+				 a lower priority than ours -->
+    <xsl:apply-templates mode="mode-iso19139" select="$base">
+     	<xsl:with-param name="overrideLabel" select="$overrideLabel"/>
+    </xsl:apply-templates>
 
-		<xsl:choose>
-			<!-- if we got a match in profile mode then show it -->
-			<xsl:when test="count($mcpElements/*)>0">
-				<xsl:copy-of select="$mcpElements"/>
-			</xsl:when>
-			<!-- otherwise process in base iso19139 mode -->
-			<xsl:otherwise>
-    		<xsl:apply-templates mode="mode-iso19139" select="$base">
-      		<xsl:with-param name="overrideLabel" select="$overrideLabel"/>
-    		</xsl:apply-templates>
-			</xsl:otherwise>
-		</xsl:choose>
   </xsl:template>
 
   <!-- Evaluate an expression. This is schema dependant in order to properly 

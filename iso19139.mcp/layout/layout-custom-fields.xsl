@@ -11,10 +11,8 @@
   xmlns:gn-fn-iso19139="http://geonetwork-opensource.org/xsl/functions/profiles/iso19139"
   xmlns:exslt="http://exslt.org/common" exclude-result-prefixes="#all">
 
-  <xsl:include href="../../iso19139/layout/layout-custom-fields-keywords.xsl"/>
-
   <!-- Readonly elements -->
-  <xsl:template mode="mode-iso19139.mcp" priority="2000" match="mcp:revisionDate">
+  <xsl:template mode="mode-iso19139" priority="2000" match="mcp:revisionDate">
 
     <xsl:call-template name="render-element">
       <xsl:with-param name="label" select="gn-fn-metadata:getLabel($schema, name(), $labels)/label"/>
@@ -29,9 +27,6 @@
     </xsl:call-template>
 
   </xsl:template>
-
-	<!-- Ignore all other elements - leave that to iso19139 mode -->
-	<xsl:template mode="mode-iso19139.mcp" match="*|@*"/>
 
 	<!-- FIXME: Add custom handling for mcp:dataParameters, 
 	mcp:metadataContactInfo, mcp:resourceContactInfo and

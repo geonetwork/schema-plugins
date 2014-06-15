@@ -11,39 +11,26 @@
   xmlns:gn-fn-iso19139="http://geonetwork-opensource.org/xsl/functions/profiles/iso19139"
   xmlns:exslt="http://exslt.org/common" exclude-result-prefixes="#all">
 
+	<xsl:import href="../../iso19139/layout/layout.xsl"/>
 	<xsl:include href="utility-tpl.xsl"/>
-  <xsl:include href="layout-custom-fields.xsl"/>
+	<xsl:include href="layout-custom-fields.xsl"/>
 
-
-  <!-- Visit all XML tree recursively -->
-  <xsl:template mode="mode-iso19139.mcp" match="mcp:*">
-    <xsl:param name="schema" select="$schema" required="no"/>
-    <xsl:param name="labels" select="$labels" required="no"/>
-
-    <xsl:apply-templates mode="mode-iso19139.mcp" select="*|@*">
-      <xsl:with-param name="schema" select="$schema"/>
-      <xsl:with-param name="labels" select="$labels"/>
-    </xsl:apply-templates>
-  </xsl:template>
 
   <!-- Boxed element
     
       Details about the last line :
       * namespace-uri(.) != $gnUri: Only take into account profile's element 
       * and $isFlatMode = false(): In flat mode, don't box any
-      * and gmd:*: Match all elements having gmd child elements
+      * and mcp:*: Match all elements having mcp child elements
       * and not(gco:CharacterString): Don't take into account those having gco:CharacterString (eg. multilingual elements)
   -->
-  <xsl:template mode="mode-iso19139.mcp" priority="200"
-    match="*[name() = $editorConfig/editor/fieldsWithFieldset/name 
-    or @gco:isoType = $editorConfig/editor/fieldsWithFieldset/name]|
-      gmd:report/*|
-      gmd:result/*|
-      gmd:extent[local-name(..)!='EX_TemporalExtent']|
-      *[namespace-uri(.) != $gnUri and $isFlatMode = false() and gmd:* and not(gco:CharacterString) and not(gmd:URL)]">
+  <xsl:template mode="mode-iso19139" priority="2000"
+    match="*[name() = $editorConfig/editor/fieldsWithFieldset/name and namespace-uri()='http://bluenet3.antcrc.utas.edu.au/mcp']|
+      *[namespace-uri() != $gnUri and $isFlatMode = false() and mcp:* and not(gco:CharacterString) and not(gmd:URL)]">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
 
+		<xsl:message>Boxed mcp element: <xsl:value-of select="name()"/></xsl:message>
     <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
     <xsl:variable name="isoType" select="if (../@gco:isoType) then ../@gco:isoType else ''"/>
 
@@ -86,7 +73,8 @@
 
   </xsl:template>
 
-  <!-- Match codelist values.
+  <!-- Match codelist values. Must use iso19139.mcp because some 
+	     19139 codelists are 
   
   eg. 
   <gmd:CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="pointOfContact">
@@ -96,11 +84,12 @@
     <geonet:attribute name="codeSpace" add="true"/>
   
   -->
-  <xsl:template mode="mode-iso19139.mcp" priority="200" match="*[*/@codeList]">
+  <xsl:template mode="mode-iso19139" priority="200" match="*[*/@codeList]">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
     <xsl:param name="codelists" select="$iso19139codelists" required="no"/>
 
+		<xsl:message>Codelist mcp element: <xsl:value-of select="name()"/></xsl:message>
     <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
     <xsl:variable name="isoType" select="if (../@gco:isoType) then ../@gco:isoType else ''"/>
     <xsl:variable name="elementName" select="name()"/>
