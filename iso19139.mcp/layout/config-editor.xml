@@ -1286,16 +1286,20 @@
           <field xpath="/mcp:MD_Metadata/gmd:hierarchyLevelName" or="hierarchyLevelName"
                  in="/mcp:MD_Metadata"/>
           <field xpath="/mcp:MD_Metadata/gmd:dateStamp"/>
+          <field xpath="/mcp:MD_Metadata/mcp:revisionDate"/>
           <field xpath="/mcp:MD_Metadata/gmd:metadataStandardName"/>
           <field xpath="/mcp:MD_Metadata/gmd:metadataStandardVersion"/>
-          <field xpath="/mcp:MD_Metadata/gmd:contact" or="contact" in="/mcp:MD_Metadata"/>
-          <field xpath="/mcp:MD_Metadata/gmd:dataSetURI" or="dataSetURI" in="/mcp:MD_Metadata"/>
+          <field xpath="/mcp:MD_Metadata/gmd:contact|/mcp:MD_Metadata/mcp:metadataContactInfo" or="contact" in="/mcp:MD_Metadata"/>
+          <!-- These are not often used in mcp so leave them out of the default
+					     mode
+					<field xpath="/mcp:MD_Metadata/gmd:dataSetURI" or="dataSetURI" in="/mcp:MD_Metadata"/> 
           <field xpath="/mcp:MD_Metadata/gmd:locale" or="locale" in="/mcp:MD_Metadata"/>
           <field xpath="/mcp:MD_Metadata/gmd:series"/>
           <field xpath="/mcp:MD_Metadata/gmd:describes"/>
           <field xpath="/mcp:MD_Metadata/gmd:propertyType"/>
           <field xpath="/mcp:MD_Metadata/gmd:featureType"/>
-          <field xpath="/mcp:MD_Metadata/gmd:featureAttribute"/>
+          <field xpath="/mcp:MD_Metadata/gmd:featureAttribute"/> 
+					-->
         </section>
       </tab>
       
@@ -1305,34 +1309,20 @@
       </flatModeExceptions>
     </view>
     <view name="advanced">
-      <tab id="identificationInfo" default="true">
+      <tab id="All" default="true">
         <section xpath="/mcp:MD_Metadata/gmd:identificationInfo" or="identificationInfo"
                  in="/mcp:MD_Metadata"/>
-      </tab>
-      <tab id="distributionInfo">
         <section xpath="/mcp:MD_Metadata/gmd:distributionInfo" or="distributionInfo"
                  in="/mcp:MD_Metadata"/>
-      </tab>
-      <tab id="dataQualityInfo">
         <section xpath="/mcp:MD_Metadata/gmd:dataQualityInfo" or="dataQualityInfo"
                  in="/mcp:MD_Metadata"/>
-      </tab>
-      <tab id="spatialRepresentationInfo">
         <section xpath="/mcp:MD_Metadata/gmd:spatialRepresentationInfo"
                  or="spatialRepresentationInfo" in="/mcp:MD_Metadata"/>
-      </tab>
-      <tab id="referenceSystemInfo">
         <section xpath="/mcp:MD_Metadata/gmd:referenceSystemInfo" or="referenceSystemInfo"
                  in="/mcp:MD_Metadata"/>
-      </tab>
-      <tab id="contentInfo" toggle="true">
         <section xpath="/mcp:MD_Metadata/gmd:contentInfo" or="contentInfo" in="/mcp:MD_Metadata"/>
-      </tab>
-      <tab id="portrayalCatalogueInfo" toggle="true">
         <section xpath="/mcp:MD_Metadata/gmd:portrayalCatalogueInfo" or="portrayalCatalogueInfo"
                  in="/mcp:MD_Metadata"/>
-      </tab>
-      <tab id="metadata">
         <section name="mcp:MD_Metadata">
           <field xpath="/mcp:MD_Metadata/gmd:fileIdentifier"/>
           <field xpath="/mcp:MD_Metadata/gmd:language" or="language" in="/mcp:MD_Metadata"/>
@@ -1344,9 +1334,11 @@
           <field xpath="/mcp:MD_Metadata/gmd:hierarchyLevelName" or="hierarchyLevelName"
                  in="/mcp:MD_Metadata"/>
           <field xpath="/mcp:MD_Metadata/gmd:dateStamp"/>
+          <field xpath="/mcp:MD_Metadata/mcp:revisionDate"/>
           <field xpath="/mcp:MD_Metadata/gmd:metadataStandardName"/>
           <field xpath="/mcp:MD_Metadata/gmd:metadataStandardVersion"/>
           <field xpath="/mcp:MD_Metadata/gmd:contact|/mcp:MD_Metadata/mcp:metadataContactInfo" or="contact" in="/mcp:MD_Metadata"/>
+					<!-- Not often used in MCP so exclude them for now
           <field xpath="/mcp:MD_Metadata/gmd:dataSetURI" or="dataSetURI" in="/mcp:MD_Metadata"/>
           <field xpath="/mcp:MD_Metadata/gmd:locale" or="locale" in="/mcp:MD_Metadata"/>
           <field xpath="/mcp:MD_Metadata/gmd:series"/>
@@ -1354,17 +1346,12 @@
           <field xpath="/mcp:MD_Metadata/gmd:propertyType"/>
           <field xpath="/mcp:MD_Metadata/gmd:featureType"/>
           <field xpath="/mcp:MD_Metadata/gmd:featureAttribute"/>
+					-->
         </section>
-      </tab>
-      <tab id="metadataConstraints" toggle="true">
         <section xpath="/mcp:MD_Metadata/gmd:metadataConstraints" or="metadataConstraints"
                  in="/mcp:MD_Metadata"/>
-      </tab>
-      <tab id="metadataMaintenance" toggle="true">
         <section xpath="/mcp:MD_Metadata/gmd:metadataMaintenance" or="metadataMaintenance"
                  in="/mcp:MD_Metadata"/>
-      </tab>
-      <tab id="applicationSchemaInfo" toggle="true">
         <section xpath="/mcp:MD_Metadata/gmd:applicationSchemaInfo" or="applicationSchemaInfo"
                  in="/mcp:MD_Metadata"/>
       </tab>
