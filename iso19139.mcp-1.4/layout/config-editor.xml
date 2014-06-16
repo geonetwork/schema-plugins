@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../config-editor.xsd"
+  xmlns:gn="http://www.fao.org/geonetwork"
+  xmlns:gco="http://www.isotc211.org/2005/gco"
+  xmlns:gmd="http://www.isotc211.org/2005/gmd"
+  xmlns:gmx="http://www.isotc211.org/2005/gmx"
+  xmlns:srv="http://www.isotc211.org/2005/srv"
+  xmlns:gml="http://www.opengis.net/gml"
+	xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <!-- Form field type configuration. Default is text. -->
+  <fields>
+    <for name="gmd:abstract" use="textarea"/>
+    <for name="gmd:checkPointDescription" use="textarea"/>
+    <for name="gmd:credit" use="textarea"/>
+    <for name="gmd:description" use="textarea"/>
+    <for name="gmd:evaluationMethodDescription" use="textarea"/>
+    <for name="gmd:explanation" use="textarea"/>
+    <for name="gmd:handlingDescription" use="textarea"/>
+    <for name="gmd:maintenanceNote" use="textarea"/>
+    <for name="gmd:measureDescription" use="textarea"/>
+    <for name="gmd:purpose" use="textarea"/>
+    <for name="gmd:orderingInstructions" use="textarea"/>
+    <for name="gmd:otherConstraints" use="textarea"/>
+    <for name="gmd:statement" use="textarea"/>
+    <for name="gmd:supplementalInformation" use="textarea"/>
+    <for name="gmd:specificUsage" use="textarea"/>
+    <for name="gmd:userNote" use="textarea"/>
+    <for name="gmd:useLimitation" use="textarea"/>
+
+
+    <for name="gco:Distance" use="number"/>
+    <for name="gco:Decimal" use="number"/>
+    <for name="gco:Integer" use="number"/>
+    <for name="gco:Real" use="number"/>
+    <for name="gco:Boolean" use="checkbox"/>
+
+
+    <for name="gco:Date" use="data-gn-date-picker"/>
+    <for name="gco:DateTime" use="data-gn-date-picker"/>
+
+
+
+    <!-- gmx:FileName/@src attribute -->
+    <for name="src" use="data-gn-logo-selector"/>
+
+    <for name="gmd:electronicMailAddress" use="email"/>
+
+    <for name="gmd:language" use="data-gn-language-picker"/>
+    <for name="gmd:languageCode" use="data-gn-language-picker"/>
+
+    <for name="gmd:country" use="data-gn-country-picker"/>
+
+    <for name="gmd:referenceSystemInfo" addDirective="data-gn-crs-selector"/>
+
+    <for name="gmd:contact" addDirective="data-gn-directory-entry-selector"/>
+    <for name="gmd:pointOfContact" addDirective="data-gn-directory-entry-selector"/>
+    <for name="gmd:distributor" addDirective="data-gn-directory-entry-selector"/>
+    <for name="gmd:processor" addDirective="data-gn-directory-entry-selector"/>
+    <for name="gmd:citedResponsibleParty" addDirective="data-gn-directory-entry-selector"/>
+    
+    <for name="gmd:descriptiveKeywords" addDirective="data-gn-thesaurus-selector"/>
+  </fields>
+
+
+  <fieldsWithFieldset>
+    <name>mcp:MD_Metadata</name>
+    <name>gmd:identificationInfo</name>
+    <name>gmd:distributionInfo</name>
+    <name>gmd:portrayalCatalogueInfo</name>
+    <name>gmd:portrayalCatalogueCitation</name>
+    <name>gmd:thesaurusName</name>
+    <name>gmd:spatialRepresentationInfo</name>
+    <name>gmd:pointOfContact</name>
+    <name>gmd:contact</name>
+		<name>mcp:extent</name>
+		<name>mcp:contactInfo</name>
+    <name>gmd:citedResponsibleParty</name>
+    <name>gmd:dataQualityInfo</name>
+    <name>gmd:contentInfo</name>
+    <name>gmd:distributionFormat</name>
+    <name>gmd:referenceSystemInfo</name>
+    <name>gmd:spatialResolution</name>
+    <name>gmd:offLine</name>
+    <name>gmd:onLine</name>
+    <name>gmd:address</name>
+    <name>gmd:projection</name>
+    <name>gmd:ellipsoid</name>
+    <name>gmd:attributes</name>
+    <name>gmd:verticalCRS</name>
+    <name>gmd:geographicBox</name>
+    <name>gmd:EX_TemporalExtent</name>
+    <name>gmd:MD_Distributor</name>
+    <name>srv:containsOperations</name>
+    <name>srv:SV_CoupledResource</name>
+    <name>gmd:metadataConstraints</name>
+    <name>gmd:aggregationInfo</name>
+    <name>gmd:processStep</name>
+    <name>gmd:lineage</name>
+  </fieldsWithFieldset>
+
+  <multilingualFields>
+    <!-- In multilingual mode, define which mode
+    the widget should have. If expanded, then one
+    field per language is displayed. -->
+    <expanded>
+      <name>gmd:title</name>
+      <name>gmd:abstract</name>
+    </expanded>
+    <!-- All fields in ISO could be multilingual.
+    Define element to exlcude. 
+    TODO: it may be relevant to have parent defined
+    to restrict the list.
+    -->
+    <exclude>
+      <name>gmd:identifier</name>
+      <name>gmd:metadataStandardName</name>
+      <name>gmd:metadataStandardVersion</name>
+      <name>gmd:hierarchyLevelName</name>
+      <name>gmd:dataSetURI</name>
+      <name>gmd:postalCode</name>
+      <name>gmd:city</name>
+      <name>gmd:administrativeArea</name>
+      <name>gmd:voice</name>
+      <name>gmd:facsimile</name>
+      <name>gmd:dataset</name>
+      <name>gmd:other</name>
+      <name>gmd:hoursOfService</name>
+      <name>gmd:applicationProfile</name>
+      <name>gmd:page</name>
+      <name>gmd:date</name>
+      <name>gmd:fileName</name>
+      <name>gmd:protocol</name>
+      <name>gmd:fileType</name>
+      <name>gmd:unitsOfDistribution</name>
+      <name>gmd:amendmentNumber</name>
+      <name>gmd:specification</name>
+      <name>gmd:fileDecompressionTechnique</name>
+      <name>gmd:turnaround</name>
+      <name>gmd:fees</name>
+      <name>gmd:userDeterminedLimitations</name>
+      <name>gmd:codeSpace</name>
+      <name>gmd:version</name>
+      <name>gmd:edition</name>
+      <name>gmd:ISBN</name>
+      <name>gmd:ISSN</name>
+      <name>gmd:errorStatistic</name>
+      <name>gmd:schemaAscii</name>
+      <name>gmd:softwareDevelopmentFileFormat</name>
+      <name>gmd:shortName</name>
+      <name>gmd:condition</name>
+      <name>gmd:maximumOccurence</name>
+      <name>gmd:domainValue</name>
+      <name>gmd:densityUnits</name>
+      <name>gmd:descriptor</name>
+      <name>gmd:denominator</name>
+      <name>gmd:classificationSystem</name>
+      <name>gmd:checkPointDescription</name>
+      <name>gmd:transformationDimensionDescription</name>
+      <name>gmd:orientationParameterDescription</name>
+      <name>srv:name</name>
+      <name>srv:invocationName</name>
+      <name>srv:serviceTypeVersion</name>
+      <name>srv:operationName</name>
+      <name>srv:identifier</name>
+    </exclude>
+  </multilingualFields>
+
+
+  <!-- View configuration -->
+  <views>
+    <view name="default">
+      <tab id="default" default="true" mode="flat">
+        <section xpath="/mcp:MD_Metadata/gmd:identificationInfo">
+          <field xpath="/mcp:MD_Metadata/gmd:citation"/>
+          <field xpath="/mcp:MD_Metadata/gmd:abstract"/>
+          <field xpath="/mcp:MD_Metadata/gmd:purpose"/>
+          <field xpath="/mcp:MD_Metadata/gmd:credit"/>
+          <field xpath="/mcp:MD_Metadata/gmd:status"/>
+          <field xpath="/mcp:MD_Metadata/gmd:pointOfContact" notDisplayedIfMissing="true"/>
+          <field xpath="/mcp:MD_Metadata/gmd:resourceMaintenance"/>
+          <field xpath="/mcp:MD_Metadata/gmd:resourceFormat"/>
+          <field xpath="/mcp:MD_Metadata/gmd:descriptiveKeywords"/>
+          <field xpath="/mcp:MD_Metadata/gmd:resourceSpecficUsage"/>
+          <field xpath="/mcp:MD_Metadata/gmd:resourceConstraints"/>
+          <field xpath="/mcp:MD_Metadata/gmd:aggregationInfo"/>
+          <field xpath="/mcp:MD_Metadata/gmd:spatialRepresentationType"/>
+          <field xpath="/mcp:MD_Metadata/gmd:spatialResolution"/>
+          <field xpath="/mcp:MD_Metadata/gmd:language"/>
+          <field xpath="/mcp:MD_Metadata/gmd:characterSet"/>
+          <field xpath="/mcp:MD_Metadata/gmd:topicCategory"/>
+          <field xpath="/mcp:MD_Metadata/gmd:environmentDescription"/>
+          <field xpath="/mcp:MD_Metadata/gmd:extent"/>
+          <field xpath="/mcp:MD_Metadata/gmd:supplementalInformation"/>
+          <field xpath="/mcp:MD_Metadata/mcp:samplingFrequency"/>
+          <field xpath="/mcp:MD_Metadata/mcp:dataParameters"/>
+        </section>
+        <section xpath="/mcp:MD_Metadata/gmd:distributionInfo"/>
+        <section xpath="/mcp:MD_Metadata/gmd:dataQualityInfo"/>
+        <section name="mcp:MD_Metadata">
+          <field xpath="/mcp:MD_Metadata/gmd:fileIdentifier"/>
+          <field xpath="/mcp:MD_Metadata/gmd:language" or="language" in="/mcp:MD_Metadata"/>
+          <field xpath="/mcp:MD_Metadata/gmd:characterSet"/>
+          <field xpath="/mcp:MD_Metadata/gmd:parentIdentifier" or="parentIdentifier"
+                 in="/mcp:MD_Metadata"/>
+          <field xpath="/mcp:MD_Metadata/gmd:hierarchyLevel" or="hierarchyLevel"
+                 in="/mcp:MD_Metadata"/>
+          <field xpath="/mcp:MD_Metadata/gmd:hierarchyLevelName" or="hierarchyLevelName"
+                 in="/mcp:MD_Metadata"/>
+          <field xpath="/mcp:MD_Metadata/gmd:dateStamp"/>
+          <field xpath="/mcp:MD_Metadata/mcp:revisionDate"/>
+          <field xpath="/mcp:MD_Metadata/gmd:metadataStandardName"/>
+          <field xpath="/mcp:MD_Metadata/gmd:metadataStandardVersion"/>
+          <field xpath="/mcp:MD_Metadata/gmd:contact" notDisplayedIfMissing="true"/>
+          <!-- These are not often used in mcp so leave them out of the default
+					     mode
+					<field xpath="/mcp:MD_Metadata/gmd:dataSetURI" or="dataSetURI" in="/mcp:MD_Metadata"/> 
+          <field xpath="/mcp:MD_Metadata/gmd:locale" or="locale" in="/mcp:MD_Metadata"/>
+          <field xpath="/mcp:MD_Metadata/gmd:series"/>
+          <field xpath="/mcp:MD_Metadata/gmd:describes"/>
+          <field xpath="/mcp:MD_Metadata/gmd:propertyType"/>
+          <field xpath="/mcp:MD_Metadata/gmd:featureType"/>
+          <field xpath="/mcp:MD_Metadata/gmd:featureAttribute"/> 
+					-->
+        </section>
+      </tab>
+      
+      <!-- Elements that should not use the "flat" mode --> 
+      <flatModeExceptions>
+        <for name="gmd:descriptiveKeywords" />
+      </flatModeExceptions>
+    </view>
+    <view name="advanced">
+      <tab id="All" default="true">
+        <section xpath="/mcp:MD_Metadata/gmd:identificationInfo" or="identificationInfo"
+                 in="/mcp:MD_Metadata">
+          <field xpath="/mcp:MD_Metadata/gmd:citation"/>
+          <field xpath="/mcp:MD_Metadata/gmd:abstract"/>
+          <field xpath="/mcp:MD_Metadata/gmd:purpose"/>
+          <field xpath="/mcp:MD_Metadata/gmd:credit"/>
+          <field xpath="/mcp:MD_Metadata/gmd:status"/>
+          <field xpath="/mcp:MD_Metadata/gmd:pointOfContact" notDisplayedIfMissing="true"/>
+          <field xpath="/mcp:MD_Metadata/gmd:resourceMaintenance"/>
+          <field xpath="/mcp:MD_Metadata/gmd:resourceFormat"/>
+          <field xpath="/mcp:MD_Metadata/gmd:descriptiveKeywords"/>
+          <field xpath="/mcp:MD_Metadata/gmd:resourceSpecficUsage"/>
+          <field xpath="/mcp:MD_Metadata/gmd:resourceConstraints"/>
+          <field xpath="/mcp:MD_Metadata/gmd:aggregationInfo"/>
+          <field xpath="/mcp:MD_Metadata/gmd:spatialRepresentationType"/>
+          <field xpath="/mcp:MD_Metadata/gmd:spatialResolution"/>
+          <field xpath="/mcp:MD_Metadata/gmd:language"/>
+          <field xpath="/mcp:MD_Metadata/gmd:characterSet"/>
+          <field xpath="/mcp:MD_Metadata/gmd:topicCategory"/>
+          <field xpath="/mcp:MD_Metadata/gmd:environmentDescription"/>
+          <field xpath="/mcp:MD_Metadata/gmd:extent"/>
+          <field xpath="/mcp:MD_Metadata/gmd:supplementalInformation"/>
+          <field xpath="/mcp:MD_Metadata/mcp:samplingFrequency"/>
+          <field xpath="/mcp:MD_Metadata/mcp:dataParameters"/>
+        </section>
+        <section xpath="/mcp:MD_Metadata/gmd:distributionInfo" or="distributionInfo"
+                 in="/mcp:MD_Metadata"/>
+        <section xpath="/mcp:MD_Metadata/gmd:dataQualityInfo" or="dataQualityInfo"
+                 in="/mcp:MD_Metadata"/>
+        <section xpath="/mcp:MD_Metadata/gmd:spatialRepresentationInfo"
+                 or="spatialRepresentationInfo" in="/mcp:MD_Metadata"/>
+        <section xpath="/mcp:MD_Metadata/gmd:referenceSystemInfo" or="referenceSystemInfo"
+                 in="/mcp:MD_Metadata"/>
+        <section xpath="/mcp:MD_Metadata/gmd:contentInfo" or="contentInfo" in="/mcp:MD_Metadata"/>
+        <section xpath="/mcp:MD_Metadata/gmd:portrayalCatalogueInfo" or="portrayalCatalogueInfo"
+                 in="/mcp:MD_Metadata"/>
+        <section name="mcp:MD_Metadata">
+          <field xpath="/mcp:MD_Metadata/gmd:fileIdentifier"/>
+          <field xpath="/mcp:MD_Metadata/gmd:language" or="language" in="/mcp:MD_Metadata"/>
+          <field xpath="/mcp:MD_Metadata/gmd:characterSet"/>
+          <field xpath="/mcp:MD_Metadata/gmd:parentIdentifier" or="parentIdentifier"
+                 in="/mcp:MD_Metadata"/>
+          <field xpath="/mcp:MD_Metadata/gmd:hierarchyLevel" or="hierarchyLevel"
+                 in="/mcp:MD_Metadata"/>
+          <field xpath="/mcp:MD_Metadata/gmd:hierarchyLevelName" or="hierarchyLevelName"
+                 in="/mcp:MD_Metadata"/>
+          <field xpath="/mcp:MD_Metadata/gmd:dateStamp"/>
+          <field xpath="/mcp:MD_Metadata/mcp:revisionDate"/>
+          <field xpath="/mcp:MD_Metadata/gmd:metadataStandardName"/>
+          <field xpath="/mcp:MD_Metadata/gmd:metadataStandardVersion"/>
+          <field xpath="/mcp:MD_Metadata/gmd:contact" notDisplayedIfMissing="true"/>
+					<!-- Not often used in MCP so exclude them for now
+          <field xpath="/mcp:MD_Metadata/gmd:dataSetURI" or="dataSetURI" in="/mcp:MD_Metadata"/>
+          <field xpath="/mcp:MD_Metadata/gmd:locale" or="locale" in="/mcp:MD_Metadata"/>
+          <field xpath="/mcp:MD_Metadata/gmd:series"/>
+          <field xpath="/mcp:MD_Metadata/gmd:describes"/>
+          <field xpath="/mcp:MD_Metadata/gmd:propertyType"/>
+          <field xpath="/mcp:MD_Metadata/gmd:featureType"/>
+          <field xpath="/mcp:MD_Metadata/gmd:featureAttribute"/>
+					-->
+        </section>
+        <section xpath="/mcp:MD_Metadata/gmd:metadataConstraints" or="metadataConstraints"
+                 in="/mcp:MD_Metadata"/>
+        <section xpath="/mcp:MD_Metadata/gmd:metadataMaintenance" or="metadataMaintenance"
+                 in="/mcp:MD_Metadata"/>
+        <section xpath="/mcp:MD_Metadata/gmd:applicationSchemaInfo" or="applicationSchemaInfo"
+                 in="/mcp:MD_Metadata"/>
+      </tab>
+    </view>
+    <view name="xml">
+      <tab id="xml" default="true"/>
+    </view>
+  </views>
+</editor>
