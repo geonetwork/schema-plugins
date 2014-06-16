@@ -179,7 +179,7 @@
           <field xpath="/mcp:MD_Metadata/gmd:purpose"/>
           <field xpath="/mcp:MD_Metadata/gmd:credit"/>
           <field xpath="/mcp:MD_Metadata/gmd:status"/>
-          <field xpath="/mcp:MD_Metadata/gmd:pointOfContact" notDisplayedIfMissing="true"/>
+          <field xpath="/mcp:MD_Metadata/gmd:pointOfContact"/>
           <field xpath="/mcp:MD_Metadata/gmd:resourceMaintenance"/>
           <field xpath="/mcp:MD_Metadata/gmd:resourceFormat"/>
           <field xpath="/mcp:MD_Metadata/gmd:descriptiveKeywords"/>
@@ -213,7 +213,7 @@
           <field xpath="/mcp:MD_Metadata/mcp:revisionDate"/>
           <field xpath="/mcp:MD_Metadata/gmd:metadataStandardName"/>
           <field xpath="/mcp:MD_Metadata/gmd:metadataStandardVersion"/>
-          <field xpath="/mcp:MD_Metadata/gmd:contact" notDisplayedIfMissing="true"/>
+          <field xpath="/mcp:MD_Metadata/gmd:contact"/>
           <!-- These are not often used in mcp so leave them out of the default
 					     mode
 					<field xpath="/mcp:MD_Metadata/gmd:dataSetURI" or="dataSetURI" in="/mcp:MD_Metadata"/> 
@@ -241,7 +241,7 @@
           <field xpath="/mcp:MD_Metadata/gmd:purpose"/>
           <field xpath="/mcp:MD_Metadata/gmd:credit"/>
           <field xpath="/mcp:MD_Metadata/gmd:status"/>
-          <field xpath="/mcp:MD_Metadata/gmd:pointOfContact" notDisplayedIfMissing="true"/>
+          <field xpath="/mcp:MD_Metadata/gmd:pointOfContact"/>
           <field xpath="/mcp:MD_Metadata/gmd:resourceMaintenance"/>
           <field xpath="/mcp:MD_Metadata/gmd:resourceFormat"/>
           <field xpath="/mcp:MD_Metadata/gmd:descriptiveKeywords"/>
@@ -284,7 +284,7 @@
           <field xpath="/mcp:MD_Metadata/mcp:revisionDate"/>
           <field xpath="/mcp:MD_Metadata/gmd:metadataStandardName"/>
           <field xpath="/mcp:MD_Metadata/gmd:metadataStandardVersion"/>
-          <field xpath="/mcp:MD_Metadata/gmd:contact" notDisplayedIfMissing="true"/>
+          <field xpath="/mcp:MD_Metadata/gmd:contact"/>
 					<!-- Not often used in MCP so exclude them for now
           <field xpath="/mcp:MD_Metadata/gmd:dataSetURI" or="dataSetURI" in="/mcp:MD_Metadata"/>
           <field xpath="/mcp:MD_Metadata/gmd:locale" or="locale" in="/mcp:MD_Metadata"/>
