@@ -50,6 +50,10 @@
 	<copyResources>Copy downloadable files?</copyResources>
 
 	<!-- other strings NB Not part of mcp but must be added -->
+	<downloadDataLabel id="data">Data for download</downloadDataLabel>
+	<downloadDataLabel id="other">Other file for download</downloadDataLabel>
+	<downloadDataLabel id="file">File for download</downloadDataLabel>
+	<downloadDataUrl>Data URL</downloadDataUrl>
 	<dataDownload>Data for Download</dataDownload>
 	<datafordownload>Data for download</datafordownload>
 	<dataparam>Data Parameter</dataparam>
