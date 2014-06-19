@@ -236,6 +236,16 @@ MD_ClassificationCode" codeListValue="unclassified">Non classificato</gmd:MD_Cla
 							</gmd:northBoundLatitude>
 						</gmd:EX_GeographicBoundingBox>
 					</gmd:geographicElement>
+				    <gmd:temporalElement>
+						<gmd:EX_TemporalExtent>
+							<gmd:extent>
+								<gml:TimePeriod gml:id="TP1">
+									<gml:beginPosition>2009-01-01</gml:beginPosition>
+									<gml:endPosition>2013-12-31</gml:endPosition>
+								</gml:TimePeriod>
+							</gmd:extent>
+						</gmd:EX_TemporalExtent>
+					</gmd:temporalElement>
 				</gmd:EX_Extent>
 			</srv:extent>
 			<!-- Tipo di aggancio tra il servizio e i dati associati -->
@@ -272,6 +282,15 @@ MD_ClassificationCode" codeListValue="unclassified">Non classificato</gmd:MD_Cla
 							<gmd:linkage>
 								<gmd:URL>http://url.accesso.servizio.it</gmd:URL>
 							</gmd:linkage>
+							<gmd:protocol gco:nilReason="missing">
+								<gco:CharacterString/>
+							</gmd:protocol>
+							<gmd:name gco:nilReason="missing">
+								<gco:CharacterString/>
+							</gmd:name>
+							<gmd:description gco:nilReason="missing">
+								<gco:CharacterString/>
+							</gmd:description>
 						</gmd:CI_OnlineResource>
 					</gmd:onLine>
 				</gmd:MD_DigitalTransferOptions>

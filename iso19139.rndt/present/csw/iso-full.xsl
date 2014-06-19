@@ -51,7 +51,7 @@
 					</xsl:choose>
 				</gco:CharacterString>
 			</gmd:parentIdentifier>
-			<xsl:apply-templates select="child::* except (gmd:fileIdentifier|gmd:language|gmd:characterSet)"/>
+			<xsl:apply-templates select="child::* except (gmd:fileIdentifier|gmd:parentIdentifier|gmd:language|gmd:characterSet)"/>
 			<!-- <xsl:apply-templates select="//*[not(self::gmd:fileIdentifier)|not(self::gmd:language)|not(self::gmd:characterSet)]"/> -->
 		</xsl:element>
 	</xsl:template>
@@ -112,8 +112,6 @@
 			<gco:CharacterString>1.0</gco:CharacterString>
 		</xsl:copy>
 	</xsl:template>
-	<!-- =================================================================== -->
-
 
 	<!-- ================================================================= -->
 
@@ -126,6 +124,112 @@
 		</xsl:element>
 	</xsl:template>
 
-	<!-- ============================================================================= -->
+	<!-- ================================================================= -->
+	
+<!--	<xsl:template match="gmd:DQ_ConformanceResult">
+		<xsl:choose>
+			<xsl:when test="not(exists(gmd:pass))">
+				<xsl:copy>
+					<xsl:apply-templates select="@*|node()"/>
+					<xsl:element name="gmd:pass">
+						<xsl:text></xsl:text>
+						<xsl:attribute name="nilReason">unknown</xsl:attribute>
+					</xsl:element>
+				</xsl:copy>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:variable name="pass">
+					<xsl:value-of select="gmd:pass"/>
+				</xsl:variable>
+				<xsl:if test="$pass = ''">
+					<xsl:copy>
+						<xsl:apply-templates select="@*|gmd:specification"/>
+						<xsl:apply-templates select="@*|gmd:explanation"/>
+						<xsl:element name="gmd:pass">
+							<xsl:text></xsl:text>
+							<xsl:attribute name="nilReason">unknown</xsl:attribute>
+						</xsl:element>
+					</xsl:copy>				    	
+				</xsl:if>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>-->
+	
+	<!-- Use 'nilReason' to unknown for the pass element in un-compiled conformance -->	
+	<xsl:template match="gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:pass">
+		<xsl:choose>
+			<xsl:when test="../gmd:explanation/gco:CharacterString='non valutato'">
+				<xsl:copy>
+					<xsl:attribute name="nilReason">unknown</xsl:attribute>
+				</xsl:copy>
+				<xsl:comment>Conformance non compilata</xsl:comment>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:copy>
+					<xsl:apply-templates select="@*|node()"/>
+				</xsl:copy>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	
+	<!-- ================================================================= -->
+	
+	<!-- Remove empty keywords
+         1) remove parent <gmd:descriptiveKeywords> if all <gmd:MD_Keywords> are empty
+         2) remove <gmd:keyword> if empty
+    -->
+	<!--
+        <gmd:identificationInfo> 
+            <srv:SV_ServiceIdentification | gmd:MD_DataIdentification >
+                <gmd:descriptiveKeywords>   0..n, insieme di keywords da un determinato thesaurus
+                    <gmd:MD_Keywords>       1..1
+                        <gmd:keyword>
+                            <gco:CharacterString/>
+                        </gmd:keyword>
+                    </gmd:MD_Keywords>
+                </gmd:descriptiveKeywords>
+    -->
+	
+	<!-- Remove empty keywords 1) remove parent <gmd:descriptiveKeywords> if all <gmd:MD_Keywords> are empty -->
+	
+	<xsl:template match="gmd:identificationInfo/*/gmd:descriptiveKeywords">
+		<xsl:variable name="concatkw">
+			<xsl:call-template name="extract_keywords_text"/>
+		</xsl:variable>
+		
+		<!--<xsl:comment>lista keyword: [<xsl:copy-of select="$concatkw" />]</xsl:comment>-->
+		
+		<xsl:choose>
+			<xsl:when test="not(string($concatkw))">
+				<xsl:comment>descriptiveKeywords vuota</xsl:comment>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:copy>
+					<xsl:apply-templates select="@*|node()"/>
+				</xsl:copy>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	
+	<!-- Remove empty keywords 2) remove <gmd:keyword> if empty -->
+	
+	<xsl:template match="gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword">
+		<xsl:choose>
+			<xsl:when test="not(string(gco:CharacterString))">
+				<xsl:comment>Keyword vuota</xsl:comment>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:copy>
+					<xsl:apply-templates select="@*|node()"/>
+				</xsl:copy>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	
+	<xsl:template name="extract_keywords_text">
+		<xsl:for-each select="gmd:MD_Keywords/gmd:keyword"><xsl:copy-of select="gco:CharacterString" /></xsl:for-each>
+	</xsl:template>
+	
+	<!-- ================================================================= -->
 
 </xsl:stylesheet>

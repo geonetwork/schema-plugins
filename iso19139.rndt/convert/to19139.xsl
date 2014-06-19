@@ -97,60 +97,11 @@
 		</xsl:element>
 	</xsl:template>
 
+
+
 	<!-- ================================================================= -->
 
 	<!-- Remove geonet's own stuff -->
 	<xsl:template match="geonet:info" priority="1000"/>
-	
-	
-	<!-- ================================================================= -->
-	
-<!--	<xsl:template match="gmd:DQ_ConformanceResult">
-		<xsl:choose>
-			<xsl:when test="not(exists(gmd:pass))">
-				<xsl:copy>
-					<xsl:apply-templates select="@*|node()"/>
-					<xsl:element name="gmd:pass">
-						<xsl:text></xsl:text>
-						<xsl:attribute name="nilReason">unknown</xsl:attribute>
-					</xsl:element>
-				</xsl:copy>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:variable name="pass">
-					<xsl:value-of select="gmd:pass"/>
-				</xsl:variable>
-				<xsl:if test="$pass = ''">
-					<xsl:copy>
-						<xsl:apply-templates select="@*|gmd:specification"/>
-						<xsl:apply-templates select="@*|gmd:explanation"/>
-						<xsl:element name="gmd:pass">
-							<xsl:text></xsl:text>
-							<xsl:attribute name="nilReason">unknown</xsl:attribute>
-						</xsl:element>
-					</xsl:copy>				    	
-				</xsl:if>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:template>-->
-	
-	<!-- Use 'nilReason' to unknown for the pass element in un-compiled conformance -->	
-	<xsl:template match="gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:pass">
-		<xsl:choose>
-			<xsl:when test="../gmd:explanation/gco:CharacterString='non valutato'">
-				<xsl:copy>
-					<xsl:attribute name="nilReason">unknown</xsl:attribute>
-				</xsl:copy>
-				<xsl:comment>Conformance non compilata</xsl:comment>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:copy>
-					<xsl:apply-templates select="@*|node()"/>
-				</xsl:copy>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:template>
-	
-	<!-- ================================================================= -->
 
 </xsl:stylesheet>

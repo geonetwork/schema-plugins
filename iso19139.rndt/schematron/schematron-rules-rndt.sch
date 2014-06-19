@@ -218,6 +218,7 @@
 			<sch:assert test="count(gmd:descriptiveKeywords[contains($inspireServicesKeyWords, gmd:MD_Keywords/gmd:keyword/gco:CharacterString)]) >0">$loc/strings/alert.M39</sch:assert>
 		</sch:rule>
 	</sch:pattern>
+	
 	<!--DISTRIBUTION INFO - DISTRIBUTION FORMAT-->
 	<sch:pattern>	
 		<sch:title>$loc/strings/M45</sch:title>
@@ -228,6 +229,7 @@
 			and gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:version/gco:CharacterString!='')">$loc/strings/alert.M45</sch:assert>
 		</sch:rule>
 	</sch:pattern>
+	
 	<!--DISTRIBUTION INFO - DISTRIBUTOR-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M46</sch:title>
@@ -245,6 +247,7 @@
 			<sch:assert test="$name and $role and $mail and ($url or $phone)">$loc/strings/alert.M46</sch:assert>			
 		</sch:rule>
 	</sch:pattern>
+
 	<!--CONSTRAINTS - USE LIMITATIONS-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M50</sch:title>
@@ -252,6 +255,7 @@
 			<sch:assert test="count(gmd:resourceConstraints[gmd:MD_Constraints/gmd:useLimitation/gco:CharacterString])>0">$loc/strings/alert.M50</sch:assert>
 		</sch:rule>
 	</sch:pattern>
+	
 	<!--CONSTRAINTS - ACCESS CONSTRAINTS-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M51</sch:title>
@@ -259,6 +263,7 @@
 			<sch:assert test="count(gmd:resourceConstraints[gmd:MD_LegalConstraints/gmd:accessConstraints/gmd:MD_RestrictionCode/@codeListValue])>0">$loc/strings/alert.M51</sch:assert>
 		</sch:rule>
 	</sch:pattern>
+	
 	<!--CONSTRAINTS - USE CONSTRAINTS-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M52</sch:title>
@@ -266,15 +271,24 @@
 			<sch:assert test="count(gmd:resourceConstraints[gmd:MD_LegalConstraints/gmd:useConstraints/gmd:MD_RestrictionCode/@codeListValue])>0">$loc/strings/alert.M52</sch:assert>
 		</sch:rule>
 	</sch:pattern>
-	<!--CONSTRAINTS - OTHER CONSTRAINTS-->
+	
+	<!--CONSTRAINTS - OTHER CONSTRAINTS -->
 	<sch:pattern>
 		<sch:title>$loc/strings/M53</sch:title>
-		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification|//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
-			<sch:assert test="count(gmd:resourceConstraints[gmd:MD_LegalConstraints/gmd:otherConstraints/gco:CharacterString
-			and gmd:MD_LegalConstraints/gmd:useConstraints/gmd:MD_RestrictionCode/@codeListValue!='otherRestrictions'
-			and gmd:MD_LegalConstraints/gmd:accessConstraints/gmd:MD_RestrictionCode/@codeListValue!='otherRestrictions']) = 0">$loc/strings/alert.M53</sch:assert>
+		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification|
+			//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
+			
+			<sch:assert test="count(gmd:resourceConstraints[gmd:MD_LegalConstraints/gmd:otherConstraints/gco:CharacterString != ''
+				and gmd:MD_LegalConstraints/gmd:useConstraints/gmd:MD_RestrictionCode/@codeListValue!='otherRestrictions'
+				and gmd:MD_LegalConstraints/gmd:accessConstraints/gmd:MD_RestrictionCode/@codeListValue!='otherRestrictions']) = 0">$loc/strings/alert.M53</sch:assert>
+			
+			<sch:assert test="count(gmd:resourceConstraints[gmd:MD_LegalConstraints/gmd:otherConstraints/gco:CharacterString = ''
+				and (gmd:MD_LegalConstraints/gmd:useConstraints/gmd:MD_RestrictionCode/@codeListValue='otherRestrictions'
+				or gmd:MD_LegalConstraints/gmd:accessConstraints/gmd:MD_RestrictionCode/@codeListValue='otherRestrictions')]) = 0">$loc/strings/alert.M53</sch:assert>
+			
 		</sch:rule>
 	</sch:pattern>
+	
 	<!--CONTENT INFO - CONTENT TYPE (RASTER DATA)-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M60</sch:title>
@@ -386,7 +400,17 @@
 		<sch:title>$loc/strings/M110</sch:title>
 		<sch:rule context="/gmd:MD_Metadata">
 			<!-- <sch:assert test="count(//*[@gco:nilReason])=0">$loc/strings/alert.M110</sch:assert> -->
-			<sch:assert test="count(//*[@gco:nilReason] except (//gmd:pass[@gco:nilReason]))=0">$loc/strings/alert.M110</sch:assert>
+			<!--sch:assert test="count(//*[@gco:nilReason] except (//gmd:pass[@gco:nilReason]))=0">$loc/strings/alert.M110</sch:assert-->
+			
+			<sch:assert test="count(//*[not(self::gmd:protocol or self::gmd:name or self::gmd:description or self::gmd:pass or self::gmd:otherConstraints)][@gco:nilReason])=0">$loc/strings/alert.M110</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+    <!--VERTICAL ELEMENT-->
+	<sch:pattern>
+		<sch:title>$loc/strings/M111</sch:title>
+		<sch:rule context="gmd:verticalCRS">
+			<sch:assert test=" @xlink:href">$loc/strings/alert.M111</sch:assert>
+			<sch:assert test="(@xlink:href != '')">$loc/strings/alert.M112</sch:assert>
 		</sch:rule>
 	</sch:pattern>
 </sch:schema>

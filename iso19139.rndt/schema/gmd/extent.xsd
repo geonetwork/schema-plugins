@@ -94,8 +94,8 @@
 					<xs:element name="description" type="gco:CharacterString_PropertyType" minOccurs="0"/>
 					<xs:element name="geographicElement" type="gmd:EX_GeographicExtent_PropertyType" minOccurs="1" maxOccurs="1"/>
 					<xs:element name="temporalElement" type="gmd:EX_TemporalExtent_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<!-- <xs:element name="verticalElement" type="gmd:EX_VerticalExtent_PropertyType" minOccurs="1" maxOccurs="1"/> -->
-					<xs:element name="verticalElement" type="gmd:EX_VerticalExtent_PropertyType" minOccurs="0" maxOccurs="unbounded"/>					
+					<xs:element name="verticalElement" type="gmd:EX_VerticalExtent_PropertyType" minOccurs="0" maxOccurs="1"/>
+					<!--xs:element name="verticalElement" type="gmd:EX_VerticalExtent_PropertyType" minOccurs="0" maxOccurs="unbounded"/-->					
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
