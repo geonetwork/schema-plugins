@@ -126,4 +126,9 @@
 	<!--NIL REASON-->
 	<M110>Attributo errato</M110>
 	<alert.M110>Nessun elemento del metadato può utilizzare l'attributo gco:nilReason</alert.M110>
+	<!--VERTICAL ELEMENT-->
+	<M111>Attributo errato</M111>
+	<alert.M111>L'elemento CRS Verticale deve avere l'attributo xlink:href</alert.M111>
+	<M112>Attributo errato</M112>
+	<alert.M112>Il riferimento esterno (XLink) a CRS Verticale non può essere vuoto</alert.M112>
 </strings>

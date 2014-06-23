@@ -1,0 +1,25 @@
+<overrides  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="config-overrides.xsd">
+
+    <properties>
+        <site.name>Nodo per schema RNDT</site.name>
+        <site.org>GeoNetwork RNDT</site.org>
+        <site.host>localhost</site.host>
+    </properties>
+
+    <file name=".*/WEB-INF/config-gui.xml">
+
+		<replaceXML xpath="languages">
+			<ita/><eng/>
+		</replaceXML>
+
+		<addXML xpath="metadata-tab">
+			  <rndt flat="true">
+				 <ancestorException schema="iso19139.rndt" for="CI_Date,spatialResolution"/>
+				 <exception schema="iso19139.rndt" for="invocationName,result,resourceConstraints,pointOfContact,hierarchyLevel,couplingType,operatesOn,distributionInfo,distributionFormat,onLine,identifier,language,characterSet,topicCategory,serviceType,descriptiveKeywords,extent,temporalElement,geographicElement,lineage"/>
+			  </rndt>
+        </addXML>
+		
+    </file>
+
+</overrides>

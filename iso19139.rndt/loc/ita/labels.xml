@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<labels xmlns:gmd="http://www.isotc211.org/2005/gmd">
+<labels xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:xlink="http://www.w3.org/1999/xlink">
 	<element name="gmd:title">
 		<label>Titolo</label>
 		<description>Nome caratteristico e spesso unico con il quale la risorsa è conosciuta.</description>
@@ -29,7 +29,7 @@
 	</element>
 	<element name="gmd:parentIdentifier">
 		<label>Id file precedente</label>
-		<description>Identificatore univoco del file di metadati dell'eventuale trasmissione precedente al RNDT, cui il file corrente è relazionato.</description>
+		<description>Identificatore univoco del file di metadati dell'eventuale trasmissione precedente al RNDT, cui il file corrente è relazionato. Il campo è obbligatorio ma in fase di compilazione può essere lasciato vuoto, sarà valorizzato durante l'esportazione del metadato.</description>
 		<condition>Obbligatorio</condition>
 		<help>L'identificatore deve avere come prefisso il codice IPA dell'Amministrazione titolare del dato o del servizio, seguito dal carattere ":". Il codice IPA assegnato all'Amministrazione nel momento dell'accreditamento come da comma 1 dell’art. 19 dell'allegato A del DPCM 1 aprile 2008. Nel caso di prima trasmissione l'elemento assume lo stesso valore dell’elemento "Identificatore del file".</help>
 	</element>
@@ -82,8 +82,35 @@
 		<condition>obbligatorio</condition>
 	</element>
 	<element name="srv:couplingType">
+		<label>Tipo di aggancio</label>
+		<description>Tipo di accoppiamento</description>
+	</element>
+	<element name="srv:serviceType"><!-- readonly="true" -->
+		<label>Tipo di servizio</label>
+		<description>Nome del tipo di servizio da un registro di servizi. Per esempio, i valori dello nameSpace e il nome degli attributi di GeneralName possono essere 'OGC' e 'catalogue'</description>
+		<helper>
+			<option value="OGC:WMS">OGC Web Map Service (OGC:WMS)</option>
+			<option value="OGC:WFS">OGC Web Feature Service (OGC:WFS)</option>
+			<option value="OGC:WCS">OGC Web Coverage Service (OGC:WCS)</option>
+			<option value="W3C:HTML:DOWNLOAD">Scaricamento (W3C:HTML:DOWNLOAD)</option>
+			<option value="W3C:HTML:LINK">Informazioni (W3C:HTML:LINK)</option>
+			<!-- INSPIRE Service type defined in MD IR / 1.3.1 Spatial data service 
+				type <option value="discovery">Discovery Service (discovery)</option> <option 
+				value="view">View Service (view)</option> <option value="download">Download 
+				Service (download)</option> <option value="transformation">Transformation 
+				Service (transformation)</option> <option value="other">Other Services (other)</option> -->
+			<option show="y" value="discovery">Servizio di ricerca (discovery)</option>
+			<option show="y" value="view">Servizio di consultazione (view)</option>
+			<option show="y" value="download">Servizio di scaricamento (download)</option>
+			<option show="y" value="transformation">Servizio di conversione (transformation)</option>
+			<option show="y" value="invoke">Servizio di richiesta dei servizi di dati territoriali (invoke)</option>
+			<option show="y" value="other">Altri servizi (other)</option>
+			
+		</helper>
+	</element>
+	<element name="srv:operatesOn">
 		<label>Risorsa accoppiata</label>
-		<description>Tipo di accoppiamentog</description>
+		<description>Fornisce informazioni sui dataset su cui opera il servizio</description>
 	</element>
 	<element name="srv:DCP">
 		<label>DCP (Distributed Computing Platforms)</label>		
@@ -304,6 +331,15 @@
 		<description>Informazione sulla valutazione di soddisfacimento del livello accettabile di qualità</description>
 		<condition>Obbligatorio</condition>
 	</element>
+	<element name="gmd:specification" id="130.0" context="gmd:DQ_ConformanceResult">
+		<label>Specifiche</label>
+		<description>Citazione delle specifiche cui la risorsa si conforma</description>
+		<help>L’elemento deve esprimere la conformità alle disposizioni di esecuzione di cui all’articolo 7, paragrafo 1 della Direttiva INSPIRE. Deve essere quindi citato il Regolamento (UE) n.1089/2010 relativo all'interoperabilità di dati e servizi (Titolo = REGOLAMENTO (UE) N. 1089/2010 DELLA COMMISSIONE del 23 novembre 2010 recante attuazione della direttiva 2007/2/CE del Parlamento europeo e del Consiglio per quanto riguarda l'interoperabilità dei set di dati territoriali e dei servizi di dati territoriali, data (aaaa-mm-gg o aaaammgg) = 2010-12-08, tipo data = pubblicazione). E' possibile tuttavia indicare la conformità della risorsa ad altre specifiche.</help>
+	</element>
+	<element name="gmd:specification" context="gmd:MD_Format">
+		<label>Specifiche</label>
+		<description>Nome di un sottoinsieme, profilo o del formato delle specifiche del prodotto</description>
+	</element>
 	<element name="gmd:pass">
 		<label>Grado di conformità</label>
 		<description>Indicazione del grado di conformità alle specifiche citate</description>
@@ -337,13 +373,13 @@
 		<condition>Obbligatorio</condition>
 		<help>Per la documentazione di questo elemento, valorizzare il tag ‘gmd:code’ con il nome del sistema di riferimento presente nella colonna ‘Nome’ della lista ‘MD_ReferenceSystemCode’ di cui al § 3.4.3.11 dell’allegato 2 al DM. Alternativamente, il tag “gmd:code” può essere valorizzato con il relativo codice EPSG (v., a questo proposito, la tabella delle corrispondenze al § 3.4.8.3 dell’allegato 2 al DPCM) introducendo, in questo caso, anche il tag “gmd:codeSpace” attraverso il quale indicare l’URL del registro EPSG “http://www.epsg-registry.org”.</help>
 	</element>
-		<element name="gmd:distributor">
+	<element name="gmd:distributor">
 		<label>Distributore</label>
 		<description>Informazioni sull’organizzazione che distribuisce i dati</description>
 		<condition>Obbligatorio</condition>
 		<help>E' obbligatorio indicare il nome dell'organizzazione, ruolo = distributore (CI_RoleCode), indirizzo e-mail e almeno uno tra sito web (url) e numero telefonico dell'organizzazione </help>
 	</element>
-		<element name="gmd:characterSet" context="gmd:MD_Metadata">
+	<element name="gmd:characterSet" context="gmd:MD_Metadata">
 		<label>Set dei caratteri dei metadati</label>
 		<description>Nome dello standard del set di caratteri utilizzato per i metadati</description>
 		<_condition>condizionato / deve essere documentato se ISO/IEC 10646-1 non è utilizzato e non è definito dall’encoding</_condition>
@@ -355,7 +391,7 @@
 		<_condition>condizionato / deve essere documentato se ISO/IEC 10646-1 non è utilizzato e non è definito dall’encoding</_condition>
 		<help>L’elemento deve assumere uno dei valori della lista “MD_CharacterSetCode” (§ 3.4.3.5 – all. 2 DM)</help>
 	</element>
-		<element name="gmd:spatialRepresentationInfo" id="12.0">
+	<element name="gmd:spatialRepresentationInfo" id="12.0">
 		<label>Tipo di rappresentazione spaziale</label>
 		<description>Metodo di rappresentazione spaziale dei dati</description>
 		<condition>Obbligatorio</condition>
@@ -386,5 +422,66 @@
 	<element name="gmd:RS_Identifier" id="208.0">
 		<description>Identificatore</description>
 		<label>Identificatore</label>
+	</element>
+	<element name="gmd:positionName">
+		<label>Ruolo del responsabile</label>
+		<description>Ruolo o funzione della persona responsabile</description>
+		<condition>obbligatorio</condition>
+	</element>
+	<element name="gco:Real">
+		<label>Numero reale</label>
+		<description>Quantità espressa come valore numerico reale</description>
+	</element>
+	<element name="gml:BaseUnit">
+		<label>Unità di misura elementare</label>
+		<description>Unità di misura che non può essere derivata da altre unità di misura elementari nell'ambito di dato sistema di misura</description>
+	</element>
+	<element name="gml:remarks">
+		<label>Commenti</label>
+		<description>Commenti o informazioni sull'oggetto (in forma di testo o riferimento a una risorsa esterna)</description>
+	</element>
+	<element name="gml:quantityType">
+		<label>Tipo di misura</label>
+		<description>Fenomeno o caratteristica fisica oggetto della misurazione o dell'osservazione</description>
+	</element>
+	<element name="gml:quantityTypeReference">
+		<label>Tipo di misura (riferimento)</label>
+		<description>Risorsa esterna che descrive il fenomeno o la caratteristica fisica oggetto della misurazione o dell'osservazione</description>
+	</element>
+	<element name="gml:catalogSymbol">
+		<label>Simbolo</label>
+		<description>Simbolo, appartenente a un dato catalogo, che identifica l'unità di misura</description>
+	</element>
+	<element name="xlink:role">
+		<label>Funzione XLink (role)</label>
+		<description>Qualified name usato per descrivere la funzione del contenuto del XLink</description>
+	</element>
+	<element name="xlink:arcrole">
+		<label>Arc Role XLink</label>
+		<description>Arc Role XLink</description>
+	</element>
+	<element name="xlink:title">
+		<label>Titolo XLink</label>
+		<description>Descrizione human-readable del XLink</description>
+	</element>
+	<element name="xlink:show">
+		<label>Visualizzazione XLink (show)</label>
+		<description>Specifica in che modo deve essere visualizzato il contenuto corrispondete al XLink (es. : nuova finestra)</description>
+	</element>
+	<element name="xlink:actuate">
+		<label>Azionamento XLink (actuate)</label>
+		<description>Specifica quando deve essere visualizzato il contenuto corrispondete al XLink (es. : al caricamento del documento)</description>
+	</element>
+	<element name="gml:unitsSystem">
+		<label>Sistema di unità di misura</label>
+		<description>Riferimento o descrizione del sistema di unità di misura utilizzato</description>
+	</element>
+	<element name="gmd:contact" context="gmd:MD_MaintenanceInformation">
+		<label>Contatti</label>
+		<description>Identificazione, e mezzi di comunicazione con persone ed enti aventi responsabilità di mantenere i metadati</description>
+	</element>
+	<element name="gmd:verticalElement">
+		<label>Elemento verticale</label>
+		<description>Componenti verticali dell’estensione dei dati</description>
 	</element>
 </labels>
