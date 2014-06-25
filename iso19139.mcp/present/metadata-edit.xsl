@@ -920,7 +920,9 @@
 		<xsl:param name="title"/>
 		<xsl:param name="edit" select="false()"/>
 
-		<xsl:variable name="url" select="mcp:jurisdictionLink/gmd:URL"/>
+		<xsl:variable name="jurisId" select="mcp:jurisdictionLink/gmd:URL"/>
+		<xsl:variable name="jurisName" select="/root/gui/ccjurisdictions/option[@value=$jurisId]"/>
+		<xsl:variable name="url" select="concat('http://wiki.creativecommons.org/',$jurisName)"/>
 		<xsl:variable name="licUrl" select="mcp:licenseLink/gmd:URL"/>
 		<xsl:variable name="licName" select="mcp:licenseName/gco:CharacterString"/>
 		<xsl:variable name="imUrl" select="mcp:imageLink/gmd:URL"/>
@@ -933,13 +935,13 @@
 
 				<tr>
 				<td class="padded">
-					<a onclick="setBunload(false);" href="javascript:popWindow('{$url}'); setBunload(true);"><xsl:value-of select="concat('Jurisdiction: ',substring-before(substring-after($url,concat($ccurl,'/international/')),'/'))"/></a>
+					<a target="_blank" href="{$url}"><xsl:value-of select="concat('Jurisdiction: ',$jurisName)"/></a>
 				</td> 
 				<td class="padded">
-					<a onclick="setBunload(false);" href="javascript:popWindow('{$licUrl}'); setBunload(true);"><IMG align="middle" src="{$imUrl}" longdesc="{$licUrl}" alt="{$licName}"></IMG></a>
+					<a target="_blank" href="{$licUrl}"><IMG align="middle" src="{$imUrl}" longdesc="{$licUrl}" alt="{$licName}"></IMG></a>
 				</td>
 				<td class="padded">
-					<a onclick="setBunload(false);" href="javascript:popWindow('{$licUrl}'); setBunload(true);"><xsl:value-of select="$licName"/></a>
+					<a target="_blank" href="{$licUrl}"><xsl:value-of select="$licName"/></a>
 				</td>
 				</tr>
 
