@@ -63,6 +63,7 @@
     <for name="gmd:citedResponsibleParty" addDirective="data-gn-directory-entry-selector"/>
     
     <for name="gmd:descriptiveKeywords" addDirective="data-gn-thesaurus-selector"/>
+    <for name="mcp:MD_Commons" addDirective="data-gn-commons-jurisdiction-selector"/>
   </fields>
 
 
@@ -237,6 +238,7 @@
       <flatModeExceptions>
         <for name="gmd:descriptiveKeywords" />
 				<for name="mcp:party"/>
+				<for name="mcp:MD_Commons"/>
       </flatModeExceptions>
     </view>
     <view name="advanced">
