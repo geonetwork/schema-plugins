@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <xsl:stylesheet version="2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd"
-										xmlns:gmx="http://www.isotc211.org/2005/gmx"
-										xmlns:gco="http://www.isotc211.org/2005/gco"
-										xmlns:gml="http://www.opengis.net/gml"
-										xmlns:srv="http://www.isotc211.org/2005/srv"
-										xmlns:geonet="http://www.fao.org/geonetwork"
-										xmlns:mcp="http://schemas.aodn.org.au/mcp-2.0"
-										xmlns:dwc="http://rs.tdwg.org/dwc/terms/"
-										xmlns:xlink="http://www.w3.org/1999/xlink"
-										xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	xmlns:gmx="http://www.isotc211.org/2005/gmx"
+	xmlns:gco="http://www.isotc211.org/2005/gco"
+	xmlns:gml="http://www.opengis.net/gml"
+	xmlns:srv="http://www.isotc211.org/2005/srv"
+	xmlns:geonet="http://www.fao.org/geonetwork"
+	xmlns:mcp="http://schemas.aodn.org.au/mcp-2.0"
+	xmlns:dwc="http://rs.tdwg.org/dwc/terms/"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 	<xsl:param name="datadir"/>
 
@@ -24,9 +24,9 @@
 		 Please keep indexes consistent among metadata standards if they should
 		 work accross different metadata resources -->
 	<!-- ========================================================================================= -->
-	
+
 	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
-	
+
 	<!-- ========================================================================================= -->
 
 	<xsl:template match="/">
@@ -48,7 +48,7 @@
 			<xsl:apply-templates select="mcp:MD_Metadata" mode="metadata"/>
 		</Document>
 	</xsl:template>
-	
+
 	<!-- ========================================================================================= -->
 
 	<xsl:template match="*" mode="metadata">
@@ -61,13 +61,13 @@
 				<xsl:for-each select="gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString">
 					<Field name="identifier" string="{string(.)}" store="true" index="true"/>
 				</xsl:for-each>
-	
+
 				<xsl:for-each select="gmd:title/gco:CharacterString">
 					<Field name="title" string="{string(.)}" store="true" index="true"/>
 					<!-- not tokenized title for sorting -->
 					<Field name="_title" string="{string(.)}" store="true" index="true"/>
 				</xsl:for-each>
-	
+
 				<xsl:for-each select="gmd:alternateTitle/gco:CharacterString">
 					<Field name="altTitle" string="{string(.)}" store="true" index="true"/>
 				</xsl:for-each>
@@ -93,7 +93,7 @@
 					<xsl:if test="contains(gmd:CI_PresentationFormCode/@codeListValue, 'Digital')">
 						<Field name="digital" string="true" store="true" index="true"/>
 					</xsl:if>
-				
+
 					<xsl:if test="contains(gmd:CI_PresentationFormCode/@codeListValue, 'Hardcopy')">
 						<Field name="paper" string="true" store="true" index="true"/>
 					</xsl:if>
@@ -145,7 +145,15 @@
 			</xsl:for-each>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
-	
+			<!-- Index distinct platforms                                          -->
+			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
+
+			<xsl:for-each-group select="mcp:dataParameters/mcp:DP_DataParameters/mcp:dataParameter/mcp:DP_DataParameter/mcp:platform/mcp:DP_Term/mcp:term/gco:CharacterString" group-by=".">
+				<Field name="platform" string="{string(current-grouping-key())}" store="true" index="true"/>
+			</xsl:for-each-group>
+
+			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
+
 			<xsl:for-each select="gmd:abstract/gco:CharacterString">
 				<Field name="abstract" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
@@ -163,7 +171,7 @@
 				<xsl:for-each select="gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier/gmd:MD_Identifier/gmd:code/gco:CharacterString">
 					<Field name="geoDescCode" string="{string(.)}" store="true" index="true"/>
 				</xsl:for-each>
-				
+
 				<xsl:for-each select="gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier/gmd:RS_Identifier">
 					<xsl:if test="gmd:authority/*/gmd:title/gco:CharacterString='c-squares'">
 						<xsl:for-each select="tokenize(gmd:code/gco:CharacterString,'\|')">
@@ -229,12 +237,21 @@
 					</xsl:if>
 				</xsl:for-each>
 			</xsl:for-each>
-	
-			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
-	
-			<xsl:for-each select="gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString">
-				<Field name="orgName" string="{string(.)}" store="true" index="true"/>
 
+			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
+			<!-- Index distinct responsible/point of contact organisation names    -->
+			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
+
+			<xsl:variable name="pointOfContactOrganisations" select="gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:organisationName/*"/>
+			<xsl:variable name="responsiblePartyOrganisations" select="gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:organisationName/*"/>
+
+			<xsl:for-each-group select="$pointOfContactOrganisations|$responsiblePartyOrganisations" group-by=".">
+				<Field name="orgName" string="{string(current-grouping-key())}" store="true" index="true"/>
+			</xsl:for-each-group>
+
+			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
+
+			<xsl:for-each select="gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString">
 				<xsl:variable name="role" select="../../gmd:role/*/@codeListValue"/>
 				<xsl:variable name="logo" select="../..//gmx:FileName/@src"/>
 
@@ -243,7 +260,7 @@
 			</xsl:for-each>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
-	
+
 			<xsl:choose>
 				<xsl:when test="gmd:resourceConstraints/gmd:MD_SecurityConstraints">
 					<Field name="secConstr" string="true" store="true" index="true"/>
@@ -254,14 +271,14 @@
 			</xsl:choose>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
-	
+
 			<xsl:for-each select="gmd:topicCategory/gmd:MD_TopicCategoryCode">
 				<Field name="topicCat" string="{string(.)}" store="true" index="true"/>
 				<Field name="keyword" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
-	
+
 			<xsl:for-each select="gmd:language/gco:CharacterString|gmd:language/gmd:LanguageCode/@codeListValue">
 				<Field name="datasetLang" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
@@ -318,33 +335,33 @@
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 			<!--  Fields use to search on Service -->
-			
+
 			<xsl:for-each select="srv:serviceType/gco:LocalName">
 				<Field  name="serviceType" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
-			
+
 			<xsl:for-each select="srv:serviceTypeVersion/gco:CharacterString">
 				<Field  name="serviceTypeVersion" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
-			
+
 			<xsl:for-each select="//srv:SV_OperationMetadata/srv:operationName/gco:CharacterString">
 				<Field  name="operation" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
-			
+
 			<xsl:for-each select="srv:operatesOn/@uuidref">
 				<Field  name="operatesOn" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
-			
+
 			<xsl:for-each select="srv:coupledResource">
 				<xsl:for-each select="srv:SV_CoupledResource/srv:identifier/gco:CharacterString">
 					<Field  name="operatesOnIdentifier" string="{string(.)}" store="true" index="true"/>
 				</xsl:for-each>
-				
+
 				<xsl:for-each select="srv:SV_CoupledResource/srv:operationName/gco:CharacterString">
 					<Field  name="operatesOnName" string="{string(.)}" store="true" index="true"/>
 				</xsl:for-each>
 			</xsl:for-each>
-			
+
 			<xsl:for-each select="//srv:SV_CouplingType/srv:code/@codeListValue">
 				<Field  name="couplingType" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>		
@@ -377,7 +394,7 @@
 			</xsl:for-each>
 
 			<!-- index online protocol -->
-			
+
 			<xsl:for-each select="gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource[gmd:linkage/gmd:URL!='']">
 				<xsl:variable name="download_check"><xsl:text>&amp;fname=&amp;access</xsl:text></xsl:variable>
 				<xsl:variable name="linkage" select="gmd:linkage/gmd:URL" /> 
@@ -386,6 +403,9 @@
 				<xsl:variable name="protocol" select="normalize-space(gmd:protocol/gco:CharacterString)"/>
 				<xsl:variable name="mimetype" select="geonet:protocolMimeType($linkage, $protocol, gmd:name/gmx:MimeFileType/@type)"/>
 				
+				<!-- If the linkage points to WMS service and no protocol specified, manage as protocol OGC:WMS -->
+				<xsl:variable name="wmsLinkNoProtocol" select="contains(lower-case($linkage), 'service=wms') and not(string($protocol))" />
+
 				<!-- ignore empty downloads -->
 				<xsl:if test="string($linkage)!='' and not(contains($linkage,$download_check))">  
 					<Field name="protocol" string="{string($protocol)}" store="false" index="true"/>
@@ -394,24 +414,41 @@
 				<xsl:if test="normalize-space($mimetype)!=''">
 					<Field name="mimetype" string="{$mimetype}" store="false" index="true"/>
 				</xsl:if>
-			  
+
 				<xsl:if test="contains($protocol, 'WWW:DOWNLOAD') or matches($protocol, 'WWW:LINK.*downloaddata')">
 			    	<Field name="download" string="true" store="false" index="true"/>
 			  	</xsl:if>
-			  
-				<xsl:if test="contains($protocol, 'OGC:WMS')">
-			   	 	<Field name="dynamic" string="true" store="false" index="true"/>
-			  	</xsl:if>
-				<Field name="link" string="{concat($title, '|', $desc, '|', $linkage, '|', $protocol, '|', $mimetype)}" store="true" index="false"/>
 				
+				<xsl:if test="contains($protocol, 'OGC:WMS') or $wmsLinkNoProtocol">
+					<Field name="dynamic" string="on" store="false" index="true"/>
+					<Field name="serverUrl" string="{$linkage}" store="false" index="true"/>
+				</xsl:if>
+				<!-- ignore WMS links without protocol (are indexed below with mimetype application/vnd.ogc.wms_xml) -->
+				<xsl:if test="not($wmsLinkNoProtocol)">
+					<Field name="link" string="{concat($title, '|', $desc, '|', $linkage, '|', $protocol, '|', $mimetype)}" store="true" index="false"/>
+				</xsl:if>
+
 				<!-- Add KML link if WMS -->
 				<xsl:if test="starts-with($protocol,'OGC:WMS-') and contains($protocol,'-get-map') and string($linkage)!='' and string($title)!=''">
 					<!-- FIXME : relative path -->
 					<Field name="link" string="{concat($title, '|', $desc, '|', 
 						'../../srv/en/google.kml?uuid=', /gmd:MD_Metadata/gmd:fileIdentifier/gco:CharacterString, '&amp;layers=', $title, 
 						'|application/vnd.google-earth.kml+xml|application/vnd.google-earth.kml+xml')}" store="true" index="false"/>					
-				</xsl:if>					
+				</xsl:if>
 				
+				<!-- Try to detect Web Map Context by checking protocol or file extension -->
+				<xsl:if test="starts-with($protocol,'OGC:WMC') or contains($linkage,'.wmc')">
+					<Field name="link" string="{concat($title, '|', $desc, '|', 
+						$linkage, '|application/vnd.ogc.wmc|application/vnd.ogc.wmc')}" 
+						store="true" index="false"/>
+				</xsl:if>
+				
+				<xsl:if test="$wmsLinkNoProtocol">
+					<Field name="link" string="{concat($title, '|', $desc, '|',
+						$linkage, '|OGC:WMS|application/vnd.ogc.wms_xml')}" 
+						store="true" index="false"/>
+				</xsl:if>
+
 			</xsl:for-each>  
 		</xsl:for-each>
 
@@ -420,26 +457,26 @@
 		<xsl:for-each select="gmd:contentInfo/*/gmd:featureCatalogueCitation[@uuidref]">
 			<Field  name="hasfeaturecat" string="{string(@uuidref)}" store="false" index="true"/>
 		</xsl:for-each>
-		
+
 		<!-- === Data Quality  === -->
 		<xsl:for-each select="gmd:dataQualityInfo/*/gmd:lineage//gmd:source[@uuidref]">
 			<Field  name="hassource" string="{string(@uuidref)}" store="false" index="true"/>
 		</xsl:for-each>
-		
+
 		<xsl:for-each select="gmd:dataQualityInfo/*/gmd:report/*/gmd:result">
-			
+
 			<xsl:for-each select="//gmd:pass/gco:Boolean">
 				<Field name="degree" string="{string(.)}" store="false" index="true"/>
 			</xsl:for-each>
-			
+
 			<xsl:for-each select="//gmd:specification/*/gmd:title/gco:CharacterString">
 				<Field name="specificationTitle" string="{string(.)}" store="false" index="true"/>
 			</xsl:for-each>
-				
+
 			<xsl:for-each select="//gmd:specification/*/gmd:date/*/gmd:date">
 				<Field name="specificationDate" string="{string(gco:Date|gco:DateTime)}" store="false" index="true"/>
 			</xsl:for-each>
-				
+
 			<xsl:for-each select="//gmd:specification/*/gmd:date/*/gmd:dateType/gmd:CI_DateTypeCode/@codeListValue">
 				<Field name="specificationDateType" string="{string(.)}" store="false" index="true"/>
 			</xsl:for-each>
@@ -448,7 +485,7 @@
 		<xsl:for-each select="gmd:dataQualityInfo/*/gmd:lineage/*/gmd:statement/gco:CharacterString">
 			<Field name="lineage" string="{string(.)}" store="false" index="true"/>
 		</xsl:for-each>
-		
+
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 		<!-- === General stuff === -->		
 
@@ -492,13 +529,13 @@
 		</xsl:for-each>
 
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-		
+
 		<xsl:for-each select="mcp:revisionDate/*">
 			<Field name="changeDate" string="{string(.)}" store="true" index="true"/>
 		</xsl:for-each>
-		
+
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-		
+
 		<xsl:for-each select="gmd:contact/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString">
 			<Field name="metadataPOC" string="{string(.)}" store="true" index="true"/>
 			<xsl:variable name="role" select="../../gmd:role/*/@codeListValue"/>
@@ -537,24 +574,24 @@
 		</Field>
 
 		<!-- <xsl:apply-templates select="." mode="codeList"/> -->
-		
+
 	</xsl:template>
 
 	<!-- ========================================================================================= -->
 	<!-- codelist element, indexed, not stored nor tokenized -->
-	
+
 	<xsl:template match="*[./*/@codeListValue]" mode="codeList">
 		<xsl:param name="name" select="name(.)"/>
-		
+
 		<Field name="{$name}" string="{*/@codeListValue}" store="false" index="true"/>		
 	</xsl:template>
 
 	<!-- ========================================================================================= -->
-	
+
 	<xsl:template match="*" mode="codeList">
 		<xsl:apply-templates select="*" mode="codeList"/>
 	</xsl:template>
-	
+
 	<!-- ========================================================================================= -->
 
 </xsl:stylesheet>
