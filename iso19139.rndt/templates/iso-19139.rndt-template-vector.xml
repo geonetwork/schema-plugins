@@ -156,6 +156,10 @@ ode" codeListValue="mapDigital">mapDigital</gmd:CI_PresentationFormCode>
 							</gmd:issueIdentification>
 						</gmd:CI_Series>
 					</gmd:series>
+					<gmd:otherCitationDetails>
+						<gco:CharacterString> http://www.regione.emilia-romagna.it/temi/territorio/cartografia-regionale/vedi-anche/database-topograficoregionale/
+						le-norme-e-gli-atti-in-vigore/atto-di-indirizzo-e-coordinamento-tecnico-per/at_download/file </gco:CharacterString>
+					</gmd:otherCitationDetails>
 				</gmd:CI_Citation>
 			</gmd:citation>
 			<gmd:abstract>
@@ -320,12 +324,17 @@ e" codeListValue="utf8">utf8</gmd:MD_CharacterSetCode>
 							<gmd:maximumValue>
 								<gco:Real>345.15</gco:Real>
 							</gmd:maximumValue>
-							<gmd:verticalCRS xlink:href="http://www.epsgregistry.
+							<gmd:verticalCRS xlink:href="http://www.epsg-registry.
 org/export.htm?gml=urn:ogc:def:crs:EPSG::4979"/>
 						</gmd:EX_VerticalExtent>
 					</gmd:verticalElement>
 				</gmd:EX_Extent>
 			</gmd:extent>
+			<gmd:supplementalInformation>
+				<gco:CharacterString> http://www.regione.emiliaromagna.
+				it/temi/territorio/cartografia-regionale/vedi-anche/database-topografico-regionale/progetti-incorso/
+				capitolato-tecnico-per-la-progettazione-la6/at_download/file </gco:CharacterString>
+			</gmd:supplementalInformation>
 		</gmd:MD_DataIdentification>
 	</gmd:identificationInfo>
 	<gmd:distributionInfo>
@@ -386,6 +395,15 @@ org/export.htm?gml=urn:ogc:def:crs:EPSG::4979"/>
 							<gmd:linkage>
 								<gmd:URL>http://accesso.online.alla.risorsa.it</gmd:URL>
 							</gmd:linkage>
+						    <gmd:protocol gco:nilReason="missing">
+								<gco:CharacterString/>
+							</gmd:protocol>
+							<gmd:name gco:nilReason="missing">
+								<gco:CharacterString/>
+							</gmd:name>
+							<gmd:description gco:nilReason="missing">
+								<gco:CharacterString/>
+							</gmd:description>
 						</gmd:CI_OnlineResource>
 					</gmd:onLine>
 				</gmd:MD_DigitalTransferOptions>

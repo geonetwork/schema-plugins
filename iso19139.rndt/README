@@ -5,4 +5,13 @@ GeoNetwork Italian RNDT metadata pluggable schema (added 23 October 2013).
 
 - RNDT metadata manuals:
   http://www.rndt.gov.it/RNDT/home/index.php?option=com_content&view=article&id=53&Itemid=221
+  
+- Mandatory settings:
+  In order to use correctly the RNDT plugin, a configuration override file must be applied at the GeoNetwork startup
+  In this way a proper metadata-tab configuration for the RNDT profile will be used and all fields will be presented 
+  according to the RNDT specifications. The file to use for this is the 'config-override.xml' at the root path of the RNDT 
+  schema-plugin.
+  
+  See the link below for more details on how the configuration override can be used into GeoNetwork:
+  http://geonetwork-opensource.org/manuals/trunk/eng/users/admin/advanced-configuration/index.html#configuration-override
 

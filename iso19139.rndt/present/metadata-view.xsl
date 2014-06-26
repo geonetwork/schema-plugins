@@ -271,6 +271,90 @@
 		<!--
 		<xsl:call-template name="iso19139-javascript" />
 		-->
+		
+		<script type="text/javascript">
+			<![CDATA[
+				/**
+				 * JavaScript Functions to support the RNDT Profile
+				 */
+				 				 
+				/**
+				 * RNDT: Utility function for Vertical CRS suggestions dropdown.  
+				 */
+				function setInputCRSel(elem, hrefId){
+					var selectEl = elem;
+					var input = document.getElementById(hrefId);
+					var v = input.value;	
+				   
+				    if(selectEl.value == ""){
+						input.value = "http://www.rndt.gov.it/ReferenceSystemCode#999";
+					}else{
+						if(input.value.indexOf("ReferenceSystemCode") != -1){
+							input.value = "http://www.epsg-registry.org/export.htm?gml=urn:ogc:def:crs:" + selectEl.value;
+						}else{
+							input.value = v.substring(0, v.indexOf('EPSG')) + selectEl.value;
+						}
+					}
+				}
+				
+				/**
+				 * RNDT: gm:pass management
+				 */
+				function setConformityPass(sel, selRef, explRef){	
+					if (sel.value.indexOf("non conforme") != -1) {
+						$(selRef).value = 'false';
+						$(explRef).value = 'non conforme';
+					} else if (sel.value.indexOf("conforme") != -1) {	
+						$(selRef).value = 'true';
+						$(explRef).value = 'conforme';
+					} else {
+						$(selRef).value = 'false';
+						$(explRef).value = sel.value;
+					}
+				}
+				
+                /**
+				 * RNDT: Special validation function for the telephone/linkage in ResponsibleParty
+				 */
+				function validateNonEmpty_rndt(linkageElem, phoneRef){
+					var phone = $(phoneRef);
+					
+					if(phone && phone.value.length < 1){
+						if (linkageElem.value.length < 1) {
+					        linkageElem.addClassName('error');
+					        return false;
+					    } else {
+					        linkageElem.removeClassName('error');
+					        return true;
+					    }
+					}else{
+				        linkageElem.removeClassName('error');
+				        return true;
+					}
+				}
+				
+				/**
+				 * RNDT: Force the linkage validation when editing the phone
+				 */
+				function setValidationCheck_rndt(linkageElem, phoneRef){
+					var phone = $(phoneRef);
+					var linkage = $(linkageElem);
+					
+					if(phone){
+						phone.onkeyup = function(){
+							if(phone.value.length > 1){							
+								linkage.removeClassName('error');
+						        return true;
+							}else if(linkage.value.length < 1){
+								linkage.addClassName('error');
+						        return false;
+							}
+						};
+					}
+				}
+				
+			 ]]>
+		</script>
 	</xsl:template>
 	
 	<!-- Do not try do display element with no children in view mode -->

@@ -31,7 +31,50 @@
       <xsl:with-param name="tabLink" select="$tabLink"/>
       <xsl:with-param name="schema" select="$schema"/>
     </xsl:call-template>
-
   </xsl:template>
+
+  <!-- ===================================================================== -->
+  <!-- Overrides iso19139/metadata template at #1304                         -->
+  <!-- Forces format to date only (no time)                                  -->
+  <!-- gml:TimePeriod (format = %Y-%m-%d)                                    -->
+  <!-- ===================================================================== -->
+
+	<xsl:template mode="iso19139" match="gml:*[gml:beginPosition|gml:endPosition]|gml:TimeInstant[gml:timePosition]" priority="3">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+		<xsl:for-each select="*">
+			<xsl:choose>
+				<xsl:when test="$edit=true() and (name(.)='gml:beginPosition' or name(.)='gml:endPosition' or name(.)='gml:timePosition')">
+					<xsl:apply-templates mode="simpleElement" select=".">
+						<xsl:with-param name="schema"  select="$schema"/>
+						<xsl:with-param name="edit"   select="$edit"/>
+						<xsl:with-param name="editAttributes" select="$currTab!='rndt' and $currTab!='simple' "/>
+						<xsl:with-param name="text">
+							<xsl:variable name="ref" select="geonet:element/@ref"/>
+							<xsl:variable name="format" select="'%Y-%m-%d'"/>
+
+							<xsl:call-template name="calendar">
+								<xsl:with-param name="ref" select="$ref"/>
+								<xsl:with-param name="date" select="text()"/>
+								<xsl:with-param name="format" select="$format"/>
+							</xsl:call-template>
+
+						</xsl:with-param>
+					</xsl:apply-templates>
+				</xsl:when>
+				<xsl:when test="name(.)='gml:timeInterval'">
+					<xsl:apply-templates mode="iso19139" select="."/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:apply-templates mode="simpleElement" select=".">
+						<xsl:with-param name="schema"  select="$schema"/>
+						<xsl:with-param name="text">
+							<xsl:value-of select="text()"/>
+						</xsl:with-param>
+					</xsl:apply-templates>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:for-each>
+	</xsl:template>
 
 </xsl:stylesheet>

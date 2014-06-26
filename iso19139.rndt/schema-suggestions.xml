@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fields>	
-  <!-- <field name="gmd:contactInstructions">
-    <suggest name="gco:CharacterString"/>
-    <suggest name="gmx:FileName"/>
-  </field> -->
+	<!-- <field name="gmd:contactInstructions">
+	    <suggest name="gco:CharacterString"/>
+	    <suggest name="gmx:FileName"/>
+	</field> -->
   
 	<!-- <field name="gmd:otherCitationDetails">
 		<suggest name="gco:CharacterString"/>
@@ -22,13 +22,28 @@
 	
 	<!-- Service -->
 	<!-- RNDT -->
-	<field name="srv:couplingType">
-		<suggest name="srv:SV_CouplingType"/>
+	
+	<field name="srv:containsOperations">
+		<suggest name="srv:SV_OperationMetadata"/>
+	</field>	
+	
+	<field name="srv:SV_OperationMetadata">
+		<suggest name="srv:operationName"/>
+		<suggest name="srv:DCP"/>
+		<suggest name="srv:invocationName"/>
+		<suggest name="srv:connectPoint"/>
+	</field>	
+	
+	<field name="srv:DCP">
+		<suggest name="srv:DCPList"/>
 	</field>
 	
+	<field name="srv:couplingType">
+		<suggest name="srv:SV_CouplingType"/>
+	</field>	
 
     <!-- Distribution -->		
-		<field name="gmd:MD_Distribution">
+	<field name="gmd:MD_Distribution">
 		<!-- RNDT -->
 		<suggest name="gmd:distributionFormat"/>
 		<suggest name="gmd:distributor"/>
@@ -48,21 +63,16 @@
         <suggest name="gmd:CI_OnlineResource"/>
     </field>
     
-    <field name="gmd:CI_OnlineResource">
-		<!-- RNDT -->
-		<!-- <suggest name="gmd:protocol"/> -->
-		<suggest name="gmd:linkage"/>
-		<!-- <suggest name="gmd:name"/> comment even if mandatory and useful for WMS
-		<suggest name="gmd:description"/> -->
+	<field name="gmd:CI_OnlineResource">
+		<suggest name="gmd:protocol"/>
+		<suggest name="gmd:name"/>
+		<suggest name="gmd:description"/>
 	</field>
 	
-	<!-- RNDT -->
+	<!-- RNDT 
 	<field name="gmd:linkage">
 		<suggest name="gmd:URL"/>
-	</field>
-	
-  
-    
+	</field>-->    
     
     <!-- ResponsibleParty -->
 	
@@ -92,10 +102,7 @@
 		<suggest name="gmd:postalCode"/>
 		<suggest name="gmd:country"/>-->
 		<suggest name="gmd:electronicMailAddress"/>
-	</field>
-	
-  
-  
+	</field> 
   
     <!-- Keywords -->
 	<field name="gmd:MD_Keywords">
@@ -113,12 +120,10 @@
 	<field name="gmd:thesaurusName">
         <suggest name="gmd:CI_Citation"/>
     </field>
-	
-  
+	  
     <field name="gmd:extent">
         <suggest name="gmd:EX_Extent"/>
-    </field>   
-    
+    </field>       
     
     <!-- Extent -->
 	<field name="gmd:EX_Extent">
@@ -128,20 +133,33 @@
         <suggest name="gmd:temporalElement"/>
 		<suggest name="gmd:verticalElement"/>
 	</field>
+	
+	<field name="gmd:verticalElement">
+        <suggest name="gmd:EX_VerticalExtent"/>
+    </field>
+	
+	<field name="gmd:EX_VerticalExtent">
+        <suggest name="gmd:minimumValue"/>
+        <suggest name="gmd:maximumValue"/>
+        <suggest name="gmd:verticalCRS"/>
+    </field>
 
 	<!--<field name="gmd:geographicElement">
         <suggest name="gmd:EX_GeographicBoundingBox"/>
     </field>-->
     
-    <field name="gmd:EX_TemporalExtent">
-        <suggest name="gmd:extent"/>
+	<field name="gmd:temporalElement">
+        <suggest name="gmd:EX_TemporalExtent"/>
     </field>
+	
+    <!--field name="gmd:EX_TemporalExtent">
+        <suggest name="gml:extent"/>
+    </field-->
 	
     <field name="gml:TimePeriod">
 		<suggest name="gml:beginPosition"/>
 		<suggest name="gml:endPosition"/>	
-	</field>
-	
+	</field>	
 	
 	<!--<field name="gmd:polygon">
 		<suggest name="gml:Polygon"/>
@@ -198,25 +216,23 @@
 	</field> -->
 
 
-  <field name="gmd:MD_Constraints">
-    <suggest name="gmd:useLimitation"/>
-  </field>
-  
-  <field name="gmd:MD_LegalConstraints">
-	<!-- RNDT -->
-    <!-- <suggest name="gmd:useLimitation"/> -->
-    <suggest name="gmd:accessConstraints"/>
-    <suggest name="gmd:useConstraints"/>
-    <suggest name="gmd:otherContraints"/>
-  </field>
-  
-  <field name="gmd:MD_SecurityContraints">
-    <suggest name="gmd:classification"/>
-	<!-- RNDT -->
-    <!-- <suggest name="gmd:useLimitation"/> -->
-  </field>
-  
-
+	<field name="gmd:MD_Constraints">
+	    <suggest name="gmd:useLimitation"/>
+	</field>
+	  
+	<field name="gmd:MD_LegalConstraints">
+		<!-- RNDT -->
+	    <!-- <suggest name="gmd:useLimitation"/> -->
+	    <suggest name="gmd:accessConstraints"/>
+	    <suggest name="gmd:useConstraints"/>
+	    <suggest name="gmd:otherContraints"/>
+	</field>
+	  
+	<field name="gmd:MD_SecurityContraints">
+	    <suggest name="gmd:classification"/>
+		<!-- RNDT -->
+	    <!-- <suggest name="gmd:useLimitation"/> -->
+	</field>
 
     <!-- Quality
     <field name="gmd:report">
@@ -232,27 +248,6 @@
         <suggest name="gmd:pass"/>
         <suggest name="gmd:explanation"/>
     </field>
-    
-    
-    
-    
-    <!-- Constraint -->
-<!--     <field name="fra:FRA_Constraints">
-        <suggest name="gmd:useLimitation"/>
-    </field>
-
-    <field name="fra:FRA_LegalConstraints">
-        <suggest name="gmd:useLimitation"/>
-        <suggest name="gmd:accessConstraints"/>
-        <suggest name="gmd:useConstraints"/>
-        <suggest name="gmd:otherContraints"/>
-    </field>
-
-    <field name="fra:FRA_SecurityContraints">
-        <suggest name="gmd:classification"/>
-        <suggest name="gmd:useLimitation"/>
-    </field> -->
-
 
     <!-- Date -->
     <field name="gmd:CI_Date">
@@ -265,19 +260,27 @@
     <field name="gmd:date">
         <suggest name="gco:Date"/>
     </field>
-    -->
-    
-    
+    -->    
+	
+    <field name="gmd:axisDimensionProperties">
+        <suggest name="gmd:MD_Dimension"/>
+    </field>
+	
+	<field name="gmd:MD_Dimension">
+        <suggest name="gmd:dimensionName"/>
+        <suggest name="gmd:dimensionSize"/>
+        <suggest name="gmd:resolution"/>
+    </field>
+	
     <!-- Resolution -->
     <field name="gmd:spatialResolution">
         <suggest name="gmd:MD_Resolution"/>
     </field>
 	
-	<field name="ggmd:MD_Resolution">
+	<field name="gmd:MD_Resolution">  <!--TOB: fixed the namespace-->
         <suggest name="gmd:distance"/>
 		<suggest name="gmd:equivalentScale"/>
-    </field>
-	
+    </field>	
 	
 	<field name="gmd:RS_Identifier">
 		<suggest name="gmd:codeSpace"/>

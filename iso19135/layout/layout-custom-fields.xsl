@@ -15,6 +15,11 @@
 
   TODO: Create a TOC based on status ?
   -->
+
+	<xsl:variable name="requestParameters">
+		<tocIndex></tocIndex> <!-- empty for now -->
+	</xsl:variable>
+
   <xsl:template name="iso19135-table-of-content">
     <hr/>
     <xsl:variable name="items" select="$metadata//grg:RE_RegisterItem/grg:name/gco:CharacterString"/>

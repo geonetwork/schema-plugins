@@ -27,7 +27,19 @@
         <title>Vincoli relativi all'accesso e all'uso</title>
     </constraint>
     <geoloc>
-        <title>Localizzazione geografica</title>
+		<title>Localizzazione geografica</title>
+        <suggestionsLabel>Suggerimenti</suggestionsLabel>
+		<verticalCRSValues>
+		    <default></default>
+		    <crs id="wgs84">
+		        <label>EPSG:4979</label>
+		        <value>EPSG::4979</value>
+		    </crs>
+		    <crs id="wgs84h">
+		        <label>EPSG:4326</label>
+		        <value>EPSG::4326</value>
+		    </crs>
+		</verticalCRSValues>
     </geoloc>
     <verticalExtent>
         <title>Estensione verticale</title>

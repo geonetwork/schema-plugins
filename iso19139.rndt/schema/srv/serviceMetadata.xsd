@@ -45,7 +45,7 @@
 					<xs:element name="operationDescription" type="gco:CharacterString_PropertyType" minOccurs="0"/>
 					<xs:element name="invocationName" type="gco:CharacterString_PropertyType" minOccurs="0"/>
 					<xs:element name="parameters" type="srv:SV_Parameter_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="connectPoint" type="gmd:CI_OnlineResource_PropertyType" maxOccurs="unbounded"/>
+					<xs:element name="connectPoint" type="gmd:CI_OnlineResource_PropertyType" minOccurs="1" maxOccurs="unbounded"/>
 					<xs:element name="dependsOn" type="srv:SV_OperationMetadata_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 			</xs:extension>
