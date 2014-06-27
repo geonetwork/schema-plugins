@@ -16,6 +16,11 @@
 	<xsl:include href="layout-custom-fields.xsl"/>
 
 
+  <xsl:variable name="iso19139.mcpschema" select="/root/gui/schemas/iso19139.mcp"/>
+  <xsl:variable name="iso19139.mcplabels" select="$iso19139.mcpschema/labels"/>
+  <xsl:variable name="iso19139.mcpcodelists" select="$iso19139.mcpschema/codelists"/>
+  <xsl:variable name="iso19139.mcpstrings" select="$iso19139.mcpschema/strings"/>
+
   <!-- Boxed element
     
       Details about the last line :
@@ -30,7 +35,6 @@
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
 
-		<xsl:message>Boxed mcp element: <xsl:value-of select="name()"/></xsl:message>
     <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
     <xsl:variable name="isoType" select="if (../@gco:isoType) then ../@gco:isoType else ''"/>
 
@@ -84,12 +88,11 @@
     <geonet:attribute name="codeSpace" add="true"/>
   
   -->
-  <xsl:template mode="mode-iso19139" priority="200" match="*[*/@codeList]">
+  <xsl:template mode="mode-iso19139" priority="30000" match="*[*/@codeList]">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
-    <xsl:param name="codelists" select="$iso19139codelists" required="no"/>
+    <xsl:param name="codelists" select="$iso19139.mcpcodelists" required="no"/>
 
-		<xsl:message>Codelist mcp element: <xsl:value-of select="name()"/></xsl:message>
     <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
     <xsl:variable name="isoType" select="if (../@gco:isoType) then ../@gco:isoType else ''"/>
     <xsl:variable name="elementName" select="name()"/>

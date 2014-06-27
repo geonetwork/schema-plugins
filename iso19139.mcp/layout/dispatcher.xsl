@@ -36,6 +36,8 @@
 				 a lower priority than ours -->
     <xsl:apply-templates mode="mode-iso19139" select="$base">
      	<xsl:with-param name="overrideLabel" select="$overrideLabel"/>
+    	<xsl:with-param name="schema" select="$schema"/>
+    	<xsl:with-param name="labels" select="$iso19139.mcplabels"/>
     </xsl:apply-templates>
 
   </xsl:template>
