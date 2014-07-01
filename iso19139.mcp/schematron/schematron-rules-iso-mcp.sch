@@ -515,13 +515,13 @@ USA.
        schema - all elements that should be in it are actually in
        mcp:MD_DataIdentification -->
   <sch:pattern>
-		<sch:title>gmd:identificationInfo/mcp:MD_DataIdentification requires citation, abstract, credit, status, pointOfContact</sch:title>
+		<sch:title>gmd:identificationInfo/mcp:MD_DataIdentification requires citation, abstract, credit, status, pointOfContact/resourceContactInfo</sch:title>
     <sch:rule context="//mcp:MD_DataIdentification">
       <sch:assert test="count(gmd:citation) >= 1">MD_(Data)Identification is missing citation.</sch:assert>
       <sch:assert test="count(gmd:abstract) >= 1">MD_(Data)Identification is missing abstract.</sch:assert>
     <!--  <sch:assert test="count(gmd:credit) >= 1">MD_(Data)Identification is missing credit.</sch:assert>
       <sch:assert test="count(gmd:status) >= 1">MD_(Data)Identification is missing status.</sch:assert> -->
-      <sch:assert test="count(gmd:pointOfContact) >= 1">MD_(Data)Identification is missing pointOfContact.</sch:assert>
+      <sch:assert test="count(gmd:pointOfContact) >= 1 or count(mcp:resourceContactInfo) >= 1">MD_(Data)Identification is missing pointOfContact/resourceContactInfo.</sch:assert>
     </sch:rule>
 	</sch:pattern>
 
