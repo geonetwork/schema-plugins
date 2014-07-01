@@ -286,25 +286,6 @@
           <mcp:role>
             <gmd:CI_RoleCode codeList="http://bluenet3.antcrc.utas.edu.au/mcp-1.5-experimental/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue=""/>
           </mcp:role>
-          <mcp:extent>
-            <mcp:EX_Extent gco:isoType="gmd:EX_Extent">
-              <gmd:verticalElement>
-                <gmd:EX_VerticalExtent>
-                  <gmd:minimumValue>
-                    <gco:Real/>
-                  </gmd:minimumValue>
-                  <gmd:maximumValue>
-                    <gco:Real/>
-                  </gmd:maximumValue>
-                </gmd:EX_VerticalExtent>
-              </gmd:verticalElement>
-              <mcp:taxonomicElement>
-                <mcp:EX_TaxonomicCoverage>
-                  <mcp:taxonConcepts xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href=""/>
-                </mcp:EX_TaxonomicCoverage>
-              </mcp:taxonomicElement>
-            </mcp:EX_Extent>
-          </mcp:extent>
           <mcp:party>
             <mcp:CI_Organisation>
               <mcp:name gco:nilReason="missing">
