@@ -385,6 +385,7 @@ This is a link to an html description of a species name (or higher level ranks) 
 			<!-- Add these for MCP -->
 			<option show="y" value="WWW:DOWNLOAD-1.0-http--downloaddata">Data file for download</option>
 			<option show="y" value="WWW:LINK-1.0-http--downloaddata">Data file for download</option>
+			<option show="y" value="WWW:DOWNLOAD-1.0-http--csiro-oa-app">CSIRO Oceans and Atmosphere Data Delivery Application</option>
 		</helper>
 	</element>
 </labels>
