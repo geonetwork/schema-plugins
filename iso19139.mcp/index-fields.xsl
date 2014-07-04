@@ -261,6 +261,7 @@
 	
 				<xsl:if test="normalize-space($keywordId)!=''">
 					<Field name="{$thesaurusId}" string="{replace($keywordId,'%23','#')}" store="true" index="true"/>
+					<Field name="keywordId" string="{replace($keywordId,'%23','#')}" store="true" index="true"/>
 				</xsl:if>
 			</xsl:if>
 		</xsl:for-each>
