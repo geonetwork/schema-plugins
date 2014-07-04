@@ -14,20 +14,20 @@
 	<xsl:import href="metadata-taxonconcepts.xsl"/>
 	<xsl:import href="metadata-view.xsl"/>
 
-	<xsl:variable name="mcpallgens" select="document('../schema/resources/Codelist/mcp-allgens.xml')"/>
+	<xsl:variable name="mcpallgens-2.0" select="document('../schema/resources/Codelist/mcp-allgens.xml')"/>
 
 	<!-- If this option exists in config-gui.xml then mcp:metadataContactInfo and
 	     mcp:resourceContactInfo are preferred over gmd:contact and 
 			 gmd:pointOfContact -->
-	<xsl:variable name="useExperimentalContacts" select="/root/gui/config/iso19139.mcp-2.0/useExperimentalContacts"/>
+	<xsl:variable name="useExperimentalContacts-2.0" select="/root/gui/config/iso19139.mcp-2.0/useExperimentalContacts"/>
 
 	<!-- codelists are handled directly from the gmxCodelists.xml file as we
 	     don't support localized codelists in the MCP and we don't want to
 	     duplicate the codelists into another file -->
-	<xsl:variable name="codelistsmcp" select="document('../schema/resources/Codelist/gmxCodelists.xml')"/>
+	<xsl:variable name="codelistsmcp-2.0" select="document('../schema/resources/Codelist/gmxCodelists.xml')"/>
 
-	<xsl:variable name="dcurl" select="/root/gui/schemas/iso19139.mcp-2.0/strings/dataCommonsUrl"/>
-	<xsl:variable name="ccurl" select="/root/gui/schemas/iso19139.mcp-2.0/strings/creativeCommonsUrl"/>
+	<xsl:variable name="dcurl-2.0" select="/root/gui/schemas/iso19139.mcp-2.0/strings/dataCommonsUrl"/>
+	<xsl:variable name="ccurl-2.0" select="/root/gui/schemas/iso19139.mcp-2.0/strings/creativeCommonsUrl"/>
 
 	<!-- main template - the way into processing iso19139.mcp -->
   <xsl:template match="metadata-iso19139.mcp-2.0" name="metadata-iso19139.mcp-2.0">
@@ -137,7 +137,7 @@
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
-		<xsl:call-template name="iso19139Codelistmcp">
+		<xsl:call-template name="iso19139Codelistmcp-2.0">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:call-template>
@@ -145,7 +145,7 @@
 
 	<!-- ================================================================= -->
 
-	<xsl:template name="iso19139Codelistmcp">
+	<xsl:template name="iso19139Codelistmcp-2.0">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 		
@@ -169,7 +169,7 @@
 		
 		<xsl:variable name="name" select="local-name(..)"/>
 		<xsl:variable name="value" select="../@codeListValue"/>
-		<xsl:variable name="codelist" select="$codelistsmcp/gmx:CT_CodelistCatalogue/gmx:codelistItem/gmx:CodeListDictionary[gml:identifier=$name]"/>
+		<xsl:variable name="codelist" select="$codelistsmcp-2.0/gmx:CT_CodelistCatalogue/gmx:codelistItem/gmx:CodeListDictionary[gml:identifier=$name]"/>
 
 		<xsl:choose>
 			<xsl:when test="$edit=true()">
@@ -360,7 +360,7 @@
 
 			<select name="place" size="1" onChange="document.mainForm._{$ref}.value=this.options[this.selectedIndex].text">
 				<option value=""/>
-				<xsl:for-each select="$mcpallgens/gmx:CT_CodelistCatalogue/gmx:codelistItem/gmx:CodeListDictionary">
+				<xsl:for-each select="$mcpallgens-2.0/gmx:CT_CodelistCatalogue/gmx:codelistItem/gmx:CodeListDictionary">
 					<optgroup label="{gml:identifier}">
 					<xsl:for-each select="gmx:codeEntry">
 						<xsl:variable name="entry" select="substring-before(gmx:CodeDefinition/gml:description,'|')"/>
@@ -473,7 +473,7 @@
 
 					<select name="place" size="1" onChange="javascript:setMcpRegion('{gmd:westBoundLongitude/gco:Decimal/geonet:element/@ref}', '{gmd:eastBoundLongitude/gco:Decimal/geonet:element/@ref}', '{gmd:southBoundLatitude/gco:Decimal/geonet:element/@ref}', '{gmd:northBoundLatitude/gco:Decimal/geonet:element/@ref}', this.options[this.selectedIndex], {$eltRef}, '{../../gmd:description/gco:CharacterString/geonet:element/@ref}')">
 						<option value=""/>
-						<xsl:for-each select="$mcpallgens/gmx:CT_CodelistCatalogue/gmx:codelistItem/gmx:CodeListDictionary">
+						<xsl:for-each select="$mcpallgens-2.0/gmx:CT_CodelistCatalogue/gmx:codelistItem/gmx:CodeListDictionary">
 							<optgroup label="{gml:identifier}">
 								<xsl:for-each select="gmx:codeEntry">
 									<xsl:variable name="value" select="translate(normalize-space(substring-after(gmx:CodeDefinition/gml:description,'|')),'|',',')"/>
@@ -552,7 +552,7 @@
 				<xsl:with-param name="schema" select="$schema"/>
 				<xsl:with-param name="edit"   select="$edit"/>
 				<xsl:with-param name="text">
-					<xsl:call-template name="getCommonsTypeAction">
+					<xsl:call-template name="getCommonsTypeAction-2.0">
 						<xsl:with-param name="schema" select="$schema"/>
 						<xsl:with-param name="edit"   select="$edit"/>
 					</xsl:call-template>
@@ -563,7 +563,7 @@
 		<table id="creative" style="display:none;">
 			<tr>
 				<td> 
-					<xsl:call-template name="doCC">
+					<xsl:call-template name="doCC-2.0">
 						<xsl:with-param name="schema" select="$schema"/>
 						<xsl:with-param name="edit" select="$edit"/>
 					</xsl:call-template>
@@ -574,7 +574,7 @@
 		<table id="data" style="display:none;">
 			<tr>
 				<td>
-					<xsl:call-template name="doDC">
+					<xsl:call-template name="doDC-2.0">
 						<xsl:with-param name="schema" select="$schema"/>
 						<xsl:with-param name="edit" select="$edit"/>
 					</xsl:call-template>
@@ -587,7 +587,7 @@
 	<!--
 	returns the text of the mcp:commonsType attribute
 	-->
-	<xsl:template name="getCommonsTypeAction">
+	<xsl:template name="getCommonsTypeAction-2.0">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit" select="false()"/>
 		<xsl:param name="rows" select="1"/>
@@ -631,7 +631,7 @@
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
-		<xsl:call-template name="doCC">
+		<xsl:call-template name="doCC-2.0">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit" select="$edit"/>
 		</xsl:call-template>
@@ -639,7 +639,7 @@
 
 	<!-- ================================================================ -->
 
-	<xsl:template name="doCC">
+	<xsl:template name="doCC-2.0">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
@@ -659,7 +659,7 @@
 			</xsl:apply-templates>
 	
 			<xsl:if test="mcp:jurisdictionLink/gmd:URL!=''">
-				<xsl:call-template name="showCCLicense">
+				<xsl:call-template name="showCCLicense-2.0">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="title"  select="/root/gui/schemas/iso19139.mcp/strings/currentLicense"/>
 					<xsl:with-param name="edit" select="false()"/>
@@ -769,7 +769,7 @@
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
-		<xsl:call-template name="doDC">
+		<xsl:call-template name="doDC-2.0">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit" select="$edit"/>
 		</xsl:call-template>
@@ -777,7 +777,7 @@
 
 	<!-- ================================================================ -->
 
-	<xsl:template name="doDC">
+	<xsl:template name="doDC-2.0">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
@@ -797,7 +797,7 @@
 			</xsl:apply-templates>
 	
 			<xsl:if test="mcp:jurisdictionLink/gmd:URL!=''">
-				<xsl:call-template name="showDCLicense">
+				<xsl:call-template name="showDCLicense-2.0">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="title"  select="/root/gui/schemas/iso19139.mcp/strings/currentLicense"/>
 					<xsl:with-param name="edit" select="false()"/>
@@ -915,7 +915,7 @@
 
 	<!-- ================================================================ -->
 
-	<xsl:template name="showCCLicense">
+	<xsl:template name="showCCLicense-2.0">
 		<xsl:param name="schema"/>
 		<xsl:param name="title"/>
 		<xsl:param name="edit" select="false()"/>
@@ -933,7 +933,7 @@
 
 				<tr>
 				<td class="padded">
-					<a onclick="setBunload(false);" href="javascript:popWindow('{$url}'); setBunload(true);"><xsl:value-of select="concat('Jurisdiction: ',substring-before(substring-after($url,concat($ccurl,'/international/')),'/'))"/></a>
+					<a onclick="setBunload(false);" href="javascript:popWindow('{$url}'); setBunload(true);"><xsl:value-of select="concat('Jurisdiction: ',substring-before(substring-after($url,concat($ccurl-2.0,'/international/')),'/'))"/></a>
 				</td> 
 				<td class="padded">
 					<a onclick="setBunload(false);" href="javascript:popWindow('{$licUrl}'); setBunload(true);"><IMG align="middle" src="{$imUrl}" longdesc="{$licUrl}" alt="{$licName}"></IMG></a>
@@ -950,7 +950,7 @@
 
 	<!-- ================================================================ -->
 
-	<xsl:template name="showDCLicense">
+	<xsl:template name="showDCLicense-2.0">
 		<xsl:param name="schema"/>
 		<xsl:param name="title"/>
 		<xsl:param name="edit" select="false()"/>
@@ -968,7 +968,7 @@
 
 				<tr>
 				<td class="padded">
-					<a onclick="setBunload(false);" href="javascript:popWindow('{$url}'); setBunload(true);"><xsl:value-of select="concat('Jurisdiction: ',substring-before(substring-after($url,concat($dcurl,'/international/')),'/'))"/></a>
+					<a onclick="setBunload(false);" href="javascript:popWindow('{$url}'); setBunload(true);"><xsl:value-of select="concat('Jurisdiction: ',substring-before(substring-after($url,concat($dcurl-2.0,'/international/')),'/'))"/></a>
 				</td> 
 				<td class="padded">
 					<a onclick="setBunload(false);" href="javascript:popWindow('{$licUrl}'); setBunload(true);"><IMG align="middle" src="{$imUrl}" longdesc="{$licUrl}" alt="{$licName}"></IMG></a>
@@ -1150,7 +1150,7 @@
 		<xsl:choose>
 			<!-- simple tab -->
 			<xsl:when test="$currTab='simple'">
-        <xsl:call-template name="iso19139mcpSimple">
+        <xsl:call-template name="iso19139mcpSimple-2.0">
           <xsl:with-param name="schema" select="$schema"/>
           <xsl:with-param name="edit"   select="$edit"/>
         </xsl:call-template>
@@ -1158,7 +1158,7 @@
 
 			<!-- metadata tab -->
 			<xsl:when test="$currTab='metadata'">
-				<xsl:call-template name="iso19139McpMetadata">
+				<xsl:call-template name="iso19139McpMetadata-2.0">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:call-template>
@@ -1279,7 +1279,7 @@
 
 			<!-- mcpMinimum -->
 			<xsl:when test="$currTab='mcpMinimum'">
-				<xsl:call-template name="mcp">
+				<xsl:call-template name="mcp-2.0">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 					<xsl:with-param name="dataset" select="$dataset"/>
@@ -1289,7 +1289,7 @@
 
 			<!-- mcpCore -->
 			<xsl:when test="$currTab='mcpCore'">
-				<xsl:call-template name="mcp">
+				<xsl:call-template name="mcp-2.0">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 					<xsl:with-param name="dataset" select="$dataset"/>
@@ -1319,7 +1319,7 @@
 
 	<!-- ============================================================================= -->
 
-  <xsl:template name="iso19139McpMetadata">
+  <xsl:template name="iso19139McpMetadata-2.0">
     <xsl:param name="schema"/>
     <xsl:param name="edit"/>
   	
@@ -1385,7 +1385,7 @@
 		    	</xsl:apply-templates>
 	
 					<xsl:choose>
-						<xsl:when test="$useExperimentalContacts">
+						<xsl:when test="$useExperimentalContacts-2.0">
 		    			<xsl:apply-templates mode="elementEP" select="gmd:contact">
 		      			<xsl:with-param name="schema" select="$schema"/>
 		      			<xsl:with-param name="edit"   select="$edit"/>
@@ -1460,7 +1460,7 @@
   </xsl:template>
 <!-- mcp tabs -->
 	
-	<xsl:template name="mcp">
+	<xsl:template name="mcp-2.0">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 		<xsl:param name="dataset"/>
@@ -1507,7 +1507,7 @@
 
 				<xsl:if test="$core">
 					<xsl:choose>
-						<xsl:when test="$useExperimentalContacts">
+						<xsl:when test="$useExperimentalContacts-2.0">
 							<xsl:apply-templates mode="elementEP" select="gmd:pointOfContact">
 								<xsl:with-param name="schema" select="$schema"/>
 								<xsl:with-param name="edit"   select="$edit"/>
@@ -1736,7 +1736,7 @@
 
 			</xsl:for-each>
 
-		<xsl:if test="$useExperimentalContacts">
+		<xsl:if test="$useExperimentalContacts-2.0">
 			<xsl:for-each select="mcp:metadataContactInfo/mcp:CI_Responsibility">
 
 			<xsl:call-template name="complexElementGuiWrapper">
@@ -1901,7 +1901,7 @@
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
-		<xsl:call-template name="partyTemplate">
+		<xsl:call-template name="partyTemplate-2.0">
 			<xsl:with-param name="edit" select="$edit"/>
 			<xsl:with-param name="schema" select="$schema"/>
 		</xsl:call-template>
@@ -1909,7 +1909,7 @@
 
 	<!-- ============================================================================= -->
 
-	<xsl:template name="partyTemplate">
+	<xsl:template name="partyTemplate-2.0">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 		
@@ -2036,7 +2036,7 @@
 
 	<!-- ============================================================================= -->
 
-	<xsl:template name="iso19139mcpSimple">
+	<xsl:template name="iso19139mcpSimple-2.0">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
@@ -2083,7 +2083,7 @@
 		<xsl:call-template name="complexElementGui">
 			<xsl:with-param name="title" select="/root/gui/strings/metadata"/>
 			<xsl:with-param name="content">
-				<xsl:call-template name="iso19139mcpSimpleMDMetadata">
+				<xsl:call-template name="iso19139mcpSimpleMDMetadata-2.0">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:call-template>
@@ -2105,7 +2105,7 @@
 
 	<!-- ============================================================================= -->
 
-	<xsl:template name="iso19139mcpSimpleMDMetadata">
+	<xsl:template name="iso19139mcpSimpleMDMetadata-2.0">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
@@ -2165,7 +2165,7 @@
 		</xsl:apply-templates>
 
 		<xsl:choose>
-			<xsl:when test="$useExperimentalContacts">
+			<xsl:when test="$useExperimentalContacts-2.0">
 				<xsl:apply-templates mode="elementEP" select="gmd:contact">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
@@ -2252,7 +2252,7 @@
 		</xsl:apply-templates>
 
 		<xsl:choose>
-			<xsl:when test="$useExperimentalContacts">
+			<xsl:when test="$useExperimentalContacts-2.0">
 				<xsl:apply-templates mode="elementEP" select="gmd:pointOfContact">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
