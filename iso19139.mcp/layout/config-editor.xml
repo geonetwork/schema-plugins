@@ -193,30 +193,30 @@
   <views>
     <view name="default">
       <tab id="default" default="true" mode="flat">
-        <section xpath="/mcp:MD_Metadata/gmd:identificationInfo">
-          <field xpath="/mcp:MD_Metadata/gmd:citation"/>
-          <field xpath="/mcp:MD_Metadata/gmd:abstract"/>
-          <field xpath="/mcp:MD_Metadata/gmd:purpose"/>
-          <field xpath="/mcp:MD_Metadata/gmd:credit"/>
-          <field xpath="/mcp:MD_Metadata/gmd:status"/>
-          <field xpath="/mcp:MD_Metadata/gmd:pointOfContact" notDisplayedIfMissing="true"/>
-          <field xpath="/mcp:MD_Metadata/mcp:resourceContactInfo" notDisplayedIfMissing="true"/>
-          <field xpath="/mcp:MD_Metadata/gmd:resourceMaintenance"/>
-          <field xpath="/mcp:MD_Metadata/gmd:resourceFormat"/>
-          <field xpath="/mcp:MD_Metadata/gmd:descriptiveKeywords"/>
-          <field xpath="/mcp:MD_Metadata/gmd:resourceSpecficUsage"/>
-          <field xpath="/mcp:MD_Metadata/gmd:resourceConstraints"/>
-          <field xpath="/mcp:MD_Metadata/gmd:aggregationInfo"/>
-          <field xpath="/mcp:MD_Metadata/gmd:spatialRepresentationType"/>
-          <field xpath="/mcp:MD_Metadata/gmd:spatialResolution"/>
-          <field xpath="/mcp:MD_Metadata/gmd:language"/>
-          <field xpath="/mcp:MD_Metadata/gmd:characterSet"/>
-          <field xpath="/mcp:MD_Metadata/gmd:topicCategory"/>
-          <field xpath="/mcp:MD_Metadata/gmd:environmentDescription"/>
-          <field xpath="/mcp:MD_Metadata/gmd:extent"/>
-          <field xpath="/mcp:MD_Metadata/gmd:supplementalInformation"/>
-          <field xpath="/mcp:MD_Metadata/mcp:samplingFrequency"/>
-          <field xpath="/mcp:MD_Metadata/mcp:dataParameters"/>
+        <section name="gmd:identificationInfo">
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:citation"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:abstract"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:purpose"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:credit"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:status"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:pointOfContact" notDisplayedIfMissing="true"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/mcp:resourceContactInfo" notDisplayedIfMissing="true"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:resourceMaintenance"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:resourceFormat"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:descriptiveKeywords"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:resourceSpecficUsage"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:resourceConstraints"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:aggregationInfo"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:spatialRepresentationType"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:spatialResolution"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:language"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:characterSet"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:topicCategory"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:environmentDescription"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:extent"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:supplementalInformation"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/mcp:samplingFrequency"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/mcp:dataParameters"/>
         </section>
         <section xpath="/mcp:MD_Metadata/gmd:distributionInfo"/>
         <section xpath="/mcp:MD_Metadata/gmd:dataQualityInfo"/>
@@ -260,29 +260,29 @@
       <tab id="All" default="true">
         <section xpath="/mcp:MD_Metadata/gmd:identificationInfo" or="identificationInfo"
                  in="/mcp:MD_Metadata">
-          <field xpath="/mcp:MD_Metadata/gmd:citation"/>
-          <field xpath="/mcp:MD_Metadata/gmd:abstract"/>
-          <field xpath="/mcp:MD_Metadata/gmd:purpose"/>
-          <field xpath="/mcp:MD_Metadata/gmd:credit"/>
-          <field xpath="/mcp:MD_Metadata/gmd:status"/>
-          <field xpath="/mcp:MD_Metadata/gmd:pointOfContact" notDisplayedIfMissing="true"/>
-          <field xpath="/mcp:MD_Metadata/mcp:resourceContactInfo" notDisplayedIfMissing="true"/>
-          <field xpath="/mcp:MD_Metadata/gmd:resourceMaintenance"/>
-          <field xpath="/mcp:MD_Metadata/gmd:resourceFormat"/>
-          <field xpath="/mcp:MD_Metadata/gmd:descriptiveKeywords"/>
-          <field xpath="/mcp:MD_Metadata/gmd:resourceSpecficUsage"/>
-          <field xpath="/mcp:MD_Metadata/gmd:resourceConstraints"/>
-          <field xpath="/mcp:MD_Metadata/gmd:aggregationInfo"/>
-          <field xpath="/mcp:MD_Metadata/gmd:spatialRepresentationType"/>
-          <field xpath="/mcp:MD_Metadata/gmd:spatialResolution"/>
-          <field xpath="/mcp:MD_Metadata/gmd:language"/>
-          <field xpath="/mcp:MD_Metadata/gmd:characterSet"/>
-          <field xpath="/mcp:MD_Metadata/gmd:topicCategory"/>
-          <field xpath="/mcp:MD_Metadata/gmd:environmentDescription"/>
-          <field xpath="/mcp:MD_Metadata/gmd:extent"/>
-          <field xpath="/mcp:MD_Metadata/gmd:supplementalInformation"/>
-          <field xpath="/mcp:MD_Metadata/mcp:samplingFrequency"/>
-          <field xpath="/mcp:MD_Metadata/mcp:dataParameters"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:citation"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:abstract"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:purpose"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:credit"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:status"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:pointOfContact"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/mcp:resourceContactInfo"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:resourceMaintenance"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:resourceFormat"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:descriptiveKeywords"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:resourceSpecficUsage"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:resourceConstraints"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:aggregationInfo"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:spatialRepresentationType"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:spatialResolution"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:language"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:characterSet"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:topicCategory"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:environmentDescription"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:extent"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:supplementalInformation"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/mcp:samplingFrequency"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/mcp:dataParameters"/>
         </section>
         <section xpath="/mcp:MD_Metadata/gmd:distributionInfo" or="distributionInfo"
                  in="/mcp:MD_Metadata"/>
