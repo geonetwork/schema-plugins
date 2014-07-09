@@ -55,13 +55,28 @@
 
     <for name="gmd:referenceSystemInfo" addDirective="data-gn-crs-selector"/>
 
-    <for name="gmd:contact" addDirective="data-gn-directory-entry-selector"/>
     <for name="mcp:party" addDirective="data-gn-organisation-entry-selector"/>
-    <for name="gmd:pointOfContact" addDirective="data-gn-directory-entry-selector"/>
-    <for name="gmd:distributor" addDirective="data-gn-directory-entry-selector"/>
-    <for name="gmd:processor" addDirective="data-gn-directory-entry-selector"/>
-    <for name="gmd:citedResponsibleParty" addDirective="data-gn-directory-entry-selector"/>
     
+    <for name="gmd:contact" addDirective="data-gn-directory-entry-selector">
+      <directiveAttributes data-tag-name="gmd:CI_ResponsibleParty" data-param-name="gmd:role/gmd:CI_RoleCode/@codeListValue"/>
+		</for>
+
+    <for name="gmd:pointOfContact" addDirective="data-gn-directory-entry-selector">
+      <directiveAttributes data-tag-name="gmd:CI_ResponsibleParty" data-param-name="gmd:role/gmd:CI_RoleCode/@codeListValue"/>
+		</for>
+
+    <for name="gmd:distributorContact" addDirective="data-gn-directory-entry-selector">
+      <directiveAttributes data-tag-name="gmd:CI_ResponsibleParty" data-param-name="gmd:role/gmd:CI_RoleCode/@codeListValue"/>
+		</for>
+
+    <for name="gmd:processor" addDirective="data-gn-directory-entry-selector">
+      <directiveAttributes data-tag-name="gmd:CI_ResponsibleParty" data-param-name="gmd:role/gmd:CI_RoleCode/@codeListValue"/>
+		</for>
+
+    <for name="gmd:citedResponsibleParty" addDirective="data-gn-directory-entry-selector">
+      <directiveAttributes data-tag-name="gmd:CI_ResponsibleParty" data-param-name="gmd:role/gmd:CI_RoleCode/@codeListValue"/>
+		</for>
+
     <for name="gmd:descriptiveKeywords" addDirective="data-gn-thesaurus-selector"/>
     <for name="mcp:MD_Commons" addDirective="data-gn-commons-jurisdiction-selector"/>
   </fields>
