@@ -127,5 +127,48 @@
     </xsl:call-template>
 
   </xsl:template>
-  
+
+	
+  <!-- 
+    Take care of enumerations. Same as for codelists, check iso19139.mcp
+		first and if not found there, then check iso19139.
+    
+    In the metadocument an enumeration provide the list of possible values:
+  <gmd:topicCategory>
+    <gmd:MD_TopicCategoryCode>
+    <geonet:element ref="69" parent="68" uuid="gmd:MD_TopicCategoryCode_0073afa8-bc8f-4c52-94f3-28d3aa686772" min="1" max="1">
+      <geonet:text value="farming"/>
+      <geonet:text value="biota"/>
+      <geonet:text value="boundaries"/
+  -->
+  <xsl:template mode="mode-iso19139" priority="30000" match="*[gn:element/gn:text and $schema='iso19139.mcp']">
+    <xsl:param name="schema" select="$schema" required="no"/>
+    <xsl:param name="labels" select="$labels" required="no"/>
+    <xsl:param name="codelists" select="$iso19139.mcpcodelists" required="no"/>
+
+		<!-- check iso19139.mcp first, then fall back to iso19139 -->
+		<xsl:variable name="listOfValues" as="node()">
+			<xsl:variable name="mcpList" as="node()" select="gn-fn-metadata:getCodeListValues($schema, name(), $codelists, .)"/>
+			<xsl:choose>
+				<xsl:when test="count($mcpList/*)=0"> <!-- do iso19139 -->
+					<xsl:copy-of select="gn-fn-metadata:getCodeListValues('iso19139', name(), $iso19139codelists, .)"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:copy-of select="$mcpList"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>				
+
+    <xsl:call-template name="render-element">
+      <xsl:with-param name="label"
+        select="gn-fn-metadata:getLabel($schema, name(..), $labels, name(../..), '', '')/label"/>
+      <xsl:with-param name="value" select="text()"/>
+      <xsl:with-param name="cls" select="local-name()"/>
+      <xsl:with-param name="type" select="gn-fn-iso19139:getCodeListType(name())"/>
+      <xsl:with-param name="name" select="gn:element/@ref"/>
+      <xsl:with-param name="editInfo" select="*/gn:element"/>
+      <xsl:with-param name="listOfValues" select="$listOfValues"/>
+    </xsl:call-template>
+  </xsl:template>
+
 </xsl:stylesheet>
