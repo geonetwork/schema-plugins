@@ -100,6 +100,7 @@
     <name>gmd:spatialResolution</name>
     <name>gmd:offLine</name>
     <name>gmd:onLine</name>
+		<name>gmd:graphicOverview</name>
     <name>gmd:address</name>
     <name>gmd:projection</name>
     <name>gmd:ellipsoid</name>
@@ -196,8 +197,9 @@
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:status"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:pointOfContact" or="pointOfContact" in="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:resourceMaintenance"/>
+					<field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:graphicOverview"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:resourceFormat"/>
-          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:descriptiveKeywords"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:descriptiveKeywords" or="descriptiveKeywords" in="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:resourceSpecficUsage"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:resourceConstraints"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:aggregationInfo"/>
@@ -261,6 +263,7 @@
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:status"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:pointOfContact"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:resourceMaintenance"/>
+					<field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:graphicOverview"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:resourceFormat"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:descriptiveKeywords"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:resourceSpecficUsage"/>
