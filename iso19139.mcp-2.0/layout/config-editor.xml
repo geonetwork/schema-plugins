@@ -7,7 +7,7 @@
   xmlns:gmx="http://www.isotc211.org/2005/gmx"
   xmlns:srv="http://www.isotc211.org/2005/srv"
   xmlns:gml="http://www.opengis.net/gml"
-	xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"
+	xmlns:mcp="http://schemas.aodn.org.au/mcp-2.0"
   xmlns:xlink="http://www.w3.org/1999/xlink">
 
   <!-- Form field type configuration. Default is text. -->
@@ -55,8 +55,6 @@
 
     <for name="gmd:referenceSystemInfo" addDirective="data-gn-crs-selector"/>
 
-    <for name="mcp:party" addDirective="data-gn-organisation-entry-selector"/>
-    
     <for name="gmd:contact" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes data-tag-name="gmd:CI_ResponsibleParty" data-param-name="gmd:role/gmd:CI_RoleCode/@codeListValue"/>
 		</for>
@@ -91,12 +89,7 @@
     <name>gmd:thesaurusName</name>
     <name>gmd:spatialRepresentationInfo</name>
     <name>gmd:pointOfContact</name>
-    <name>mcp:resourceContactInfo</name>
     <name>gmd:contact</name>
-    <name>mcp:metadataContactInfo</name>
-		<name>mcp:extent</name>
-		<name>mcp:party</name>
-		<name>mcp:contactInfo</name>
     <name>gmd:citedResponsibleParty</name>
     <name>gmd:dataQualityInfo</name>
     <name>gmd:contentInfo</name>
@@ -105,7 +98,7 @@
     <name>gmd:spatialResolution</name>
     <name>gmd:offLine</name>
     <name>gmd:onLine</name>
-    <name>gmd:graphicOverview</name>
+		<name>gmd:graphicOverview</name>
     <name>gmd:address</name>
     <name>gmd:projection</name>
     <name>gmd:ellipsoid</name>
@@ -120,7 +113,7 @@
     <name>gmd:aggregationInfo</name>
     <name>gmd:processStep</name>
     <name>gmd:lineage</name>
-		<name>mcp:dataParameters</name>
+    <name>mcp:dataParameters</name>
   </fieldsWithFieldset>
 
   <multilingualFields>
@@ -199,16 +192,15 @@
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:citation"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:abstract"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:purpose"/>
-          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:credit" or="credit" in="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:credit"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:status"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:pointOfContact" or="pointOfContact" in="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification"/>
-          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/mcp:resourceContactInfo" notDisplayedIfMissing="true"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:resourceMaintenance"/>
-          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:graphicOverview"/>
+					<field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:graphicOverview"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:resourceFormat"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:descriptiveKeywords" or="descriptiveKeywords" in="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:resourceSpecficUsage"/>
-          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:resourceConstraints" or="resourceConstraints" in="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification"/>
+          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:resourceConstraints"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:aggregationInfo"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:spatialRepresentationType"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:spatialResolution"/>
@@ -239,8 +231,8 @@
           <field xpath="/mcp:MD_Metadata/mcp:revisionDate"/>
           <field xpath="/mcp:MD_Metadata/gmd:metadataStandardName"/>
           <field xpath="/mcp:MD_Metadata/gmd:metadataStandardVersion"/>
-          <field xpath="/mcp:MD_Metadata/gmd:contact" or="contact" in ="/mcp:MD_Metadata"/>
-          <field xpath="/mcp:MD_Metadata/mcp:metadataContactInfo" notDisplayedIfMissing="true"/>
+          <field xpath="/mcp:MD_Metadata/gmd:contact" or="contact"
+								 in="/mcp:MD_Metadata"/>
           <!-- These are not often used in mcp so leave them out of the default
 					     mode
 					<field xpath="/mcp:MD_Metadata/gmd:dataSetURI" or="dataSetURI" in="/mcp:MD_Metadata"/> 
@@ -271,9 +263,8 @@
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:credit"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:status"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:pointOfContact"/>
-          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/mcp:resourceContactInfo"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:resourceMaintenance"/>
-          <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:graphicOverview"/>
+					<field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:graphicOverview"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:resourceFormat"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:descriptiveKeywords"/>
           <field xpath="/mcp:MD_Metadata/gmd:identificationInfo/mcp:MD_DataIdentification/gmd:resourceSpecficUsage"/>
@@ -317,8 +308,7 @@
           <field xpath="/mcp:MD_Metadata/mcp:revisionDate"/>
           <field xpath="/mcp:MD_Metadata/gmd:metadataStandardName"/>
           <field xpath="/mcp:MD_Metadata/gmd:metadataStandardVersion"/>
-          <field xpath="/mcp:MD_Metadata/gmd:contact" notDisplayedIfMissing="true"/>
-          <field xpath="/mcp:MD_Metadata/mcp:metadataContactInfo" notDisplayedIfMissing="true"/>
+          <field xpath="/mcp:MD_Metadata/gmd:contact"/>
 					<!-- Not often used in MCP so exclude them for now
           <field xpath="/mcp:MD_Metadata/gmd:dataSetURI" or="dataSetURI" in="/mcp:MD_Metadata"/>
           <field xpath="/mcp:MD_Metadata/gmd:locale" or="locale" in="/mcp:MD_Metadata"/>
