@@ -235,7 +235,7 @@
                       then substring-after($thesaurusInternalKey, 'geonetwork.thesaurus.')
                       else $thesaurusInternalKey"/>
 
-        <xsl:variable name="params" select="string-join(mcp:name/*[1], '`')"/>
+        <xsl:variable name="params" select="string-join(mcp:term/*[1], '`')"/>
 
         <!-- Define the list of transformation mode available. -->
         <xsl:variable name="transformations">to-mcp-dataparameterterm</xsl:variable>

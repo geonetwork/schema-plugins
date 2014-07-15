@@ -17,7 +17,7 @@
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 	<xsl:template mode="index" match="mcp:dataParameters/mcp:DP_DataParameters/mcp:dataParameter">
 		<xsl:for-each select="mcp:DP_DataParameter/mcp:parameterName/mcp:DP_Term">
-			<xsl:variable name="term" select="mcp:term/gco:CharacterString"/>
+			<xsl:variable name="term" select="mcp:term/*"/>
 			<Field name="dataparam" string="{$term}" store="true" index="true"/>
 			<xsl:if test="mcp:type/mcp:DP_TypeCode/@codeListValue='longName'">
 				<Field name="longParamName" string="{$term}" store="true" index="true"/>

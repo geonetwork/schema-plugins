@@ -52,12 +52,13 @@
 					<xsl:variable name="currentThesaurus" select="if (thesaurus/key) then thesaurus/key else /root/request/thesaurus"/>
 					
 					<!-- Loop on all keyword from the same thesaurus - should only be 1
-					     in this case -->
+					     in this case - use an Anchor to tie term id and term text
+							 together for easy checking -->
 					<xsl:for-each select="//keyword[thesaurus/key = $currentThesaurus]">
 						<mcp:term>
-							<gco:CharacterString>
+							<gmx:Anchor xlink:href="{uri}">
 								<xsl:value-of select="value"/>
-							</gco:CharacterString>
+							</gmx:Anchor>
 						</mcp:term>
 					</xsl:for-each>
 					
