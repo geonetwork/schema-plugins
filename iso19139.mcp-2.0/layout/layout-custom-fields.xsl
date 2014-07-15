@@ -90,8 +90,6 @@
       select="mcp:licenseName/gco:CharacterString"/>
 
 
-    <xsl:variable name="parentName" select="name(..)"/>
-
     <!-- Create custom widget: 
               * '' for item selector, 
               * 'tagsinput' for tags
@@ -123,6 +121,160 @@
 
   </xsl:template>
 
-	<!-- FIXME: Add custom handling for mcp:dataParameters -->
+<!--
+				<mcp:parameterName>
+          <mcp:DP_Term>
+            <mcp:term>
+              <gco:CharacterString>t</gco:CharacterString>
+            </mcp:term>
+            <mcp:type>
+              <mcp:DP_TypeCode
+          codeList="http://schemas.aodn.org.au/mcp-2.0/resources/Codelist/gmxCodelists.xml#DP_TypeCode"
+          codeListValue="shortName">shortName</mcp:DP_TypeCode>
+            </mcp:type>
+            <mcp:usedInDataset>
+              <gco:Boolean>1</gco:Boolean>
+            </mcp:usedInDataset>
+            <mcp:vocabularyRelationship>
+              <mcp:DP_VocabularyRelationship>
+                <mcp:relationshipType>
+                  <mcp:DP_RelationshipTypeCode
+          codeList="http://schemas.aodn.org.au/mcp-2.0/resources/Codelist/gmxCodelists.xml#DP_RelationshipTypeCode"
+          codeListValue="skos:exactmatch">skos:exactmatch</mcp:DP_RelationshipTypeCode>
+                </mcp:relationshipType>
+                <mcp:vocabularyTermURL>
+                 <gmd:URL>http://www.imos.org.au/vocabserver?code=temperature&vocab=oceanography</gmd:URL>
+                </mcp:vocabularyTermURL>
+                <mcp:vocabularyListURL>
+                 <gmd:URL>http://www.imos.org.au/vocabserver?vocab=oceanography</gmd:URL>
+                </mcp:vocabularyListURL>
+                <mcp:vocabularyListVersion>
+                  <gco:CharacterString>3.6</gco:CharacterString>
+                </mcp:vocabularyListVersion>
+              </mcp:DP_VocabularyRelationship>
+            </mcp:vocabularyRelationship>
+          </mcp:DP_Term>
+        </mcp:parameterName>
+-->
+	
+  <!-- Custom rendering of mcp:parameterName|mcp:parameterUnits section 
+    * mcp:parameterName|mcp:parameterUnits is boxed element and the title 
+    of the fieldset is mcp:parameterName (thesaurus title) or 
+    mcp:parameterUnits (thesaurus title)
+    * if the thesaurus is available in the catalog, display
+    the advanced editor which provides easy selection of 
+    keywords.
+  
+  -->
+
+
+  <xsl:template mode="mode-iso19139" priority="9999999" match="mcp:parameterName|mcp:parameterUnits">
+    <xsl:param name="schema" select="$schema" required="no"/>
+    <xsl:param name="labels" select="$labels" required="no"/>
+
+    <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
+    <xsl:variable name="isoType" select="if (../@gco:isoType) then ../@gco:isoType else ''"/>
+    <xsl:variable name="thesaurusUrl"
+      select="mcp:DP_Term/mcp:vocabularyRelationship/mcp:DP_VocabularyRelationship/mcp:vocabularyListURL/gmd:URL"/>
+
+    <xsl:variable name="attributes">
+      <xsl:if test="$isEditing">
+        <!-- Create form for all existing attribute (not in gn namespace)
+        and all non existing attributes not already present. -->
+        <xsl:apply-templates mode="render-for-field-for-attribute"
+          select="
+          @*|
+          gn:attribute[not(@name = parent::node()/@*/name())]">
+          <xsl:with-param name="ref" select="gn:element/@ref"/>
+          <xsl:with-param name="insertRef" select="gn:element/@ref"/>
+        </xsl:apply-templates>
+      </xsl:if>
+    </xsl:variable>
+
+    <xsl:call-template name="render-boxed-element">
+      <xsl:with-param name="label"
+        select="if ($thesaurusUrl) 
+                then concat(gn-fn-metadata:getLabel($schema, name(), $labels, name(..), $isoType, $xpath)/label,' (',$thesaurusUrl,')')
+                else gn-fn-metadata:getLabel($schema, name(), $labels, name(..), $isoType, $xpath)/label"/>
+      <xsl:with-param name="editInfo" select="gn:element"/>
+      <xsl:with-param name="cls" select="local-name()"/>
+      <xsl:with-param name="xpath" select="$xpath"/>
+      <xsl:with-param name="attributesSnippet" select="$attributes"/>
+      <xsl:with-param name="subTreeSnippet">
+        <xsl:apply-templates mode="mode-iso19139" select="*">
+          <xsl:with-param name="schema" select="$schema"/>
+          <xsl:with-param name="labels" select="$labels"/>
+        </xsl:apply-templates>
+      </xsl:with-param>
+    </xsl:call-template>
+
+  </xsl:template>
+
+	<!-- Offer a thesaurus picker for mcp:DP_Term -->
+
+  <xsl:template mode="mode-iso19139" match="mcp:DP_Term" priority="9999999">
+
+    <xsl:variable name="thesaurusUrl"
+      select="mcp:vocabularyRelationship/mcp:DP_VocabularyRelationship/mcp:vocabularyListURL/gmd:URL"/>
+
+    <xsl:variable name="isTheaurusAvailable"
+      select="count($listOfThesaurus/thesaurus[url=$thesaurusUrl]) > 0"/>
+    <xsl:choose>
+      <xsl:when test="$isTheaurusAvailable">
+
+        <!-- The thesaurus key is in the list of thesauri based on its url -->
+        <xsl:variable name="thesaurusInternalKey"
+          select="$listOfThesaurus/thesaurus[url=$thesaurusUrl]/key"/>
+        <xsl:variable name="thesaurusKey"
+                      select="if (starts-with($thesaurusInternalKey, 'geonetwork.thesaurus.'))
+                      then substring-after($thesaurusInternalKey, 'geonetwork.thesaurus.')
+                      else $thesaurusInternalKey"/>
+
+        <xsl:variable name="params" select="string-join(mcp:name/*[1], '`')"/>
+
+        <!-- Define the list of transformation mode available. -->
+        <xsl:variable name="transformations">to-mcp-dataparameterterm</xsl:variable>
+
+        <!-- Get current transformation mode (could be based on XML fragment 
+             analysis but not in this case - only one mode) -->
+				<!-- default if no keywords (ie. new block) is to-mcp-dataparameterterm -->
+        <xsl:variable name="transformation" select="'to-mcp-dataparameterterm'"/> 
+
+        <!-- Create custom widget: 
+              * '' for item selector, 
+              * 'tagsinput' for tags
+              * 'tagsinput' and maxTags = 1 for only one tag
+              * 'multiplelist' for multiple selection list
+        -->
+        <xsl:variable name="widgetMode" select="'tagsinput'"/>
+        <xsl:variable name="maxTags" select="'1'"/>
+
+        <!-- Create a div with the directive configuration
+            * widgetMod: the layout to use
+            * elementRef: the element ref to edit
+            * elementName: the element name
+            * thesaurusName: the thesaurus title to use
+            * thesaurusKey: the thesaurus identifier
+            * keywords: list of keywords in the element
+            * transformations: list of transformations
+            * transformation: current transformation
+          -->
+        <div data-gn-keyword-selector="{$widgetMode}"
+          data-metadata-id="{$metadataId}"
+          data-element-ref="{concat('_X', ../gn:element/@ref)}"
+          data-thesaurus-title="{$thesaurusKey}"
+          data-thesaurus-key="{$thesaurusKey}"
+          data-keywords="{$params}" data-transformations="{$transformations}"
+          data-current-transformation="{$transformation}"
+          data-max-tags="{$maxTags}">
+        </div>
+
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates mode="mode-iso19139" select="*"/>
+      </xsl:otherwise>
+    </xsl:choose>
+
+  </xsl:template>
 
 </xsl:stylesheet>

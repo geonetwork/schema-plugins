@@ -76,6 +76,17 @@
 		</for>
 
     <for name="gmd:descriptiveKeywords" addDirective="data-gn-thesaurus-selector"/>
+
+		<!-- use thesaurus selector for mcp:parameterName and parameterUnits but
+		     specify an extra directive attribute to transform to mcp:DP_Term -->
+    <for name="mcp:parameterName" addDirective="data-gn-thesaurus-selector">
+      <directiveAttributes data-transformation="to-mcp-dataparameterterm"/>
+		</for>
+
+    <for name="mcp:parameterUnits" addDirective="data-gn-thesaurus-selector">
+      <directiveAttributes data-transformation="to-mcp-dataparameterterm"/>
+		</for>
+
     <for name="mcp:MD_Commons" addDirective="data-gn-commons-jurisdiction-selector"/>
   </fields>
 
