@@ -177,6 +177,13 @@
     <xsl:variable name="thesaurusUrl"
       select="mcp:DP_Term/mcp:vocabularyRelationship/mcp:DP_VocabularyRelationship/mcp:vocabularyListURL/gmd:URL"/>
 
+    <xsl:variable name="isThesaurusAvailable"
+      select="count($listOfThesaurus/thesaurus[url=$thesaurusUrl]) > 0"/>
+
+		<xsl:variable name="thesaurusTitle" select="if ($isThesaurusAvailable) then
+									$listOfThesaurus/thesaurus[url=$thesaurusUrl]/title
+									else 'Thesaurus Not Available'"/>
+
     <xsl:variable name="attributes">
       <xsl:if test="$isEditing">
         <!-- Create form for all existing attribute (not in gn namespace)
@@ -193,9 +200,7 @@
 
     <xsl:call-template name="render-boxed-element">
       <xsl:with-param name="label"
-        select="if ($thesaurusUrl) 
-                then concat(gn-fn-metadata:getLabel($schema, name(), $labels, name(..), $isoType, $xpath)/label,' (',$thesaurusUrl,')')
-                else gn-fn-metadata:getLabel($schema, name(), $labels, name(..), $isoType, $xpath)/label"/>
+        select="concat(gn-fn-metadata:getLabel($schema, name(), $labels, name(..), $isoType, $xpath)/label,' (',$thesaurusTitle,')')"/>
       <xsl:with-param name="editInfo" select="gn:element"/>
       <xsl:with-param name="cls" select="local-name()"/>
       <xsl:with-param name="xpath" select="$xpath"/>
@@ -217,10 +222,10 @@
     <xsl:variable name="thesaurusUrl"
       select="mcp:vocabularyRelationship/mcp:DP_VocabularyRelationship/mcp:vocabularyListURL/gmd:URL"/>
 
-    <xsl:variable name="isTheaurusAvailable"
+    <xsl:variable name="isThesaurusAvailable"
       select="count($listOfThesaurus/thesaurus[url=$thesaurusUrl]) > 0"/>
     <xsl:choose>
-      <xsl:when test="$isTheaurusAvailable">
+      <xsl:when test="$isThesaurusAvailable">
 
         <!-- The thesaurus key is in the list of thesauri based on its url -->
         <xsl:variable name="thesaurusInternalKey"
