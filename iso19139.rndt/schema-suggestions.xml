@@ -108,7 +108,6 @@
 	<field name="gmd:MD_Keywords">
 		<!-- RNDT -->
 		<suggest name="gmd:keyword"/>
-		<suggest name="gmd:thesaurusName"/>
 	</field>
 	
     <field name="gmd:keyword">

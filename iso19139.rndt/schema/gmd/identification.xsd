@@ -24,7 +24,7 @@
 					<xs:element name="purpose" type="gco:CharacterString_PropertyType" minOccurs="0"/>
 					<xs:element name="credit" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="status" type="gmd:MD_ProgressCode_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="pointOfContact" type="gmd:CI_ResponsibleParty_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="pointOfContact" type="gmd:CI_ResponsibleParty_PropertyType" minOccurs="1" maxOccurs="unbounded"/>
 					<xs:element name="resourceMaintenance" type="gmd:MD_MaintenanceInformation_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="graphicOverview" type="gmd:MD_BrowseGraphic_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="resourceFormat" type="gmd:MD_Format_PropertyType" minOccurs="0" maxOccurs="unbounded"/>

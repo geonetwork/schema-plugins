@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
-                xmlns:gml="http://www.opengis.net/gml"
+                xmlns:gml="http://www.opengis.net/gml/3.2"
                 xmlns:srv="http://www.isotc211.org/2005/srv"
                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
                 xmlns:gco="http://www.isotc211.org/2005/gco"
@@ -56,11 +56,23 @@
 	<!-- ================================================================= -->
 	<!-- Convert gml URI -->
 
-	<xsl:template match="gml:*">
+	<!--<xsl:template match="gml:*">
 		<xsl:element name="{concat('gml:', local-name(.))}" namespace="http://www.opengis.net/gml/3.2">
 			<xsl:apply-templates select="node()|@*"/>
 		</xsl:element>
-	</xsl:template>
+	</xsl:template>-->
+	
+    <xsl:template match="@*[namespace-uri()='http://www.opengis.net/gml']">
+        <xsl:attribute name="gml:{local-name()}">
+            <xsl:value-of select="."/>
+        </xsl:attribute>
+    </xsl:template>
+     
+    <xsl:template match="*[namespace-uri()='http://www.opengis.net/gml']">
+        <xsl:element name="gml:{local-name()}">
+            <xsl:apply-templates select="node()|@*"/>
+        </xsl:element>
+    </xsl:template>
 
 	<!-- =================================================================== -->
 	<!-- Fix gmd:parentIdentifier -->

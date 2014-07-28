@@ -136,7 +136,7 @@
 			</xsl:call-template>
 		</xsl:param>
 		<xsl:param name="text">
-			<xsl:call-template name="getAttributeText">
+			<xsl:call-template name="getAttributeText.rndt">
 				<xsl:with-param name="schema" select="$schema"/>
 				<xsl:with-param name="edit"   select="$edit"/>
 			</xsl:call-template>
@@ -347,7 +347,7 @@
 							and	count(geonet:attribute[@name='gco:nilReason'])!=0
 							and normalize-space(gco:CharacterString)=''">
 							<xsl:for-each select="@gco:nilReason">
-								<xsl:call-template name="getAttributeText">
+								<xsl:call-template name="getAttributeText.rndt">
 									<xsl:with-param name="schema" select="$schema"/>
 									<xsl:with-param name="edit"   select="$edit"/>
 								</xsl:call-template>
@@ -469,7 +469,9 @@
 			</xsl:call-template>
 		</xsl:variable>
 		<xsl:variable name="removeLink">
-			<xsl:value-of select="concat('doRemoveElementAction(',$apos,'/metadata.elem.delete',$apos,',',geonet:element/@ref,',',geonet:element/@parent,',',$apos,$id,$apos,',',geonet:element/@min,');')"/>
+<!--			<xsl:if test="not(contains($helpLink, '|gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:thesaurusName|'))">-->
+				<xsl:value-of select="concat('doRemoveElementAction(',$apos,'/metadata.elem.delete',$apos,',',geonet:element/@ref,',',geonet:element/@parent,',',$apos,$id,$apos,',',geonet:element/@min,');')"/>
+			<!--</xsl:if>-->
 			<xsl:if test="not(geonet:element/@del='true')">
 				<xsl:text>!OPTIONAL</xsl:text>
 			</xsl:if>
@@ -735,11 +737,20 @@
 						</xsl:choose>
 					</xsl:when>
 					
-					<xsl:otherwise>
+					<xsl:otherwise>						
 						<input class="md" type="{$input_type}" value="{text()}" size="{$cols}">
 							<xsl:if test="$isXLinked">
 								<xsl:attribute name="disabled">disabled</xsl:attribute>
-							</xsl:if>						
+							</xsl:if>	
+							
+							<!-- 
+								Hide the Vertical CRS main field because empty and highlighted in red and uneditable.
+								Only the xlink field is important
+							-->
+							<xsl:if test="contains($helpLink, '|gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement/gmd:EX_VerticalExtent/gmd:verticalCRS|')">
+								<xsl:attribute name="style">display:none;</xsl:attribute>
+							</xsl:if>
+							
 							<xsl:choose>
 								<xsl:when test="$no_name=false()">
 									<xsl:attribute name="name">_<xsl:value-of select="geonet:element/@ref"/></xsl:attribute>
@@ -846,6 +857,97 @@
 							<xsl:with-param name="langId" select="$langId"></xsl:with-param>
 						</xsl:apply-templates>
 					</xsl:when>
+					<xsl:otherwise><xsl:value-of select="$value"/></xsl:otherwise>
+				</xsl:choose>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	
+	<!--
+	returns the text of an attribute
+	-->
+	<xsl:template name="getAttributeText.rndt">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit" select="false()"/>
+		<xsl:param name="rows" select="1"/>
+		<xsl:param name="cols" select="40"/>
+		
+		<xsl:variable name="helpLink">
+			<xsl:call-template name="getHelpLink">
+				<xsl:with-param name="name"   select="name(.)"/>
+				<xsl:with-param name="schema" select="$schema"/>
+			</xsl:call-template>
+		</xsl:variable>
+		
+		<xsl:variable name="name">
+			<xsl:choose>
+				<xsl:when test="@name"><xsl:value-of select="@name"/></xsl:when>
+				<xsl:otherwise><xsl:value-of select="name(.)"/></xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<xsl:variable name="value" select="string(.)"/>
+		<xsl:variable name="parent"  select="name(..)"/>
+		<!-- the following variable is used in place of name as a work-around to
+         deal with qualified attribute names like gml:id
+		     which if not modified will cause JDOM errors on update because of the
+				 way in which changes to ref'd elements are parsed as XML -->
+		<xsl:variable name="updatename">
+			<xsl:call-template name="getAttributeName">
+				<xsl:with-param name="name" select="$name"/>
+			</xsl:call-template>
+		</xsl:variable>
+		<xsl:variable name="isXLinked" select="count(ancestor-or-self::node()[@xlink:href]) > 0" />
+		
+		<xsl:choose>
+			<!-- list of values for existing attribute or non existing ones -->
+			<xsl:when test="../geonet:attribute[string(@name)=$name]/geonet:text|geonet:text">
+				<select class="md" name="_{../geonet:element/@ref}_{$updatename}" size="1">
+					<xsl:if test="$isXLinked">
+						<xsl:attribute name="disabled">disabled</xsl:attribute>
+					</xsl:if>
+					<option name=""/>
+					<xsl:for-each select="../geonet:attribute/geonet:text">
+						<option>
+							<xsl:if test="@value=$value">
+								<xsl:attribute name="selected"/>
+							</xsl:if>
+							<xsl:variable name="choiceValue" select="string(@value)"/>
+							<xsl:attribute name="value"><xsl:value-of select="$choiceValue"/></xsl:attribute>
+							
+							<!-- codelist in edit mode -->
+							<xsl:variable name="label" select="/root/gui/schemas/*[name(.)=$schema]/codelists/codelist[@name = $parent]/entry[code=$choiceValue]/label"/>
+							<xsl:choose>
+								<xsl:when test="$label"><xsl:value-of select="$label"/></xsl:when>
+								<xsl:otherwise><xsl:value-of select="$choiceValue"/></xsl:otherwise>
+							</xsl:choose>
+						</option>
+					</xsl:for-each>
+				</select>
+			</xsl:when>
+			<xsl:when test="$edit=true() and $rows=1">
+				<input class="md" type="text" id="_{../geonet:element/@ref}_{$updatename}" name="_{../geonet:element/@ref}_{$updatename}" value="{string()}" size="{$cols}" >
+					
+					<!-- RNDT: Make readonly the Vertical CRS because we have a suggestion for it (see the 'simpleElementGui.rndt' template in this file) -->
+					<xsl:if test="contains($helpLink, '|gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement/gmd:EX_VerticalExtent/gmd:verticalCRS/@xlink:href|')">
+						<xsl:attribute name="readonly"/>
+					</xsl:if>					
+				</input>
+				
+				<xsl:call-template name="helper">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="attribute" select="true()"/>
+				</xsl:call-template>
+			</xsl:when>
+			<xsl:when test="$edit=true()">
+				<textarea class="md" name="_{../geonet:element/@ref}_{$updatename}" id="_{../geonet:element/@ref}_{$updatename}" rows="{$rows}" cols="{$cols}">
+					<xsl:value-of select="string()"/>
+				</textarea>
+			</xsl:when>
+			<xsl:otherwise>
+				<!-- codelist in view mode -->
+				<xsl:variable name="label" select="/root/gui/schemas/*[name(.)=$schema]//codelists/codelist[@name = $parent]/entry[code = $value]/label"/>
+				<xsl:choose>
+					<xsl:when test="$label"><xsl:value-of select="$label"/></xsl:when>
 					<xsl:otherwise><xsl:value-of select="$value"/></xsl:otherwise>
 				</xsl:choose>
 			</xsl:otherwise>

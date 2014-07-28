@@ -350,8 +350,15 @@
 		<label>Sistema di riferimento</label>
 		<description>Descrizione del sistema di riferimento spaziale dei dati</description>
 	</element>
+	<element name="gmd:topicCategory" id="41.0">
+		<!--label>Tema</label-->
+		<label>Categoria Tematica</label>
+		<description>Tema principale cui si riferiscono i dati</description>
+		<condition>obbligatorio</condition>
+	</element>
 	<element name="gmd:MD_TopicCategoryCode">
-		<label>Categoria tematica</label>		
+		<!--label>Categoria tematica</label-->		
+		<label>Tema</label>		
 		<description>Tema principale cui si riferiscono i dati.</description>
 		<condition>Obbligatorio</condition>
 		<help>L’elemento deve assumere uno dei valori della lista “MD_TopicCategoryCode” (§ 3.4.3.15 – all. 2 DM).</help>

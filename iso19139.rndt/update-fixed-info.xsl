@@ -583,6 +583,12 @@
         </gco:CharacterString>
     </xsl:template>
 
+    <!-- Don't save some gmd:thesaurusName|gmd:MD_Keywords sub elements because not required by RNDT -->
+    <xsl:template match="gmd:thesaurusName/gmd:CI_Citation/gmd:identifier"/>
+    <xsl:template match="gmd:MD_Keywords/gmd:type"/>
+    <!-- ======== -->
+    
+    
     <!-- ================================================================= -->
     <!-- copy everything else as is -->
 
