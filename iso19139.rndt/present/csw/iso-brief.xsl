@@ -12,6 +12,8 @@
                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
                 xmlns:srv="http://www.isotc211.org/2005/srv"
                 xmlns:geonet="http://www.fao.org/geonetwork"
+				
+				xmlns:gml="http://www.opengis.net/gml/3.2"
 
                 exclude-result-prefixes="geonet dc dct  ows">
 
@@ -86,7 +88,7 @@
 	</xsl:copy>
 </xsl:template>
 
-<!-- Fix the namespace URI -->
+<!-- Fix the namespace URI 
 
     <xsl:template match="*[namespace-uri()='http://www.opengis.net/gml/3.2']" priority="100">
         <xsl:element name="{local-name(.)}" namespace="http://www.opengis.net/gml">
@@ -96,6 +98,18 @@
 
     <xsl:template match="@*[namespace-uri()='http://www.opengis.net/gml/3.2']" priority="100">
         <xsl:attribute name="{local-name(.)}"><xsl:copy/></xsl:attribute>
+    </xsl:template>-->
+	
+	<xsl:template match="@*[namespace-uri()='http://www.opengis.net/gml']">
+        <xsl:attribute name="gml:{local-name()}">
+            <xsl:value-of select="."/>
+        </xsl:attribute>
+    </xsl:template>
+     
+    <xsl:template match="*[namespace-uri()='http://www.opengis.net/gml']">
+        <xsl:element name="gml:{local-name()}">
+            <xsl:apply-templates select="node()|@*"/>
+        </xsl:element>
     </xsl:template>
 
 <!-- === copy template ================================================= -->

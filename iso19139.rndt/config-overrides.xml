@@ -16,7 +16,7 @@
 		<addXML xpath="metadata-tab">
 			  <rndt flat="true">
 				 <ancestorException schema="iso19139.rndt" for="CI_Date,spatialResolution"/>
-				 <exception schema="iso19139.rndt" for="invocationName,result,resourceConstraints,pointOfContact,hierarchyLevel,couplingType,operatesOn,distributionInfo,distributionFormat,onLine,identifier,language,characterSet,topicCategory,serviceType,descriptiveKeywords,extent,temporalElement,geographicElement,lineage"/>
+				 <exception schema="iso19139.rndt" for="invocationName,result,resourceConstraints,pointOfContact,hierarchyLevel,couplingType,operatesOn,distributionInfo,distributionFormat,language,characterSet,topicCategory,serviceType,descriptiveKeywords,extent,temporalElement,geographicElement,lineage"/>
 			  </rndt>
         </addXML>
 		

@@ -16,11 +16,16 @@
                 xmlns:srv="http://www.isotc211.org/2005/srv"
 
                 xmlns:geonet="http://www.fao.org/geonetwork"
-
-                exclude-result-prefixes="geonet dc dct  ows">
+				
+				xmlns:gml="http://www.opengis.net/gml/3.2"
+				
+                exclude-result-prefixes="geonet dc dct ows srv">
 
 
 	<xsl:param name="displayInfo"/>
+
+
+    <xsl:variable name="isSrv" select="boolean(//srv:*)"/>
 
 	<!-- ================================================================= -->
 
@@ -31,11 +36,22 @@
 			<xsl:namespace name="gmd" select="'http://www.isotc211.org/2005/gmd'"/>
 			<xsl:namespace name="gco" select="'http://www.isotc211.org/2005/gco'"/>
 			<xsl:namespace name="gmx" select="'http://www.isotc211.org/2005/gmx'"/>
-			<xsl:namespace name="srv" select="'http://www.isotc211.org/2005/srv'"/>
+            <xsl:if test="$isSrv">
+                <xsl:namespace name="srv" select="'http://www.isotc211.org/2005/srv'"/>
+            </xsl:if>
 			<xsl:namespace name="gml" select="'http://www.opengis.net/gml/3.2'"/>
 			<xsl:namespace name="xlink" select="'http://www.w3.org/1999/xlink'"/>
 			<xsl:copy-of select="@*[name()!='xsi:schemaLocation' and name()!='gco:isoType']"/>
-			<xsl:attribute name="xsi:schemaLocation">http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd</xsl:attribute>
+
+            <xsl:choose>
+                <xsl:when test="$isSrv">
+                    <xsl:attribute name="xsi:schemaLocation">http://www.isotc211.org/2005/gmd http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gmd/gmd.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd</xsl:attribute>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:attribute name="xsi:schemaLocation">http://www.isotc211.org/2005/gmd http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gmd/gmd.xsd</xsl:attribute>
+                </xsl:otherwise>
+            </xsl:choose>
+
 			<xsl:apply-templates select="gmd:fileIdentifier"/>
 			<xsl:apply-templates select="gmd:language"/>
 			<xsl:apply-templates select="gmd:characterSet"/>
@@ -81,7 +97,7 @@
 
 	<xsl:template match="geonet:info" priority="100"/>
 
-	<!-- Fix the namespace URI -->
+	<!-- Fix the namespace URI 
 
 	<xsl:template match="*[namespace-uri()='http://www.opengis.net/gml/3.2']" priority="100">
 		<xsl:element name="{local-name(.)}" namespace="http://www.opengis.net/gml">
@@ -93,8 +109,19 @@
 		<xsl:attribute name="{local-name(.)}">
 			<xsl:copy/>
 		</xsl:attribute>
-	</xsl:template>
-
+	</xsl:template>-->
+     
+    <xsl:template match="@*[namespace-uri()='http://www.opengis.net/gml']">
+        <xsl:attribute name="gml:{local-name()}">
+            <xsl:value-of select="."/>
+        </xsl:attribute>
+    </xsl:template>
+     
+    <xsl:template match="*[namespace-uri()='http://www.opengis.net/gml']">
+        <xsl:element name="gml:{local-name()}">
+            <xsl:apply-templates select="node()|@*"/>
+        </xsl:element>
+    </xsl:template>
 
 	<!-- ================================================================= -->
 

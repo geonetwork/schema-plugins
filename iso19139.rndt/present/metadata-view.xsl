@@ -353,6 +353,178 @@
 					}
 				}
 				
+				// //////////////////////////////////////////////////////////////
+				// Overvrite some core JS function introducing more controls 
+				// on fields in order to avoid bugs when the user delete an 
+				// element from the metadata edit page. 
+				// //////////////////////////////////////////////////////////////
+				
+				/**
+				 * See the original one in metadata-editor.js
+				 */
+				function topElement(el){
+					if(el){
+						if (el.previous() == undefined) return true;
+						else return (!isSameElement(el.previous(),el));
+					}else{
+						return false;
+					}
+				}
+				
+				/**
+				 * See the original one in metadata-editor.js
+				 */
+				function getControlsFromElement(el) {					
+					elButtons = null;
+					
+				    if(el){
+					    var id = el.getAttribute('id');
+						elButtons = $('buttons_'+id);
+						elButtons = elButtons ? elButtons.immediateDescendants() : elButtons;
+					}
+				
+					return elButtons;
+				}
+				
+				/**
+				 * See the original one in metadata-editor.js
+				 */
+				function topControls(el, min){
+					var elDescs = getControlsFromElement(el);
+					
+					if(elDescs){
+						// Check addXmlFragment control
+						var index = 0;
+						if (elDescs.length == 5) index = 1;
+						
+						// sort out +
+						if (bottomElement(el) && !orElement(el)) elDescs[0].show();
+						else elDescs[0].hide();
+						
+						// sort out +/x (addXmlFragment)
+						if (index == 1) {
+							if (bottomElement(el) && !orElement(el))
+								elDescs[index].show();
+							else
+								elDescs[index].hide();
+						}
+				
+						// sort out x
+						if (bottomElement(el)) {
+							if (min == 0) elDescs[1+index].show();
+							else elDescs[1+index].hide();
+						} else elDescs[1+index].show();
+				
+						// sort out ^
+						elDescs[2+index].hide();
+				
+						// sort out v
+						if (bottomElement(el)) elDescs[3+index].hide();
+						else elDescs[3+index].show();
+					}
+				}
+				
+				/**
+				 * See the original one in metadata-editor.js
+				 */
+				function swapControls(el1, el2){
+					var el1Descs = getControlsFromElement(el1);
+					var el2Descs = getControlsFromElement(el2);
+					for (var index = 0; index < el1Descs.length; ++index){
+						var visible1 = null;
+					 	if(el1Descs != null)
+							visible1 = el1Descs[index].visible();
+						
+						var visible2 = null;	
+					 	if(el2Descs != null)
+							visible2 = el2Descs[index].visible();
+					
+				     	if(el2Descs != null){
+					 		if (visible1) el2Descs[index].show();
+							else el2Descs[index].hide();
+					 	}	
+				
+					 	if(el1Descs != null){
+							if (visible2) el1Descs[index].show();
+							else el1Descs[index].hide();
+					 	}
+					}
+				}
+				
+				/**
+				 * See the original one in metadata-editor.js
+				 */
+				function doRemoveElementAction(action, ref, parentref, id, min){
+					var metadataId = document.mainForm.id.value;
+					var thisElement = $(id);
+					var nextElement = thisElement.next();
+					var prevElement = thisElement.previous();
+					var myExtAJaxRequest = Ext.Ajax.request({
+						url: getGNServiceURL(action),
+						method: 'GET',
+						params: {id:metadataId, ref:ref, parent:parentref},
+						success: function(result, request) {
+							var html = result.responseText;
+							if (html.blank()) { 
+								// /////////////////////////////////////////////////////////////////////
+								// We have to ensure that the elements (thisElement and prevElement) 
+								// are components of the same type before swapping controls (see later). 
+								// Otherwise the risk is to swapp controls between different components 
+								// types and this is an error.
+								// /////////////////////////////////////////////////////////////////////
+							    var prevIsSameSubComponent = false;
+							    if(thisElement && prevElement){
+							    	prevIsSameSubComponent = thisElement.id.split('_')[0] == prevElement.id.split('_')[0];
+							    }
+							    
+							    // /////////////////////////////////////////////////////////////////////
+								// We have to ensure that the elements (thisElement and nextElement) 
+								// are components of the same type before set top controls (see later). 
+								// Otherwise the risk is to set controls between different components 
+								// types and this is an error.
+								// /////////////////////////////////////////////////////////////////////
+							    var nextIsSameSubComponent = false;
+							    if(thisElement && nextElement){
+							    	nextIsSameSubComponent = thisElement.id.split('_')[0] == nextElement.id.split('_')[0];
+							    }
+							    
+							    // /////////////////////////////////////////////////////////////////
+								// More than one left, no child-placeholder returned
+							    // in simple mode, returned snippets will be empty in all cases
+							    // because a geonet:child alone is not take into account.
+							    // No elements are suggested then and last element is removed.
+							    // //////////////////////////////////////////////////////////////////							    
+								if (bottomElement(thisElement) && document.mainForm.currTab.value!='simple') { 
+									if(prevIsSameSubComponent){
+										swapControls(thisElement,prevElement);
+									}									
+									thisElement.remove();
+									thisElement = prevIsSameSubComponent ? prevElement : undefined;
+								} else {
+									thisElement.remove();
+									thisElement = nextIsSameSubComponent ? nextElement : undefined;
+								}
+								
+								if (topElement(thisElement)){
+									topControls(thisElement,min); 
+								}
+							} else { 
+								// ///////////////////////////////////////////////////////
+								// Last one, so replace with child-placeholder returned
+								// ///////////////////////////////////////////////////////
+								if (orElement(thisElement)) thisElement.remove();
+								else thisElement.replace(html);
+							} 
+							setBunload(true); // Reset warning for window destroy
+						},
+						failure:function (result, request) { 
+							Ext.MessageBox.alert(translate("errorDeleteElement") + name + " " + translate("errorFromDoc") 
+										+ " / status " + result.status + " text: " + result.statusText + " - " + translate("tryAgain"));
+							setBunload(true); // reset warning for window destroy
+						}
+					});
+				}
+				
 			 ]]>
 		</script>
 	</xsl:template>

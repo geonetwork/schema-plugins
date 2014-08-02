@@ -392,8 +392,7 @@ e" codeListValue="utf8">utf8</gmd:MD_CharacterSetCode>
 							<gmd:maximumValue>
 								<gco:Real>345.15</gco:Real>
 							</gmd:maximumValue>
-							<gmd:verticalCRS xlink:href="http://www.epsg-registry.
-org/export.htm?gml=urn:ogc:def:crs:EPSG::4979"/>
+							<gmd:verticalCRS xlink:href="http://www.epsg-registry.org/export.htm?gml=urn:ogc:def:crs:EPSG::4979"/>
 						</gmd:EX_VerticalExtent>
 					</gmd:verticalElement>
 				</gmd:EX_Extent>
