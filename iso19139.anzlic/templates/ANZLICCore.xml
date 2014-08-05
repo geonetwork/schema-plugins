@@ -250,15 +250,8 @@
       <gmd:scope>
         <gmd:DQ_Scope>
           <gmd:level>
-            <gmd:MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="" codeSpace="domainCode"/>
+            <gmd:MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset"/>
           </gmd:level>
-          <gmd:levelDescription>
-            <gmd:MD_ScopeDescription>
-              <gmd:dataset gco:nilReason="missing">
-                <gco:CharacterString/>
-              </gmd:dataset>
-            </gmd:MD_ScopeDescription>
-          </gmd:levelDescription>
         </gmd:DQ_Scope>
       </gmd:scope>
       <gmd:lineage>
@@ -266,13 +259,6 @@
           <gmd:statement gco:nilReason="missing">
             <gco:CharacterString/>
           </gmd:statement>
-          <gmd:source>
-            <gmd:LI_Source>
-              <gmd:description gco:nilReason="missing">
-                <gco:CharacterString/>
-              </gmd:description>
-            </gmd:LI_Source>
-          </gmd:source>
         </gmd:LI_Lineage>
       </gmd:lineage>
     </gmd:DQ_DataQuality>
