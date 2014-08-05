@@ -159,8 +159,10 @@
   <temporalRangeSection>Temporal extent</temporalRangeSection>
   <beginPosition>Begin</beginPosition>
   <endPosition>End</endPosition>
-  <domainConsistency>Quality: Domain Consistency</domainConsistency>
-  <positionalAccuracy>Quality: Positional Accuracy</positionalAccuracy>
+  <conceptualConsistency>Quality: Logical Consistency</conceptualConsistency>
+  <absoluteExternalPositionalAccuracy>Quality: Positional Accuracy</absoluteExternalPositionalAccuracy>
+  <nonQuantitativeAttributeAccuracy>Quality: Attribute Accuracy</nonQuantitativeAttributeAccuracy>
+  <completenessOmission>Quality: Completeness</completenessOmission>
   <conformity_title>Title</conformity_title>
   <conformity_date>Date</conformity_date>
   <explanation>Explanation</explanation>

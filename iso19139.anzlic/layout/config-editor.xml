@@ -207,12 +207,124 @@
 
 					<!-- Data Quality Section -->
 
-					<!-- DQ_DomainConsistency -->
-          <field name="domainConsistency" templateModeOnly="true" isMissingLabel="notEvaluated" xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result" del="../..">
+					<!-- DQ_CompletenessOmission -->
+          <field name="completenessOmission" templateModeOnly="true" isMissingLabel="notEvaluated" xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_CompletenessOmission/gmd:result" del="../..">
             <template>
               <values>
                 <key label="conformity_title" xpath="gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title/gco:CharacterString" tooltip="gmd:pass">
-                  <helper name="gmd:title" context="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title"></helper>
+                  <helper name="gmd:title" context="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_CompletenessOmission/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title"></helper>
+                </key>
+                <key label="conformity_date" xpath="gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date" use="date"/>
+                <key label="explanation" xpath="gmd:DQ_ConformanceResult/gmd:explanation/gco:CharacterString" use="textarea"/>
+                <key label="pass" use="checkbox" xpath="gmd:DQ_ConformanceResult/gmd:pass/gco:Boolean"/>
+              </values>
+              <snippet>
+                <gmd:result>
+                  <gmd:DQ_ConformanceResult>
+                    <gmd:specification>
+                      <gmd:CI_Citation>
+                        <gmd:title>
+                          <gco:CharacterString>{{conformity_title}}</gco:CharacterString>
+                        </gmd:title>
+                        <gn:copy select="gmd:alternateTitle"/>
+                        <gmd:date>
+                          <gmd:CI_Date>
+                            <gmd:date>
+                              <gco:Date>{{conformity_date}}</gco:Date>
+                            </gmd:date>
+                            <gmd:dateType>
+                              <gmd:CI_DateTypeCode
+                                codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#CI_DateTypeCode"
+                                codeListValue="publication"/>
+                            </gmd:dateType>
+                          </gmd:CI_Date>
+                        </gmd:date>
+                        <gn:copy select="gmd:edition"/>
+                        <gn:copy select="gmd:editionDate"/>
+                        <gn:copy select="gmd:identifier"/>
+                        <gn:copy select="gmd:citedResponsibleParty"/>
+                        <gn:copy select="gmd:presentationForm"/>
+                        <gn:copy select="gmd:series"/>
+                        <gn:copy select="gmd:otherCitationDetails"/>
+                        <gn:copy select="gmd:collectiveTitle"/>
+                        <gn:copy select="gmd:ISBN"/>
+                        <gn:copy select="gmd:ISSN"/>
+                      </gmd:CI_Citation>
+                    </gmd:specification>
+                    <gmd:explanation>
+                      <gco:CharacterString>{{explanation}}</gco:CharacterString>
+                    </gmd:explanation>
+                    <gmd:pass>
+                      <gco:Boolean>{{pass}}</gco:Boolean>
+                    </gmd:pass>
+                  </gmd:DQ_ConformanceResult>
+                </gmd:result>
+              </snippet>
+            </template>
+        	</field>
+
+					<!-- DQ_NonQuantitativeAttributeAccuracy -->
+          <field name="nonQuantitativeAttributeAccuracy" templateModeOnly="true" isMissingLabel="notEvaluated" xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_NonQuantitativeAttributeAccuracy/gmd:result" del="../..">
+            <template>
+              <values>
+                <key label="conformity_title" xpath="gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title/gco:CharacterString" tooltip="gmd:pass">
+                  <helper name="gmd:title" context="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_NonQuantitativeAttributeAccuracy/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title"></helper>
+                </key>
+                <key label="conformity_date" xpath="gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date" use="date"/>
+                <key label="explanation" xpath="gmd:DQ_ConformanceResult/gmd:explanation/gco:CharacterString" use="textarea"/>
+                <key label="pass" use="checkbox" xpath="gmd:DQ_ConformanceResult/gmd:pass/gco:Boolean"/>
+              </values>
+              <snippet>
+                <gmd:result>
+                  <gmd:DQ_ConformanceResult>
+                    <gmd:specification>
+                      <gmd:CI_Citation>
+                        <gmd:title>
+                          <gco:CharacterString>{{conformity_title}}</gco:CharacterString>
+                        </gmd:title>
+                        <gn:copy select="gmd:alternateTitle"/>
+                        <gmd:date>
+                          <gmd:CI_Date>
+                            <gmd:date>
+                              <gco:Date>{{conformity_date}}</gco:Date>
+                            </gmd:date>
+                            <gmd:dateType>
+                              <gmd:CI_DateTypeCode
+                                codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#CI_DateTypeCode"
+                                codeListValue="publication"/>
+                            </gmd:dateType>
+                          </gmd:CI_Date>
+                        </gmd:date>
+                        <gn:copy select="gmd:edition"/>
+                        <gn:copy select="gmd:editionDate"/>
+                        <gn:copy select="gmd:identifier"/>
+                        <gn:copy select="gmd:citedResponsibleParty"/>
+                        <gn:copy select="gmd:presentationForm"/>
+                        <gn:copy select="gmd:series"/>
+                        <gn:copy select="gmd:otherCitationDetails"/>
+                        <gn:copy select="gmd:collectiveTitle"/>
+                        <gn:copy select="gmd:ISBN"/>
+                        <gn:copy select="gmd:ISSN"/>
+                      </gmd:CI_Citation>
+                    </gmd:specification>
+                    <gmd:explanation>
+                      <gco:CharacterString>{{explanation}}</gco:CharacterString>
+                    </gmd:explanation>
+                    <gmd:pass>
+                      <gco:Boolean>{{pass}}</gco:Boolean>
+                    </gmd:pass>
+                  </gmd:DQ_ConformanceResult>
+                </gmd:result>
+              </snippet>
+            </template>
+        	</field>
+
+					<!-- DQ_ConceptualConsistency -->
+          <field name="conceptualConsistency" templateModeOnly="true" isMissingLabel="notEvaluated" xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_ConceptualConsistency/gmd:result" del="../..">
+            <template>
+              <values>
+                <key label="conformity_title" xpath="gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title/gco:CharacterString" tooltip="gmd:pass">
+                  <helper name="gmd:title" context="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_ConceptualConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title"></helper>
                 </key>
                 <key label="conformity_date" xpath="gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date" use="date"/>
                 <key label="explanation" xpath="gmd:DQ_ConformanceResult/gmd:explanation/gco:CharacterString" use="textarea"/>
@@ -264,11 +376,11 @@
         	</field>
 
 					<!-- DQ_AbsoluteExternalPositionalAccuracy -->
-          <field name="positionalAccuracy" templateModeOnly="true" isMissingLabel="notEvaluated" xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result" del="../..">
+          <field name="absoluteExternalPositionalAccuracy" templateModeOnly="true" isMissingLabel="notEvaluated" xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result" del="../..">
             <template>
               <values>
                 <key label="conformity_title" xpath="gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title/gco:CharacterString" tooltip="gmd:pass">
-                  <helper name="gmd:title" context="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title"></helper>
+                  <helper name="gmd:title" context="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title"></helper>
                 </key>
                 <key label="conformity_date" xpath="gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date" use="date"/>
                 <key label="explanation" xpath="gmd:DQ_ConformanceResult/gmd:explanation/gco:CharacterString" use="textarea"/>
