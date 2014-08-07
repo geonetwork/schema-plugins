@@ -460,7 +460,7 @@ e" codeListValue="utf8">utf8</gmd:MD_CharacterSetCode>
 								</gmd:CI_Citation>
 							</gmd:specification>
 							<gmd:explanation>
-								<gco:CharacterString>Fare riferimento alle specifiche indicate</gco:CharacterString>
+								<gco:CharacterString>non valutato</gco:CharacterString>
 							</gmd:explanation>
 							<gmd:pass gco:nilReason="unknown"/>
 						</gmd:DQ_ConformanceResult>

@@ -737,18 +737,23 @@
 						</xsl:choose>
 					</xsl:when>
 					
-					<xsl:otherwise>						
+					<xsl:otherwise>	
 						<input class="md" type="{$input_type}" value="{text()}" size="{$cols}">
 							<xsl:if test="$isXLinked">
 								<xsl:attribute name="disabled">disabled</xsl:attribute>
 							</xsl:if>	
 							
 							<!-- 
-								Hide the Vertical CRS main field because empty and highlighted in red and uneditable.
+								RNDT: Hide the Vertical CRS main field because empty and highlighted in red and uneditable.
 								Only the xlink field is important
 							-->
 							<xsl:if test="contains($helpLink, '|gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement/gmd:EX_VerticalExtent/gmd:verticalCRS|')">
 								<xsl:attribute name="style">display:none;</xsl:attribute>
+							</xsl:if>
+							
+							<!-- RNDT: Base Unit field should not be editable RNDT requires meters (m) -->
+							<xsl:if test="contains($helpLink, '|gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result/gmd:DQ_QuantitativeResult/gmd:valueUnit/gml:BaseUnit/gml:identifier|')">
+								<xsl:attribute name="readonly"/>
 							</xsl:if>
 							
 							<xsl:choose>
@@ -927,8 +932,13 @@
 			<xsl:when test="$edit=true() and $rows=1">
 				<input class="md" type="text" id="_{../geonet:element/@ref}_{$updatename}" name="_{../geonet:element/@ref}_{$updatename}" value="{string()}" size="{$cols}" >
 					
-					<!-- RNDT: Make readonly the Vertical CRS because we have a suggestion for it (see the 'simpleElementGui.rndt' template in this file) -->
-					<xsl:if test="contains($helpLink, '|gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement/gmd:EX_VerticalExtent/gmd:verticalCRS/@xlink:href|')">
+					<!-- RNDT: Make readonly the Vertical CRS because we have a suggestion for it 
+						(see the 'simpleElementGui.rndt' template in this file) -->
+					<!-- RNDT: Make readonly also Base Unit codespace field because RNDT requires meters 
+						(see also Base Unit settings in 'getElementText.rndt' tenplae in this file)-->
+					<xsl:if test="contains($helpLink, '|gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement/gmd:EX_VerticalExtent/gmd:verticalCRS/@xlink:href|') 
+						or
+						contains($helpLink, '|gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result/gmd:DQ_QuantitativeResult/gmd:valueUnit/gml:BaseUnit/gml:identifier/@codeSpace|')">
 						<xsl:attribute name="readonly"/>
 					</xsl:if>					
 				</input>

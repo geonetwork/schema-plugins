@@ -24,9 +24,13 @@
 	<!--DATA/SERVICE IDENTIFICATION - DATE TYPE-->
 	<M8>Identificazione dei Dati/Servizi - Tipo Data</M8>
 	<alert.M8><div>L'elemento dateType è mancante, incompleto o ha un valore errato</div></alert.M8>
-	<!--DATA/SERVICE IDENTIFICATION -  RESPONSIBLE PARTY-->
-	<M9>Identificazione dei Dati/Servizi - Responsabile dei metadati (Punto di contatto)</M9>
-	<alert.M9><div>L'elemento CI_ResponsibleParty è mancante, incompleto o ha un valore errato. Il metadato deve contenere gli elementi organisationName,role e electronicMailAddress e almeno uno tra gli elemnti phone e onlineResource</div></alert.M9>
+
+    <!--DATA/SERVICE IDENTIFICATION -  RESPONSIBLE PARTY-->
+	<M9>Identificazione dei Dati/Servizi - Responsabile dei metadati</M9>
+
+	<alert.req8><div>Devono essere forniti i seguenti elementi: nome dell'Ente, ruolo, indirizzo e-mail, sito web e/o riferimento telefonico.</div></alert.req8>
+	<alert.req9><div>Il valore della codelist CI_RoleCode per il ruolo deve essere "punto di contatto" (pointOfContact).</div></alert.req9>
+
 	<!--DATA/SERVICE IDENTIFICATION - IDENTIFIER-->
 	<M13>Identificazione dei Dati/Servizi - Identificatore</M13>
 	<alert.M13><div>L'elemento RS_Identifier è mancante, incompleto o ha un valore errato</div></alert.M13>
@@ -35,7 +39,11 @@
 	<alert.M14><div>L'elemento series è mancante, incompleto o ha un valore errato</div></alert.M14>
 	<!--DATA/SERVICE IDENTIFICATION - DATASET RESPONSIBLE PARTY -->	
 	<M15>Identificazione dei Dati/Servizi - Responsabile del dato/servizio</M15>
-	<alert.M15><div>L'elemento citedResponsibleParty è mancante, incompleto o ha un valore errato. Il metadato deve contenere gli elementi organisationName,role e electronicMailAddress e almeno uno tra gli elementi phone e onlineResource</div></alert.M15>
+	<!--<alert.M15><div>L'elemento citedResponsibleParty è mancante, incompleto o ha un valore errato. Il metadato deve contenere gli elementi organisationName,role e electronicMailAddress e almeno uno tra gli elementi phone e onlineResource</div></alert.M15>-->
+	<alert.M15org><div>Nome dell'Ente mancante</div></alert.M15org>
+	<alert.M15poc><div>Ruolo mancante</div></alert.M15poc>
+	<alert.M15mail><div>Indirizzo e-mail mancante</div></alert.M15mail>
+	<alert.M15phone><div>È obbligatorio inserire il numero di telefono o l'indirizzo del sito web</div></alert.M15phone>
 	<!--DATA/SERVICE IDENTIFICATION - PRESENTATION FORM-->
 	<M30>Identificazione dei Dati/Servizi - Formato di presentazione</M30>
 	<alert.M30><div>L'elemento presentationForm è mancante, incompleto o ha un valore errato</div></alert.M30>
@@ -83,7 +91,8 @@
 	<alert.M52><div>useConstraints è mancante, incompleto o ha un valore errato</div></alert.M52>
 	<!--CONSTRAINTS - OTHER CONSTRAINTS-->
 	<M53>Vincoli sui Dati - Altri Vincoli</M53>
-	<alert.M53><div>L'elemento otherConstraints è mancante, incompleto o ha un valore errato</div></alert.M53>
+	<alert.M53missing><div>L'elemento testuale [altri vincoli] è obbligatorio nel caso in cui sia selezionato <i>altri vincoli</i>. Aggiungere l'elemento testuale.</div></alert.M53missing>
+	<alert.M53notneeded><div>L'elemento testuale [altri vincoli] deve essere valorizzato solo nel caso in cui sia selezionato <i>altri vincoli</i>. Eliminare l'elemento testuale.</div></alert.M53notneeded>
 	<!--CONTENT INFO - CONTENT TYPE (RASTER DATA)-->
 	<M60>Informazioni sul contenuto - Tipo di contenuto (solo per Dati Raster)</M60>
 	<alert.M60><div>L'elemento contentType è mancante, incompleto o ha un valore errato</div></alert.M60>
@@ -113,7 +122,7 @@
 	<alert.M100>La date devono essere documentate attraverso l'elemento gco:Date</alert.M100>
 	<!--COD IPA-->
 	<M101>Identificativi - Codice IPA</M101>
-	<alert.M101>Gli identificatavi devono avere come prefisso il codice IPA dell'Amministrazione Responsabile. Verificare che sia stato correttamente configurato il SiteId di GeoNetwork.</alert.M101>
+	<alert.M101>Gli identificativi devono avere come prefisso il codice IPA dell'Amministrazione Responsabile. Verificare che sia stato correttamente configurato il SiteId di GeoNetwork.</alert.M101>
 	<!--COD IPA - PARENT IDENTIFIER-->
 	<M102>Id file precedente - Codice IPA</M102>
 	<alert.M102>L'identificatore del file precedente deve avere come prefisso il codice IPA dell'Amministrazione Responsabile.</alert.M102>
@@ -129,6 +138,11 @@
 	<!--VERTICAL ELEMENT-->
 	<M111>Attributo errato</M111>
 	<alert.M111>L'elemento CRS Verticale deve avere l'attributo xlink:href</alert.M111>
-	<M112>Attributo errato</M112>
+
+    <M112>Attributo errato</M112>
 	<alert.M112>Il riferimento esterno (XLink) a CRS Verticale non può essere vuoto</alert.M112>
+
+    <M120>Elementi di lista</M120>
+	<alert.M120>L'elemento della codelist è vuoto:</alert.M120>
+
 </strings>

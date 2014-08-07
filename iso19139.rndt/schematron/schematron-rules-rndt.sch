@@ -82,14 +82,17 @@
 	<sch:pattern>
 		<sch:title>$loc/strings/M9</sch:title>
 		<sch:rule context="//gmd:MD_Metadata/gmd:contact">
-			<sch:let name="responsibleParty" value="(gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString!='')
-			and count(gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue='pointOfContact')>0 		
-			and (gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString!='') 
-			and ((gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString!='') 
+			<sch:let name="req8test" value="(gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString!='')
+			and count(gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue!='')>0
+			and (gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString!='')
+			and ((gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString!='')
 			or (gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL!=''))"/>
-			<sch:assert test="$responsibleParty">$loc/strings/alert.M9</sch:assert>
+            <sch:let name="req9test" value="count(gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode[@codeListValue!='pointOfContact'])=0"/>
+            <sch:assert test="$req8test">$loc/strings/alert.req8</sch:assert>
+            <sch:assert test="$req9test">$loc/strings/alert.req9</sch:assert>
 		</sch:rule>
 	</sch:pattern>
+
 	<!--DATA/SERVICE IDENTIFICATION - IDENTIFIER-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M13</sch:title>
@@ -108,15 +111,14 @@
 	<!--DATA/SERVICE IDENTIFICATION - DATASET RESPONSIBLE PARTY-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M15</sch:title>
-		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation
-		|//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation">
-			<sch:let name="responsibleParty" value="(gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString!='') 
-			and count(gmd:citedResponsibleParty[gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue!='pointOfContact'
-			or gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue!='distributor']) > 0
-			and (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString!='') 
-			and ((gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString!='') 
-			or (gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL!=''))"/>
-			<sch:assert test="$responsibleParty">$loc/strings/alert.M15</sch:assert>
+		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty
+		                  |//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty">
+
+            <sch:assert test="gmd:CI_ResponsibleParty/gmd:organisationName/gco:CharacterString!=''">$loc/strings/alert.M15org</sch:assert>
+            <sch:assert test="gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue!=''">$loc/strings/alert.M15poc</sch:assert>
+            <sch:assert test="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString!=''">$loc/strings/alert.M15mail</sch:assert>
+            <sch:assert test="gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:phone/gmd:CI_Telephone/gmd:voice/gco:CharacterString!=''
+                           or gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL!=''">$loc/strings/alert.M15phone</sch:assert>
 		</sch:rule>
 	</sch:pattern>
 	<!--DATA/SERVICE IDENTIFICATION - PRESENTATION FORM-->
@@ -275,16 +277,18 @@
 	<!--CONSTRAINTS - OTHER CONSTRAINTS -->
 	<sch:pattern>
 		<sch:title>$loc/strings/M53</sch:title>
-		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification|
-			//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
+		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints|
+			//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:resourceConstraints">
 			
-			<sch:assert test="count(gmd:resourceConstraints[gmd:MD_LegalConstraints/gmd:otherConstraints/gco:CharacterString != ''
-				and gmd:MD_LegalConstraints/gmd:useConstraints/gmd:MD_RestrictionCode/@codeListValue!='otherRestrictions'
-				and gmd:MD_LegalConstraints/gmd:accessConstraints/gmd:MD_RestrictionCode/@codeListValue!='otherRestrictions']) = 0">$loc/strings/alert.M53</sch:assert>
-			
-			<sch:assert test="count(gmd:resourceConstraints[gmd:MD_LegalConstraints/gmd:otherConstraints/gco:CharacterString = ''
-				and (gmd:MD_LegalConstraints/gmd:useConstraints/gmd:MD_RestrictionCode/@codeListValue='otherRestrictions'
-				or gmd:MD_LegalConstraints/gmd:accessConstraints/gmd:MD_RestrictionCode/@codeListValue='otherRestrictions')]) = 0">$loc/strings/alert.M53</sch:assert>
+			<sch:assert test="count(gmd:MD_LegalConstraints[
+                                gmd:otherConstraints/gco:CharacterString != ''
+                            and gmd:useConstraints/gmd:MD_RestrictionCode/@codeListValue!='otherRestrictions'
+                            and gmd:accessConstraints/gmd:MD_RestrictionCode/@codeListValue!='otherRestrictions'])=0">$loc/strings/alert.M53notneeded</sch:assert>
+
+			<sch:assert test="count(gmd:MD_LegalConstraints[
+                                /gmd:otherConstraints/gco:CharacterString = ''
+                            and (   gmd:useConstraints/gmd:MD_RestrictionCode/@codeListValue='otherRestrictions'
+				                 or gmd:accessConstraints/gmd:MD_RestrictionCode/@codeListValue='otherRestrictions')]) = 0">$loc/strings/alert.M53missing</sch:assert>
 			
 		</sch:rule>
 	</sch:pattern>
@@ -396,15 +400,12 @@
 		</sch:rule>
 	</sch:pattern>
 	<!--NIL REASON-->
-	<sch:pattern>
+<!--	<sch:pattern>
 		<sch:title>$loc/strings/M110</sch:title>
 		<sch:rule context="/gmd:MD_Metadata">
-			<!-- <sch:assert test="count(//*[@gco:nilReason])=0">$loc/strings/alert.M110</sch:assert> -->
-			<!--sch:assert test="count(//*[@gco:nilReason] except (//gmd:pass[@gco:nilReason]))=0">$loc/strings/alert.M110</sch:assert-->
-			
 			<sch:assert test="count(//*[not(self::gmd:protocol or self::gmd:name or self::gmd:description or self::gmd:pass or self::gmd:otherConstraints)][@gco:nilReason])=0">$loc/strings/alert.M110</sch:assert>
 		</sch:rule>
-	</sch:pattern>
+	</sch:pattern>-->
     <!--VERTICAL ELEMENT-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M111</sch:title>
@@ -413,4 +414,15 @@
 			<sch:assert test="(@xlink:href != '')">$loc/strings/alert.M112</sch:assert>
 		</sch:rule>
 	</sch:pattern>
+
+	<sch:pattern>
+		<sch:title>$loc/strings/M120</sch:title>
+		<sch:rule context="//gmd:MD_Metadata//*[@codeListValue]">
+			<sch:let name="elementName" value="local-name()"/>
+			<sch:assert test="@codeListValue!=''">
+                <sch:value-of select="$loc/strings/alert.M120"/> <sch:value-of select="$elementName"/>
+            </sch:assert>
+		</sch:rule>
+	</sch:pattern>
+
 </sch:schema>

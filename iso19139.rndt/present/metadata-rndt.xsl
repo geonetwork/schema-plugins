@@ -325,81 +325,26 @@
 				</xsl:call-template>
 			</xsl:if>
 			
-			<!-- Constraint  -->
+			<!-- Constraints  -->
 			<xsl:call-template name="complexElementGuiWrapper">
 				<xsl:with-param name="title"
 					select="/root/gui/schemas/iso19139.rndt/strings/constraint/title" />
 				<xsl:with-param name="id"
 					select="generate-id(/root/gui/schemas/iso19139.rndt/strings/constraint/title)" />
 				<xsl:with-param name="content">
-					
-					<xsl:apply-templates mode="elementEP"
-						select="gmd:resourceConstraints/gmd:MD_Constraints/gmd:useLimitation">
+					<xsl:apply-templates mode="complexElement"
+						select="gmd:resourceConstraints">
 						<xsl:with-param name="schema" select="$schema" />
 						<xsl:with-param name="edit" select="$edit" />
 					</xsl:apply-templates>
-					<xsl:if test="not(gmd:resourceConstraints/gmd:MD_Constraints/gmd:useLimitation)">
-						<xsl:apply-templates mode="elementEP"
-							select="gmd:resourceConstraints/gmd:MD_Constraints/geonet:child[string(@name)='useLimitation']">
-							<xsl:with-param name="schema" select="$schema" />
-							<xsl:with-param name="edit" select="$edit" />
-						</xsl:apply-templates>
-					</xsl:if>
 					
 					<xsl:apply-templates mode="elementEP"
-						select="gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:accessConstraints">
+						select="geonet:child[string(@name)='resourceConstraints']">
 						<xsl:with-param name="schema" select="$schema" />
 						<xsl:with-param name="edit" select="$edit" />
 					</xsl:apply-templates>
-					<xsl:if test="not(gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:accessConstraints)">
-						<xsl:apply-templates mode="elementEP"
-							select="gmd:resourceConstraints/gmd:MD_LegalConstraints/geonet:child[string(@name)='accessConstraints']">
-							<xsl:with-param name="schema" select="$schema" />
-							<xsl:with-param name="edit" select="$edit" />
-						</xsl:apply-templates>
-					</xsl:if>
-					
-					<xsl:apply-templates mode="elementEP"
-						select="gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints">
-						<xsl:with-param name="schema" select="$schema" />
-						<xsl:with-param name="edit" select="$edit" />
-					</xsl:apply-templates>
-					<xsl:if test="not(gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints)">
-						<xsl:apply-templates mode="elementEP"
-							select="gmd:resourceConstraints/gmd:MD_LegalConstraints/geonet:child[string(@name)='useConstraints']">
-							<xsl:with-param name="schema" select="$schema" />
-							<xsl:with-param name="edit" select="$edit" />
-						</xsl:apply-templates>
-					</xsl:if>
-					
-					<xsl:apply-templates mode="elementEP"
-						select="gmd:resourceConstraints/gmd:MD_SecurityConstraints/gmd:classification">
-						<xsl:with-param name="schema" select="$schema" />
-						<xsl:with-param name="edit" select="$edit" />
-					</xsl:apply-templates>	
-					<xsl:if test="not(gmd:resourceConstraints/gmd:MD_SecurityConstraints/gmd:classification)">
-						<xsl:apply-templates mode="elementEP"
-							select="gmd:resourceConstraints/gmd:MD_SecurityConstraints/geonet:child[string(@name)='classification']">
-							<xsl:with-param name="schema" select="$schema" />
-							<xsl:with-param name="edit" select="$edit" />
-						</xsl:apply-templates>
-					</xsl:if>
-					
-					<xsl:apply-templates mode="elementEP"
-						select="gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints">
-						<xsl:with-param name="schema" select="$schema" />
-						<xsl:with-param name="edit" select="$edit" />
-					</xsl:apply-templates>
-					<xsl:if test="not(gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints)">
-						<xsl:apply-templates mode="elementEP"
-							select="gmd:resourceConstraints/gmd:MD_LegalConstraints/geonet:child[string(@name)='otherConstraints']">
-							<xsl:with-param name="schema" select="$schema" />
-							<xsl:with-param name="edit" select="$edit" />
-						</xsl:apply-templates>
-					</xsl:if>
-					
 				</xsl:with-param>
-			</xsl:call-template>	
+			</xsl:call-template>
 			
 			<!-- Extent information -->
 			<xsl:call-template name="complexElementGuiWrapper">
@@ -442,36 +387,6 @@
 						</xsl:when>
 					</xsl:choose>
 					
-					<!-- Vertical Extent 					
-					<xsl:choose>
-						<xsl:when test="not(gmd:extent/gmd:EX_Extent/gmd:verticalElement)">
-							<xsl:apply-templates mode="elementEP"
-								select="gmd:extent/gmd:EX_Extent/geonet:child[string(@name)='verticalElement']">
-								<xsl:with-param name="schema" select="$schema" />
-								<xsl:with-param name="edit" select="$edit" />
-							</xsl:apply-templates>														
-						</xsl:when>
-						<xsl:otherwise>
-							<xsl:call-template name="complexElementGuiWrapper">
-								<xsl:with-param name="title"
-									select="/root/gui/schemas/iso19139.rndt/strings/verticalExtent/title" />
-								<xsl:with-param name="id"
-									select="generate-id(/root/gui/schemas/iso19139.rndt/strings/verticalExtent/title)" />
-								<xsl:with-param name="content">
-
-		                        <xsl:apply-templates mode="complexElement"
-									select="*:extent/gmd:EX_Extent/gmd:verticalElement">
-									<xsl:with-param name="schema" select="$schema" />
-									<xsl:with-param name="edit" select="$edit" />
-		                        	<xsl:with-param name="force" select="true()" />
-								</xsl:apply-templates>			
-	
-
-								</xsl:with-param>
-							</xsl:call-template>	
-						</xsl:otherwise>
-					</xsl:choose> -->
-					
 				    <!-- Vertical Extent -->
 					<xsl:apply-templates mode="complexElement"
 						select="gmd:extent/gmd:EX_Extent/gmd:verticalElement">
@@ -486,21 +401,6 @@
 							<xsl:with-param name="edit" select="$edit" />
 						</xsl:apply-templates>
 					</xsl:if>
-					
-					<!-- Temporal extent 
-					<xsl:apply-templates mode="complexElement"
-						select="gmd:extent/gmd:EX_Extent/gmd:temporalElement">
-						<xsl:with-param name="schema" select="$schema" />
-						<xsl:with-param name="edit" select="$edit" />
-						<xsl:with-param name="force" select="true()" />
-					</xsl:apply-templates>
-					<xsl:if test="not(gmd:extent/gmd:EX_Extent/gmd:temporalElement)">
-						<xsl:apply-templates mode="complexElement"
-							select="gmd:extent/gmd:EX_Extent/geonet:child[string(@name)='temporalElement']">
-							<xsl:with-param name="schema" select="$schema" />
-							<xsl:with-param name="edit" select="$edit" />
-						</xsl:apply-templates>
-					</xsl:if>-->
 					
 					<!-- Temporal extent -->
 					<xsl:choose>
@@ -556,6 +456,20 @@
 					<xsl:if test="not(../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:level)">
 						<xsl:apply-templates mode="elementEP"
 							select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/geonet:child[string(@name)='level']">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+						</xsl:apply-templates>
+					</xsl:if>
+					
+					<!-- Quality level description -->
+					<xsl:apply-templates mode="elementEP" 
+						select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:levelDescription">
+						<xsl:with-param name="schema" select="$schema"/>
+						<xsl:with-param name="edit"   select="$edit"/>
+					</xsl:apply-templates>
+					<xsl:if test="not(../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/gmd:levelDescription)">
+						<xsl:apply-templates mode="elementEP"
+							select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope/gmd:DQ_Scope/geonet:child[string(@name)='levelDescription']">
 							<xsl:with-param name="schema" select="$schema" />
 							<xsl:with-param name="edit" select="$edit" />
 						</xsl:apply-templates>
@@ -623,7 +537,7 @@
 							select="generate-id(/root/gui/schemas/iso19139.rndt/strings/conformity/title)" />
 						<xsl:with-param name="content">
 							
-<!--							<xsl:apply-templates mode="elementEP"
+							<!--<xsl:apply-templates mode="elementEP"
 								select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult">
 								<xsl:with-param name="schema" select="$schema" />
 								<xsl:with-param name="edit" select="$edit" />
@@ -1068,13 +982,13 @@
 						<!-- Coorner Points Coordinates -->
 						
 						<!-- Only for MD_Georectified -->
-						<xsl:apply-templates mode="elementEP" 
+						<xsl:apply-templates mode="complexElement" 
 							select="../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:cornerPoints">
 							<xsl:with-param name="schema" select="$schema" />
 							<xsl:with-param name="edit" select="$edit" />
 						</xsl:apply-templates>			
 						<xsl:if	test="not(../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/gmd:cornerPoints)">
-							<xsl:apply-templates mode="elementEP"
+							<xsl:apply-templates mode="complexElement"
 								select="../../gmd:spatialRepresentationInfo/gmd:MD_Georectified/geonet:child[string(@name)='cornerPoints']">
 								<xsl:with-param name="schema" select="$schema" />
 								<xsl:with-param name="edit" select="$edit" />
@@ -1266,6 +1180,21 @@
 							<xsl:with-param name="force" select="true()" />
 						</xsl:apply-templates>
 					</xsl:if>	
+					
+					<!-- hierarchyLevel Name -->
+					<xsl:apply-templates mode="elementEP" 
+						select="../../gmd:hierarchyLevelName">
+						<xsl:with-param name="schema" select="$schema" />
+						<xsl:with-param name="edit" select="$edit" />
+					</xsl:apply-templates>
+					<xsl:if	test="not(../../gmd:hierarchyLevelName)">
+						<xsl:apply-templates mode="elementEP"
+							select="../../geonet:child[string(@name)='hierarchyLevel']">
+							<xsl:with-param name="schema" select="$schema" />
+							<xsl:with-param name="edit" select="$edit" />
+							<xsl:with-param name="force" select="true()" />
+						</xsl:apply-templates>
+					</xsl:if>	
 								
 					<!-- dateStamp -->
 					<xsl:apply-templates mode="elementEP" 
@@ -1337,13 +1266,13 @@
 						</xsl:choose>
 					</input>
 					
+					<xsl:variable name="explanationRef">
+						<xsl:value-of select="../gmd:explanation/gco:CharacterString/geonet:element/@ref"/>
+					</xsl:variable>
+					
 					<!-- This choose element contains a warkaround to manage the 'gmd:pass' as a select due to the RNDT specifications -->
 					<xsl:choose>
-						<xsl:when test="./gco:Boolean/text()='true'">						    	
-							<xsl:variable name="explanationRef">
-								<xsl:value-of select="../gmd:explanation/gco:CharacterString/geonet:element/@ref"/>
-							</xsl:variable>
-							
+						<xsl:when test="./gco:Boolean/text()='true'">		    	
 							<select class="md" style="width: 110px;" name="conformity-pass" id="_{./gco:Boolean/geonet:element/@ref}_checkbox" onChange="javascript:setConformityPass(this, '_{./gco:Boolean/geonet:element/@ref}', '_{$explanationRef}');">
 								<option value="non valutato">non valutato</option>
 								<option value="conforme" selected="selected">conforme</option>
@@ -1351,10 +1280,6 @@
 							</select>					    	
 						</xsl:when>
 						<xsl:when test="./gco:Boolean/text()='false' and $explanationValue!='non valutato'">
-							<xsl:variable name="explanationRef">
-								<xsl:value-of select="../gmd:explanation/gco:CharacterString/geonet:element/@ref"/>
-							</xsl:variable>
-							
 							<select class="md" style="width: 110px;" name="conformity-pass" id="_{./gco:Boolean/geonet:element/@ref}_checkbox" onChange="javascript:setConformityPass(this, '_{./gco:Boolean/geonet:element/@ref}', '_{$explanationRef}');">
 								<option value="non valutato">non valutato</option>
 								<option value="conforme">conforme</option>
@@ -1362,10 +1287,6 @@
 							</select>								
 						</xsl:when>
 						<xsl:when test="./gco:Boolean/text()='false' and $explanationValue='non valutato'">
-							<xsl:variable name="explanationRef">
-								<xsl:value-of select="../gmd:explanation/gco:CharacterString/geonet:element/@ref"/>
-							</xsl:variable>
-							
 							<select class="md" style="width: 110px;" name="conformity-pass" id="_{./gco:Boolean/geonet:element/@ref}_checkbox" onChange="javascript:setConformityPass(this, '_{./gco:Boolean/geonet:element/@ref}', '_{$explanationRef}');">
 								<option value="non valutato" selected="selected">non valutato</option>
 								<option value="conforme">conforme</option>
@@ -1373,10 +1294,6 @@
 							</select>							
 						</xsl:when>
 						<xsl:otherwise>
-							<xsl:variable name="explanationRef">
-								<xsl:value-of select="../gmd:explanation/gco:CharacterString/geonet:element/@ref"/>
-							</xsl:variable>
-							
 							<select class="md" style="width: 110px;" name="conformity-pass" id="_{./gco:Boolean/geonet:element/@ref}_checkbox" onChange="javascript:setConformityPass(this, '_{./gco:Boolean/geonet:element/@ref}', '_{$explanationRef}');">
 								<option value="non valutato" selected="selected">non valutato</option>
 								<option value="conforme">conforme</option>
@@ -1453,6 +1370,29 @@
 	
 	<!-- Sometime occurs that new elements cannot be removed this template fix thie behavior-->
 	<xsl:template mode="elementEP" match="gmd:resourceMaintenance">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit" select="false()"/>
+		
+		<xsl:apply-templates mode="complexElement"
+			select=".">
+			<xsl:with-param name="schema" select="$schema" />
+			<xsl:with-param name="edit" select="$edit" />
+		</xsl:apply-templates>
+	</xsl:template>
+	
+	<!-- Allows the possibility to add multiple gmd:resourceConstraints in box -->
+	<xsl:template mode="elementEP" match="gmd:resourceConstraints">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit" select="false()"/>
+		
+		<xsl:apply-templates mode="complexElement"
+			select=".">
+			<xsl:with-param name="schema" select="$schema" />
+			<xsl:with-param name="edit" select="$edit" />
+		</xsl:apply-templates>
+	</xsl:template>	
+	
+	<xsl:template mode="elementEP" match="gmd:cornerPoints">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit" select="false()"/>
 		

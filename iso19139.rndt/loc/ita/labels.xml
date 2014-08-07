@@ -220,6 +220,10 @@
 		<label>Limitazione d'uso</label>
 		<description>Restrizioni di utilizzo dei dati</description>
 		<help>Descrizione dei termini e delle condizioni, inclusi anche, se applicabili, i costi corrispondenti dei dati. Citare esplicitamente le licenze d'uso adottate (standard o definite dall'Ente). È possibile anche inserire il link (URL) dove tali termini,condizioni e/o licenze sono descritti.</help>
+		<helper>
+			<option value="Nessuna condizione applicabile">Nessuna condizione applicabile</option>
+			<option value="Condizioni sconosciute">Condizioni sconosciute</option>
+		</helper>
 	</element>
 	<element name="gmd:accessConstraints">
 		<label>Vincoli di accesso</label>
