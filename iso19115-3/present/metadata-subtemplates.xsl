@@ -1,11 +1,11 @@
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:gco="http://www.isotc211.org/2005/gco"
-  xmlns:mds="http://www.isotc211.org/2005/mds/1.0/2013-06-24" 
-  xmlns:mri="http://www.isotc211.org/2005/mri/1.0/2013-06-24"
-  xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2013-06-24"
-  xmlns:mrd="http://www.isotc211.org/2005/mrd/1.0/2013-06-24" 
-  xmlns:mco="http://www.isotc211.org/2005/mco/1.0/2013-06-24" 
-  xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2013-06-24"
+  xmlns:mds="http://www.isotc211.org/2005/mds/1.0/2014-07-11"
+  xmlns:mri="http://www.isotc211.org/2005/mri/1.0/2014-07-11"
+  xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2014-07-11"
+  xmlns:mrd="http://www.isotc211.org/2005/mrd/1.0/2014-07-11"
+  xmlns:mco="http://www.isotc211.org/2005/mco/1.0/2014-07-11"
+  xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2014-07-11"
   xmlns:geonet="http://www.fao.org/geonetwork" 
   exclude-result-prefixes="mds mri cit mrd mco gex gco geonet">
   

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cit:CI_Responsibility
-    xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2013-06-24"
-    xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2013-06-24"
+    xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2014-07-11"
+    xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2014-07-11"
     xmlns:gco="http://www.isotc211.org/2005/gco">
   <cit:role>
     <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="pointOfContact"></cit:CI_RoleCode>

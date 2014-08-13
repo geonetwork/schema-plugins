@@ -4,8 +4,8 @@ Stylesheet used to update metadata adding a reference to a source record.
 -->
 <xsl:stylesheet version="2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd"
                 xmlns:gco="http://www.isotc211.org/2005/gco"
-                xmlns:mrl="http://www.isotc211.org/2005/mrl/1.0/2013-06-24"
-                xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2013-06-24"
+                xmlns:mrl="http://www.isotc211.org/2005/mrl/1.0/2014-07-11"
+                xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2014-07-11"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:gn="http://www.fao.org/geonetwork"
                 xmlns:xlink="http://www.w3.org/1999/xlink">

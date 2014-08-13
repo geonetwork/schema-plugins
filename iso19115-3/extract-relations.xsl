@@ -9,10 +9,10 @@
   xmlns:gco="http://www.isotc211.org/2005/gco" 
   xmlns:gmx="http://www.isotc211.org/2005/gmx" 
   xmlns:gn="http://www.fao.org/geonetwork"
-  xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2013-06-24"
-  xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2013-06-24"
-  xmlns:mrd="http://www.isotc211.org/2005/mrd/1.0/2013-06-24"
-  xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2013-06-24"
+  xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2014-07-11"
+  xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2014-07-11"
+  xmlns:mrd="http://www.isotc211.org/2005/mrd/1.0/2014-07-11"
+  xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2014-07-11"
   xmlns:util="java:org.fao.geonet.util.XslUtil"
   exclude-result-prefixes="#all" >
   

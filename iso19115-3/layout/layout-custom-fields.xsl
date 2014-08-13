@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2013-06-24"
-  xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2013-06-24"
-  xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2013-06-24"
+  xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2014-07-11"
+  xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2014-07-11"
+  xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2014-07-11"
   xmlns:gco="http://www.isotc211.org/2005/gco"
   xmlns:gts="http://www.isotc211.org/2005/gts"
   xmlns:gml="http://www.opengis.net/gml/3.2"
