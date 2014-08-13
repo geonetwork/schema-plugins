@@ -40,37 +40,6 @@
   <gmd:metadataStandardVersion>
     <gco:CharacterString>1.1</gco:CharacterString>
   </gmd:metadataStandardVersion>
-  <gmd:referenceSystemInfo>
-    <gmd:MD_ReferenceSystem>
-      <gmd:referenceSystemIdentifier>
-        <gmd:RS_Identifier>
-          <gmd:authority>
-            <gmd:CI_Citation>
-              <gmd:title>
-                <gco:CharacterString>EPSG Geodetic Parameter Dataset</gco:CharacterString>
-              </gmd:title>
-              <gmd:date>
-                <gmd:CI_Date>
-                  <gmd:date>
-                    <gco:Date>20070716</gco:Date>
-                  </gmd:date>
-                  <gmd:dateType>
-                    <gmd:CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="revision"/>
-                  </gmd:dateType>
-                </gmd:CI_Date>
-              </gmd:date>
-              <gmd:edition>
-                <gco:CharacterString>Version 6.13</gco:CharacterString>
-              </gmd:edition>
-            </gmd:CI_Citation>
-          </gmd:authority>
-          <gmd:code gco:nilReason="missing">
-            <gco:CharacterString/>
-          </gmd:code>
-        </gmd:RS_Identifier>
-      </gmd:referenceSystemIdentifier>
-    </gmd:MD_ReferenceSystem>
-  </gmd:referenceSystemInfo>
   <gmd:identificationInfo>
     <gmd:MD_DataIdentification>
       <gmd:citation>
@@ -281,15 +250,8 @@
       <gmd:scope>
         <gmd:DQ_Scope>
           <gmd:level>
-            <gmd:MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="" codeSpace="domainCode"/>
+            <gmd:MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset"/>
           </gmd:level>
-          <gmd:levelDescription>
-            <gmd:MD_ScopeDescription>
-              <gmd:dataset gco:nilReason="missing">
-                <gco:CharacterString/>
-              </gmd:dataset>
-            </gmd:MD_ScopeDescription>
-          </gmd:levelDescription>
         </gmd:DQ_Scope>
       </gmd:scope>
       <gmd:lineage>
@@ -297,13 +259,6 @@
           <gmd:statement gco:nilReason="missing">
             <gco:CharacterString/>
           </gmd:statement>
-          <gmd:source>
-            <gmd:LI_Source>
-              <gmd:description gco:nilReason="missing">
-                <gco:CharacterString/>
-              </gmd:description>
-            </gmd:LI_Source>
-          </gmd:source>
         </gmd:LI_Lineage>
       </gmd:lineage>
     </gmd:DQ_DataQuality>

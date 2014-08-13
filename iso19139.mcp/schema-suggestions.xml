@@ -48,14 +48,12 @@
 		<suggest name="gmd:description"/>
 	</field>
 
-<!--
 	<field name="gmd:CI_ResponsibleParty">
 		<suggest name="gmd:individualName"/>
 		<suggest name="gmd:organisationName"/>
 		<suggest name="gmd:positionName"/>
 		<suggest name="gmd:contactInfo"/>
 	</field>
-	-->
 	
 	<field name="mcp:CI_Responsibility">
 		<suggest name="mcp:role"/>

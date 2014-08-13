@@ -6,6 +6,10 @@
 
   <xsl:include href="utility-tpl-multilingual.xsl"/>
 
+	<xsl:template name="get-iso19139.mcp-extents-as-json">
+		<xsl:call-template name="get-iso19139-extents-as-json"/>
+	</xsl:template>
+
   <xsl:template name="get-iso19139.mcp-online-source-config">
     <xsl:param name="pattern"/>
     <xsl:call-template name="get-iso19139-online-source-config">

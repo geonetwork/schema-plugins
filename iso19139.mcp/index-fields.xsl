@@ -90,6 +90,15 @@
 		<xsl:apply-templates mode="index" select="*"/>
 	</xsl:template>
 
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -     
+	     If an online resource contains a protocol field with csiro in it 
+	     then make sure that this record has download indexed so that 
+			 quick search on data attached can be used
+	     - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsl:template mode="index" match="gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource[gmd:linkage/gmd:URL!='' and contains(gmd:protocol/*,'http--csiro-oa-app')]">
+		<Field name="download" string="on" store="false" index="true"/>
+	</xsl:template>
+	
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 
 	<xsl:template mode="index" match="mcp:dataParameters/mcp:DP_DataParameters/mcp:dataParameter">
@@ -252,6 +261,7 @@
 	
 				<xsl:if test="normalize-space($keywordId)!=''">
 					<Field name="{$thesaurusId}" string="{replace($keywordId,'%23','#')}" store="true" index="true"/>
+					<Field name="keywordId" string="{replace($keywordId,'%23','#')}" store="true" index="true"/>
 				</xsl:if>
 			</xsl:if>
 		</xsl:for-each>

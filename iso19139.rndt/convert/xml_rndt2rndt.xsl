@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
-                xmlns:gml="http://www.opengis.net/gml"
+                xmlns:gml="http://www.opengis.net/gml/3.2"
                 xmlns:srv="http://www.isotc211.org/2005/srv"
                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
                 xmlns:gco="http://www.isotc211.org/2005/gco"
@@ -56,11 +56,23 @@
 	<!-- ================================================================= -->
 	<!-- Convert gml URI -->
 
-	<xsl:template match="gml:*">
+	<!--<xsl:template match="gml:*">
 		<xsl:element name="{concat('gml:', local-name(.))}" namespace="http://www.opengis.net/gml/3.2">
 			<xsl:apply-templates select="node()|@*"/>
 		</xsl:element>
-	</xsl:template>
+	</xsl:template>-->
+	
+    <xsl:template match="@*[namespace-uri()='http://www.opengis.net/gml']">
+        <xsl:attribute name="gml:{local-name()}">
+            <xsl:value-of select="."/>
+        </xsl:attribute>
+    </xsl:template>
+     
+    <xsl:template match="*[namespace-uri()='http://www.opengis.net/gml']">
+        <xsl:element name="gml:{local-name()}">
+            <xsl:apply-templates select="node()|@*"/>
+        </xsl:element>
+    </xsl:template>
 
 	<!-- =================================================================== -->
 	<!-- Fix gmd:parentIdentifier -->
@@ -87,8 +99,9 @@
 	<xsl:template match="geonet:info" priority="100"/>
 
 	<!-- ================================================================= -->
+	<!-- Manage the gmd:pass -->
 	
-<!--	<xsl:template match="gmd:DQ_ConformanceResult">
+    <!--<xsl:template match="gmd:DQ_ConformanceResult">
 		<xsl:choose>
 			<xsl:when test="not(exists(gmd:pass))">
 				<xsl:copy>
@@ -117,7 +130,7 @@
 		</xsl:choose>
 	</xsl:template>-->
 	
-	<!-- Use 'nilReason' to unknown for the pass element in un-compiled conformance -->	
+	<!-- Use 'nilReason' to unknown for the pass element in un-compiled conformance 	
 	<xsl:template match="gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:pass">
 		<xsl:choose>
 			<xsl:when test="../gmd:explanation/gco:CharacterString='non valutato'">
@@ -132,7 +145,7 @@
 				</xsl:copy>
 			</xsl:otherwise>
 		</xsl:choose>
-	</xsl:template>
+	</xsl:template>-->
 	
 	<!-- ================================================================= -->
 	

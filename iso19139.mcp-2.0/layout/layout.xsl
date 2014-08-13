@@ -4,7 +4,7 @@
   xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gmx="http://www.isotc211.org/2005/gmx"
   xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink"
-	xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"
+	xmlns:mcp="http://schemas.aodn.org.au/mcp-2.0"
   xmlns:gn="http://www.fao.org/geonetwork"
   xmlns:gn-fn-core="http://geonetwork-opensource.org/xsl/functions/core" 
   xmlns:gn-fn-metadata="http://geonetwork-opensource.org/xsl/functions/metadata"
@@ -16,10 +16,10 @@
 	<xsl:include href="layout-custom-fields.xsl"/>
 
 
-  <xsl:variable name="iso19139.mcpschema" select="/root/gui/schemas/iso19139.mcp"/>
-  <xsl:variable name="iso19139.mcplabels" select="$iso19139.mcpschema/labels"/>
-  <xsl:variable name="iso19139.mcpcodelists" select="$iso19139.mcpschema/codelists"/>
-  <xsl:variable name="iso19139.mcpstrings" select="$iso19139.mcpschema/strings"/>
+  <xsl:variable name="iso19139.mcp-2.0schema" select="/root/gui/schemas/iso19139.mcp-2.0"/>
+  <xsl:variable name="iso19139.mcp-2.0labels" select="$iso19139.mcp-2.0schema/labels"/>
+  <xsl:variable name="iso19139.mcp-2.0codelists" select="$iso19139.mcp-2.0schema/codelists"/>
+  <xsl:variable name="iso19139.mcp-2.0strings" select="$iso19139.mcp-2.0schema/strings"/>
 
   <!-- Boxed element
     
@@ -30,7 +30,7 @@
       * and not(gco:CharacterString): Don't take into account those having gco:CharacterString (eg. multilingual elements)
   -->
   <xsl:template mode="mode-iso19139" priority="2000"
-    match="*[name() = $editorConfig/editor/fieldsWithFieldset/name and namespace-uri()='http://bluenet3.antcrc.utas.edu.au/mcp']|
+    match="*[name() = $editorConfig/editor/fieldsWithFieldset/name and namespace-uri()='http://schemas.aodn.org.au/mcp-2.0']|
       *[namespace-uri() != $gnUri and $isFlatMode = false() and mcp:* and not(gco:CharacterString) and not(gmd:URL)]">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
@@ -77,9 +77,9 @@
 
   </xsl:template>
 
-  <!-- Match codelist values. Must use iso19139.mcp because some 
-	     19139 codelists are extended in mcp - if the codelist exists in
-			 iso19139.mcp then use that otherwise use iso19139 codelists 
+  <!-- Match codelist values. Must use iso19139.mcp-2.0 because some 
+	     19139 codelists are extended in mcp-2.0 - if the codelist exists in
+			 iso19139.mcp-2.0 then use that otherwise use iso19139 codelists 
   
   eg. 
   <gmd:CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="pointOfContact">
@@ -89,16 +89,16 @@
     <geonet:attribute name="codeSpace" add="true"/>
   
   -->
-  <xsl:template mode="mode-iso19139" priority="30000" match="*[*/@codeList and $schema='iso19139.mcp']">
+  <xsl:template mode="mode-iso19139" priority="30000" match="*[*/@codeList and $schema='iso19139.mcp-2.0']">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
-    <xsl:param name="codelists" select="$iso19139.mcpcodelists" required="no"/>
+    <xsl:param name="codelists" select="$iso19139.mcp-2.0codelists" required="no"/>
 
     <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
     <xsl:variable name="isoType" select="if (../@gco:isoType) then ../@gco:isoType else ''"/>
     <xsl:variable name="elementName" select="name()"/>
 
-		<!-- check iso19139.mcp first, then fall back to iso19139 -->
+		<!-- check iso19139.mcp-2.0 first, then fall back to iso19139 -->
 		<xsl:variable name="listOfValues" as="node()">
 			<xsl:variable name="mcpList" as="node()" select="gn-fn-metadata:getCodeListValues($schema, name(*[@codeListValue]), $codelists, .)"/>
 			<xsl:choose>
@@ -130,7 +130,7 @@
 
 	
   <!-- 
-    Take care of enumerations. Same as for codelists, check iso19139.mcp
+    Take care of enumerations. Same as for codelists, check iso19139.mcp-2.0
 		first and if not found there, then check iso19139.
     
     In the metadocument an enumeration provide the list of possible values:
@@ -141,12 +141,12 @@
       <geonet:text value="biota"/>
       <geonet:text value="boundaries"/
   -->
-  <xsl:template mode="mode-iso19139" priority="30000" match="*[gn:element/gn:text and $schema='iso19139.mcp']">
+  <xsl:template mode="mode-iso19139" priority="30000" match="*[gn:element/gn:text and $schema='iso19139.mcp-2.0']">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
-    <xsl:param name="codelists" select="$iso19139.mcpcodelists" required="no"/>
+    <xsl:param name="codelists" select="$iso19139.mcp-2.0codelists" required="no"/>
 
-		<!-- check iso19139.mcp first, then fall back to iso19139 -->
+		<!-- check iso19139.mcp-2.0 first, then fall back to iso19139 -->
 		<xsl:variable name="listOfValues" as="node()">
 			<xsl:variable name="mcpList" as="node()" select="gn-fn-metadata:getCodeListValues($schema, name(), $codelists, .)"/>
 			<xsl:choose>

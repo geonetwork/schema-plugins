@@ -31,6 +31,9 @@ MD_CharacterSetCode" codeListValue="utf8">utf8</gmd:MD_CharacterSetCode>
 		<gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#
 MD_ScopeCode" codeListValue="service">Servizio</gmd:MD_ScopeCode>
 	</gmd:hierarchyLevel>
+	<gmd:hierarchyLevelName>
+		<gco:CharacterString>name</gco:CharacterString>
+	</gmd:hierarchyLevelName>
 	<gmd:contact>
 		<gmd:CI_ResponsibleParty>
 			<gmd:organisationName>
@@ -306,6 +309,13 @@ MD_ClassificationCode" codeListValue="unclassified">Non classificato</gmd:MD_Cla
 						<gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#
 MD_ScopeCode" codeListValue="service">Servizio</gmd:MD_ScopeCode>
 					</gmd:level>
+					<gmd:levelDescription>
+						<gmd:MD_ScopeDescription>
+							<gmd:other gco:nilReason="missing">
+								<gco:CharacterString/>
+							</gmd:other>
+						</gmd:MD_ScopeDescription>
+					</gmd:levelDescription>
 				</gmd:DQ_Scope>
 			</gmd:scope>
 			<gmd:report>
@@ -331,7 +341,7 @@ CI_DateTypeCode" codeListValue="publication">Pubblicazione</gmd:CI_DateTypeCode>
 								</gmd:CI_Citation>
 							</gmd:specification>
 							<gmd:explanation>
-								<gco:CharacterString>Fare riferimento alle specifiche indicate</gco:CharacterString>
+								<gco:CharacterString>non valutato</gco:CharacterString>
 							</gmd:explanation>
 							<gmd:pass gco:nilReason="unknown"/>
 						</gmd:DQ_ConformanceResult>

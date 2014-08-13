@@ -419,6 +419,13 @@ DESCRIPTION :
 					<gml:identifier codeSpace="ISOTC211/19115">trial</gml:identifier>
 				</CodeDefinition>
 			</codeEntry>
+			<!-- Extension to provide links to datasets for UOW and others in AU  -->
+			<codeEntry>
+				<CodeDefinition gml:id="DS_InitiativeTypeCode_dataset">
+					<gml:description>A dataset</gml:description>
+					<gml:identifier codeSpace="UOW/Extension">dataset</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
 		</CodeListDictionary>
 	</codelistItem>
 	<!--=== MD_CellGeometryCode ===-->

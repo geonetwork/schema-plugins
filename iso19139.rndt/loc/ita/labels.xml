@@ -220,6 +220,10 @@
 		<label>Limitazione d'uso</label>
 		<description>Restrizioni di utilizzo dei dati</description>
 		<help>Descrizione dei termini e delle condizioni, inclusi anche, se applicabili, i costi corrispondenti dei dati. Citare esplicitamente le licenze d'uso adottate (standard o definite dall'Ente). È possibile anche inserire il link (URL) dove tali termini,condizioni e/o licenze sono descritti.</help>
+		<helper>
+			<option value="Nessuna condizione applicabile">Nessuna condizione applicabile</option>
+			<option value="Condizioni sconosciute">Condizioni sconosciute</option>
+		</helper>
 	</element>
 	<element name="gmd:accessConstraints">
 		<label>Vincoli di accesso</label>
@@ -350,8 +354,15 @@
 		<label>Sistema di riferimento</label>
 		<description>Descrizione del sistema di riferimento spaziale dei dati</description>
 	</element>
+	<element name="gmd:topicCategory" id="41.0">
+		<!--label>Tema</label-->
+		<label>Categoria Tematica</label>
+		<description>Tema principale cui si riferiscono i dati</description>
+		<condition>obbligatorio</condition>
+	</element>
 	<element name="gmd:MD_TopicCategoryCode">
-		<label>Categoria tematica</label>		
+		<!--label>Categoria tematica</label-->		
+		<label>Tema</label>		
 		<description>Tema principale cui si riferiscono i dati.</description>
 		<condition>Obbligatorio</condition>
 		<help>L’elemento deve assumere uno dei valori della lista “MD_TopicCategoryCode” (§ 3.4.3.15 – all. 2 DM).</help>

@@ -4,7 +4,7 @@
   xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gmx="http://www.isotc211.org/2005/gmx"
   xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink"
-	xmlns:mcp="http://bluenet3.antcrc.utas.edu.au/mcp"
+	xmlns:mcp="http://schemas.aodn.org.au/mcp-2.0"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:gn="http://www.fao.org/geonetwork"
   xmlns:gn-fn-metadata="http://geonetwork-opensource.org/xsl/functions/metadata"
@@ -18,26 +18,24 @@
   <!-- 
     Load the schema configuration for the editor.
       -->
-  <xsl:template name="get-iso19139.mcp-configuration">
+  <xsl:template name="get-iso19139.mcp-2.0-configuration">
     <xsl:copy-of select="document('config-editor.xml')"/>
   </xsl:template>
 
 
-	<!-- The main dispatch point - process in iso19139.mcp mode first,
-	     if we get something then use that otherwise process in iso19139
-			 mode -->
-  <xsl:template name="dispatch-iso19139.mcp">
+	<!-- The main dispatch point -->
+  <xsl:template name="dispatch-iso19139.mcp-2.0">
     <xsl:param name="base" as="node()"/>
     <xsl:param name="overrideLabel" as="xs:string" required="no" select="''"/>
 
 		<!-- process in iso19139 mode - but we can override any templates
 		     defined for iso19139 by importing that stylesheet into our
-				 mcp stylesheet - that way the iso19139 templates will have
+				 mcp-2.0 stylesheet - that way the iso19139 templates will have
 				 a lower priority than ours -->
     <xsl:apply-templates mode="mode-iso19139" select="$base">
      	<xsl:with-param name="overrideLabel" select="$overrideLabel"/>
     	<xsl:with-param name="schema" select="$schema"/>
-    	<xsl:with-param name="labels" select="$iso19139.mcplabels"/>
+    	<xsl:with-param name="labels" select="$iso19139.mcp-2.0labels"/>
     </xsl:apply-templates>
 
   </xsl:template>
@@ -51,7 +49,7 @@
     
        A node returned by evaluate will lost its context (ancestors).
     -->
-  <xsl:template name="evaluate-iso19139.mcp">
+  <xsl:template name="evaluate-iso19139.mcp-2.0">
     <xsl:param name="base" as="node()"/>
     <xsl:param name="in"/>
    <!-- <xsl:message>in xml <xsl:copy-of select="$base"></xsl:copy-of></xsl:message>
@@ -68,7 +66,7 @@
   </xsl:template>
 
   <!-- Evaluate XPath returning a boolean value. -->
-  <xsl:template name="evaluate-iso19139.mcp-boolean">
+  <xsl:template name="evaluate-iso19139.mcp-2.0-boolean">
     <xsl:param name="base" as="node()"/>
     <xsl:param name="in"/>
    

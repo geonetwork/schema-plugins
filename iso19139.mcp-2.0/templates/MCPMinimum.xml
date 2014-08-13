@@ -97,6 +97,13 @@
           </gmd:temporalElement>
         </gmd:EX_Extent>
       </gmd:extent>
+			<mcp:dataparameters>
+				<mcp:DP_DataParameters>
+				  <mcp:dataParameter>
+						<mcp:DP_DataParameter/>
+				  </mcp:dataParameter>
+				</mcp:DP_DataParameters>
+			</mcp:dataparameters>
     </mcp:MD_DataIdentification>
   </gmd:identificationInfo>
   <gmd:distributionInfo>

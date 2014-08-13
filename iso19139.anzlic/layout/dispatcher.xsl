@@ -13,12 +13,9 @@
   
   <xsl:include href="layout.xsl"/>
 
-  <!-- 
-    Load the schema configuration for the editor.
-    Same configuration as ISO19139 here.
-      -->
+  <!-- Load the schema configuration for the editor -->
   <xsl:template name="get-iso19139.anzlic-configuration">
-    <xsl:copy-of select="document('../../iso19139/layout/config-editor.xml')"/>
+    <xsl:copy-of select="document('config-editor.xml')"/>
   </xsl:template>
 
 

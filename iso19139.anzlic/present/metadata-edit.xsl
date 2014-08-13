@@ -15,11 +15,19 @@
 	<xsl:variable name="anzlicallgens" select="document('../schema/resources/Codelist/anzlic-allgens.xml')"/>
 	<xsl:variable name="anzlicthemes" select="document('../schema/resources/Codelist/anzlic-theme.xml')"/>
 
-	<!-- main template - the way into processing iso19139.anzlic -->
 	<xsl:template name="metadata-iso19139.anzlicview-simple">
 	  <xsl:call-template name="metadata-iso19139view-simple"/>
 	</xsl:template>
 
+  <xsl:template name="view-with-header-iso19139.anzlic">
+    <xsl:param name="tabs"/>
+    
+    <xsl:call-template name="view-with-header-iso19139">
+      <xsl:with-param name="tabs" select="$tabs"/>
+    </xsl:call-template>
+  </xsl:template>
+  
+	<!-- main template - the way into processing iso19139.anzlic -->
   <xsl:template  name="metadata-iso19139.anzlic">
     <xsl:param name="schema"/>
     <xsl:param name="edit" select="false()"/>

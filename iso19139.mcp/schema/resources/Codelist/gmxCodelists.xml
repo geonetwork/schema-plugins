@@ -1051,6 +1051,20 @@
 					<gml:identifier codeSpace="MCP version 1.5">dataSource</gml:identifier>
 				</CodeDefinition>
 			</codeEntry>
+<!-- MCP -->
+			<codeEntry>
+				<CodeDefinition gml:id="MD_KeywordTypeCode_survey">
+					<gml:description>keyword identifies a survey/voyage</gml:description>
+					<gml:identifier codeSpace="MCP version 1.5">survey</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+<!-- MCP -->
+			<codeEntry>
+				<CodeDefinition gml:id="MD_KeywordTypeCode_project">
+					<gml:description>keyword identifies a project</gml:description>
+					<gml:identifier codeSpace="MCP version 1.5">project</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
 		</CodeListDictionary>
 	</codelistItem>
 	<!--=== MD_MaintenanceFrequencyCode ===-->
