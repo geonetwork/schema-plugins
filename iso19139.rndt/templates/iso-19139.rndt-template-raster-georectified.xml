@@ -115,6 +115,9 @@ de" codeListValue="area">Area</gmd:MD_CellGeometryCode>
 			<gmd:checkPointAvailability>
 				<gco:Boolean>false</gco:Boolean>
 			</gmd:checkPointAvailability>
+			<gmd:checkPointDescription>
+				<gco:CharacterString>I Check Points hanno le medesimecaratteristiche dei GCP relativamente a distribuzione e posizionamento, la lorodislocazione è complementare a quella dei GCP</gco:CharacterString>
+			</gmd:checkPointDescription>
 			<gmd:cornerPoints>
 				<gml:Point gml:id="PNT_1">
 					<gml:name>Vertice alto a sinistra</gml:name>
@@ -550,7 +553,7 @@ TypeCode" codeListValue="image">Immagine</gmd:MD_CoverageContentTypeCode>
 								</gmd:CI_Citation>
 							</gmd:specification>
 							<gmd:explanation>
-								<gco:CharacterString>Fare riferimento alle specifiche indicate</gco:CharacterString>
+								<gco:CharacterString>non valutato</gco:CharacterString>
 							</gmd:explanation>
 							<gmd:pass gco:nilReason="unknown"/>
 						</gmd:DQ_ConformanceResult>

@@ -152,6 +152,7 @@
 	</xsl:template>
 
 	<!-- ================================================================= -->
+	<!-- Manage the gmd:pass -->
 	
 <!--	<xsl:template match="gmd:DQ_ConformanceResult">
 		<xsl:choose>
@@ -182,7 +183,7 @@
 		</xsl:choose>
 	</xsl:template>-->
 	
-	<!-- Use 'nilReason' to unknown for the pass element in un-compiled conformance -->	
+	<!-- Use 'nilReason' to unknown for the pass element in un-compiled conformance	
 	<xsl:template match="gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:pass">
 		<xsl:choose>
 			<xsl:when test="../gmd:explanation/gco:CharacterString='non valutato'">
@@ -197,7 +198,7 @@
 				</xsl:copy>
 			</xsl:otherwise>
 		</xsl:choose>
-	</xsl:template>
+	</xsl:template> -->
 	
 	<!-- ================================================================= -->
 	

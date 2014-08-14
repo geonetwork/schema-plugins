@@ -3,9 +3,9 @@
 Stylesheet used to remove a reference to a parent record.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:srv="http://www.isotc211.org/2005/srv/2.0/2013-06-24"
-                xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2013-06-24"
-                xmlns:mri="http://www.isotc211.org/2005/mri/1.0/2013-06-24"
+                xmlns:srv="http://www.isotc211.org/2005/srv/2.0/2014-07-11"
+                xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2014-07-11"
+                xmlns:mri="http://www.isotc211.org/2005/mri/1.0/2014-07-11"
                 xmlns:gco="http://www.isotc211.org/2005/gco"
                 xmlns:gn="http://www.fao.org/geonetwork"
                 exclude-result-prefixes="#all" version="2.0">

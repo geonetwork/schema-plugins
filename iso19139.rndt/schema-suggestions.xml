@@ -152,7 +152,7 @@
     </field>
 	
     <!--field name="gmd:EX_TemporalExtent">
-        <suggest name="gml:extent"/>
+        <suggest name="gmd:extent"/>
     </field-->
 	
     <field name="gml:TimePeriod">

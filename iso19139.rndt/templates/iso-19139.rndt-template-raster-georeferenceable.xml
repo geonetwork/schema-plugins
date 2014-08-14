@@ -541,7 +541,7 @@ TypeCode" codeListValue="image">Immagine</gmd:MD_CoverageContentTypeCode>
 								</gmd:CI_Citation>
 							</gmd:specification>
 							<gmd:explanation>
-								<gco:CharacterString>Fare riferimento alle specifiche indicate</gco:CharacterString>
+								<gco:CharacterString>non valutato</gco:CharacterString>
 							</gmd:explanation>
 							<gmd:pass gco:nilReason="unknown"/>
 						</gmd:DQ_ConformanceResult>

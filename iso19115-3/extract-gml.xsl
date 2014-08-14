@@ -4,7 +4,7 @@
   being create a default GML parser and not a GML3.2 parser. -->
 <xsl:stylesheet version="2.0" 
   xmlns:gco="http://www.isotc211.org/2005/gco"
-  xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2013-06-24"
+  xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2014-07-11"
   xmlns:gml="http://www.opengis.net/gml"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 

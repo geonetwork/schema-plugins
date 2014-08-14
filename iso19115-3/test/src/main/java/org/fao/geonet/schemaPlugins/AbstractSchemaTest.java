@@ -43,14 +43,16 @@ public abstract class AbstractSchemaTest extends TestCase {
                              Map<String, Object> params) throws Exception {
         Element metadata = Xml.loadFile(
                 getSchemaPath() + getSchemaIdentifier() + xmlFilePath);
-        return Xml.transform(metadata,
-                getSchemaPath() + getSchemaIdentifier() + xslFilePath, params);
+        return null;
+//        Xml.transform(metadata,
+//                getSchemaPath() + getSchemaIdentifier() + xslFilePath, params);
     }
-    public Element transform(Element xml, String xskFilePath,
+    public Element transform(Element xml, String xslFilePath,
                              Map<String, Object> params) throws Exception {
-        return Xml.transform(xml,
-                getSchemaPath() + getSchemaIdentifier() + xskFilePath,
-                params);
+        return null;
+//        Xml.transform(xml,
+//                getSchemaPath() + getSchemaIdentifier() + xslFilePath,
+//                params);
     }
 
     /**

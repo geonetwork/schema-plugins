@@ -5,9 +5,9 @@ attached it to the metadata for data.
 -->
 <xsl:stylesheet version="2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd"
                 xmlns:gco="http://www.isotc211.org/2005/gco"
-                xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2013-06-24"
-                xmlns:mrc="http://www.isotc211.org/2005/mrc/1.0/2013-06-24"
-                xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2013-06-24"
+                xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2014-07-11"
+                xmlns:mrc="http://www.isotc211.org/2005/mrc/1.0/2014-07-11"
+                xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2014-07-11"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:gn="http://www.fao.org/geonetwork"
                 xmlns:xlink="http://www.w3.org/1999/xlink">

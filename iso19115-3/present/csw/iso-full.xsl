@@ -3,7 +3,7 @@
   xmlns:gn="http://www.fao.org/geonetwork"
   xmlns:gco="http://www.isotc211.org/2005/gco"
   xmlns:gmd="http://www.isotc211.org/2005/gmd"
-  xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2013-06-24"
+  xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2014-07-11"
   exclude-result-prefixes="#all">
   
   <xsl:import href="../../convert/ISO19115-3toISO19139.xsl"/>

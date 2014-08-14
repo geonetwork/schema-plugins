@@ -26,7 +26,7 @@
     uri="schema/others/ISO19136/gml.xsd"/>
   
   <uri name="http://geonetwork-opensource.org/schemas/ISO_19157_Schemas/dqm.xsd"
-    uri="schema/ISO19157-2/dqm/1.0/dqm.xsd"/>
+    uri="schema/ISO19157/dqm/1.0/dqm.xsd"/>
   
   <uri name="http://www.w3.org/1999/xlink.xsd" 
     uri="schema/others/xlink/xlink.xsd"/>
@@ -68,7 +68,7 @@
     uri="schema/others/ISO19136/gml.xsd"/>
   
   <system systemId="http://geonetwork-opensource.org/schemas/ISO_19157_Schemas/dqm.xsd"
-    uri="schema/ISO19157-2/dqm/1.0/dqm.xsd"/>
+    uri="schema/ISO19157/dqm/1.0/dqm.xsd"/>
   
   <system systemId="http://www.isotc211.org/2005/cit/1.0/cit.xsd" 
     uri="schema/ISO19115-3/cit/1.0/cit.xsd"/>
