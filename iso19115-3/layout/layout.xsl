@@ -213,7 +213,6 @@
       </xsl:if>
     </xsl:variable>
 
-    <xsl:message>#<xsl:copy-of select="."/></xsl:message>
     <xsl:variable name="values">
       <xsl:if test="$isMultilingualElement">
 
@@ -223,7 +222,6 @@
 
           <!-- the existing translation -->
           <xsl:for-each select="lan:PT_FreeText/lan:textGroup/lan:LocalisedCharacterString">
-            <xsl:message>###<xsl:copy-of select="."/></xsl:message>
             <value ref="{gn:element/@ref}"
                    lang="{substring-after(@locale, '#')}"><xsl:value-of select="."/></value>
           </xsl:for-each>
@@ -240,7 +238,6 @@
         </values>
       </xsl:if>
     </xsl:variable>
-<xsl:message>#<xsl:copy-of select="$values"/></xsl:message>
     <xsl:call-template name="render-element">
       <xsl:with-param name="label" select="$labelConfig/label"/>
       <xsl:with-param name="value" select="if ($isMultilingualElement) then $values else *"/>
