@@ -89,7 +89,7 @@ If requesting an ISO record using the gmd namespace, metadata are converted to I
 <csw:GetRecordById xmlns:csw="http://www.opengis.net/cat/csw/2.0.2"
   service="CSW"
   version="2.0.2"
-  outputSchema="http://www.isotc211.org/2005/gmd">
+  outputSchema="http://www.isotc211.org/namespace/gmd">
     <csw:Id>cecd1ebf-719e-4b1f-b6a7-86c17ed02c62</csw:Id>
     <csw:ElementSetName>brief</csw:ElementSetName>
 </csw:GetRecordById>

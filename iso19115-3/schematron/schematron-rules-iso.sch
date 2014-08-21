@@ -24,22 +24,22 @@ USA.
 
 	<sch:title xmlns="http://www.w3.org/2001/XMLSchema">Schematron validation for ISO/FDIS 19115-1:2013</sch:title>
 	<sch:ns prefix="gml" uri="http://www.opengis.net/gml/3.2"/>
-  <sch:ns prefix="srv" uri="http://www.isotc211.org/2005/srv/2.0/2013-03-28"/>
-  <sch:ns prefix="mds" uri="http://www.isotc211.org/2005/mds/1.0/2013-03-28"/>
-  <sch:ns prefix="mcc" uri="http://www.isotc211.org/2005/mcc/1.0/2013-03-28"/>
-  <sch:ns prefix="mri" uri="http://www.isotc211.org/2005/mri/1.0/2013-03-28"/>
-  <sch:ns prefix="mrs" uri="http://www.isotc211.org/2005/mrs/1.0/2013-03-28"/>
-  <sch:ns prefix="mrd" uri="http://www.isotc211.org/2005/mrd/1.0/2013-03-28"/>
-  <sch:ns prefix="mco" uri="http://www.isotc211.org/2005/mco/1.0/2013-03-28"/>
-  <sch:ns prefix="msr" uri="http://www.isotc211.org/2005/msr/1.0/2013-03-28"/>
-  <sch:ns prefix="mrc" uri="http://www.isotc211.org/2005/mrc/1.0/2013-03-28"/>
-  <sch:ns prefix="mrl" uri="http://www.isotc211.org/2005/mrl/1.0/2013-03-28"/>
-  <sch:ns prefix="lan" uri="http://www.isotc211.org/2005/lan/1.0/2013-03-28"/>
-  <sch:ns prefix="gcx" uri="http://www.isotc211.org/2005/gcx/1.0/2013-03-28"/>
-  <sch:ns prefix="gex" uri="http://www.isotc211.org/2005/gex/1.0/2013-03-28"/>
-  <sch:ns prefix="mex" uri="http://www.isotc211.org/2005/mex/1.0/2013-03-28"/>
-  <sch:ns prefix="dqm" uri="http://www.isotc211.org/2005/dqm/1.0/2013-03-28"/>
-  <sch:ns prefix="cit" uri="http://www.isotc211.org/2005/cit/1.0/2013-03-28"/>
+  <sch:ns prefix="srv" uri="http://www.isotc211.org/namespace/srv/2.0/2013-03-28"/>
+  <sch:ns prefix="mds" uri="http://www.isotc211.org/namespace/mds/1.0/2013-03-28"/>
+  <sch:ns prefix="mcc" uri="http://www.isotc211.org/namespace/mcc/1.0/2013-03-28"/>
+  <sch:ns prefix="mri" uri="http://www.isotc211.org/namespace/mri/1.0/2013-03-28"/>
+  <sch:ns prefix="mrs" uri="http://www.isotc211.org/namespace/mrs/1.0/2013-03-28"/>
+  <sch:ns prefix="mrd" uri="http://www.isotc211.org/namespace/mrd/1.0/2013-03-28"/>
+  <sch:ns prefix="mco" uri="http://www.isotc211.org/namespace/mco/1.0/2013-03-28"/>
+  <sch:ns prefix="msr" uri="http://www.isotc211.org/namespace/msr/1.0/2013-03-28"/>
+  <sch:ns prefix="mrc" uri="http://www.isotc211.org/namespace/mrc/1.0/2013-03-28"/>
+  <sch:ns prefix="mrl" uri="http://www.isotc211.org/namespace/mrl/1.0/2013-03-28"/>
+  <sch:ns prefix="lan" uri="http://www.isotc211.org/namespace/lan/1.0/2013-03-28"/>
+  <sch:ns prefix="gcx" uri="http://www.isotc211.org/namespace/gcx/1.0/2013-03-28"/>
+  <sch:ns prefix="gex" uri="http://www.isotc211.org/namespace/gex/1.0/2013-03-28"/>
+  <sch:ns prefix="mex" uri="http://www.isotc211.org/namespace/mex/1.0/2013-03-28"/>
+  <sch:ns prefix="dqm" uri="http://www.isotc211.org/namespace/dqm/1.0/2013-03-28"/>
+  <sch:ns prefix="cit" uri="http://www.isotc211.org/namespace/cit/1.0/2013-03-28"/>
 	<sch:ns prefix="gco" uri="http://www.isotc211.org/2005/gco"/>
 	<sch:ns prefix="geonet" uri="http://www.fao.org/geonetwork"/>
 	<sch:ns prefix="xlink" uri="http://www.w3.org/1999/xlink"/>

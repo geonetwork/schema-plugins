@@ -1,35 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mdb:MD_Metadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.isotc211.org/2005/mdb/1.0/2014-07-11 ../schema.xsd"
- xmlns:cat="http://www.isotc211.org/2005/cat/1.0/2014-07-11"
- xmlns:mrl="http://www.isotc211.org/2005/mrl/1.0/2014-07-11"
- xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2014-07-11"
- xmlns:mpc="http://www.isotc211.org/2005/mpc/1.0/2014-07-11"
- xmlns:mri="http://www.isotc211.org/2005/mri/1.0/2014-07-11"
- xmlns:srv="http://www.isotc211.org/2005/srv/2.0/2014-07-11"
- xmlns:mac="http://www.isotc211.org/2005/mac/1.0/2014-07-11"
- xmlns:mrs="http://www.isotc211.org/2005/mrs/1.0/2014-07-11"
- xmlns:mco="http://www.isotc211.org/2005/mco/1.0/2014-07-11"
- xmlns:mai="http://www.isotc211.org/2005/mai/1.0/2014-07-11"
- xmlns:lan="http://www.isotc211.org/2005/lan/1.0/2014-07-11"
- xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2014-07-11"
- xmlns:mas="http://www.isotc211.org/2005/mas/1.0/2014-07-11"
- xmlns:mda="http://www.isotc211.org/2005/mda/1.0/2014-07-11"
- xmlns:msr="http://www.isotc211.org/2005/msr/1.0/2014-07-11"
- xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2014-07-11"
- xmlns:mil="http://www.isotc211.org/2005/mil/1.0/2014-07-11"
+ xsi:schemaLocation="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11 ../schema.xsd"
+ xmlns:cat="http://www.isotc211.org/namespace/cat/1.0/2014-07-11"
+ xmlns:mrl="http://www.isotc211.org/namespace/mrl/1.0/2014-07-11"
+ xmlns:mcc="http://www.isotc211.org/namespace/mcc/1.0/2014-07-11"
+ xmlns:mpc="http://www.isotc211.org/namespace/mpc/1.0/2014-07-11"
+ xmlns:mri="http://www.isotc211.org/namespace/mri/1.0/2014-07-11"
+ xmlns:srv="http://www.isotc211.org/namespace/srv/2.0/2014-07-11"
+ xmlns:mac="http://www.isotc211.org/namespace/mac/1.0/2014-07-11"
+ xmlns:mrs="http://www.isotc211.org/namespace/mrs/1.0/2014-07-11"
+ xmlns:mco="http://www.isotc211.org/namespace/mco/1.0/2014-07-11"
+ xmlns:lan="http://www.isotc211.org/namespace/lan/1.0/2014-07-11"
+ xmlns:cit="http://www.isotc211.org/namespace/cit/1.0/2014-07-11"
+ xmlns:mas="http://www.isotc211.org/namespace/mas/1.0/2014-07-11"
+ xmlns:mda="http://www.isotc211.org/namespace/mda/1.0/2014-07-11"
+ xmlns:msr="http://www.isotc211.org/namespace/msr/1.0/2014-07-11"
+ xmlns:mdb="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11"
+ xmlns:gex="http://www.isotc211.org/namespace/gex/1.0/2014-07-11"
+ xmlns:gcx="http://www.isotc211.org/namespace/gcx/1.0/2014-07-11"
+ xmlns:mex="http://www.isotc211.org/namespace/mex/1.0/2014-07-11"
+ xmlns:mdq="http://www.isotc211.org/namespace/mdq/1.0/2014-07-11"
+ xmlns:mmi="http://www.isotc211.org/namespace/mmi/1.0/2014-07-11"
+ xmlns:mdt="http://www.isotc211.org/namespace/mdt/1.0/2014-07-11"
+ xmlns:mds="http://www.isotc211.org/namespace/mds/1.0/2014-07-11"
+ xmlns:mrc="http://www.isotc211.org/namespace/mrc/1.0/2014-07-11"
+ xmlns:mrd="http://www.isotc211.org/namespace/mrd/1.0/2014-07-11"
  xmlns:gco="http://www.isotc211.org/2005/gco"
- xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2014-07-11"
- xmlns:gcx="http://www.isotc211.org/2005/gcx/1.0/2014-07-11"
- xmlns:mex="http://www.isotc211.org/2005/mex/1.0/2014-07-11"
- xmlns:mdq="http://www.isotc211.org/2005/mdq/1.0/2014-07-11"
- xmlns:mmi="http://www.isotc211.org/2005/mmi/1.0/2014-07-11"
- xmlns:mic="http://www.isotc211.org/2005/mic/1.0/2014-07-11"
- xmlns:mdt="http://www.isotc211.org/2005/mdt/1.0/2014-07-11"
- xmlns:mds="http://www.isotc211.org/2005/mds/1.0/2014-07-11"
- xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml/3.2"
- xmlns:mrc="http://www.isotc211.org/2005/mrc/1.0/2014-07-11"
- xmlns:mrd="http://www.isotc211.org/2005/mrd/1.0/2014-07-11">
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:gml="http://www.opengis.net/gml/3.2">
   <mdb:metadataIdentifier>
     <mcc:MD_Identifier>
       <mcc:code>
@@ -93,54 +91,6 @@
       </cit:dateType>
     </cit:CI_Date>
   </mdb:dateInfo>
-  <mdb:otherLocale>
-    <lan:PT_Locale id="#FRE">
-      <lan:language>
-        <lan:LanguageCode codeList="" codeListValue="fre"></lan:LanguageCode>
-      </lan:language>
-      <lan:characterEncoding></lan:characterEncoding>
-    </lan:PT_Locale>
-  </mdb:otherLocale>
-  <mdb:otherLocale>
-    <lan:PT_Locale id="#GER">
-      <lan:language>
-        <lan:LanguageCode codeList="" codeListValue="ger"></lan:LanguageCode>
-      </lan:language>
-      <lan:characterEncoding></lan:characterEncoding>
-    </lan:PT_Locale>
-  </mdb:otherLocale>
-  <mdb:otherLocale>
-    <lan:PT_Locale id="#CHI">
-      <lan:language>
-        <lan:LanguageCode codeList="" codeListValue="chi"></lan:LanguageCode>
-      </lan:language>
-      <lan:characterEncoding></lan:characterEncoding>
-    </lan:PT_Locale>
-  </mdb:otherLocale>
-  <mdb:otherLocale>
-    <lan:PT_Locale id="#SPA">
-      <lan:language>
-        <lan:LanguageCode codeList="" codeListValue="spa"></lan:LanguageCode>
-      </lan:language>
-      <lan:characterEncoding></lan:characterEncoding>
-    </lan:PT_Locale>
-  </mdb:otherLocale>
-  <mdb:otherLocale>
-    <lan:PT_Locale id="#ARA">
-      <lan:language>
-        <lan:LanguageCode codeList="" codeListValue="ara"></lan:LanguageCode>
-      </lan:language>
-      <lan:characterEncoding></lan:characterEncoding>
-    </lan:PT_Locale>
-  </mdb:otherLocale>
-  <mdb:otherLocale>
-    <lan:PT_Locale id="#RUS">
-      <lan:language>
-        <lan:LanguageCode codeList="" codeListValue="rus"></lan:LanguageCode>
-      </lan:language>
-      <lan:characterEncoding></lan:characterEncoding>
-    </lan:PT_Locale>
-  </mdb:otherLocale>
   <mdb:metadataStandard>
     <cit:CI_Citation>
       <cit:title>
@@ -148,6 +98,54 @@
       </cit:title>
     </cit:CI_Citation>
   </mdb:metadataStandard>
+  <mdb:otherLocale>
+    <lan:PT_Locale id="FRE">
+      <lan:language>
+        <lan:LanguageCode codeList="" codeListValue="fre"></lan:LanguageCode>
+      </lan:language>
+      <lan:characterEncoding></lan:characterEncoding>
+    </lan:PT_Locale>
+  </mdb:otherLocale>
+  <mdb:otherLocale>
+    <lan:PT_Locale id="GER">
+      <lan:language>
+        <lan:LanguageCode codeList="" codeListValue="ger"></lan:LanguageCode>
+      </lan:language>
+      <lan:characterEncoding></lan:characterEncoding>
+    </lan:PT_Locale>
+  </mdb:otherLocale>
+  <mdb:otherLocale>
+    <lan:PT_Locale id="CHI">
+      <lan:language>
+        <lan:LanguageCode codeList="" codeListValue="chi"></lan:LanguageCode>
+      </lan:language>
+      <lan:characterEncoding></lan:characterEncoding>
+    </lan:PT_Locale>
+  </mdb:otherLocale>
+  <mdb:otherLocale>
+    <lan:PT_Locale id="SPA">
+      <lan:language>
+        <lan:LanguageCode codeList="" codeListValue="spa"></lan:LanguageCode>
+      </lan:language>
+      <lan:characterEncoding></lan:characterEncoding>
+    </lan:PT_Locale>
+  </mdb:otherLocale>
+  <mdb:otherLocale>
+    <lan:PT_Locale id="ARA">
+      <lan:language>
+        <lan:LanguageCode codeList="" codeListValue="ara"></lan:LanguageCode>
+      </lan:language>
+      <lan:characterEncoding></lan:characterEncoding>
+    </lan:PT_Locale>
+  </mdb:otherLocale>
+  <mdb:otherLocale>
+    <lan:PT_Locale id="RUS">
+      <lan:language>
+        <lan:LanguageCode codeList="" codeListValue="rus"></lan:LanguageCode>
+      </lan:language>
+      <lan:characterEncoding></lan:characterEncoding>
+    </lan:PT_Locale>
+  </mdb:otherLocale>
   <mdb:referenceSystemInfo>
     <mrs:MD_ReferenceSystem>
       <mrs:referenceSystemIdentifier>
@@ -163,28 +161,28 @@
     <mri:MD_DataIdentification>
       <mri:citation>
         <cit:CI_Citation>
-          <cit:title xsi:type="gmd:PT_FreeText_PropertyType">
+          <cit:title xsi:type="lan:PT_FreeText_PropertyType">
             <gco:CharacterString>Multilingual template for Vector data</gco:CharacterString>
-            <cit:PT_FreeText>
-              <cit:textGroup>
-                <cit:LocalisedCharacterString locale="#FRE">Modèle pour les données vecteur (multilingue)</cit:LocalisedCharacterString>
-              </cit:textGroup>
-              <cit:textGroup>
-                <cit:LocalisedCharacterString locale="#GER">Vorlage für die Vektor-Daten (mehrsprachig)</cit:LocalisedCharacterString>
-              </cit:textGroup>
-              <cit:textGroup>
-                <cit:LocalisedCharacterString locale="#SPA">De plantilla para el vector de datos (multilingüe)</cit:LocalisedCharacterString>
-              </cit:textGroup>
-              <cit:textGroup>
-                <cit:LocalisedCharacterString locale="#RUS">Шаблон для векторных данных (многоязычное)</cit:LocalisedCharacterString>
-              </cit:textGroup>
-              <cit:textGroup>
-                <cit:LocalisedCharacterString locale="#ARA">نموذج البيانات الموجهة  (متعددة اللغات)</cit:LocalisedCharacterString>
-              </cit:textGroup>
-              <cit:textGroup>
-                <cit:LocalisedCharacterString locale="#CHI">模板矢量数据（多种语言）</cit:LocalisedCharacterString>
-              </cit:textGroup>
-            </cit:PT_FreeText>
+            <lan:PT_FreeText>
+              <lan:textGroup>
+                <lan:LocalisedCharacterString locale="#FRE">Modèle pour les données vecteur (multilingue)</lan:LocalisedCharacterString>
+              </lan:textGroup>
+              <lan:textGroup>
+                <lan:LocalisedCharacterString locale="#GER">Vorlage für die Vektor-Daten (mehrsprachig)</lan:LocalisedCharacterString>
+              </lan:textGroup>
+              <lan:textGroup>
+                <lan:LocalisedCharacterString locale="#SPA">De plantilla para el vector de datos (multilingüe)</lan:LocalisedCharacterString>
+              </lan:textGroup>
+              <lan:textGroup>
+                <lan:LocalisedCharacterString locale="#RUS">Шаблон для векторных данных (многоязычное)</lan:LocalisedCharacterString>
+              </lan:textGroup>
+              <lan:textGroup>
+                <lan:LocalisedCharacterString locale="#ARA">نموذج البيانات الموجهة  (متعددة اللغات)</lan:LocalisedCharacterString>
+              </lan:textGroup>
+              <lan:textGroup>
+                <lan:LocalisedCharacterString locale="#CHI">模板矢量数据（多种语言）</lan:LocalisedCharacterString>
+              </lan:textGroup>
+            </lan:PT_FreeText>
           </cit:title>
           <cit:date>
             <cit:CI_Date>
@@ -208,7 +206,7 @@
         <gco:CharacterString/>
       </mri:purpose>
       <mri:status>
-        <mri:MD_ProgressCode codeList="codeListLocation#MD_ProgressCode" codeListValue=""/>
+        <mcc:MD_ProgressCode codeList="codeListLocation#MD_ProgressCode" codeListValue=""/>
       </mri:status>
       <mri:pointOfContact>
         <cit:CI_Responsibility>
@@ -246,7 +244,7 @@
         </cit:CI_Responsibility>
       </mri:pointOfContact>
       <mri:spatialRepresentationType>
-        <mri:MD_SpatialRepresentationTypeCode codeList="codeListLocation#MD_SpatialRepresentationTypeCode"
+        <mcc:MD_SpatialRepresentationTypeCode codeList="codeListLocation#MD_SpatialRepresentationTypeCode"
           codeListValue="anyValidURI"/>
       </mri:spatialRepresentationType>
       <mri:spatialResolution>
@@ -288,7 +286,7 @@
           <gex:temporalElement>
             <gex:EX_TemporalExtent>
               <gex:extent>
-                <gml:TimePeriod xmlns:gml_1="http://www.opengis.net/gml" gml_1:id="d1e468a1049886">
+                <gml:TimePeriod>
                   <gml:beginPosition/>
                   <gml:endPosition/>
                 </gml:TimePeriod>
@@ -301,7 +299,7 @@
         <mmi:MD_MaintenanceInformation>
           <mmi:maintenanceAndUpdateFrequency>
             <mmi:MD_MaintenanceFrequencyCode codeListValue="asNeeded"
-              codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_MaintenanceFrequencyCode"/>
+              codeList="http://www.isotc211.org/namespace/resources/codeList.xml#MD_MaintenanceFrequencyCode"/>
           </mmi:maintenanceAndUpdateFrequency>
         </mmi:MD_MaintenanceInformation>
       </mri:resourceMaintenance>
@@ -312,7 +310,7 @@
           </mri:keyword>
           <mri:type>
             <mri:MD_KeywordTypeCode codeListValue="theme"
-              codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_KeywordTypeCode"/>
+              codeList="http://www.isotc211.org/namespace/resources/codeList.xml#MD_KeywordTypeCode"/>
           </mri:type>
         </mri:MD_Keywords>
       </mri:descriptiveKeywords>
@@ -323,7 +321,7 @@
           </mri:keyword>
           <mri:type>
             <mri:MD_KeywordTypeCode codeListValue="place"
-              codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_KeywordTypeCode"/>
+              codeList="http://www.isotc211.org/namespace/resources/codeList.xml#MD_KeywordTypeCode"/>
           </mri:type>
         </mri:MD_Keywords>
       </mri:descriptiveKeywords>
@@ -331,11 +329,11 @@
         <mco:MD_LegalConstraints>
           <mco:accessConstraints>
             <mco:MD_RestrictionCode codeListValue="copyright"
-              codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_RestrictionCode"/>
+              codeList="http://www.isotc211.org/namespace/resources/codeList.xml#MD_RestrictionCode"/>
           </mco:accessConstraints>
           <mco:useConstraints>
             <mco:MD_RestrictionCode codeListValue=""
-              codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_RestrictionCode"/>
+              codeList="http://www.isotc211.org/namespace/resources/codeList.xml#MD_RestrictionCode"/>
           </mco:useConstraints>
           <mco:otherConstraints gco:nilReason="missing">
             <gco:CharacterString/>

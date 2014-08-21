@@ -3,10 +3,10 @@
 <xsl:stylesheet 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" 
   xmlns:gco="http://www.isotc211.org/2005/gco"
-  xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2014-07-11"
-  xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2014-07-11"
-  xmlns:mri="http://www.isotc211.org/2005/mri/1.0/2014-07-11"
-  xmlns:srv="http://www.isotc211.org/2005/srv/2.0/2014-07-11"
+  xmlns:mcc="http://www.isotc211.org/namespace/mcc/1.0/2014-07-11"
+  xmlns:mdb="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11"
+  xmlns:mri="http://www.isotc211.org/namespace/mri/1.0/2014-07-11"
+  xmlns:srv="http://www.isotc211.org/namespace/srv/2.0/2014-07-11"
   xmlns:gn="http://www.fao.org/geonetwork">
 
   <xsl:template match="/root">

@@ -3,11 +3,11 @@
 Stylesheet used to update metadata for a service and 
 attached it to the metadata for data.
 -->
-<xsl:stylesheet version="2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd"
+<xsl:stylesheet version="2.0" xmlns:gmd="http://www.isotc211.org/namespace/gmd"
                 xmlns:gco="http://www.isotc211.org/2005/gco"
-                xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2014-07-11"
-                xmlns:mrc="http://www.isotc211.org/2005/mrc/1.0/2014-07-11"
-                xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2014-07-11"
+                xmlns:cit="http://www.isotc211.org/namespace/cit/1.0/2014-07-11"
+                xmlns:mrc="http://www.isotc211.org/namespace/mrc/1.0/2014-07-11"
+                xmlns:mdb="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:gn="http://www.fao.org/geonetwork"
                 xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -49,7 +49,7 @@ attached it to the metadata for data.
 
               <!-- Add xlink:href featureCatalogueCitation -->
               <mrc:featureCatalogueCitation uuidref="{$uuidref}"
-                                            xlink:href="{$siteUrl}/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;id={$uuidref}">
+                                            xlink:href="{$siteUrl}/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/namespace/gmd&amp;elementSetName=full&amp;id={$uuidref}">
                 <xsl:copy-of
                     select="mdb:contentInfo/mrc:MD_FeatureCatalogueDescription/mrc:featureCatalogueCitation[@uuidref = $uuidref]/cit:CI_Citation"/>
               </mrc:featureCatalogueCitation>
@@ -64,7 +64,7 @@ attached it to the metadata for data.
             <mrc:MD_FeatureCatalogueDescription>
               <mrc:includedWithDataset/>
               <mrc:featureCatalogueCitation uuidref="{$uuidref}"
-                                            xlink:href="{$siteUrl}/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;id={$uuidref}"/>
+                                            xlink:href="{$siteUrl}/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/namespace/gmd&amp;elementSetName=full&amp;id={$uuidref}"/>
             </mrc:MD_FeatureCatalogueDescription>
           </mdb:contentInfo>
         </xsl:otherwise>

@@ -35,5 +35,5 @@
 
 ## CSW support
 
-* A schema plugin should define what outputSchema could be used and define the conversion to apply. http://www.isotc211.org/2005/mdb/1.0/2014-07-11 should be added to the list.
+* A schema plugin should define what outputSchema could be used and define the conversion to apply. http://www.isotc211.org/namespace/mdb/1.0/2014-07-11 should be added to the list.
 

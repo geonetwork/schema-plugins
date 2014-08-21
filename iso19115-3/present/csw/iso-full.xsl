@@ -2,8 +2,8 @@
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:gn="http://www.fao.org/geonetwork"
   xmlns:gco="http://www.isotc211.org/2005/gco"
-  xmlns:gmd="http://www.isotc211.org/2005/gmd"
-  xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2014-07-11"
+  xmlns:gmd="http://www.isotc211.org/namespace/gmd"
+  xmlns:mdb="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11"
   exclude-result-prefixes="#all">
   
   <xsl:import href="../../convert/ISO19115-3toISO19139.xsl"/>

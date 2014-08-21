@@ -5,22 +5,22 @@
                 xmlns:schold="http://www.ascc.net/xml/schematron"
                 xmlns:iso="http://purl.oclc.org/dsdl/schematron"
                 xmlns:gml="http://www.opengis.net/gml/3.2"
-                xmlns:srv="http://www.isotc211.org/2005/srv/2.0/2013-03-28"
-                xmlns:mds="http://www.isotc211.org/2005/mds/1.0/2013-03-28"
-                xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2013-03-28"
-                xmlns:mri="http://www.isotc211.org/2005/mri/1.0/2013-03-28"
-                xmlns:mrs="http://www.isotc211.org/2005/mrs/1.0/2013-03-28"
-                xmlns:mrd="http://www.isotc211.org/2005/mrd/1.0/2013-03-28"
-                xmlns:mco="http://www.isotc211.org/2005/mco/1.0/2013-03-28"
-                xmlns:msr="http://www.isotc211.org/2005/msr/1.0/2013-03-28"
-                xmlns:mrc="http://www.isotc211.org/2005/mrc/1.0/2013-03-28"
-                xmlns:mrl="http://www.isotc211.org/2005/mrl/1.0/2013-03-28"
-                xmlns:lan="http://www.isotc211.org/2005/lan/1.0/2013-03-28"
-                xmlns:gcx="http://www.isotc211.org/2005/gcx/1.0/2013-03-28"
-                xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2013-03-28"
-                xmlns:mex="http://www.isotc211.org/2005/mex/1.0/2013-03-28"
-                xmlns:dqm="http://www.isotc211.org/2005/dqm/1.0/2013-03-28"
-                xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2013-03-28"
+                xmlns:srv="http://www.isotc211.org/namespace/srv/2.0/2013-03-28"
+                xmlns:mds="http://www.isotc211.org/namespace/mds/1.0/2013-03-28"
+                xmlns:mcc="http://www.isotc211.org/namespace/mcc/1.0/2013-03-28"
+                xmlns:mri="http://www.isotc211.org/namespace/mri/1.0/2013-03-28"
+                xmlns:mrs="http://www.isotc211.org/namespace/mrs/1.0/2013-03-28"
+                xmlns:mrd="http://www.isotc211.org/namespace/mrd/1.0/2013-03-28"
+                xmlns:mco="http://www.isotc211.org/namespace/mco/1.0/2013-03-28"
+                xmlns:msr="http://www.isotc211.org/namespace/msr/1.0/2013-03-28"
+                xmlns:mrc="http://www.isotc211.org/namespace/mrc/1.0/2013-03-28"
+                xmlns:mrl="http://www.isotc211.org/namespace/mrl/1.0/2013-03-28"
+                xmlns:lan="http://www.isotc211.org/namespace/lan/1.0/2013-03-28"
+                xmlns:gcx="http://www.isotc211.org/namespace/gcx/1.0/2013-03-28"
+                xmlns:gex="http://www.isotc211.org/namespace/gex/1.0/2013-03-28"
+                xmlns:mex="http://www.isotc211.org/namespace/mex/1.0/2013-03-28"
+                xmlns:dqm="http://www.isotc211.org/namespace/dqm/1.0/2013-03-28"
+                xmlns:cit="http://www.isotc211.org/namespace/cit/1.0/2013-03-28"
                 xmlns:gco="http://www.isotc211.org/2005/gco"
                 xmlns:geonet="http://www.fao.org/geonetwork"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -193,22 +193,22 @@
 		 <xsl:value-of select="$fileDirParameter"/>
          </xsl:comment>
          <svrl:ns-prefix-in-attribute-values uri="http://www.opengis.net/gml/3.2" prefix="gml"/>
-         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/2005/srv/2.0/2013-03-28" prefix="srv"/>
-         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/2005/mds/1.0/2013-03-28" prefix="mds"/>
-         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/2005/mcc/1.0/2013-03-28" prefix="mcc"/>
-         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/2005/mri/1.0/2013-03-28" prefix="mri"/>
-         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/2005/mrs/1.0/2013-03-28" prefix="mrs"/>
-         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/2005/mrd/1.0/2013-03-28" prefix="mrd"/>
-         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/2005/mco/1.0/2013-03-28" prefix="mco"/>
-         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/2005/msr/1.0/2013-03-28" prefix="msr"/>
-         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/2005/mrc/1.0/2013-03-28" prefix="mrc"/>
-         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/2005/mrl/1.0/2013-03-28" prefix="mrl"/>
-         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/2005/lan/1.0/2013-03-28" prefix="lan"/>
-         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/2005/gcx/1.0/2013-03-28" prefix="gcx"/>
-         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/2005/gex/1.0/2013-03-28" prefix="gex"/>
-         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/2005/mex/1.0/2013-03-28" prefix="mex"/>
-         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/2005/dqm/1.0/2013-03-28" prefix="dqm"/>
-         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/2005/cit/1.0/2013-03-28" prefix="cit"/>
+         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/srv/2.0/2013-03-28" prefix="srv"/>
+         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/mds/1.0/2013-03-28" prefix="mds"/>
+         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/mcc/1.0/2013-03-28" prefix="mcc"/>
+         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/mri/1.0/2013-03-28" prefix="mri"/>
+         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/mrs/1.0/2013-03-28" prefix="mrs"/>
+         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/mrd/1.0/2013-03-28" prefix="mrd"/>
+         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/mco/1.0/2013-03-28" prefix="mco"/>
+         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/msr/1.0/2013-03-28" prefix="msr"/>
+         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/mrc/1.0/2013-03-28" prefix="mrc"/>
+         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/mrl/1.0/2013-03-28" prefix="mrl"/>
+         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/lan/1.0/2013-03-28" prefix="lan"/>
+         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/gcx/1.0/2013-03-28" prefix="gcx"/>
+         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/gex/1.0/2013-03-28" prefix="gex"/>
+         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/mex/1.0/2013-03-28" prefix="mex"/>
+         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/dqm/1.0/2013-03-28" prefix="dqm"/>
+         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/cit/1.0/2013-03-28" prefix="cit"/>
          <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/2005/gco" prefix="gco"/>
          <svrl:ns-prefix-in-attribute-values uri="http://www.fao.org/geonetwork" prefix="geonet"/>
          <svrl:ns-prefix-in-attribute-values uri="http://www.w3.org/1999/xlink" prefix="xlink"/>

@@ -3,7 +3,7 @@
 Stylesheet used to remove a reference to a source record.
 -->
 <xsl:stylesheet version="2.0"
-                xmlns:mrl="http://www.isotc211.org/2005/mrl/1.0/2014-07-11"
+                xmlns:mrl="http://www.isotc211.org/namespace/mrl/1.0/2014-07-11"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:gn="http://www.fao.org/geonetwork">
 

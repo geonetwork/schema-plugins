@@ -7,12 +7,12 @@
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
   xmlns:gco="http://www.isotc211.org/2005/gco" 
-  xmlns:gmx="http://www.isotc211.org/2005/gmx" 
+  xmlns:gmx="http://www.isotc211.org/namespace/gmx"
   xmlns:gn="http://www.fao.org/geonetwork"
-  xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2014-07-11"
-  xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2014-07-11"
-  xmlns:mrd="http://www.isotc211.org/2005/mrd/1.0/2014-07-11"
-  xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2014-07-11"
+  xmlns:mdb="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11"
+  xmlns:mcc="http://www.isotc211.org/namespace/mcc/1.0/2014-07-11"
+  xmlns:mrd="http://www.isotc211.org/namespace/mrd/1.0/2014-07-11"
+  xmlns:cit="http://www.isotc211.org/namespace/cit/1.0/2014-07-11"
   xmlns:util="java:org.fao.geonet.util.XslUtil"
   exclude-result-prefixes="#all" >
   
@@ -20,7 +20,7 @@
   <!-- Relation contained in the metadata record has to be returned
   It could be document or thumbnails
   -->
-  <xsl:template mode="relation" match="metadata[mdb:MD_Metadata]" priority="99">
+  <xsl:template mode="relation" match="metadata[mdb:MD_Metadata or *[contains(@gco:isoType, 'MD_Metadata')]]" priority="99">
     
     <xsl:for-each select="*/descendant::*[name(.) = 'mri:graphicOverview']/*">
       <relation type="thumbnail">

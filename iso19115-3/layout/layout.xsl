@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:srv="http://www.isotc211.org/2005/srv/2.0/2014-07-11"
-  xmlns:mds="http://www.isotc211.org/2005/mds/1.0/2014-07-11"
-  xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2014-07-11"
-  xmlns:mri="http://www.isotc211.org/2005/mri/1.0/2014-07-11"
-  xmlns:mrs="http://www.isotc211.org/2005/mrs/1.0/2014-07-11"
-  xmlns:mrd="http://www.isotc211.org/2005/mrd/1.0/2014-07-11"
-  xmlns:mco="http://www.isotc211.org/2005/mco/1.0/2014-07-11"
-  xmlns:msr="http://www.isotc211.org/2005/msr/1.0/2014-07-11"
-  xmlns:lan="http://www.isotc211.org/2005/lan/1.0/2014-07-11"
-  xmlns:gcx="http://www.isotc211.org/2005/gcx/1.0/2014-07-11"
-  xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2014-07-11"
-  xmlns:dqm="http://www.isotc211.org/2005/dqm/1.0/2014-07-11"
-  xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2014-07-11"
+  xmlns:srv="http://www.isotc211.org/namespace/srv/2.0/2014-07-11"
+  xmlns:mds="http://www.isotc211.org/namespace/mds/1.0/2014-07-11"
+  xmlns:mcc="http://www.isotc211.org/namespace/mcc/1.0/2014-07-11"
+  xmlns:mri="http://www.isotc211.org/namespace/mri/1.0/2014-07-11"
+  xmlns:mrs="http://www.isotc211.org/namespace/mrs/1.0/2014-07-11"
+  xmlns:mrd="http://www.isotc211.org/namespace/mrd/1.0/2014-07-11"
+  xmlns:mco="http://www.isotc211.org/namespace/mco/1.0/2014-07-11"
+  xmlns:msr="http://www.isotc211.org/namespace/msr/1.0/2014-07-11"
+  xmlns:lan="http://www.isotc211.org/namespace/lan/1.0/2014-07-11"
+  xmlns:gcx="http://www.isotc211.org/namespace/gcx/1.0/2014-07-11"
+  xmlns:gex="http://www.isotc211.org/namespace/gex/1.0/2014-07-11"
+  xmlns:dqm="http://www.isotc211.org/namespace/dqm/1.0/2014-07-11"
+  xmlns:cit="http://www.isotc211.org/namespace/cit/1.0/2014-07-11"
   xmlns:gco="http://www.isotc211.org/2005/gco"
-  xmlns:gmx="http://www.isotc211.org/2005/gmx"
+  xmlns:gmx="http://www.isotc211.org/namespace/gmx"
   xmlns:gts="http://www.isotc211.org/2005/gts"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:gml="http://www.opengis.net/gml/3.2"
@@ -156,7 +156,7 @@
 
     <xsl:variable name="elementName" select="name()"/>
 
-    <xsl:variable name="hasPTFreeText" select="count(cit:PT_FreeText) > 0"/>
+    <xsl:variable name="hasPTFreeText" select="count(lan:PT_FreeText) > 0"/>
 
     <xsl:variable name="isMultilingualElement"
                   select="$metadataIsMultilingual and
@@ -213,6 +213,7 @@
       </xsl:if>
     </xsl:variable>
 
+    <xsl:message>#<xsl:copy-of select="."/></xsl:message>
     <xsl:variable name="values">
       <xsl:if test="$isMultilingualElement">
 
@@ -221,23 +222,25 @@
           <value ref="{$theElement/gn:element/@ref}" lang="{$metadataLanguage}"><xsl:value-of select="gco:CharacterString"/></value>
 
           <!-- the existing translation -->
-          <xsl:for-each select="cit:PT_FreeText/cit:textGroup/cit:LocalisedCharacterString">
-            <value ref="{gn:element/@ref}" lang="{substring-after(@locale, '#')}"><xsl:value-of select="."/></value>
+          <xsl:for-each select="lan:PT_FreeText/lan:textGroup/lan:LocalisedCharacterString">
+            <xsl:message>###<xsl:copy-of select="."/></xsl:message>
+            <value ref="{gn:element/@ref}"
+                   lang="{substring-after(@locale, '#')}"><xsl:value-of select="."/></value>
           </xsl:for-each>
 
           <!-- and create field for none translated language -->
           <xsl:for-each select="$metadataOtherLanguages/lang">
             <xsl:variable name="currentLanguageId" select="@id"/>
             <xsl:if test="count($theElement/parent::node()/
-                            cit:PT_FreeText/cit:textGroup/
-                              cit:LocalisedCharacterString[@locale = concat('#',$currentLanguageId)]) = 0">
+                            lan:PT_FreeText/lan:textGroup/
+                              lan:LocalisedCharacterString[@locale = concat('#',$currentLanguageId)]) = 0">
               <value ref="lang_{@id}_{$theElement/parent::node()/gn:element/@ref}" lang="{@id}"></value>
             </xsl:if>
           </xsl:for-each>
         </values>
       </xsl:if>
     </xsl:variable>
-
+<xsl:message>#<xsl:copy-of select="$values"/></xsl:message>
     <xsl:call-template name="render-element">
       <xsl:with-param name="label" select="$labelConfig/label"/>
       <xsl:with-param name="value" select="if ($isMultilingualElement) then $values else *"/>

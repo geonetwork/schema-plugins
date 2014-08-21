@@ -4,8 +4,8 @@
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:schold="http://www.ascc.net/xml/schematron"
                 xmlns:iso="http://purl.oclc.org/dsdl/schematron"
-                xmlns:mds="http://www.isotc211.org/2005/mds/1.0/2013-03-28"
-                xmlns:lan="http://www.isotc211.org/2005/lan/1.0/2013-03-28"
+                xmlns:mds="http://www.isotc211.org/namespace/mds/1.0/2013-03-28"
+                xmlns:lan="http://www.isotc211.org/namespace/lan/1.0/2013-03-28"
                 xmlns:gco="http://www.isotc211.org/2005/gco"
                 xmlns:geonet="http://www.fao.org/geonetwork"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -177,8 +177,8 @@
 		 <xsl:value-of select="$fileNameParameter"/>  
 		 <xsl:value-of select="$fileDirParameter"/>
          </xsl:comment>
-         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/2005/mds/1.0/2013-03-28" prefix="mds"/>
-         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/2005/lan/1.0/2013-03-28" prefix="lan"/>
+         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/mds/1.0/2013-03-28" prefix="mds"/>
+         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/lan/1.0/2013-03-28" prefix="lan"/>
          <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/2005/gco" prefix="gco"/>
          <svrl:ns-prefix-in-attribute-values uri="http://www.fao.org/geonetwork" prefix="geonet"/>
          <svrl:ns-prefix-in-attribute-values uri="http://www.w3.org/1999/xlink" prefix="xlink"/>

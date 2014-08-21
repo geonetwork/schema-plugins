@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2014-07-11"
-  xmlns:lan="http://www.isotc211.org/2005/lan/1.0/2014-07-11"
-  xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2014-07-11"
+  xmlns:mdb="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11"
+  xmlns:lan="http://www.isotc211.org/namespace/lan/1.0/2014-07-11"
   xmlns:gco="http://www.isotc211.org/2005/gco"
   exclude-result-prefixes="#all">
 
@@ -33,23 +32,23 @@
   <!-- Template used to return a gco:CharacterString element
         in default metadata language or in a specific locale
         if exist.
-        FIXME : cit:PT_FreeText should not be in the match clause as gco:CharacterString
+        FIXME : lan:PT_FreeText should not be in the match clause as gco:CharacterString
         is mandatory and PT_FreeText optional. Added for testing GM03 import.
     -->
-  <xsl:template mode="localised" match="*[cit:PT_FreeText]">
+  <xsl:template mode="localised" match="*[lan:PT_FreeText]">
     <xsl:param name="langId"/>
 
     <xsl:choose>
       <xsl:when
-          test="cit:PT_FreeText/cit:textGroup/cit:LocalisedCharacterString[@locale=$langId] and
-          cit:PT_FreeText/cit:textGroup/cit:LocalisedCharacterString[@locale=$langId] != ''">
+          test="lan:PT_FreeText/lan:textGroup/lan:LocalisedCharacterString[@locale=$langId] and
+          lan:PT_FreeText/lan:textGroup/lan:LocalisedCharacterString[@locale=$langId] != ''">
         <xsl:value-of
-            select="cit:PT_FreeText/cit:textGroup/cit:LocalisedCharacterString[@locale=$langId]"/>
+            select="lan:PT_FreeText/lan:textGroup/lan:LocalisedCharacterString[@locale=$langId]"/>
       </xsl:when>
       <xsl:when test="not(gco:CharacterString)">
         <!-- If no CharacterString, try to use the first textGroup available -->
         <xsl:value-of
-            select="cit:PT_FreeText/cit:textGroup[position()=1]/cit:LocalisedCharacterString"/>
+            select="lan:PT_FreeText/lan:textGroup[position()=1]/lan:LocalisedCharacterString"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="gco:CharacterString"/>

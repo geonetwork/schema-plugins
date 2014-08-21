@@ -2,10 +2,10 @@
 <!--  
 Stylesheet used to update metadata adding a reference to a source record.
 -->
-<xsl:stylesheet version="2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd"
+<xsl:stylesheet version="2.0" xmlns:gmd="http://www.isotc211.org/namespace/gmd"
                 xmlns:gco="http://www.isotc211.org/2005/gco"
-                xmlns:mrl="http://www.isotc211.org/2005/mrl/1.0/2014-07-11"
-                xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2014-07-11"
+                xmlns:mrl="http://www.isotc211.org/namespace/mrl/1.0/2014-07-11"
+                xmlns:mdb="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:gn="http://www.fao.org/geonetwork"
                 xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -54,7 +54,7 @@ Stylesheet used to update metadata adding a reference to a source record.
             <xsl:apply-templates select="mrl:additionalDocumentation"/>
             <xsl:apply-templates select="mrl:source"/>
             <mrl:source uuidref="{$sourceUuid}"
-                        xlink:href="{$siteUrl}/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;id={$sourceUuid}"/>
+                        xlink:href="{$siteUrl}/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/namespace/gmd&amp;elementSetName=full&amp;id={$sourceUuid}"/>
             <xsl:apply-templates select="mrl:processStep"/>
           </mdb:resourceLineage>
         </xsl:when>
@@ -63,7 +63,7 @@ Stylesheet used to update metadata adding a reference to a source record.
           <mdb:resourceLineage>
             <mrl:LI_Lineage>
               <mrl:source uuidref="{$sourceUuid}"
-                          xlink:href="{$siteUrl}/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;id={$sourceUuid}"/>
+                          xlink:href="{$siteUrl}/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/namespace/gmd&amp;elementSetName=full&amp;id={$sourceUuid}"/>
             </mrl:LI_Lineage>
           </mdb:resourceLineage>
         </xsl:otherwise>

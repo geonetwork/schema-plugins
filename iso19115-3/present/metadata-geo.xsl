@@ -5,8 +5,8 @@
     xmlns:gco="http://www.isotc211.org/2005/gco" 
     xmlns:gml="http://www.opengis.net/gml/3.2" 
     xmlns:xlink="http://www.w3.org/1999/xlink" 
-    xmlns:mds="http://www.isotc211.org/2005/mds/1.0/2014-07-11"
-    xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2014-07-11"
+    xmlns:mds="http://www.isotc211.org/namespace/mds/1.0/2014-07-11"
+    xmlns:gex="http://www.isotc211.org/namespace/gex/1.0/2014-07-11"
     xmlns:geonet="http://www.fao.org/geonetwork" 
     xmlns:exslt="http://exslt.org/common" 
     exclude-result-prefixes="gco gml gex mds xlink exslt geonet java math">
