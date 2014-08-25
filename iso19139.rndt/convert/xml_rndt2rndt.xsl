@@ -20,6 +20,8 @@
 		<xsl:apply-templates select="gmd:MD_Metadata"/>
 	</xsl:template>
 
+    <xsl:variable name="isSrv" select="boolean(//srv:*)"/>
+
 	<!-- ================================================================= -->
 
 	<!-- sanitize namespaces -->
@@ -29,11 +31,22 @@
 			<xsl:namespace name="gmd" select="'http://www.isotc211.org/2005/gmd'"/>
 			<xsl:namespace name="gco" select="'http://www.isotc211.org/2005/gco'"/>
 			<xsl:namespace name="gmx" select="'http://www.isotc211.org/2005/gmx'"/>
-			<xsl:namespace name="srv" select="'http://www.isotc211.org/2005/srv'"/>
+            <xsl:if test="$isSrv">
+                <xsl:namespace name="srv" select="'http://www.isotc211.org/2005/srv'"/>
+            </xsl:if>
 			<xsl:namespace name="gml" select="'http://www.opengis.net/gml/3.2'"/>
 			<xsl:namespace name="xlink" select="'http://www.w3.org/1999/xlink'"/>
 			<xsl:copy-of select="@*[name()!='xsi:schemaLocation' and name()!='gco:isoType']"/>
-			<xsl:attribute name="xsi:schemaLocation">http://www.isotc211.org/2005/gmd http://www.isotc211.org/2005/gmd/gmd.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd</xsl:attribute>
+
+            <xsl:choose>
+                <xsl:when test="$isSrv">
+                    <xsl:attribute name="xsi:schemaLocation">http://www.isotc211.org/2005/gmd http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gmd/gmd.xsd http://www.isotc211.org/2005/srv http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd</xsl:attribute>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:attribute name="xsi:schemaLocation">http://www.isotc211.org/2005/gmd http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gmd/gmd.xsd</xsl:attribute>
+                </xsl:otherwise>
+            </xsl:choose>
+
 			<xsl:apply-templates select="gmd:fileIdentifier"/>
 			<xsl:apply-templates select="gmd:language"/>
 			<xsl:apply-templates select="gmd:characterSet"/>
@@ -49,9 +62,24 @@
 					</xsl:choose>					
 				</gco:CharacterString>
 			</gmd:parentIdentifier>
-			<xsl:apply-templates select="child::* except (gmd:fileIdentifier|gmd:language|gmd:characterSet|gmd:parentIdentifier)"/>
+			<xsl:apply-templates select="child::* except (gmd:fileIdentifier|gmd:parentIdentifier|gmd:language|gmd:characterSet)"/>
+			<!-- <xsl:apply-templates select="//*[not(self::gmd:fileIdentifier)|not(self::gmd:language)|not(self::gmd:characterSet)]"/> -->
 		</xsl:element>
 	</xsl:template>
+
+	<!-- =================================================================== -->
+
+    <!-- Generic node -->
+
+	<xsl:template match="@*|node()">
+		<xsl:copy copy-namespaces="no">
+			<xsl:apply-templates select="@*|node()"/>
+		</xsl:copy>
+	</xsl:template>
+
+	<!-- Remove geonet's own stuff -->
+
+    <xsl:template match="geonet:info" priority="100"/>
 
 	<!-- ================================================================= -->
 	<!-- Convert gml URI -->
@@ -85,18 +113,6 @@
 			</gmd:parentIdentifier>
 		</xsl:copy>
 	</xsl:template> -->
-	<!-- =================================================================== -->
-
-	<xsl:template match="@*|node()">
-		<xsl:copy copy-namespaces="no">
-			<xsl:apply-templates select="@*|node()"/>
-		</xsl:copy>
-	</xsl:template>
-
-	<!-- ================================================================= -->
-	
-	<!-- Remove geonet's own stuff -->
-	<xsl:template match="geonet:info" priority="100"/>
 
 	<!-- ================================================================= -->
 	<!-- Manage the gmd:pass -->
