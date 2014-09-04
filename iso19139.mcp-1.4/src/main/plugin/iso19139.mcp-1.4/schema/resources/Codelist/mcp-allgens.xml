@@ -1,0 +1,1256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CT_CodelistCatalogue xmlns="http://www.isotc211.org/2005/gmx"
+	xmlns:gco="http://www.isotc211.org/2005/gco" 
+	xmlns:gml="http://www.opengis.net/gml" 
+	xmlns:xlink="http://www.w3.org/1999/xlink" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://www.isotc211.org/2005/gmx http://www.isotc211.org/2005/gmx/gmx.xsd 
+                http://www.isotc211.org/2005/gco http://www.isotc211.org/2005/gco/gco.xsd 
+                http://www.opengis.net/gml http://www.isotc211.org/2005/gml/gml.xsd 
+                http://www.w3.org/1999/xlink http://www.isotc211.org/2005/xlink/xlinks.xsd">
+	<!--=====Catalogue description=====-->
+	<name>
+		<gco:CharacterString>MCP Geographic Extent Name Register</gco:CharacterString>
+	</name>
+	<scope>
+		<gco:CharacterString>Codelists for geographic extent names, as defined by Australia New Zealand Land Information Council
+		Please note that the GEN Register is updated once a year. For more information about the GEN Register contact the GEN Register Manager: http://www.anzlic.org.au/infrastructure_GEN.html#GEN_Manager
+		NOTE: this list has been put on a diet by Simon Pigot - all entries for
+		inland map series etc have been removed because they're not applicable to
+		the Marine Community.
+		</gco:CharacterString>
+	</scope>
+	<fieldOfApplication>
+		<gco:CharacterString>ANZLIC metadata</gco:CharacterString>
+	</fieldOfApplication>
+	<versionNumber>
+		<gco:CharacterString>2.0</gco:CharacterString>
+	</versionNumber>
+	<versionDate>
+		<gco:Date>2006-10-10</gco:Date>
+	</versionDate>
+	<!--============================================================================-->
+	<!--============================================================================-->
+	<!--============================= Codelists =======================================-->
+	<!--=== Australia ===-->
+	<codelistItem>
+		<CodeListDictionary gml:id="anzlic-australia">
+			<gml:description>Australia excluding external territories; Australia including external territories
+			http://www.anzlic.org.au/genlist/anzlic-australia.txt</gml:description>
+			<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">anzlic-australia</gml:identifier>
+			<gml:name>Australia</gml:name>
+			<codeEntry>
+				<CodeDefinition gml:id="AUS">
+					<gml:description>AUSTRALIA EXCLUDING EXTERNAL TERRITORIES|-9|-44|154|112|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">AUS</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="AUSAAT">
+					<gml:description>AUSTRALIA INCLUDING EXTERNAL TERRITORIES|-9|-90|168|45|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">AUSAAT</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+		</CodeListDictionary>
+	</codelistItem>
+	<!--=== State or Territory ===-->
+	<codelistItem>
+		<CodeListDictionary gml:id="anzlic-state_territory">
+			<gml:description>The six States and two Territories
+			http://www.anzlic.org.au/genlist/anzlic-state_territory.txt</gml:description>
+			<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">anzlic-state_territory</gml:identifier>
+			<!-- codes from http://www.anzlic.org.au/genlist/anzlic-state_territory.txt -->
+			<codeEntry>
+				<CodeDefinition gml:id="ACT">
+					<gml:description>AUSTRALIAN CAPITAL TERRITORY|-35.00|-36.00|149.50|148.50|Australian Capital Territory</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">ACT</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="NSW">
+					<gml:description>NEW SOUTH WALES|-28.00|-37.50|154.00|141.00|New South Wales</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">NSW</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="NT">
+					<gml:description>NORTHERN TERRITORY|-11.00|-26.00|138.00|129.00|Northern erritory</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">NT</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="QLD">
+					<gml:description>QUEENSLAND|-9.00|-29.50|153.50|138.00|Queensland</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">QLD</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="SA">
+					<gml:description>SOUTH AUSTRALIA|-26.00|-38.50|141.00|129.00|South Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">SA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="TAS">
+					<gml:description>TASMANIA|-39.00|-44.00|148.50|144.50|Tasmania</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">TAS</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="VIC">
+					<gml:description>VICTORIA|-34.00|-39.00|150.00|141.00|Victoria</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">VIC</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="WA">
+					<gml:description>WESTERN AUSTRALIA|-13.50|-35.50|129.00|112.50|Western Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">WA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+		</CodeListDictionary>
+	</codelistItem>
+	<!--=== External Territories ===-->
+	<codelistItem>
+		<CodeListDictionary gml:id="anzlic-external_territories">
+			<gml:description>The seven official external territories administered by Australia
+			http://www.anzlic.org.au/genlist/anzlic-external_territories.txt</gml:description>
+			<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">anzlic-external_territories</gml:identifier>
+			<!-- codes from http://www.anzlic.org.au/genlist/anzlic-external_territories.txt -->
+			<codeEntry>
+				<CodeDefinition gml:id="AAT">
+					<gml:description>AUSTRALIAN ANTARCTIC TERRITORY|-60.00|-90.00|160.00|45.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">AAT</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="ACR">
+					<gml:description>ASHMORE REEF AND CARTIER REEF|-11.45|-12.45|123.35|122.35|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">ACR</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="CHI">
+					<gml:description>CHRISTMAS ISLAND|-10.00|-11.00|106.10|105.10|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">CHI</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="COI">
+					<gml:description>COCOS (KEELING) ISLAND|-11.40|-12.40|97.25|96.25|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">COI</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="CSI">
+					<gml:description>CORAL SEA ISLANDS TERRITORY|-12.00|-24.00|156.00|142.30|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">CSI</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="HMI">
+					<gml:description>TERRITORY OF HEARD AND MCDONALD ISLANDS|-52.55|-53.15|74.00|72.35|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">HMI</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="NOI">
+					<gml:description>NORFOLK ISLAND|-29.00|-29.55|168.00|167.55|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">NOI</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+		</CodeListDictionary>
+	</codelistItem>
+	<!--=== Interim Marine and Coastal Regionalisation of Australia (IMCRA) ===-->
+	<codelistItem>
+		<CodeListDictionary gml:id="anzlic-imcra">
+			<gml:description>Meso-scale regionalisation of Australian coastal waters
+			http://www.anzlic.org.au/genlist/anzlic-imcra.txt</gml:description>
+			<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">anzlic-imcra</gml:identifier>
+			<!-- codes from http://www.anzlic.org.au/genlist/anzlic-imcra.txt -->
+			<codeEntry>
+				<CodeDefinition gml:id="ABR">
+					<gml:description>ABROLHOS ISLANDS|-26.45|-29.23|114.29|113.34|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">ABR</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="ANB">
+					<gml:description>ANSON BEAGLE|-11.75|-14.42|131.28|129.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">ANB</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="ARA">
+					<gml:description>ARAFURA|-8.88|-11.89|138.66|131.55|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">ARA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="AWS">
+					<gml:description>ARNHEM WESSEL|-10.96|-12.65|136.93|133.51|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">AWS</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="BAT">
+					<gml:description>BATEMANS SHELF|-34.54|-36.54|151.18|150.05|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">BAT</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="BGS">
+					<gml:description>BOAGS|-40.21|-41.17|148.38|144.64|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">BGS</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="BON">
+					<gml:description>BONAPARTE GULF|-11.23|-14.74|130.49|126.97|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">BON</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="BRU">
+					<gml:description>BRUNY|-42.72|-44.00|148.32|146.96|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">BRU</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="CAB">
+					<gml:description>CAMBRIDGE-BONAPARTE|-14.06|-15.52|130.26|128.01|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">CAB</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="CAN">
+					<gml:description>CANNING|-16.10|-19.04|122.92|121.18|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">CAN</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="CAR_0">
+					<gml:description>CARPENTARIA|-10.42|-15.87|141.31|136.64|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">CAR</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="CBS">
+					<gml:description>CENTRAL BASS STRAIT|-38.42|-40.98|147.82|143.64|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">CBS</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="COB">
+					<gml:description>COBOURG|-10.85|-11.93|133.54|131.73|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">COB</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="COR">
+					<gml:description>COORONG|-35.51|-37.47|139.86|136.71|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">COR</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="CR_0">
+					<gml:description>CENTRAL REEF|-16.22|-19.56|149.99|145.88|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">CR</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="CV">
+					<gml:description>CENTRAL VICTORIA|-38.27|-39.05|146.05|143.63|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">CV</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="CWC">
+					<gml:description>CENTRAL WEST COAST|-27.64|-31.97|115.75|113.08|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">CWC</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="DAV">
+					<gml:description>DAVEY|-43.18|-44.13|147.48|145.44|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">DAV</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="ECY">
+					<gml:description>EAST CAPE YORK|-10.38|-15.40|145.48|142.46|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">ECY</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="EMB">
+					<gml:description>EIGHTY MILE BEACH|-18.80|-19.97|121.52|119.58|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">EMB</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="EUC">
+					<gml:description>EUCLA|-31.46|-34.23|132.23|123.86|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">EUC</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="EYR">
+					<gml:description>EYRE|-32.45|-36.62|138.14|132.74|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">EYR</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="FLI_0">
+					<gml:description>FLINDERS|-38.65|-40.70|148.89|146.02|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">FLI</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="FRA">
+					<gml:description>FRANKLIN|-40.74|-43.29|145.76|143.97|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">FRA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="FRT">
+					<gml:description>FREYCINET|-40.61|-42.90|148.79|147.87|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">FRT</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="GRO">
+					<gml:description>GROOTE|-11.89|-14.44|137.05|135.57|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">GRO</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="HAW">
+					<gml:description>HAWKESBURY SHELF|-32.54|-34.59|152.84|150.87|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">HAW</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="KAN_0">
+					<gml:description>KARUMBA-NASSAU|-13.49|-17.72|141.66|139.44|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">KAN</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="KIM">
+					<gml:description>KIMBERLEY|-13.10|-16.66|127.01|122.62|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">KIM</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="KSD">
+					<gml:description>KING SOUND|-16.45|-17.59|123.96|122.95|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">KSD</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="LMC">
+					<gml:description>LUCINDA-MACKAY COAST|-18.49|-21.10|149.72|146.27|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">LMC</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="LNE">
+					<gml:description>LEEUWIN-NATURALISTE|-31.96|-35.24|115.96|114.47|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">LNE</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="MAN">
+					<gml:description>MANNING SHELF|-30.38|-32.54|153.41|152.32|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">MAN</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="MC">
+					<gml:description>MACKAY-CAPRICORN|-19.26|-24.27|153.04|147.62|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">MC</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="MUR_0">
+					<gml:description>MURAT|-31.93|-34.31|133.95|131.12|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">MUR</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="NIN">
+					<gml:description>NINGALOO|-21.47|-23.76|114.16|112.99|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">NIN</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="NSG">
+					<gml:description>NORTH SPENCER GULF|-32.49|-33.76|138.04|137.21|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">NSG</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="NWS">
+					<gml:description>NORTH WEST SHELF|-13.59|-20.26|125.38|115.12|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">NWS</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="OSS">
+					<gml:description>OCEANIC SHOALS|-9.65|-18.06|131.57|118.57|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">OSS</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="OTW">
+					<gml:description>OTWAY|-36.93|-41.03|144.86|139.32|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">OTW</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="PEL">
+					<gml:description>PELLEW|-14.41|-16.41|137.76|134.92|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">PEL</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="PIN">
+					<gml:description>PILBARA (NEARSHORE)|-19.85|-22.52|119.77|114.08|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">PIN</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="PIO">
+					<gml:description>PILBARA (OFFSHORE)|-19.15|-22.25|119.73|114.16|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">PIO</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="PS">
+					<gml:description>POMPEY-SWAINS|-18.96|-22.75|153.27|147.96|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">PS</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="RBN">
+					<gml:description>RIBBONS|-10.04|-16.76|146.00|143.04|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">RBN</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="SBY">
+					<gml:description>SHARK BAY|-24.75|-26.67|114.26|112.98|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">SBY</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="SC">
+					<gml:description>SHOALWATER COAST|-20.97|-24.30|152.14|149.18|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">SC</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="SG">
+					<gml:description>SPENCER GULF|-33.66|-34.95|137.72|136.25|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">SG</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="SVG">
+					<gml:description>ST VINCENT GULF|-34.13|-35.84|138.55|136.72|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">SVG</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="TM">
+					<gml:description>TWEED-MORETON|-24.08|-30.38|153.90|151.95|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">TM</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="TS">
+					<gml:description>TORRES STRAIT|-9.18|-11.46|144.22|140.79|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">TS</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="TWI">
+					<gml:description>TIWI|-11.01|-11.76|131.57|129.99|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">TWI</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="TWO">
+					<gml:description>TWOFOLD SHELF|-36.49|-39.58|150.34|146.86|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">TWO</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="VDG">
+					<gml:description>VAN DIEMENS GULF|-11.29|-12.72|132.98|131.04|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">VDG</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="VE">
+					<gml:description>VICTORIAN EMBAYMENTS|-37.80|-38.90|146.83|144.35|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">VE</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="WCY">
+					<gml:description>WEST CAPE YORK|-10.38|-13.49|142.53|140.87|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">WCY</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="WLY">
+					<gml:description>WELLESLEY|-15.55|-17.38|139.95|137.74|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">WLY</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="WSC">
+					<gml:description>WA SOUTH COAST|-33.63|-35.46|124.49|115.96|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">WSC</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="WTC">
+					<gml:description>WET TROPIC COAST|-15.40|-18.56|146.47|145.19|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">WTC</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="ZUY">
+					<gml:description>ZUYTDORP|-23.67|-27.71|114.16|112.22|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">ZUY</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+		</CodeListDictionary>
+	</codelistItem>
+	<!--=== Ocean and Sea Regions ===-->
+	<codelistItem>
+		<CodeListDictionary gml:id="anzlic-ocean_sea">
+			<gml:description>All oceans and sea regions around Australia
+			http://www.anzlic.org.au/genlist/anzlic-ocean_sea.txt</gml:description>
+			<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">anzlic-ocean_sea</gml:identifier>
+			<!-- codes from http://www.anzlic.org.au/genlist/anzlic-ocean_sea.txt -->
+			<codeEntry>
+				<CodeDefinition gml:id="AMERY_ICE_SHELF">
+					<gml:description>AMERY ICE SHELF|-73.00|-85.00|77.00|65.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">AMERY ICE SHELF</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="AMUNDSEN_SEA">
+					<gml:description>AMUNDSEN SEA|-66.00|-76.00|-100.00|-130.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">AMUNDSEN SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="ANDAMAN_SEA">
+					<gml:description>ANDAMAN SEA|17.00|5.00|-99.00|-93.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">ANDAMAN SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="ARAFURA_SEA">
+					<gml:description>ARAFURA SEA|-3.00|-18.00|142.00|131.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">ARAFURA SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="ASHMORE_ROWLEY_SERINGAPATAM_REEFS">
+					<gml:description>ASHMORE ROWLEY SERINGAPATAM REEFS|-12.00|-18.00|123.50|118.50|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">ASHMORE ROWLEY SERINGAPATAM REEFS</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="ATLANTIC_OCEAN">
+					<gml:description>ATLANTIC OCEAN|67.00|-80.00|20.00|-82.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">ATLANTIC OCEAN</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="AUSTRALIAN_NORTH_WEST_SHELF">
+					<gml:description>AUSTRALIAN NORTH WEST SHELF|-18.00|-24.00|122.00|114.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">AUSTRALIAN NORTH WEST SHELF</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="AUSTRALIAN_EEZ">
+					<gml:description>AUSTRALIAN EEZ|-8.00|-47.00|164.00|108.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">AUSTRALIAN EEZ</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="BALI_SEA">
+					<gml:description>BALI SEA|-7.00|-9.00|118.00|114.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">BALI SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="BANDA_SEA">
+					<gml:description>BANDA SEA|-1.00|-9.00|134.00|120.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">BANDA SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="BANKS_STRAIT">
+					<gml:description>BANKS STRAIT|-40.50|-41.50|148.50|147.50|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">BANKS STRAIT</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="BASS_STRAIT">
+					<gml:description>BASS STRAIT|-37.50|-41.00|149.50|143.40|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">BASS STRAIT</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="BAY_OF_BENGAL">
+					<gml:description>BAY OF BENGAL|23.00|6.00|95.00|80.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">BAY OF BENGAL</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="BAY_OF_PLENTY">
+					<gml:description>BAY OF PLENTY|-37.50|-38.00|178.00|175.70|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">BAY OF PLENTY</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="BEAGLE_GULF">
+					<gml:description>BEAGLE GULF|-11.00|-13.00|131.00|130.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">BEAGLE GULF</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="BISMARCK_SEA">
+					<gml:description>BISMARCK SEA|-1.00|-7.00|153.00|142.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">BISMARCK SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="BOTANY_BAY">
+					<gml:description>BOTANY BAY|-33.80|-34.10|151.30|151.10|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">BOTANY BAY</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="BROAD_SOUND">
+					<gml:description>BROAD SOUND|-22.00|-23.00|150.00|149.50|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">BROAD SOUND</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="BROKEN_BAY">
+					<gml:description>BROKEN BAY|-33.40|-33.60|151.50|151.20|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">BROKEN BAY</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="CANTERBURY_BIGHT">
+					<gml:description>CANTERBURY BIGHT|-43.00|-45.00|172.00|171.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">CANTERBURY BIGHT</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="CELEBES_SEA">
+					<gml:description>CELEBES SEA|7.00|1.00|127.00|117.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">CELEBES SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="CERAM_SEA">
+					<gml:description>CERAM SEA|6.00|-1.00|134.00|126.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">CERAM SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="COCKBURN_SOUND">
+					<gml:description>COCKBURN SOUND|-32.00|-32.50|116.00|115.50|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">COCKBURN SOUND</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="COOK_STRAIT">
+					<gml:description>COOK STRAIT|-41.00|-42.00|176.00|174.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">COOK STRAIT</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="CORAL_SEA">
+					<gml:description>CORAL SEA|-7.00|-30.00|170.00|142.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">CORAL SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="DERWENT_ESTUARY">
+					<gml:description>DERWENT ESTUARY|-42.70|-43.10|147.50|147.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">DERWENT ESTUARY</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="EAST_CHINA_SEA">
+					<gml:description>EAST CHINA SEA|36.00|24.00|135.00|119.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">EAST CHINA SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="EXMOUTH_GULF">
+					<gml:description>EXMOUTH GULF|-21.00|-23.00|115.00|114.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">EXMOUTH GULF</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="FLINDERS_BAY">
+					<gml:description>FLINDERS BAY|-33.50|-34.50|115.50|114.50|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">FLINDERS BAY</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="FLORES_SEA">
+					<gml:description>FLORES SEA|-5.50|-8.70|123.00|117.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">FLORES SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="FOVEAUX_STRAIT">
+					<gml:description>FOVEAUX STRAIT|-46.00|-47.00|169.00|166.50|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">FOVEAUX STRAIT</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="GEOGRAPHE_BAY">
+					<gml:description>GEOGRAPHE BAY|-33.00|-34.00|116.00|115.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">GEOGRAPHE BAY</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="GREAT_AUSTRALIAN_BIGHT">
+					<gml:description>GREAT AUSTRALIAN BIGHT|-31.00|-35.00|136.00|118.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">GREAT AUSTRALIAN BIGHT</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="GREAT_BARRIER_REEF">
+					<gml:description>GREAT BARRIER REEF|-9.00|-24.00|153.00|141.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">GREAT BARRIER REEF</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="GREAT_BARRIER_REEF___CAIRNS_SECTION">
+					<gml:description>GREAT BARRIER REEF - CAIRNS SECTION|-15.00|-18.00|147.00|145.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">GREAT BARRIER REEF - CAIRNS SECTION</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="GREAT_BARRIER_REEF___CAPRICORN_BUNKER_GROUP">
+					<gml:description>GREAT BARRIER REEF - CAPRICORN/BUNKER GROUP|-23.00|-24.50|153.00|151.50|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">GREAT BARRIER REEF - CAPRICORN/BUNKER GROUP</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="GREAT_BARRIER_REEF___CENTRAL_SECTION">
+					<gml:description>GREAT BARRIER REEF - CENTRAL SECTION|-18.00|-21.00|150.50|146.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">GREAT BARRIER REEF - CENTRAL SECTION</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="GREAT_BARRIER_REEF___FAR_NORTHERN_SECTION">
+					<gml:description>GREAT BARRIER REEF - FAR NORTHERN SECTION|-11.00|-15.00|145.50|143.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">GREAT BARRIER REEF - FAR NORTHERN SECTION</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="GREAT_BARRIER_REEF___MACKAY_SECTION">
+					<gml:description>GREAT BARRIER REEF - MACKAY SECTION|-21.00|-23.00|153.00|149.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">GREAT BARRIER REEF - MACKAY SECTION</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="GULF_OF_BONE_BONI">
+					<gml:description>GULF OF BONE/BONI|-2.50|-5.50|122.00|122.20|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">GULF OF BONE/BONI</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="GULF_OF_CARPENTARIA_0">
+					<gml:description>GULF OF CARPENTARIA|-11.00|-18.00|142.00|136.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">GULF OF CARPENTARIA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="GULF_OF_GUINEA">
+					<gml:description>GULF OF GUINEA|7.00|3.00|5.00|-2.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">GULF OF GUINEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="GULF_OF_PAPUA">
+					<gml:description>GULF OF PAPUA|-7.50|-10.00|147.00|143.50|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">GULF OF PAPUA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="GULF_OF_THAILAND">
+					<gml:description>GULF OF THAILAND|13.40|4.00|105.00|99.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">GULF OF THAILAND</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="GULF_OF_TOMINI">
+					<gml:description>GULF OF TOMINI|1.00|-1.50|123.50|120.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">GULF OF TOMINI</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="GULF_OF_TONKIN">
+					<gml:description>GULF OF TONKIN|22.00|18.00|110.00|105.50|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">GULF OF TONKIN</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="GULF_ST_VINCENT">
+					<gml:description>GULF ST VINCENT|-34.00|-35.00|139.00|137.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">GULF ST VINCENT</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="HALMAHERA_SEA">
+					<gml:description>HALMAHERA SEA|2.50|-6.70|130.80|127.50|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">HALMAHERA SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="HAWKE_BAY">
+					<gml:description>HAWKE BAY|-39.00|-40.00|178.00|176.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">HAWKE BAY</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="HERVEY_BAY">
+					<gml:description>HERVEY BAY|-25.00|-26.00|153.00|152.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">HERVEY BAY</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="HINCHINBROOK_CHANNEL">
+					<gml:description>HINCHINBROOK CHANNEL|-17.50|-18.50|146.50|145.50|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">HINCHINBROOK CHANNEL</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="INDIAN_OCEAN_0">
+					<gml:description>INDIAN OCEAN|0.00|-37.00|127.00|90.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">INDIAN OCEAN</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="INVESTIGATOR_STRAIT">
+					<gml:description>INVESTIGATOR STRAIT|-35.00|-35.50|137.00|136.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">INVESTIGATOR STRAIT</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="JAVA_SEA">
+					<gml:description>JAVA SEA|-2.50|-7.00|119.50|105.50|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">JAVA SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="JERVIS_BAY">
+					<gml:description>JERVIS BAY|-34.50|-35.50|151.50|150.50|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">JERVIS BAY</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="JOSEPH_BONAPARTE_GULF">
+					<gml:description>JOSEPH BONAPARTE GULF|-13.00|-15.00|130.00|127.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">JOSEPH BONAPARTE GULF</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="KARAMEA_BIGHT">
+					<gml:description>KARAMEA BIGHT|-41.00|-41.80|172.20|171.50|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">KARAMEA BIGHT</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="KEMP_COAST_MAWSON_BASE">
+					<gml:description>KEMP COAST/MAWSON BASE|-67.00|-69.00|70.00|55.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">KEMP COAST/MAWSON BASE</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="KING_SOUND">
+					<gml:description>KING SOUND|-16.00|-18.00|124.00|123.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">KING SOUND</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="SAWU_SEA">
+					<gml:description>SAWU SEA|-8.00|-11.00|125.00|118.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">SAWU SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="SERUM_SEA">
+					<gml:description>SERUM SEA|-1.00|-5.50|134.00|126.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">SERUM SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="MACQUARIE_HARBOUR">
+					<gml:description>MACQUARIE HARBOUR|-42.50|-43.50|145.50|144.50|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">MACQUARIE HARBOUR</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="MAKASSAR_STRAIT">
+					<gml:description>MAKASSAR STRAIT|1.50|-5.50|120.00|116.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">MAKASSAR STRAIT</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="MALACCA_STRAITS">
+					<gml:description>MALACCA STRAITS|8.50|1.00|103.50|95.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">MALACCA STRAITS</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="MALUKU_SEA_MOLUKKA_SEA">
+					<gml:description>MALUKU SEA/MOLUKKA SEA|4.80|-2.00|128.60|123.40|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">MALUKU SEA/MOLUKKA SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="MORETON_BAY">
+					<gml:description>MORETON BAY|-27.00|-28.00|154.00|153.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">MORETON BAY</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="INDIAN_OCEAN___NE">
+					<gml:description>INDIAN OCEAN - NE|5.00|-30.00|127.00|80.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">INDIAN OCEAN - NE</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="NEW_SOUTH_WALES_COAST">
+					<gml:description>NEW SOUTH WALES COAST|-28.00|-37.70|154.00|150.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">NEW SOUTH WALES COAST</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="NINGALOO_REEF">
+					<gml:description>NINGALOO REEF|-22.00|-23.00|114.00|113.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">NINGALOO REEF</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="NORTH_TARANAKI_BIGHT">
+					<gml:description>NORTH TARANAKI BIGHT|-38.40|-39.00|174.70|174.20|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">NORTH TARANAKI BIGHT</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="NORTHEN_TERRITORY_COAST">
+					<gml:description>NORTHEN TERRITORY COAST|-9.00|-15.00|138.00|129.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">NORTHEN TERRITORY COAST</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="INDIAN_OCEAN___NW">
+					<gml:description>INDIAN OCEAN - NW|5.00|-30.00|80.00|38.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">INDIAN OCEAN - NW</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="PACIFIC_OCEAN___NW">
+					<gml:description>PACIFIC OCEAN - NW|55.00|10.00|180.00|140.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">PACIFIC OCEAN - NW</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="OYSTER_BAY">
+					<gml:description>OYSTER BAY|-41.50|-42.50|148.50|147.50|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">OYSTER BAY</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="PACIFIC_OCEAN">
+					<gml:description>PACIFIC OCEAN|60.00|-80.00|-85.00|125.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">PACIFIC OCEAN</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="PALK_STRAIT_AND_PALK_BAY">
+					<gml:description>PALK STRAIT AND PALK BAY|10.50|9.00|80.00|78.70|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">PALK STRAIT AND PALK BAY</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="PHILIPPINE_SEA">
+					<gml:description>PHILIPPINE SEA|35.00|2.40|147.00|122.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">PHILIPPINE SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="PORT_PHILLIP_AND_WESTERN_PORT_BAYS">
+					<gml:description>PORT PHILLIP AND WESTERN PORT BAYS|-38.00|-38.50|145.50|144.50|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">PORT PHILLIP AND WESTERN PORT BAYS</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="PORT_PHILLIP_BAY">
+					<gml:description>PORT PHILLIP BAY|-37.70|-38.40|145.20|144.30|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">PORT PHILLIP BAY</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="PRINCESS_CHARLOTTE_BAY">
+					<gml:description>PRINCESS CHARLOTTE BAY|-14.00|-15.00|144.50|143.50|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">PRINCESS CHARLOTTE BAY</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="PRYDZ_BAY">
+					<gml:description>PRYDZ BAY|-68.00|-70.00|78.00|75.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">PRYDZ BAY</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="QUEENSLAND_NORTH_WEST_COAST">
+					<gml:description>QUEENSLAND NORTH WEST COAST|-11.00|-18.00|142.50|138.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">QUEENSLAND NORTH WEST COAST</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="QUEENSLAND_SUBTROPICAL_COAST">
+					<gml:description>QUEENSLAND SUBTROPICAL COAST|-24.50|-28.00|154.00|152.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">QUEENSLAND SUBTROPICAL COAST</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="ROSS_ICE_SHELF">
+					<gml:description>ROSS ICE SHELF|-77.00|-87.00|-145.00|158.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">ROSS ICE SHELF</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="ROSS_SEA">
+					<gml:description>ROSS SEA|-70.00|-77.00|-140.00|160.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">ROSS SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="INDIAN_OCEAN___SE">
+					<gml:description>INDIAN OCEAN - SE|-30.00|-65.00|147.00|80.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">INDIAN OCEAN - SE</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="PACIFIC_OCEAN___SE">
+					<gml:description>PACIFIC OCEAN - SE|0.00|-65.00|-68.00|140.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">PACIFIC OCEAN - SE</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="SHACKLETON_ICE_SHELF">
+					<gml:description>SHACKLETON ICE SHELF|-64.00|-68.00|105.00|95.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">SHACKLETON ICE SHELF</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="SHARK_BAY">
+					<gml:description>SHARK BAY|-25.00|-27.00|115.00|113.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">SHARK BAY</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="SHOALWATER_BAY">
+					<gml:description>SHOALWATER BAY|-22.00|-23.00|151.00|150.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">SHOALWATER BAY</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="SOLOMON_SEA">
+					<gml:description>SOLOMON SEA|-4.00|-12.00|162.00|145.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">SOLOMON SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="SOUTH_AUSTRALIA_COAST">
+					<gml:description>SOUTH AUSTRALIA COAST|-31.50|-38.50|141.00|129.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">SOUTH AUSTRALIA COAST</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="SOUTH_CHINA_SEA">
+					<gml:description>SOUTH CHINA SEA|27.00|-5.00|123.00|103.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">SOUTH CHINA SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="SOUTH_PACIFIC_OCEAN">
+					<gml:description>SOUTH PACIFIC OCEAN|0.00|-84.00|180.00|130.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">SOUTH PACIFIC OCEAN</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="SOUTHERN_OCEAN">
+					<gml:description>SOUTHERN OCEAN|-33.00|-85.00|180.00|-180.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">SOUTHERN OCEAN</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="SPENCER_GULF_0">
+					<gml:description>SPENCER GULF|-32.00|-35.00|138.00|136.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">SPENCER GULF</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="STORM_BAY">
+					<gml:description>STORM BAY|-42.50|-43.50|147.50|146.50|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">STORM BAY</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="STRAIT_OF_SINGAPORE">
+					<gml:description>STRAIT OF SINGAPORE|1.50|1.00|104.50|103.40|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">STRAIT OF SINGAPORE</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="SULAWESI_SEA">
+					<gml:description>SULAWESI SEA|-3.50|-6.00|119.50|118.50|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">SULAWESI SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="SULU_SEA">
+					<gml:description>SULU SEA|14.00|5.00|123.50|116.50|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">SULU SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="SUMBA_STRAIT_SELAT_SUMBA">
+					<gml:description>SUMBA STRAIT/SELAT SUMBA|-8.50|-10.00|121.00|118.80|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">SUMBA STRAIT/SELAT SUMBA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="SUNDA_STRAIT_SELAT_SUNDA">
+					<gml:description>SUNDA STRAIT/SELAT SUNDA|-5.50|-6.50|106.00|105.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">SUNDA STRAIT/SELAT SUNDA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="INDIAN_OCEAN___SW">
+					<gml:description>INDIAN OCEAN - SW|-30.00|-65.00|80.00|20.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">INDIAN OCEAN - SW</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="PACIFIC_OCEAN___SW">
+					<gml:description>PACIFIC OCEAN - SW|0.00|-65.00|140.00|147.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">PACIFIC OCEAN - SW</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="SWAN_RIVER">
+					<gml:description>SWAN RIVER|-31.80|-32.20|116.20|115.70|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">SWAN RIVER</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="SYDNEY_HARBOUR_PORT_JACKSON">
+					<gml:description>SYDNEY HARBOUR/PORT JACKSON|-33.70|-33.90|151.40|151.10|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">SYDNEY HARBOUR/PORT JACKSON</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="TAIWAN_STRAIT">
+					<gml:description>TAIWAN STRAIT|25.40|23.00|121.50|118.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">TAIWAN STRAIT</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="TASMAN_SEA">
+					<gml:description>TASMAN SEA|-29.00|-53.00|175.00|147.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">TASMAN SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="TASMANIA_COAST">
+					<gml:description>TASMANIA COAST|-40.00|-44.00|148.50|144.50|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">TASMANIA COAST</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="TIMOR_SEA_0">
+					<gml:description>TIMOR SEA|-8.00|-15.00|133.00|123.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">TIMOR SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="TORRES_STRAIT">
+					<gml:description>TORRES STRAIT|-9.00|-11.00|143.00|142.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">TORRES STRAIT</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="VAN_DIEMEN_GULF">
+					<gml:description>VAN DIEMEN GULF|-11.00|-13.00|133.00|131.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">VAN DIEMEN GULF</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="VICTORIA_COAST">
+					<gml:description>VICTORIA COAST|-37.50|-40.00|150.00|141.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">VICTORIA COAST</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="WEDDELL_SEA">
+					<gml:description>WEDDELL SEA|-67.00|-80.00|-10.00|-65.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">WEDDELL SEA</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="WESTERN_AUSTRALIA_NORTH_COAST">
+					<gml:description>WESTERN AUSTRALIA NORTH COAST|-10.00|-22.00|129.00|113.50|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">WESTERN AUSTRALIA NORTH COAST</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="WESTERN_AUSTRALIA_SOUTH_COAST">
+					<gml:description>WESTERN AUSTRALIA SOUTH COAST|-31.50|-36.00|129.00|114.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">WESTERN AUSTRALIA SOUTH COAST</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="WESTERN_AUSTRALIA_WEST_COAST">
+					<gml:description>WESTERN AUSTRALIA WEST COAST|-22.00|-35.00|116.00|112.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">WESTERN AUSTRALIA WEST COAST</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="WESTERN_PORT">
+					<gml:description>WESTERN PORT|-38.25|-38.60|145.60|145.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">WESTERN PORT</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="WORLD_OCEAN">
+					<gml:description>WORLD OCEAN|80.00|-80.00|180.00|-180.00|Australia</gml:description>
+					<gml:identifier codeSpace="http://www.ga.gov.au/anzmeta/gen">WORLD OCEAN</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+		</CodeListDictionary>
+	</codelistItem>
+</CT_CodelistCatalogue>
