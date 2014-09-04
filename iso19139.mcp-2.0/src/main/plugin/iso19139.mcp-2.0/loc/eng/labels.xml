@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<labels xmlns:gmd="http://www.isotc211.org/2005/gmd" 
+		  xmlns:gts="http://www.isotc211.org/2005/gts" 
+		  xmlns:gco="http://www.isotc211.org/2005/gco"
+		  xmlns:gml="http://www.opengis.net/gml"
+			xmlns:mcp="http://schemas.aodn.org.au/mcp-2.0"
+			xmlns:dwc="http://rs.tdwg.org/dwc/terms/"
+			xmlns:srv="http://www.isotc211.org/2005/srv">
+	
+	<!-- ==================================================== -->
+	<element name="mcp:MD_Metadata">
+		<label>Metadata (MCP)</label>
+		<description>root entity which defines metadata about a resource or resources</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:MD_DataIdentification">
+		<label>Data identification (MCP)</label>
+		<description>information required to identify an Australian Marine Community Profile dataset (Australian Marine Community Profile extension to ISO19115/19139)</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:currency">
+		<label>Temporal Currency</label>
+		<description>Describes the temporal currency of the resource (Australian Marine Community Profile extension to ISO19115/19139)</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:revisionDate">
+		<label>Revision Date</label>
+		<description>Date the metadata was last revised (Australian Marine Community Profile extension to ISO19115/19139)</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:samplingFrequency">
+		<label>Sampling Frequency</label>
+		<description>To describe the frequency of the sampled resource (Australian Marine Community Profile extension to ISO19115/19139)</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:temporalAggregation">
+		<label>Temporal Aggregation</label>
+		<description>Describes the temporal aggregation of the resource (Australian Marine Community Profile extension to ISO19115/19139)</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:EX_TemporalExtent">
+		<label>Temporal Extent (MCP)</label>
+		<description>time period covered by the content of the dataset</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:beginTime">
+		<label>Begin Time</label>
+		<description>start of time period covered by the dataset (deprecated - use gml: elements in the extent element instead)</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:endTime">
+		<label>End Time</label>
+		<description>end of time period covered by the dataset (deprecated - use gml: elements in the extent element instead)</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:dataParameters">
+		<label>Data Parameters</label>
+		<description>Describes the Parameters or variables included in dataset</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:dataParameter">
+		<label>Data Parameter</label>
+		<description>Details about a specific Parameter, including he various names and labels used for that parameter; the unit-of-measurement (UOM) used; the minimum and maximum values measured in the dataset, and a description of the parameter the definitions of the parameters information</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:parameterName">
+		<label>Parameter Name</label>
+		<description>Specific Parameter's name or label.  Details include whether this is a shortname, longname, code or "other".  It also the details of a vocabulary list (if one is known) that the label or name belongs to, and the label's definition</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:term">
+		<label>Term</label>
+		<description>Word used to describe a thing or express a concept related to data parameter</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:type">
+		<label>Type</label>
+		<description>Type of term - typically: long name, short name, local synonym or local code</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:usedInDataset">
+		<label>Used in dataset?</label>
+		<description>Flag to indicate whether the data parameter term is used in in the dataset being described</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:vocabularyRelationship">
+		<label>Vocabulary Relationship</label>
+		<description>Information about relationship between this term and term or terms from a vocabulary</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:relationshipType">
+		<label>Type of relationship</label>
+		<description>Type of relationship between term and vocabulary term (from skos)</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:localDefinition">
+		<label>Local definition</label>
+		<description>Defintion of the term if not available from a vocabulary service</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:vocabularyTermURL">
+		<label>URL of vocabulary term</label>
+		<description>URL identifier of vocabulary term from vocabularyListURL</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:vocabularyTermDefinitionURL">
+		<label>URL of vocabulary term definition</label>
+		<description>URL identifier of vocabulary term definition from vocabularyTermDefinitionURL</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:vocabularyTermDefinition">
+		<label>Vocabulary term definition</label>
+		<description>Vocabulary term definition - could be extracted from vocabularyTermDefinitionURL or free text if definition not available from vocabularyTermDefinitionURL</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:vocabularyListURL">
+		<label>Vocabulary List URL</label>
+		<description>Version of the parameter vocabulary list that includes and defines this name</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:vocabularyListVersion">
+		<label>Vocabulary List Version</label>
+		<description>Version of the parameter vocabulary list that includes and defines this name;</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:vocabularyListAuthority">
+		<label>Vocabulary List Authority</label>
+		<description>Authority usually means a body or organisation regulating a vocabulary list.</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:parameterMinimumValue">
+		<label>Min.Value in dataset</label>
+		<description>Minimum value measured - for this parameter, within this dataset</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:parameterMaximumValue">
+		<label>Max.Value in dataset</label>
+		<description>Maximum value measured - for this parameter, within this dataset</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:parameterDescription">
+		<label>Parameter Description</label>
+		<description>Description of Parameter</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:parameterUnits">
+		<label>Parameter unit of measurement</label>
+		<description><p>Includes names and labels for the UOM, as well as details of vocabulary Lists that include the label, and defnitions.</p>
+             <p>This can be a standard UOM such as SI units; or might be a relative/local measurement. An example of the latter is:</p>
+<li>
+	<ul>PARAM name: field-based surface turbidity measure;</ul>
+	<ul>PARAM defn:   visibility test taken at 1,3 aand 5 feet below surface;</ul>
+	<ul>PARAM UOM:   possible value range is 10-0, 0 means clear;</ul>
+</li>
+<p>Test involves visible detection of an item at 1, 3, and 5 feet, under the water surface.  The item placed under the water is a plate inscribed with a shape enclosing 4 dots; and that shape is of varying sizes.</p>
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:parameterDeterminationInstrument">
+		<label>Determination Instrument</label>
+		<description>Name and information about an instrument used in the determination of an observed or measured parameter</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:parameterAnalysisMethod">
+		<label>Analysis Method</label>
+		<description>Name and information about an analysis method used in the determination of an observed or measured parameter</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:platform">
+		<label>Platform</label>
+		<description>Name and information about a platform used to observe or measure a parameter</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:MD_Commons">
+		<label>Commons License</label>
+		<description>Commons Constraints on metadata or resource eg. creative commons</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:MD_CreativeCommons">
+		<label>Creative Commons License (deprecated)</label>
+		<description>Creative Commons License (deprecated)</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:MD_DataCommons">
+		<label>Data Commons License (deprecated)</label>
+		<description>Data Commons License (deprecated)</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:attributionConstraints">
+		<label>Attribution Constraints</label>
+		<description>
+Describes how and when the resource should be attributed as well as who the
+resource should be attributed to. For example: Jones, C, 3D Mining Data, 
+International Journal of Mining, University Press, must be cited whenever this
+data is referred to in a paper.
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:derivativeConstraints">
+		<label>Derivative Constraints</label>
+		<description>
+Describes the constraints on products that may be derived from this resource.
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:commercialUseConstraints">
+		<label>Commercial Use Constraints</label>
+		<description>
+Describes what the constraints are if you want to make use of this resource commercially.  
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:collectiveWorksConstraints">
+		<label>Collective Work Constraints </label>
+		<description>
+Describes what the constraints are if you wish to include this resource in a collective work.
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:otherConstraints">
+		<label>Other Constraints </label>
+		<description>
+Describes any constraints on using this resource that are not captured by the other constraint fields.
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:taxonomicCoverage">
+		<label>Taxonomic Coverage</label>
+		<description>
+Container for the taxonomic coverage of the resource ie. species referred to or the subject of the resource.
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:taxonInfo">
+		<label>Taxonomic Information</label>
+		<description>
+Taxonomic Information: includes taxonomic fields plus vocabulary and possibly a link to an external presentation of the taxonomic information.
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="dwc:Taxon">
+		<label>Darwin Core Taxonomic Information</label>
+		<description>
+dwc:Taxon element which is the container for the taxonomic information.
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="dwc:taxonID">
+		<label>Taxonomic ID</label>
+		<description>
+An identifier for the set of taxon information (data associated with the Taxon class). May be a global unique identifier or an identifier specific to the data set. Examples: "8fa58e08-08de-4ac1-b69c-1235340b7001", "32567", "http://species.gbif.org/abies_alba_1753", "urn:lsid:gbif.org:usages:32567"
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="dwc:scientificName">
+		<label>Scientific Name</label>
+		<description>
+The full scientific name, with authorship and date information if known. When forming part of an Identification, this should be the name in lowest level taxonomic rank that can be determined. Examples: Coleoptera" (order),  "Ctenomys sociabilis" (genus + specificEpithet)
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="dwc:vernacularName">
+		<label>Common Name</label>
+		<description>
+A common or vernacular name. Example: "Andean Condor", "Condor Andino", "American Eagle", "Gänsegeier"
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="dwc:kingdom">
+		<label>Kingdom</label>
+		<description>
+The full scientific name of the kingdom in which the taxon is classified. Example: "Animalia", "Plantae"
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="dwc:phylum">
+		<label>Phylum</label>
+		<description>
+The full scientific name of the phylum or division in which the taxon is classified. Example: "Chordata" (phylum), "Bryophyta" (division)
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="dwc:class">
+		<label>Class</label>
+		<description>
+The full scientific name of the class in which the taxon is classified. Example: "Mammalia", "Hepaticopsida"
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="dwc:order">
+		<label>Order</label>
+		<description>
+The full scientific name of the order in which the taxon is classified. Example: "Carnivora", "Monocleales"
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="dwc:family">
+		<label>Family</label>
+		<description>
+The full scientific name of the family in which the taxon is classified. Example: "Felidae", "Monocleaceae"
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="dwc:genus">
+		<label>Genus</label>
+		<description>
+The full scientific name of the genus in which the taxon is classified. Example: "Puma", "Monoclea"
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="dwc:specificEpithet">
+		<label>Specific Epithet</label>
+		<description>
+The name of the first or species epithet of the scientificName. Example: "concolor", "oxyadenia", "sayi".
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="dwc:scientificNameAuthorship">
+		<label>Authorship</label>
+		<description>
+The authorship information for the scientificName. Example: Linnaeus, 1758
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:presentationURL">
+		<label>HTML presentation of Taxonomic Information</label>
+		<description>
+This is a link to an html description of the taxonomic information.
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:commonsType">
+		<label>Commons License</label>
+		<description>
+Describes the type of commons license that describes the conditions of usage. Can be applied to metadata or resource.
+    </description>
+	</element>
+	<!-- ==================================================== -->
+	
+	
+</labels>
