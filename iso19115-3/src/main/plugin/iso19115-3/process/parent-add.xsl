@@ -41,6 +41,7 @@
       <xsl:apply-templates select="mdb:metadataConstraints"/>
       <xsl:apply-templates select="mdb:applicationSchemaInfo"/>
       <xsl:apply-templates select="mdb:metadataMaintenance"/>
+      <xsl:apply-templates select="mdb:acquisitionInformation"/>
     </xsl:copy>
   </xsl:template>
   

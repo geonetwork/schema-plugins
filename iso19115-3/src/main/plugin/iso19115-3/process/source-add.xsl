@@ -73,6 +73,7 @@ Stylesheet used to update metadata adding a reference to a source record.
       <xsl:apply-templates select="mdb:metadataConstraints"/>
       <xsl:apply-templates select="mdb:applicationSchemaInfo"/>
       <xsl:apply-templates select="mdb:metadataMaintenance"/>
+      <xsl:apply-templates select="mdb:acquisitionInformation"/>
     </xsl:copy>
 
   </xsl:template>

@@ -41,7 +41,6 @@
       <xsl:choose>
         <xsl:when
           test="count(mdb:distributionInfo) = 0">
-          <xsl:message>ONE</xsl:message>
           <mdb:distributionInfo>
             <mrd:MD_Distribution>
               <mrd:transferOptions>
@@ -54,7 +53,6 @@
         </xsl:when>
         <xsl:otherwise>
           <xsl:for-each select="mdb:distributionInfo">
-            <xsl:message>EACH</xsl:message>
             <xsl:copy>
               <xsl:copy-of select="@*"/>
               <mrd:MD_Distribution>
@@ -96,6 +94,7 @@
       <xsl:apply-templates select="mdb:metadataConstraints"/>
       <xsl:apply-templates select="mdb:applicationSchemaInfo"/>
       <xsl:apply-templates select="mdb:metadataMaintenance"/>
+      <xsl:apply-templates select="mdb:acquisitionInformation"/>
       
     </xsl:copy>
   </xsl:template>
