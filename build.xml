@@ -34,20 +34,19 @@
 	<target name="zip">
 		<delete dir ="${dist}"/>
 		<mkdir dir ="${dist}"/>
-
-		<zip destfile="${dist}/${iso19139.anzlic}.zip" basedir="${iso19139.anzlic}" excludes=".svn" />
-		<zip destfile="${dist}/${iso19115-1-2013}.zip" basedir="${iso19115-1-2013}" excludes=".svn" />
-		<zip destfile="${dist}/${iso19115-3}.zip" basedir="${iso19115-3}" excludes=".svn" />
-		<zip destfile="${dist}/${iso19135}.zip" basedir="${iso19135}" excludes=".svn" />
-		<zip destfile="${dist}/${iso19139.mcp}.zip" basedir="${iso19139.mcp}" excludes=".svn" />
-		<zip destfile="${dist}/${iso19139.mcp-1.4}.zip" basedir="${iso19139.mcp-1.4}" excludes=".svn" />
-		<zip destfile="${dist}/${iso19139.mcp-2.0}.zip" basedir="${iso19139.mcp-2.0}" excludes=".svn" />
-		<zip destfile="${dist}/${anzmeta}.zip" basedir="${anzmeta}" excludes=".svn" />
-		<zip destfile="${dist}/${eml-gbif}.zip" basedir="${eml-gbif}" excludes=".svn" />
-		<zip destfile="${dist}/${iso19139.fra}.zip" basedir="${iso19139.fra}" excludes=".svn" />
-		<zip destfile="${dist}/${sensorML}.zip" basedir="${sensorML}" excludes=".svn" />
-		<zip destfile="${dist}/${iso19139.rndt}.zip" basedir="${iso19139.rndt}" excludes=".svn" />
-		<zip destfile="${dist}/${iso19139.ngmp}.zip" basedir="${iso19139.ngmp}" excludes=".svn" />
+                <!-- TODO : the bean should be part of the zip package for later dynamic schema loading. -->
+		<zip destfile="${dist}/${iso19139.anzlic}.zip" basedir="${iso19139.anzlic}/src/main/plugin/${iso19139.anzlic}" />
+		<zip destfile="${dist}/${iso19115-3}.zip" basedir="${iso19115-3}/src/main/plugin/${iso19115-3}" />
+		<zip destfile="${dist}/${iso19135}.zip" basedir="${iso19135}/src/main/plugin/${iso19135}" />
+		<zip destfile="${dist}/${iso19139.mcp}.zip" basedir="${iso19139.mcp}/src/main/plugin/${iso19139.mcp}" />
+		<zip destfile="${dist}/${iso19139.mcp-1.4}.zip" basedir="${iso19139.mcp-1.4}/src/main/plugin/${iso19139.mcp-1.4}" />
+		<zip destfile="${dist}/${iso19139.mcp-2.0}.zip" basedir="${iso19139.mcp-2.0}/src/main/plugin/${iso19139.mcp-2.0}" />
+		<zip destfile="${dist}/${anzmeta}.zip" basedir="${anzmeta}/src/main/plugin/${anzmeta}" />
+		<zip destfile="${dist}/${eml-gbif}.zip" basedir="${eml-gbif}/src/main/plugin/${eml-gbif}" />
+		<zip destfile="${dist}/${iso19139.fra}.zip" basedir="${iso19139.fra}/src/main/plugin/${iso19139.fra}" />
+		<zip destfile="${dist}/${sensorML}.zip" basedir="${sensorML}/src/main/plugin/${sensorML}" />
+		<zip destfile="${dist}/${iso19139.rndt}.zip" basedir="${iso19139.rndt}/src/main/plugin/${iso19139.rndt}" />
+		<zip destfile="${dist}/${iso19139.ngmp}.zip" basedir="${iso19139.ngmp}/src/main/plugin/${iso19139.ngmp}" />
 	</target>
 
 </project>
