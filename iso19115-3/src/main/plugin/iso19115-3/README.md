@@ -10,6 +10,8 @@ The XML schema is not the final version.
 
 * http://www.iso.org/iso/catalogue_detail.htm?csnumber=53798
 * http://www.iso.org/iso/catalogue_detail.htm?csnumber=32579
+* https://github.com/ISO-TC211/XML/
+ 
 
 ## Description:
 
@@ -19,13 +21,12 @@ This plugin supports:
 * editing (Angular editor)
 * viewing
 * CSW
-* no localization for languages
 * from/to ISO19139 conversion
+* editor associated resources
+* multilingual metadata
 
 
 This plugin does not support:
-* editor associated resources
-* link to directory
 * ... still lots of features to be checked
 
 
