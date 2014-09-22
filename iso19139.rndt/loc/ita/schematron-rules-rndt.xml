@@ -139,10 +139,14 @@
 	<M111>Attributo errato</M111>
 	<alert.M111>L'elemento CRS Verticale deve avere l'attributo xlink:href</alert.M111>
 
-    <M112>Attributo errato</M112>
+	<M112>Attributo errato</M112>
 	<alert.M112>Il riferimento esterno (XLink) a CRS Verticale non può essere vuoto</alert.M112>
 
-    <M120>Elementi di lista</M120>
+	<M120>Elementi di lista</M120>
 	<alert.M120>L'elemento della codelist è vuoto:</alert.M120>
+	
+	<M200>Estensione temporale</M200>
+	<alert.M201>La data di inizio estensione non è impostata</alert.M201>
+	<alert.M202>La data di fine estensione non è impostata</alert.M202>
 
 </strings>

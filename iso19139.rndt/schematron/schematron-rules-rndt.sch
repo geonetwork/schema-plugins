@@ -425,4 +425,19 @@
 		</sch:rule>
 	</sch:pattern>
 
+    <!--ESTENSIONE TEMPORALE-->
+	<sch:pattern>
+		<sch:title>$loc/strings/M200</sch:title>
+		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent[//gml:TimePeriod]
+                                  |//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent[//gml:TimePeriod]">
+
+			<sch:let name="beginPosition" value="gml:TimePeriod//gml:beginPosition/text()"/>		
+			<sch:let name="endPosition"   value="gml:TimePeriod//gml:endPosition/text()"/>
+
+			<sch:assert test="$beginPosition != ''">$loc/strings/alert.M201</sch:assert>
+			<sch:assert test="$endPosition   != ''">$loc/strings/alert.M202</sch:assert>
+
+		</sch:rule>
+	</sch:pattern>
+					
 </sch:schema>
