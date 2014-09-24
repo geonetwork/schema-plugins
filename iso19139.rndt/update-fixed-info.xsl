@@ -466,11 +466,23 @@
     <!-- Do not allow to expand operatesOn sub-elements
     and constrain users to use uuidref attribute to link
     service metadata to datasets. This will avoid to have
-    error on XSD validation. -->
+    error on XSD validation. -->	
     <xsl:template match="srv:operatesOn">
-        <xsl:copy>
-            <xsl:copy-of select="@*"/>
-        </xsl:copy>
+		<xsl:choose>
+			<xsl:when test=".[not(@uuidref)]">
+				<xsl:copy>
+					<xsl:attribute name="uuidref">
+						<xsl:value-of select="''"/>
+					</xsl:attribute>
+					<xsl:apply-templates select="@*"/>
+				</xsl:copy>
+			</xsl:when>
+			<xsl:otherwise>
+			    <xsl:copy>
+					<xsl:copy-of select="@*"/>
+				</xsl:copy>
+			</xsl:otherwise>
+		</xsl:choose>
     </xsl:template>
 
 
