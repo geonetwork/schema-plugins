@@ -13,7 +13,7 @@
   <!-- Redirect to iso19139 default layout first then MCP specific stuff -->
   <xsl:template name="metadata-fop-iso19139.mcp-2.0">
     <xsl:param name="schema"/>
-    
+
     <xsl:call-template name="metadata-fop-iso19139">
       <xsl:with-param name="schema" select="'iso19139'"/>
     </xsl:call-template>
@@ -75,16 +75,51 @@
     	</xsl:call-template>
     </xsl:variable>
 
+    <xsl:variable name="cc">
+			<xsl:for-each select="./gmd:identificationInfo/*/gmd:resourceConstraints/mcp:MD_Commons[@mcp:commonsType='Creative Commons']">
+      	<xsl:apply-templates mode="elementFop"
+        	select="mcp:jurisdictionLink/gmd:URL">
+        	<xsl:with-param name="schema" select="$schema"/>
+      	</xsl:apply-templates>
+      	<xsl:apply-templates mode="elementFop"
+        	select="mcp:licenseLink/gmd:URL">
+        	<xsl:with-param name="schema" select="$schema"/>
+      	</xsl:apply-templates>
+      	<xsl:apply-templates mode="elementFop"
+        	select="mcp:imageLink/gmd:URL">
+        	<xsl:with-param name="schema" select="$schema"/>
+      	</xsl:apply-templates>
+      	<xsl:apply-templates mode="elementFop"
+        	select="mcp:licenseName/gco:CharacterString">
+        	<xsl:with-param name="schema" select="$schema"/>
+      	</xsl:apply-templates>
+			</xsl:for-each>
+    </xsl:variable>
+
+		<xsl:variable name="creativecommons">
+    	<xsl:call-template name="blockElementFop">
+      	<xsl:with-param name="block" select="$cc"/>
+      	<xsl:with-param name="label">
+        	<xsl:value-of
+          	select="'Creative Commons'"/>
+      	</xsl:with-param>
+    	</xsl:call-template>
+    </xsl:variable>
+
 		<!-- MCP data -->
 
     <xsl:call-template name="blockElementFop">
      	<xsl:with-param name="block">	
-		
+
 				<!-- MCP revision data -->
 
 				<xsl:apply-templates mode="elementFop" select="./mcp:revisionDate">
 					<xsl:with-param name="schema" select="$schema"/>
 				</xsl:apply-templates>
+
+				<!-- MCP creative commons -->
+
+				<xsl:copy-of select="$creativecommons"/>
 
 				<!-- MCP extent -->
 

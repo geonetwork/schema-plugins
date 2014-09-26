@@ -106,6 +106,7 @@
             * widgetMode: the layout to use
             * elementRef: the element ref to edit
             * jurisdictionUrl: current jurisdiction
+            * namespace: current mcp namespace
             * licenseName: current license name
             * licenseUrl: current license url
             * licenseImageUrl: current license image url
@@ -114,6 +115,7 @@
           data-metadata-id="{$metadataId}"
           data-element-ref="{../gn:element/@ref}"
           data-jurisdiction-url="{$jurisdictionUrl}"
+          data-namespace="{namespace-uri()}"
           data-license-name="{$licenseName}"
           data-license-url="{$licenseUrl}"
           data-license-image-url="{$licenseImageUrl}">

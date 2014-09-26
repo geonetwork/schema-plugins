@@ -123,21 +123,21 @@
   </xsl:template>
 
   <xsl:template mode="block-mcp" match="gmd:resourceConstraints[mcp:MD_Commons]">
-    <xsl:apply-templates mode="iso19139.mcp" select="mcp:MD_Commons">
+    <xsl:apply-templates mode="iso19139.mcp-2.0" select="mcp:MD_Commons">
       <xsl:with-param name="schema" select="$schema"/>
       <xsl:with-param name="edit" select="false()"/>
     </xsl:apply-templates>
 	</xsl:template>
 
   <xsl:template mode="block-mcp" match="gmd:geographicElement">
-    <xsl:apply-templates mode="iso19139.mcp" select="gmd:EX_GeographicBoundingBox">
+    <xsl:apply-templates mode="iso19139.mcp-2.0" select="gmd:EX_GeographicBoundingBox">
       <xsl:with-param name="schema" select="$schema"/>
       <xsl:with-param name="edit" select="false()"/>
     </xsl:apply-templates>
   </xsl:template>
 
   <xsl:template mode="block-mcp" match="mcp:taxonomicElement">
-    <xsl:apply-templates mode="iso19139.mcp" select=".">
+    <xsl:apply-templates mode="iso19139.mcp-2.0" select=".">
       <xsl:with-param name="schema" select="$schema"/>
       <xsl:with-param name="edit" select="false()"/>
     </xsl:apply-templates>
@@ -150,7 +150,7 @@
 				<xsl:variable name="roles" select="count(*/mcp:role/gmd:CI_RoleCode/@codeListValue)"/>
 				<xsl:for-each select="*/mcp:role/gmd:CI_RoleCode/@codeListValue">
         	<xsl:value-of
-          	select="geonet:getCodeListValue(/root/gui/schemas, 'iso19139.mcp', 'gmd:CI_RoleCode', .)"/>
+          	select="geonet:getCodeListValue(/root/gui/schemas, 'iso19139.mcp-2.0', 'gmd:CI_RoleCode', .)"/>
 					<xsl:if test="position()>1 and position()!=$roles">
 						<xsl:text>, </xsl:text>
 					</xsl:if>

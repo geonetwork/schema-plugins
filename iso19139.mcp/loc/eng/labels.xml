@@ -141,6 +141,26 @@
 		<description>Commons Constraints on metadata or resource eg. creative commons</description>
 	</element>
 	<!-- ==================================================== -->
+	<element name="mcp:jurisdictionLink" id="9060.1">
+		<label>Jurisdiction</label>
+		<description>Creative Commons Jurisdiction</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:licenseLink" id="9060.2">
+		<label>License Link</label>
+		<description>Creative Commons License Link</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:imageLink" id="9060.3">
+		<label>License Image Link</label>
+		<description>Creative Commons License Image Link</description>
+	</element>
+	<!-- ==================================================== -->
+	<element name="mcp:licenseName" id="9060.4">
+		<label>License Name</label>
+		<description>Creative Commons License Name</description>
+	</element>
+	<!-- ==================================================== -->
 	<element name="mcp:MD_CreativeCommons" id="9061.0">
 		<label>Creative Commons License (deprecated)</label>
 		<description>Creative Commons License (deprecated)</description>
