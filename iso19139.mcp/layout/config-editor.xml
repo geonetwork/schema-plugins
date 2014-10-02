@@ -55,7 +55,9 @@
 
     <for name="gmd:referenceSystemInfo" addDirective="data-gn-crs-selector"/>
 
-    <for name="mcp:party" addDirective="data-gn-organisation-entry-selector"/>
+    <for name="mcp:party" addDirective="data-gn-organisation-entry-selector">
+      <directiveAttributes data-schema="iso19139.mcp"/>
+		</for>
     
     <for name="gmd:contact" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes data-tag-name="gmd:CI_ResponsibleParty" data-param-name="gmd:role/gmd:CI_RoleCode/@codeListValue"/>
