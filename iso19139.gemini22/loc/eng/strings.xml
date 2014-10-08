@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strings>
+  <understandResource>Information about the dataset</understandResource>
+  <relatedResources>Related services and linked data</relatedResources>
+  <techInfo>Technical information</techInfo>
+  <contactInfo>Contact information</contactInfo>
+  <mdContactInfo>Metadata contact</mdContactInfo>
+  <refDate>Reference date</refDate>
+  <temporalRef>Temporal information</temporalRef>
+  <constraintInfo>Access constraint information</constraintInfo>
+
+    <rules name="schematron-rules-gemini22">UK GEMINI recommendations</rules>
+
+    <gemini2gemini>Export this metadata as a GEMINI 2.2 file</gemini2gemini>
+    <gemini2iso19139>Export this metadata as an ISO19139 XML file</gemini2iso19139>
+    <gemini2dc>Export this metadata as an AOI Dublin Core XML file</gemini2dc>
+
+</strings>
