@@ -63,19 +63,39 @@
     <for name="mdb:referenceSystemInfo" addDirective="data-gn-crs-selector"/>
 
     <for name="mdb:contact" addDirective="data-gn-directory-entry-selector">
-      <directiveAttributes data-tag-name="cit:CI_Responsibility" data-param-name="cit:role/cit:CI_RoleCode/@codeListValue"/>
+      <directiveAttributes
+              data-template-add-action="true"
+              data-template-type="contact"
+              data-filter='{"_root": "cit:CI_Responsibility"}'
+              data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
     </for>
     <for name="mri:pointOfContact" addDirective="data-gn-directory-entry-selector">
-      <directiveAttributes data-tag-name="cit:CI_Responsibility" data-param-name="cit:role/cit:CI_RoleCode/@codeListValue"/>
+      <directiveAttributes
+              data-template-add-action="true"
+              data-template-type="contact"
+              data-filter='{"_root": "cit:CI_Responsibility"}'
+              data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
     </for>
     <for name="mrd:distributor" addDirective="data-gn-directory-entry-selector">
-      <directiveAttributes data-tag-name="cit:CI_Responsibility" data-param-name="cit:role/cit:CI_RoleCode/@codeListValue"/>
+      <directiveAttributes
+              data-template-add-action="true"
+              data-template-type="contact"
+              data-filter='{"_root": "cit:CI_Responsibility"}'
+              data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
     </for>
     <for name="gmd:processor" addDirective="data-gn-directory-entry-selector">
-      <directiveAttributes data-tag-name="cit:CI_Responsibility" data-param-name="cit:role/cit:CI_RoleCode/@codeListValue"/>
+      <directiveAttributes
+              data-template-add-action="true"
+              data-template-type="contact"
+              data-filter='{"_root": "cit:CI_Responsibility"}'
+              data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
     </for>
     <for name="cit:citedResponsibleParty" addDirective="data-gn-directory-entry-selector">
-      <directiveAttributes data-tag-name="cit:CI_Responsibility" data-param-name="cit:role/cit:CI_RoleCode/@codeListValue"/>
+      <directiveAttributes
+              data-template-add-action="true"
+              data-template-type="contact"
+              data-filter='{"_root": "cit:CI_Responsibility"}'
+              data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
     </for>
     
     <for name="gmd:descriptiveKeywords" addDirective="data-gn-thesaurus-selector"/>
