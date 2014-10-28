@@ -26,10 +26,16 @@
   This is the method to identify a subtemplate.
   -->
   <xsl:template mode="index" match="cit:CI_Responsibility[count(ancestor::node()) =  1]">
+
+    <xsl:variable name="org"
+                  select="normalize-space(cit:party/cit:CI_Organisation/cit:name/gco:CharacterString)"/>
+    <xsl:variable name="name"
+                  select="string-join(.//cit:individual/cit:CI_Individual/cit:name/gco:CharacterString, ', ')"/>
     <Field name="_title"
-           string="{normalize-space(cit:party/cit:CI_Organisation/cit:name/gco:CharacterString)}:
-      {string-join(.//cit:individual/cit:CI_Individual/cit:name/gco:CharacterString, ', ')}"
+           string="{if ($name != '') then concat($org, ' (', $name, ')') else $org}"
            store="true" index="true"/>
+    <Field name="orgName" string="{$org}" store="true" index="true"/>
+
     <xsl:call-template name="subtemplate-common-fields"/>
   </xsl:template>
 
