@@ -97,7 +97,15 @@
               data-filter='{"_root": "cit:CI_Responsibility"}'
               data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
     </for>
-    
+
+
+    <for name="cit:logo" addDirective="data-gn-directory-entry-selector">
+      <directiveAttributes
+              data-template-add-action="true"
+              data-template-type="logo"
+              data-filter='{"_root": "mcc:MD_BrowseGraphic"}'/>
+    </for>
+
     <for name="mri:descriptiveKeywords" addDirective="data-gn-thesaurus-selector"/>
   </fields>
 

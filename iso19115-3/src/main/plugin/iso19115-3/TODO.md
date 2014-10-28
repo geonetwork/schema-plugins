@@ -2,7 +2,11 @@
 
 ## Translations
 
-* Some elements are missing, use the editor to identify missing one (eg. mri:MD_AssociatedResource, mri:className).
+* Some elements are missing, use the editor to identify missing one (eg. mri:MD_AssociatedResource, mri:className). Cf tous les messages dans les logs:
+```
+gn-fn-metadata:getLabel | missing translation in schema iso19115-3 for mri:MD_AssociatedResource.
+gn-fn-metadata:getLabel | missing translation in schema iso19115-3 for mri:name.
+```
 
 ## Schematron
 
