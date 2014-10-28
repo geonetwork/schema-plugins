@@ -25,17 +25,36 @@
   Add the [count(ancestor::node()) =  1] to only match element at the root of the document.
   This is the method to identify a subtemplate.
   -->
-  <xsl:template mode="index" match="cit:CI_Responsibility[count(ancestor::node()) =  1]">
+  <xsl:template mode="index"
+                match="cit:CI_Responsibility[count(ancestor::node()) =  1]">
 
     <xsl:variable name="org"
                   select="normalize-space(cit:party/cit:CI_Organisation/cit:name/gco:CharacterString)"/>
     <xsl:variable name="name"
                   select="string-join(.//cit:individual/cit:CI_Individual/cit:name/gco:CharacterString, ', ')"/>
     <Field name="_title"
-           string="{if ($name != '') then concat($org, ' (', $name, ')') else $org}"
+           string="{if ($name != '')
+                    then concat($org, ' (', $name, ')')
+                    else $org}"
            store="true" index="true"/>
     <Field name="orgName" string="{$org}" store="true" index="true"/>
 
+    <xsl:call-template name="subtemplate-common-fields"/>
+  </xsl:template>
+
+
+  <xsl:template mode="index"
+                match="mcc:MD_BrowseGraphic[count(ancestor::node()) =  1]">
+
+    <xsl:variable name="fileName"
+                  select="normalize-space(mcc:fileName/gco:CharacterString)"/>
+    <xsl:variable name="fileDescription"
+                  select="normalize-space(mcc:fileDescription/gco:CharacterString)"/>
+    <Field name="_title"
+           string="{if ($fileDescription != '')
+                    then $fileDescription
+                    else $fileName}"
+           store="true" index="true"/>
     <xsl:call-template name="subtemplate-common-fields"/>
   </xsl:template>
 
