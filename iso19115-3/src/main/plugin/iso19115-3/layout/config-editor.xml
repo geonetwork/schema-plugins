@@ -106,7 +106,10 @@
               data-filter='{"_root": "mcc:MD_BrowseGraphic"}'/>
     </for>
 
-    <for name="mri:descriptiveKeywords" addDirective="data-gn-thesaurus-selector"/>
+    <for name="mri:descriptiveKeywords" addDirective="data-gn-thesaurus-selector">
+      <directiveAttributes
+              data-transformation="to-iso19115-3-keyword"/>
+    </for>
   </fields>
 
 
