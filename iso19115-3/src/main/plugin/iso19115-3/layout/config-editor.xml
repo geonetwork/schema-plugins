@@ -232,6 +232,16 @@
           <field xpath="/mdb:MD_Metadata/mdb:metadataProfile"/>
         </section>
       </tab>
+
+      <!-- Elements that should not use the "flat" mode -->
+      <flatModeExceptions>
+        <for name="mri:descriptiveKeywords" />
+        <for name="mri:pointOfContact"/>
+        <for name="mrd:distributor"/>
+        <for name="mdb:contact"/>
+        <for name="mcc:processor"/>
+        <for name="cit:citedResponsibleParty"/>
+      </flatModeExceptions>
     </view>
     <view name="advanced">
       <tab id="identificationInfo" default="true">
@@ -264,8 +274,8 @@
       <tab id="contentInfo" toggle="true">
         <section xpath="/mdb:MD_Metadata/mdb:contentInfo" or="contentInfo" in="/mdb:MD_Metadata"/>
       </tab>
-      <tab id="portrayalCatalogueInfo" toggle="true">
-        <section xpath="/mdb:MD_Metadata/mdb:portrayalCatalogueInfo" or="portrayalCatalogueInfo"
+      <tab id="acquisitionInformation" toggle="true">
+        <section xpath="/mdb:MD_Metadata/mdb:acquisitionInformation" or="acquisitionInformation"
                  in="/mdb:MD_Metadata"/>
       </tab>
       <tab id="metadata">
