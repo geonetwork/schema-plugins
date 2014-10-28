@@ -3,11 +3,33 @@
         elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:include schemaLocation="schema/ISO19115-3/mdb/1.0/2014-07-11/mdb.xsd"/>
   <xs:import namespace="http://www.isotc211.org/namespace/srv/2.0/2014-07-11"
-    schemaLocation="schema/ISO19115-3/srv/2.0/2014-07-11/srv.xsd"/>
+             schemaLocation="schema/ISO19115-3/srv/2.0/2014-07-11/srv.xsd"/>
+  <xs:import namespace="http://www.isotc211.org/namespace/mco/1.0/2014-07-11"
+             schemaLocation="schema/ISO19115-3/mco/1.0/2014-07-11/mco.xsd"/>
+  <xs:import namespace="http://www.isotc211.org/namespace/mcc/1.0/2014-07-11"
+             schemaLocation="schema/ISO19115-3/mcc/1.0/2014-07-11/mcc.xsd"/>
+  <xs:import namespace="http://www.isotc211.org/namespace/gex/1.0/2014-07-11"
+             schemaLocation="schema/ISO19115-3/gex/1.0/2014-07-11/gex.xsd"/>
   <xs:import namespace="http://www.isotc211.org/namespace/mrl/1.0/2014-07-11"
-    schemaLocation="schema/ISO19115-3/mrl/1.0/2014-07-11/mrl.xsd"/>
+             schemaLocation="schema/ISO19115-3/mrl/1.0/2014-07-11/mrl.xsd"/>
+  <xs:import namespace="http://www.isotc211.org/namespace/mmi/1.0/2014-07-11"
+             schemaLocation="schema/ISO19115-3/mmi/1.0/2014-07-11/mmi.xsd"/>
+  <xs:import namespace="http://www.isotc211.org/namespace/mri/1.0/2014-07-11"
+             schemaLocation="schema/ISO19115-3/mri/1.0/2014-07-11/mri.xsd"/>
+  <xs:import namespace="http://www.isotc211.org/namespace/mac/1.0/2014-07-11"
+             schemaLocation="schema/ISO19115-3/mac/1.0/2014-07-11/mac.xsd"/>
+  <xs:import namespace="http://www.isotc211.org/namespace/msr/1.0/2014-07-11"
+             schemaLocation="schema/ISO19115-3/msr/1.0/2014-07-11/msr.xsd"/>
+  <xs:import namespace="http://www.isotc211.org/namespace/dqc/1.0/2014-07-11"
+             schemaLocation="schema/ISO19157-2/dqc/1.0/2014-07-11/dqc.xsd"/>
+  <xs:import namespace="http://www.isotc211.org/namespace/mdq/1.0/2014-07-11"
+             schemaLocation="schema/ISO19157-2/mdq/1.0/2014-07-11/mdq.xsd"/>
+  <xs:import namespace="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11"
+             schemaLocation="schema/ISO19115-3/mdb/1.0/2014-07-11/mdb.xsd"/>
+  <xs:import namespace="http://www.isotc211.org/namespace/mrs/1.0/2014-07-11"
+             schemaLocation="schema/ISO19115-3/mrs/1.0/2014-07-11/mrs.xsd"/>
   <xs:import namespace="http://www.isotc211.org/namespace/gcx/1.0/2014-07-11"
-          schemaLocation="schema/ISO19115-3/gcx/1.0/2014-07-11/gcx.xsd"/>
+             schemaLocation="schema/ISO19115-3/gcx/1.0/2014-07-11/gcx.xsd"/>
   <xs:import namespace="http://www.isotc211.org/namespace/gfc/1.1/2014-07-11"
-     schemaLocation="schema/ISO19110/gfc/1.1/2014-07-11/gfc.xsd"/>
+             schemaLocation="schema/ISO19110/gfc/1.1/2014-07-11/gfc.xsd"/>
 </xs:schema>

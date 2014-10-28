@@ -11,22 +11,23 @@
   <resourceLineageTab>Lineage</resourceLineageTab>
 
   <!-- View and tabs -->
-  <advanced>Full</advanced>
+  <advanced>Complète</advanced>
   <default>Simple</default>
   <simple>Simple</simple>
   <inspire>INSPIRE</inspire>
-  <resource>Resource</resource>
+  <resource>Ressource</resource>
   <xml>XML</xml>
-  <metadata>Metadata</metadata>
+  <metadata>Métadonnées</metadata>
   <identificationInfo>Identification</identificationInfo>
   <distributionInfo>Distribution</distributionInfo>
-  <dataQualityInfo>Quality</dataQualityInfo>
-  <resourceLineage>Lineage</resourceLineage>
-  <spatialRepresentationInfo>Spatial rep.</spatialRepresentationInfo>
-  <referenceSystemInfo>Ref. system</referenceSystemInfo>
-  <contentInfo>Content</contentInfo>
-  <portrayalCatalogueInfo>Portrayal</portrayalCatalogueInfo>
-  <metadataConstraints>Md. constraints</metadataConstraints>
+  <dataQualityInfo>Qualité</dataQualityInfo>
+  <resourceLineage>Généalogie</resourceLineage>
+  <spatialRepresentationInfo>Rep. spatiale</spatialRepresentationInfo>
+  <referenceSystemInfo>Sys de référence</referenceSystemInfo>
+  <contentInfo>Contenu</contentInfo>
+  <portrayalCatalogueInfo>Représentation</portrayalCatalogueInfo>
+  <metadataConstraints>Md. constraintes</metadataConstraints>
   <metadataMaintenance>Md. maintenance</metadataMaintenance>
-  <applicationSchemaInfo>Schema info</applicationSchemaInfo>
+  <applicationSchemaInfo>Standard ext.</applicationSchemaInfo>
+  <acquisitionInformation>Acquisition</acquisitionInformation>
 </strings>

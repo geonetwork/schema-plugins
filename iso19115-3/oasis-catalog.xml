@@ -87,5 +87,5 @@
           uri="schema/ISO19115-3/mcc/1.0/2014-07-11/mcc.xsd"/>
 
   <system systemId="http://www.w3.org/1999/xlink.xsd"
-          uri="schema/others/xlink/xlink.xsd"/>
+            uri="schema/others/xlink/xlink.xsd"/>
 </catalog>

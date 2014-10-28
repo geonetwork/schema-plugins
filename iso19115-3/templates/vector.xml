@@ -180,7 +180,14 @@
         <gex:EX_Extent>
           <gex:temporalElement>
             <gex:EX_TemporalExtent>
-              
+              <gex:extent>
+                <gml:TimePeriod gml:id="A1234">
+                  <gml:beginPosition>
+                  </gml:beginPosition>
+                  <gml:endPosition>
+                  </gml:endPosition>
+                </gml:TimePeriod>
+              </gex:extent>
             </gex:EX_TemporalExtent>
           </gex:temporalElement>
         </gex:EX_Extent>

@@ -198,7 +198,7 @@
     <_condition>optional</_condition>
   </element>
   <element name="mdb:metadataLinkage" id="25.0">
-    <label>lien des métadonnées</label>
+    <label>Lien vers la métadonnée</label>
     <description iso="true">Localisation en ligne où les métadonnées sont disponibles</description>
     <_condition>optional</_condition>
   </element>
@@ -2410,6 +2410,15 @@ version en tant que mot-clé complémentaire(s). Le numéro de version doit comp
     <condition/>
     
   </element>
+  <element name="mri:extent" id="45.0" context="mri:MD_DataIdentification">
+    <label>Étendue</label>
+    <description>Type de données pour l'information sur l'étendue horizontale, verticale et temporelle du jeu de données</description>
+    <help>Type de données contenant des informations relatives à l'extension horizontale, verticale et temporelle du jeu de données. Les types de données de cette classe contiennent des éléments de métadonnées décrivant l'extension spatiale et temporelle des données. EX_Extent est une agrégation des classes EX_GeographicExtent (description de l'extension géographique), EX_TemporalExtent (extension temporelle des données) et EX_VerticalExtent (extension verticale des données). l'extension géographique est spécifiée plus avant par une délimitation au moyen d'un polygone (EX_BoundingPolygon) comme par un rectangle de délimitation géographique (EX_GeographicBoundingBox) et une description textuelle (EX_GeographicDescription). Pour EX_Extent comme pour CI_Citation, il s'agit d'un regroupement de classes pouvant être appelées par plusieurs attributs de la norme.</help>
+    <_condition>Conditional / if hierarchyLevel equals "dataset"? Either
+      extent.geographicElement.EX_GeographicBoundingBox or
+      extent.geographicElement.EX_GeographicDescription is required</_condition>
+  </element>
+
   <element name="mri:environmentDescription" id="44.0">
     <label>Description de l'environnement de travail</label>
     <description>Description de l'environnement de travail dans lequel le jeu de données a été créé, incluant des choses telles que logiciel, système d'exploitation, nom de fichier et taille du jeu de données</description>
