@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mdb:MD_Metadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cit="http://www.isotc211.org/namespace/cit/1.0" xmlns:gco="http://www.isotc211.org/namespace/gco"
-  xmlns:gex="http://www.isotc211.org/namespace/gex/1.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmd="http://www.isotc211.org/namespace/gmd" xmlns:gts="http://www.isotc211.org/2005/gts"
+  xmlns:gex="http://www.isotc211.org/namespace/gex/1.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmd="http://www.isotc211.org/namespace/gmd" xmlns:gts="http://www.isotc211.org/namespace/gts"
   xmlns:gsr="http://www.isotc211.org/namespace/gsr" xmlns:lan="http://www.isotc211.org/namespace/lan/1.0" xmlns:mdb="http://www.isotc211.org/namespace/mdb/1.0"
   xmlns:mri="http://www.isotc211.org/namespace/mri/1.0" xmlns:mdq="http://www.isotc211.org/namespace/mdq/1.0" xmlns:mcc="http://www.isotc211.org/namespace/mcc/1.0"
-  xmlns:mrs="http://www.isotc211.org/namespace/mrs/1.0" xmlns:gss="http://www.isotc211.org/2005/gss" xmlns:xlink="http://www.w3.org/1999/xlink">
+  xmlns:mrs="http://www.isotc211.org/namespace/mrs/1.0" xmlns:gss="http://www.isotc211.org/namespace/gss" xmlns:xlink="http://www.w3.org/1999/xlink">
   <mdb:defaultLocale>
     <lan:PT_Locale>
       <lan:language>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron">
   <sch:ns prefix="gco" uri="http://www.isotc211.org/2005/gco"/>
-  <sch:ns prefix="mrd" uri="http://www.isotc211.org/namespace/mrd/1.0/2013-06-24"/>
+  <sch:ns prefix="mrd" uri="http://www.isotc211.org/2005/mrd/1.0/2013-06-24"/>
   <!--
     ISO 19115-1 mrd namespace schematron rules
     Created by thabermann@hdfgroup.org 20140308

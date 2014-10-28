@@ -1,82 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <codelists xmlns:gmd="http://www.isotc211.org/namespace/gmd">
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	<!-- ==================================================== -->
-+  <!-- new in ISO19115-1-2013 -->
-+	<codelist name="rbc:CD_PixelinCell">
-+		<entry>
-+			<code>cellCenter</code>
-+			<label>Centre de la cellule</label>
-+			<description>L'origine du système de coordinées d'une image est située au centre d'une cellule d'un raster ou au centre d'un pixel.</description>
-+		</entry>
-+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-+		<entry>
-+			<code>cellCorner</code>
-+			<label>Coin de la cellule</label>
-+			<description>L'origine du système de coordinées de l'image est située au niveau du coin d'une cellule d'un raster ou est située à mi-chemin entre les centres de pixels adjacents.</description>
-+		</entry>
-+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-+  	</codelist>
-+	<!-- ==================================================== -->
-+  <!-- new in ISO19115-1-2013 -->
-+	<codelist name="cit:CI_TelephoneTypeCode">
-+		<entry>
-+			<code>voice</code>
-+			<label>Vocal</label>
-+			<description>Le téléphone offre un service voacal</description>
-+		</entry>
-+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-+		<entry>
-+			<code>facsimilie</code>
-+			<label>Fax</label>
-+			<description>Le téléphone offre un service de fax</description>
-+		</entry>
-+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-+		<entry>
-+			<code>sms</code>
-+			<label>SMS</label>
-+			<description>Telephone offre un service SMS</description>
-+		</entry>
-+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-+  </codelist>
+  <!-- new in ISO19115-1-2013 -->
+	<codelist name="rbc:CD_PixelinCell">
+		<entry>
+			<code>cellCenter</code>
+			<label>Centre de la cellule</label>
+			<description>L'origine du système de coordinées d'une image est située au centre d'une cellule d'un raster ou au centre d'un pixel.</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>cellCorner</code>
+			<label>Coin de la cellule</label>
+			<description>L'origine du système de coordinées de l'image est située au niveau du coin d'une cellule d'un raster ou est située à mi-chemin entre les centres de pixels adjacents.</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+  	</codelist>
+	<!-- ==================================================== -->
+  <!-- new in ISO19115-1-2013 -->
+	<codelist name="cit:CI_TelephoneTypeCode">
+		<entry>
+			<code>voice</code>
+			<label>Vocal</label>
+			<description>Le téléphone offre un service voacal</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>facsimilie</code>
+			<label>Fax</label>
+			<description>Le téléphone offre un service de fax</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>sms</code>
+			<label>SMS</label>
+			<description>Le téléphone offre un service SMS</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+  </codelist>
 	<!-- ==================================================== -->
 	<codelist name="cit:CI_DateTypeCode">
 		<entry>
@@ -96,98 +58,85 @@
 			<label>Révision</label>
 			<description>Date à laquelle la ressource est révisée</description>
 		</entry>
-		<!-- ISO PROFIL FRA ONLY
+    <!-- new in ISO19115-1-2013 -->
 		<entry>
-			<code>validity</code>
-			<label>Validité</label>
-			<description>Date à laquelle la ressource est validée</description>
+			<code>expiry</code>
+			<label>Expiration</label>
+			<description>Date à laquelle la ressource expire</description>
 		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
-			<code>useBy</code>
-			<label>Péremption</label>
-			<description>Date de péremption de la ressource</description>
+			<code>lastUpdate</code>
+			<label>Dernière mise à jour</label>
+			<description>Date à laquelle la ressource a été mise à jour pour la dernière fois</description>
 		</entry>
--->
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-+    <!-- new in ISO19115-1-2013 -->
-+		<entry>
-+			<code>expiry</code>
-+			<label>Expiration</label>
-+			<description>Date à laquelle la ressource expire</description>
-+		</entry>
-+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-+		<entry>
-+			<code>lastUpdate</code>
-+			<label>Dernière mise à jour</label>
-+			<description>Date à laquelle la ressource a été mise à jour pour la dernière fois</description>
-+		</entry>
-+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-+		<entry>
-+			<code>lastReview</code>
-+			<label>Dernière révision</label>
-+			<description>Date à laquelle la ressource a été mise à jour pour la dernière fois</description>
-+		</entry>
-+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-+		<entry>
-+			<code>nextUpdate</code>
-+			<label>Prochaine mise à jour</label>
-+			<description>Date à laquelle la prochaine mise à jour de la ressource a été planifiée</description>
-+		</entry>
-+		<!-- - - - - - - - - - - - - - - - - - - - - - - - -->
-+		<entry>
-+			<code>unavailable</code>
-+			<label>Indisponibilité</label>
-+			<description>Date à laquelle la ressource est devenue indisponible ou disponible</description>
-+		</entry>
-+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-+		<entry>
-+			<code>inForce</code>
-+			<label>In Force</label>
-+			<description>Date identifies when the resource became in force</description>
-+		</entry>
-+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-+		<entry>
-+			<code>adopted</code>
-+			<label>Adopté</label>
-+			<description>Date à laquelle la ressource a été adoptée</description>
-+		</entry>
-+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-+		<entry>
-+			<code>deprecated</code>
-+			<label>Deprecated</label>
-+			<description>Date à laquelle la ressource a été mise dépréciée</description>
-+		</entry>
-+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-+		<entry>
-+			<code>superseded</code>
-+			<label>Superseded</label>
-+			<description>Date à laquelle la ressource a été remplacé ou remplacé par une autre ressource</description>
-+		</entry>
-+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-+		<entry>
-+			<code>validityBegins</code>
-+			<label>Début de validité</label>
-+			<description>Date à partir de laquelle la ressource a été considérée comme valide</description>
-+		</entry>
-+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-+		<entry>
-+			<code>validityExpires</code>
-+			<label>Fin de validité</label>
-+			<description>Date à partir de laquelle la ressource n'a plus été considérée comme valide</description>
-+		</entry>
-+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-+		<entry>
-+			<code>released</code>
-+			<label>Mise en accès</label>
-+			<description>Date à laquelle la ressource est libérée pour l'accès du public</description>
-+		</entry>
-+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-+		<entry>
-+			<code>distribution</code>
-+			<label>Distribution</label>
-+			<description>Date à laquelle une instance de la ressource a été distribué</description>
-+		</entry>
-+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>lastReview</code>
+			<label>Dernière révision</label>
+			<description>Date à laquelle la ressource a été mise à jour pour la dernière fois</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>nextUpdate</code>
+			<label>Prochaine mise à jour</label>
+			<description>Date à laquelle la prochaine mise à jour de la ressource a été planifiée</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>unavailable</code>
+			<label>Indisponibilité</label>
+			<description>Date à laquelle la ressource est devenue indisponible ou disponible</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>inForce</code>
+			<label>In Force</label>
+			<description>Date identifies when the resource became in force</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>adopted</code>
+			<label>Adopté</label>
+			<description>Date à laquelle la ressource a été adoptée</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>deprecated</code>
+			<label>Deprecated</label>
+			<description>Date à laquelle la ressource a été mise dépréciée</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>superseded</code>
+			<label>Superseded</label>
+			<description>Date à laquelle la ressource a été remplacé ou remplacé par une autre ressource</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>validityBegins</code>
+			<label>Début de validité</label>
+			<description>Date à partir de laquelle la ressource a été considérée comme valide</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>validityExpires</code>
+			<label>Fin de validité</label>
+			<description>Date à partir de laquelle la ressource n'a plus été considérée comme valide</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>released</code>
+			<label>Mise en accès</label>
+			<description>Date à laquelle la ressource est libérée pour l'accès du public</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>distribution</code>
+			<label>Distribution</label>
+			<description>Date à laquelle une instance de la ressource a été distribué</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
 	<!-- ==================================================== -->
 	<codelist name="cit:CI_OnLineFunctionCode">
@@ -221,43 +170,43 @@
 			<description>Interface de recherche pour trouver la ressource</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--    <!-- new in ISO19115-1-2013 -->
--		<entry>
--			<code>completeMetadata</code>
--			<label>Métadonnées intégrales</label>
--			<description>Métadonnées fournies en intégralité</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--		<entry>
--			<code>browseGraphic</code>
--			<label>Graphique de consultation</label>
--			<description>Graphique de consultation fourni</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--		<entry>
--			<code>upload</code>
--			<label>Téléchargement</label>
--			<description>Capacité de téléchargement de ressources en ligne fournie</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--		<entry>
--			<code>emailService</code>
--			<label>Service de courrier électronique</label>
--			<description>Service de courrier électronique en ligne fourni</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--		<entry>
--			<code>browsing</code>
--			<label>Consultation</label>
--			<description>Consultation en ligne fournie</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--		<entry>
--			<code>fileAccess</code>
--			<label>Accès au fichier</label>
--			<description>Accès à un fichier en ligne fourni</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- new in ISO19115-1-2013 -->
+		<entry>
+			<code>completeMetadata</code>
+			<label>Métadonnées intégrales</label>
+			<description>Métadonnées fournies en intégralité</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>browseGraphic</code>
+			<label>Graphique de consultation</label>
+			<description>Graphique de consultation fourni</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>upload</code>
+			<label>Téléchargement</label>
+			<description>Capacité de téléchargement de ressources en ligne fournie</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>emailService</code>
+			<label>Service de courrier électronique</label>
+			<description>Service de courrier électronique en ligne fourni</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>browsing</code>
+			<label>Consultation</label>
+			<description>Consultation en ligne fournie</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>fileAccess</code>
+			<label>Accès au fichier</label>
+			<description>Accès à un fichier en ligne fourni</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
 	<!-- ==================================================== -->
 	<codelist name="gmd:CI_PresentationFormCode">
@@ -345,49 +294,49 @@
 			<description>Vidéo enregistré sur bande</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--    <!-- new in ISO19115-1-2013 -->
--		<entry>
--			<code>audioDigital</code>
--			<label>Audio numérique</label>
--			<description>Enregistrement audio numérique</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--		<entry>
--			<code>audioHardcopy</code>
--			<label>Audio analogique</label>
--			<description>Enregistrement audio délivré par support analogique, telle qu’une bande magnétique</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--		<entry>
--			<code>multimediaDigital</code>
--			<label>Multimédia numérique</label>
--			<description>représentation d’informations utilisant simultanément des modes numériques divers pour le texte, le son et l’image </description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--		<entry>
--			<code>multimediaHardcopy</code>
--			<label>Multimédia analogique</label>
--			<description>Représentation d’informations utilisant simultanément divers modes analogiques pour le texte, le son et l’image</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--		<entry>
--			<code>physicalObject</code>
--			<label>Objet physique</label>
--			<description>objet physique. EXEMPLE Roche ou échantillon minéral, lame pour microscope.</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--		<entry>
--			<code>diagramDigital</code>
--			<label>Diagramme numérique</label>
--			<description>Informations représentées de manière graphique par des graphes, tels que diagramme circulaire, diagramme à barres et tout autre type de diagramme, et enregistrées sous format numérique</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--		<entry>
--			<code>diagramHardcopy</code>
--			<label>Diagramme papier</label>
--			<description>Informations représentées de manière graphique par des graphes, comme un diagramme circulaire, un diagramme à barres et tout autre type de diagramme, et imprimées sur papier, support photographique ou autre support</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- new in ISO19115-1-2013 -->
+		<entry>
+			<code>audioDigital</code>
+			<label>Audio numérique</label>
+			<description>Enregistrement audio numérique</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>audioHardcopy</code>
+			<label>Audio analogique</label>
+			<description>Enregistrement audio délivré par support analogique, telle qu’une bande magnétique</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>multimediaDigital</code>
+			<label>Multimédia numérique</label>
+			<description>représentation d’informations utilisant simultanément des modes numériques divers pour le texte, le son et l’image </description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>multimediaHardcopy</code>
+			<label>Multimédia analogique</label>
+			<description>Représentation d’informations utilisant simultanément divers modes analogiques pour le texte, le son et l’image</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>physicalObject</code>
+			<label>Objet physique</label>
+			<description>objet physique. EXEMPLE Roche ou échantillon minéral, lame pour microscope.</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>diagramDigital</code>
+			<label>Diagramme numérique</label>
+			<description>Informations représentées de manière graphique par des graphes, tels que diagramme circulaire, diagramme à barres et tout autre type de diagramme, et enregistrées sous format numérique</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>diagramHardcopy</code>
+			<label>Diagramme papier</label>
+			<description>Informations représentées de manière graphique par des graphes, comme un diagramme circulaire, un diagramme à barres et tout autre type de diagramme, et imprimées sur papier, support photographique ou autre support</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
 	<!-- ==================================================== -->
 	<codelist name="gmd:CI_RoleCode">
@@ -464,61 +413,61 @@
 			<description></description>
 		</entry>-->
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--    <!-- new in ISO19115-1-2013 -->
--		<entry>
--			<code>sponsor</code>
--			<label>Sponsor</label>
--			<description>Partie qui parle pour la ressource</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--		<entry>
--			<code>coAuthor</code>
--			<label>Co-auteur</label>
--			<description>Partie qui est conjointement l’auteur de la ressource</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--		<entry>
--			<code>collaborator</code>
--			<label>Collaborateur</label>
--			<description>partie qui contribue à la génération de la ressource autreque l’auteur principal de la recherche</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- new in ISO19115-1-2013 -->
+		<entry>
+			<code>sponsor</code>
+			<label>Sponsor</label>
+			<description>Partie qui parle pour la ressource</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>coAuthor</code>
+			<label>Co-auteur</label>
+			<description>Partie qui est conjointement l’auteur de la ressource</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>collaborator</code>
+			<label>Collaborateur</label>
+			<description>partie qui contribue à la génération de la ressource autreque l’auteur principal de la recherche</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
 			<code>editor</code>
 			<label>Editeur</label>
 			<description>Partie qui a réexaminé ou modifié la ressource pour améliorer son contenu</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--		<entry>
--			<code>mediator</code>
--			<label>Mediateur</label>
--			<description>Une classe d’entité qui intervient pour l’accès à la ressource et pour laquelle la ressource est destinée ou est utile</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--		<entry>
--			<code>rightsHolder</code>
--			<label>Détenteur des droits</label>
--			<description>Droits de détention ou de gestion de la partie vis-à-vis de la ressource</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--		<entry>
--			<code>contributor</code>
--			<label>Contributeur</label>
--			<description>Partie contribuant à la ressource</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--		<entry>
--			<code>funder</code>
--			<label>Investisseur</label>
--			<description>Partie offrant un soutien financier pour la ressource</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--		<entry>
--			<code>stakeholder</code>
--			<label>Partie prenante</label>
--			<description>Partie qui a un intérêt dans la ressource ou dans l’utilisation de la ressource</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>mediator</code>
+			<label>Mediateur</label>
+			<description>Une classe d’entité qui intervient pour l’accès à la ressource et pour laquelle la ressource est destinée ou est utile</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>rightsHolder</code>
+			<label>Détenteur des droits</label>
+			<description>Droits de détention ou de gestion de la partie vis-à-vis de la ressource</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>contributor</code>
+			<label>Contributeur</label>
+			<description>Partie contribuant à la ressource</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>funder</code>
+			<label>Investisseur</label>
+			<description>Partie offrant un soutien financier pour la ressource</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>stakeholder</code>
+			<label>Partie prenante</label>
+			<description>Partie qui a un intérêt dans la ressource ou dans l’utilisation de la ressource</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
 	<!-- ==================================================== -->
 	  <!-- new in ISO19115-1-2013 -->
@@ -758,37 +707,37 @@
 			<description>Partie d’un ensemble d’images qui, utilisé ensemble, fournit une vision 3D de l’image.</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--    <!-- new in ISO19115-1-2013 -->
--		<entry>
--			<code>isComposedOf</code>
--			<label>Est composé de</label>
--			<description>Référence à des ressources qui font partie de cette ressource</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--		<entry>
--			<code>collectiveTitle</code>
--			<label>Titre commun</label>
--			<description>titre commun donné à une collecte de ressources NOTE Le titre identifie les éléments d’une série collectivement, associés à des informations concernant les volumes qui sont disponibles au niveau du site de la source.</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--		<entry>
--			<code>series</code>
--			<label>Séries</label>
--			<description>Associée par un héritage commun, tel que celui créé pour une spécification produit commune</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--		<entry>
--			<code>dependency</code>
--			<label>Dépendance</label>
--			<description>Associé par l’intermédiaire d’une dépendance</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
--		<entry>
--			<code>revisionOf</code>
--			<label>Révision de</label>
--			<description>La ressource est une révision de la ressource associée</description>
--		</entry>
--		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- new in ISO19115-1-2013 -->
+		<entry>
+			<code>isComposedOf</code>
+			<label>Est composé de</label>
+			<description>Référence à des ressources qui font partie de cette ressource</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>collectiveTitle</code>
+			<label>Titre commun</label>
+			<description>titre commun donné à une collecte de ressources NOTE Le titre identifie les éléments d’une série collectivement, associés à des informations concernant les volumes qui sont disponibles au niveau du site de la source.</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>series</code>
+			<label>Séries</label>
+			<description>Associée par un héritage commun, tel que celui créé pour une spécification produit commune</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>dependency</code>
+			<label>Dépendance</label>
+			<description>Associé par l’intermédiaire d’une dépendance</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>revisionOf</code>
+			<label>Révision de</label>
+			<description>La ressource est une révision de la ressource associée</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
 	<!-- ==================================================== -->
 	<codelist name="gmd:DS_InitiativeTypeCode">
@@ -1834,7 +1783,7 @@
 		<entry>
 			<code>feature</code>
 			<label>Entité</label>
-			<descriptionLes iInformations appliquées à une entité</description>
+			<description>Les informations appliquées à une entité</description>
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
@@ -2020,7 +1969,7 @@
 		</entry>-->
 	</codelist>
 	<!-- ==================================================== -->
-	<codelist name="gmd:MD_TopicCategoryCode">
+  <codelist name="mri:MD_TopicCategoryCode">
 		<entry>
 			<code>farming</code>
 			<label>Agriculture</label>

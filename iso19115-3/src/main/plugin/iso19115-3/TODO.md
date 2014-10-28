@@ -2,9 +2,13 @@
 
 ## Translations
 
-* Translate codelists at least in French and English
-* Translate labels at least in French and English
-* See https://github.com/geonetwork/schema-plugins/tree/master/iso19115-3/loc
+* Some elements are missing, use the editor to identify missing one (eg. mri:MD_AssociatedResource, mri:className).
+
+## Schematron
+
+* Collect schema/**/*.sch for ISO validation level
+* Add French translation to it (using sch:diagnostic ?)
+* Convert iso19139 INSPIRE schematron to iso19115-3
 
 ## Associated resources
 
@@ -12,13 +16,9 @@
 
 ## Editor
 
-* Configure multilingual element exlcusion list https://github.com/geonetwork/schema-plugins/blob/master/iso19115-3/layout/config-editor.xml#L121
-* Check element type for form field https://github.com/geonetwork/schema-plugins/blob/master/iso19115-3/layout/config-editor.xml#L22
+* Configure multilingual element exclusion list https://github.com/geonetwork/schema-plugins/blob/master/iso19115-3/layout/config-editor.xml#L121
 
-## Templates
-
-* Template general en vector, raster, map
-* See https://github.com/geonetwork/schema-plugins/tree/master/iso19115-3/templates
+## Subtemplates
 
 ## Conversions
 

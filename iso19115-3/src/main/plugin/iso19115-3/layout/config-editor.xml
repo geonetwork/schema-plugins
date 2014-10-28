@@ -98,7 +98,7 @@
               data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
     </for>
     
-    <for name="gmd:descriptiveKeywords" addDirective="data-gn-thesaurus-selector"/>
+    <for name="mri:descriptiveKeywords" addDirective="data-gn-thesaurus-selector"/>
   </fields>
 
 
@@ -150,7 +150,7 @@
     to restrict the list.
     -->
     <exclude>
-      <!-- TODO: Update list -->
+      <!-- TODO: Update namespace prefix -->
       <name>gmd:identifier</name>
       <name>gmd:metadataStandardName</name>
       <name>gmd:metadataStandardVersion</name>

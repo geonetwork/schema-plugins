@@ -32,5 +32,5 @@
   <metadataConstraints>Md. constraints</metadataConstraints>
   <metadataMaintenance>Md. maintenance</metadataMaintenance>
   <applicationSchemaInfo>Schema info</applicationSchemaInfo>
-
+  <acquisitionInformation>Acquisition info</acquisitionInformation>
 </strings>

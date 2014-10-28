@@ -4,12 +4,14 @@
     xmlns:cit="http://www.isotc211.org/namespace/cit/1.0/2014-07-11"
     xmlns:gco="http://www.isotc211.org/2005/gco">
   <cit:role>
-    <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue="pointOfContact"></cit:CI_RoleCode>
+    <cit:CI_RoleCode 
+      codeList="codeListLocation#CI_RoleCode" 
+      codeListValue="pointOfContact"/>
   </cit:role>
   <cit:party>
     <cit:CI_Organisation>
       <cit:name>
-        <gco:CharacterString>Organisation</gco:CharacterString>
+        <gco:CharacterString>Organisation Name</gco:CharacterString>
       </cit:name>
       <cit:contactInfo>
         <cit:CI_Contact>
