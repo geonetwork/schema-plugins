@@ -339,7 +339,7 @@
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
 	<!-- ==================================================== -->
-	<codelist name="gmd:CI_RoleCode">
+	<codelist name="cit:CI_RoleCode">
 		<entry>
 			<code>resourceProvider</code>
 			<label>Fournisseur</label>
