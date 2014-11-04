@@ -9,6 +9,87 @@
 	<sch:ns prefix="gco" uri="http://www.isotc211.org/2005/gco"/>
 	<sch:ns prefix="geonet" uri="http://www.fao.org/geonetwork"/>
 	<sch:ns prefix="xlink" uri="http://www.w3.org/1999/xlink"/>
+	
+	
+<!--	<sch:let name="inspireKeyWords">
+		<keyword>Condizioni atmosferiche</keyword>
+		<keyword>Atmospheric conditions</keyword>
+		<keyword>Copertura del suolo</keyword>
+		<keyword>Land cover</keyword>
+		<keyword>Distribuzione della popolazione - demografia</keyword>
+		<keyword>Population distribution — demography</keyword>
+		<keyword>Distribuzione delle specie</keyword>
+		<keyword>Species distribution</keyword>
+		<keyword>Edifici</keyword>
+		<keyword>Buildings</keyword>
+		<keyword>Elementi geografici meteorologici</keyword>
+		<keyword>Meteorological geographical features</keyword>
+		<keyword>Elementi geografici oceanografici</keyword>
+		<keyword>Oceanographic geographical features</keyword>
+		<keyword>Elevazione</keyword>
+		<keyword>Elevation</keyword>
+		<keyword>Geologia</keyword>
+		<keyword>Geology</keyword>
+		<keyword>Habitat e biotopi</keyword>
+		<keyword>Habitats and biotopes</keyword>
+		<keyword>Idrografia</keyword>
+		<keyword>Hydrography</keyword>
+		<keyword>Impianti agricoli e di acquacoltura</keyword>
+		<keyword>Agricultural and aquaculture facilities</keyword>
+		<keyword>Impianti di monitoraggio ambientale</keyword>
+		<keyword>Environmental monitoring facilities</keyword>
+		<keyword>Indirizzi</keyword>
+		<keyword>Addresses</keyword>
+		<keyword>Nomi geografici</keyword>
+		<keyword>Geographical names</keyword>
+		<keyword>Orto immagini</keyword>
+		<keyword>Orthoimagery</keyword>
+		<keyword>Parcelle catastali</keyword>
+		<keyword>Cadastral parcels</keyword>
+		<keyword>Produzione e impianti industriali</keyword>
+		<keyword>Production and industrial facilities</keyword>
+		<keyword>Regioni biogeografiche</keyword>
+		<keyword>Bio-geographical regions</keyword>
+		<keyword>Regioni marine</keyword>
+		<keyword>Sea regions</keyword>
+		<keyword>Reti di trasporto</keyword>
+		<keyword>Transport networks</keyword>
+		<keyword>Risorse energetiche</keyword>
+		<keyword>Energy resources</keyword>
+		<keyword>Risorse minerarie</keyword>
+		<keyword>Mineral resources</keyword>
+		<keyword>Salute umana e sicurezza</keyword>
+		<keyword>Human health and safety</keyword>
+		<keyword>Servizi di pubblica utilità e servizi amministrativi</keyword>
+		<keyword>Utility and governmental services</keyword>
+		<keyword>Sistemi di coordinate</keyword>
+		<keyword>Coordinate reference systems</keyword>
+		<keyword>Sistemi di griglie geografiche</keyword>
+		<keyword>Geographical grid systems</keyword>
+		<keyword>Siti protetti</keyword>
+		<keyword>Protected sites</keyword>
+		<keyword>Suolo</keyword>
+		<keyword>Soil</keyword>
+		<keyword>Unità amministrative</keyword>
+		<keyword>Administrative units</keyword>
+		<keyword>Unità statistiche</keyword>
+		<keyword>Statistical units</keyword>
+		<keyword>Utilizzo del territorio</keyword>
+		<keyword>Land use</keyword>
+		<keyword>Zone a rischio naturale</keyword>
+		<keyword>Natural risk zones</keyword>
+		<keyword>Zone sottoposte a gestione/limitazioni/regolamentazione e unità con obbligo di comunicare dati</keyword>
+		<keyword>Area management/restriction/regulation zones and reporting units</keyword>
+	</sch:let>
+-->	
+		<sch:let name="gemetThesaurusTitle">GEMET - INSPIRE themes, version 1.0</sch:let>
+		<sch:let name="gemetThesaurusDate">2008-06-01</sch:let>
+		<sch:let name="gemetThesaurusDateType">publication</sch:let>
+<!--		<sch:let name="inspireServicesKeyWords">humanInteractionService;humanCatalogueViewer;humanGeographicViewer;humanGeographicSpreadsheetViewer;humanServiceEditor;humanChainDefinitionEditor;humanWorkflowEnactmentManager;humanGeographicFeatureEditor;humanGeographicSymbolEditor;humanFeatureGeneralizationEditor;humanGeographicDataStructureViewer;infoManagementService;infoFeatureAccessService;infoMapAccessService;infoCoverageAccessService;infoSensorDescriptionService;infoProductAccessService;infoFeatureTypeService;infoCatalogueService;infoRegistryService;infoGazetteerService;infoOrderHandlingService;infoStandingOrderService;taskManagementService;chainDefinitionService;workflowEnactmentService;subscriptionService;spatialProcessingService;spatialCoordinateConversionService;spatialCoordinateTransformationService;spatialCoverageVectorConversionService;spatialImageCoordinateConversionService;spatialRectificationService;spatialOrthorectificationService;spatialSensorGeometryModelAdjustmentService;
+spatialImageGeometryModelConversionService;spatialSubsettingService;spatialSamplingService;spatialTilingChangeService;spatialDimensionMeasurementService;spatialFeatureManipulationService;spatialFeatureMatchingService;spatialFeatureGeneralizationService;spatialRouteDeterminationService;spatialPositioningService;spatialProximityAnalysisService;thematicProcessingService;thematicGeoparameterCalculationService;thematicClassificationService;thematicFeatureGeneralizationService;thematicSubsettingService;thematicSpatialCountingService;thematicChangeDetectionService;thematicGeographicInformationExtractionService;thematicImageProcessingService;thematicReducedResolutionGenerationService;thematicImageManipulationService;thematicImageUnderstandingService;thematicImageSynthesisService;thematicMultibandImageManipulationService;thematicObjectDetectionService;thematicGeoparsingService;thematicGeocodingService;temporalProcessingService;temporalReferenceSystemTransformationService;temporalSubsettingService;
+temporalSamplingService;temporalProximityAnalysisService;metadataProcessingService;metadataStatisticalCalculationService;metadataGeographicAnnotationService;comService;comEncodingService;comTransferService;comGeographicCompressionService;comMessagingService;comRemoteFileAndExecutableManagement</sch:let>
+-->
+
 	<!--FILE IDENTIFIER-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M1</sch:title>
@@ -148,9 +229,10 @@
 	<!--DATA/SERVICE IDENTIFICATION - GEOGRAPHIC LOCATION-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M33</sch:title>
-		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent
-		|//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent">
-			<sch:assert test="gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox">$loc/strings/alert.M33</sch:assert>
+		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification
+		|//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
+			<sch:assert test="count(./gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox)>0">$loc/strings/alert.M33</sch:assert>
+			<sch:assert test="count(./gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox)&lt;2">$loc/strings/alert.M33a</sch:assert>
 		</sch:rule>
 	</sch:pattern>
 	<!--DATA/SERVICE QUALITY - SCOPE-->
@@ -183,18 +265,29 @@
 	<sch:pattern>
 		<sch:title>$loc/strings/M37</sch:title>
 		<sch:rule context="//gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality">
-			<sch:let name="specTitle" >REGOLAMENTO (UE) N. 1089/2010 DELLA COMMISSIONE del 23 novembre 2010 recante attuazione della direttiva 2007/2/CE del Parlamento europeo e del Consiglio per quanto riguarda l'interoperabilità dei set di dati territoriali e dei servizi di dati territoriali</sch:let>
+			<sch:let name="specTitleRNDT" >REGOLAMENTO (UE) N. 1089/2010 DELLA COMMISSIONE del 23 novembre 2010 recante attuazione della direttiva 2007/2/CE del Parlamento europeo e del Consiglio per quanto riguarda l'interoperabilità dei set di dati territoriali e dei servizi di dati territoriali</sch:let>			
 			<sch:let name="specTitleService" >Service Abstract Test Suite</sch:let>
+
+			<sch:let name="specCitation" value="gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation"/>
+			<sch:let name="specTitle"    value="gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title/gco:CharacterString"/>
+			
+			<sch:let name="isTitleRNDT"      value="$specTitle = $specTitleRNDT"/>
+			<sch:let name="isTitleRNDTFuzzy" value="contains($specTitle,'1089/2010') and contains($specTitle,'23 novembre 2010') and contains($specTitle,'2007/2/CE')"/>
+
+			<sch:let name="isTitleService"   value="$specTitle = $specTitleService"/>
+						
+			<sch:let name="isPublication"    value="$specCitation/gmd:date/gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode[@codeListValue = 'publication']"/>
+
 			<sch:assert test="gmd:scope/gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode/@codeListValue='service'
-			or gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title/gco:CharacterString= $specTitle
-			and gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date= '2010-12-08'
-			and gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode[@codeListValue = 'publication']">$loc/strings/alert.M37</sch:assert>
-			<sch:assert test="gmd:scope/gmd:DQ_Scope/gmd:level/gmd:MD_ScopeCode/@codeListValue!='service'
-			or gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title/gco:CharacterString= $specTitleService
-			and gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date= '2007-11-21'
-			and gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode[@codeListValue = 'publication']">$loc/strings/alert.M37</sch:assert>
+			 or ($isTitleRNDTFuzzy and $specCitation/gmd:date/gmd:CI_Date/gmd:date/gco:Date= '2010-12-08' and $isPublication)
+			 or ($isTitleService   and $specCitation/gmd:date/gmd:CI_Date/gmd:date/gco:Date= '2007-11-21' and $isPublication)">$loc/strings/alert.M37</sch:assert>
+			
+			<sch:report test="$isTitleRNDT">Specifiche di conformità RNDT</sch:report>
+			<sch:report test="$isTitleService">Specifiche di conformità Service Abstract</sch:report>
+			<sch:report test="$isTitleRNDTFuzzy and not($isTitleRNDT)">Specifiche di conformità RNDT - Controllare</sch:report>
 		</sch:rule>
 	</sch:pattern>
+	
 	<!--REFERENCE SYSTEM-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M38</sch:title>
@@ -202,22 +295,20 @@
 			<sch:assert test="gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue='service' or gmd:referenceSystemInfo/gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/gmd:RS_Identifier/gmd:code/gco:CharacterString or (gmd:referenceSystemInfo/gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/gmd:RS_Identifier/gmd:code/gco:CharacterString and /gmd:MD_Metadata/gmd:referenceSystemInfo/gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/gmd:RS_Identifier/gmd:codeSpace/gco:CharacterString= 'http://www.epsg-registry.org')">$loc/strings/alert.M38</sch:assert>
 		</sch:rule>
 	</sch:pattern>
+	
 	<!--DATA/SERVICE IDENTIFICATION - KEYWORDS-->
 	<sch:pattern>
-		<sch:let name="inspireKeyWords">Condizioni atmosferiche;Atmospheric conditions;Copertura del suolo;Land cover;Distribuzione della popolazione - demografia;Population distribution — demography;Distribuzione delle specie;Species distribution;Edifici;Buildings;Elementi geografici meteorologici;Meteorological geographical features;Elementi geografici oceanografici;Oceanographic geographical features;Elevazione;Elevation;Geologia;Geology;Habitat e biotopi;Habitats and biotopes;Idrografia;Hydrography;Impianti agricoli e di acquacoltura;Agricultural and aquaculture facilities;Impianti di monitoraggio ambientale;Environmental monitoring facilities;Indirizzi;Addresses;Nomi geografici;Geographical names;Orto immagini;Orthoimagery;Parcelle catastali;Cadastral parcels;Produzione e impianti industriali;Production and industrial facilities;Regioni biogeografiche;Bio-geographical regions;Regioni marine;Sea regions;Reti di trasporto;Transport networks;Risorse energetiche;Energy resources;Risorse minerarie;Mineral resources;Salute umana e sicurezza;Human health and safety;Servizi di pubblica utilità e servizi amministrativi;Utility and governmental services;Sistemi di coordinate;Coordinate reference systems;Sistemi di griglie geografiche;Geographical grid systems;Siti protetti;Protected sites;Suolo;Soil;Unità amministrative;Administrative units;Unità statistiche;Statistical units;Utilizzo del territorio;Land use;Zone a rischio naturale;Natural risk zones;Zone sottoposte a gestione/limitazioni/regolamentazione e unità con obbligo di comunicare dati;Area management/restriction/regulation zones and reporting units</sch:let>
-		<sch:let name="gemetThesaurusTitle">GEMET - INSPIRE themes, version 1.0</sch:let>
-		<sch:let name="gemetThesaurusDate">2008-06-01</sch:let>
-		<sch:let name="gemetThesaurusDateType">publication</sch:let>
-		<sch:let name="inspireServicesKeyWords">humanInteractionService;humanCatalogueViewer;humanGeographicViewer;humanGeographicSpreadsheetViewer;humanServiceEditor;humanChainDefinitionEditor;humanWorkflowEnactmentManager;humanGeographicFeatureEditor;humanGeographicSymbolEditor;humanFeatureGeneralizationEditor;humanGeographicDataStructureViewer;infoManagementService;infoFeatureAccessService;infoMapAccessService;infoCoverageAccessService;infoSensorDescriptionService;infoProductAccessService;infoFeatureTypeService;infoCatalogueService;infoRegistryService;infoGazetteerService;infoOrderHandlingService;infoStandingOrderService;taskManagementService;chainDefinitionService;workflowEnactmentService;subscriptionService;spatialProcessingService;spatialCoordinateConversionService;spatialCoordinateTransformationService;spatialCoverageVectorConversionService;spatialImageCoordinateConversionService;spatialRectificationService;spatialOrthorectificationService;spatialSensorGeometryModelAdjustmentService;spatialImageGeometryModelConversionService;spatialSubsettingService;spatialSamplingService;spatialTilingChangeService;spatialDimensionMeasurementService;spatialFeatureManipulationService;spatialFeatureMatchingService;spatialFeatureGeneralizationService;spatialRouteDeterminationService;spatialPositioningService;spatialProximityAnalysisService;thematicProcessingService;thematicGeoparameterCalculationService;thematicClassificationService;thematicFeatureGeneralizationService;thematicSubsettingService;thematicSpatialCountingService;thematicChangeDetectionService;thematicGeographicInformationExtractionService;thematicImageProcessingService;thematicReducedResolutionGenerationService;thematicImageManipulationService;thematicImageUnderstandingService;thematicImageSynthesisService;thematicMultibandImageManipulationService;thematicObjectDetectionService;thematicGeoparsingService;thematicGeocodingService;temporalProcessingService;temporalReferenceSystemTransformationService;temporalSubsettingService;temporalSamplingService;temporalProximityAnalysisService;metadataProcessingService;metadataStatisticalCalculationService;metadataGeographicAnnotationService;comService;comEncodingService;comTransferService;comGeographicCompressionService;comMessagingService;comRemoteFileAndExecutableManagement</sch:let>
 		<sch:title>$loc/strings/M39</sch:title>
 		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification">
-			<sch:assert test="count(gmd:descriptiveKeywords[contains($inspireKeyWords, gmd:MD_Keywords/gmd:keyword/gco:CharacterString)
+			<sch:assert test="count(gmd:descriptiveKeywords[
+			gmd:MD_Keywords/gmd:keyword/*!=''
 			and gmd:MD_Keywords/gmd:thesaurusName/gmd:CI_Citation/gmd:title/gco:CharacterString = $gemetThesaurusTitle
 			and gmd:MD_Keywords/gmd:thesaurusName/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date = $gemetThesaurusDate
 			and gmd:MD_Keywords/gmd:thesaurusName/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:dateType/gmd:CI_DateTypeCode/@codeListValue = $gemetThesaurusDateType]) >0">$loc/strings/alert.M39</sch:assert>
 		</sch:rule>
 		<sch:rule context="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
-			<sch:assert test="count(gmd:descriptiveKeywords[contains($inspireServicesKeyWords, gmd:MD_Keywords/gmd:keyword/gco:CharacterString)]) >0">$loc/strings/alert.M39</sch:assert>
+			<sch:assert test="count(gmd:descriptiveKeywords[
+			gmd:MD_Keywords/gmd:keyword/*!='']) >0">$loc/strings/alert.M39</sch:assert>
 		</sch:rule>
 	</sch:pattern>
 	

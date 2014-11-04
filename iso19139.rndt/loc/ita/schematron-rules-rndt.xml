@@ -55,7 +55,8 @@
 	<alert.M32><div>L'elemento spatialResolution è mancante, incompleto o ha un valore errato</div></alert.M32>
 	<!--DATA/SERVICE IDENTIFICATION - GEOGRAPHIC LOCATION-->
 	<M33>Identificazione dei Dati/Servizi - Estensione - Localizzazione geografica</M33>
-	<alert.M33><div>L'elemento geographicElement è mancante, incompleto o ha un valore errato</div></alert.M33>
+	<alert.M33><div>Il riquadro di delimitazione geografica è mancante</div></alert.M33>
+	<alert.M33a><div>Il riquadro di delimitazione geografica deve essere definito una volta soltanto</div></alert.M33a>
 	<!--DATA/SERVICE QUALITY - SCOPE-->
 	<M34>Qualità dei dati - Livello di qualità</M34>
 	<alert.M34><div>L'elemento Scope è mancante, incompleto o ha un valore errato</div></alert.M34>
