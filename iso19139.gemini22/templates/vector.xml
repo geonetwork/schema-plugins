@@ -15,9 +15,9 @@
     <characterSet>
         <MD_CharacterSetCode codeListValue="utf8" codeList="./resources/codeList.xml#MD_CharacterSetCode"/>
     </characterSet>
-	<gmd:hierarchyLevel>
-		<gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</gmd:MD_ScopeCode>
-	</gmd:hierarchyLevel>
+    <gmd:hierarchyLevel>
+        <gmd:MD_ScopeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</gmd:MD_ScopeCode>
+    </gmd:hierarchyLevel>
     <contact>
         <CI_ResponsibleParty>
             <organisationName>
@@ -274,16 +274,16 @@
     <distributionInfo>
         <MD_Distribution>
             
-			<gmd:distributionFormat>
-				<gmd:MD_Format>
-					<gmd:name gco:nilReason="missing">
-						<gco:CharacterString/>
-					</gmd:name>
-					<gmd:version gco:nilReason="missing">
-						<gco:CharacterString/>
-					</gmd:version>
-				</gmd:MD_Format>
-			</gmd:distributionFormat>
+            <gmd:distributionFormat>
+                <gmd:MD_Format>
+                    <gmd:name gco:nilReason="missing">
+                        <gco:CharacterString/>
+                    </gmd:name>
+                    <gmd:version gco:nilReason="missing">
+                        <gco:CharacterString/>
+                    </gmd:version>
+                </gmd:MD_Format>
+            </gmd:distributionFormat>
 
             <transferOptions>
                 <MD_DigitalTransferOptions>
@@ -348,37 +348,37 @@
                     </level>
                 </DQ_Scope>
             </scope>
-			<gmd:report>
-				<gmd:DQ_DomainConsistency>
-					<gmd:result>
-						<gmd:DQ_ConformanceResult>
-							<gmd:specification>
-								<gmd:CI_Citation>
-									<gmd:title>
-										<gco:CharacterString>COMMISSION REGULATION (EU) No 1089/2010 of 23 November 2010 implementing Directive 2007/2/EC of the European Parliament and of the Council as regards interoperability of spatial data sets and services</gco:CharacterString>
-									</gmd:title>
-									<gmd:date>
-										<gmd:CI_Date>
-											<gmd:date>
-												<gco:Date>2010-10-23</gco:Date>
-											</gmd:date>
-											<gmd:dateType>
-												<gmd:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication">publication</gmd:CI_DateTypeCode>
-											</gmd:dateType>
-										</gmd:CI_Date>
-									</gmd:date>
-								</gmd:CI_Citation>
-							</gmd:specification>
-							<gmd:explanation>
-								<gco:CharacterString></gco:CharacterString>
-							</gmd:explanation>
-							<gmd:pass>
-								<gco:Boolean>false</gco:Boolean>
-							</gmd:pass>
-						</gmd:DQ_ConformanceResult>
-					</gmd:result>
-				</gmd:DQ_DomainConsistency>
-			</gmd:report>
+            <gmd:report>
+                <gmd:DQ_DomainConsistency>
+                    <gmd:result>
+                        <gmd:DQ_ConformanceResult>
+                            <gmd:specification>
+                                <gmd:CI_Citation>
+                                    <gmd:title>
+                                        <gco:CharacterString>COMMISSION REGULATION (EU) No 1089/2010 of 23 November 2010 implementing Directive 2007/2/EC of the European Parliament and of the Council as regards interoperability of spatial data sets and services</gco:CharacterString>
+                                    </gmd:title>
+                                    <gmd:date>
+                                        <gmd:CI_Date>
+                                            <gmd:date>
+                                                <gco:Date>2010-10-23</gco:Date>
+                                            </gmd:date>
+                                            <gmd:dateType>
+                                                <gmd:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication">publication</gmd:CI_DateTypeCode>
+                                            </gmd:dateType>
+                                        </gmd:CI_Date>
+                                    </gmd:date>
+                                </gmd:CI_Citation>
+                            </gmd:specification>
+                            <gmd:explanation>
+                                <gco:CharacterString></gco:CharacterString>
+                            </gmd:explanation>
+                            <gmd:pass>
+                                <gco:Boolean>false</gco:Boolean>
+                            </gmd:pass>
+                        </gmd:DQ_ConformanceResult>
+                    </gmd:result>
+                </gmd:DQ_DomainConsistency>
+            </gmd:report>
             <lineage>
                 <LI_Lineage>
                     <statement>
