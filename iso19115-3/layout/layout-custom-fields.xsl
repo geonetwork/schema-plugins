@@ -10,6 +10,7 @@
   xmlns:gn-fn-metadata="http://geonetwork-opensource.org/xsl/functions/metadata"
   exclude-result-prefixes="#all">
 
+  <xsl:include href="layout-custom-fields-keywords.xsl"/>
 
   <!-- Readonly elements
   [parent::mds:metadataIdentifier and
