@@ -268,7 +268,7 @@
     <xsl:copy>
       <xsl:copy-of select="@*"/>
       <cit:linkage>
-        <cit:URL>
+        <gco:CharacterString>
           <xsl:choose>
             <xsl:when test="/root/env/config/downloadservice/simple='true'">
               <xsl:value-of select="concat(/root/env/siteURL,'/resources.get?uuid=',/root/env/uuid,'&amp;fname=',$fname,'&amp;access=private')"/>
@@ -280,7 +280,7 @@
               <xsl:value-of select="cit:linkage/gco:CharacterString"/>
             </xsl:otherwise>
           </xsl:choose>
-        </cit:URL>
+        </gco:CharacterString>
       </cit:linkage>
       <xsl:copy-of select="cit:protocol"/>
       <xsl:copy-of select="cit:applicationProfile"/>
