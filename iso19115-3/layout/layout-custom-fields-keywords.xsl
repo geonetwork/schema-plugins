@@ -97,7 +97,7 @@
         <!-- Single quote are escaped inside keyword. 
           TODO: support multilingual editing of keywords
           -->
-        <xsl:variable name="keywords" select="string-join(mri:keyword/*[1], ',')"/>
+        <xsl:variable name="keywords" select="string-join(mri:keyword/*[1], '`')"/>
 
         <!-- Define the list of transformation mode available. -->
         <xsl:variable name="transformations">to-iso19115-3-keyword,to-iso19115-3-keyword-with-anchor,to-iso19115-3-keyword-as-xlink</xsl:variable>
