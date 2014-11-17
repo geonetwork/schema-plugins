@@ -21,17 +21,6 @@
       </mcc:code>
     </mcc:MD_Identifier>
   </mdb:metadataIdentifier>
-  <mdb:defaultLocale>
-    <lan:PT_Locale>
-      <lan:language>
-        <lan:LanguageCode codeList="codeListLocation#LanguageCode" codeListValue="eng"/>
-      </lan:language>
-      <lan:characterEncoding>
-        <lan:MD_CharacterSetCode codeList="codeListLocation#MD_CharacterSetCode"
-          codeListValue="anyValidURI"/>
-      </lan:characterEncoding>
-    </lan:PT_Locale>
-  </mdb:defaultLocale>
   <mdb:contact>
     <cit:CI_Responsibility>
       <cit:role>
