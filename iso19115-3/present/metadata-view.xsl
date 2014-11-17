@@ -16,7 +16,7 @@
   xmlns:cit="http://www.isotc211.org/namespace/cit/1.0/2014-07-11"
   xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gmx="http://www.isotc211.org/namespace/gmx"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:geonet="http://www.fao.org/geonetwork" xmlns:exslt="http://exslt.org/common"
   xmlns:saxon="http://saxon.sf.net/" extension-element-prefixes="saxon"
   exclude-result-prefixes="#all">
@@ -167,9 +167,10 @@
         </xsl:call-template>
       </xsl:with-param>
       <xsl:with-param name="content">
-        <xsl:apply-templates mode="iso19115-3-simple" select="*/mri:extent/*/gml:beginPosition
-                                                            |*/mri:extent/*/gml:endPosition
-                                                            |*/mri:extent//gml:timePosition"/>
+        <xsl:apply-templates mode="iso19115-3-simple" select="
+						 */gex:extent/*/gml:beginPosition
+            |*/gex:extent/*/gml:endPosition
+            |*/gex:extent//gml:timePosition"/>
       </xsl:with-param>
     </xsl:call-template>
   </xsl:template>
