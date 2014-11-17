@@ -1531,7 +1531,7 @@
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
 	<!-- ==================================================== -->
-	<codelist name="mri:MD_ProgressCode">
+	<codelist name="mcc:MD_ProgressCode">
 		<entry>
 			<code>completed</code>
 			<label>Completed</label>
@@ -1927,7 +1927,7 @@
 		</entry>
 	</codelist>
 	<!-- ==================================================== -->
-	<codelist name="mri:MD_SpatialRepresentationTypeCode">
+	<codelist name="mcc:MD_SpatialRepresentationTypeCode">
 		<entry>
 			<code>vector</code>
 			<label>Vector</label>
