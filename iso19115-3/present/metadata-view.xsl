@@ -14,7 +14,6 @@
   xmlns:gex="http://www.isotc211.org/namespace/gex/1.0/2014-07-11"
   xmlns:dqm="http://www.isotc211.org/namespace/dqm/1.0/2014-07-11"
   xmlns:cit="http://www.isotc211.org/namespace/cit/1.0/2014-07-11"
-  xmlns:gmd="http://www.isotc211.org/namespace/gmd"
   xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gmx="http://www.isotc211.org/namespace/gmx"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -175,7 +174,7 @@
     </xsl:call-template>
   </xsl:template>
   
-  <xsl:template mode="iso19115-3-simpleviewmode" match="mdb:identificationInfo/*/gmd:resourceConstraints[1]"
+  <xsl:template mode="iso19115-3-simpleviewmode" match="mdb:identificationInfo/*/mri:resourceConstraints[1]"
     priority="100">
     <xsl:call-template name="simpleElementSimpleGUI">
       <xsl:with-param name="title" select="/root/gui/schemas/iso19115-3/strings/constraintInfo"/>
@@ -187,7 +186,7 @@
       </xsl:with-param>
       <xsl:with-param name="content">
         <xsl:apply-templates mode="iso19115-3-simple"
-          select="*|following-sibling::node()[name(.)='gmd:resourceConstraints']/*"/>
+          select="*|following-sibling::node()[name(.)='mri:resourceConstraints']/*"/>
       </xsl:with-param>
     </xsl:call-template>
   </xsl:template>
@@ -261,7 +260,7 @@
         </xsl:call-template>
       </xsl:with-param>
       <xsl:with-param name="content">
-        <xsl:for-each select="gmd:keyword">
+        <xsl:for-each select="mri:keyword">
           <xsl:if test="position() &gt; 1"><xsl:text>, </xsl:text></xsl:if>
           
           
@@ -285,7 +284,7 @@
         </xsl:for-each>
         
         
-        <xsl:variable name="type" select="gmd:type/mri:MD_KeywordTypeCode/@codeListValue"/>
+        <xsl:variable name="type" select="mri:type/mri:MD_KeywordTypeCode/@codeListValue"/>
         <xsl:if test="$type != ''">
           (<xsl:value-of
             select="/root/gui/schemas/*[name(.)='iso19115-3']/codelists/codelist[@name = 'mri:MD_KeywordTypeCode']/
@@ -336,21 +335,21 @@
       </xsl:with-param>
       <xsl:with-param name="content">
         <xsl:apply-templates mode="iso19115-3-simple"
-          select="gmd:LI_Lineage/gmd:statement"/>
+          select="mrl:LI_Lineage/mrl:statement"/>
         
-        <xsl:if test=".//gmd:source[@uuidref]">
+        <xsl:if test=".//mrl:source[@uuidref]">
           
           <xsl:call-template name="simpleElement">
             <xsl:with-param name="id" select="generate-id(.)"/>
             <xsl:with-param name="title">
               <xsl:call-template name="getTitle">
-                <xsl:with-param name="name" select="'gmd:source'"/>
+                <xsl:with-param name="name" select="'mrl:source'"/>
                 <xsl:with-param name="schema" select="$schema"/>
               </xsl:call-template>
             </xsl:with-param>
             <xsl:with-param name="help"></xsl:with-param>
             <xsl:with-param name="content">
-              <xsl:for-each select=".//gmd:source[@uuidref]">
+              <xsl:for-each select=".//mrl:source[@uuidref]">
                 <br/><a href="#" onclick="javascript:catalogue.metadataShow('{@uuidref}');">
                   <xsl:call-template name="getMetadataTitle">
                     <xsl:with-param name="uuid" select="@uuidref"/>
@@ -527,9 +526,9 @@
         <xsl:apply-templates mode="iso19115-3-simple"
           select="
           mri:MD_Resolution/mri:equivalentScale/mri:MD_RepresentativeFraction/mri:denominator
-          |mri:MD_Resolution/gmd:distance
+          |mri:MD_Resolution/mri:distance
           |following-sibling::node()[name(.)='mri:spatialResolution']/mri:MD_Resolution/mri:equivalentScale/mri:MD_RepresentativeFraction/mri:denominator
-          |following-sibling::node()[name(.)='mri:spatialResolution']/mri:MD_Resolution/gmd:distance
+          |following-sibling::node()[name(.)='mri:spatialResolution']/mri:MD_Resolution/mri:distance
           "/>
       </xsl:with-param>
     </xsl:call-template>
@@ -549,13 +548,13 @@
         <tr style="display:none;"><!-- FIXME needed by JS to append other type of relation from xml.relation service -->
           <td class="main"></td><td></td>
         </tr>
-        <xsl:for-each-group select="gmd:distributionInfo/descendant::gmd:onLine[gmd:CI_OnlineResource/gmd:linkage/gmd:URL!='']" group-by="gmd:CI_OnlineResource/gmd:protocol">
+        <xsl:for-each-group select="mdb:distributionInfo/descendant::mrd:onLine[cit:CI_OnlineResource/cit:linkage/gco:CharacterString!='']" group-by="cit:CI_OnlineResource/cit:protocol">
         <tr>
           <td class="main">
             <!-- Usually, protocole format is OGC:WMS-version-blahblah, remove ':' and get
             prefix of the protocol to set the CSS icon class-->
             <span class="{translate(substring-before(current-grouping-key(), '-'), ':', '')} icon">
-                <xsl:value-of select="/root/gui/schemas/iso19115-3/labels/element[@name = 'gmd:protocol']/helper/option[@value=normalize-space(current-grouping-key())]"/>
+                <xsl:value-of select="/root/gui/schemas/iso19115-3/labels/element[@name = 'cit:protocol']/helper/option[@value=normalize-space(current-grouping-key())]"/>
             </span>
           </td>
           <td>
@@ -563,28 +562,28 @@
               <xsl:for-each select="current-group()">
                 <xsl:variable name="desc">
                   <xsl:apply-templates mode="localised"
-                    select="gmd:CI_OnlineResource/gmd:description">
+                    select="cit:CI_OnlineResource/cit:description">
                     <xsl:with-param name="langId" select="$langId"/>
                   </xsl:apply-templates>
                 </xsl:variable>
                 <li>
-                  <a href="{gmd:CI_OnlineResource/gmd:linkage/gmd:URL}">
+                  <a href="{cit:CI_OnlineResource/cit:linkage/gco:CharacterString}">
                     <xsl:choose>
                       <xsl:when test="contains(current-grouping-key(), 'OGC') or contains(current-grouping-key(), 'DOWNLOAD')">
                         <!-- Name contains layer, feature type, coverage ... -->
                         <xsl:choose>
                           <xsl:when test="normalize-space($desc)!=''">
                             <xsl:value-of select="$desc"/>
-                            <xsl:if test="gmd:CI_OnlineResource/gmd:name/gmx:MimeFileType/@type">
-                              (<xsl:value-of select="gmd:CI_OnlineResource/gmd:name/gmx:MimeFileType/@type"/>)
+                            <xsl:if test="cit:CI_OnlineResource/cit:name/gmx:MimeFileType/@type">
+                              (<xsl:value-of select="cit:CI_OnlineResource/cit:name/gmx:MimeFileType/@type"/>)
                             </xsl:if>
                           </xsl:when>
                           <xsl:when
-                            test="normalize-space(gmd:CI_OnlineResource/gmd:name/gco:CharacterString)!=''">
-                            <xsl:value-of select="gmd:CI_OnlineResource/gmd:name/gco:CharacterString"/>
+                            test="normalize-space(cit:CI_OnlineResource/cit:name/gco:CharacterString)!=''">
+                            <xsl:value-of select="cit:CI_OnlineResource/cit:name/gco:CharacterString"/>
                           </xsl:when>
                           <xsl:otherwise>
-                            <xsl:value-of select="gmd:CI_OnlineResource/gmd:linkage/gmd:URL"/>
+                            <xsl:value-of select="cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/>
                           </xsl:otherwise>
                         </xsl:choose>
                       </xsl:when>
@@ -594,11 +593,11 @@
                         </xsl:if>
                         <xsl:choose>
                           <xsl:when
-                            test="normalize-space(gmd:CI_OnlineResource/gmd:name/gco:CharacterString)!=''">
-                            <xsl:value-of select="gmd:CI_OnlineResource/gmd:name/gco:CharacterString"/>
+                            test="normalize-space(cit:CI_OnlineResource/cit:name/gco:CharacterString)!=''">
+                            <xsl:value-of select="cit:CI_OnlineResource/cit:name/gco:CharacterString"/>
                           </xsl:when>
                           <xsl:otherwise>
-                            <xsl:value-of select="gmd:CI_OnlineResource/gmd:linkage/gmd:URL"/>
+                            <xsl:value-of select="cit:CI_OnlineResource/cit:linkage/gco:CharacterString"/>
                           </xsl:otherwise>
                         </xsl:choose>
                       </xsl:otherwise>
@@ -610,9 +609,9 @@
                   &#160;
                   <a href="#" class="md-mn addLayer"
                     onclick="app.switchMode('1', true);app.getIMap().addWMSLayer([[
-                              '{gmd:CI_OnlineResource/gmd:description/gco:CharacterString}', 
-                              '{gmd:CI_OnlineResource/gmd:linkage/gmd:URL}', 
-                              '{gmd:CI_OnlineResource/gmd:name/gco:CharacterString}', '{generate-id()}']]);">&#160;</a>
+                              '{cit:CI_OnlineResource/cit:description/gco:CharacterString}', 
+                              '{cit:CI_OnlineResource/cit:linkage/gco:CharacterString}', 
+                              '{cit:CI_OnlineResource/cit:name/gco:CharacterString}', '{generate-id()}']]);">&#160;</a>
                   </xsl:if>
                 </li>
               </xsl:for-each>
@@ -649,16 +648,16 @@
   
   <!-- these elements should be boxed -->
   <xsl:template mode="iso19115-3-simple"
-    match="mdb:identificationInfo|gmd:distributionInfo
+    match="mdb:identificationInfo|mdb:distributionInfo
     |mri:descriptiveKeywords|mri:thesaurusName
     |mdb:spatialRepresentationInfo
     |mri:pointOfContact|mdb:contact
     |mdb:dataQualityInfo
     |mco:MD_Constraints|mco:MD_LegalConstraints|mco:MD_SecurityConstraints
-    |mdb:referenceSystemInfo|mri:equivalentScale|gmd:projection|gmd:ellipsoid
-    |mri:extent|gmd:geographicBox|gex:EX_TemporalExtent
-    |gmd:MD_Distributor
-    |srv:containsOperations|srv:SV_CoupledResource|gmd:metadataConstraints"
+    |mdb:referenceSystemInfo|mri:equivalentScale
+    |mri:extent|gex:EX_TemporalExtent
+    |mrd:MD_Distributor
+    |srv:containsOperations|srv:SV_CoupledResource|mdb:metadataConstraints"
     priority="2">
     <xsl:call-template name="complexElement">
       <xsl:with-param name="id" select="generate-id(.)"/>
@@ -685,8 +684,7 @@
 
   <xsl:template mode="iso19115-3-simple"
     match="
-    gmd:*[gco:Integer|gco:Decimal|gco:Boolean|gco:Real|gco:Measure|gco:Length|gco:Distance|gco:Angle|gco:Scale|gco:RecordType|gmx:MimeFileType]|
-    srv:*[gco:Integer|gco:Decimal|gco:Boolean|gco:Real|gco:Measure|gco:Length|gco:Distance|gco:Angle|gco:Scale|gco:RecordType|gmx:MimeFileType]"
+    *[gco:Integer|gco:Decimal|gco:Boolean|gco:Real|gco:Measure|gco:Length|gco:Distance|gco:Angle|gco:Scale|gco:RecordType|gmx:MimeFileType]"
     priority="2">
     
     <xsl:call-template name="simpleElement">
