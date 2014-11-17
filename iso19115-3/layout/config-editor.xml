@@ -19,22 +19,20 @@
 
   <!-- Form field type configuration. Default is text. -->
   <fields>
-    <for name="mrl:abstract" use="textarea"/>
-    <for name="gmd:checkPointDescription" use="textarea"/>
-    <for name="mrl:credit" use="textarea"/>
-    <for name="mrd:description" use="textarea"/>
-    <for name="gmd:evaluationMethodDescription" use="textarea"/>
-    <for name="gmd:explanation" use="textarea"/>
-    <for name="gmd:handlingDescription" use="textarea"/>
-    <for name="gmd:maintenanceNote" use="textarea"/>
-    <for name="gmd:measureDescription" use="textarea"/>
-    <for name="gmd:purpose" use="textarea"/>
-    <for name="gmd:orderingInstructions" use="textarea"/>
-    <for name="gmd:otherConstraints" use="textarea"/>
+    <for name="mri:abstract" use="textarea"/>
+    <for name="mri:credit" use="textarea"/>
+    <for name="cit:description" use="textarea"/>
+    <for name="mdq:evaluationMethodDescription" use="textarea"/>
+    <for name="mdq:explanation" use="textarea"/>
+    <for name="mco:handlingDescription" use="textarea"/>
+    <for name="mmi:maintenanceNote" use="textarea"/>
+    <for name="mdq:measureDescription" use="textarea"/>
+    <for name="mri:purpose" use="textarea"/>
+    <for name="mrd:orderingInstructions" use="textarea"/>
+    <for name="mco:otherConstraints" use="textarea"/>
     <for name="mrl:statement" use="textarea"/>
-    <for name="mrl:supplementalInformation" use="textarea"/>
-    <for name="gmd:specificUsage" use="textarea"/>
-    <for name="gmd:userNote" use="textarea"/>
+    <for name="mri:supplementalInformation" use="textarea"/>
+    <for name="mri:specificUsage" use="textarea"/>
     <for name="mco:useLimitation" use="textarea"/>
 
 
@@ -52,7 +50,7 @@
     <!-- gmx:FileName/@src attribute -->
     <for name="src" use="data-gn-logo-selector"/>
 
-    <for name="gmd:electronicMailAddress" use="email"/>
+    <for name="cit:electronicMailAddress" use="email"/>
 
     <for name="lan:language" use="data-gn-language-picker"/>
     <for name="lan:languageCode" use="data-gn-language-picker"/>
@@ -83,7 +81,7 @@
               data-filter='{"_root": "cit:CI_Responsibility"}'
               data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
     </for>
-    <for name="gmd:processor" addDirective="data-gn-directory-entry-selector">
+    <for name="mrl:processor" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
               data-template-add-action="true"
               data-template-type="contact"
