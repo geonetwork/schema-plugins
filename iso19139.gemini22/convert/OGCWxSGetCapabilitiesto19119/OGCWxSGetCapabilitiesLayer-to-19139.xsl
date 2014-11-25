@@ -133,11 +133,11 @@
 				- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 			-->
 			<metadataStandardName>
-				<gco:CharacterString>ISO 19115:2003/19139</gco:CharacterString>
+				<gco:CharacterString>UK GEMINI</gco:CharacterString>
 			</metadataStandardName>
 
 			<metadataStandardVersion>
-				<gco:CharacterString>1.0</gco:CharacterString>
+				<gco:CharacterString>2.2</gco:CharacterString>
 			</metadataStandardVersion>
 
 			<!-- spatRepInfo-->
