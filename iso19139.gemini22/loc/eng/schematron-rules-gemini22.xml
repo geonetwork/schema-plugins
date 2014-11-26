@@ -2,7 +2,7 @@
 <strings>
 
     <UK0503>5.3 Data Language</UK0503>
-    <alert.UK0503>Allowed languages are English, Welsh, Gaelic (Irish), Gealic (scottish), Cornish, Ulster Scots</alert.UK0503>
+    <alert.UK0503>Allowed languages are English, Welsh, Gaelic (Irish), Gaelic (Scottish), Cornish, Ulster Scots</alert.UK0503>
     <UK0503.selected>Selected language is:</UK0503.selected>
 
 
@@ -17,14 +17,14 @@
     <UK0516.report.nodistributor>Distributor info is not needed.</UK0516.report.nodistributor>
     <UK0516.report.distributorfound>Required distributor has been found.</UK0516.report.distributorfound>
 
-    <UK0516.alert.city>City found. It is recommended to set the full formal postal address in the "delivery point" field.</UK0516.alert.city>
-    <UK0516.alert.administrativeArea>Administrative area found. It is recommended to set the full formal postal address in the "delivery point" field.</UK0516.alert.administrativeArea>
-    <UK0516.alert.postalCode>Postal code found. It is recommended to set the full formal postal address in the "delivery point" field.</UK0516.alert.postalCode>
-    <UK0516.alert.country>Country found. It is recommended to set the full formal postal address in the "delivery point" field.</UK0516.alert.country>
+    <UK0516.alert.city>(Recommended but not mandatory) City found. It is recommended to set the full formal postal address in the "delivery point" field.</UK0516.alert.city>
+    <UK0516.alert.administrativeArea>(Recommended but not mandatory) Administrative area found. It is recommended to set the full formal postal address in the "delivery point" field.</UK0516.alert.administrativeArea>
+    <UK0516.alert.postalCode>(Recommended but not mandatory) Postal code found. It is recommended to set the full formal postal address in the "delivery point" field.</UK0516.alert.postalCode>
+    <UK0516.alert.country>(Recommended but not mandatory) Country found. It is recommended to set the full formal postal address in the "delivery point" field.</UK0516.alert.country>
 
 
     <UK0601>6.1 Metadata Language</UK0601>
-    <alert.UK0601>Allowed languages are English, Welsh, Gaelic (Irish), Gealic (scottish), Cornish, Ulster Scots</alert.UK0601>
+    <alert.UK0601>Allowed languages are English, Welsh, Gaelic (Irish), Gaelic (Scottish), Cornish, Ulster Scots</alert.UK0601>
     <UK0601.selected>Selected language is:</UK0601.selected>
 
 
