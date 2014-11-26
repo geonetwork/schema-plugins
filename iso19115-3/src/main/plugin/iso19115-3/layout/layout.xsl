@@ -7,6 +7,7 @@
   xmlns:mrs="http://www.isotc211.org/namespace/mrs/1.0/2014-07-11"
   xmlns:mrd="http://www.isotc211.org/namespace/mrd/1.0/2014-07-11"
   xmlns:mco="http://www.isotc211.org/namespace/mco/1.0/2014-07-11"
+  xmlns:mdq="http://www.isotc211.org/namespace/mdq/1.0/2014-07-11"
   xmlns:msr="http://www.isotc211.org/namespace/msr/1.0/2014-07-11"
   xmlns:lan="http://www.isotc211.org/namespace/lan/1.0/2014-07-11"
   xmlns:gcx="http://www.isotc211.org/namespace/gcx/1.0/2014-07-11"
@@ -32,7 +33,7 @@
   <!-- Visit all XML tree recursively -->
   <xsl:template mode="mode-iso19115-3"
                 match="mds:*|mcc:*|mri:*|mrs:*|mrd:*|mco:*|msr:*|lan:*|
-                       gcx:*|gex:*|dqm:*|cit:*|srv:*|gts:*"
+                       gcx:*|gex:*|dqm:*|mdq:*|cit:*|srv:*|gml:*|gts:*"
                 priority="2">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
@@ -41,24 +42,6 @@
       <xsl:with-param name="schema" select="$schema"/>
       <xsl:with-param name="labels" select="$labels"/>
     </xsl:apply-templates>
-    <!--&lt;!&ndash; Check if a layout-<schema_identifier> mode is defined-->
-    <!--for current element. &ndash;&gt;-->
-    <!--<xsl:variable name="profileElements">-->
-      <!--<xsl:apply-templates mode="mode-iso19115-3" select=".">-->
-        <!--<xsl:with-param name="schema" select="$schema"/>-->
-        <!--<xsl:with-param name="labels" select="$labels"/>-->
-      <!--</xsl:apply-templates>-->
-    <!--</xsl:variable>-->
-
-    <!--<xsl:choose>-->
-      <!--<xsl:when test="count($profileElements/*)>0">-->
-        <!--<xsl:copy-of select="$profileElements"/>-->
-      <!--</xsl:when>-->
-      <!--<xsl:otherwise>-->
-        <!--&lt;!&ndash; If not delegate to ISO19139 &ndash;&gt;-->
-        <!--<xsl:apply-templates mode="mode-iso19139" select="."/>-->
-      <!--</xsl:otherwise>-->
-    <!--</xsl:choose>-->
   </xsl:template>
 
   <!-- Ignore all gn element -->
@@ -86,6 +69,7 @@
         <xsl:with-param name="directive" select="$directive"/>
         <xsl:with-param name="childEditInfo" select="."/>
         <xsl:with-param name="parentEditInfo" select="../gn:element"/>
+        <xsl:with-param name="isFirst" select="count(preceding-sibling::*[name() = $name]) = 0"/>
       </xsl:call-template>
     </xsl:if>
   </xsl:template>
@@ -258,12 +242,14 @@
       <xsl:with-param name="listOfValues" select="$helper"/>
       <xsl:with-param name="toggleLang" select="$isMultilingualElementExpanded"/>
       <xsl:with-param name="forceDisplayAttributes" select="$forceDisplayAttributes"/>
+      <xsl:with-param name="isFirst" select="count(preceding-sibling::*[name() = $elementName]) = 0"/>
     </xsl:call-template>
   </xsl:template>
 
 
 
-  <xsl:template mode="mode-iso19115-3" priority="200"
+  <xsl:template mode="mode-iso19115-3"
+                priority="200"
                 match="*[gco:Date|gco:DateTime]">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
@@ -278,6 +264,43 @@
     </div>
   </xsl:template>
 
+
+  <xsl:template mode="mode-iso19115-3"
+                match="gml:beginPosition|gml:endPosition|gml:timePosition"
+                priority="400">
+<xsl:message>##<xsl:copy-of select="."/></xsl:message>
+    <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
+    <xsl:variable name="value" select="normalize-space(text())"/>
+
+    <xsl:variable name="attributes">
+      <xsl:if test="$isEditing">
+        <!-- Create form for all existing attribute (not in gn namespace)
+        and all non existing attributes not already present. -->
+        <xsl:apply-templates mode="render-for-field-for-attribute"
+                             select="@*|
+                              gn:attribute[not(@name = parent::node()/@*/name())]">
+          <xsl:with-param name="ref" select="gn:element/@ref"/>
+          <xsl:with-param name="insertRef" select="gn:element/@ref"/>
+        </xsl:apply-templates>
+      </xsl:if>
+    </xsl:variable>
+
+    <xsl:call-template name="render-element">
+      <xsl:with-param name="label"
+                      select="gn-fn-metadata:getLabel($schema, name(), $labels, name(..), '', $xpath)/label"/>
+      <xsl:with-param name="name" select="gn:element/@ref"/>
+      <xsl:with-param name="value" select="text()"/>
+      <xsl:with-param name="cls" select="local-name()"/>
+      <xsl:with-param name="xpath" select="$xpath"/>
+      <xsl:with-param name="type"
+                      select="if (string-length($value) = 10 or $value = '') then 'date' else 'datetime'"/>
+      <xsl:with-param name="editInfo" select="gn:element"/>
+      <xsl:with-param name="attributesSnippet" select="$attributes"/>
+    </xsl:call-template>
+  </xsl:template>
+
+
+
   <!--
   <xsl:template mode="mode-iso19115-3" match="*|@*" priority="0"/>
 -->
@@ -287,6 +310,7 @@
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
     <xsl:param name="codelists" select="$codelists" required="no"/>
+    <xsl:variable name="elementName" select="name()"/>
 
     <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
     <xsl:variable name="isoType" select="if (../@gco:isoType) then ../@gco:isoType else ''"/>
@@ -303,6 +327,7 @@
       <xsl:with-param name="parentEditInfo" select="gn:element"/>
       <xsl:with-param name="listOfValues"
                       select="gn-fn-metadata:getCodeListValues($schema, name(*[@codeListValue]), $codelists, .)"/>
+      <xsl:with-param name="isFirst" select="count(preceding-sibling::*[name() = $elementName]) = 0"/>
     </xsl:call-template>
   </xsl:template>
 
@@ -334,6 +359,33 @@
       <xsl:with-param name="editInfo" select="*/gn:element"/>
       <xsl:with-param name="listOfValues"
                       select="gn-fn-metadata:getCodeListValues($schema, name(), $codelists, .)"/>
+    </xsl:call-template>
+  </xsl:template>
+
+
+  <!-- Some element to ignore which are matched by the
+  next template -->
+  <xsl:template mode="mode-iso19115-3" priority="400" match="gml:TimeInstantType"/>
+
+  <!-- the gml element having no child eg. gml:name. -->
+  <xsl:template mode="mode-iso19115-3" priority="300" match="gml:*[count(.//gn:element) = 1]">
+    <xsl:variable name="name" select="name(.)"/>
+
+    <xsl:variable name="labelConfig" select="gn-fn-metadata:getLabel($schema, $name, $labels)"/>
+    <xsl:variable name="helper" select="gn-fn-metadata:getHelper($labelConfig/helper, .)"/>
+
+    <xsl:variable name="added" select="parent::node()/parent::node()/@gn:addedObj"/>
+<xsl:message><xsl:copy-of select="."/>#</xsl:message>
+    <xsl:call-template name="render-element">
+      <xsl:with-param name="label" select="$labelConfig/label"/>
+      <xsl:with-param name="value" select="."/>
+      <xsl:with-param name="cls" select="local-name()"/>
+      <xsl:with-param name="xpath" select="gn-fn-metadata:getXPath(.)"/>
+      <xsl:with-param name="type" select="gn-fn-metadata:getFieldType($editorConfig, name(), '')"/>
+      <xsl:with-param name="name" select="if ($isEditing) then gn:element/@ref else ''"/>
+      <xsl:with-param name="editInfo"
+                      select="gn:element"/>
+      <xsl:with-param name="listOfValues" select="$helper"/>
     </xsl:call-template>
   </xsl:template>
 </xsl:stylesheet>

@@ -31,14 +31,13 @@
 	<!-- ========================================================================================= -->
 
 	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no" />
-	<xsl:include href="../iso19139/convert/functions.xsl"/>
-	<xsl:include href="convert/functions.xsl"/>
+	<xsl:include href="../../iso19139/convert/functions.xsl"/>
+	<xsl:include href="../convert/functions.xsl"/>
 
   <xsl:variable name="fileIdentifier" select="/mdb:MD_Metadata|*[contains(@gco:isoType,'mdb:MD_Metadata')]/mdb:metadataIdentifier/mcc:MD_Identifier[mcc:codeSpace/*='urn:uuid']/mcc:code/*"/>
 
-	<!-- ========================================================================================= -->
     <xsl:variable name="isoDocLangId">
-      <xsl:call-template name="langId19115-1-2013"/>
+      <xsl:call-template name="langId19115-3"/>
     </xsl:variable>
 
     <xsl:template match="/">
@@ -62,8 +61,7 @@
             </xsl:if>
         </Documents>
     </xsl:template>
-    
-	<!-- ========================================================================================= -->
+
 		<xsl:template name="document">
   			<xsl:param name="isoLangId"/>
   			<xsl:param name="langId"/>
@@ -112,8 +110,7 @@
 			<xsl:with-param name="langId" select="$langId"/>
 		</xsl:apply-templates>
 	</xsl:template>
-	
-	<!-- ========================================================================================= -->
+
 
 	<xsl:template match="*" mode="metadata">
 		<xsl:param name="langId" />

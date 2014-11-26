@@ -19,28 +19,36 @@
 
   <!-- Form field type configuration. Default is text. -->
   <fields>
-    <for name="mrl:abstract" use="textarea"/>
+    <for name="mri:abstract" use="textarea"/>
     <for name="gmd:checkPointDescription" use="textarea"/>
-    <for name="mrl:credit" use="textarea"/>
+    <for name="mri:credit" use="textarea"/>
     <for name="mrd:description" use="textarea"/>
     <for name="gmd:evaluationMethodDescription" use="textarea"/>
     <for name="gmd:explanation" use="textarea"/>
     <for name="gmd:handlingDescription" use="textarea"/>
-    <for name="gmd:maintenanceNote" use="textarea"/>
     <for name="gmd:measureDescription" use="textarea"/>
     <for name="gmd:purpose" use="textarea"/>
     <for name="gmd:orderingInstructions" use="textarea"/>
-    <for name="gmd:otherConstraints" use="textarea"/>
-    <for name="mrl:statement" use="textarea"/>
-    <for name="mrl:supplementalInformation" use="textarea"/>
+    <for name="mco:otherConstraints" use="textarea"/>
+    <for name="mri:statement" use="textarea"/>
+    <for name="mri:supplementalInformation" use="textarea"/>
     <for name="gmd:specificUsage" use="textarea"/>
     <for name="gmd:userNote" use="textarea"/>
     <for name="mco:useLimitation" use="textarea"/>
+    <for name="cit:otherCitationDetails" use="textarea"/>
+    <for name="mmi:maintenanceNote" use="textarea"/>
+    <for name="mco:statement" use="textarea"/>
+    <for name="mri:environmentDescription" use="textarea"/>
+    <for name="mdq:standaloneQualityReportDetails" use="textarea"/>
+    <for name="mdq:abstract" use="textarea"/>
+    <for name="mdq:statement" use="textarea"/>
+    <for name="mrl:statement" use="textarea"/>
 
 
     <for name="gco:Distance" use="number"/>
     <for name="gco:Decimal" use="number"/>
     <for name="gco:Integer" use="number"/>
+    <for name="gco:Angle" use="number"/>
     <for name="gco:Boolean" use="checkbox"/>
 
 

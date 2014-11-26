@@ -222,6 +222,10 @@
     <description iso="true">Informations concernant des ressources associées</description>
     <_condition>optional</_condition>
   </element>
+  <element name="mri:MD_AssociatedResource" id="62.0">
+    <label>Ressource associée</label>
+    <description iso="true">Informations concernant des ressources associées</description>
+  </element>
   <element name="mri:defaultLocale" id="64.0">
     <label>Paramétrage régional par défaut</label>
     <description iso="true">Langue et jeu de caractères utilisés dans la ressource</description>
@@ -302,7 +306,7 @@
     <description iso="true">Réponse aux limitations déterminées par l’utilisateur. Exemple «Ceci a été réglé dans la version x.»</description>
     <_condition>optional</_condition>
   </element>
-  <element name="mrl:additionalDocumentation" id="91.0">
+  <element name="mri:additionalDocumentation" id="91.0">
     <label>Documentation supplémentaire</label>
     <description iso="true">Documentation supplémentaire</description>
     <_condition>optional</_condition>
@@ -1175,6 +1179,10 @@ responsable du service.</li>
     <condition>Il faut saisir un des attributs suivants: Attributs, Objets Géométriques, Occurences d'objets, Occurences d'attributs, Jeu de données, Autre.</condition>
     
   </element>
+  <element name="mcc:MD_ScopeDescription_Type" id="149.0">
+    <label>Description du domaine</label>
+    <description>Description de la classe d'information concernée par les informations</description>
+  </element>
   <element name="mco:MD_SecurityConstraints" id="73.0">
     <label>Contraintes de sécurité</label>
     <description>Classe avec les restrictions de manipulation imposées sur les ressources où de métadonnées pour la sécurité nationale ou des situations de sécurité similaires</description>
@@ -1452,7 +1460,16 @@ de métadonnées de données « BD Carthage métropole »
     <condition/>
     
   </element>
-  <element name="mir:associationType" id="66.4">
+
+  <element name="mrl:additionalDocumentation">
+    <label>Documentation complémentaire</label>
+    <description/>
+  </element>
+  <element name="mrl:LI_Source">
+    <label>Source</label>
+    <description/>
+  </element>
+  <element name="mri:associationType" id="66.4">
     <label>Type d'association</label>
     <description>Type d'association sur le jeu de données rassemblé</description>
     <help>Type de relation entre jeux de données de rang inférieur, autrement dit, nature du lien unissant les deux jeux de données. La sélection s'opère dans la liste suivante : transfert à titre de comparaison, comparaison avec le jeu de données de rang supérieur, partie d'une structure de données identique, renvoi à une source, couple stéréoscopique.</help>
@@ -1641,7 +1658,6 @@ de métadonnées de données « BD Carthage métropole »
     <help>Code alphanumérique de l'identifiant. Ces informations sont du type PT_FreeText et sont gérées dans la classe du même nom.</help>
     <condition>Obligatoire</condition>
     <helper>
-      <option value="FR-SIREN-CODE">FR-SIREN-CODE</option>
       <option value="http://URL/CODE">http://URL/CODE</option>
     </helper>
   </element>
@@ -2593,12 +2609,10 @@ période de temps couverte par le service.
     <condition/>
     
   </element>
-  <element name="cit:fileIdentifier" id="2.0">
+  <element name="mdb:metadataIdentifier" id="2.0">
     <label>Identifiant de la fiche</label>
     <description>Identifiant unique pour la fiche de métadonnées. Il est généré automatiquement par l'application.</description>
     <help>Identifiant unique pour ce fichier de métadonnées. Il correspond à un et un seul nom de fichier.</help>
-    <condition/>
-    
   </element>
   <element name="mcc:fileName" id="438.0">
     <label>Nom ou URL de l'illustration</label>
@@ -3061,7 +3075,7 @@ période de temps couverte par le service.
     <condition/>
     
   </element>
-  <element name="cit:maximumValue" id="356.0">
+  <element name="gex:maximumValue" id="356.0">
     <label>Valeur maximale</label>
     <description>Indication de l'altitude du point le plus haut du jeu de données</description>
     <help>Altitude du point le plus élevé du jeu de données</help>
@@ -3777,7 +3791,30 @@ la non-évaluation</b>, dans le cadre de métadonnées INSPIRE
     <description>Degré de détail dans le jeu de données de type raster</description>
     <help>Degré de spécification de la trame, c.-à-d. description d'une extension, d'une dimension ou d'un nombre de cellules.</help>
     <condition/>
-    
+  </element>
+  <element name="mrl:resolution" id="182.0">
+    <label>Resolution</label>
+    <description>Degree of detail in the grid dataset</description>
+  </element>
+  <element name="mri:distance">
+    <label>Horizontal ground sample distance</label>
+    <description>Horizontal ground sample distance</description>
+  </element>
+  <element name="mri:vertical">
+    <label>Vertical sampling distance</label>
+    <description>Vertical sampling distance</description>
+  </element>
+  <element name="mri:angularDistance">
+    <label>Angular sampling measure</label>
+    <description>Angular sampling measure</description>
+  </element>
+  <element name="mri:levelOfDetail">
+    <label>Niveau de détail</label>
+    <description>Brief textual description of the spatial resolution of the resource</description>
+  </element>
+  <element name="mri:MD_Resolution_Type">
+    <label>Type de résolution</label>
+    <description/>
   </element>
   <element name="mri:resourceConstraints" id="35.0">
     <label>Contraintes sur la ressource</label>
@@ -3840,7 +3877,7 @@ diffusion restreinte.
     <condition/>
     
   </element>
-  <element name="cit:resourceFormat" id="32.0">
+  <element name="mri:resourceFormat" id="32.0">
     <label>Format de la ressource</label>
     <description>Description du format de la ressource</description>
     <help>Description du format de la ressource. Le nom et la version du format sont entrés ici. Ces informations sont gérées dans la classe MD_Format.</help>
@@ -4812,6 +4849,22 @@ l’IGN (WPS)
     <label>Nom de l'ère</label>
     <description></description>
   </element>
+  <element name="relativePosition">
+    <label>Position relative</label>
+    <description></description>
+  </element>
+  <element name="gml:remoteSchema">
+    <label>Remote schema</label>
+    <description></description>
+  </element>
+  <element name="owns">
+    <label>Owns</label>
+    <description></description>
+  </element>
+  <element name="xlink:type">
+    <label>Type de lien</label>
+    <description></description>
+  </element>
   <element name="unit">
     <label>Unité</label>
     <description></description>
@@ -5383,13 +5436,6 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
     <condition/>
     
   </element>
-  <element name="gco:CharacterString">
-    <label>Texte</label>
-    <description/>
-    <help/>
-    <condition/>
-    
-  </element>
   <element name="gco:nilReason">
     <label>Raison de l'absence</label>
     <description/>
@@ -5401,6 +5447,10 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
     <label>CRS vertical</label>
     <description>Information sur l'origine depuis laquelle les altitudes maximale et minimale ont été mesurées</description>
   </element>
+  <element name="gex:verticalCRSId">
+    <label>Identifiant du CRS vertical</label>
+    <description>Information sur l'origine depuis laquelle les altitudes maximale et minimale ont été mesurées</description>
+  </element>
   <element name="gcx:FileName">
     <label>Nom du fichier</label>
     <description>Nom du fichier et URL.</description>
@@ -5410,16 +5460,8 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
     <description>URL du document.</description>
   </element>
   
-  <element name="gml:TimePeriodTypeGROUP_ELEMENT0">
+  <element name="gml:TimePeriodType">
     <label>Information sur la période</label>
-    <description></description>
-  </element>
-  <element name="gml:TimePeriodTypeGROUP_ELEMENT4">
-    <label>Information sur la période</label>
-    <description></description>
-  </element>
-  <element name="gml:metaDataProperty">
-    <label>Métadonnée sur la propriété</label>
     <description></description>
   </element>
   <element name="gml:descriptionReference">
@@ -5761,15 +5803,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
     <label>Métadonnée sur la propriété</label>
     <description></description>
   </element>
-  <element name="gml:descriptionReference">
-    <label>Référence sur la description</label>
-    <description></description>
-  </element>
   <element name="gml:remarks">
     <label>Remarque</label>
-  </element>
-  <element name="gml:name">
-    <label>Nom</label>
-    <description></description>
   </element>
 </labels>

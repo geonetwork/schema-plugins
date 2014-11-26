@@ -17,7 +17,7 @@
     <!-- ========================================================================================= -->
     <!-- latlon coordinates indexed as numeric. -->
     
-    <xsl:template match="*" mode="latLon19115-1-2013">
+    <xsl:template match="*" mode="latLon19115-3">
         <xsl:variable name="format" select="'##.00'"></xsl:variable>
         
         <xsl:if test="number(gex:westBoundLongitude/gco:Decimal)
@@ -44,7 +44,7 @@
   <!-- ================================================================== -->
   <!-- iso3code of default index language -->
     
-    <xsl:template name="langId19115-1-2013">
+    <xsl:template name="langId19115-3">
         <xsl:variable name="tmp">
             <xsl:choose>
                 <xsl:when test="/*[name(.)='mds:MD_Metadata' or @gco:isoType='mds:MD_Metadata']/mds:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue">
@@ -57,7 +57,7 @@
     </xsl:template>
 
 
-    <xsl:template name="defaultTitle19115-1-2013">
+    <xsl:template name="defaultTitle19115-3">
         <xsl:param name="isoDocLangId"/>
         
         <xsl:variable name="poundLangId" select="concat('#',upper-case(java:twoCharLangCode($isoDocLangId)))" />

@@ -32,4 +32,8 @@
              schemaLocation="schema/ISO19115-3/gcx/1.0/2014-07-11/gcx.xsd"/>
   <xs:import namespace="http://www.isotc211.org/namespace/gfc/1.1/2014-07-11"
              schemaLocation="schema/ISO19110/gfc/1.1/2014-07-11/gfc.xsd"/>
+  <xs:import namespace="http://www.isotc211.org/namespace/rce/1.1/2014-07-11"
+             schemaLocation="schema/ISO19111/rce/1.0/2014-07-11/rce.xsd"/>
+  <xs:import namespace="http://www.opengis.net/gml/3.2"
+             schemaLocation="schema/others/ISO19136/gml.xsd"/>
 </xs:schema>

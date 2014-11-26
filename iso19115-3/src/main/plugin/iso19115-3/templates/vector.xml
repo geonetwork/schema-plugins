@@ -159,7 +159,7 @@
         </cit:CI_Responsibility>
       </mri:pointOfContact>
       <mri:spatialRepresentationType>
-        <mcc:MD_SpatialRepresentationTypeCode codeList="codeListLocation#MD_SpatialRepresentationTypeCode"
+        <mri:MD_SpatialRepresentationTypeCode codeList="codeListLocation#MD_SpatialRepresentationTypeCode"
           codeListValue="vector"/>
       </mri:spatialRepresentationType>
       <mri:spatialResolution>
@@ -210,6 +210,19 @@
               </gex:northBoundLatitude>
             </gex:EX_GeographicBoundingBox>
           </gex:geographicElement>
+        </gex:EX_Extent>
+      </mri:extent>
+      <mri:extent>
+        <gex:EX_Extent>
+          <gex:verticalElement>
+            <gex:EX_VerticalExtent>
+              <gex:minimumValue></gex:minimumValue>
+              <gex:maximumValue></gex:maximumValue>
+              <gex:verticalCRS>
+                
+              </gex:verticalCRS>
+            </gex:EX_VerticalExtent>
+          </gex:verticalElement>
         </gex:EX_Extent>
       </mri:extent>
       <mri:resourceMaintenance>

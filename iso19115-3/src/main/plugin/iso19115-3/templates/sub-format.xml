@@ -1,0 +1,12 @@
+<mrd:MD_Format
+        xmlns:mrd="http://www.isotc211.org/namespace/mrd/1.0/2014-07-11"
+        xmlns:cit="http://www.isotc211.org/namespace/cit/1.0/2014-07-11"
+        xmlns:gco="http://www.isotc211.org/2005/gco">
+  <mrd:formatSpecificationCitation>
+    <cit:CI_Citation>
+      <cit:title>
+        <gco:CharacterString>ESRI Shapefile</gco:CharacterString>
+      </cit:title>
+    </cit:CI_Citation>
+  </mrd:formatSpecificationCitation>
+</mrd:MD_Format>

@@ -3,6 +3,7 @@
   xmlns:mdb="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11"
   xmlns:mcc="http://www.isotc211.org/namespace/mcc/1.0/2014-07-11"
   xmlns:gex="http://www.isotc211.org/namespace/gex/1.0/2014-07-11"
+  xmlns:cit="http://www.isotc211.org/namespace/cit/1.0/2014-07-11"
   xmlns:gco="http://www.isotc211.org/2005/gco"
   xmlns:gts="http://www.isotc211.org/2005/gts"
   xmlns:gml="http://www.opengis.net/gml/3.2"
@@ -20,7 +21,9 @@
   <xsl:template mode="mode-iso19115-3"
                 match="mdb:metadataIdentifier/mcc:MD_Identifier/mcc:code|
                        mdb:metadataIdentifier/mcc:MD_Identifier/mcc:codeSpace|
-                       mdb:metadataIdentifier/mcc:MD_Identifier/mcc:description"
+                       mdb:metadataIdentifier/mcc:MD_Identifier/mcc:description|
+                       mdb:dateInfo/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode = 'revision']/cit:date|
+                       mdb:dateInfo/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode = 'revision']/cit:dateType"
                 priority="2000">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>

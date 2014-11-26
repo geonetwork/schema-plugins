@@ -219,7 +219,20 @@
     <description iso="true">Smallest resolvable temporal period in a resource</description>
     <_condition>optional</_condition>
   </element>
+  <element name="mrl:additionalDocumentation">
+    <label>Additional doc.</label>
+    <description/>
+  </element>
+  <element name="mrl:LI_Source">
+    <label>Source</label>
+    <description/>
+  </element>
   <element name="mri:associatedResource" id="62.0">
+    <label>Associated resource</label>
+    <description iso="true">Associated resource information</description>
+    <_condition>optional</_condition>
+  </element>
+  <element name="mri:MD_AssociatedResource" id="62.0">
     <label>Associated resource</label>
     <description iso="true">Associated resource information</description>
     <_condition>optional</_condition>
@@ -869,6 +882,12 @@
             information</description>
 		<condition>Either attributes, features, featureInstances, attributeInstnaces, dataset or other must be provided</condition>
 	</element>
+  <element name="mcc:MD_ScopeDescription_Type" id="149.0">
+    <label>Scope description</label>
+    <description>Description of the class of information covered by the
+      information</description>
+    <condition>Either attributes, features, featureInstances, attributeInstnaces, dataset or other must be provided</condition>
+  </element>
 	<element name="mco:MD_SecurityConstraints" id="73.0">
 		<label>Security constraints</label>
 		<description>Handling restrictions imposed on the resource or metadata for national security
@@ -1649,8 +1668,8 @@
 		<label>File description</label>
 		<description>Text description of the illustration</description>
 	</element>
-	<element name="mri:fileIdentifier" id="2.0">
-		<label>File identifier</label>
+	<element name="mdb:metadataIdentifier" id="2.0">
+		<label>Metadata identifier</label>
 		<description>Unique identifier for this metadata file</description>
 	</element>
 	<element name="mcc:fileName" id="438.0">
@@ -1892,7 +1911,7 @@
 		<description>Longest wavelength that the sensor is capable of collecting within a designated
             band</description>
 	</element>
-	<element name="mri:maximumValue" id="356.0">
+	<element name="gex:maximumValue" id="356.0">
 		<label>Maximum value</label>
 		<description>Highest vertical extent contained in the dataset</description>
 		<condition>mandatory</condition>
@@ -2612,6 +2631,26 @@
 		<label>Resolution</label>
 		<description>Degree of detail in the grid dataset</description>
 	</element>
+  <element name="mri:distance">
+    <label>Horizontal ground sample distance</label>
+    <description>Horizontal ground sample distance</description>
+  </element>
+  <element name="mri:vertical">
+    <label>Vertical sampling distance</label>
+    <description>Vertical sampling distance</description>
+  </element>
+  <element name="mri:angularDistance">
+    <label>Angular sampling measure</label>
+    <description>Angular sampling measure</description>
+  </element>
+  <element name="mri:levelOfDetail">
+    <label>Level of detail</label>
+    <description>Brief textual description of the spatial resolution of the resource</description>
+  </element>
+  <element name="mri:MD_Resolution_Type">
+    <label>Resolution type</label>
+    <description/>
+  </element>
 	<element name="mri:resourceConstraints" id="35.0">
 		<label>Resource constraints</label>
 		<description>Provides information about constraints which apply to the
@@ -3146,6 +3185,23 @@
 		<label>Name of the calendar era</label>
 		<description></description>
 	</element>
+
+  <element name="relativePosition">
+    <label>Relative position</label>
+    <description></description>
+  </element>
+  <element name="gml:remoteSchema">
+    <label>Remote schema</label>
+    <description></description>
+  </element>
+  <element name="owns">
+    <label>Owns</label>
+    <description></description>
+  </element>
+  <element name="xlink:type">
+    <label>Type of link</label>
+    <description></description>
+  </element>
 	<element name="unit">
 		<label>Unit</label>
 		<description></description>
@@ -3524,6 +3580,10 @@
         <label>Vertical CRS</label>
         <description>Provides information about the origin from which the maximum and minimum elevation values are measured</description>
     </element>
+    <element name="gex:verticalCRSId">
+      <label>Vertical CRS identifier</label>
+      <description>Provides information about the origin from which the maximum and minimum elevation values are measured</description>
+    </element>
     <element name="gcx:FileName">
         <label>File name</label>
         <description>File name and source URL.</description>
@@ -3822,10 +3882,6 @@
   </element>
   <element name="gfc:valueMeasurementUnit">
     <label>Value measurement unit</label>
-  </element>
-  <element name="gco:CharacterString">
-    <label>Text</label>
-    <description></description>
   </element>
   <element name="gmx:FileName">
     <label>File name</label>

@@ -20,8 +20,9 @@
 						xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
             xmlns:skos="http://www.w3.org/2004/02/skos/core#">
 
-	<xsl:include href="../iso19139/convert/functions.xsl"/>
-	<xsl:include href="convert/functions.xsl"/>
+  <!-- TODO: At some point this plugin should not rely on iso19139 -->
+	<xsl:include href="../../iso19139/convert/functions.xsl"/>
+	<xsl:include href="../convert/functions.xsl"/>
 	<xsl:include href="../../../xsl/utils-fn.xsl"/>
   <xsl:include href="index-subtemplate-fields.xsl"/>
 	
@@ -32,12 +33,10 @@
 		 added to the GeoNetwork constants in the Java source code.
 		 Please keep indexes consistent among metadata standards if they should
 		 work accross different metadata resources -->
-	<!-- ========================================================================================= -->
-	
+
 	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no" />
 
 
-	<!-- ========================================================================================= -->
 
   <xsl:param name="thesauriDir"/>
   <xsl:param name="inspire">false</xsl:param>
@@ -51,13 +50,12 @@
     of the description of the temporal extent). -->
 	<xsl:variable name="useDateAsTemporalExtent" select="false()"/>
 
-        <!-- ========================================================================================= -->
 
   <xsl:variable name="fileIdentifier" select="/mdb:MD_Metadata|*[contains(@gco:isoType,'mdb:MD_Metadata')]/mdb:metadataIdentifier/mcc:MD_Identifier[mcc:codeSpace/*='urn:uuid']/mcc:code/*"/>
 
 	<xsl:template match="/">
 	    <xsl:variable name="isoLangId">
-	  	    <xsl:call-template name="langId19115-1-2013"/>
+	  	    <xsl:call-template name="langId19115-3"/>
         </xsl:variable>
 
 		<Document locale="{$isoLangId}">
@@ -67,7 +65,7 @@
 
 			
 			<xsl:variable name="_defaultTitle">
-				<xsl:call-template name="defaultTitle19115-1-2013">
+				<xsl:call-template name="defaultTitle">
 					<xsl:with-param name="isoDocLangId" select="$isoLangId"/>
 				</xsl:call-template>
 			</xsl:variable>
@@ -113,8 +111,7 @@
 		<Field name="extentDesc" string="{string(.)}" store="false" index="true"/>
 	</xsl:template>
 	
-	
-	<!-- ========================================================================================= -->
+
 
 	<xsl:template match="*" mode="metadata">
 
@@ -202,7 +199,7 @@
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 
 			<xsl:for-each select="*/gex:EX_Extent">
-				<xsl:apply-templates select="gex:geographicElement/gex:EX_GeographicBoundingBox" mode="latLon19115-1-2013"/>
+				<xsl:apply-templates select="gex:geographicElement/gex:EX_GeographicBoundingBox" mode="latLon19115-3"/>
 
 				<xsl:for-each select="gex:geographicElement/gex:EX_GeographicDescription/gex:geographicIdentifier/mcc:MD_Identifier/mcc:code/gco:CharacterString">
 					<Field name="geoDescCode" string="{string(.)}" store="true" index="true"/>
