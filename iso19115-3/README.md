@@ -4,7 +4,7 @@ This is the ISO19115-3 schema plugin for GeoNetwork 2.11.x or greater version.
 
 ## Warning:
 
-The XML schema is not the final version.
+The XML schema is not the final version. The work on the schema is accessible from https://github.com/ISO-TC211/XML/.
 
 ## Reference documents:
 
@@ -15,20 +15,17 @@ The XML schema is not the final version.
 
 ## Description:
 
-This plugin supports:
+This plugin is composed of:
 
 * indexing
-* editing (Angular editor)
+* editing (Angular editor only)
+ * editor associated resources
+ * directory support for contact, logo and format.
 * viewing
 * CSW
 * from/to ISO19139 conversion
-* editor associated resources
-* multilingual metadata
-
-
-This plugin does not support:
-* ... still lots of features to be checked
-
+* multilingual metadata support
+* validation (XSD and Schematron)
 
 ## Metadata rules:
 
@@ -120,6 +117,19 @@ for the schema:
   "validation":{"display":true}}
 ```
 
+
+
+## More work required
+
+### Validation
+
+On going work on schematron validation for ISO and INSPIRE.
+
+### CSW support
+
+Current implementation support ISO19115-3 as output format using the "own" parameter which is a specific feature of GeoNetwork. It could be relevant for a schema plugin to define what outputSchema could be used as output for CSW response and define the conversion to apply. http://www.isotc211.org/namespace/mdb/1.0/2014-07-11 should be added to the list.
+
+
 ## Community
 
 Comments and questions to geonetwork-developers or geonetwork-users mailing lists.
@@ -129,5 +139,6 @@ Comments and questions to geonetwork-developers or geonetwork-users mailing list
 
 * Simon Pigot (CSIRO)
 * François Prunayre (titellus)
+* Arnaud De Groof (Spacebel)
 * Ted Habermann (hdfgroup)
 

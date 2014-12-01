@@ -27,11 +27,12 @@
     <xsl:namespace name="xsi" select="'http://www.w3.org/2001/XMLSchema-instance'"/>
     <!-- Namespaces that include concepts outside of metadata -->
     <xsl:namespace name="gco" select="'http://www.isotc211.org/2005/gco'"/>
-    <xsl:namespace name="gmd" select="'http://www.isotc211.org/namespace/gmd'"/>
-    <xsl:namespace name="gmx" select="'http://www.isotc211.org/namespace/gmx'"/>
+    <xsl:namespace name="gmd" select="'http://www.isotc211.org/2005/gmd'"/>
+    <xsl:namespace name="svr" select="'http://www.isotc211.org/2005/svr'"/>
+    <xsl:namespace name="gmx" select="'http://www.isotc211.org/2005/gmx'"/>
     <xsl:namespace name="gts" select="'http://www.isotc211.org/2005/gts'"/>
-    <xsl:namespace name="gsr" select="'http://www.isotc211.org/namespace/gsr'"/>
-    <xsl:namespace name="gmi" select="'http://www.isotc211.org/namespace/gmi'"/>
+    <xsl:namespace name="gsr" select="'http://www.isotc211.org/2005/gsr'"/>
+    <xsl:namespace name="gmi" select="'http://www.isotc211.org/2005/gmi'"/>
     <!-- external namespaces -->
     <xsl:namespace name="gml" select="'http://www.opengis.net/gml/3.2'"/>
     <xsl:namespace name="xlink" select="'http://www.w3.org/1999/xlink'"/>
@@ -614,7 +615,7 @@
           <xsl:text>gts</xsl:text>
         </xsl:when>
         <xsl:when test="starts-with(name(),'srv:') and not(name()='srv:extent')">
-          <xsl:text>srv1</xsl:text>
+          <xsl:text>srv</xsl:text>
         </xsl:when>
         <xsl:when test="ancestor-or-self::mco:MD_Constraints
           or ancestor-or-self::mco:MD_SecurityConstraints 

@@ -343,7 +343,7 @@
 
     <!-- Identifier -->
     <xsl:variable name="identifier">
-      <xsl:apply-templates mode="elementFop" select="./mds:metadataIdentifier/mcc:MD_Identifier[string(mcc:codeSpace/*)='urn:uuid']/mcc:code/*">
+      <xsl:apply-templates mode="elementFop" select="./mds:metadataIdentifier[position() = 1]/mcc:MD_Identifier/mcc:code/*">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>

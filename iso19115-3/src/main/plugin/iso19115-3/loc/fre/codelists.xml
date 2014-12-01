@@ -1218,7 +1218,7 @@
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
 	<!-- ==================================================== -->
-	<codelist name="gmd:MD_KeywordTypeCode">
+	<codelist name="mri:MD_KeywordTypeCode">
 		<entry>
 			<code>discipline</code>
 			<label>Discipline</label>

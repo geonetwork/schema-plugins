@@ -268,7 +268,6 @@
   <xsl:template mode="mode-iso19115-3"
                 match="gml:beginPosition|gml:endPosition|gml:timePosition"
                 priority="400">
-<xsl:message>##<xsl:copy-of select="."/></xsl:message>
     <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
     <xsl:variable name="value" select="normalize-space(text())"/>
 
@@ -375,7 +374,6 @@
     <xsl:variable name="helper" select="gn-fn-metadata:getHelper($labelConfig/helper, .)"/>
 
     <xsl:variable name="added" select="parent::node()/parent::node()/@gn:addedObj"/>
-<xsl:message><xsl:copy-of select="."/>#</xsl:message>
     <xsl:call-template name="render-element">
       <xsl:with-param name="label" select="$labelConfig/label"/>
       <xsl:with-param name="value" select="."/>

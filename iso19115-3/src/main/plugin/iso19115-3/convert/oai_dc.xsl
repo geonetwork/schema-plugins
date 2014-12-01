@@ -29,7 +29,7 @@
 						xmlns:xsi  ="http://www.w3.org/2001/XMLSchema-instance"
 						xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
 
-			<xsl:for-each select="mds:metadataIdentifier/mcc:MD_Identifier[mcc:codeSpace='urn:uuid']/mcc:code">
+			<xsl:for-each select="mds:metadataIdentifier[position() = 1]/mcc:MD_Identifier/mcc:code">
 				<dc:identifier><xsl:value-of select="gco:CharacterString"/></dc:identifier>
 			</xsl:for-each>
 

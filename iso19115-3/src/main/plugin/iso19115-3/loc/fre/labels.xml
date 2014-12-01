@@ -2397,7 +2397,7 @@ version en tant que mot-clé complémentaire(s). Le numéro de version doit comp
     <help>Valeurs licites pouvant être affectées à l'élément étendu.</help>
     <condition>Condition</condition>
   </element>
-  <element name="cit:eastBoundLongitude" id="345.0">
+  <element name="gex:eastBoundLongitude" id="345.0">
     <label>Est</label>
     <description>Coordonnée la plus à l'est de la limite de l'étendue du jeu de données, exprimée en longitude avec des degrés décimaux (EST positif)</description>
     <help>Limite est de l'extension du jeu de données, exprimée en longitude géographique (degrés décimaux) comptée positivement vers l'est.</help>
@@ -3344,7 +3344,7 @@ période de temps couverte par le service.
     <condition/>
     
   </element>
-  <element name="cit:northBoundLatitude" id="347.0">
+  <element name="gex:northBoundLatitude" id="347.0">
     <label>Nord</label>
     <description>Coordonnée la plus au nord de la limite de l'étendue du jeu de données, exprimée en latitude avec des degrés décimaux (NORD positif)</description>
     <help>Limite nord de l'extension du jeu de données, exprimée en latitude géographique (degrés décimaux) comptée positivement vers le nord.</help>
@@ -4042,7 +4042,7 @@ diffusion restreinte.
     <condition/>
     
   </element>
-  <element name="cit:southBoundLatitude" id="346.0">
+  <element name="gex:southBoundLatitude" id="346.0">
     <label>Sud</label>
     <description>Coordonnée la plus au sud de la limite de l'étendue du jeu de données, exprimée en latitude avec des degrés décimaux (NORD positif)</description>
     <help>Limite sud de l'extension du jeu de données, exprimée en latitude géographique (degrés décimaux) comptée positivement vers le nord.</help>
@@ -4685,7 +4685,7 @@ l’IGN (WPS)
     <condition/>
     
   </element>
-  <element name="cit:westBoundLongitude" id="344.0">
+  <element name="gex:westBoundLongitude" id="344.0">
     <label>Ouest</label>
     <description>Coordonnée la plus à l'ouest de la limite de l'étendue du jeu de données, exprimée en longitude avec des degrés décimaux (EST positif)</description>
     <help>Limite ouest de l'extension du jeu de données, exprimée en longitude géographique (degrés décimaux) comptée positivement vers l'est.</help>

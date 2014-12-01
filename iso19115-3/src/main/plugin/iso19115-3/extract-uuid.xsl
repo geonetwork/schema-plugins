@@ -10,8 +10,7 @@
   <xsl:template match="mdb:MD_Metadata">
     <uuid>
       <xsl:value-of
-        select="mdb:metadataIdentifier/mcc:MD_Identifier
-              [mcc:codeSpace/gco:CharacterString='urn:uuid']
+        select="mdb:metadataIdentifier[position() = 1]/mcc:MD_Identifier
               /mcc:code/gco:CharacterString"
       />
     </uuid>

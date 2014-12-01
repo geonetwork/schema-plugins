@@ -34,11 +34,15 @@
 	<xsl:include href="../../iso19139/convert/functions.xsl"/>
 	<xsl:include href="../convert/functions.xsl"/>
 
-  <xsl:variable name="fileIdentifier" select="/mdb:MD_Metadata|*[contains(@gco:isoType,'mdb:MD_Metadata')]/mdb:metadataIdentifier/mcc:MD_Identifier[mcc:codeSpace/*='urn:uuid']/mcc:code/*"/>
 
-    <xsl:variable name="isoDocLangId">
-      <xsl:call-template name="langId19115-3"/>
-    </xsl:variable>
+  <!-- TODO: discussed where to place UUID. -->
+  <xsl:variable name="fileIdentifier"
+                select="//(mdb:MD_Metadata|*[contains(@gco:isoType,'mdb:MD_Metadata')])/
+                  mdb:metadataIdentifier[1]/mcc:MD_Identifier/mcc:code/*"/>
+
+  <xsl:variable name="isoDocLangId">
+    <xsl:call-template name="langId19115-3"/>
+  </xsl:variable>
 
     <xsl:template match="/">
 
@@ -284,35 +288,37 @@
 
             <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-            <xsl:for-each select="mri:graphicOverview/mcc:MD_BrowseGraphic">
-                <xsl:variable name="fileName"  select="mcc:fileName/gco:CharacterString"/>
-                <xsl:if test="$fileName != ''">
-                    <xsl:variable name="fileDescr" select="mcc:fileDescription/gco:CharacterString"/>
-                    <xsl:choose>
-                        <xsl:when test="contains($fileName ,'://')">
-							<xsl:choose>
-								<xsl:when test="string($fileDescr)='thumbnail'">
-									<Field  name="image" string="{concat('thumbnail|', $fileName)}" store="true" index="false"/>
-								</xsl:when>
-								<xsl:when test="string($fileDescr)='large_thumbnail'">
-									<Field  name="image" string="{concat('overview|', $fileName)}" store="true" index="false"/>
-								</xsl:when>
-								<xsl:otherwise>
-									<Field  name="image" string="{concat('unknown|', $fileName)}" store="true" index="false"/>
-								</xsl:otherwise>
-							</xsl:choose>
-                        </xsl:when>
-                        <xsl:when test="string($fileDescr)='thumbnail'">
-                            <!-- FIXME : relative path -->
-                            <Field  name="image" string="{concat($fileDescr, '|', '../../srv/eng/resources.get?uuid=', $fileIdentifier, '&amp;fname=', $fileName, '&amp;access=public')}" store="true" index="false"/>
-                        </xsl:when>
-						<xsl:when test="string($fileDescr)='large_thumbnail'">
-							<!-- FIXME : relative path -->
-							<Field  name="image" string="{concat('overview', '|', '../../srv/eng/resources.get?uuid=', $fileIdentifier, '&amp;fname=', $fileName, '&amp;access=public')}" store="true" index="false"/>
-						</xsl:when>
-                    </xsl:choose>
-                </xsl:if>
-            </xsl:for-each>
+      <xsl:for-each select="mri:graphicOverview/mcc:MD_BrowseGraphic">
+        <xsl:variable name="fileName"  select="mcc:fileName/gco:CharacterString"/>
+        <xsl:if test="$fileName != ''">
+            <xsl:variable name="fileDescr" select="mcc:fileDescription/gco:CharacterString"/>
+
+
+          <xsl:choose>
+              <xsl:when test="contains($fileName ,'://')">
+                <xsl:choose>
+                  <xsl:when test="string($fileDescr)='thumbnail'">
+                    <Field  name="image" string="{concat('thumbnail|', $fileName)}" store="true" index="false"/>
+                  </xsl:when>
+                  <xsl:when test="string($fileDescr)='large_thumbnail'">
+                    <Field  name="image" string="{concat('overview|', $fileName)}" store="true" index="false"/>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <Field  name="image" string="{concat('unknown|', $fileName)}" store="true" index="false"/>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:when>
+              <xsl:when test="string($fileDescr)='thumbnail'">
+                  <!-- FIXME : relative path -->
+                  <Field  name="image" string="{concat($fileDescr, '|', '../../srv/eng/resources.get?uuid=', $fileIdentifier, '&amp;fname=', $fileName, '&amp;access=public')}" store="true" index="false"/>
+              </xsl:when>
+              <xsl:when test="string($fileDescr)='large_thumbnail'">
+                <!-- FIXME : relative path -->
+                <Field  name="image" string="{concat('overview', '|', '../../srv/eng/resources.get?uuid=', $fileIdentifier, '&amp;fname=', $fileName, '&amp;access=public')}" store="true" index="false"/>
+              </xsl:when>
+            </xsl:choose>
+          </xsl:if>
+        </xsl:for-each>
 
             <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 			<!--  Fields use to search on Service -->

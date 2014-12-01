@@ -46,7 +46,7 @@
   <xsl:template match="mds:MD_Metadata|*[contains(@gco:isoType,'MD_Metadata')]" mode="record-reference">
     <!-- TODO : a metadata record may contains aggregate. In that case create one dataset per aggregate member. -->
     <dcat:dataset rdf:resource="{$url}/resource/{iso19115-3:getResourceCode(.)}"/>
-    <dcat:record rdf:resource="{$url}/metadata/{mds:metadataIdentifier/mcc:MD_Identifier[mcc:codeSpace/gco:CharacterString='urn:uuid']/mcc:code/gco:CharacterString}"/>
+    <dcat:record rdf:resource="{$url}/metadata/{mds:metadataIdentifier[position() = 1]/mcc:MD_Identifier/mcc:code/gco:CharacterString}"/>
   </xsl:template>
   
   
@@ -61,7 +61,7 @@
       
       xpath: //mds:MD_Metadata|//*[contains(@gco:isoType,'MD_Metadata')]
     -->
-    <dcat:CatalogRecord rdf:about="{$url}/metadata/{mds:metadataIdentifier/mcc:MD_Identifier[mcc:codeSpace/gco:CharacterString='urn:uuid']/mcc:code/gco:CharacterString}">
+    <dcat:CatalogRecord rdf:about="{$url}/metadata/{mds:metadataIdentifier[position() = 1]/mcc:MD_Identifier/mcc:code/gco:CharacterString}">
       <!-- Link to a dcat:Dataset or a rdf:Description for services and feature catalogue. -->
       <foaf:primaryTopic rdf:resource="{$url}/resource/{iso19115-3:getResourceCode(.)}"/>
 
@@ -73,7 +73,7 @@
       <!-- xpath: mds:dateInfo/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']cit:date/gco:DateTime -->
       
       <xsl:call-template name="add-reference-19115-1-2013">
-        <xsl:with-param name="uuid" select="mds:metadataIdentifier/mcc:MD_Identifier[mcc:codeSpace/gco:CharacterString='urn:uuid']/mcc:code/gco:CharacterString"/>
+        <xsl:with-param name="uuid" select="mds:metadataIdentifier[position() = 1]/mcc:MD_Identifier/mcc:code/gco:CharacterString"/>
       </xsl:call-template>
     </dcat:CatalogRecord>
     
@@ -447,7 +447,7 @@
     
     <xsl:value-of select="if ($metadata/mds:identificationInfo/*/mri:citation/*/cit:identifier/*/mcc:code/gco:CharacterString!='')
       then $metadata/mds:identificationInfo/*/mri:citation/*/cit:identifier/*/mcc:code/gco:CharacterString 
-      else $metadata/mds:metadataIdentifier/mcc:MD_Identifier[mcc:codeSpace/gco:CharacterString='urn:uuid']/mcc:code/gco:CharacterString"/>
+      else $metadata/mds:metadataIdentifier[position() = 1]/mcc:MD_Identifier/mcc:code/gco:CharacterString"/>
   </xsl:function>
   
   

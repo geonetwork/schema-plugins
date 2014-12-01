@@ -132,9 +132,8 @@
           <xsl:value-of select="/root/gui/strings/changeDate"/>&#160;<xsl:value-of 
             select="if (contains($modifiedDate, 'T')) then substring-before($modifiedDate, 'T') else $modifiedDate"/> | 
           <xsl:value-of select="/root/gui/strings/uuid"/>&#160;
-          <xsl:value-of select="mdb:metadataIdentifier/
-                                  mcc:MD_Identifier[mcc:codeSpace/gco:CharacterString = 'urn:uuid']/
-                                  mcc:code"/>
+          <xsl:value-of select="mdb:metadataIdentifier[position() = 1]/
+                                  mcc:MD_Identifie/mcc:code"/>
         </span>
 
       </xsl:with-param>
@@ -261,7 +260,7 @@
         </xsl:call-template>
       </xsl:with-param>
       <xsl:with-param name="content">
-        <xsl:for-each select="gmd:keyword">
+        <xsl:for-each select="mri:keyword">
           <xsl:if test="position() &gt; 1"><xsl:text>, </xsl:text></xsl:if>
           
           
@@ -285,7 +284,7 @@
         </xsl:for-each>
         
         
-        <xsl:variable name="type" select="gmd:type/mri:MD_KeywordTypeCode/@codeListValue"/>
+        <xsl:variable name="type" select="mri:type/mri:MD_KeywordTypeCode/@codeListValue"/>
         <xsl:if test="$type != ''">
           (<xsl:value-of
             select="/root/gui/schemas/*[name(.)='iso19115-3']/codelists/codelist[@name = 'mri:MD_KeywordTypeCode']/

@@ -346,7 +346,7 @@
 
 	<!-- ============================================================================= -->
 
-	<xsl:template mode="iso19115-3" match="mdb:metadataIdentifier[mcc:MD_Identifier/mcc:codeSpace/gco:CharacterString='urn:uuid']" priority="2">
+	<xsl:template mode="iso19115-3" match="mdb:metadataIdentifier[position() = 1]" priority="2">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 

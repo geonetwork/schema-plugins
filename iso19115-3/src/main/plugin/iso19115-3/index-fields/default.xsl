@@ -51,7 +51,10 @@
 	<xsl:variable name="useDateAsTemporalExtent" select="false()"/>
 
 
-  <xsl:variable name="fileIdentifier" select="/mdb:MD_Metadata|*[contains(@gco:isoType,'mdb:MD_Metadata')]/mdb:metadataIdentifier/mcc:MD_Identifier[mcc:codeSpace/*='urn:uuid']/mcc:code/*"/>
+  <!-- TODO: discussed where to place UUID. -->
+  <xsl:variable name="fileIdentifier"
+                select="//(mdb:MD_Metadata|*[contains(@gco:isoType,'mdb:MD_Metadata')])/
+                  mdb:metadataIdentifier[1]/mcc:MD_Identifier/mcc:code/*"/>
 
 	<xsl:template match="/">
 	    <xsl:variable name="isoLangId">
@@ -256,20 +259,23 @@
 					<Field name="keywordType" string="{string(.)}" store="true" index="true"/>
 				</xsl:for-each>
 			</xsl:for-each>
-	
-			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-            <xsl:variable name="email" select="/mdb:MD_Metadata/mdb:contact[1]/cit:CI_Responsibility[1]/cit:contactInfo[1]/cit:CI_Contact[1]/cit:address[1]/cit:CI_Address[1]/cit:electronicMailAddress[1]/gco:CharacterString[1]"/>
-            <xsl:for-each select="mri:pointOfContact/cit:CI_Responsibility/cit:organisationName/gco:CharacterString|mri:pointOfContact/cit:CI_Responsibility/cit:organisationName/gcx:Anchor">
-				<Field name="orgName" string="{string(.)}" store="true" index="true"/>
+
+      <xsl:for-each select="mri:pointOfContact/cit:CI_Responsibility">
+        <xsl:variable name="orgName" select="string(cit:party/cit:CI_Organisation/cit:name/*)"/>
+
+        <Field name="orgName" string="{$orgName}" store="true" index="true"/>
 				
-				<xsl:variable name="role" select="../../cit:role/*/@codeListValue"/>
-				<xsl:variable name="logo" select="../..//gcx:FileName/@src"/>
+				<xsl:variable name="role" select="cit:role/*/@codeListValue"/>
+        <xsl:variable name="email" select="cit:contactInfo/cit:CI_Contact/
+                                          cit:address/cit:CI_Address/
+                                          cit:electronicMailAddress/gco:CharacterString"/>
+				<xsl:variable name="logo" select="cit/party/cit:CI_Organisation/
+				                                    cit:logo/mcc:MD_BrowseGraphic/mcc:fileName/gco:CharacterString"/>
 			
-				<Field name="responsibleParty" string="{concat($role, '|resource|', ., '|', $logo, '|', $email)}" store="true" index="false"/>
+				<Field name="responsibleParty" string="{concat($role, '|resource|', $orgName, '|', $logo, '|', $email)}" store="true" index="false"/>
 				
 			</xsl:for-each>
 
-			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 	
 			<xsl:choose>
 				<xsl:when test="mri:resourceConstraints/mco:MD_SecurityConstraints">
@@ -280,14 +286,12 @@
 				</xsl:otherwise>
 			</xsl:choose>
 
-			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 	
 			<xsl:for-each select="mri:topicCategory/mri:MD_TopicCategoryCode">
 				<Field name="topicCat" string="{string(.)}" store="true" index="true"/>
 				<Field name="keyword" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
 
-			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 
       <!-- mri:defaultLocale/lan:PT_Locale takes over from gmd:language -->
 			<xsl:for-each select="mri:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue">
@@ -641,16 +645,19 @@
 		
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-    <!-- FIXME: MD_BrowseGraphic for organisation logo should use mcc:linkage 
-         instead of mcc:fileName -->
-		<xsl:for-each select="mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation">
-			<Field name="metadataPOC" string="{string(cit:name/*)}" store="true" index="true"/>
-			
-			<xsl:variable name="role" select="../../cit:role/*/@codeListValue"/>
-			<xsl:variable name="logo" select="cit:logo/mcc:MD_BrowseGraphic/mcc:fileName/gco:CharacterString"/>
-			
-			<Field name="responsibleParty" string="{concat($role, '|metadata|', ., '|', $logo)}" store="true" index="false"/>			
-		</xsl:for-each>
+    <xsl:for-each select="mdb:contact/cit:CI_Responsibility">
+      <xsl:variable name="orgName" select="string(cit:party/cit:CI_Organisation/cit:name/*)"/>
+      <Field name="orgName" string="{$orgName}" store="true" index="true"/>
+
+      <xsl:variable name="role" select="cit:role/*/@codeListValue"/>
+      <xsl:variable name="logo" select="cit/party/cit:CI_Organisation/
+				                                    cit:logo/mcc:MD_BrowseGraphic/mcc:fileName/gco:CharacterString"/>
+
+      <Field name="responsibleParty" string="{concat($role, '|metadata|', $orgName, '|', $logo)}" store="true" index="false"/>
+    </xsl:for-each>
+
+
+
 
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 		<!-- === Reference system info === -->		
