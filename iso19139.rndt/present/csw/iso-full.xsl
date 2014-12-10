@@ -18,6 +18,8 @@
                 xmlns:geonet="http://www.fao.org/geonetwork"
 				
 				xmlns:gml="http://www.opengis.net/gml/3.2"
+                
+                xmlns:ITgmd="http://www.cnipa.gov.it/RNDT/ITgmd"
 				
                 exclude-result-prefixes="geonet dc dct ows srv">
 
@@ -27,9 +29,75 @@
 
     <xsl:variable name="isSrv" select="boolean(//srv:*)"/>
 
+    <xsl:variable name="isTile" select="boolean(//gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue='tile')"/>
+
 	<!-- ================================================================= -->
 
-	<!-- Metadata root elem: set sane namespaces -->
+	<!-- Generic node -->
+
+	<xsl:template match="/">
+        <!--<xsl:message>============ ISTILE <xsl:value-of select="$isTile"/></xsl:message>-->
+
+        <xsl:choose>
+            <xsl:when test="$isTile">
+                <!-- I tile hanno un envelope Request esterno -->
+                <ITgmd:Request
+                               xmlns:ITgmd="http://www.cnipa.gov.it/RNDT/ITgmd"
+                               xmlns:gmd="http://www.isotc211.org/2005/gmd"
+                               xmlns:gco="http://www.isotc211.org/2005/gco"
+                               xmlns:gsr="http://www.isotc211.org/2005/gsr"
+                               xmlns:gss="http://www.isotc211.org/2005/gss"
+                               xmlns:gts="http://www.isotc211.org/2005/gts"
+                               xmlns:gml="http://www.opengis.net/gml/3.2"
+                               xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <ITgmd:Update_RNDT domain="nazionale">
+                        <ITgmd:DS_Tile>
+                            <ITgmd:tileMetadata>
+                                <xsl:apply-templates select="node()" mode="tile"/>
+                            </ITgmd:tileMetadata>
+                        </ITgmd:DS_Tile>
+                    </ITgmd:Update_RNDT>
+                </ITgmd:Request>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:copy copy-namespaces="no">
+                    <xsl:apply-templates select="node()"/>
+                </xsl:copy>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+
+	<xsl:template match="@*|node()">
+		<xsl:variable name="info" select="geonet:info"/>
+		<xsl:copy copy-namespaces="no">
+			<xsl:apply-templates select="@*|node()"/>
+
+			<!-- GeoNetwork elements added when resultType is equal to results_with_summary -->
+			<xsl:if test="$displayInfo = 'true'">
+				<xsl:copy-of select="$info"/>
+			</xsl:if>
+
+		</xsl:copy>
+	</xsl:template>
+
+	<xsl:template match="@*|node()" mode="tile">
+		<xsl:variable name="info" select="geonet:info"/>
+		<xsl:copy copy-namespaces="no">
+			<xsl:apply-templates select="@*|node()" mode="tile"/>
+
+			<!-- GeoNetwork elements added when resultType is equal to results_with_summary -->
+			<xsl:if test="$displayInfo = 'true'">
+				<xsl:copy-of select="$info"/>
+			</xsl:if>
+
+		</xsl:copy>
+	</xsl:template>
+
+
+	<!-- ================================================================= -->
+
+	<!-- Metadata root elem for non-tile metadata: set sane namespaces -->
 
 	<xsl:template match="gmd:MD_Metadata">
 		<xsl:element name="gmd:MD_Metadata">
@@ -74,21 +142,6 @@
 
 	<!-- ================================================================= -->
 
-	<!-- Generic node -->
-
-	<xsl:template match="@*|node()">
-		<xsl:variable name="info" select="geonet:info"/>
-		<xsl:copy copy-namespaces="no">
-			<xsl:apply-templates select="@*|node()"/>
-
-			<!-- GeoNetwork elements added when resultType is equal to results_with_summary -->
-			<xsl:if test="$displayInfo = 'true'">
-				<xsl:copy-of select="$info"/>
-			</xsl:if>
-
-		</xsl:copy>
-	</xsl:template>
-
 	<!-- Remove comments -->
 
 	<xsl:template match="comment()" priority="100"/>
@@ -97,19 +150,8 @@
 
 	<xsl:template match="geonet:info" priority="100"/>
 
-	<!-- Fix the namespace URI 
-
-	<xsl:template match="*[namespace-uri()='http://www.opengis.net/gml/3.2']" priority="100">
-		<xsl:element name="{local-name(.)}" namespace="http://www.opengis.net/gml">
-			<xsl:apply-templates select="@*|node()"/>
-		</xsl:element>
-	</xsl:template>
-
-	<xsl:template match="@*[namespace-uri()='http://www.opengis.net/gml/3.2']" priority="100">
-		<xsl:attribute name="{local-name(.)}">
-			<xsl:copy/>
-		</xsl:attribute>
-	</xsl:template>-->
+	<!-- ================================================================= -->
+	<!-- Remap gml URI from /gml to /gml/3.2 -->
      
     <xsl:template match="@*[namespace-uri()='http://www.opengis.net/gml']">
         <xsl:attribute name="gml:{local-name()}">
@@ -128,17 +170,34 @@
 	<!-- Replace RNDT metadata standard name/version -->
 
 	<xsl:template match="gmd:metadataStandardName">
-		<xsl:copy copy-namespaces="no">
-			<gco:CharacterString>ISO 19115:2003/19139</gco:CharacterString>
-		</xsl:copy>
-	</xsl:template>
-
+        <xsl:choose>
+            <xsl:when test="$isTile">
+                <ITgmd:metadataStandardName>
+                    <gco:CharacterString>DM - Regole tecniche RNDT</gco:CharacterString>
+                </ITgmd:metadataStandardName>
+            </xsl:when>
+            <xsl:otherwise>
+                <gmd:metadataStandardName>
+                    <gco:CharacterString>DM - Regole tecniche RNDT</gco:CharacterString>
+                </gmd:metadataStandardName>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
 
 	<xsl:template match="gmd:metadataStandardVersion">
-		<xsl:copy copy-namespaces="no">
-			<gco:CharacterString>1.0</gco:CharacterString>
-		</xsl:copy>
-	</xsl:template>
+        <xsl:choose>
+            <xsl:when test="$isTile">
+                <ITgmd:metadataStandardVersion>
+                    <gco:CharacterString>10 novembre 2011</gco:CharacterString>
+                </ITgmd:metadataStandardVersion>
+            </xsl:when>
+            <xsl:otherwise>
+                <gmd:metadataStandardVersion>
+                    <gco:CharacterString>10 novembre 2011</gco:CharacterString>
+                </gmd:metadataStandardVersion>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
 
 	<!-- ================================================================= -->
 
@@ -219,35 +278,45 @@
     -->
 	
 	<!-- Remove empty keywords 1) remove parent <gmd:descriptiveKeywords> if all <gmd:MD_Keywords> are empty -->
-	
+
 	<xsl:template match="gmd:identificationInfo/*/gmd:descriptiveKeywords">
 		<xsl:variable name="concatkw">
 			<xsl:call-template name="extract_keywords_text"/>
 		</xsl:variable>
-		
+
 		<!--<xsl:comment>lista keyword: [<xsl:copy-of select="$concatkw" />]</xsl:comment>-->
-		
+
 		<xsl:choose>
 			<xsl:when test="not(string($concatkw))">
 				<xsl:comment>descriptiveKeywords vuota</xsl:comment>
 			</xsl:when>
+            <xsl:when test="$isTile">
+                <ITgmd:descriptiveKeywords>
+					<xsl:apply-templates select="@*|node()"/>
+                </ITgmd:descriptiveKeywords>
+            </xsl:when>
 			<xsl:otherwise>
-				<xsl:copy>
+                <xsl:copy copy-namespaces="no">
 					<xsl:apply-templates select="@*|node()"/>
 				</xsl:copy>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
-	
+
 	<!-- Remove empty keywords 2) remove <gmd:keyword> if empty -->
-	
+
 	<xsl:template match="gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword">
 		<xsl:choose>
 			<xsl:when test="not(string(gco:CharacterString))">
 				<xsl:comment>Keyword vuota</xsl:comment>
 			</xsl:when>
+<!--            <xsl:when test="$isTile">
+                <ITgmd:keyword>
+					<xsl:apply-templates select="@*|node()"/>
+                </ITgmd:keyword>
+            </xsl:when>-->
 			<xsl:otherwise>
-				<xsl:copy>
+                <xsl:copy copy-namespaces="no">
 					<xsl:apply-templates select="@*|node()"/>
 				</xsl:copy>
 			</xsl:otherwise>
@@ -258,6 +327,97 @@
 		<xsl:for-each select="gmd:MD_Keywords/gmd:keyword"><xsl:copy-of select="gco:CharacterString" /></xsl:for-each>
 	</xsl:template>
 	
+	<!-- ================================================================= -->
+	<!-- ================================================================= -->
+    <!-- Templates per i tile                                              -->
+	<!-- ================================================================= -->
+	<!-- ================================================================= -->
+
+	<!-- Metadata root elem for tile related metadata -->
+
+	<xsl:template match="gmd:MD_Metadata" mode="tile">
+		<xsl:element name="ITgmd:MD_Metadata">
+			<xsl:apply-templates select="gmd:fileIdentifier"/>
+			<xsl:apply-templates select="gmd:language"/>
+			<xsl:apply-templates select="gmd:characterSet"/>
+			<ITgmd:parentIdentifier>
+				<gco:CharacterString>
+					<xsl:choose>
+						<xsl:when test="//gmd:MD_Metadata/gmd:parentIdentifier/gco:CharacterString != '' ">
+							<xsl:value-of select="//gmd:MD_Metadata/gmd:parentIdentifier/gco:CharacterString"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="./gmd:fileIdentifier/gco:CharacterString"/>
+						</xsl:otherwise>
+					</xsl:choose>
+				</gco:CharacterString>
+			</ITgmd:parentIdentifier>
+			<xsl:apply-templates select="child::* except (gmd:fileIdentifier|gmd:parentIdentifier|gmd:language|gmd:characterSet)"/>
+			<!-- <xsl:apply-templates select="//*[not(self::gmd:fileIdentifier)|not(self::gmd:language)|not(self::gmd:characterSet)]"/> -->
+		</xsl:element>
+	</xsl:template>
+
+	<!-- ================================================================= -->
+    <!-- remap generic gmd elements in tile metadata -->
+
+    <xsl:template match="@*[namespace-uri()='http://www.isotc211.org/2005/gmd']">
+        <xsl:choose>
+            <xsl:when test="$isTile">
+                <xsl:attribute name="ITgmd:{local-name()}">
+                    <xsl:value-of select="."/>
+                </xsl:attribute>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:copy copy-namespaces="no">
+                    <xsl:apply-templates select="@*"/>
+                </xsl:copy>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <xsl:template match="*[namespace-uri()='http://www.isotc211.org/2005/gmd']">
+        <xsl:choose>
+            <xsl:when test="$isTile">
+                <xsl:element name="ITgmd:{local-name()}">
+                    <xsl:apply-templates select="node()|@*"/>
+                </xsl:element>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:copy copy-namespaces="no">
+                    <xsl:apply-templates select="node()|@*"/>
+                </xsl:copy>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <!-- These elements do not need namespace conversion -->
+    <xsl:template match="gmd:LanguageCode|gmd:MD_CharacterSetCode|gmd:MD_ScopeCode|gmd:MD_Format|gmd:name|gmd:version|
+                         gmd:CI_Citation|gmd:CI_OnlineResource|gmd:CI_Date|gmd:CI_DateTypeCode|gmd:CI_PresentationFormCode|gmd:CI_RoleCode|
+                         gmd:linkage|gmd:URL|gmd:RS_Identifier|gmd:code|
+                         gmd:dateType|gmd:date|gmd:MD_SpatialRepresentationTypeCode|
+                         gmd:MD_Resolution|gmd:equivalentScale|gmd:MD_RepresentativeFraction|gmd:denominator|
+                         gmd:MD_Keywords|gmd:keyword|gmd:thesaurusName|
+                         gmd:EX_GeographicBoundingBox|gmd:westBoundLongitude|gmd:eastBoundLongitude|gmd:southBoundLatitude|gmd:northBoundLatitude|
+                         gmd:DQ_Scope|gmd:level|gmd:DQ_AbsoluteExternalPositionalAccuracy|gmd:result|gmd:DQ_QuantitativeResult|gmd:valueUnit|gmd:value|
+                         gmd:DQ_DomainConsistency|gmd:DQ_ConformanceResult|gmd:specification|gmd:explanation|gmd:pass" priority="10">
+        <xsl:copy copy-namespaces="no">
+            <xsl:apply-templates select="node()|@*"/>
+        </xsl:copy>
+    </xsl:template>
+
+
+	<!-- ================================================================= -->
+
+	<xsl:template match="*[@gco:isoType]" priority="100">
+		<xsl:variable name="elemName" select="@gco:isoType"/>
+
+		<xsl:element name="{$elemName}">
+			<xsl:apply-templates select="@*[name()!='gco:isoType']"/>
+			<xsl:apply-templates select="node()"/>
+		</xsl:element>
+	</xsl:template>
+
+
 	<!-- ================================================================= -->
 
 </xsl:stylesheet>
