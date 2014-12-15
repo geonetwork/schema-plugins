@@ -392,9 +392,9 @@
 
     <!-- These elements do not need namespace conversion -->
     <xsl:template match="gmd:LanguageCode|gmd:MD_CharacterSetCode|gmd:MD_ScopeCode|gmd:MD_Format|gmd:name|gmd:version|
-                         gmd:CI_Citation|gmd:CI_OnlineResource|gmd:CI_Date|gmd:CI_DateTypeCode|gmd:CI_PresentationFormCode|gmd:CI_RoleCode|
-                         gmd:linkage|gmd:URL|gmd:RS_Identifier|gmd:code|
-                         gmd:dateType|gmd:date|gmd:MD_SpatialRepresentationTypeCode|
+                         gmd:CI_OnlineResource|gmd:CI_Date|gmd:CI_DateTypeCode|gmd:CI_PresentationFormCode|gmd:CI_RoleCode|
+                         gmd:title|gmd:linkage|gmd:URL|gmd:RS_Identifier|gmd:code|
+                         gmd:dateType|gmd:MD_SpatialRepresentationTypeCode|
                          gmd:MD_Resolution|gmd:equivalentScale|gmd:MD_RepresentativeFraction|gmd:denominator|
                          gmd:MD_Keywords|gmd:keyword|gmd:thesaurusName|
                          gmd:EX_GeographicBoundingBox|gmd:westBoundLongitude|gmd:eastBoundLongitude|gmd:southBoundLatitude|gmd:northBoundLatitude|
