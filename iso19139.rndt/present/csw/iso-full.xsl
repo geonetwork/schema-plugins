@@ -393,13 +393,16 @@
     <!-- These elements do not need namespace conversion -->
     <xsl:template match="gmd:LanguageCode|gmd:MD_CharacterSetCode|gmd:MD_ScopeCode|gmd:MD_Format|gmd:name|gmd:version|
                          gmd:CI_OnlineResource|gmd:CI_Date|gmd:CI_DateTypeCode|gmd:CI_PresentationFormCode|gmd:CI_RoleCode|
-                         gmd:title|gmd:linkage|gmd:URL|gmd:RS_Identifier|gmd:code|
+                         gmd:linkage|gmd:URL|gmd:RS_Identifier|gmd:code|
                          gmd:dateType|gmd:MD_SpatialRepresentationTypeCode|
-                         gmd:MD_Resolution|gmd:equivalentScale|gmd:MD_RepresentativeFraction|gmd:denominator|
-                         gmd:MD_Keywords|gmd:keyword|gmd:thesaurusName|
-                         gmd:EX_GeographicBoundingBox|gmd:westBoundLongitude|gmd:eastBoundLongitude|gmd:southBoundLatitude|gmd:northBoundLatitude|
-                         gmd:DQ_Scope|gmd:level|gmd:DQ_AbsoluteExternalPositionalAccuracy|gmd:result|gmd:DQ_QuantitativeResult|gmd:valueUnit|gmd:value|
-                         gmd:DQ_DomainConsistency|gmd:DQ_ConformanceResult|gmd:specification|gmd:explanation|gmd:pass" priority="10">
+                         gmd:MD_Resolution|gmd:MD_Resolution//gmd:*|
+                         gmd:descriptiveKeywords//gmd:*|
+                         gmd:CI_Date//gmd:*|
+                         gmd:DQ_DomainConsistency|gmd:DQ_DomainConsistency//gmd:*|
+                         gmd:geographicElement//gmd:*|
+                         gmd:DQ_Scope|gmd:level|
+                         gmd:DQ_AbsoluteExternalPositionalAccuracy|gmd:DQ_AbsoluteExternalPositionalAccuracy//gmd:*"
+                  priority="10">
         <xsl:copy copy-namespaces="no">
             <xsl:apply-templates select="node()|@*"/>
         </xsl:copy>
