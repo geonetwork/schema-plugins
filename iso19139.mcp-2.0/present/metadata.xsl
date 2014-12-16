@@ -26,7 +26,7 @@
 	<xsl:variable name="ccurl-2.0" select="/root/gui/schemas/iso19139.mcp-2.0/strings/creativeCommonsUrl"/>
 
 	<!-- include mcp specific configuration -->
-	<xsl:variable name="mcpconfig" select="document('metadata-config.xml')"/>
+	<xsl:variable name="mcpconfig" select="/root/gui/config/termSelector"/>
 
 	<!-- main template - the way into processing iso19139.mcp-2.0 -->
   <xsl:template match="metadata-iso19139.mcp-2.0" name="metadata-iso19139.mcp-2.0">
@@ -2234,7 +2234,7 @@
 			<xsl:value-of select="name(.)"/>
 		</xsl:variable>
 		
-		<xsl:variable name="selectorConfig" select="$mcpconfig/config/termSelector/element[@name=$name]"/>
+		<xsl:variable name="selectorConfig" select="$mcpconfig/element[@name=$name]"/>
 		
 		<xsl:choose>
 			<xsl:when test="$edit and $selectorConfig">
@@ -2368,7 +2368,7 @@
 
 		<xsl:variable name="prevBrother" select="preceding-sibling::*[1]"/>
 
-		<xsl:variable name="config" select="$mcpconfig/config/termSelector/element[@name=$name]"/>
+		<xsl:variable name="config" select="$mcpconfig/element[@name=$name]"/>
 		
 		<xsl:if test="name($prevBrother)!=$name">
 			<xsl:variable name="max" select="(@max|../geonet:element/@max)[1]"/>
