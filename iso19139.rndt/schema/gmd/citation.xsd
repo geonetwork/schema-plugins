@@ -50,8 +50,8 @@
 					<xs:element name="edition" type="gco:CharacterString_PropertyType" minOccurs="0"/>
 					<xs:element name="editionDate" type="gco:Date_PropertyType" minOccurs="0"/>
 					<xs:element name="identifier" type="gmd:MD_Identifier_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="citedResponsibleParty" type="gmd:CI_ResponsibleParty_PropertyType" minOccurs="1" maxOccurs="unbounded"/>
-					<xs:element name="presentationForm" type="gmd:CI_PresentationFormCode_PropertyType" minOccurs="1" maxOccurs="unbounded"/>
+					<xs:element name="citedResponsibleParty" type="gmd:CI_ResponsibleParty_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="presentationForm" type="gmd:CI_PresentationFormCode_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="series" type="gmd:CI_Series_PropertyType" minOccurs="0"/>
 					<xs:element name="otherCitationDetails" type="gco:CharacterString_PropertyType" minOccurs="0"/>
 					<xs:element name="collectiveTitle" type="gco:CharacterString_PropertyType" minOccurs="0"/>
