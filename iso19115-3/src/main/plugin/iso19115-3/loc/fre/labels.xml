@@ -1090,6 +1090,11 @@ responsable du service.</li>
     <condition/>
     
   </element>
+  <element name="mdb:MD_MetadataScope">
+    <label>Type de ressource</label>
+    <description>Domaine auquel les métadonnées s'appliquent (voir l'annexe C pour plus d'information au sujet des niveaux de hiérarchie des métadonnées)</description>
+    <help>Domaine auquel les métadonnées se rapportent. La catégorie d'informations à laquelle l'entité se réfère peut être indiquée dans la liste des codes (exemple : attributs, objets géométriques, jeu de données, etc.). "Jeu de données" est le paramètre par défaut.</help>
+  </element>
   <element name="cit:MD_MetadataExtensionInformation" id="303.0">
     <label>Informations sur les extensions de métadonnées</label>
     <description>Classe pour les informations décrivant les extensions du modèle de métadonnées</description>

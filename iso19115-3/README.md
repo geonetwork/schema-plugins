@@ -1,6 +1,6 @@
 # ISO 19115-3 schema plugin
 
-This is the ISO19115-3 schema plugin for GeoNetwork 2.11.x or greater version.
+This is the ISO19115-3 schema plugin for GeoNetwork 3.x or greater version.
 
 ## Warning:
 
@@ -121,6 +121,9 @@ for the schema:
 
 ## More work required
 
+### Formatter
+
+
 ### Validation
 
 On going work on schematron validation for ISO and INSPIRE.
@@ -128,6 +131,10 @@ On going work on schematron validation for ISO and INSPIRE.
 ### CSW support
 
 Current implementation support ISO19115-3 as output format using the "own" parameter which is a specific feature of GeoNetwork. It could be relevant for a schema plugin to define what outputSchema could be used as output for CSW response and define the conversion to apply. http://www.isotc211.org/namespace/mdb/1.0/2014-07-11 should be added to the list.
+
+### GML support
+
+Polygon or line editing and view.
 
 
 ## Community

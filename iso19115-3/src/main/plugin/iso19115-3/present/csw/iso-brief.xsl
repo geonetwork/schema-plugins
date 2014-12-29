@@ -49,7 +49,6 @@
         <xsl:variable name="nameSpacePrefix">
           <xsl:call-template name="getNamespacePrefix"/>
         </xsl:variable>
-        <xsl:message><xsl:value-of select="name()"/>-<xsl:value-of select="$nameSpacePrefix"/> </xsl:message>
         <xsl:element name="{concat($nameSpacePrefix,':',local-name(.))}">
           <xsl:copy-of select="@*"/>
           <xsl:apply-templates select="mri:citation"/>

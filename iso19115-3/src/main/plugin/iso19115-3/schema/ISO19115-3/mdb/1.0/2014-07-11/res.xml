@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.oxygenxml.com/ns/report">
+<incident>
+<engine>ISO Schematron</engine>
+<severity>error</severity>
+<description>Diagnostics: [conf.metadata-base-instance.root-element-success-en] 1 root element MD_Metadata found. [conf.metadata-base-instance.root-element-success-fr] 1 élément(s) racine(s) MD_Metadata identifié(s).</description>
+<systemID>/home/francois/dev/metawal-core-geonetwork/schemas/iso19115-3/src/main/plugin/iso19115-3/schema/ISO19115-3/mdb/1.0/2014-07-11/metadata-base-sch-test.xml</systemID>
+<operationDescription>
+<mainValidationFile>/home/francois/dev/metawal-core-geonetwork/schemas/iso19115-3/src/main/plugin/iso19115-3/schema/ISO19115-3/mdb/1.0/2014-07-11/metadata-base-sch-test.xml</mainValidationFile>
+</operationDescription>
+</incident>
+<incident>
+<engine>ISO Schematron</engine>
+<severity>error</severity>
+<description>Diagnostics: [conf.metadata-base-instance.scope-name-failure-en] Specify a name for the metadata scope (required if the scope code is not &quot;dataset&quot;). [conf.metadata-base-instance.scope-name-failure-fr] Préciser la description du domaine d'application (car le document décrit une ressource qui n'est pas un &quot;jeu de données&quot;).</description>
+<systemID>/home/francois/dev/metawal-core-geonetwork/schemas/iso19115-3/src/main/plugin/iso19115-3/schema/ISO19115-3/mdb/1.0/2014-07-11/metadata-base-sch-test.xml</systemID>
+<operationDescription>
+<mainValidationFile>/home/francois/dev/metawal-core-geonetwork/schemas/iso19115-3/src/main/plugin/iso19115-3/schema/ISO19115-3/mdb/1.0/2014-07-11/metadata-base-sch-test.xml</mainValidationFile>
+</operationDescription>
+<location>
+<start>
+<line>36</line>
+<column>0</column>
+</start>
+</location>
+</incident>
+<incident>
+<engine>ISO Schematron</engine>
+<severity>error</severity>
+<description>Diagnostics: [conf.metadata-base-instance.create-date-failure-en] Specify a creation date for the metadata record (MD_Metadata/dateInfo... with CI_DateTypeCode/@codeListValue='creation'). [conf.metadata-base-instance.create-date-failure-fr] Specify a creation date for the metadata record (MD_Metadata/dateInfo... with CI_DateTypeCode/@codeListValue='creation').</description>
+<systemID>/home/francois/dev/metawal-core-geonetwork/schemas/iso19115-3/src/main/plugin/iso19115-3/schema/ISO19115-3/mdb/1.0/2014-07-11/metadata-base-sch-test.xml</systemID>
+<operationDescription>
+<mainValidationFile>/home/francois/dev/metawal-core-geonetwork/schemas/iso19115-3/src/main/plugin/iso19115-3/schema/ISO19115-3/mdb/1.0/2014-07-11/metadata-base-sch-test.xml</mainValidationFile>
+</operationDescription>
+<location>
+<start>
+<line>32</line>
+<column>0</column>
+</start>
+</location>
+</incident>
+</report>

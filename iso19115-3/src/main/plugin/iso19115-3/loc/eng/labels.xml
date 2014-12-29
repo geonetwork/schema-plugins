@@ -210,9 +210,14 @@
     <_condition>optional</_condition>
   </element>
   <element name="mdb:metadataScope" id="38.0">
-    <label>Domaine d’application des métadonnées</label>
-    <description iso="true">Le domaine d’application/type de ressource pour laquelle les métadonnées sont fournies</description>
-    <_condition>conditional / ifMetadata is about a resource other than a dataset?</_condition>
+    <label>Type of resource</label>
+    <description iso="true">Type of resource for which metadata is provided</description>
+  </element>
+
+  <element name="mdb:MD_MetadataScope" id="6.0">
+    <label>Hierarchy level</label>
+    <description>Scope to which the metadata applies (see annex H for more information about
+      metadata hierarchy levels)</description>
   </element>
   <element name="mri:temporalResolution" id="51.0">
     <label>Temporal resolution</label>
