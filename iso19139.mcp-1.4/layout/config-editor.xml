@@ -218,17 +218,20 @@
 					<!-- Data Quality Section -->
 
 					<!-- DQ_CompletenessOmission -->
-          <field name="completenessOmission" templateModeOnly="true" isMissingLabel="notEvaluated" xpath="/mcp:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_CompletenessOmission/gmd:result" del="../..">
+          <field name="completenessOmission" templateModeOnly="true" isMissingLabel="notEvaluated" xpath="/mcp:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report[gmd:DQ_CompletenessOmission]" del=".">
             <template>
               <values>
-                <key label="conformity_title" xpath="gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title/gco:CharacterString" tooltip="gmd:pass">
+                <key label="conformity_title" xpath="gmd:DQ_CompletenessOmission/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title/gco:CharacterString" tooltip="gmd:pass">
                   <helper name="gmd:title" context="/mcp:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_CompletenessOmission/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title"></helper>
                 </key>
-                <key label="conformity_date" xpath="gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date" use="date"/>
-                <key label="explanation" xpath="gmd:DQ_ConformanceResult/gmd:explanation/gco:CharacterString" use="textarea"/>
-                <key label="pass" use="checkbox" xpath="gmd:DQ_ConformanceResult/gmd:pass/gco:Boolean"/>
+                <key label="conformity_date" xpath="gmd:DQ_CompletenessOmission/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date" use="date"/>
+                <key label="explanation" xpath="gmd:DQ_CompletenessOmission/gmd:result/gmd:DQ_ConformanceResult/gmd:explanation/gco:CharacterString" use="textarea"/>
+                <key label="pass" use="checkbox" xpath="gmd:DQ_CompletenessOmission/gmd:result/gmd:DQ_ConformanceResult/gmd:pass/gco:Boolean"/>
               </values>
               <snippet>
+								<gmd:report>
+									<gmd:DQ_CompletenessOmission>
+
                 <gmd:result>
                   <gmd:DQ_ConformanceResult>
                     <gmd:specification>
@@ -269,22 +272,28 @@
                     </gmd:pass>
                   </gmd:DQ_ConformanceResult>
                 </gmd:result>
+
+									</gmd:DQ_CompletenessOmission>
+								</gmd:report>
               </snippet>
             </template>
         	</field>
 
 					<!-- DQ_NonQuantitativeAttributeAccuracy -->
-          <field name="nonQuantitativeAttributeAccuracy" templateModeOnly="true" isMissingLabel="notEvaluated" xpath="/mcp:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_NonQuantitativeAttributeAccuracy/gmd:result" del="../..">
+          <field name="nonQuantitativeAttributeAccuracy" templateModeOnly="true" isMissingLabel="notEvaluated" xpath="/mcp:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report[gmd:DQ_NonQuantitativeAttributeAccuracy]" del=".">
             <template>
               <values>
-                <key label="conformity_title" xpath="gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title/gco:CharacterString" tooltip="gmd:pass">
+                <key label="conformity_title" xpath="gmd:DQ_NonQuantitativeAttributeAccuracy/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title/gco:CharacterString" tooltip="gmd:pass">
                   <helper name="gmd:title" context="/mcp:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_NonQuantitativeAttributeAccuracy/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title"></helper>
                 </key>
-                <key label="conformity_date" xpath="gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date" use="date"/>
-                <key label="explanation" xpath="gmd:DQ_ConformanceResult/gmd:explanation/gco:CharacterString" use="textarea"/>
-                <key label="pass" use="checkbox" xpath="gmd:DQ_ConformanceResult/gmd:pass/gco:Boolean"/>
+                <key label="conformity_date" xpath="gmd:DQ_NonQuantitativeAttributeAccuracy/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date" use="date"/>
+                <key label="explanation" xpath="gmd:DQ_NonQuantitativeAttributeAccuracy/gmd:result/gmd:DQ_ConformanceResult/gmd:explanation/gco:CharacterString" use="textarea"/>
+                <key label="pass" use="checkbox" xpath="gmd:DQ_NonQuantitativeAttributeAccuracy/gmd:result/gmd:DQ_ConformanceResult/gmd:pass/gco:Boolean"/>
               </values>
               <snippet>
+								<gmd:report>
+									<gmd:DQ_NonQuantitativeAttributeAccuracy>
+
                 <gmd:result>
                   <gmd:DQ_ConformanceResult>
                     <gmd:specification>
@@ -325,22 +334,28 @@
                     </gmd:pass>
                   </gmd:DQ_ConformanceResult>
                 </gmd:result>
+
+									</gmd:DQ_NonQuantitativeAttributeAccuracy>
+								</gmd:report>
               </snippet>
             </template>
         	</field>
 
 					<!-- DQ_ConceptualConsistency -->
-          <field name="conceptualConsistency" templateModeOnly="true" isMissingLabel="notEvaluated" xpath="/mcp:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_ConceptualConsistency/gmd:result" del="../..">
+          <field name="conceptualConsistency" templateModeOnly="true" isMissingLabel="notEvaluated" xpath="/mcp:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report[gmd:DQ_ConceptualConsistency]" del=".">
             <template>
               <values>
-                <key label="conformity_title" xpath="gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title/gco:CharacterString" tooltip="gmd:pass">
+                <key label="conformity_title" xpath="gmd:DQ_ConceptualConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title/gco:CharacterString" tooltip="gmd:pass">
                   <helper name="gmd:title" context="/mcp:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_ConceptualConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title"></helper>
                 </key>
-                <key label="conformity_date" xpath="gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date" use="date"/>
-                <key label="explanation" xpath="gmd:DQ_ConformanceResult/gmd:explanation/gco:CharacterString" use="textarea"/>
-                <key label="pass" use="checkbox" xpath="gmd:DQ_ConformanceResult/gmd:pass/gco:Boolean"/>
+                <key label="conformity_date" xpath="gmd:DQ_ConceptualConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date" use="date"/>
+                <key label="explanation" xpath="gmd:DQ_ConceptualConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:explanation/gco:CharacterString" use="textarea"/>
+                <key label="pass" use="checkbox" xpath="gmd:DQ_ConceptualConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:pass/gco:Boolean"/>
               </values>
               <snippet>
+								<gmd:report>
+									<gmd:DQ_ConceptualConsistency>
+
                 <gmd:result>
                   <gmd:DQ_ConformanceResult>
                     <gmd:specification>
@@ -381,22 +396,28 @@
                     </gmd:pass>
                   </gmd:DQ_ConformanceResult>
                 </gmd:result>
+
+									</gmd:DQ_ConceptualConsistency>
+								</gmd:report>
               </snippet>
             </template>
         	</field>
 
 					<!-- DQ_AbsoluteExternalPositionalAccuracy -->
-          <field name="absoluteExternalPositionalAccuracy" templateModeOnly="true" isMissingLabel="notEvaluated" xpath="/mcp:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result" del="../..">
+          <field name="absoluteExternalPositionalAccuracy" templateModeOnly="true" isMissingLabel="notEvaluated" xpath="/mcp:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report[gmd:DQ_AbsoluteExternalPositionalAccuracy]" del=".">
             <template>
               <values>
-                <key label="conformity_title" xpath="gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title/gco:CharacterString" tooltip="gmd:pass">
+                <key label="conformity_title" xpath="gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title/gco:CharacterString" tooltip="gmd:pass">
                   <helper name="gmd:title" context="/mcp:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title"></helper>
                 </key>
-                <key label="conformity_date" xpath="gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date" use="date"/>
-                <key label="explanation" xpath="gmd:DQ_ConformanceResult/gmd:explanation/gco:CharacterString" use="textarea"/>
-                <key label="pass" use="checkbox" xpath="gmd:DQ_ConformanceResult/gmd:pass/gco:Boolean"/>
+                <key label="conformity_date" xpath="gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date/gco:Date" use="date"/>
+                <key label="explanation" xpath="gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result/gmd:DQ_ConformanceResult/gmd:explanation/gco:CharacterString" use="textarea"/>
+                <key label="pass" use="checkbox" xpath="gmd:DQ_AbsoluteExternalPositionalAccuracy/gmd:result/gmd:DQ_ConformanceResult/gmd:pass/gco:Boolean"/>
               </values>
               <snippet>
+								<gmd:report>
+									<gmd:DQ_AbsoluteExternalPositionalAccuracy>
+
                 <gmd:result>
                   <gmd:DQ_ConformanceResult>
                     <gmd:specification>
@@ -437,6 +458,9 @@
                     </gmd:pass>
                   </gmd:DQ_ConformanceResult>
                 </gmd:result>
+
+									</gmd:DQ_AbsoluteExternalPositionalAccuracy>
+								</gmd:report>
               </snippet>
             </template>
         	</field>
