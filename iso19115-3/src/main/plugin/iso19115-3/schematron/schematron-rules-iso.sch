@@ -3,25 +3,25 @@
   <sch:title xmlns="http://www.w3.org/2001/XMLSchema" xml:lang="en">Schematron validation for ISO 19115-1:2014 standard</sch:title>
   <sch:title xmlns="http://www.w3.org/2001/XMLSchema" xml:lang="fr">Règles de validation pour le standard ISO 19115-1:2014</sch:title>
   <sch:ns prefix="gml" uri="http://www.opengis.net/gml/3.2"/>
-  <sch:ns prefix="srv" uri="http://www.isotc211.org/namespace/srv/2.0/2014-07-11"/>
-  <sch:ns prefix="mds" uri="http://www.isotc211.org/namespace/mds/1.0/2014-07-11"/>
-  <sch:ns prefix="mdb" uri="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11"/>
-  <sch:ns prefix="mcc" uri="http://www.isotc211.org/namespace/mcc/1.0/2014-07-11"/>
-  <sch:ns prefix="mri" uri="http://www.isotc211.org/namespace/mri/1.0/2014-07-11"/>
-  <sch:ns prefix="mrs" uri="http://www.isotc211.org/namespace/mrs/1.0/2014-07-11"/>
-  <sch:ns prefix="mrd" uri="http://www.isotc211.org/namespace/mrd/1.0/2014-07-11"/>
-  <sch:ns prefix="mco" uri="http://www.isotc211.org/namespace/mco/1.0/2014-07-11"/>
-  <sch:ns prefix="msr" uri="http://www.isotc211.org/namespace/msr/1.0/2014-07-11"/>
-  <sch:ns prefix="mrc" uri="http://www.isotc211.org/namespace/mrc/1.0/2014-07-11"/>
-  <sch:ns prefix="mrl" uri="http://www.isotc211.org/namespace/mrl/1.0/2014-07-11"/>
-  <sch:ns prefix="lan" uri="http://www.isotc211.org/namespace/lan/1.0/2014-07-11"/>
-  <sch:ns prefix="gcx" uri="http://www.isotc211.org/namespace/gcx/1.0/2014-07-11"/>
-  <sch:ns prefix="gex" uri="http://www.isotc211.org/namespace/gex/1.0/2014-07-11"/>
-  <sch:ns prefix="mex" uri="http://www.isotc211.org/namespace/mex/1.0/2014-07-11"/>
-  <sch:ns prefix="dqm" uri="http://www.isotc211.org/namespace/dqm/1.0/2014-07-11"/>
-  <sch:ns prefix="cit" uri="http://www.isotc211.org/namespace/cit/1.0/2014-07-11"/>
-  <sch:ns prefix="mmi" uri="http://www.isotc211.org/namespace/mmi/1.0/2014-07-11"/>
-  <sch:ns prefix="gco" uri="http://www.isotc211.org/2005/gco"/>
+  <sch:ns prefix="srv" uri="http://standards.iso.org/19115/-3/srv/2.0/2014-12-25"/>
+  <sch:ns prefix="mds" uri="http://standards.iso.org/19115/-3/mds/1.0/2014-12-25"/>
+  <sch:ns prefix="mdb" uri="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"/>
+  <sch:ns prefix="mcc" uri="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"/>
+  <sch:ns prefix="mri" uri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"/>
+  <sch:ns prefix="mrs" uri="http://standards.iso.org/19115/-3/mrs/1.0/2014-12-25"/>
+  <sch:ns prefix="mrd" uri="http://standards.iso.org/19115/-3/mrd/1.0/2014-12-25"/>
+  <sch:ns prefix="mco" uri="http://standards.iso.org/19115/-3/mco/1.0/2014-12-25"/>
+  <sch:ns prefix="msr" uri="http://standards.iso.org/19115/-3/msr/1.0/2014-12-25"/>
+  <sch:ns prefix="mrc" uri="http://standards.iso.org/19115/-3/mrc/1.0/2014-12-25"/>
+  <sch:ns prefix="mrl" uri="http://standards.iso.org/19115/-3/mrl/1.0/2014-12-25"/>
+  <sch:ns prefix="lan" uri="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"/>
+  <sch:ns prefix="gcx" uri="http://standards.iso.org/19115/-3/gcx/1.0/2014-12-25"/>
+  <sch:ns prefix="gex" uri="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"/>
+  <sch:ns prefix="mex" uri="http://standards.iso.org/19115/-3/mex/1.0/2014-12-25"/>
+  <sch:ns prefix="dqm" uri="http://standards.iso.org/19157/-2/dqm/1.0/2014-12-25"/>
+  <sch:ns prefix="cit" uri="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"/>
+  <sch:ns prefix="mmi" uri="http://standards.iso.org/19115/-3/mmi/1.0/2014-12-25"/>
+  <sch:ns prefix="gco" uri="http://standards.iso.org/19139/gco/1.0/2014-12-25"/>
   <sch:ns prefix="geonet" uri="http://www.fao.org/geonetwork"/>
   <sch:ns prefix="xlink" uri="http://www.w3.org/1999/xlink"/>
   <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema"/>

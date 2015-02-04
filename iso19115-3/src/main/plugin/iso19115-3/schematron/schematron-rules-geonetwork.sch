@@ -3,9 +3,9 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
     <sch:title xmlns="http://www.w3.org/2001/XMLSchema">Schematron validation / GeoNetwork recommendations</sch:title>
-    <sch:ns prefix="mds" uri="http://www.isotc211.org/namespace/mds/1.0/2013-03-28"/>
-    <sch:ns prefix="lan" uri="http://www.isotc211.org/namespace/lan/1.0/2013-03-28"/>
-    <sch:ns prefix="gco" uri="http://www.isotc211.org/2005/gco"/>
+    <sch:ns prefix="mds" uri="http://standards.iso.org/19115/-3/mds/1.0/2013-03-28"/>
+    <sch:ns prefix="lan" uri="http://standards.iso.org/19115/-3/lan/1.0/2013-03-28"/>
+    <sch:ns prefix="gco" uri="http://standards.iso.org/19139/gco/1.0/2014-12-25"/>
     <sch:ns prefix="geonet" uri="http://www.fao.org/geonetwork"/>
     <sch:ns prefix="xlink" uri="http://www.w3.org/1999/xlink"/>    
 

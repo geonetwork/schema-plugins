@@ -38,7 +38,12 @@
   xmlns:mdq="http://www.isotc211.org/namespace/mdq/1.0/2014-07-11"
   exclude-result-prefixes="#all">
   
-  <xsl:import href="schema-utility.xsl"/>
+  <!-- Imnport template that creates the namespaces required for 19115-3 in the output xml -->
+  <xsl:import href="create19115-3Namespaces.xsl"/>
+  <!-- Import template for DateTime translation -->
+  <xsl:import href="DateTime.xsl"/>
+  <!-- Import templates for multiLingualCharacterStrings -->
+  <xsl:import href="multiLingualCharacterStrings.xsl"/>
   
   <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet">
     <xd:desc>
@@ -78,7 +83,7 @@
   <xsl:variable name="stylesheetVersion" select="'0.1'"/>
   <!-- Define if parent identifier should be defined using a uuidref 
     attribute or a CI_Citation with a title. -->
-  <xsl:param name="isParentIdentifierDefinedWithUUIDAttribute" select="true()" as="xs:boolean"/>
+  <xsl:param name="isParentIdentifierDefinedWithUUIDAttribute" select="false()" as="xs:boolean"/>
   <xsl:template match="/">
     <!-- 
     root element (MD_Metadata or MI_Metadata)
@@ -975,147 +980,6 @@
   <!--
     Utility Templates
   -->
-  <xsl:template match="gmd:CI_Citation">
-    <xsl:element name="cit:CI_Citation">
-      <xsl:apply-templates/>
-      <!-- Special attention is required for CI_ResponsibleParties that are included in the CI_Citation only for a URL. These are currently identified as those 
-        with no name elements (individualName, organisationName, or positionName)
-      -->
-      <xsl:for-each select=".//gmd:CI_ResponsibleParty[count(gmd:individualName/gco:CharacterString) + count(gmd:organisationName/gco:CharacterString) + count(gmd:positionName/gco:CharacterString) = 0]">
-        <xsl:call-template name="CI_ResponsiblePartyToOnlineResource"/>
-      </xsl:for-each>
-    </xsl:element>
-  </xsl:template>
-  <xsl:template match="gmd:CI_Citation/gmd:date">
-    <cit:date>
-      <xsl:copy-of select="@*"/>
-      <xsl:choose>
-        <xsl:when test="normalize-space()=''">
-          <xsl:attribute name="gco:nilReason" select="'missing'"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <cit:CI_Date>
-            <cit:date>
-              <xsl:choose>
-                <xsl:when test="descendant::gmd:date/@gco:nilReason">
-                  <xsl:copy-of select="descendant::gmd:date/@gco:nilReason"/>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:call-template name="writeDateTime"/>
-                </xsl:otherwise>
-              </xsl:choose>
-            </cit:date>
-            <xsl:for-each select="descendant::gmd:dateType">
-              <xsl:call-template name="writeCodelistElement">
-                <xsl:with-param name="elementName" select="'cit:dateType'"/>
-                <xsl:with-param name="codeListName" select="'cit:CI_DateTypeCode'"/>
-                <xsl:with-param name="codeListValue" select="gmd:CI_DateTypeCode"/>
-              </xsl:call-template>
-            </xsl:for-each>
-          </cit:CI_Date>
-        </xsl:otherwise>
-      </xsl:choose>
-    </cit:date>
-  </xsl:template>
-  <xsl:template match="gmd:CI_Citation/gmd:title">
-    <xsl:call-template name="writeCharacterStringElement">
-      <xsl:with-param name="elementName" select="'cit:title'"/>
-      <xsl:with-param name="nodeWithStringToWrite" select="."/>
-    </xsl:call-template>
-  </xsl:template>
-  <xsl:template match="gmd:CI_Citation/gmd:editionDate">
-    <cit:editionDate>
-      <xsl:call-template name="writeDateTime"/>
-    </cit:editionDate>
-  </xsl:template>
-  <xsl:template match="gmd:CI_ResponsibleParty">
-    <xsl:choose>
-      <xsl:when test="count(gmd:individualName/gco:CharacterString) + count(gmd:organisationName/gco:CharacterString) + count(gmd:positionName/gco:CharacterString) > 0">
-        <!-- 
-          CI_ResponsibleParties that include name elements (individualName, organisationName, or positionName) are translated to CI_Responsibilities.
-          CI_ResponsibleParties without name elements are assummed to be placeholders for CI_OnlineResources. They are transformed later in the process
-          using the CI_ResponsiblePartyToOnlineResource template
-        -->
-        <xsl:element name="cit:CI_Responsibility">
-          <xsl:copy-of select="./@*"/>
-          <xsl:choose>
-            <xsl:when test="./gmd:role/gmd:CI_RoleCode">
-              <xsl:call-template name="writeCodelistElement">
-                <xsl:with-param name="elementName" select="'cit:role'"/>
-                <xsl:with-param name="codeListName" select="'cit:CI_RoleCode'"/>
-                <xsl:with-param name="codeListValue" select="gmd:role/gmd:CI_RoleCode/@codeListValue"/>
-              </xsl:call-template>
-            </xsl:when>
-            <xsl:when test="./gmd:role/@*">
-              <cit:role>
-                <xsl:copy-of select="./gmd:role/@*"/>
-              </cit:role>
-            </xsl:when>
-            <xsl:otherwise>
-              <cit:role gco:nilReason="missing"/>
-            </xsl:otherwise>
-          </xsl:choose>
-          <cit:party>
-            <xsl:choose>
-              <xsl:when test="gmd:organisationName">
-                <cit:CI_Organisation>
-                  <xsl:call-template name="writeCharacterStringElement">
-                    <xsl:with-param name="elementName" select="'cit:name'"/>
-                    <xsl:with-param name="nodeWithStringToWrite" select="gmd:organisationName"/>
-                  </xsl:call-template>
-                  <!-- contactInformation comes before indivudual/position -->
-                  <xsl:call-template name="writeContactInformation"/>
-                  <xsl:if test="gmd:individualName | gmd:positionName">
-                    <cit:individual>
-                      <cit:CI_Individual>
-                        <xsl:if test="gmd:individualName">
-                          <xsl:call-template name="writeCharacterStringElement">
-                            <xsl:with-param name="elementName" select="'cit:name'"/>
-                            <xsl:with-param name="nodeWithStringToWrite" select="gmd:individualName"/>
-                          </xsl:call-template>
-                        </xsl:if>
-                        <xsl:if test="gmd:positionName">
-                          <xsl:call-template name="writeCharacterStringElement">
-                            <xsl:with-param name="elementName" select="'cit:positionName'"/>
-                            <xsl:with-param name="nodeWithStringToWrite" select="gmd:positionName"/>
-                          </xsl:call-template>
-                        </xsl:if>
-                      </cit:CI_Individual>
-                    </cit:individual>
-                  </xsl:if>
-                </cit:CI_Organisation>
-              </xsl:when>
-              <xsl:otherwise>
-                <cit:CI_Individual>
-                  <xsl:if test="gmd:individualName">
-                    <xsl:call-template name="writeCharacterStringElement">
-                      <xsl:with-param name="elementName" select="'cit:name'"/>
-                      <xsl:with-param name="nodeWithStringToWrite" select="gmd:individualName"/>
-                    </xsl:call-template>
-                  </xsl:if>
-                  <xsl:call-template name="writeContactInformation"/>
-                  <xsl:if test="gmd:positionName">
-                    <xsl:call-template name="writeCharacterStringElement">
-                      <xsl:with-param name="elementName" select="'cit:positionName'"/>
-                      <xsl:with-param name="nodeWithStringToWrite" select="gmd:positionName"/>
-                    </xsl:call-template>
-                  </xsl:if>
-                </cit:CI_Individual>
-              </xsl:otherwise>
-            </xsl:choose>
-            <!--<xsl:apply-templates/>-->
-          </cit:party>
-        </xsl:element>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:template>
-  <xsl:template name="writeContactInformation">
-    <xsl:for-each select="gmd:contactInfo">
-      <cit:contactInfo>
-        <xsl:apply-templates/>
-      </cit:contactInfo>
-    </xsl:for-each>
-  </xsl:template>
   <xsl:template match="gmd:contactInfo/gmd:CI_Contact/gmd:phone">
     <xsl:for-each select="gmd:CI_Telephone/*">
       <cit:phone>
@@ -1142,12 +1006,6 @@
         </cit:CI_Telephone>
       </cit:phone>
     </xsl:for-each>
-  </xsl:template>
-  <xsl:template name="CI_ResponsiblePartyToOnlineResource">
-    <!-- 
-      Transform only the CI_OnlineResource element of the CI_ResponsibleParty 
-    -->
-    <xsl:apply-templates select=".//gmd:onlineResource"/>
   </xsl:template>
   <xsl:template match="gmd:CI_OnlineResource/gmd:linkage/gmd:URL">
     <gco:CharacterString>
@@ -1215,30 +1073,6 @@
       </xsl:element>
     </xsl:if>
   </xsl:template>
-  <xsl:template name="writeCharacterStringElement">
-    <xsl:param name="elementName"/>
-    <xsl:param name="nodeWithStringToWrite"/>
-    <xsl:variable name="isMultilingual" select="count($nodeWithStringToWrite/gmd:PT_FreeText) > 0"/>
-    <xsl:variable name="hasCharacterString" select="count($nodeWithStringToWrite/gco:CharacterString) = 1"/>
-    <xsl:choose>
-      <xsl:when test="$nodeWithStringToWrite">
-        <xsl:element name="{$elementName}">
-          <xsl:copy-of select="$nodeWithStringToWrite/@*[name() != 'xsi:type']"/>
-          <xsl:if test="$isMultilingual">
-            <xsl:attribute name="xsi:type" select="'lan:PT_FreeText_PropertyType'"/>
-          </xsl:if>
-          <xsl:if test="$hasCharacterString">
-            <gco:CharacterString>
-              <xsl:value-of select="$nodeWithStringToWrite/gco:CharacterString"/>
-            </gco:CharacterString>
-          </xsl:if>
-          <xsl:if test="$isMultilingual">
-            <xsl:apply-templates select="$nodeWithStringToWrite/gmd:PT_FreeText"/>
-          </xsl:if>
-        </xsl:element>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:template>
   <xsl:template name="characterStringSubstitutions">
     <xsl:param name="parentElement"/>
     <!-- This template takes a parent of a gco:CharacterString element and writes out the child for several possible substitutions  -->
@@ -1255,35 +1089,6 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:for-each>
-  </xsl:template>
-  <xsl:template name="writeDateTime">
-    <!--
-      have to account for gco:Date and gco:DateTime which are both valid descendants of gmd:date
-     -->
-    <gco:DateTime>
-      <xsl:for-each select="descendant::gco:Date">
-        <xsl:variable name="dateNodeString">
-          <xsl:value-of select="xs:string(.)"/>
-        </xsl:variable>
-        <xsl:choose>
-          <xsl:when test="string-length($dateNodeString)=6">
-            <xsl:value-of select="concat(substring($dateNodeString,1,4),'-',substring($dateNodeString,5,2),'-01T00:00:00')"/>
-          </xsl:when>
-          <xsl:when test="string-length($dateNodeString)=7">
-            <xsl:value-of select="concat(substring($dateNodeString,1,4),'-',substring($dateNodeString,6,2),'-01T00:00:00')"/>
-          </xsl:when>
-          <xsl:when test="string-length($dateNodeString)=8">
-            <xsl:value-of select="concat(substring($dateNodeString,1,4),'-',substring($dateNodeString,5,2),'-',substring($dateNodeString,7,2),'T00:00:00')"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="concat($dateNodeString,'T00:00:00')"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:for-each>
-      <xsl:for-each select="descendant::gco:DateTime">
-        <xsl:value-of select="."/>
-      </xsl:for-each>
-    </gco:DateTime>
   </xsl:template>
   <!-- Default template writes correct namespace prefix -->
   <xsl:template match="*">
@@ -1432,10 +1237,6 @@
   <xsl:template match="gmd:hierarchyLevelName" priority="5"/>
   <xsl:template match="gmd:metadataStandardVersion" priority="5"/>
   <xsl:template match="gmd:dataSetURI" priority="5"/>
-  <xsl:template match="gmd:CI_ResponsibleParty/gmd:role" priority="5"/>
-  <xsl:template match="gmd:CI_ResponsibleParty/gmd:organisationName" priority="5"/>
-  <xsl:template match="gmd:CI_ResponsibleParty/gmd:individualName" priority="5"/>
-  <xsl:template match="gmd:CI_ResponsibleParty/gmd:positionName" priority="5"/>
   <xsl:template match="gmd:contentInfo/*/gmd:attributeDescription" priority="5"/>
   <xsl:template match="gmd:contentInfo/gmi:MI_CoverageDescription/gmi:rangeElementDescription" priority="5"/>
   <xsl:template match="gmd:report/gmd:DQ_QuantitativeAttributeAccuracy/gmd:result/gmi:QE_CoverageResult//gmd:attributeDescription" priority="5"/>
@@ -1445,4 +1246,12 @@
   <xsl:template match="gmd:MD_Format/gmd:specification" priority="5"/>
   <xsl:template match="gmd:MD_Format/gmd:version" priority="5"/>
   <xsl:template match="srv1:containsOperations/srv1:SV_OperationMetadata/srv1:parameters/srv1:SV_Parameter/srv1:valueType" priority="5"/>
+  <!-- Include templates for CI_ResponsibleParty. These are included here to prevent them being overridden by the default template.
+       I am not sure why this is necessary.
+  -->
+  <xsl:include href="CI_ResponsibleParty.xsl"/>
+  <!-- Include templates for CI_Citation. These are included here to prevent them being overridden by the default template.
+       I am not sure why this is necessary.
+  -->
+  <xsl:include href="CI_Citation.xsl"/>
 </xsl:stylesheet>

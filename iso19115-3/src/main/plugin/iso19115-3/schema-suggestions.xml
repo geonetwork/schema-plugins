@@ -64,7 +64,12 @@
 	
 	<field name="cit:CI_Organisation">
     <suggest name="cit:name"/>
+    <suggest name="cit:contactInfo"/>
 	</field>
+
+  <field name="cit:CI_Contact">
+    <suggest name="cit:address"/>
+  </field>
 	
 	<field name="cit:CI_Telephone">
 		<suggest name="cit:number"/>

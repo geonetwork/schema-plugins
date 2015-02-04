@@ -3,12 +3,12 @@
                 xmlns:exslt="http://exslt.org/common"
                 xmlns:geonet="http://www.fao.org/geonetwork"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:gco="http://www.isotc211.org/2005/gco"
+                xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
-                xmlns:gex="http://www.isotc211.org/namespace/gex/1.0/2014-07-11"
-                xmlns:srv="http://www.isotc211.org/namespace/srv/2.0/2014-07-11"
-                xmlns:mdb="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11"
-                xmlns:mri="http://www.isotc211.org/namespace/mri/1.0/2014-07-11"
+                xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
+                xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0/2014-12-25"
+                xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
+                xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
                 version="2.0" exclude-result-prefixes="#all">
 
   <xsl:import href="../../iso19139/process/process-utility.xsl"/>
