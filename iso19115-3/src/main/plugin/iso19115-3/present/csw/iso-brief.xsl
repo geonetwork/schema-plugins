@@ -13,7 +13,7 @@
   xmlns:mrl="http://standards.iso.org/19115/-3/mrl/1.0/2014-12-25"
   xmlns:mrs="http://standards.iso.org/19115/-3/mrs/1.0/2014-12-25"
   xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
-  xmlns:gmd="http://standards.iso.org/19115/-3/gmd"
+  xmlns:gmd="http://www.isotc211.org/2005/gmd"
   xmlns:ows="http://www.opengis.net/ows"
   xmlns:gn="http://www.fao.org/geonetwork"
   exclude-result-prefixes="#all">
