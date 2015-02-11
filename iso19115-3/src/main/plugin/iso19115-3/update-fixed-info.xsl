@@ -26,7 +26,6 @@
   <xsl:variable name="uuid" select="/root/env/uuid"/>
 
   <xsl:template match="/root">
-    <xsl:message>##UFO</xsl:message>
     <xsl:apply-templates select="mdb:MD_Metadata"/>
   </xsl:template>
   
