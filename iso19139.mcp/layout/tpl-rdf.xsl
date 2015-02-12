@@ -75,28 +75,6 @@
     
   </xsl:template>
   
-  
-  <!-- Add references for HTML and XML metadata record link -->
-  <xsl:template name="add-reference">
-    <xsl:param name="uuid"/>
-    
-    <dct:references>
-      <rdf:Description rdf:about="{$url}/srv/eng/xml.metadata.get?uuid={$uuid}">
-        <dct:format>
-          <dct:IMT><rdf:value>application/xml</rdf:value><rdfs:label>XML</rdfs:label></dct:IMT>
-        </dct:format>
-      </rdf:Description>
-    </dct:references>
-    
-    <dct:references>
-      <rdf:Description rdf:about="{$url}?uuid={$uuid}">
-        <dct:format>
-          <dct:IMT><rdf:value>text/html</rdf:value><rdfs:label>HTML</rdfs:label></dct:IMT>
-        </dct:format>
-      </rdf:Description>
-    </dct:references>
-  </xsl:template>
-  
   <!-- Create all references for ISO19139 record (if rdf.metadata.get) or records (if rdf.search) -->
   <xsl:template match="gmd:MD_Metadata|*[@gco:isoType='gmd:MD_Metadata']" mode="references">
     
@@ -202,8 +180,6 @@
         <!-- xpath: mcp:individual/mcp:CI_Individual/mcp:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString -->
       </foaf:Agent>
     </xsl:for-each-group>
-  </xsl:template>
-  
     
     <xsl:for-each-group select="//gmd:CI_ResponsibleParty[gmd:organisationName/gco:CharacterString!='']" group-by="gmd:organisationName/gco:CharacterString">
       <!-- Organization description. 
@@ -251,7 +227,7 @@
   -->
   <xsl:template match="srv:SV_ServiceIdentification|*[contains(@gco:isoType, 'SV_ServiceIdentification')]" mode="to-dcat">
     <rdf:Description rdf:about="{$url}/resource/{iso19139:getResourceCode(../../.)}">
-      <xsl:call-template name="to-dcat"/>
+      <xsl:call-template name="to-dcat-mcp1.5"/>
     </rdf:Description>
   </xsl:template>
   
@@ -265,14 +241,14 @@
   -->
   <xsl:template match="gmd:MD_DataIdentification|*[contains(@gco:isoType, 'MD_DataIdentification')]" mode="to-dcat">
     <dcat:Dataset rdf:about="{$url}/resource/{iso19139:getResourceCode(../../.)}">
-      <xsl:call-template name="to-dcat"/>
+      <xsl:call-template name="to-dcat-mcp1.5"/>
     </dcat:Dataset>
   </xsl:template>
   
   
   
   <!-- Build a dcat record for a dataset or service -->
-  <xsl:template name="to-dcat">
+  <xsl:template name="to-dcat-mcp1.5">
     <!-- "A unique identifier of the dataset." -->
     <dct:identifier><xsl:value-of select="iso19139:getResourceCode(../../.)"/></dct:identifier>
     <!-- xpath: gmd:identificationInfo/*/gmd:citation/*/gmd:identifier/*/gmd:code --> 
