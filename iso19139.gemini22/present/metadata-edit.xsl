@@ -23,7 +23,7 @@
 
     <!-- Let the original ISO19139 templates do the work -->
 
-    <xsl:call-template name="metadata-iso19139" select="." >
+    <xsl:call-template name="metadata-iso19139" >
       <xsl:with-param name="schema" select="$schema"/>
       <xsl:with-param name="edit"   select="$edit"/>
       <xsl:with-param name="embedded" select="$embedded" />
