@@ -78,11 +78,11 @@
 			<td valign="middle" colspan="2">
 				<xsl:if test="$currTab='rndt' or $currTab='metadata' or $currTab='identification' or /root/gui/config/metadata-tab/*[name(.)=$currTab]/@flat">
 					<div style="float:left;width:70%;text-align:center;">
+						<!-- FIXME: template thumbnail seems not to exist 
 						<xsl:variable name="md">
 							<xsl:apply-templates mode="brief" select="."/>
 						</xsl:variable>
 						<xsl:variable name="metadata" select="exslt:node-set($md)/*[1]"/>
-						<!-- FIXME: template thumbnail seems not to exist 
 						<xsl:call-template name="thumbnail">
 							<xsl:with-param name="metadata" select="$metadata"/>
 						</xsl:call-template>
