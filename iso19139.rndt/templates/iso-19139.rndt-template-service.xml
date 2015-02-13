@@ -14,9 +14,9 @@
 	http://www.isotc211.org/2005/srv 
 	http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd" >
 
-<!--	<gmd:fileIdentifier>
-		<gco:CharacterString>cod_ipa:id_file</gco:CharacterString>
-	</gmd:fileIdentifier>-->
+	<gmd:fileIdentifier>
+		<gco:CharacterString>cod_ipa:id_file_service</gco:CharacterString>
+	</gmd:fileIdentifier>
 	<gmd:language>
 		<gmd:LanguageCode codeList=" http://www.loc.gov/standards/iso639-2/" codeListValue="ita">ita</gmd:LanguageCode>
 	</gmd:language>

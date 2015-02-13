@@ -231,8 +231,12 @@ temporalSamplingService;temporalProximityAnalysisService;metadataProcessingServi
 		<sch:title>$loc/strings/M33</sch:title>
 		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification
 		|//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
-			<sch:assert test="count(./gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox)>0">$loc/strings/alert.M33</sch:assert>
-			<sch:assert test="count(./gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox)&lt;2">$loc/strings/alert.M33a</sch:assert>
+			<sch:assert test="count(./srv:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox)>0 
+			or
+			count(./gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox)>0">$loc/strings/alert.M33</sch:assert>
+			<sch:assert test="count(./srv:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox)&lt;2
+			or
+			count(./gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox)&lt;2">$loc/strings/alert.M33a</sch:assert>
 		</sch:rule>
 	</sch:pattern>
 	<!--DATA/SERVICE QUALITY - SCOPE-->

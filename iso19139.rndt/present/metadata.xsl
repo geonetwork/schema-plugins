@@ -76,5 +76,130 @@
 			</xsl:choose>
 		</xsl:for-each>
 	</xsl:template>
+	
+	<!-- ===================================================================== -->
+	<!-- descriptiveKeywords                                                   -->
+	<!-- ===================================================================== -->
+	<!-- ===================================================================== -->
+	<!-- Overrides iso19139/metadata template at #1056                         -->
+	<!-- Uses a complex element also in presentation mode in order to          -->
+	<!-- show the thesaurus part of a metadata keyword.                        -->
+	<!-- ===================================================================== -->
+	<xsl:template mode="iso19139" match="gmd:descriptiveKeywords" priority="2">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+		
+		<xsl:choose>
+			<xsl:when test="$edit=true()">
+				
+				<xsl:variable name="content">
+					<xsl:for-each select="gmd:MD_Keywords">
+						<tr>
+							<td class="padded-content" width="100%" colspan="2">
+								<table width="100%">
+									<tr>
+										<td width="50%" valign="top">
+											<table width="100%">
+												<xsl:apply-templates mode="elementEP" select="gmd:keyword|geonet:child[string(@name)='keyword']">
+													<xsl:with-param name="schema" select="$schema"/>
+													<xsl:with-param name="edit"   select="$edit"/>
+												</xsl:apply-templates>
+												<xsl:apply-templates mode="elementEP" select="gmd:type|geonet:child[string(@name)='type']">
+													<xsl:with-param name="schema" select="$schema"/>
+													<xsl:with-param name="edit"   select="$edit"/>
+												</xsl:apply-templates>
+											</table>
+										</td>
+										<td valign="top">
+											<table width="100%">
+												<xsl:apply-templates mode="elementEP" select="gmd:thesaurusName|geonet:child[string(@name)='thesaurusName']">
+													<xsl:with-param name="schema" select="$schema"/>
+													<xsl:with-param name="edit"   select="$edit"/>
+												</xsl:apply-templates>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</xsl:for-each>
+				</xsl:variable>
+				
+				<xsl:apply-templates mode="complexElement" select=".">
+					<xsl:with-param name="schema"  select="$schema"/>
+					<xsl:with-param name="edit"    select="$edit"/>
+					<xsl:with-param name="content" select="$content"/>
+				</xsl:apply-templates>
+			</xsl:when>
+			<xsl:otherwise>
+				<!-- We use a complexElement here in order to show the thesaurus part -->
+				<xsl:apply-templates mode="complexElement" select=".">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="text">
+						<xsl:variable name="value">
+							<xsl:for-each select="gmd:MD_Keywords/gmd:keyword">
+								<xsl:if test="position() &gt; 1"><xsl:text>, </xsl:text></xsl:if>
+								<xsl:choose>
+									<xsl:when test="gmx:Anchor">
+										<a href="{gmx:Anchor/@xlink:href}"><xsl:value-of select="if (gmx:Anchor/text()) then gmx:Anchor/text() else gmx:Anchor/@xlink:href"/></a>
+									</xsl:when>
+									<xsl:otherwise>
+										
+										<xsl:call-template name="translatedString">
+											<xsl:with-param name="schema" select="$schema"/>
+											<xsl:with-param name="langId">
+												<xsl:call-template name="getLangId">
+													<xsl:with-param name="langGui" select="/root/gui/language"/>
+													<xsl:with-param name="md" select="ancestor-or-self::*[name(.)='gmd:MD_Metadata' or @gco:isoType='gmd:MD_Metadata']" />
+												</xsl:call-template>
+											</xsl:with-param>
+										</xsl:call-template>
+										
+									</xsl:otherwise>
+								</xsl:choose>
+								
+							</xsl:for-each>
+							<xsl:if test="gmd:MD_Keywords/gmd:type/gmd:MD_KeywordTypeCode/@codeListValue!=''">
+								<xsl:text> (</xsl:text>
+								<xsl:value-of select="gmd:MD_Keywords/gmd:type/gmd:MD_KeywordTypeCode/@codeListValue"/>
+								<xsl:text>)</xsl:text>
+							</xsl:if>
+							<xsl:text>.</xsl:text>
+						</xsl:variable>
+						<table width="100%">
+							<tr>
+								<td colspan="2">
+									<xsl:copy-of select="$value"/>
+								</td>
+							</tr>
+							<xsl:variable name="thesaurusTitle" select="gmd:MD_Keywords/gmd:thesaurusName/*/gmd:title/*[1]"/>
+							<xsl:for-each select="gmd:MD_Keywords/gmd:thesaurusName/*/gmd:identifier/*/gmd:code/gmx:Anchor[starts-with(string(),'geonetwork.thesaurus')]">
+								<tr>
+									<td width="20%">
+										<xsl:value-of select="/root/gui/strings/thesaurus/thesaurus"/>
+									</td>
+									<td>
+										<a href="{@xlink:href}">
+											<xsl:choose>
+												<xsl:when test="normalize-space($thesaurusTitle)!=''">
+													<xsl:value-of select="$thesaurusTitle"/>
+												</xsl:when>
+												<xsl:when test="normalize-space()!=''">
+													<xsl:value-of select="text()"/>
+												</xsl:when>
+												<xsl:otherwise>
+													<xsl:value-of select="@src"/>
+												</xsl:otherwise>
+											</xsl:choose>
+										</a>
+									</td>
+								</tr>
+							</xsl:for-each>
+						</table>
+					</xsl:with-param>
+				</xsl:apply-templates>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
 
 </xsl:stylesheet>

@@ -215,10 +215,30 @@
             <!-- ipa defined, right one, but metadata is new-->
             <!-- redefine the current code since it may no longer be valid -->
             <xsl:when test="$isNew">
-                <xsl:message>INFO: series identifier ricreato su metadato nuovo</xsl:message>
+                <!--xsl:message>INFO: series identifier ricreato su metadato nuovo</xsl:message>
                 <xsl:copy>
                     <gco:CharacterString><xsl:value-of select="$resId"/></gco:CharacterString>
-                </xsl:copy>
+                </xsl:copy-->
+				
+				<!-- Check if gmd:Identifier != gmd:parentIdentifier, in this case this    -->
+				<!-- metadata is a child so the gmd:issueIdentification must assume        -->
+				<!-- the value of the gmd:parentIdentifier.                                -->
+			    <xsl:choose>
+					<xsl:when test="/root/env/uuid != /root/env/parentUuid">
+					    <xsl:message>INFO: series identifier impostato per metadato figlio</xsl:message>
+					    <xsl:copy>
+							<gco:CharacterString>
+								<xsl:value-of select="concat($ipa, substring-after(/root/env/parentUuid,':'), '_resource')"/>
+							</gco:CharacterString>
+						</xsl:copy>
+					</xsl:when>
+					<xsl:otherwise>
+					    <xsl:message>INFO: series identifier ricreato su metadato nuovo</xsl:message>
+					    <xsl:copy>
+							<gco:CharacterString><xsl:value-of select="$resId"/></gco:CharacterString>
+						</xsl:copy>
+					</xsl:otherwise>
+				</xsl:choose>
             </xsl:when>
             <!-- ipa defined, already present in code, metadata not new: OK, just copy it -->
             <xsl:otherwise>
