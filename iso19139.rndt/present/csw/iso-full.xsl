@@ -21,7 +21,7 @@
                 
                 xmlns:ITgmd="http://www.cnipa.gov.it/RNDT/ITgmd"
 				
-                exclude-result-prefixes="geonet dc dct ows srv">
+                exclude-result-prefixes="geonet dc dct ows srv ITgmd">
 
 
 	<xsl:param name="displayInfo"/>
@@ -368,14 +368,14 @@
                 </xsl:attribute>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:copy copy-namespaces="no">
-                    <xsl:apply-templates select="@*"/>
-                </xsl:copy>
+                <xsl:attribute name="{name()}">
+                    <xsl:value-of select="."/>
+                </xsl:attribute>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
 
-    <xsl:template match="*[namespace-uri()='http://www.isotc211.org/2005/gmd']">
+    <xsl:template match="*[namespace-uri()='http://www.isotc211.org/2005/gmd' and name()!= 'gmd:MD_Metadata'] ">
         <xsl:choose>
             <xsl:when test="$isTile">
                 <xsl:element name="ITgmd:{local-name()}">
