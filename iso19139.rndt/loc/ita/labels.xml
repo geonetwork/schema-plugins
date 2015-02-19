@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <labels xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+	<element name="gmd:codeSpace" id="208.1">
+		<label>Codespace</label>
+		<description>Nome o identificativo della persona o dell'organizzazione responsabile del namespace</description>
+		<helper>
+			<option value="http://www.epsg-registry.org">EPSG</option>
+		</helper>
+	</element>
+
 	<element name="gmd:title">
 		<label>Titolo</label>
 		<description>Nome caratteristico e spesso unico con il quale la risorsa è conosciuta.</description>

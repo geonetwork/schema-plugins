@@ -72,6 +72,24 @@
 	<!--REFERENCE SYSTEM-->
 	<M38>Sistema di riferimento spaziale</M38>
 	<alert.M38><div>L'elemento referenceSystemInfo è mancante, incompleto o ha un valore errato</div></alert.M38>
+
+    <alert.M38missing><div>L'elemento referenceSystemInfo è mancante.</div></alert.M38missing>
+    <alert.M38toomany><div>L'elemento referenceSystemInfo deve essere unico.</div></alert.M38toomany>
+    <alert.M38badcodespace><div>È ammesso il solo codeSpace http://www.epsg-registry.org</div></alert.M38badcodespace>
+    <alert.M38version><div>Non è ammessa la versione del codeSpace.</div></alert.M38version>
+
+    <report.M38count><div>Trovato un unico referenceSystemInfo.</div></report.M38count>
+    <report.M38nocodespace><div>Il codeSpace mancante denota la presenza di un codice preso dalla codeList RNDT.</div></report.M38nocodespace>
+    <report.M38codespace><div>CodeSpace EPSG corretto.</div></report.M38codespace>
+
+    <alert.M38code><div>Codice non riconosciuto </div></alert.M38code>
+    <alert.M38badrndt><div>Codice RNDT richiesto ma non riconosciuto </div></alert.M38badrndt>
+    <alert.M38badepsg><div>Codice EPSG richiesto ma non riconosciuto </div></alert.M38badepsg>
+    
+    <report.M38rndtcode><div>Codice RNDT corretto.</div></report.M38rndtcode>
+    <report.M38epsgcode><div>Codice EPSG corretto.</div></report.M38epsgcode>
+
+
 	<!--DATA/SERVICE IDENTIFICATION - KEYWORDS-->
 	<M39>Identificazione dei Dati/Servizi - Parole Chiave</M39>
 	<alert.M39><div>L'elemento descriptiveKeywords è mancante, incompleto o ha un valore errato</div></alert.M39>

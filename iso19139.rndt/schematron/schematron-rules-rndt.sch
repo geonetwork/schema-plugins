@@ -295,8 +295,43 @@ temporalSamplingService;temporalProximityAnalysisService;metadataProcessingServi
 	<!--REFERENCE SYSTEM-->
 	<sch:pattern>
 		<sch:title>$loc/strings/M38</sch:title>
-		<sch:rule context="//gmd:MD_Metadata">
-			<sch:assert test="gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue='service' or gmd:referenceSystemInfo/gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/gmd:RS_Identifier/gmd:code/gco:CharacterString or (gmd:referenceSystemInfo/gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/gmd:RS_Identifier/gmd:code/gco:CharacterString and /gmd:MD_Metadata/gmd:referenceSystemInfo/gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/gmd:RS_Identifier/gmd:codeSpace/gco:CharacterString= 'http://www.epsg-registry.org')">$loc/strings/alert.M38</sch:assert>
+		<sch:rule context="//gmd:MD_Metadata[gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue='dataset']">
+
+            <sch:assert test="count(gmd:referenceSystemInfo) &gt; 0">$loc/strings/alert.M38missing</sch:assert>
+            <sch:assert test="count(gmd:referenceSystemInfo) &lt; 2">$loc/strings/alert.M38toomany</sch:assert>
+
+            <sch:report test="count(gmd:referenceSystemInfo) = 1">$loc/strings/report.M38count</sch:report>
+
+		</sch:rule>
+
+		<sch:rule context="//gmd:MD_Metadata[gmd:hierarchyLevel/gmd:MD_ScopeCode/@codeListValue='dataset']/gmd:referenceSystemInfo/gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/gmd:RS_Identifier">
+
+            <sch:let name="rslist">WGS84;ETRS89;ETRS89/ETRS-LAEA;ETRS89/ETRS-LCC;ETRS89/ETRS-TM32;ETRS89/ETRS-TM33;ETRS89/UTM-zone32N;ETRS89/UTM-zone33N;ROMA40/EST;ROMA40/OVEST;ED50/UTM 32N;ED50/UTM 33N;IGM95/UTM 32N;IGM95/UTM 33N;WGS84/UTM 32N;WGS84/UTM 33N;WGS84/UTM 34N;BESSEL/Cassini-Soldner;BESSEL/Sanson-Flamsteed;CATASTO / Locale;ROMA40;ROMA40/ROMA;ED50;IGM95;Rete Altimetrica Nazionale;WGS84/3D;Livello medio delle basse maree sizigiali;Livello medio delle alte maree sizigiali;Livello medio lago;ITRS;IGb00;ETRF89;ETRF00</sch:let>
+            <sch:let name="varlist">ITRF;IGS</sch:let> <!-- TODO -->
+			<sch:let name="rscode" value="gmd:code/gco:CharacterString/text()"/>
+
+			<sch:let name="rndtparsed" value="exists(tokenize($rslist, ';')[. = $rscode])"/>
+			<sch:let name="epsgparsed" value="$rscode castable as xs:double"/>
+
+			<sch:let name="isepsgspace"  value="gmd:codeSpace/gco:CharacterString= 'http://www.epsg-registry.org'"/>
+			<sch:let name="isnospace"  value="not(gmd:codeSpace)"/>
+
+			<sch:assert test="($isnospace and $rndtparsed) or ($isepsgspace and $epsgparsed)">
+                <sch:value-of select="$loc/strings/alert.M38code"/> <sch:value-of select="$rscode"/>
+            </sch:assert>
+
+            <sch:assert test="($isnospace and $rndtparsed) or not($isnospace)">$loc/strings/alert.M38badrndt</sch:assert>
+            <sch:assert test="($isepsgspace and $epsgparsed) or not($isepsgspace)">$loc/strings/alert.M38badepsg</sch:assert>
+
+            <sch:report test="$rndtparsed and $isnospace">$loc/strings/report.M38rndtcode</sch:report>
+            <sch:report test="$epsgparsed and $isepsgspace">$loc/strings/report.M38epsgcode</sch:report>
+
+            <sch:assert test="not(gmd:codeSpace) or $isepsgspace">$loc/strings/alert.M38badcodespace</sch:assert>
+            <sch:assert test="not(gmd:version)">$loc/strings/alert.M38version</sch:assert>
+
+            <sch:report test="not(gmd:codeSpace)">$loc/strings/report.M38nocodespace</sch:report>
+            <sch:report test="$isepsgspace">$loc/strings/report.M38codespace</sch:report>
+
 		</sch:rule>
 	</sch:pattern>
 	
