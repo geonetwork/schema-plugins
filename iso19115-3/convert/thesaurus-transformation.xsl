@@ -11,6 +11,8 @@
   xmlns:geonet="http://www.fao.org/geonetwork"
   xmlns:xlink="http://www.w3.org/1999/xlink">
 	
+	<!-- The correct codeList Location goes here -->
+	<xsl:variable name="codeListLocation" select="'codeListLocation'"/>
 	
 	<!-- A set of templates use to convert thesaurus concept to 
        iso19115-3 fragments. -->
@@ -86,7 +88,7 @@
             <!-- Add thesaurus theme -->
             <mri:type>
               <mri:MD_KeywordTypeCode
-                codeList="http://standards.iso.org/19115/-3/resources/codeList.xml#MD_KeywordTypeCode"
+                codeList="{concat($codeListLocation,'#MD_KeywordTypeCode')}"
                 codeListValue="{thesaurus/type}"/>
             </mri:type>
             <xsl:if test="not(/root/request/keywordOnly)">
@@ -119,7 +121,7 @@
                         </cit:date>
                         <cit:dateType>
                           <cit:CI_DateTypeCode
-                            codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/Codelist/ML_gmxCodelists.xml#CI_DateTypeCode"
+                            codeList="{concat($codeListLocation,'#CI_DateTypeCode')}"
                             codeListValue="publication"/>
                         </cit:dateType>
                       </cit:CI_Date>
