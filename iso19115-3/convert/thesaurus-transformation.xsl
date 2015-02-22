@@ -46,7 +46,6 @@
         It's recommended to use it in order to have the thesaurus widget inline editor
         which use the thesaurus identifier for initialization. -->
 		<xsl:param name="withThesaurusAnchor" select="true()"/>
-    <mri:descriptiveKeywords>
       <mri:MD_Keywords>
         <xsl:choose>
           <xsl:when test="$withXlink">
@@ -144,7 +143,6 @@
           </xsl:otherwise>
         </xsl:choose>
       </mri:MD_Keywords>
-    </mri:descriptiveKeywords>
 	</xsl:template>
 	
 	

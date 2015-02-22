@@ -137,7 +137,7 @@
           -->
         <div data-gn-keyword-selector="{$widgetMode}"
           data-metadata-id="{$metadataId}"
-          data-element-ref="{concat('_X', ../gn:element/@ref, '_replace')}"
+          data-element-ref="{concat('_X', ../gn:element/@ref)}"
           data-thesaurus-title="{$thesaurusTitle}"
           data-thesaurus-key="{$thesaurusKey}"
           data-keywords="{$keywords}" data-transformations="{$transformations}"
