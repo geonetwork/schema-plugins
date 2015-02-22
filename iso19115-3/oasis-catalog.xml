@@ -52,6 +52,14 @@
   <uri name="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11/mdb.xsd"
        uri="schema/ISO19115-3/mdb/1.0/2014-07-11/mdb.xsd"/>
 
+  <uri name="http://www.isotc211.org/namespace/mmi/1.0/2014-07-11/mmi.xsd"
+			 uri="schema/ISO19115-3/mmi/1.0/2014-07-11/mmi.xsd"/>
+
+  <uri name="http://www.isotc211.org/namespace/mrl/1.0/2014-07-11/mrl.xsd"
+			 uri="schema/ISO19115-3/mrl/1.0/2014-07-11/mrl.xsd"/>
+
+  <uri name="http://www.isotc211.org/namespace/mco/1.0/2014-07-11/mco.xsd"
+			 uri="schema/ISO19115-3/mco/1.0/2014-07-11/mco.xsd"/>
 
   <!-- These are to map schemaLocation hints to local schemas to make sure that
     GeoNetwork edits and validates against a schema it knows about. -->
@@ -87,6 +95,15 @@
 
   <system systemId="http://www.isotc211.org/namespace/mcc/1.0/2014-07-11/mcc.xsd"
           uri="schema/ISO19115-3/mcc/1.0/2014-07-11/mcc.xsd"/>
+
+  <system systemId="http://www.isotc211.org/namespace/mmi/1.0/2014-07-11/mmi.xsd"
+			    uri="schema/ISO19115-3/mmi/1.0/2014-07-11/mmi.xsd"/>
+
+  <system systemId="http://www.isotc211.org/namespace/mrl/1.0/2014-07-11/mrl.xsd"
+			    uri="schema/ISO19115-3/mrl/1.0/2014-07-11/mrl.xsd"/>
+
+  <system systemId="http://www.isotc211.org/namespace/mco/1.0/2014-07-11/mco.xsd"
+			    uri="schema/ISO19115-3/mco/1.0/2014-07-11/mco.xsd"/>
 
   <system systemId="http://www.w3.org/1999/xlink.xsd"
             uri="schema/others/xlink/xlink.xsd"/>

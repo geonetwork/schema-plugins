@@ -242,6 +242,8 @@
 				</section>
         <section xpath="/mdb:MD_Metadata/mdb:distributionInfo"/>
         <section xpath="/mdb:MD_Metadata/mdb:dataQualityInfo"/>
+				<section xpath="/mdb:MD_Metadata/mdb:referenceSystemInfo" or="referenceSystemInfo" in="/mdb:MD_Metadata"/>
+				<section xpath="/mdb:MD_Metadata/mdb:resourceLineage" or="resourceLineage" in="/mdb:MD_Metadata"/>
         <section name="mdb:MD_Metadata">
           <field xpath="/mdb:MD_Metadata/mdb:metadataIdentifier"/>
           <field xpath="/mdb:MD_Metadata/mdb:defaultLocale" or="defaultLocale"
