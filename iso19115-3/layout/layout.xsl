@@ -260,7 +260,8 @@
     <div data-gn-date-picker="{gco:Date|gco:DateTime}"
          data-label="{$labelConfig/label}"
          data-element-name="{name(gco:Date|gco:DateTime)}"
-         data-element-ref="{concat('_X', gn:element/@ref)}">
+         data-element-ref="{concat('_X', gn:element/@ref)}"
+				 data-namespaces='{{ "gco": "http://standards.iso.org/19139/gco/1.0/2014-12-25", "gml": "http://www.opengis.net/gml/3.2"}}'>
     </div>
   </xsl:template>
 
