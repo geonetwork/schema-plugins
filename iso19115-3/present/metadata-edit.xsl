@@ -2,6 +2,7 @@
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 							  xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0/2014-12-25"
                 xmlns:mds="http://standards.iso.org/19115/-3/mds/1.0/2014-12-25"
+                xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
                 xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"
                 xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
                 xmlns:mrs="http://standards.iso.org/19115/-3/mrs/1.0/2014-12-25"
