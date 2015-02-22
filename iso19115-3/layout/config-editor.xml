@@ -2,20 +2,20 @@
 <editor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:noNamespaceSchemaLocation="../../config-editor.xsd"
   xmlns:gn="http://www.fao.org/geonetwork"
-  xmlns:srv="http://www.isotc211.org/namespace/srv/2.0/2014-07-11"
-  xmlns:mdb="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11"
-  xmlns:mcc="http://www.isotc211.org/namespace/mcc/1.0/2014-07-11"
-  xmlns:mri="http://www.isotc211.org/namespace/mri/1.0/2014-07-11"
-  xmlns:mrs="http://www.isotc211.org/namespace/mrs/1.0/2014-07-11"
-  xmlns:mrd="http://www.isotc211.org/namespace/mrd/1.0/2014-07-11"
-  xmlns:mco="http://www.isotc211.org/namespace/mco/1.0/2014-07-11"
-  xmlns:msr="http://www.isotc211.org/namespace/msr/1.0/2014-07-11"
-  xmlns:lan="http://www.isotc211.org/namespace/lan/1.0/2014-07-11"
-  xmlns:gcx="http://www.isotc211.org/namespace/gcx/1.0/2014-07-11"
-  xmlns:gex="http://www.isotc211.org/namespace/gex/1.0/2014-07-11"
-  xmlns:dqm="http://www.isotc211.org/namespace/dqm/1.0/2014-07-11"
-  xmlns:cit="http://www.isotc211.org/namespace/cit/1.0/2014-07-11"
-  xmlns:gco="http://www.isotc211.org/2005/gco">
+  xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0/2014-12-25"
+  xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
+  xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"
+  xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
+  xmlns:mrs="http://standards.iso.org/19115/-3/mrs/1.0/2014-12-25"
+  xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0/2014-12-25"
+  xmlns:mco="http://standards.iso.org/19115/-3/mco/1.0/2014-12-25"
+  xmlns:msr="http://standards.iso.org/19115/-3/msr/1.0/2014-12-25"
+  xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
+  xmlns:gcx="http://standards.iso.org/19115/-3/gcx/1.0/2014-12-25"
+  xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
+  xmlns:dqm="http://standards.iso.org/19157/-2/dqm/1.0/2014-12-25"
+  xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
+  xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25">
 
   <!-- Form field type configuration. Default is text. -->
   <fields>
@@ -25,7 +25,7 @@
     <for name="mdq:evaluationMethodDescription" use="textarea"/>
     <for name="mdq:explanation" use="textarea"/>
     <for name="mco:handlingDescription" use="textarea"/>
-    <for name="mmi:maintenanceNote" use="textarea"/>
+		<for name="mmi:maintenanceNote" use="textarea"/>
     <for name="mdq:measureDescription" use="textarea"/>
     <for name="mri:purpose" use="textarea"/>
     <for name="mrd:orderingInstructions" use="textarea"/>
@@ -39,6 +39,7 @@
     <for name="gco:Distance" use="number"/>
     <for name="gco:Decimal" use="number"/>
     <for name="gco:Integer" use="number"/>
+    <for name="gco:Angle" use="number"/>
     <for name="gco:Boolean" use="checkbox"/>
 
 
@@ -62,7 +63,7 @@
 
     <for name="mdb:contact" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
-              data-template-add-action="true"
+              data-template-add-action="false"
               data-template-type="contact"
               data-filter='{"_root": "cit:CI_Responsibility"}'
               data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
@@ -243,7 +244,7 @@
         <section xpath="/mdb:MD_Metadata/mdb:distributionInfo"/>
         <section xpath="/mdb:MD_Metadata/mdb:dataQualityInfo"/>
 				<section xpath="/mdb:MD_Metadata/mdb:referenceSystemInfo" or="referenceSystemInfo" in="/mdb:MD_Metadata"/>
-				<section xpath="/mdb:MD_Metadata/mdb:resourceLineage" or="resourceLineage" in="/mdb:MD_Metadata"/>
+        <section xpath="/mdb:MD_Metadata/mdb:resourceLineage" or="resourceLineage" in="/mdb:MD_Metadata"/>
         <section name="mdb:MD_Metadata">
           <field xpath="/mdb:MD_Metadata/mdb:metadataIdentifier"/>
           <field xpath="/mdb:MD_Metadata/mdb:defaultLocale" or="defaultLocale"
