@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mdb:MD_Metadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xsi:schemaLocation="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11 ../schema.xsd"
+  							 xsi:schemaLocation="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11 http://www.isotc211.org/namespace/mdb/1.0/2014-07-11/mdb.xsd"
                  xmlns:cat="http://www.isotc211.org/namespace/cat/1.0/2014-07-11"
                  xmlns:cit="http://www.isotc211.org/namespace/cit/1.0/2014-07-11"
                  xmlns:gcx="http://www.isotc211.org/namespace/gcx/1.0/2014-07-11"

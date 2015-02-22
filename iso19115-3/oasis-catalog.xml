@@ -25,15 +25,14 @@
   <uri name="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19136_Schemas/gml.xsd"
        uri="schema/others/ISO19136/gml.xsd"/>
 
-  <uri name="http://www.isotc211.org/namespace/dqm/1.0/2014-07-11/dqm.xsd"
-       uri="schema/ISO19157-2/dqm/1.0/2014-07-11/dqm.xsd"/>
-
   <uri name="http://www.w3.org/1999/xlink.xsd"
        uri="schema/others/xlink/xlink.xsd"/>
 
   <uri name="http://www.w3.org/2001/xml.xsd"
        uri="schema/others/xlink/xml.xsd"/>
 
+  <uri name="http://www.isotc211.org/namespace/dqm/1.0/2014-07-11/dqm.xsd"
+       uri="schema/ISO19157-2/dqm/1.0/2014-07-11/dqm.xsd"/>
 
   <uri name="http://www.isotc211.org/namespace/gex/1.0/2014-07-11/gex.xsd"
        uri="schema/ISO19115-3/gex/1.0/2014-07-11/gex.xsd"/>
@@ -50,15 +49,12 @@
   <uri name="http://www.isotc211.org/namespace/mcc/1.0/2014-07-11/mcc.xsd"
        uri="schema/ISO19115-3/mcc/1.0/2014-07-11/mcc.xsd"/>
 
-
-
+  <uri name="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11/mdb.xsd"
+       uri="schema/ISO19115-3/mdb/1.0/2014-07-11/mdb.xsd"/>
 
 
   <!-- These are to map schemaLocation hints to local schemas to make sure that
     GeoNetwork edits and validates against a schema it knows about. -->
-
-  <system systemId="http://www.isotc211.org/namespace/mds/1.0/mds.xsd"
-          uri="schema/mds/1.0/mds.xsd"/>
 
   <system systemId="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gco/gco.xsd"
           uri="schema/others/gco/gco.xsd"/>
@@ -67,6 +63,12 @@
 
   <system systemId="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19136_Schemas/gml.xsd"
           uri="schema/others/ISO19136/gml.xsd"/>
+
+  <system systemId="http://www.isotc211.org/namespace/mds/1.0/2014-07-11/mds.xsd"
+          uri="schema/ISO19115-3/mds/1.0/2014-07-11/mds.xsd"/>
+
+  <system systemId="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11/mdb.xsd"
+          uri="schema/ISO19115-3/mdb/1.0/2014-07-11/mdb.xsd"/>
 
   <system systemId="http://www.isotc211.org/namespace/dqm/1.0/2014-07-11/dqm.xsd"
           uri="schema/ISO19157-2/dqm/1.0/2014-07-11/dqm.xsd"/>
