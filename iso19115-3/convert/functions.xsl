@@ -1,5 +1,5 @@
 <xsl:stylesheet version="2.0" 
-    xmlns:mds="http://standards.iso.org/19115/-3/mds/1.0/2014-12-25"
+    xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
     xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0/2014-12-25"
     xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
     xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
@@ -47,8 +47,8 @@
   <xsl:template name="langId19115-3">
       <xsl:variable name="tmp">
           <xsl:choose>
-              <xsl:when test="/*[name(.)='mds:MD_Metadata' or @gco:isoType='mds:MD_Metadata']/mds:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue">
-                  <xsl:value-of select="/*[name(.)='mds:MD_Metadata' or @gco:isoType='mds:MD_Metadata']/mds:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue"/>
+              <xsl:when test="/*[name(.)='mdb:MD_Metadata' or @gco:isoType='mdb:MD_Metadata']/mdb:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue">
+                  <xsl:value-of select="/*[name(.)='mdb:MD_Metadata' or @gco:isoType='mdb:MD_Metadata']/mdb:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue"/>
               </xsl:when>
               <xsl:otherwise><xsl:value-of select="$defaultLang"/></xsl:otherwise>
           </xsl:choose>
@@ -62,7 +62,7 @@
 
       <xsl:variable name="poundLangId" select="concat('#',upper-case(java:twoCharLangCode($isoDocLangId)))" />
 
-      <xsl:variable name="identification" select="/*[name(.)='mds:MD_Metadata' or @gco:isoType='mds:MD_Metadata']/mds:identificationInfo/*"></xsl:variable>
+      <xsl:variable name="identification" select="/*[name(.)='mdb:MD_Metadata' or @gco:isoType='mdb:MD_Metadata']/mdb:identificationInfo/*"></xsl:variable>
       <xsl:variable name="docLangTitle" select="$identification/mri:citation/*/cit:title//lan:LocalisedCharacterString[@locale=$poundLangId]"/>
       <xsl:variable name="charStringTitle" select="$identification/mri:citation/*/cit:title/gco:CharacterString"/>
       <xsl:variable name="locStringTitles" select="$identification/mri:citation/*/cit:title//lan:LocalisedCharacterString"/>
