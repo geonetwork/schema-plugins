@@ -77,6 +77,7 @@
 	<field name="cit:CI_Organisation">
     <suggest name="cit:name"/>
     <suggest name="cit:contactInfo"/>
+		<suggest name="cit:logo"/>
     <suggest name="cit:individual"/>
 	</field>
 

@@ -60,7 +60,9 @@
     <for name="lan:country" use="data-gn-country-picker"/>
     <for name="cit:country" use="data-gn-country-picker"/>
 
-    <for name="mdb:referenceSystemInfo" addDirective="data-gn-crs-selector"/>
+    <for name="mdb:referenceSystemInfo" addDirective="data-gn-crs-selector">
+       <directiveAttributes data-schema="iso19115-3"/>
+		</for>
 
     <for name="cit:CI_Organisation" addDirective="data-gn-organisation-entry-selector">
       <directiveAttributes data-schema="iso19115-3"
