@@ -42,17 +42,6 @@
       </cit:title>
     </cit:CI_Citation>
   </mdb:metadataStandard>
-  <mdb:referenceSystemInfo>
-    <mrs:MD_ReferenceSystem>
-      <mrs:referenceSystemIdentifier>
-        <mcc:MD_Identifier>
-          <mcc:code>
-            <gco:CharacterString>WGS 1984</gco:CharacterString>
-          </mcc:code>
-        </mcc:MD_Identifier>
-      </mrs:referenceSystemIdentifier>
-    </mrs:MD_ReferenceSystem>
-  </mdb:referenceSystemInfo>
   <mdb:identificationInfo>
     <mri:MD_DataIdentification>
       <mri:citation>
