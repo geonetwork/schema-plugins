@@ -62,6 +62,17 @@
 
     <for name="mdb:referenceSystemInfo" addDirective="data-gn-crs-selector"/>
 
+    <for name="cit:CI_Organisation" addDirective="data-gn-organisation-entry-selector">
+      <directiveAttributes data-schema="iso19115-3"
+			                     data-root="cit:CI_Organisation"/>
+    </for>
+		
+    <for name="cit:CI_Individual" addDirective="data-gn-organisation-entry-selector">
+      <directiveAttributes data-schema="iso19115-3"
+			                     data-root="cit:CI_Individual"/>
+    </for>
+
+		<!--
     <for name="mdb:contact" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
               data-template-add-action="false"
@@ -97,6 +108,7 @@
               data-filter='{"_root": "cit:CI_Responsibility"}'
               data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
     </for>
+		-->
 
 
     <for name="cit:logo" addDirective="data-gn-directory-entry-selector">
@@ -125,6 +137,7 @@
     <name>mri:thesaurusName</name>
     <name>mdb:spatialRepresentationInfo</name>
     <name>mri:pointOfContact</name>
+    <name>mdb:contact</name>
     <name>mdb:dataQualityInfo</name>
     <name>mdb:resourceLineage</name>
     <name>cit:citedResponsibleParty</name>
@@ -135,6 +148,7 @@
     <name>mdb:referenceSystemInfo</name>
     <name>mri:equivalentScale</name>
     <name>mri:graphicOverview</name>
+    <name>mri:resourceConstraints</name>
     <name>msr:projection</name>
     <name>mdb:extent</name>
     <name>cit:extent</name>
@@ -144,6 +158,8 @@
     <name>srv:containsOperations</name>
     <name>srv:SV_CoupledResource</name>
     <name>mdb:metadataConstraints</name>
+    <name>mdb:metadataStandard</name>
+    <name>mdb:metadataProfile</name>
     <name>mri:associatedResource</name>
   </fieldsWithFieldset>
 
@@ -226,10 +242,13 @@
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:purpose"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:credit" or="credit" in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:status" or="status" in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
-          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:pointOfContact" or="pointOfContact" in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:resourceMaintenance"/>
+          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:environmentDescription"/>
+          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:supplementalInformation" or="supplementalInformation" in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>		
+          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:pointOfContact" or="pointOfContact" in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:graphicOverview"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:resourceFormat"/>
+          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:topicCategory"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:descriptiveKeywords" or="descriptiveKeywords" in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:resourceSpecficUsage"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:resourceConstraints" or="resourceConstraints" in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
@@ -237,10 +256,7 @@
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:spatialRepresentationType"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:spatialResolution"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:temporalResolution"/>
-          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:topicCategory"/>
-          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:environmentDescription"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:extent"/>
-          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:supplementalInformation" or="supplementalInformation" in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>		
 				</section>
         <section xpath="/mdb:MD_Metadata/mdb:distributionInfo"/>
         <section xpath="/mdb:MD_Metadata/mdb:dataQualityInfo"/>
@@ -270,11 +286,9 @@
       <!-- Elements that should not use the "flat" mode -->
       <flatModeExceptions>
         <for name="mri:descriptiveKeywords" />
-        <for name="mri:pointOfContact"/>
-        <for name="mrd:distributor"/>
-        <for name="mdb:contact"/>
-        <for name="mcc:processor"/>
-        <for name="cit:citedResponsibleParty"/>
+        <for name="cit:party"/>
+				<for name="cit:CI_Individual"/>
+				<for name="cit:CI_Organisation"/>
       </flatModeExceptions>
     </view>
     <view name="advanced">

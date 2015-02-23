@@ -1942,7 +1942,7 @@
 		<label>Metadata constraints</label>
 		<description>Provides restrictions on the access and use of metadata</description>
 	</element>
-	<element name="mri:metadataExtensionInfo" id="14.0">
+	<element name="mdb:metadataExtensionInfo" id="14.0">
 		<description>Information describing metadata extensions</description>
 		<label>Metadata Extension Information</label>
 	</element>
@@ -1951,13 +1951,13 @@
 		<description>Provides information about the frequency of metadata updates, and the scope of
             those updates</description>
 	</element>
-	<element name="mri:metadataStandardName" id="10.0">
-		<label>Metadata standard name</label>
-		<description>Name of the metadata standard (including profile name) used</description>
+	<element name="mdb:metadataStandard" id="10.0">
+		<label>Metadata Standard</label>
+		<description>Metadata Standard Citation</description>
 	</element>
-	<element name="mri:metadataStandardVersion" id="11.0">
-		<label>Metadata standard version</label>
-		<description>Version (profile) of the metadata standard used</description>
+	<element name="mdb:metadataProfile" id="11.0">
+		<label>Metadata Profile</label>
+		<description>Metadata Profile Citation</description>
 	</element>
 	<element name="mrc:minValue" id="261.0">
 		<label>Minimum value</label>
