@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0/2014-12-25"
-  xmlns:mds="http://standards.iso.org/19115/-3/mds/1.0/2014-12-25"
+  xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
   xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"
   xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
+  xmlns:mrl="http://standards.iso.org/19115/-3/mrl/1.0/2014-12-25"
+  xmlns:mmi="http://standards.iso.org/19115/-3/mmi/1.0/2014-12-25"
   xmlns:mrs="http://standards.iso.org/19115/-3/mrs/1.0/2014-12-25"
   xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0/2014-12-25"
   xmlns:mco="http://standards.iso.org/19115/-3/mco/1.0/2014-12-25"
@@ -15,7 +17,6 @@
   xmlns:dqm="http://standards.iso.org/19157/-2/dqm/1.0/2014-12-25"
   xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
   xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
-  xmlns:gmx="http://standards.iso.org/19115/-3/gmx"
   xmlns:gts="http://www.isotc211.org/2005/gts"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:gml="http://www.opengis.net/gml/3.2"
@@ -32,8 +33,9 @@
 
   <!-- Visit all XML tree recursively -->
   <xsl:template mode="mode-iso19115-3"
-                match="mds:*|mcc:*|mri:*|mrs:*|mrd:*|mco:*|msr:*|lan:*|
-                       gcx:*|gex:*|dqm:*|mdq:*|cit:*|srv:*|gml:*|gts:*"
+                match="mdb:*|mcc:*|mri:*|mrs:*|mrd:*|mco:*|msr:*|lan:*|
+                       gcx:*|gex:*|dqm:*|mdq:*|cit:*|srv:*|gml:*|gts:*|
+											 mmi:*|mrl:*"
                 priority="2">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
@@ -55,11 +57,12 @@
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
 
-    <!-- TODO: this should be common to all schemas -->
-    <xsl:if test="$isEditing and
-      not($isFlatMode)">
+		<xsl:variable name="name" select="concat(@prefix, ':', @name)"/>
+		<xsl:variable name="flatModeException" select="gn-fn-metadata:getFieldFlatModeException($viewConfig, $name)"/>
 
-      <xsl:variable name="name" select="concat(@prefix, ':', @name)"/>
+    <!-- TODO: this should be common to all schemas -->
+    <xsl:if test="$isEditing and (not($isFlatMode) or $flatModeException)">
+
       <xsl:variable name="directive" select="gn-fn-metadata:getFieldAddDirective($editorConfig, $name)"/>
 
       <xsl:call-template name="render-element-to-add">
@@ -134,8 +137,8 @@
   <!-- Render simple element which usually match a form field -->
   <xsl:template mode="mode-iso19115-3" priority="200"
                 match="*[gco:CharacterString|gco:Integer|gco:Decimal|
-       gco:Boolean|gco:Real|gco:Measure|gco:Length|gco:Distance|gco:Angle|gmx:FileName|
-       gco:Scale|gco:RecordType|gmx:MimeFileType|gco:LocalName]">
+       gco:Boolean|gco:Real|gco:Measure|gco:Length|gco:Distance|gco:Angle|gcx:FileName|
+       gco:Scale|gco:RecordType|gcx:MimeFileType|gco:LocalName]">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
 
@@ -155,8 +158,8 @@
 
     <!-- TODO: Support gmd:LocalisedCharacterString -->
     <xsl:variable name="theElement" select="gco:CharacterString|gco:Integer|gco:Decimal|
-      gco:Boolean|gco:Real|gco:Measure|gco:Length|gco:Distance|gco:Angle|gmx:FileName|
-      gco:Scale|gco:RecordType|gmx:MimeFileType|gco:LocalName"/>
+      gco:Boolean|gco:Real|gco:Measure|gco:Length|gco:Distance|gco:Angle|gcx:FileName|
+      gco:Scale|gco:RecordType|gcx:MimeFileType|gco:LocalName"/>
 
     <!--
       This may not work if node context is lost eg. when an element is rendered

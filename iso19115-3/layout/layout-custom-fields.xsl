@@ -13,9 +13,9 @@
 
 
   <!-- Readonly elements
-  [parent::mds:metadataIdentifier and
+  [parent::mdb:metadataIdentifier and
                         mcc:codeSpace/gco:CharacterString='urn:uuid']|
-                      mds:dateInfo/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode
+                      mdb:dateInfo/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode
                         /@codeListValue='revision']
 -->
   <xsl:template mode="mode-iso19115-3"
