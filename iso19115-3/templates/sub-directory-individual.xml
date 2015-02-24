@@ -16,7 +16,7 @@
 								<gco:CharacterString>+87 2344444</gco:CharacterString>
 							</cit:number>
 							<cit:numberType>
-								<cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="anyValidURI">voice</cit:CI_TelephoneTypeCode>
+								<cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
 							</cit:numberType>
 						</cit:CI_Telephone>
 					</cit:phone>
