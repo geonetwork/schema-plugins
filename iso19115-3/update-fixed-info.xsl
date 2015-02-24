@@ -9,7 +9,7 @@
   xmlns:mrc="http://standards.iso.org/19115/-3/mrc/1.0/2014-12-25"
   xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
   xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
-  xmlns:dqm="http://standards.iso.org/19157/-2/dqm/1.0/2014-12-25"
+  xmlns:mdq="http://standards.iso.org/19157/-2/mdq/1.0/2014-12-25"
   xmlns:xlink="http://www.w3.org/1999/xlink" 
   xmlns:gn="http://www.fao.org/geonetwork"
   exclude-result-prefixes="#all">
@@ -237,7 +237,7 @@
     </lan:LanguageCode>
   </xsl:template>
   
-  <xsl:template match="dqm:*[@codeListValue]" priority="10">
+  <xsl:template match="mdq:*[@codeListValue]" priority="10">
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
       <xsl:attribute name="codeList">

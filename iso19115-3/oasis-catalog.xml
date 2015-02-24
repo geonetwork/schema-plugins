@@ -28,6 +28,9 @@
   <uri name="http://standards.iso.org/19157/-2/dqm/1.0/2014-12-25/dqm.xsd"
        uri="schema/standards.iso.org/19157/-2/dqm/1.0/2014-12-25/dqm.xsd"/>
 
+  <uri name="http://standards.iso.org/19157/-2/mdq/1.0/2014-12-25/mdq.xsd"
+       uri="schema/standards.iso.org/19157/-2/mdq/1.0/2014-12-25/mdq.xsd"/>
+
   <uri name="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25/mdb.xsd"
        uri="schema/standards.iso.org/19115/-3/mdb/1.0/2014-12-25/mdb.xsd"/>
 
@@ -57,6 +60,9 @@
 
   <system systemId="http://standards.iso.org/19157/-2/dqm/1.0/2014-12-25/dqm.xsd"
           uri="schema/standards.iso.org/19157/-2/dqm/1.0/2014-12-25/dqm.xsd"/>
+
+  <system systemId="http://standards.iso.org/19157/-2/mdq/1.0/2014-12-25/mdq.xsd"
+          uri="schema/standards.iso.org/19157/-2/mdq/1.0/2014-12-25/mdq.xsd"/>
 
   <system systemId="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25/cit.xsd"
           uri="schema/standards.iso.org/19115/-3/cit/1.0/2014-12-25/cit.xsd"/>

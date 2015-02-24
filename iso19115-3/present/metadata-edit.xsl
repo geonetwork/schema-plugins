@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 							  xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0/2014-12-25"
-                xmlns:mds="http://standards.iso.org/19115/-3/mds/1.0/2014-12-25"
                 xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
                 xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"
                 xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
@@ -12,7 +11,7 @@
                 xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
                 xmlns:gcx="http://standards.iso.org/19115/-3/gcx/1.0/2014-12-25"
                 xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
-                xmlns:dqm="http://standards.iso.org/19157/-2/dqm/1.0/2014-12-25"
+                xmlns:mdq="http://standards.iso.org/19157/-2/mdq/1.0/2014-12-25"
                 xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
                 xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -790,8 +789,8 @@
 				<xsl:with-param name="id" select="generate-id(/root/gui/schemas/iso19139/labels/element[@name='gmd:LI_Lineage']/label)"/>
 				<xsl:with-param name="content">
 
-					<xsl:for-each select="mdb:dataQualityInfo/dqm:DQ_DataQuality">
-						<xsl:apply-templates mode="elementEP" select="dqm:scope|geonet:child[string(@name)='scope']">
+					<xsl:for-each select="mdb:dataQualityInfo/mdq:DQ_DataQuality">
+						<xsl:apply-templates mode="elementEP" select="mdq:scope|geonet:child[string(@name)='scope']">
 							<xsl:with-param name="schema" select="$schema"/>
 							<xsl:with-param name="edit"   select="$edit"/>
 						</xsl:apply-templates>

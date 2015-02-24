@@ -9,12 +9,11 @@
   xmlns:mrs="http://standards.iso.org/19115/-3/mrs/1.0/2014-12-25"
   xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0/2014-12-25"
   xmlns:mco="http://standards.iso.org/19115/-3/mco/1.0/2014-12-25"
-  xmlns:mdq="http://standards.iso.org/19157/-2/mdq/1.0/2014-12-25"
   xmlns:msr="http://standards.iso.org/19115/-3/msr/1.0/2014-12-25"
   xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
   xmlns:gcx="http://standards.iso.org/19115/-3/gcx/1.0/2014-12-25"
   xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
-  xmlns:dqm="http://standards.iso.org/19157/-2/dqm/1.0/2014-12-25"
+  xmlns:mdq="http://standards.iso.org/19157/-2/mdq/1.0/2014-12-25"
   xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
   xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
   xmlns:gts="http://www.isotc211.org/2005/gts"
@@ -34,7 +33,7 @@
   <!-- Visit all XML tree recursively -->
   <xsl:template mode="mode-iso19115-3"
                 match="mdb:*|mcc:*|mri:*|mrs:*|mrd:*|mco:*|msr:*|lan:*|
-                       gcx:*|gex:*|dqm:*|mdq:*|cit:*|srv:*|gml:*|gts:*|
+                       gcx:*|gex:*|mdq:*|mdq:*|cit:*|srv:*|gml:*|gts:*|
 											 mmi:*|mrl:*"
                 priority="2">
     <xsl:param name="schema" select="$schema" required="no"/>

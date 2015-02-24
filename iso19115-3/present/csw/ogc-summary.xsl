@@ -25,7 +25,7 @@
     
     <xsl:variable name="info" select="geonet:info"/>
     <xsl:variable name="langId">
-      <xsl:call-template name="getLangId19115-1-2013">
+      <xsl:call-template name="getLangId19115-3">
         <xsl:with-param name="langGui" select="$lang"/>
         <xsl:with-param name="md" select="."/>
       </xsl:call-template>
@@ -112,7 +112,7 @@
       
       <!-- Lineage 
         
-        <xsl:for-each select="../../mdb:dataQualityInfo/dqm:DQ_DataQuality/dqm:lineage/dqm:LI_Lineage/dqm:statement/gco:CharacterString">
+        <xsl:for-each select="../../mdb:resourceLineage/mrl:LI_Lineage/mrl:statement/gco:CharacterString">
         <dc:source><xsl:value-of select="."/></dc:source>
         </xsl:for-each>-->
       

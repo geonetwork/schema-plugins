@@ -10,7 +10,7 @@
         xmlns:lan="http://www.isotc211.org/2005/lan/1.0/2014-12-25"
         xmlns:gcx="http://www.isotc211.org/2005/gcx/1.0/2014-12-25"
         xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2014-12-25"
-        xmlns:dqm="http://www.isotc211.org/2005/dqm/1.0/2014-12-25"
+        xmlns:mdq="http://www.isotc211.org/2005/mdq/1.0/2014-12-25"
         xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2014-12-25"
         xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

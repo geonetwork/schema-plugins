@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xsl:stylesheet version="2.0"
                 xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
-                xmlns:dqm="http://standards.iso.org/19157/-2/dqm/1.0/2014-12-25"
                 xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
                 xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
                 xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"

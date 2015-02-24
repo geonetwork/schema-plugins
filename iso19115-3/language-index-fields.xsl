@@ -3,7 +3,7 @@
 <xsl:stylesheet version="1.0" 
             xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
             xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
-            xmlns:dqm="http://standards.iso.org/19157/-2/dqm/1.0/2014-12-25"
+            xmlns:mdq="http://standards.iso.org/19157/-2/mdq/1.0/2014-12-25"
             xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
             xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"
             xmlns:mrc="http://standards.iso.org/19115/-3/mrc/1.0/2014-12-25"

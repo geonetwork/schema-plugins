@@ -41,4 +41,21 @@
   <add-extent-from-geokeywordsHelp>Analyze each keyword of type place and add matching extent.</add-extent-from-geokeywordsHelp>
 	<pointOfContact>Resource Contact</pointOfContact>
 	<contact>Metadata Contact</contact>
+
+	<resourceIdentification>Resource Identification</resourceIdentification>
+
+	<resourceConstraints>Resource Constraints</resourceConstraints>
+
+	<resourceExtents>Resource Extents</resourceExtents>
+
+	<resourceQuality>Resource Quality</resourceQuality>
+	<conceptualConsistency>Logical Consistency</conceptualConsistency>
+	<absoluteExternalPositionalAccuracy>Positional Accuracy</absoluteExternalPositionalAccuracy>
+	<nonQuantitativeAttributeCorrectness>Attribute Correctness</nonQuantitativeAttributeCorrectness>
+	<completenessOmission>Completeness</completenessOmission>
+	<conformity_title>Title</conformity_title>
+	<conformity_date>Date</conformity_date>
+	<explanation>Explanation</explanation>
+	<pass>Pass</pass>
+	<notEvaluated>Not evaluated</notEvaluated>
 </strings>

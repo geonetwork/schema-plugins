@@ -19,7 +19,7 @@
                 xmlns:gcx="http://www.isotc211.org/namespace/gcx/1.0/2013-03-28"
                 xmlns:gex="http://www.isotc211.org/namespace/gex/1.0/2013-03-28"
                 xmlns:mex="http://www.isotc211.org/namespace/mex/1.0/2013-03-28"
-                xmlns:dqm="http://www.isotc211.org/namespace/dqm/1.0/2013-03-28"
+                xmlns:mdq="http://www.isotc211.org/namespace/mdq/1.0/2013-03-28"
                 xmlns:cit="http://www.isotc211.org/namespace/cit/1.0/2013-03-28"
                 xmlns:gco="http://www.isotc211.org/2005/gco"
                 xmlns:geonet="http://www.fao.org/geonetwork"
@@ -207,7 +207,7 @@
          <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/gcx/1.0/2013-03-28" prefix="gcx"/>
          <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/gex/1.0/2013-03-28" prefix="gex"/>
          <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/mex/1.0/2013-03-28" prefix="mex"/>
-         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/dqm/1.0/2013-03-28" prefix="dqm"/>
+         <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/mdq/1.0/2013-03-28" prefix="mdq"/>
          <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/namespace/cit/1.0/2013-03-28" prefix="cit"/>
          <svrl:ns-prefix-in-attribute-values uri="http://www.isotc211.org/2005/gco" prefix="gco"/>
          <svrl:ns-prefix-in-attribute-values uri="http://www.fao.org/geonetwork" prefix="geonet"/>
@@ -977,10 +977,10 @@
    </svrl:text>
 
 	  <!--RULE -->
-<xsl:template match="//dqm:DQ_Scope" priority="1000" mode="M30">
-      <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="//dqm:DQ_Scope"/>
+<xsl:template match="//mdq:DQ_Scope" priority="1000" mode="M30">
+      <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="//mdq:DQ_Scope"/>
       <xsl:variable name="levelDesc"
-                    select="dqm:level/dqm:MD_ScopeCode/@codeListValue='dataset'      or dqm:level/dqm:MD_ScopeCode/@codeListValue='series'      or (dqm:levelDescription and ((normalize-space(dqm:levelDescription) != '')      or (dqm:levelDescription/dqm:MD_ScopeDescription)      or (dqm:levelDescription/@gco:nilReason      and contains('inapplicable missing template unknown withheld',dqm:levelDescription/@gco:nilReason))))"/>
+                    select="mdq:level/mdq:MD_ScopeCode/@codeListValue='dataset'      or mdq:level/mdq:MD_ScopeCode/@codeListValue='series'      or (mdq:levelDescription and ((normalize-space(mdq:levelDescription) != '')      or (mdq:levelDescription/mdq:MD_ScopeDescription)      or (mdq:levelDescription/@gco:nilReason      and contains('inapplicable missing template unknown withheld',mdq:levelDescription/@gco:nilReason))))"/>
 
 		    <!--ASSERT -->
 <xsl:choose>
@@ -1010,7 +1010,7 @@
                <xsl:copy-of select="$loc/strings/report.M17"/>
                <xsl:text/> 
                <xsl:text/>
-               <xsl:copy-of select="dqm:levelDescription"/>
+               <xsl:copy-of select="mdq:levelDescription"/>
                <xsl:text/>
             </svrl:text>
          </svrl:successful-report>

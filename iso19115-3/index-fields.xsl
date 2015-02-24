@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xsl:stylesheet version="2.0" 
             xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
-            xmlns:dqm="http://standards.iso.org/19157/-2/dqm/1.0/2014-12-25"
+            xmlns:mdq="http://standards.iso.org/19157/-2/mdq/1.0/2014-12-25"
             xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
             xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
             xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"
@@ -516,7 +516,7 @@
 			<Field  name="hassource" string="{string(@uuidref)}" store="false" index="true"/>
 		</xsl:for-each>
 		
-		<xsl:for-each select="mdb:dataQualityInfo/*/dqm:report/*/dqm:result">
+		<xsl:for-each select="mdb:dataQualityInfo/*/mdq:report/*/mdq:result">
 			<xsl:if test="$inspire='true'">
 				<!-- 
 				INSPIRE related dataset could contains a conformity section with:
@@ -530,30 +530,31 @@
 				"1089/2010" is maybe too fuzzy but could work for translated citation like "Règlement n°1089/2010, Annexe II-6" TODO improved
 				-->
 				<xsl:if test="(
-					contains(dqm:DQ_ConformanceResult/dqm:specification/cit:CI_Citation/cit:title/gco:CharacterString, '1089/2010') or
-					contains(dqm:DQ_ConformanceResult/dqm:specification/cit:CI_Citation/cit:title/gco:CharacterString, 'INSPIRE Data Specification') or
-					contains(dqm:DQ_ConformanceResult/dqm:specification/cit:CI_Citation/cit:title/gco:CharacterString, 'INSPIRE Specification'))">
+					contains(mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:title/gco:CharacterString, '1089/2010') or
+					contains(mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:title/gco:CharacterString, 'INSPIRE Data Specification') or
+					contains(mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:title/gco:CharacterString, 'INSPIRE Specification'))">
 					<Field name="inspirerelated" string="on" store="false" index="true"/>
 				</xsl:if>
 			</xsl:if>
 			
-			<xsl:for-each select="//dqm:pass/gco:Boolean">
+			<xsl:for-each select="//mdq:pass/gco:Boolean">
 				<Field name="degree" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
 			
-			<xsl:for-each select="//dqm:specification/*/cit:title/gco:CharacterString">
+			<xsl:for-each select="//mdq:specification/*/cit:title/gco:CharacterString">
 				<Field name="specificationTitle" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
 			
-			<xsl:for-each select="//dqm:specification/*/cit:date/*/cit:date">
+			<xsl:for-each select="//mdq:specification/*/cit:date/*/cit:date">
 				<Field name="specificationDate" string="{string(gco:Date[.!='']|gco:DateTime[.!=''])}" store="true" index="true"/>
 			</xsl:for-each>
 			
-			<xsl:for-each select="//dqm:specification/*/cit:date/*/cit:dateType/cit:CI_DateTypeCode/@codeListValue">
+			<xsl:for-each select="//mdq:specification/*/cit:date/*/cit:dateType/cit:CI_DateTypeCode/@codeListValue">
 				<Field name="specificationDateType" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
 		</xsl:for-each>
-		<xsl:for-each select="mdb:dataQualityInfo/*/dqm:lineage/*/dqm:statement/gco:CharacterString">
+
+		<xsl:for-each select="mdb:resourceLineage/*/mrl:statement/gco:CharacterString">
 			<Field name="lineage" string="{string(.)}" store="true" index="true"/>
 		</xsl:for-each>
 		
