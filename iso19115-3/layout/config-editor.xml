@@ -64,16 +64,11 @@
        <directiveAttributes data-schema="iso19115-3"/>
 		</for>
 
-    <for name="cit:CI_Organisation" addDirective="data-gn-organisation-entry-selector">
-      <directiveAttributes data-schema="iso19115-3"
-			                     data-root="cit:CI_Organisation"/>
+		<for name="cit:party" addDirective="data-gn-organisation-entry-selector">
+		      <directiveAttributes data-schema="iso19115-3"
+		                           data-root="cit:party"/>
     </for>
 		
-    <for name="cit:CI_Individual" addDirective="data-gn-organisation-entry-selector">
-      <directiveAttributes data-schema="iso19115-3"
-			                     data-root="cit:CI_Individual"/>
-    </for>
-
 		<!--
     <for name="mdb:contact" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
@@ -253,7 +248,23 @@
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:resourceMaintenance"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:environmentDescription"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:supplementalInformation" or="supplementalInformation" in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>		
-          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:pointOfContact" or="pointOfContact" in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
+          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:pointOfContact" in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
+					<!-- always display an add action that will add a new 
+               pointOfContact block with just the role and
+               party in it -->
+          <action type="add" name="pointOfContact" or="pointOfContact" if="true()" in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification">
+            <template>
+              <snippet>
+                <mri:pointOfContact>
+                  <cit:CI_Responsibility>
+                    <cit:role>
+                      <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue=""/>
+                    </cit:role>
+                  </cit:CI_Responsibility>
+                </mri:pointOfContact>
+              </snippet>
+            </template>
+          </action>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:graphicOverview"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:resourceFormat"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:topicCategory"/>
@@ -276,7 +287,6 @@
                  in="/mdb:MD_Metadata"/>
           <field xpath="/mdb:MD_Metadata/mdb:otherLocale" or="otherLocale"
                  in="/mdb:MD_Metadata"/>
-          <field xpath="/mdb:MD_Metadata/mdb:contact" or="contact" in="/mdb:MD_Metadata"/>
           <field xpath="/mdb:MD_Metadata/mdb:parentMetadata" or="parentMetadata"
                  in="/mdb:MD_Metadata"/>
           <field xpath="/mdb:MD_Metadata/mdb:metadataScope" or="metadataScope"
@@ -288,6 +298,23 @@
           <field xpath="/mdb:MD_Metadata/mdb:dateInfo"/>
           <field xpath="/mdb:MD_Metadata/mdb:metadataStandard"/>
           <field xpath="/mdb:MD_Metadata/mdb:metadataProfile"/>
+          <field xpath="/mdb:MD_Metadata/mdb:contact" in="/mdb:MD_Metadata"/>
+					<!-- always display an add action that will add a new 
+               contact block with just the role and
+               party in it -->
+          <action type="add" name="contact" or="contact" if="true()" in="/mdb:MD_Metadata">
+            <template>
+              <snippet>
+                <mdb:contact>
+                  <cit:CI_Responsibility>
+                    <cit:role>
+                      <cit:CI_RoleCode codeList="codeListLocation#CI_RoleCode" codeListValue=""/>
+                    </cit:role>
+                  </cit:CI_Responsibility>
+                </mdb:contact>
+              </snippet>
+            </template>
+          </action>
         </section>
       </tab>
 

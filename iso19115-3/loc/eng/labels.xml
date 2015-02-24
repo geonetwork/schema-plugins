@@ -958,7 +958,7 @@
     
   </element>
 	<element name="cit:administrativeArea" id="391.0">
-		<label>Administrative area</label>
+		<label>State</label>
 		<description>State, province of the location</description>
 	</element>
 	<element name="mri:aggregateDataSetIdentifier" id="66.3">
@@ -1165,18 +1165,13 @@
 	</element>
 	<element name="mdb:contact" id="19.0">
 		<condition>mandatory</condition>
-		<label>Contact</label>
+		<label>Metadata Contact</label>
 		<description>Party responsible for the metadata information</description>
 	</element>
 	<element name="mmi:contact" id="148.1" context="mmi:MD_MaintenanceInformation">
 		<label>Contact</label>
 		<description>Identification of, and means of communication with, person(s) and
             organization(s) with responsability for maintaining the metadata</description>
-	</element>
-	<element name="mri:contact" id="8.0">
-		<label>Metadata author</label>
-		<description>Party responsible for the metadata information</description>
-		<condition>mandatory</condition>
 	</element>
 	<element name="cit:contactInfo" id="378.0">
 		<description>Address of the responsible party</description>
@@ -2455,7 +2450,7 @@
 		<condition>mandatory</condition>
 	</element>
 	<element name="mri:pointOfContact" id="29.0">
-		<label>Point of contact</label>
+		<label>Resource Contact</label>
 		<description>Identification of, and means of communication with, person(s) and
         organizations(s) associated with the resource(s)</description>
 	</element>
