@@ -368,7 +368,7 @@
 
   <!-- Some element to ignore which are matched by the
   next template -->
-  <xsl:template mode="mode-iso19115-3" priority="400" match="gml:TimeInstantType"/>
+  <xsl:template mode="mode-iso19115-3" priority="400" match="gml:TimeInstantType|gml:TimePeriodTypeGROUP_ELEMENT0|gml:TimePeriodTypeGROUP_ELEMENT4"/>
 
   <!-- the gml element having no child eg. gml:name. -->
   <xsl:template mode="mode-iso19115-3" priority="300" match="gml:*[count(.//gn:element) = 1]">

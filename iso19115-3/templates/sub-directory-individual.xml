@@ -3,7 +3,7 @@
     xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
     xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
 		uuid="urn:francois:individual:users:1"
-		title="francois@fructose.localnet.com Francois at home">
+		title="Individual: francois@fructose.localnet.com Francois at home">
       <cit:name>
         <gco:CharacterString>Francois W Frank</gco:CharacterString>
       </cit:name>
