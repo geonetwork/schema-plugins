@@ -244,7 +244,7 @@
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:abstract"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:purpose"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:credit" or="credit" in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
-          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:status" or="status" in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
+          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:status" in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:resourceMaintenance"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:environmentDescription"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:supplementalInformation" or="supplementalInformation" in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>		
@@ -270,9 +270,9 @@
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:topicCategory"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:descriptiveKeywords" or="descriptiveKeywords" in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:resourceSpecficUsage"/>
+          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:resourceConstraints" or="resourceConstraints" in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:spatialRepresentationType"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:spatialResolution"/>
-          <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:resourceConstraints" or="resourceConstraints" in="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:temporalResolution"/>
           <field xpath="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:extent"/>
 				</section>

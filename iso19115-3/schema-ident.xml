@@ -7,7 +7,7 @@
   <id>73928c1f-6b15-422e-8209-1fb9ee96aa62</id>
   <version>1.0</version>
   <!-- FIXME: add all required schemas -->
-  <schemaLocation>http://standards.iso.org/19115/-3/mds/1.0/2014-12-25 http://standards.iso.org/19115/-3/mds/1.0/mds.xsd</schemaLocation>
+  <schemaLocation>http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25 http://standards.iso.org/19115/-3/mdb/1.0/mdb.xsd</schemaLocation>
   <autodetect xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
               xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
               xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0/2014-12-25"
