@@ -536,21 +536,6 @@
 
         <section name="mdb:MD_Metadata">
           <field xpath="/mdb:MD_Metadata/mdb:metadataIdentifier"/>
-          <field xpath="/mdb:MD_Metadata/mdb:defaultLocale" or="defaultLocale"
-                 in="/mdb:MD_Metadata"/>
-          <field xpath="/mdb:MD_Metadata/mdb:otherLocale" or="otherLocale"
-                 in="/mdb:MD_Metadata"/>
-          <field xpath="/mdb:MD_Metadata/mdb:parentMetadata" or="parentMetadata"
-                 in="/mdb:MD_Metadata"/>
-          <field xpath="/mdb:MD_Metadata/mdb:metadataScope" or="metadataScope"
-                 in="/mdb:MD_Metadata"/>
-          <field xpath="/mdb:MD_Metadata/mdb:alternativeMetadataReference" or="alternativeMetadataReference"
-                 in="/mdb:MD_Metadata"/>
-          <field xpath="/mdb:MD_Metadata/mdb:metadataLinkage" or="metadataLinkage"
-                 in="/mdb:MD_Metadata"/>
-          <field xpath="/mdb:MD_Metadata/mdb:dateInfo"/>
-          <field xpath="/mdb:MD_Metadata/mdb:metadataStandard"/>
-          <field xpath="/mdb:MD_Metadata/mdb:metadataProfile"/>
           <field xpath="/mdb:MD_Metadata/mdb:contact" in="/mdb:MD_Metadata"/>
 					<!-- always display an add action that will add a new 
                contact block with just the role and
@@ -568,6 +553,21 @@
               </snippet>
             </template>
           </action>
+          <field xpath="/mdb:MD_Metadata/mdb:defaultLocale" or="defaultLocale"
+                 in="/mdb:MD_Metadata"/>
+          <field xpath="/mdb:MD_Metadata/mdb:otherLocale" or="otherLocale"
+                 in="/mdb:MD_Metadata"/>
+          <field xpath="/mdb:MD_Metadata/mdb:parentMetadata" or="parentMetadata"
+                 in="/mdb:MD_Metadata"/>
+          <field xpath="/mdb:MD_Metadata/mdb:metadataScope" or="metadataScope"
+                 in="/mdb:MD_Metadata"/>
+          <field xpath="/mdb:MD_Metadata/mdb:alternativeMetadataReference" or="alternativeMetadataReference"
+                 in="/mdb:MD_Metadata"/>
+          <field xpath="/mdb:MD_Metadata/mdb:metadataLinkage" or="metadataLinkage"
+                 in="/mdb:MD_Metadata"/>
+          <field xpath="/mdb:MD_Metadata/mdb:dateInfo"/>
+          <field xpath="/mdb:MD_Metadata/mdb:metadataStandard"/>
+          <field xpath="/mdb:MD_Metadata/mdb:metadataProfile"/>
         </section>
       </tab>
 

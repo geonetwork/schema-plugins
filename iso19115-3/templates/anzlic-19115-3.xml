@@ -38,7 +38,21 @@
   <mdb:metadataStandard>
     <cit:CI_Citation>
       <cit:title>
-        <gco:CharacterString>ISO 19115-3 (Draft Schemas 2014-07-11)</gco:CharacterString>
+        <gco:CharacterString>AU/NZS ISO 19115-1:2014</gco:CharacterString>
+      </cit:title>
+    </cit:CI_Citation>
+  </mdb:metadataStandard>
+  <mdb:metadataStandard>
+    <cit:CI_Citation>
+      <cit:title>
+        <gco:CharacterString>ISO 19115-1:2014</gco:CharacterString>
+      </cit:title>
+    </cit:CI_Citation>
+  </mdb:metadataStandard>
+  <mdb:metadataStandard>
+    <cit:CI_Citation>
+      <cit:title>
+        <gco:CharacterString>ISO 19115-3 (Draft Schemas 2014-12-25)</gco:CharacterString>
       </cit:title>
     </cit:CI_Citation>
   </mdb:metadataStandard>
@@ -47,7 +61,7 @@
       <mri:citation>
         <cit:CI_Citation>
           <cit:title>
-            <gco:CharacterString>ANZLIC Draft Template for 19115-3 testing (preferred!)</gco:CharacterString>
+            <gco:CharacterString>ANZLIC Draft Template for 19115-1:2014 and 19115-3 for testing (preferred!)</gco:CharacterString>
           </cit:title>
           <cit:date>
             <cit:CI_Date>
