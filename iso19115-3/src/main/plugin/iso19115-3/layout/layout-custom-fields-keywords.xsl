@@ -142,6 +142,7 @@
           data-thesaurus-key="{$thesaurusKey}"
           data-keywords="{$keywords}" data-transformations="{$transformations}"
           data-current-transformation="{$transformation}"
+          data-lang="{$metadataOtherLanguagesAsJson}"
           data-max-tags="{$maxTags}">
         </div>
 

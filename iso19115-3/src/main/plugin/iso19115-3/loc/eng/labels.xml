@@ -2636,10 +2636,6 @@
 		<label>Resolution</label>
 		<description>Degree of detail in the grid dataset</description>
 	</element>
-  <element name="mri:distance">
-    <label>Horizontal ground sample distance</label>
-    <description>Horizontal ground sample distance</description>
-  </element>
   <element name="mri:vertical">
     <label>Vertical sampling distance</label>
     <description>Vertical sampling distance</description>

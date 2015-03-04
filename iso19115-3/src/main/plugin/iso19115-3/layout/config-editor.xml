@@ -38,6 +38,7 @@
     <for name="cit:otherCitationDetails" use="textarea"/>
     <for name="mmi:maintenanceNote" use="textarea"/>
     <for name="mco:statement" use="textarea"/>
+    <for name="gfc:definition" use="textarea"/>
     <for name="mri:environmentDescription" use="textarea"/>
     <for name="mdq:standaloneQualityReportDetails" use="textarea"/>
     <for name="mdq:abstract" use="textarea"/>
@@ -74,7 +75,7 @@
 
     <for name="mdb:contact" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes
-              data-template-add-action="false"
+              data-template-add-action="true"
               data-template-type="contact"
               data-filter='{"_root": "cit:CI_Responsibility"}'
               data-variables="cit:role/cit:CI_RoleCode/@codeListValue~{role}"/>
@@ -127,6 +128,10 @@
     <name>mcc:MD_Identifier</name>
     <name>mdb:metadataScope</name>
     <name>mdb:dateInfo</name>
+    <name>mdb:contentInfo</name>
+    <name>gfc:featureType</name>
+    <name>gfc:carrierOfCharacteristics</name>
+    <name>gfc:listedValue</name>
     <name>mdb:alternativeMetadataReference</name>
     <name>mdb:metadataLinkage</name>
     <name>mdb:identificationInfo</name>
@@ -154,6 +159,7 @@
     <name>srv:containsOperations</name>
     <name>srv:SV_CoupledResource</name>
     <name>mdb:metadataConstraints</name>
+    <name>mdb:portrayalCatalogueInfo</name>
     <name>mri:associatedResource</name>
   </fieldsWithFieldset>
 
@@ -231,8 +237,10 @@
     <view name="default">
       <tab id="default" default="true" mode="flat">
         <section xpath="/mdb:MD_Metadata/mdb:identificationInfo"/>
+        <section xpath="/mdb:MD_Metadata/mdb:contentInfo"/>
         <section xpath="/mdb:MD_Metadata/mdb:distributionInfo"/>
         <section xpath="/mdb:MD_Metadata/mdb:dataQualityInfo"/>
+        <section xpath="/mdb:MD_Metadata/mdb:portrayalCatalogueInfo"/>
         <section name="mdb:MD_Metadata">
           <field xpath="/mdb:MD_Metadata/mdb:metadataIdentifier"/>
           <field xpath="/mdb:MD_Metadata/mdb:defaultLocale" or="defaultLocale"
@@ -269,6 +277,9 @@
         <section xpath="/mdb:MD_Metadata/mdb:identificationInfo" or="identificationInfo"
                  in="/mdb:MD_Metadata"/>
       </tab>
+      <tab id="contentInfo">
+        <section xpath="/mdb:MD_Metadata/mdb:contentInfo" or="contentInfo" in="/mdb:MD_Metadata"/>
+      </tab>
       <tab id="distributionInfo">
         <section xpath="/mdb:MD_Metadata/mdb:distributionInfo" or="distributionInfo"
                  in="/mdb:MD_Metadata"/>
@@ -291,9 +302,6 @@
       <tab id="referenceSystemInfo">
         <section xpath="/mdb:MD_Metadata/mdb:referenceSystemInfo" or="referenceSystemInfo"
                  in="/mdb:MD_Metadata"/>
-      </tab>
-      <tab id="contentInfo" toggle="true">
-        <section xpath="/mdb:MD_Metadata/mdb:contentInfo" or="contentInfo" in="/mdb:MD_Metadata"/>
       </tab>
       <tab id="acquisitionInformation" toggle="true">
         <section xpath="/mdb:MD_Metadata/mdb:acquisitionInformation" or="acquisitionInformation"
@@ -330,6 +338,10 @@
       </tab>
       <tab id="applicationSchemaInfo" toggle="true">
         <section xpath="/mdb:MD_Metadata/mdb:applicationSchemaInfo" or="applicationSchemaInfo"
+                 in="/mdb:MD_Metadata"/>
+      </tab>
+      <tab id="portrayalCatalogueInfo" toggle="true">
+        <section xpath="/mdb:MD_Metadata/mdb:portrayalCatalogueInfo" or="portrayalCatalogueInfo"
                  in="/mdb:MD_Metadata"/>
       </tab>
       <!-- mdb:metadataExtensionInfo-->

@@ -16,6 +16,7 @@
             xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0/2014-12-25"
 						xmlns:gcx="http://standards.iso.org/19115/-3/gcx/1.0/2014-12-25"
 						xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
+            xmlns:gfc="http://standards.iso.org/19110/gfc/1.1/2014-12-25"
 						xmlns:geonet="http://www.fao.org/geonetwork"
 						xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
             xmlns:skos="http://www.w3.org/2004/02/skos/core#">
@@ -510,7 +511,34 @@
 		<xsl:for-each select="mdb:contentInfo/mrc:MD_FeatureCatalogueDescription/mrc:featureCatalogueCitation[@uuidref]">
 			<Field  name="hasfeaturecat" string="{string(@uuidref)}" store="false" index="true"/>
 		</xsl:for-each>
-		
+
+    <xsl:for-each select="mdb:contentInfo/mrc:MD_FeatureCatalogue/mrc:featureCatalogue">
+      <xsl:variable name="attributes"
+                    select=".//gfc:carrierOfCharacteristics"/>
+      <xsl:if test="count($attributes) > 0">
+        <xsl:variable name="jsonAttributeTable">
+          [<xsl:for-each select="$attributes">
+          {"name": "<xsl:value-of select="*/gfc:code/*/text()"/>",
+          "definition": "<xsl:value-of select="*/gfc:definition/*/text()"/>",
+          "type": "<xsl:value-of select="*/gfc:valueType/gco:TypeName/gco:aName/*/text()"/>"
+          <xsl:if test="*/gfc:listedValue">
+            ,"values": [<xsl:for-each select="*/gfc:listedValue">{
+            "label": "<xsl:value-of select="*/gfc:label/*/text()"/>",
+            "code": "<xsl:value-of select="*/gfc:code/*/text()"/>",
+            "definition": "<xsl:value-of select="*/gfc:definition/*/text()"/>"}
+            <xsl:if test="position() != last()">,</xsl:if>
+          </xsl:for-each>]
+          </xsl:if>}
+          <xsl:if test="position() != last()">,</xsl:if>
+        </xsl:for-each>]
+        </xsl:variable>
+        <Field name="attributeTable" index="true" store="true"
+               string="{$jsonAttributeTable}"/>
+      </xsl:if>
+
+    </xsl:for-each>
+
+
 		<!-- === Lineage  === -->
 		<xsl:for-each select="mdb:resourceLineage/*/mrl:source[@uuidref]">
 			<Field  name="hassource" string="{string(@uuidref)}" store="false" index="true"/>

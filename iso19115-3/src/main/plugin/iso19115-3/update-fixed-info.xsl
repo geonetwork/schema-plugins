@@ -10,6 +10,7 @@
   xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
   xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
   xmlns:dqm="http://standards.iso.org/19157/-2/dqm/1.0/2014-12-25"
+  xmlns:gfc="http://standards.iso.org/19110/gfc/1.1/2014-12-25"
   xmlns:xlink="http://www.w3.org/1999/xlink" 
   xmlns:gn="http://www.fao.org/geonetwork"
   exclude-result-prefixes="#all">
@@ -142,7 +143,7 @@
   
   
   <!-- Update revision date -->
-  <xsl:template match="mdb:dateInfo[cit:CI_Date/cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']">
+  <xsl:template match="mdb:dateInfo[cit:CI_Date/cit:dateType/cit:CI_DateTypeCode/@codeListValue='lastUpdate']">
     <xsl:copy>
       <xsl:choose>
         <xsl:when test="/root/env/changeDate">
@@ -151,7 +152,7 @@
               <gco:DateTime><xsl:value-of select="/root/env/changeDate"/></gco:DateTime>
             </cit:date>
             <cit:dateType>
-              <cit:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="revision"/>
+              <cit:CI_DateTypeCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" codeListValue="lastUpdate"/>
             </cit:dateType>
           </cit:CI_Date>
         </xsl:when>

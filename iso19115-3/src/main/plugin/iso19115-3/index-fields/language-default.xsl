@@ -15,11 +15,11 @@
             xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0/2014-12-25"
 						xmlns:gcx="http://standards.iso.org/19115/-3/gcx/1.0/2014-12-25"
 						xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
+            xmlns:gfc="http://standards.iso.org/19110/gfc/1.1/2014-12-25"
 						xmlns:gml="http://www.opengis.net/gml/3.2"
             xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
 						xmlns:java="java:org.fao.geonet.util.XslUtil"
-						xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-										>
+						xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 	<!--This file defines what parts of the metadata are indexed by Lucene
 		Searches can be conducted on indexes defined here.
@@ -178,7 +178,7 @@
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 			<xsl:for-each select="*/gex:EX_Extent">
-				<xsl:apply-templates select="gex:geographicElement/gex:EX_GeographicBoundingBox" mode="latLon"/>
+        <xsl:apply-templates select="gex:geographicElement/gex:EX_GeographicBoundingBox" mode="latLon19115-3"/>
 
 				<xsl:for-each select="gex:geographicElement/gex:EX_GeographicDescription/gex:geographicIdentifier/mcc:MD_Identifier/mcc:code//lan:LocalisedCharacterString[@locale=$langId]">
 					<Field name="geoDescCode" string="{string(.)}" store="true" index="true"/>
@@ -232,12 +232,6 @@
                 <Field name="orgName" string="{string(.)}" store="true" index="true"/>
                 <Field name="_orgName" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
-      <!-- FIXME: I've never seen individualFirstName etc? -->
-			<xsl:for-each select="mri:pointOfContact//cit:CI_Individual/cit:name/gco:CharacterString|
-				mri:pointOfContact//cit:CI_Individual/cit:individualFirstName/gco:CharacterString|
-				mri:pointOfContact//cit:CI_Individual/cit:individualLastName/gco:CharacterString">
-				<Field name="creator" string="{string(.)}" store="true" index="true"/>
-			</xsl:for-each>
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
@@ -259,7 +253,7 @@
 
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-			<xsl:for-each select="mri:defaultLocale/lan:PT_Locale/lan:language/lan:LAnguageCode/@codeListValue">
+			<xsl:for-each select="mri:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue">
 				<Field name="datasetLang" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
 
@@ -425,6 +419,31 @@
 			</xsl:for-each>
 		</xsl:for-each>
 
+    <xsl:for-each select="mdb:contentInfo/mrc:MD_FeatureCatalogue/mrc:featureCatalogue">
+      <xsl:variable name="attributes"
+                    select=".//gfc:carrierOfCharacteristics"/>
+      <xsl:if test="count($attributes) > 0">
+        <xsl:variable name="jsonAttributeTable">
+          [<xsl:for-each select="$attributes">
+          {"name": "<xsl:value-of select="*/gfc:memberName/*/text()"/>",
+          "definition": "<xsl:value-of select="*/gfc:definition/*/text()"/>",
+          "type": "<xsl:value-of select="*/gfc:valueType/gco:TypeName/gco:aName/*/text()"/>"
+          <xsl:if test="*/gfc:listedValue">
+            ,"values": [<xsl:for-each select="*/gfc:listedValue">{
+            "label": "<xsl:value-of select="*/gfc:label/*/text()"/>",
+            "code": "<xsl:value-of select="*/gfc:code/*/text()"/>",
+            "definition": "<xsl:value-of select="*/gfc:definition/*/text()"/>"}
+            <xsl:if test="position() != last()">,</xsl:if>
+          </xsl:for-each>]
+          </xsl:if>}
+          <xsl:if test="position() != last()">,</xsl:if>
+        </xsl:for-each>]
+        </xsl:variable>
+        <Field name="attributeTable" index="true" store="true"
+               string="{$jsonAttributeTable}"/>
+      </xsl:if>
+
+    </xsl:for-each>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<!-- === Free text search === -->
 		<Field name="any" store="false" index="true">
