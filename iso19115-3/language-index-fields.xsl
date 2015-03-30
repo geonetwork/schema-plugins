@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <xsl:stylesheet version="1.0" 
-            xmlns:mdb="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11"
-            xmlns:cit="http://www.isotc211.org/namespace/cit/1.0/2014-07-11"
-            xmlns:dqm="http://www.isotc211.org/namespace/dqm/1.0/2014-07-11"
-            xmlns:lan="http://www.isotc211.org/namespace/lan/1.0/2014-07-11"
-            xmlns:mcc="http://www.isotc211.org/namespace/mcc/1.0/2014-07-11"
-            xmlns:mrc="http://www.isotc211.org/namespace/mrc/1.0/2014-07-11"
-            xmlns:mco="http://www.isotc211.org/namespace/mco/1.0/2014-07-11"
-            xmlns:mri="http://www.isotc211.org/namespace/mri/1.0/2014-07-11"
-            xmlns:mrs="http://www.isotc211.org/namespace/mrs/1.0/2014-07-11"
-            xmlns:mrl="http://www.isotc211.org/namespace/mrl/1.0/2014-07-11"
-            xmlns:mrd="http://www.isotc211.org/namespace/mrd/1.0/2014-07-11"
-            xmlns:srv="http://www.isotc211.org/namespace/srv/2.0/2014-07-11"
-						xmlns:gcx="http://www.isotc211.org/namespace/gcx/1.0/2014-07-11"
-						xmlns:gex="http://www.isotc211.org/namespace/gex/1.0/2014-07-11"
+            xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
+            xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
+            xmlns:mdq="http://standards.iso.org/19157/-2/mdq/1.0/2014-12-25"
+            xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
+            xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"
+            xmlns:mrc="http://standards.iso.org/19115/-3/mrc/1.0/2014-12-25"
+            xmlns:mco="http://standards.iso.org/19115/-3/mco/1.0/2014-12-25"
+            xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
+            xmlns:mrs="http://standards.iso.org/19115/-3/mrs/1.0/2014-12-25"
+            xmlns:mrl="http://standards.iso.org/19115/-3/mrl/1.0/2014-12-25"
+            xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0/2014-12-25"
+            xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0/2014-12-25"
+						xmlns:gcx="http://standards.iso.org/19115/-3/gcx/1.0/2014-12-25"
+						xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
 						xmlns:gml="http://www.opengis.net/gml/3.2"
-            xmlns:gco="http://www.isotc211.org/2005/gco" 
+            xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
 						xmlns:java="java:org.fao.geonet.util.XslUtil"
 						xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 										>
@@ -31,15 +31,17 @@
 	<!-- ========================================================================================= -->
 
 	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no" />
-	<xsl:include href="../iso19139/convert/functions.xsl"/>
 	<xsl:include href="convert/functions.xsl"/>
 
-  <xsl:variable name="fileIdentifier" select="/mdb:MD_Metadata|*[contains(@gco:isoType,'mdb:MD_Metadata')]/mdb:metadataIdentifier/mcc:MD_Identifier[mcc:codeSpace/*='urn:uuid']/mcc:code/*"/>
 
-	<!-- ========================================================================================= -->
-    <xsl:variable name="isoDocLangId">
-      <xsl:call-template name="langId19115-1-2013"/>
-    </xsl:variable>
+  <!-- TODO: discussed where to place UUID. -->
+  <xsl:variable name="fileIdentifier"
+                select="//(mdb:MD_Metadata|*[contains(@gco:isoType,'mdb:MD_Metadata')])/
+                  mdb:metadataIdentifier[1]/mcc:MD_Identifier/mcc:code/*"/>
+
+  <xsl:variable name="isoDocLangId">
+    <xsl:call-template name="langId19115-3"/>
+  </xsl:variable>
 
     <xsl:template match="/">
 
@@ -62,8 +64,7 @@
             </xsl:if>
         </Documents>
     </xsl:template>
-    
-	<!-- ========================================================================================= -->
+
 		<xsl:template name="document">
   			<xsl:param name="isoLangId"/>
   			<xsl:param name="langId"/>
@@ -112,8 +113,7 @@
 			<xsl:with-param name="langId" select="$langId"/>
 		</xsl:apply-templates>
 	</xsl:template>
-	
-	<!-- ========================================================================================= -->
+
 
 	<xsl:template match="*" mode="metadata">
 		<xsl:param name="langId" />
@@ -287,35 +287,37 @@
 
             <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-            <xsl:for-each select="mri:graphicOverview/mcc:MD_BrowseGraphic">
-                <xsl:variable name="fileName"  select="mcc:fileName/gco:CharacterString"/>
-                <xsl:if test="$fileName != ''">
-                    <xsl:variable name="fileDescr" select="mcc:fileDescription/gco:CharacterString"/>
-                    <xsl:choose>
-                        <xsl:when test="contains($fileName ,'://')">
-							<xsl:choose>
-								<xsl:when test="string($fileDescr)='thumbnail'">
-									<Field  name="image" string="{concat('thumbnail|', $fileName)}" store="true" index="false"/>
-								</xsl:when>
-								<xsl:when test="string($fileDescr)='large_thumbnail'">
-									<Field  name="image" string="{concat('overview|', $fileName)}" store="true" index="false"/>
-								</xsl:when>
-								<xsl:otherwise>
-									<Field  name="image" string="{concat('unknown|', $fileName)}" store="true" index="false"/>
-								</xsl:otherwise>
-							</xsl:choose>
-                        </xsl:when>
-                        <xsl:when test="string($fileDescr)='thumbnail'">
-                            <!-- FIXME : relative path -->
-                            <Field  name="image" string="{concat($fileDescr, '|', '../../srv/eng/resources.get?uuid=', $fileIdentifier, '&amp;fname=', $fileName, '&amp;access=public')}" store="true" index="false"/>
-                        </xsl:when>
-						<xsl:when test="string($fileDescr)='large_thumbnail'">
-							<!-- FIXME : relative path -->
-							<Field  name="image" string="{concat('overview', '|', '../../srv/eng/resources.get?uuid=', $fileIdentifier, '&amp;fname=', $fileName, '&amp;access=public')}" store="true" index="false"/>
-						</xsl:when>
-                    </xsl:choose>
-                </xsl:if>
-            </xsl:for-each>
+      <xsl:for-each select="mri:graphicOverview/mcc:MD_BrowseGraphic">
+        <xsl:variable name="fileName"  select="mcc:fileName/gco:CharacterString"/>
+        <xsl:if test="$fileName != ''">
+            <xsl:variable name="fileDescr" select="mcc:fileDescription/gco:CharacterString"/>
+
+
+          <xsl:choose>
+              <xsl:when test="contains($fileName ,'://')">
+                <xsl:choose>
+                  <xsl:when test="string($fileDescr)='thumbnail'">
+                    <Field  name="image" string="{concat('thumbnail|', $fileName)}" store="true" index="false"/>
+                  </xsl:when>
+                  <xsl:when test="string($fileDescr)='large_thumbnail'">
+                    <Field  name="image" string="{concat('overview|', $fileName)}" store="true" index="false"/>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <Field  name="image" string="{concat('unknown|', $fileName)}" store="true" index="false"/>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:when>
+              <xsl:when test="string($fileDescr)='thumbnail'">
+                  <!-- FIXME : relative path -->
+                  <Field  name="image" string="{concat($fileDescr, '|', '../../srv/eng/resources.get?uuid=', $fileIdentifier, '&amp;fname=', $fileName, '&amp;access=public')}" store="true" index="false"/>
+              </xsl:when>
+              <xsl:when test="string($fileDescr)='large_thumbnail'">
+                <!-- FIXME : relative path -->
+                <Field  name="image" string="{concat('overview', '|', '../../srv/eng/resources.get?uuid=', $fileIdentifier, '&amp;fname=', $fileName, '&amp;access=public')}" store="true" index="false"/>
+              </xsl:when>
+            </xsl:choose>
+          </xsl:if>
+        </xsl:for-each>
 
             <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 			<!--  Fields use to search on Service -->

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <labels xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:srv="http://www.isotc211.org/2005/srv/2.0/2014-07-11"
-        xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2014-07-11"
-        xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2014-07-11"
-        xmlns:mri="http://www.isotc211.org/2005/mri/1.0/2014-07-11"
-        xmlns:mrs="http://www.isotc211.org/2005/mrs/1.0/2014-07-11"
-        xmlns:mrd="http://www.isotc211.org/2005/mrd/1.0/2014-07-11"
-        xmlns:mco="http://www.isotc211.org/2005/mco/1.0/2014-07-11"
-        xmlns:msr="http://www.isotc211.org/2005/msr/1.0/2014-07-11"
-        xmlns:lan="http://www.isotc211.org/2005/lan/1.0/2014-07-11"
-        xmlns:gcx="http://www.isotc211.org/2005/gcx/1.0/2014-07-11"
-        xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2014-07-11"
-        xmlns:dqm="http://www.isotc211.org/2005/dqm/1.0/2014-07-11"
-        xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2014-07-11"
-        xmlns:gco="http://www.isotc211.org/2005/gco"
+        xmlns:srv="http://www.isotc211.org/2005/srv/2.0/2014-12-25"
+        xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2014-12-25"
+        xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2014-12-25"
+        xmlns:mri="http://www.isotc211.org/2005/mri/1.0/2014-12-25"
+        xmlns:mrs="http://www.isotc211.org/2005/mrs/1.0/2014-12-25"
+        xmlns:mrd="http://www.isotc211.org/2005/mrd/1.0/2014-12-25"
+        xmlns:mco="http://www.isotc211.org/2005/mco/1.0/2014-12-25"
+        xmlns:msr="http://www.isotc211.org/2005/msr/1.0/2014-12-25"
+        xmlns:lan="http://www.isotc211.org/2005/lan/1.0/2014-12-25"
+        xmlns:gcx="http://www.isotc211.org/2005/gcx/1.0/2014-12-25"
+        xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2014-12-25"
+        xmlns:mdq="http://www.isotc211.org/2005/mdq/1.0/2014-12-25"
+        xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2014-12-25"
+        xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
 	xsi:noNamespaceSchemaLocation="../../../labels.xsd">
   <element name="mdq:standaloneQualityReport">
     <label>Standalone quality report</label>
@@ -205,21 +205,39 @@
     <_condition>optional</_condition>
   </element>
   <element name="mdb:resourceLineage" id="37.0">
-    <label>Resource lineage</label>
+    <label>Resource Lineage</label>
     <description iso="true">Information about the provenance, source(s), and/or the production process(es) applied to the resource</description>
     <_condition>optional</_condition>
   </element>
   <element name="mdb:metadataScope" id="38.0">
-    <label>Domaine d’application des métadonnées</label>
-    <description iso="true">Le domaine d’application/type de ressource pour laquelle les métadonnées sont fournies</description>
-    <_condition>conditional / ifMetadata is about a resource other than a dataset?</_condition>
+    <label>Type of resource</label>
+    <description iso="true">Type of resource for which metadata is provided</description>
+  </element>
+
+  <element name="mdb:MD_MetadataScope" id="6.0">
+    <label>Hierarchy level</label>
+    <description>Scope to which the metadata applies (see annex H for more information about
+      metadata hierarchy levels)</description>
   </element>
   <element name="mri:temporalResolution" id="51.0">
     <label>Temporal resolution</label>
     <description iso="true">Smallest resolvable temporal period in a resource</description>
     <_condition>optional</_condition>
   </element>
+  <element name="mrl:additionalDocumentation">
+    <label>Additional doc.</label>
+    <description/>
+  </element>
+  <element name="mrl:LI_Source">
+    <label>Source</label>
+    <description/>
+  </element>
   <element name="mri:associatedResource" id="62.0">
+    <label>Associated resource</label>
+    <description iso="true">Associated resource information</description>
+    <_condition>optional</_condition>
+  </element>
+  <element name="mri:MD_AssociatedResource" id="62.0">
     <label>Associated resource</label>
     <description iso="true">Associated resource information</description>
     <_condition>optional</_condition>
@@ -869,6 +887,12 @@
             information</description>
 		<condition>Either attributes, features, featureInstances, attributeInstnaces, dataset or other must be provided</condition>
 	</element>
+  <element name="mcc:MD_ScopeDescription_Type" id="149.0">
+    <label>Scope description</label>
+    <description>Description of the class of information covered by the
+      information</description>
+    <condition>Either attributes, features, featureInstances, attributeInstnaces, dataset or other must be provided</condition>
+  </element>
 	<element name="mco:MD_SecurityConstraints" id="73.0">
 		<label>Security constraints</label>
 		<description>Handling restrictions imposed on the resource or metadata for national security
@@ -934,7 +958,7 @@
     
   </element>
 	<element name="cit:administrativeArea" id="391.0">
-		<label>Administrative area</label>
+		<label>State</label>
 		<description>State, province of the location</description>
 	</element>
 	<element name="mri:aggregateDataSetIdentifier" id="66.3">
@@ -1141,18 +1165,13 @@
 	</element>
 	<element name="mdb:contact" id="19.0">
 		<condition>mandatory</condition>
-		<label>Contact</label>
+		<label>Metadata Contact</label>
 		<description>Party responsible for the metadata information</description>
 	</element>
 	<element name="mmi:contact" id="148.1" context="mmi:MD_MaintenanceInformation">
 		<label>Contact</label>
 		<description>Identification of, and means of communication with, person(s) and
             organization(s) with responsability for maintaining the metadata</description>
-	</element>
-	<element name="mri:contact" id="8.0">
-		<label>Metadata author</label>
-		<description>Party responsible for the metadata information</description>
-		<condition>mandatory</condition>
 	</element>
 	<element name="cit:contactInfo" id="378.0">
 		<description>Address of the responsible party</description>
@@ -1649,8 +1668,8 @@
 		<label>File description</label>
 		<description>Text description of the illustration</description>
 	</element>
-	<element name="mri:fileIdentifier" id="2.0">
-		<label>File identifier</label>
+	<element name="mdb:metadataIdentifier" id="2.0">
+		<label>Metadata identifier</label>
 		<description>Unique identifier for this metadata file</description>
 	</element>
 	<element name="mcc:fileName" id="438.0">
@@ -1892,7 +1911,7 @@
 		<description>Longest wavelength that the sensor is capable of collecting within a designated
             band</description>
 	</element>
-	<element name="mri:maximumValue" id="356.0">
+	<element name="gex:maximumValue" id="356.0">
 		<label>Maximum value</label>
 		<description>Highest vertical extent contained in the dataset</description>
 		<condition>mandatory</condition>
@@ -1918,7 +1937,7 @@
 		<label>Metadata constraints</label>
 		<description>Provides restrictions on the access and use of metadata</description>
 	</element>
-	<element name="mri:metadataExtensionInfo" id="14.0">
+	<element name="mdb:metadataExtensionInfo" id="14.0">
 		<description>Information describing metadata extensions</description>
 		<label>Metadata Extension Information</label>
 	</element>
@@ -1927,13 +1946,13 @@
 		<description>Provides information about the frequency of metadata updates, and the scope of
             those updates</description>
 	</element>
-	<element name="mri:metadataStandardName" id="10.0">
-		<label>Metadata standard name</label>
-		<description>Name of the metadata standard (including profile name) used</description>
+	<element name="mdb:metadataStandard" id="10.0">
+		<label>Metadata Standard</label>
+		<description>Metadata Standard Citation</description>
 	</element>
-	<element name="mri:metadataStandardVersion" id="11.0">
-		<label>Metadata standard version</label>
-		<description>Version (profile) of the metadata standard used</description>
+	<element name="mdb:metadataProfile" id="11.0">
+		<label>Metadata Profile</label>
+		<description>Metadata Profile Citation</description>
 	</element>
 	<element name="mrc:minValue" id="261.0">
 		<label>Minimum value</label>
@@ -2431,7 +2450,7 @@
 		<condition>mandatory</condition>
 	</element>
 	<element name="mri:pointOfContact" id="29.0">
-		<label>Point of contact</label>
+		<label>Resource Contact</label>
 		<description>Identification of, and means of communication with, person(s) and
         organizations(s) associated with the resource(s)</description>
 	</element>
@@ -2612,6 +2631,26 @@
 		<label>Resolution</label>
 		<description>Degree of detail in the grid dataset</description>
 	</element>
+  <element name="mri:distance">
+    <label>Horizontal ground sample distance</label>
+    <description>Horizontal ground sample distance</description>
+  </element>
+  <element name="mri:vertical">
+    <label>Vertical sampling distance</label>
+    <description>Vertical sampling distance</description>
+  </element>
+  <element name="mri:angularDistance">
+    <label>Angular sampling measure</label>
+    <description>Angular sampling measure</description>
+  </element>
+  <element name="mri:levelOfDetail">
+    <label>Level of detail</label>
+    <description>Brief textual description of the spatial resolution of the resource</description>
+  </element>
+  <element name="mri:MD_Resolution_Type">
+    <label>Resolution type</label>
+    <description/>
+  </element>
 	<element name="mri:resourceConstraints" id="35.0">
 		<label>Resource constraints</label>
 		<description>Provides information about constraints which apply to the
@@ -3146,6 +3185,23 @@
 		<label>Name of the calendar era</label>
 		<description></description>
 	</element>
+
+  <element name="relativePosition">
+    <label>Relative position</label>
+    <description></description>
+  </element>
+  <element name="gml:remoteSchema">
+    <label>Remote schema</label>
+    <description></description>
+  </element>
+  <element name="owns">
+    <label>Owns</label>
+    <description></description>
+  </element>
+  <element name="xlink:type">
+    <label>Type of link</label>
+    <description></description>
+  </element>
 	<element name="unit">
 		<label>Unit</label>
 		<description></description>
@@ -3524,6 +3580,10 @@
         <label>Vertical CRS</label>
         <description>Provides information about the origin from which the maximum and minimum elevation values are measured</description>
     </element>
+    <element name="gex:verticalCRSId">
+      <label>Vertical CRS identifier</label>
+      <description>Provides information about the origin from which the maximum and minimum elevation values are measured</description>
+    </element>
     <element name="gcx:FileName">
         <label>File name</label>
         <description>File name and source URL.</description>
@@ -3823,33 +3883,10 @@
   <element name="gfc:valueMeasurementUnit">
     <label>Value measurement unit</label>
   </element>
-  <element name="gco:CharacterString">
-    <label>Text</label>
-    <description></description>
-  </element>
   <element name="gmx:FileName">
     <label>File name</label>
     <description></description>
   </element>
   <!-- ==================================================== -->
-  <element name="gmx:name">
-    <label>Name</label>
-    <description>Feature catalogue name</description>
-  </element>
-  <element name="gmx:scope">
-    <label>Scope</label>
-    <description>Scope definition</description>
-  </element>
-  <element name="gmx:versionNumber">
-    <label>Version</label>
-    <description>Catalogue version</description>
-  </element>
-  <element name="gmx:versionDate">
-    <label>Date</label>
-    <description>Catalogue date</description>
-  </element>
-  <element name="gmx:fieldOfApplication">
-    <label>Field of application</label>
-    <description>Field of application</description>
-  </element>
+
 </labels>

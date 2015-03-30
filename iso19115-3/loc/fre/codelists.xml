@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<codelists xmlns:gmd="http://www.isotc211.org/namespace/gmd">
+<codelists xmlns:gmd="http://standards.iso.org/19115/-3/gmd">
 
 	<!-- ==================================================== -->
   <!-- new in ISO19115-1-2013 -->
@@ -209,7 +209,7 @@
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
 	<!-- ==================================================== -->
-	<codelist name="gmd:CI_PresentationFormCode">
+	<codelist name="cit:CI_PresentationFormCode">
 		<entry>
 			<code>documentDigital</code>
 			<label>Document numérique</label>
@@ -676,7 +676,7 @@
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
 	<!-- ==================================================== -->
-	<codelist name="gmd:DS_AssociationTypeCode">
+	<codelist name="mri:DS_AssociationTypeCode">
 		<entry>
 			<code>crossReference</code>
 			<label>Référence croisée</label>
@@ -740,7 +740,7 @@
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
 	<!-- ==================================================== -->
-	<codelist name="gmd:DS_InitiativeTypeCode">
+	<codelist name="mri:DS_InitiativeTypeCode">
 		<entry>
 			<code>campaign</code>
 			<label>Campagne</label>
@@ -1218,7 +1218,7 @@
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
 	<!-- ==================================================== -->
-	<codelist name="gmd:MD_KeywordTypeCode">
+	<codelist name="mri:MD_KeywordTypeCode">
 		<entry>
 			<code>discipline</code>
 			<label>Discipline</label>
@@ -1312,7 +1312,7 @@
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
 	<!-- ==================================================== -->
-	<codelist name="gmd:MD_MaintenanceFrequencyCode">
+	<codelist name="mmi:MD_MaintenanceFrequencyCode">
 		<entry>
 			<code>continual</code>
 			<label>Continue</label>
@@ -1624,7 +1624,7 @@
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
 	<!-- ==================================================== -->
-	<codelist name="gmd:MD_RestrictionCode">
+	<codelist name="mco:MD_RestrictionCode">
 		<entry>
 			<code>copyright</code>
 			<label>Droit d’auteur /  Droit moral (copyright)</label>
@@ -1731,7 +1731,7 @@
 	</codelist>
 
 	<!-- ==================================================== -->
-	<codelist name="gmd:MD_ScopeCode">
+	<codelist name="mcc:MD_ScopeCode">
 		<entry>
 			<code>attribute</code>
 			<label>Attribut</label>
@@ -1925,7 +1925,7 @@
 		</entry>
 	</codelist>
 	<!-- ==================================================== -->
-	<codelist name="gmd:MD_SpatialRepresentationTypeCode">
+	<codelist name="mri:MD_SpatialRepresentationTypeCode">
 		<entry>
 			<code>vector</code>
 			<label>Vecteur</label>
@@ -2100,7 +2100,7 @@ Terre</description>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
 	<!-- ==================================================== -->
-	<codelist name="gmd:MD_TopologyLevelCode">
+	<codelist name="msr:MD_TopologyLevelCode">
 		<entry>
 			<code>geometryOnly</code>
 			<label>Géométrie seulement</label>
@@ -2212,7 +2212,7 @@ Terre</description>
 	</codelist>
 	<!-- ==================================================== -->
  <!-- new in ISO19115-1-2013 -->
-	<codelist name="mac:MI_GeometryTypeCode">
+	<codelist name="msr:MD_GeometricObjectTypeCode">
 		<entry>
 			<code>areal</code>
 			<label>Areal</label>
@@ -2753,7 +2753,7 @@ Terre</description>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
 	<!-- ==================================================== -->
-	<codelist name="gmd:MD_CharacterSetCode">
+	<codelist name="lan:MD_CharacterSetCode">
 		<entry>
 			<code>ucs2</code>
 			<label>Ucs2</label>

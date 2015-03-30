@@ -1,127 +1,136 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0" 
+    xmlns:mds="http://standards.iso.org/19115/-3/mds/1.0/2014-12-25"
+    xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0/2014-12-25"
+    xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
+    xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
+    xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
+    xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
+    xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
+    xmlns:gml="http://www.opengis.net/gml/3.2"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:date="http://exslt.org/dates-and-times"
+    xmlns:java="java:org.fao.geonet.util.XslUtil"
+    xmlns:joda="java:org.fao.geonet.domain.ISODate"
+    xmlns:mime="java:org.fao.geonet.util.MimeTypeFinder"
+    exclude-result-prefixes="#all">
+    
+    <!-- ========================================================================================= -->
+    <!-- latlon coordinates indexed as numeric. -->
+    
+    <xsl:template match="*" mode="latLon19115-3">
+        <xsl:variable name="format" select="'##.00'"></xsl:variable>
+        
+        <xsl:if test="number(gex:westBoundLongitude/gco:Decimal)
+            and number(gex:southBoundLatitude/gco:Decimal)
+            and number(gex:eastBoundLongitude/gco:Decimal)
+            and number(gex:northBoundLatitude/gco:Decimal)
+            ">
+            <Field name="westBL" string="{format-number(gex:westBoundLongitude/gco:Decimal, $format)}" store="false" index="true"/>
+            <Field name="southBL" string="{format-number(gex:southBoundLatitude/gco:Decimal, $format)}" store="false" index="true"/>
+            
+            <Field name="eastBL" string="{format-number(gex:eastBoundLongitude/gco:Decimal, $format)}" store="false" index="true"/>
+            <Field name="northBL" string="{format-number(gex:northBoundLatitude/gco:Decimal, $format)}" store="false" index="true"/>
+            
+            <Field name="geoBox" string="{concat(gex:westBoundLongitude/gco:Decimal, '|', 
+                gex:southBoundLatitude/gco:Decimal, '|', 
+                gex:eastBoundLongitude/gco:Decimal, '|', 
+                gex:northBoundLatitude/gco:Decimal
+                )}" store="true" index="false"/>
+        </xsl:if>
+        
+    </xsl:template>
 
-<xsl:stylesheet   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" 
-						xmlns:gco="http://www.isotc211.org/2005/gco"
-            xmlns:srv="http://www.isotc211.org/namespace/srv/2.0/2014-07-11"
-            xmlns:mds="http://www.isotc211.org/namespace/mds/1.0/2014-07-11"
-            xmlns:mcc="http://www.isotc211.org/namespace/mcc/1.0/2014-07-11"
-            xmlns:mri="http://www.isotc211.org/namespace/mri/1.0/2014-07-11"
-            xmlns:mrs="http://www.isotc211.org/namespace/mrs/1.0/2014-07-11"
-            xmlns:mrd="http://www.isotc211.org/namespace/mrd/1.0/2014-07-11"
-            xmlns:mco="http://www.isotc211.org/namespace/mco/1.0/2014-07-11"
-            xmlns:msr="http://www.isotc211.org/namespace/msr/1.0/2014-07-11"
-            xmlns:lan="http://www.isotc211.org/namespace/lan/1.0/2014-07-11"
-            xmlns:gcx="http://www.isotc211.org/namespace/gcx/1.0/2014-07-11"
-            xmlns:gex="http://www.isotc211.org/namespace/gex/1.0/2014-07-11"
-            xmlns:dqm="http://www.isotc211.org/namespace/dqm/1.0/2014-07-11"
-            xmlns:cit="http://www.isotc211.org/namespace/cit/1.0/2014-07-11"
-						>
 
-	<!-- ============================================================================================ -->
+  <!-- iso3code of default index language -->
+  <xsl:variable name="defaultLang">eng</xsl:variable>
 
-	<xsl:output indent="yes"/>
-	
-	<!-- ============================================================================================ -->
-	
-	<xsl:template match="mds:MD_Metadata">
-		<oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/"
-						xmlns:dc   ="http://purl.org/dc/elements/1.1/"
-						xmlns:xsi  ="http://www.w3.org/2001/XMLSchema-instance"
-						xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+  <xsl:template name="langId19115-3">
+      <xsl:variable name="tmp">
+          <xsl:choose>
+              <xsl:when test="/*[name(.)='mds:MD_Metadata' or @gco:isoType='mds:MD_Metadata']/mds:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue">
+                  <xsl:value-of select="/*[name(.)='mds:MD_Metadata' or @gco:isoType='mds:MD_Metadata']/mds:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue"/>
+              </xsl:when>
+              <xsl:otherwise><xsl:value-of select="$defaultLang"/></xsl:otherwise>
+          </xsl:choose>
+      </xsl:variable>
+      <xsl:value-of select="normalize-space(string($tmp))"></xsl:value-of>
+  </xsl:template>
 
-			<xsl:for-each select="mds:metadataIdentifier/mcc:MD_Identifier[mcc:codeSpace='urn:uuid']/mcc:code">
-				<dc:identifier><xsl:value-of select="gco:CharacterString"/></dc:identifier>
-			</xsl:for-each>
 
-			<dc:date><xsl:value-of select="/root/env/changeDate"/></dc:date>
-			
-			<!-- DataIdentification - - - - - - - - - - - - - - - - - - - - - -->
+  <xsl:template name="defaultTitle">
+      <xsl:param name="isoDocLangId"/>
 
-			<xsl:for-each select="mds:identificationInfo/mri:MD_DataIdentification">
+      <xsl:variable name="poundLangId" select="concat('#',upper-case(java:twoCharLangCode($isoDocLangId)))" />
 
-				<xsl:for-each select="mri:citation/cit:CI_Citation">	
-					<xsl:for-each select="cit:title/gco:CharacterString">
-						<dc:title><xsl:value-of select="."/></dc:title>
-					</xsl:for-each>
+      <xsl:variable name="identification" select="/*[name(.)='mds:MD_Metadata' or @gco:isoType='mds:MD_Metadata']/mds:identificationInfo/*"></xsl:variable>
+      <xsl:variable name="docLangTitle" select="$identification/mri:citation/*/cit:title//lan:LocalisedCharacterString[@locale=$poundLangId]"/>
+      <xsl:variable name="charStringTitle" select="$identification/mri:citation/*/cit:title/gco:CharacterString"/>
+      <xsl:variable name="locStringTitles" select="$identification/mri:citation/*/cit:title//lan:LocalisedCharacterString"/>
+      <xsl:choose>
+      <xsl:when    test="string-length(string($docLangTitle)) != 0">
+          <xsl:value-of select="$docLangTitle[1]"/>
+      </xsl:when>
+      <xsl:when    test="string-length(string($charStringTitle[1])) != 0">
+          <xsl:value-of select="string($charStringTitle[1])"/>
+      </xsl:when>
+      <xsl:otherwise>
+          <xsl:value-of select="string($locStringTitles[1])"/>
+      </xsl:otherwise>
+      </xsl:choose>
+  </xsl:template>
 
-					<xsl:for-each select="cit:citedResponsibleParty/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue='originator']/cit:party/cit:CI_Organisation/cit:name/gco:CharacterString">
-						<dc:creator><xsl:value-of select="."/></dc:creator>
-					</xsl:for-each>
+  <xsl:template name="getMimeTypeFile">
+    <xsl:param name="datadir"/>
+    <xsl:param name="fname"/>
+    <xsl:value-of select="mime:detectMimeTypeFile($datadir,$fname)"/>
+  </xsl:template>
 
-					<xsl:for-each select="cit:citedResponsibleParty/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue='publisher']/cit:party/cit:CI_Organisation/cit:name/gco:CharacterString">
-						<dc:publisher><xsl:value-of select="."/></dc:publisher>
-					</xsl:for-each>
+  <xsl:template name="getMimeTypeUrl">
+    <xsl:param name="linkage"/>
+    <xsl:value-of select="mime:detectMimeTypeUrl($linkage)"/>
+  </xsl:template>
 
-					<xsl:for-each select="cit:citedResponsibleParty/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue='author']/cit:party/cit:CI_Organisation/cit:name/gco:CharacterString">
-						<dc:contributor><xsl:value-of select="."/></dc:contributor>
-					</xsl:for-each>
-				</xsl:for-each>
 
-				<!-- subject -->
 
-				<xsl:for-each select="mri:descriptiveKeywords/mri:MD_Keywords/mri:keyword/gco:CharacterString">
-					<dc:subject><xsl:value-of select="."/></dc:subject>
-				</xsl:for-each>
+  <xsl:template name="newGmlTime">
+    <xsl:param name="begin"/>
+    <xsl:param name="end"/>
 
-				<!-- description -->
+    <xsl:variable name="value1">
+      <xsl:call-template name="fixNonIso">
+        <xsl:with-param name="value" select="normalize-space($begin)"/>
+      </xsl:call-template>
+    </xsl:variable>
 
-				<xsl:for-each select="mri:abstract/gco:CharacterString">
-					<dc:description><xsl:value-of select="."/></dc:description>
-				</xsl:for-each>
+    <xsl:variable name="value2">
+      <xsl:call-template name="fixNonIso">
+        <xsl:with-param name="value" select="normalize-space($end)"/>
+      </xsl:call-template>
+    </xsl:variable>
 
-				<!-- rights -->
+    <!-- must be a full ISODateTimeFormat - so parse it and make sure it is
+         returned as a long format using the joda Java Time library -->
+    <xsl:value-of select="joda:parseISODateTimes($value1,$value2)"/>
+  </xsl:template>
 
-				<xsl:for-each select="mri:resourceConstraints/mco:MD_LegalConstraints">
-					<xsl:for-each select="*/mco:MD_RestrictionCode/@codeListValue">
-						<dc:rights><xsl:value-of select="."/></dc:rights>
-					</xsl:for-each>
 
-					<xsl:for-each select="mco:otherConstraints/gco:CharacterString">
-						<dc:rights><xsl:value-of select="."/></dc:rights>
-					</xsl:for-each>
-				</xsl:for-each>
 
-				<!-- language -->
 
-				<xsl:for-each select="mri:defaultLocale/lan:PT_Locale/lan:language/lan:languageCode">
-					<dc:language><xsl:value-of select="."/></dc:language>
-				</xsl:for-each>
+  <xsl:template name="fixNonIso">
+    <xsl:param name="value"/>
 
-				<!-- bounding box -->
-
-				<xsl:for-each select="mri:extent/gex:EX_Extent/gex:geographicElement/gex:EX_GeographicBoundingBox">	
-					<dc:coverage>
-						<xsl:value-of select="concat('North ', gex:northBoundLatitude/gco:Decimal, ', ')"/>
-						<xsl:value-of select="concat('South ', gex:southBoundLatitude/gco:Decimal, ', ')"/>
-						<xsl:value-of select="concat('East ' , gex:eastBoundLongitude/gco:Decimal, ', ')"/>
-						<xsl:value-of select="concat('West ' , gex:westBoundLongitude/gco:Decimal, '.')"/>
-					</dc:coverage>
-				</xsl:for-each>
-			</xsl:for-each>
-
-			<!-- Type - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-			<xsl:for-each select="mds:metadataScope/mds:MD_MetadataScope/mds:resourceScope/mcc:MD_ScopeCode/@codeListValue">
-				<dc:type><xsl:value-of select="."/></dc:type>
-			</xsl:for-each>
-
-			<!-- Distribution - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-
-			<xsl:for-each select="mds:distributionInfo/mrd:MD_Distribution">
-				<xsl:for-each select="mrd:distributionFormat/mrd:MD_Format/mrd:name/gco:CharacterString">
-					<dc:format><xsl:value-of select="."/></dc:format>
-				</xsl:for-each>
-			</xsl:for-each>
-
-		</oai_dc:dc>
-	</xsl:template>
-
-	<!-- ============================================================================================ -->
-
-	<xsl:template match="*">
-		<xsl:apply-templates select="*"/>
-	</xsl:template>
-	
-	<!-- ============================================================================================ -->
+    <xsl:choose>
+      <xsl:when test="$value='' or
+                      lower-case($value)='unknown' or
+                      lower-case($value)='current' or
+                      lower-case($value)='now'">
+        <xsl:variable name="df">[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]</xsl:variable>
+        <xsl:value-of select="format-dateTime(current-dateTime(),$df)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$value"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
 
 </xsl:stylesheet>

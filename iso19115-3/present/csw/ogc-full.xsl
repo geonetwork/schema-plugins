@@ -3,18 +3,18 @@
   xmlns:csw="http://www.opengis.net/cat/csw/2.0.2"
   xmlns:dc ="http://purl.org/dc/elements/1.1/"
   xmlns:dct="http://purl.org/dc/terms/"
-  xmlns:mdb="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11"
-  xmlns:mri="http://www.isotc211.org/namespace/mri/1.0/2014-07-11"
-  xmlns:cit="http://www.isotc211.org/namespace/cit/1.0/2014-07-11"
-  xmlns:mcc="http://www.isotc211.org/namespace/mcc/1.0/2014-07-11"
-  xmlns:gex="http://www.isotc211.org/namespace/gex/1.0/2014-07-11"
-  xmlns:srv="http://www.isotc211.org/namespace/srv/2.0/2014-07-11"
-  xmlns:mco="http://www.isotc211.org/namespace/mco/1.0/2014-07-11"
-  xmlns:mrd="http://www.isotc211.org/namespace/mrd/1.0/2014-07-11"
-  xmlns:lan="http://www.isotc211.org/namespace/lan/1.0/2014-07-11"
-  xmlns:mrl="http://www.isotc211.org/namespace/mrl/1.0/2014-07-11"
-  xmlns:mrs="http://www.isotc211.org/namespace/mrs/1.0/2014-07-11"
-  xmlns:gco="http://www.isotc211.org/2005/gco"
+  xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
+  xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
+  xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
+  xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"
+  xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
+  xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0/2014-12-25"
+  xmlns:mco="http://standards.iso.org/19115/-3/mco/1.0/2014-12-25"
+  xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0/2014-12-25"
+  xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
+  xmlns:mrl="http://standards.iso.org/19115/-3/mrl/1.0/2014-12-25"
+  xmlns:mrs="http://standards.iso.org/19115/-3/mrs/1.0/2014-12-25"
+  xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
   xmlns:ows="http://www.opengis.net/ows"
   xmlns:geonet="http://www.fao.org/geonetwork"
   exclude-result-prefixes="#all">
@@ -28,7 +28,7 @@
     
     <xsl:variable name="info" select="geonet:info"/>
     <xsl:variable name="langId">
-      <xsl:call-template name="getLangId19115-1-2013">
+      <xsl:call-template name="getLangId19115-3">
         <xsl:with-param name="langGui" select="$lang"/>
         <xsl:with-param name="md" select="."/>
       </xsl:call-template>
@@ -54,7 +54,7 @@
       <xsl:for-each select="$identification">	
         <xsl:for-each select="mri:citation/cit:CI_Citation/cit:title">
           <dc:title>
-            <xsl:apply-templates mode="localised19115-1-2013" select=".">
+            <xsl:apply-templates mode="localised19115-3" select=".">
               <xsl:with-param name="langId" select="$langId"/>
             </xsl:apply-templates>
           </dc:title>
@@ -63,7 +63,7 @@
         <!-- Type - - - - - - - - - -->
         <xsl:for-each select="../../mdb:metadataScope/mdb:MD_MetadataScope/mdb:resourceScope/mcc:MD_ScopeCode/@codeListValue">
           <dc:type>
-            <xsl:apply-templates mode="localised19115-1-2013" select=".">
+            <xsl:apply-templates mode="localised19115-3" select=".">
               <xsl:with-param name="langId" select="$langId"/>
             </xsl:apply-templates>
           </dc:type>
@@ -72,7 +72,7 @@
         <!-- subject -->
         <xsl:for-each select="mri:descriptiveKeywords/mri:MD_Keywords/mri:keyword[not(@gco:nilReason)]">
           <dc:subject>
-            <xsl:apply-templates mode="localised19115-1-2013" select=".">
+            <xsl:apply-templates mode="localised19115-3" select=".">
               <xsl:with-param name="langId" select="$langId"/>
             </xsl:apply-templates>
           </dc:subject>
@@ -104,7 +104,7 @@
         
         <xsl:for-each select="mri:citation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue='originator']/cit:party/cit:CI_Organisation/cit:name">
           <dc:creator>
-            <xsl:apply-templates mode="localised19115-1-2013" select=".">
+            <xsl:apply-templates mode="localised19115-3" select=".">
               <xsl:with-param name="langId" select="$langId"/>
             </xsl:apply-templates>
           </dc:creator>
@@ -112,7 +112,7 @@
         
         <xsl:for-each select="mri:citation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue='publisher']/cit:party/cit:CI_Organisation/cit:name">
           <dc:publisher>
-            <xsl:apply-templates mode="localised19115-1-2013" select=".">
+            <xsl:apply-templates mode="localised19115-3" select=".">
               <xsl:with-param name="langId" select="$langId"/>
             </xsl:apply-templates>
           </dc:publisher>
@@ -120,7 +120,7 @@
         
         <xsl:for-each select="mri:citation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue='author']/cit:party/cit:CI_Organisation/cit:name">
           <dc:contributor>
-            <xsl:apply-templates mode="localised19115-1-2013" select=".">
+            <xsl:apply-templates mode="localised19115-3" select=".">
               <xsl:with-param name="langId" select="$langId"/>
             </xsl:apply-templates>
           </dc:contributor>
@@ -131,12 +131,12 @@
       <!-- abstract -->
       <xsl:for-each select="$identification/mri:abstract">
         <dct:abstract>
-          <xsl:apply-templates mode="localised19115-1-2013" select=".">
+          <xsl:apply-templates mode="localised19115-3" select=".">
             <xsl:with-param name="langId" select="$langId"/>
           </xsl:apply-templates>
         </dct:abstract>
         <dc:description>
-          <xsl:apply-templates mode="localised19115-1-2013" select=".">
+          <xsl:apply-templates mode="localised19115-3" select=".">
             <xsl:with-param name="langId" select="$langId"/>
           </xsl:apply-templates>
         </dc:description>
@@ -152,7 +152,7 @@
         
         <xsl:for-each select="$identification/mri:otherConstraints">
           <dc:rights>
-            <xsl:apply-templates mode="localised19115-1-2013" select=".">
+            <xsl:apply-templates mode="localised19115-3" select=".">
               <xsl:with-param name="langId" select="$langId"/>
             </xsl:apply-templates>
           </dc:rights>
@@ -169,7 +169,7 @@
       <!-- Lineage -->
       <xsl:for-each select="../../mdb:resourceLineage/mrl:LI_Lineage/mrl:statement">
         <dc:source>
-          <xsl:apply-templates mode="localised19115-1-2013" select=".">
+          <xsl:apply-templates mode="localised19115-3" select=".">
             <xsl:with-param name="langId" select="$langId"/>
           </xsl:apply-templates>				
         </dc:source>
@@ -257,7 +257,7 @@
               <xsl:if test="cit:name/gco:CharacterString != ''">
                 <xsl:attribute name="name">
                   <xsl:for-each select="cit:name">
-                    <xsl:apply-templates mode="localised19115-1-2013" select=".">
+                    <xsl:apply-templates mode="localised19115-3" select=".">
                       <xsl:with-param name="langId" select="$langId"/>
                     </xsl:apply-templates>
                   </xsl:for-each>
@@ -267,7 +267,7 @@
               <xsl:if test="cit:description/gco:CharacterString != ''">
                 <xsl:attribute name="description">
                   <xsl:for-each select="cit:description">
-                    <xsl:apply-templates mode="localised19115-1-2013" select=".">
+                    <xsl:apply-templates mode="localised19115-3" select=".">
                       <xsl:with-param name="langId" select="$langId"/>
                     </xsl:apply-templates>
                   </xsl:for-each>

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<labels xmlns:srv="http://www.isotc211.org/2005/srv/2.0/2014-07-11"
-        xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2014-07-11"
-        xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2014-07-11"
-        xmlns:mri="http://www.isotc211.org/2005/mri/1.0/2014-07-11"
-        xmlns:mrs="http://www.isotc211.org/2005/mrs/1.0/2014-07-11"
-        xmlns:mrd="http://www.isotc211.org/2005/mrd/1.0/2014-07-11"
-        xmlns:mco="http://www.isotc211.org/2005/mco/1.0/2014-07-11"
-        xmlns:msr="http://www.isotc211.org/2005/msr/1.0/2014-07-11"
-        xmlns:lan="http://www.isotc211.org/2005/lan/1.0/2014-07-11"
-        xmlns:gcx="http://www.isotc211.org/2005/gcx/1.0/2014-07-11"
-        xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2014-07-11"
-        xmlns:dqm="http://www.isotc211.org/2005/dqm/1.0/2014-07-11"
-        xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2014-07-11"
-        xmlns:gco="http://www.isotc211.org/2005/gco"
+<labels xmlns:srv="http://www.isotc211.org/2005/srv/2.0/2014-12-25"
+        xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2014-12-25"
+        xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2014-12-25"
+        xmlns:mri="http://www.isotc211.org/2005/mri/1.0/2014-12-25"
+        xmlns:mrs="http://www.isotc211.org/2005/mrs/1.0/2014-12-25"
+        xmlns:mrd="http://www.isotc211.org/2005/mrd/1.0/2014-12-25"
+        xmlns:mco="http://www.isotc211.org/2005/mco/1.0/2014-12-25"
+        xmlns:msr="http://www.isotc211.org/2005/msr/1.0/2014-12-25"
+        xmlns:lan="http://www.isotc211.org/2005/lan/1.0/2014-12-25"
+        xmlns:gcx="http://www.isotc211.org/2005/gcx/1.0/2014-12-25"
+        xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2014-12-25"
+        xmlns:mdq="http://www.isotc211.org/2005/mdq/1.0/2014-12-25"
+        xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2014-12-25"
+        xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../../../labels.xsd" >
   <element name="mdq:standaloneQualityReport">
@@ -222,6 +222,10 @@
     <description iso="true">Informations concernant des ressources associées</description>
     <_condition>optional</_condition>
   </element>
+  <element name="mri:MD_AssociatedResource" id="62.0">
+    <label>Ressource associée</label>
+    <description iso="true">Informations concernant des ressources associées</description>
+  </element>
   <element name="mri:defaultLocale" id="64.0">
     <label>Paramétrage régional par défaut</label>
     <description iso="true">Langue et jeu de caractères utilisés dans la ressource</description>
@@ -302,7 +306,7 @@
     <description iso="true">Réponse aux limitations déterminées par l’utilisateur. Exemple «Ceci a été réglé dans la version x.»</description>
     <_condition>optional</_condition>
   </element>
-  <element name="mrl:additionalDocumentation" id="91.0">
+  <element name="mri:additionalDocumentation" id="91.0">
     <label>Documentation supplémentaire</label>
     <description iso="true">Documentation supplémentaire</description>
     <_condition>optional</_condition>
@@ -1086,6 +1090,11 @@ responsable du service.</li>
     <condition/>
     
   </element>
+  <element name="mdb:MD_MetadataScope">
+    <label>Type de ressource</label>
+    <description>Domaine auquel les métadonnées s'appliquent (voir l'annexe C pour plus d'information au sujet des niveaux de hiérarchie des métadonnées)</description>
+    <help>Domaine auquel les métadonnées se rapportent. La catégorie d'informations à laquelle l'entité se réfère peut être indiquée dans la liste des codes (exemple : attributs, objets géométriques, jeu de données, etc.). "Jeu de données" est le paramètre par défaut.</help>
+  </element>
   <element name="cit:MD_MetadataExtensionInformation" id="303.0">
     <label>Informations sur les extensions de métadonnées</label>
     <description>Classe pour les informations décrivant les extensions du modèle de métadonnées</description>
@@ -1174,6 +1183,10 @@ responsable du service.</li>
     <help>Description du domaine auquel se rapporte une information. Ces indications sont utilisées pour les informations de qualité (DQ_Quality) et les informations de mise à jour (MD_Maintenance) lorsque les caractéristiques ne sont pas homogènes sur l'ensemble du jeu de données décrit. l'un au moins de ces attributs doit être saisi. Exemple de la MO, jeu de données décrit : "Lot". La couche des biens-fonds est mise à jour en permanence, la couche de la nomenclature n''est quant à elle actualisée qu''au besoin. Si la mise à jour de la couche des biens-fonds est décrite, l'option "Biens-fonds" est entrée pour les propriétés. Les informations de qualité sont gérées sur le même modèle. Vous trouverez d'autres informations sous MD_MaintenanceInformation et DQ_DataQuality.</help>
     <condition>Il faut saisir un des attributs suivants: Attributs, Objets Géométriques, Occurences d'objets, Occurences d'attributs, Jeu de données, Autre.</condition>
     
+  </element>
+  <element name="mcc:MD_ScopeDescription_Type" id="149.0">
+    <label>Description du domaine</label>
+    <description>Description de la classe d'information concernée par les informations</description>
   </element>
   <element name="mco:MD_SecurityConstraints" id="73.0">
     <label>Contraintes de sécurité</label>
@@ -1452,7 +1465,16 @@ de métadonnées de données « BD Carthage métropole »
     <condition/>
     
   </element>
-  <element name="mir:associationType" id="66.4">
+
+  <element name="mrl:additionalDocumentation">
+    <label>Documentation complémentaire</label>
+    <description/>
+  </element>
+  <element name="mrl:LI_Source">
+    <label>Source</label>
+    <description/>
+  </element>
+  <element name="mri:associationType" id="66.4">
     <label>Type d'association</label>
     <description>Type d'association sur le jeu de données rassemblé</description>
     <help>Type de relation entre jeux de données de rang inférieur, autrement dit, nature du lien unissant les deux jeux de données. La sélection s'opère dans la liste suivante : transfert à titre de comparaison, comparaison avec le jeu de données de rang supérieur, partie d'une structure de données identique, renvoi à une source, couple stéréoscopique.</help>
@@ -1641,7 +1663,6 @@ de métadonnées de données « BD Carthage métropole »
     <help>Code alphanumérique de l'identifiant. Ces informations sont du type PT_FreeText et sont gérées dans la classe du même nom.</help>
     <condition>Obligatoire</condition>
     <helper>
-      <option value="FR-SIREN-CODE">FR-SIREN-CODE</option>
       <option value="http://URL/CODE">http://URL/CODE</option>
     </helper>
   </element>
@@ -2381,7 +2402,7 @@ version en tant que mot-clé complémentaire(s). Le numéro de version doit comp
     <help>Valeurs licites pouvant être affectées à l'élément étendu.</help>
     <condition>Condition</condition>
   </element>
-  <element name="cit:eastBoundLongitude" id="345.0">
+  <element name="gex:eastBoundLongitude" id="345.0">
     <label>Est</label>
     <description>Coordonnée la plus à l'est de la limite de l'étendue du jeu de données, exprimée en longitude avec des degrés décimaux (EST positif)</description>
     <help>Limite est de l'extension du jeu de données, exprimée en longitude géographique (degrés décimaux) comptée positivement vers l'est.</help>
@@ -2593,12 +2614,10 @@ période de temps couverte par le service.
     <condition/>
     
   </element>
-  <element name="cit:fileIdentifier" id="2.0">
+  <element name="mdb:metadataIdentifier" id="2.0">
     <label>Identifiant de la fiche</label>
     <description>Identifiant unique pour la fiche de métadonnées. Il est généré automatiquement par l'application.</description>
     <help>Identifiant unique pour ce fichier de métadonnées. Il correspond à un et un seul nom de fichier.</help>
-    <condition/>
-    
   </element>
   <element name="mcc:fileName" id="438.0">
     <label>Nom ou URL de l'illustration</label>
@@ -3061,7 +3080,7 @@ période de temps couverte par le service.
     <condition/>
     
   </element>
-  <element name="cit:maximumValue" id="356.0">
+  <element name="gex:maximumValue" id="356.0">
     <label>Valeur maximale</label>
     <description>Indication de l'altitude du point le plus haut du jeu de données</description>
     <help>Altitude du point le plus élevé du jeu de données</help>
@@ -3330,7 +3349,7 @@ période de temps couverte par le service.
     <condition/>
     
   </element>
-  <element name="cit:northBoundLatitude" id="347.0">
+  <element name="gex:northBoundLatitude" id="347.0">
     <label>Nord</label>
     <description>Coordonnée la plus au nord de la limite de l'étendue du jeu de données, exprimée en latitude avec des degrés décimaux (NORD positif)</description>
     <help>Limite nord de l'extension du jeu de données, exprimée en latitude géographique (degrés décimaux) comptée positivement vers le nord.</help>
@@ -3777,7 +3796,30 @@ la non-évaluation</b>, dans le cadre de métadonnées INSPIRE
     <description>Degré de détail dans le jeu de données de type raster</description>
     <help>Degré de spécification de la trame, c.-à-d. description d'une extension, d'une dimension ou d'un nombre de cellules.</help>
     <condition/>
-    
+  </element>
+  <element name="mrl:resolution" id="182.0">
+    <label>Resolution</label>
+    <description>Degree of detail in the grid dataset</description>
+  </element>
+  <element name="mri:distance">
+    <label>Horizontal ground sample distance</label>
+    <description>Horizontal ground sample distance</description>
+  </element>
+  <element name="mri:vertical">
+    <label>Vertical sampling distance</label>
+    <description>Vertical sampling distance</description>
+  </element>
+  <element name="mri:angularDistance">
+    <label>Angular sampling measure</label>
+    <description>Angular sampling measure</description>
+  </element>
+  <element name="mri:levelOfDetail">
+    <label>Niveau de détail</label>
+    <description>Brief textual description of the spatial resolution of the resource</description>
+  </element>
+  <element name="mri:MD_Resolution_Type">
+    <label>Type de résolution</label>
+    <description/>
   </element>
   <element name="mri:resourceConstraints" id="35.0">
     <label>Contraintes sur la ressource</label>
@@ -3840,7 +3882,7 @@ diffusion restreinte.
     <condition/>
     
   </element>
-  <element name="cit:resourceFormat" id="32.0">
+  <element name="mri:resourceFormat" id="32.0">
     <label>Format de la ressource</label>
     <description>Description du format de la ressource</description>
     <help>Description du format de la ressource. Le nom et la version du format sont entrés ici. Ces informations sont gérées dans la classe MD_Format.</help>
@@ -4005,7 +4047,7 @@ diffusion restreinte.
     <condition/>
     
   </element>
-  <element name="cit:southBoundLatitude" id="346.0">
+  <element name="gex:southBoundLatitude" id="346.0">
     <label>Sud</label>
     <description>Coordonnée la plus au sud de la limite de l'étendue du jeu de données, exprimée en latitude avec des degrés décimaux (NORD positif)</description>
     <help>Limite sud de l'extension du jeu de données, exprimée en latitude géographique (degrés décimaux) comptée positivement vers le nord.</help>
@@ -4648,7 +4690,7 @@ l’IGN (WPS)
     <condition/>
     
   </element>
-  <element name="cit:westBoundLongitude" id="344.0">
+  <element name="gex:westBoundLongitude" id="344.0">
     <label>Ouest</label>
     <description>Coordonnée la plus à l'ouest de la limite de l'étendue du jeu de données, exprimée en longitude avec des degrés décimaux (EST positif)</description>
     <help>Limite ouest de l'extension du jeu de données, exprimée en longitude géographique (degrés décimaux) comptée positivement vers l'est.</help>
@@ -4810,6 +4852,22 @@ l’IGN (WPS)
   </element>
   <element name="calendarEraName">
     <label>Nom de l'ère</label>
+    <description></description>
+  </element>
+  <element name="relativePosition">
+    <label>Position relative</label>
+    <description></description>
+  </element>
+  <element name="gml:remoteSchema">
+    <label>Remote schema</label>
+    <description></description>
+  </element>
+  <element name="owns">
+    <label>Owns</label>
+    <description></description>
+  </element>
+  <element name="xlink:type">
+    <label>Type de lien</label>
     <description></description>
   </element>
   <element name="unit">
@@ -5383,13 +5441,6 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
     <condition/>
     
   </element>
-  <element name="gco:CharacterString">
-    <label>Texte</label>
-    <description/>
-    <help/>
-    <condition/>
-    
-  </element>
   <element name="gco:nilReason">
     <label>Raison de l'absence</label>
     <description/>
@@ -5401,6 +5452,10 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
     <label>CRS vertical</label>
     <description>Information sur l'origine depuis laquelle les altitudes maximale et minimale ont été mesurées</description>
   </element>
+  <element name="gex:verticalCRSId">
+    <label>Identifiant du CRS vertical</label>
+    <description>Information sur l'origine depuis laquelle les altitudes maximale et minimale ont été mesurées</description>
+  </element>
   <element name="gcx:FileName">
     <label>Nom du fichier</label>
     <description>Nom du fichier et URL.</description>
@@ -5410,16 +5465,8 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
     <description>URL du document.</description>
   </element>
   
-  <element name="gml:TimePeriodTypeGROUP_ELEMENT0">
+  <element name="gml:TimePeriodType">
     <label>Information sur la période</label>
-    <description></description>
-  </element>
-  <element name="gml:TimePeriodTypeGROUP_ELEMENT4">
-    <label>Information sur la période</label>
-    <description></description>
-  </element>
-  <element name="gml:metaDataProperty">
-    <label>Métadonnée sur la propriété</label>
     <description></description>
   </element>
   <element name="gml:descriptionReference">
@@ -5761,15 +5808,7 @@ http://www.sandre.eaufrance.fr/?urn=urn:sandre:ensembledonnees:BDCarthage:FXX:::
     <label>Métadonnée sur la propriété</label>
     <description></description>
   </element>
-  <element name="gml:descriptionReference">
-    <label>Référence sur la description</label>
-    <description></description>
-  </element>
   <element name="gml:remarks">
     <label>Remarque</label>
-  </element>
-  <element name="gml:name">
-    <label>Nom</label>
-    <description></description>
   </element>
 </labels>

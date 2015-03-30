@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:mdb="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11"
-                xmlns:mcc="http://www.isotc211.org/namespace/mcc/1.0/2014-07-11"
-                xmlns:mri="http://www.isotc211.org/namespace/mri/1.0/2014-07-11"
-                xmlns:cit="http://www.isotc211.org/namespace/cit/1.0/2014-07-11"
-                xmlns:gex="http://www.isotc211.org/namespace/gex/1.0/2014-07-11"
-                xmlns:gco="http://www.isotc211.org/2005/gco"
+                xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
+                xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"
+                xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
+                xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
+                xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
+                xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
                 xmlns:gml="http://www.opengis.net/gml/3.2"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -104,9 +104,10 @@
 
         <!-- Get current transformation mode based on XML fragement analysis -->
         <xsl:variable name="transformation"
-          select="if (count(mri:keyword/gmx:Anchor) > 0)
+          select="if (parent::node()/@xlink:href)
+          then 'to-iso19115-3-keyword-as-xlink'
+          else if (count(mri:keyword/gmx:Anchor) > 0)
           then 'to-iso19115-3-keyword-with-anchor'
-          else if (@xlink:href) then 'to-iso19115-3-keyword-as-xlink'
           else 'to-iso19115-3-keyword'"/>
 
         <xsl:variable name="parentName" select="name(..)"/>

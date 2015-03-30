@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xsl:stylesheet version="2.0" 
-            xmlns:cit="http://www.isotc211.org/namespace/cit/1.0/2014-07-11"
-            xmlns:dqm="http://www.isotc211.org/namespace/dqm/1.0/2014-07-11"
-            xmlns:gco="http://www.isotc211.org/2005/gco" 
-            xmlns:lan="http://www.isotc211.org/namespace/lan/1.0/2014-07-11"
-            xmlns:mcc="http://www.isotc211.org/namespace/mcc/1.0/2014-07-11"
-            xmlns:mrc="http://www.isotc211.org/namespace/mrc/1.0/2014-07-11"
-            xmlns:mco="http://www.isotc211.org/namespace/mco/1.0/2014-07-11"
-            xmlns:mdb="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11"
-            xmlns:mri="http://www.isotc211.org/namespace/mri/1.0/2014-07-11"
-            xmlns:mrs="http://www.isotc211.org/namespace/mrs/1.0/2014-07-11"
-            xmlns:mrl="http://www.isotc211.org/namespace/mrl/1.0/2014-07-11"
-            xmlns:mrd="http://www.isotc211.org/namespace/mrd/1.0/2014-07-11"
+            xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
+            xmlns:mdq="http://standards.iso.org/19157/-2/mdq/1.0/2014-12-25"
+            xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
+            xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
+            xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"
+            xmlns:mrc="http://standards.iso.org/19115/-3/mrc/1.0/2014-12-25"
+            xmlns:mco="http://standards.iso.org/19115/-3/mco/1.0/2014-12-25"
+            xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
+            xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
+            xmlns:mrs="http://standards.iso.org/19115/-3/mrs/1.0/2014-12-25"
+            xmlns:mrl="http://standards.iso.org/19115/-3/mrl/1.0/2014-12-25"
+            xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0/2014-12-25"
 						xmlns:gml="http://www.opengis.net/gml/3.2"
-            xmlns:srv="http://www.isotc211.org/namespace/srv/2.0/2014-07-11"
-						xmlns:gcx="http://www.isotc211.org/namespace/gcx/1.0/2014-07-11"
-						xmlns:gex="http://www.isotc211.org/namespace/gex/1.0/2014-07-11"
+            xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0/2014-12-25"
+						xmlns:gcx="http://standards.iso.org/19115/-3/gcx/1.0/2014-12-25"
+						xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
 						xmlns:geonet="http://www.fao.org/geonetwork"
 						xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
             xmlns:skos="http://www.w3.org/2004/02/skos/core#">
 
-	<xsl:include href="../iso19139/convert/functions.xsl"/>
-	<xsl:include href="convert/functions.xsl"/>
+  <xsl:include href="convert/functions.xsl"/>
 	<xsl:include href="../../../xsl/utils-fn.xsl"/>
   <xsl:include href="index-subtemplate-fields.xsl"/>
 	
@@ -32,12 +31,10 @@
 		 added to the GeoNetwork constants in the Java source code.
 		 Please keep indexes consistent among metadata standards if they should
 		 work accross different metadata resources -->
-	<!-- ========================================================================================= -->
-	
+
 	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no" />
 
 
-	<!-- ========================================================================================= -->
 
   <xsl:param name="thesauriDir"/>
   <xsl:param name="inspire">false</xsl:param>
@@ -51,13 +48,15 @@
     of the description of the temporal extent). -->
 	<xsl:variable name="useDateAsTemporalExtent" select="false()"/>
 
-        <!-- ========================================================================================= -->
 
-  <xsl:variable name="fileIdentifier" select="/mdb:MD_Metadata|*[contains(@gco:isoType,'mdb:MD_Metadata')]/mdb:metadataIdentifier/mcc:MD_Identifier[mcc:codeSpace/*='urn:uuid']/mcc:code/*"/>
+  <!-- TODO: discussed where to place UUID. -->
+  <xsl:variable name="fileIdentifier"
+                select="//(mdb:MD_Metadata|*[contains(@gco:isoType,'mdb:MD_Metadata')])/
+                  mdb:metadataIdentifier[1]/mcc:MD_Identifier/mcc:code/*"/>
 
 	<xsl:template match="/">
 	    <xsl:variable name="isoLangId">
-	  	    <xsl:call-template name="langId19115-1-2013"/>
+	  	    <xsl:call-template name="langId19115-3"/>
         </xsl:variable>
 
 		<Document locale="{$isoLangId}">
@@ -67,7 +66,7 @@
 
 			
 			<xsl:variable name="_defaultTitle">
-				<xsl:call-template name="defaultTitle19115-1-2013">
+				<xsl:call-template name="defaultTitle">
 					<xsl:with-param name="isoDocLangId" select="$isoLangId"/>
 				</xsl:call-template>
 			</xsl:variable>
@@ -113,8 +112,7 @@
 		<Field name="extentDesc" string="{string(.)}" store="false" index="true"/>
 	</xsl:template>
 	
-	
-	<!-- ========================================================================================= -->
+
 
 	<xsl:template match="*" mode="metadata">
 
@@ -202,7 +200,7 @@
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 
 			<xsl:for-each select="*/gex:EX_Extent">
-				<xsl:apply-templates select="gex:geographicElement/gex:EX_GeographicBoundingBox" mode="latLon19115-1-2013"/>
+				<xsl:apply-templates select="gex:geographicElement/gex:EX_GeographicBoundingBox" mode="latLon19115-3"/>
 
 				<xsl:for-each select="gex:geographicElement/gex:EX_GeographicDescription/gex:geographicIdentifier/mcc:MD_Identifier/mcc:code/gco:CharacterString">
 					<Field name="geoDescCode" string="{string(.)}" store="true" index="true"/>
@@ -259,20 +257,23 @@
 					<Field name="keywordType" string="{string(.)}" store="true" index="true"/>
 				</xsl:for-each>
 			</xsl:for-each>
-	
-			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-            <xsl:variable name="email" select="/mdb:MD_Metadata/mdb:contact[1]/cit:CI_Responsibility[1]/cit:contactInfo[1]/cit:CI_Contact[1]/cit:address[1]/cit:CI_Address[1]/cit:electronicMailAddress[1]/gco:CharacterString[1]"/>
-            <xsl:for-each select="mri:pointOfContact/cit:CI_Responsibility/cit:organisationName/gco:CharacterString|mri:pointOfContact/cit:CI_Responsibility/cit:organisationName/gcx:Anchor">
-				<Field name="orgName" string="{string(.)}" store="true" index="true"/>
+
+      <xsl:for-each select="mri:pointOfContact/cit:CI_Responsibility">
+        <xsl:variable name="orgName" select="string(cit:party/cit:CI_Organisation/cit:name/*)"/>
+
+        <Field name="orgName" string="{$orgName}" store="true" index="true"/>
 				
-				<xsl:variable name="role" select="../../cit:role/*/@codeListValue"/>
-				<xsl:variable name="logo" select="../..//gcx:FileName/@src"/>
+				<xsl:variable name="role" select="cit:role/*/@codeListValue"/>
+        <xsl:variable name="email" select="cit:contactInfo/cit:CI_Contact/
+                                          cit:address/cit:CI_Address/
+                                          cit:electronicMailAddress/gco:CharacterString"/>
+				<xsl:variable name="logo" select="cit/party/cit:CI_Organisation/
+				                                    cit:logo/mcc:MD_BrowseGraphic/mcc:fileName/gco:CharacterString"/>
 			
-				<Field name="responsibleParty" string="{concat($role, '|resource|', ., '|', $logo, '|', $email)}" store="true" index="false"/>
+				<Field name="responsibleParty" string="{concat($role, '|resource|', $orgName, '|', $logo, '|', $email)}" store="true" index="false"/>
 				
 			</xsl:for-each>
 
-			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 	
 			<xsl:choose>
 				<xsl:when test="mri:resourceConstraints/mco:MD_SecurityConstraints">
@@ -283,14 +284,12 @@
 				</xsl:otherwise>
 			</xsl:choose>
 
-			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 	
 			<xsl:for-each select="mri:topicCategory/mri:MD_TopicCategoryCode">
 				<Field name="topicCat" string="{string(.)}" store="true" index="true"/>
 				<Field name="keyword" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
 
-			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 
       <!-- mri:defaultLocale/lan:PT_Locale takes over from gmd:language -->
 			<xsl:for-each select="mri:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue">
@@ -473,11 +472,11 @@
 				</xsl:if>
 			  
 				<xsl:if test="contains($protocol, 'WWW:DOWNLOAD')">
-			    	<Field name="download" string="true" store="false" index="true"/>
+			    	<Field name="download" string="on" store="false" index="true"/>
 			  	</xsl:if>
 
                 <xsl:if test="contains($protocol, 'OGC:WMS') or $wmsLinkNoProtocol">
-			   	 	<Field name="dynamic" string="true" store="false" index="true"/>
+			   	 	<Field name="dynamic" string="on" store="false" index="true"/>
 			  	</xsl:if>
 
                 <!-- ignore WMS links without protocol (are indexed below with mimetype application/vnd.ogc.wms_xml) -->
@@ -517,7 +516,7 @@
 			<Field  name="hassource" string="{string(@uuidref)}" store="false" index="true"/>
 		</xsl:for-each>
 		
-		<xsl:for-each select="mdb:dataQualityInfo/*/dqm:report/*/dqm:result">
+		<xsl:for-each select="mdb:dataQualityInfo/*/mdq:report/*/mdq:result">
 			<xsl:if test="$inspire='true'">
 				<!-- 
 				INSPIRE related dataset could contains a conformity section with:
@@ -531,30 +530,31 @@
 				"1089/2010" is maybe too fuzzy but could work for translated citation like "Règlement n°1089/2010, Annexe II-6" TODO improved
 				-->
 				<xsl:if test="(
-					contains(dqm:DQ_ConformanceResult/dqm:specification/cit:CI_Citation/cit:title/gco:CharacterString, '1089/2010') or
-					contains(dqm:DQ_ConformanceResult/dqm:specification/cit:CI_Citation/cit:title/gco:CharacterString, 'INSPIRE Data Specification') or
-					contains(dqm:DQ_ConformanceResult/dqm:specification/cit:CI_Citation/cit:title/gco:CharacterString, 'INSPIRE Specification'))">
+					contains(mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:title/gco:CharacterString, '1089/2010') or
+					contains(mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:title/gco:CharacterString, 'INSPIRE Data Specification') or
+					contains(mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:title/gco:CharacterString, 'INSPIRE Specification'))">
 					<Field name="inspirerelated" string="on" store="false" index="true"/>
 				</xsl:if>
 			</xsl:if>
 			
-			<xsl:for-each select="//dqm:pass/gco:Boolean">
+			<xsl:for-each select="//mdq:pass/gco:Boolean">
 				<Field name="degree" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
 			
-			<xsl:for-each select="//dqm:specification/*/cit:title/gco:CharacterString">
+			<xsl:for-each select="//mdq:specification/*/cit:title/gco:CharacterString">
 				<Field name="specificationTitle" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
 			
-			<xsl:for-each select="//dqm:specification/*/cit:date/*/cit:date">
+			<xsl:for-each select="//mdq:specification/*/cit:date/*/cit:date">
 				<Field name="specificationDate" string="{string(gco:Date[.!='']|gco:DateTime[.!=''])}" store="true" index="true"/>
 			</xsl:for-each>
 			
-			<xsl:for-each select="//dqm:specification/*/cit:date/*/cit:dateType/cit:CI_DateTypeCode/@codeListValue">
+			<xsl:for-each select="//mdq:specification/*/cit:date/*/cit:dateType/cit:CI_DateTypeCode/@codeListValue">
 				<Field name="specificationDateType" string="{string(.)}" store="true" index="true"/>
 			</xsl:for-each>
 		</xsl:for-each>
-		<xsl:for-each select="mdb:dataQualityInfo/*/dqm:lineage/*/dqm:statement/gco:CharacterString">
+
+		<xsl:for-each select="mdb:resourceLineage/*/mrl:statement/gco:CharacterString">
 			<Field name="lineage" string="{string(.)}" store="true" index="true"/>
 		</xsl:for-each>
 		
@@ -644,16 +644,19 @@
 		
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-    <!-- FIXME: MD_BrowseGraphic for organisation logo should use mcc:linkage 
-         instead of mcc:fileName -->
-		<xsl:for-each select="mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation">
-			<Field name="metadataPOC" string="{string(cit:name/*)}" store="true" index="true"/>
-			
-			<xsl:variable name="role" select="../../cit:role/*/@codeListValue"/>
-			<xsl:variable name="logo" select="cit:logo/mcc:MD_BrowseGraphic/mcc:fileName/gco:CharacterString"/>
-			
-			<Field name="responsibleParty" string="{concat($role, '|metadata|', ., '|', $logo)}" store="true" index="false"/>			
-		</xsl:for-each>
+    <xsl:for-each select="mdb:contact/cit:CI_Responsibility">
+      <xsl:variable name="orgName" select="string(cit:party/cit:CI_Organisation/cit:name/*)"/>
+      <Field name="orgName" string="{$orgName}" store="true" index="true"/>
+
+      <xsl:variable name="role" select="cit:role/*/@codeListValue"/>
+      <xsl:variable name="logo" select="cit/party/cit:CI_Organisation/
+				                                    cit:logo/mcc:MD_BrowseGraphic/mcc:fileName/gco:CharacterString"/>
+
+      <Field name="responsibleParty" string="{concat($role, '|metadata|', $orgName, '|', $logo)}" store="true" index="false"/>
+    </xsl:for-each>
+
+
+
 
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 		<!-- === Reference system info === -->		

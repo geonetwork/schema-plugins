@@ -1,24 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cit:CI_Responsibility
-    xmlns:mdb="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11"
-    xmlns:cit="http://www.isotc211.org/namespace/cit/1.0/2014-07-11"
-    xmlns:gco="http://www.isotc211.org/2005/gco">
-  <cit:role>
-    <cit:CI_RoleCode 
-      codeList="codeListLocation#CI_RoleCode" 
-      codeListValue="pointOfContact"/>
-  </cit:role>
-  <cit:party>
-    <cit:CI_Organisation>
+<cit:CI_Organisation
+    xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
+    xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
+		uuid="urn:frank:frank-organisation:users:1"
+		title="Organisation: info@frank.com Francois and Frank">
       <cit:name>
-        <gco:CharacterString>Organisation Name</gco:CharacterString>
+        <gco:CharacterString>Frank Organisation</gco:CharacterString>
       </cit:name>
       <cit:contactInfo>
         <cit:CI_Contact>
+					<cit:phone>
+						<cit:CI_Telephone>
+							<cit:number>
+								<gco:CharacterString>+87 2345461</gco:CharacterString>
+							</cit:number>
+							<cit:numberType>
+								<cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
+							</cit:numberType>
+						</cit:CI_Telephone>
+					</cit:phone>
+					<cit:phone>
+						<cit:CI_Telephone>
+							<cit:number>
+								<gco:CharacterString>+87 2345462</gco:CharacterString>
+							</cit:number>
+							<cit:numberType>
+								<cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="facsimile">facsimile</cit:CI_TelephoneTypeCode>
+							</cit:numberType>
+						</cit:CI_Telephone>
+					</cit:phone>
           <cit:address>
             <cit:CI_Address>
+							<cit:deliveryPoint>
+								<gco:CharacterString>Jefferson Esplanade</gco:CharacterString>
+							</cit:deliveryPoint>
+              <cit:city>
+                <gco:CharacterString>Bussey City</gco:CharacterString>
+              </cit:city>
+              <cit:administrativeArea>
+                <gco:CharacterString>Clarence</gco:CharacterString>
+              </cit:administrativeArea>
+              <cit:postalCode>
+                <gco:CharacterString>GH763 MD4</gco:CharacterString>
+              </cit:postalCode>
+              <cit:country>
+                <gco:CharacterString>United Mars</gco:CharacterString>
+              </cit:country>
               <cit:electronicMailAddress>
-                <gco:CharacterString/>
+                <gco:CharacterString>info@frank.com</gco:CharacterString>
               </cit:electronicMailAddress>
             </cit:CI_Address>
           </cit:address>
@@ -27,13 +56,21 @@
       <cit:individual>
         <cit:CI_Individual>
           <cit:name>
-            <gco:CharacterString/>
+            <gco:CharacterString>Francois W Frank</gco:CharacterString>
           </cit:name>
           <cit:positionName>
-            <gco:CharacterString/>
+            <gco:CharacterString>Apostillator in Chief</gco:CharacterString>
           </cit:positionName>
         </cit:CI_Individual>
       </cit:individual>
-    </cit:CI_Organisation>
-  </cit:party>
-</cit:CI_Responsibility>
+      <cit:individual>
+        <cit:CI_Individual>
+          <cit:name>
+            <gco:CharacterString>Frank G Frank</gco:CharacterString>
+          </cit:name>
+          <cit:positionName>
+            <gco:CharacterString>Assistant Apostillator in Chief</gco:CharacterString>
+          </cit:positionName>
+        </cit:CI_Individual>
+      </cit:individual>
+</cit:CI_Organisation>

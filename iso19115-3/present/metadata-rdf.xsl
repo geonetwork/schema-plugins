@@ -12,19 +12,20 @@
   xmlns:dct="http://purl.org/dc/terms/"
   xmlns:dctype="http://purl.org/dc/dcmitype/" 
   xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-  xmlns:gco="http://www.isotc211.org/2005/gco" 
-  xmlns:mds="http://www.isotc211.org/namespace/mds/1.0/2014-07-11"
-  xmlns:mcc="http://www.isotc211.org/namespace/mcc/1.0/2014-07-11"
-  xmlns:srv="http://www.isotc211.org/namespace/srv/2.0/2014-07-11"
-  xmlns:mri="http://www.isotc211.org/namespace/mri/1.0/2014-07-11"
-  xmlns:mmi="http://www.isotc211.org/namespace/mmi/1.0/2014-07-11"
-  xmlns:mrc="http://www.isotc211.org/namespace/mrc/1.0/2014-07-11"
-  xmlns:mco="http://www.isotc211.org/namespace/mco/1.0/2014-07-11"
-  xmlns:mrd="http://www.isotc211.org/namespace/mrd/1.0/2014-07-11"
-  xmlns:cit="http://www.isotc211.org/namespace/cit/1.0/2014-07-11"
-  xmlns:lan="http://www.isotc211.org/namespace/lan/1.0/2014-07-11"
-  xmlns:gex="http://www.isotc211.org/namespace/gex/1.0/2014-07-11"
-  xmlns:dqm="http://www.isotc211.org/namespace/dqm/1.0/2014-07-11"
+  xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
+  xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
+  xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"
+  xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0/2014-12-25"
+  xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
+  xmlns:mrl="http://standards.iso.org/19115/-3/mrl/1.0/2014-12-25"
+  xmlns:mmi="http://standards.iso.org/19115/-3/mmi/1.0/2014-12-25"
+  xmlns:mrc="http://standards.iso.org/19115/-3/mrc/1.0/2014-12-25"
+  xmlns:mco="http://standards.iso.org/19115/-3/mco/1.0/2014-12-25"
+  xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0/2014-12-25"
+  xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
+  xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
+  xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
+  xmlns:mdq="http://standards.iso.org/19157/-2/mdq/1.0/2014-12-25"
   xmlns:gml="http://www.opengis.net/gml/3.2" 
   xmlns:ogc="http://www.opengis.net/rdf#"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -43,41 +44,41 @@
     Create reference block to metadata record and dataset to be added in dcat:Catalog usually.
   -->
   <!-- FIME : $url comes from a global variable. -->
-  <xsl:template match="mds:MD_Metadata|*[contains(@gco:isoType,'MD_Metadata')]" mode="record-reference">
+  <xsl:template match="mdb:MD_Metadata|*[contains(@gco:isoType,'MD_Metadata')]" mode="record-reference">
     <!-- TODO : a metadata record may contains aggregate. In that case create one dataset per aggregate member. -->
     <dcat:dataset rdf:resource="{$url}/resource/{iso19115-3:getResourceCode(.)}"/>
-    <dcat:record rdf:resource="{$url}/metadata/{mds:metadataIdentifier/mcc:MD_Identifier[mcc:codeSpace/gco:CharacterString='urn:uuid']/mcc:code/gco:CharacterString}"/>
+    <dcat:record rdf:resource="{$url}/metadata/{mdb:metadataIdentifier[position() = 1]/mcc:MD_Identifier/mcc:code/gco:CharacterString}"/>
   </xsl:template>
   
   
   <!--
     Convert ISO record to DCAT
     -->
-  <xsl:template match="mds:MD_Metadata|*[contains(@gco:isoType,'MD_Metadata')]" mode="to-dcat">
+  <xsl:template match="mdb:MD_Metadata|*[contains(@gco:isoType,'MD_Metadata')]" mode="to-dcat">
 
 
     <!-- Catalogue records
       "A record in a data catalog, describing a single dataset."        
       
-      xpath: //mds:MD_Metadata|//*[contains(@gco:isoType,'MD_Metadata')]
+      xpath: //mdb:MD_Metadata|//*[contains(@gco:isoType,'MD_Metadata')]
     -->
-    <dcat:CatalogRecord rdf:about="{$url}/metadata/{mds:metadataIdentifier/mcc:MD_Identifier[mcc:codeSpace/gco:CharacterString='urn:uuid']/mcc:code/gco:CharacterString}">
+    <dcat:CatalogRecord rdf:about="{$url}/metadata/{mdb:metadataIdentifier[position() = 1]/mcc:MD_Identifier/mcc:code/gco:CharacterString}">
       <!-- Link to a dcat:Dataset or a rdf:Description for services and feature catalogue. -->
       <foaf:primaryTopic rdf:resource="{$url}/resource/{iso19115-3:getResourceCode(.)}"/>
 
       <!-- Metadata change date.
       "The date is encoded as a literal in "YYYY-MM-DD" form (ISO 8601 Date and Time Formats)." -->
-      <xsl:variable name="date" select="substring-before(mds:dateInfo/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']/cit:date/gco:DateTime, 'T')"/>
+      <xsl:variable name="date" select="substring-before(mdb:dateInfo/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']/cit:date/gco:DateTime, 'T')"/>
       <dct:modified><xsl:value-of select="$date"/></dct:modified>
       <dct:issued><xsl:value-of select="$date"/></dct:issued>
-      <!-- xpath: mds:dateInfo/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']cit:date/gco:DateTime -->
+      <!-- xpath: mdb:dateInfo/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']cit:date/gco:DateTime -->
       
       <xsl:call-template name="add-reference-19115-1-2013">
-        <xsl:with-param name="uuid" select="mds:metadataIdentifier/mcc:MD_Identifier[mcc:codeSpace/gco:CharacterString='urn:uuid']/mcc:code/gco:CharacterString"/>
+        <xsl:with-param name="uuid" select="mdb:metadataIdentifier[position() = 1]/mcc:MD_Identifier/mcc:code/gco:CharacterString"/>
       </xsl:call-template>
     </dcat:CatalogRecord>
     
-    <xsl:apply-templates select="mds:identificationInfo/*" mode="to-dcat"/>
+    <xsl:apply-templates select="mdb:identificationInfo/*" mode="to-dcat"/>
     
   </xsl:template>
   
@@ -104,7 +105,7 @@
   </xsl:template>
   
   <!-- Create all references for iso19115-3 record (if rdf.metadata.get) or records (if rdf.search) -->
-  <xsl:template match="mds:MD_Metadata|*[contains(@gco:isoType,'MD_Metadata')]" mode="references">
+  <xsl:template match="mdb:MD_Metadata|*[contains(@gco:isoType,'MD_Metadata')]" mode="references">
     
     <!-- Keywords -->
     <xsl:for-each-group select="//mri:MD_Keywords[(mri:thesaurusName)]/mri:keyword/gco:CharacterString" group-by=".">
@@ -124,9 +125,9 @@
       
       Download, WebService, Feed
       
-      xpath: //mds:distributionInfo/*/mrd:transferOptions/*/mrd:onLine/cit:CI_OnlineResource
+      xpath: //mdb:distributionInfo/*/mrd:transferOptions/*/mrd:onLine/cit:CI_OnlineResource
     -->
-    <xsl:for-each-group select="//mds:distributionInfo/*/mrd:transferOptions/*/mrd:onLine/cit:CI_OnlineResource" group-by="cit:linkage/*">
+    <xsl:for-each-group select="//mdb:distributionInfo/*/mrd:transferOptions/*/mrd:onLine/cit:CI_OnlineResource" group-by="cit:linkage/*">
       <dcat:Distribution rdf:about="{cit:linkage/*}">
         <!-- 
           "points to the location of a distribution. This can be a direct download link, a link 
@@ -249,7 +250,7 @@
     
     
     <dct:abstract><xsl:value-of select="mri:abstract/gco:CharacterString"/></dct:abstract>
-    <!-- xpath: mds:identificationInfo/*/mri:abstract/gco:CharacterString -->
+    <!-- xpath: mdb:identificationInfo/*/mri:abstract/gco:CharacterString -->
     
     
     <!-- "A keyword or tag describing the dataset."
@@ -258,7 +259,7 @@
     <xsl:for-each select="mri:descriptiveKeywords/mri:MD_Keywords[not(mri:thesaurusName)]/mri:keyword/gco:CharacterString">
       <dcat:keyword><xsl:value-of select="."/></dcat:keyword>
     </xsl:for-each>
-    <!-- xpath: mds:identificationInfo/*/mri:descriptiveKeywords/mri:MD_Keywords[not(mri:thesaurusName)]/mri:keyword/gco:CharacterString --> 
+    <!-- xpath: mdb:identificationInfo/*/mri:descriptiveKeywords/mri:MD_Keywords[not(mri:thesaurusName)]/mri:keyword/gco:CharacterString --> 
     
     
     <!-- "The main category of the dataset. A dataset can have multiple themes." 
@@ -278,7 +279,7 @@
     <xsl:for-each select="mri:graphicOverview/mcc:MD_BrowseGraphic/mcc:fileName/gco:CharacterString">
       <foaf:thumbnail rdf:resource="{.}"/>
     </xsl:for-each>
-    <!-- xpath: mds:identificationInfo/*/mri:graphicOverview/mcc:MD_BrowseGraphic/mcc:fileName/gco:CharacterString -->
+    <!-- xpath: mdb:identificationInfo/*/mri:graphicOverview/mcc:MD_BrowseGraphic/mcc:fileName/gco:CharacterString -->
     
     
     <!-- "Spatial coverage of the dataset." -->
@@ -300,7 +301,7 @@
         </ogc:Polygon>
       </dct:spatial>
     </xsl:for-each>
-    <!-- xpath: mds:identificationInfo/*/gex:extent/*/gex:geographicElement/gex:EX_GeographicBoundingBox --> 
+    <!-- xpath: mdb:identificationInfo/*/gex:extent/*/gex:geographicElement/gex:EX_GeographicBoundingBox --> 
     
     
     <!-- "The temporal period that the dataset covers." -->
@@ -313,7 +314,7 @@
         </xsl:if>
       </dct:temporal>
     </xsl:for-each>
-    <!-- xpath: mds:identificationInfo/*/gex:extent/*/gex:temporalElement --> 
+    <!-- xpath: mdb:identificationInfo/*/gex:extent/*/gex:temporalElement --> 
     
     <xsl:for-each select="mri:citation/*/cit:date/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='creation']">
       <dct:issued><xsl:value-of select="cit:date/gco:Date|cit:date/gco:DateTime"/></dct:issued>
@@ -326,20 +327,20 @@
     <xsl:for-each select="mri:pointOfContact//cit:CI_Organisation/cit:name/gco:CharacterString[.!='']">
       <dct:publisher rdf:resource="{$url}/organization/{encode-for-uri(.)}"/>
     </xsl:for-each>
-    <!-- xpath: mds:identificationInfo/*/mri:pointOfContact -->
+    <!-- xpath: mdb:identificationInfo/*/mri:pointOfContact -->
     
     
     <!-- "The frequency with which dataset is published." See placetime.com intervals. -->
     <xsl:for-each select="mri:resourceMaintenance/mmi:MD_MaintenanceInformation/mmi:maintenanceAndUpdateFrequency/mmi:MD_MaintenanceFrequencyCode">
       <dct:accrualPeriodicity><xsl:value-of select="@codeListValue"/></dct:accrualPeriodicity>
     </xsl:for-each>
-    <!-- xpath: mds:identificationInfo/*/mri:resourceMaintenance/mmi:MD_MaintenanceInformation/mmi:maintenanceAndUpdateFrequency/mmi:MD_MaintenanceFrequencyCode/@codeListValue -->
+    <!-- xpath: mdb:identificationInfo/*/mri:resourceMaintenance/mmi:MD_MaintenanceInformation/mmi:maintenanceAndUpdateFrequency/mmi:MD_MaintenanceFrequencyCode/@codeListValue -->
     
     <!-- "This is usually geographical or temporal but can also be other dimension" ??? -->
     <xsl:for-each select="mri:spatialResolution/mri:MD_Resolution/mri:equivalentScale/mri:MD_RepresentativeFraction/mri:denominator/gco:Integer[.!='']">
       <dcat:granularity><xsl:value-of select="."/></dcat:granularity>
     </xsl:for-each>
-    <!-- xpath: mds:identificationInfo/*/mri:spatialResolution/mri:MD_Resolution/mri:equivalentScale/mri:MD_RepresentativeFraction/mri:denominator/gco:Integer -->
+    <!-- xpath: mdb:identificationInfo/*/mri:spatialResolution/mri:MD_Resolution/mri:equivalentScale/mri:MD_RepresentativeFraction/mri:denominator/gco:Integer -->
     
     
     <!-- 
@@ -349,7 +350,7 @@
     <xsl:for-each select="mri:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue">
       <dct:language><xsl:value-of select="."/></dct:language>
     </xsl:for-each>
-    <!-- xpath: mds:identificationInfo/*/mri:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue -->
+    <!-- xpath: mdb:identificationInfo/*/mri:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode/@codeListValue -->
     
     
     <!-- "The license under which the dataset is published and can be reused." -->
@@ -359,22 +360,22 @@
     <xsl:for-each select="mri:resourceConstraints/mco:MD_LegalConstraints/mco:otherConstraints/gco:CharacterString">
       <dct:license><xsl:value-of select="."/></dct:license>
     </xsl:for-each>
-    <!-- xpath: mds:identificationInfo/*/mri:resourceConstraints/??? -->
+    <!-- xpath: mdb:identificationInfo/*/mri:resourceConstraints/??? -->
     
     
-    <xsl:for-each select="../../mds:distributionInfo/*/mrd:transferOptions/*/mrd:onLine">
+    <xsl:for-each select="../../mdb:distributionInfo/*/mrd:transferOptions/*/mrd:onLine">
       <dcat:distribution rdf:resource="{cit:CI_OnlineResource/cit:linkage/*}"/>
     </xsl:for-each>
-    <!-- xpath: mds:distributionInfo/*/mrd:transferOptions/*/mrd:onLine/cit:CI_OnlineResource -->
+    <!-- xpath: mdb:distributionInfo/*/mrd:transferOptions/*/mrd:onLine/cit:CI_OnlineResource -->
     
     
     <!-- ISO19110 relation 
       "This usually consisits of a table providing explanation of columns meaning, values interpretation and acronyms/codes used in the data."
     -->
-    <xsl:for-each select="../../mds:contentInfo/mrc:MD_FeatureCatalogueDescription/mrc:featureCatalogueCitation/@uuidref ">
+    <xsl:for-each select="../../mdb:contentInfo/mrc:MD_FeatureCatalogueDescription/mrc:featureCatalogueCitation/@uuidref ">
       <dcat:dataDictionary rdf:resource="{$url}/metadata/{.}"/>
     </xsl:for-each>
-    <!-- xpath: mds:contentInfo/mrc:MD_FeatureCatalogueDescription/mrc:featureCatalogueCitation/@uuidref -->
+    <!-- xpath: mdb:contentInfo/mrc:MD_FeatureCatalogueDescription/mrc:featureCatalogueCitation/@uuidref -->
     
     <!-- Dataset relation
     -->
@@ -394,7 +395,7 @@
     
     
     <!-- Parent/child relation -->
-    <xsl:for-each select="../../mds:parentMetadata/mcc:MD_Identifier/mcc:code/gco:CharacterString[.!='']">
+    <xsl:for-each select="../../mdb:parentMetadata/mcc:MD_Identifier/mcc:code/gco:CharacterString[.!='']">
       <dct:relation rdf:resource="{$url}/metadata/{.}"/>
     </xsl:for-each>
     <xsl:for-each select="/root/gui/relation/children/response/metadata">
@@ -415,17 +416,17 @@
       <dct:reference rdf:resource="url?"/>
       </xsl:for-each>
     -->
-    <!-- xpath: mds:identificationInfo/*/cit:citation/*/cit:otherCitationDetails/gco:CharacterString -->
+    <!-- xpath: mdb:identificationInfo/*/cit:citation/*/cit:otherCitationDetails/gco:CharacterString -->
     
     
     <!-- "describes the quality of data." -->
-    <xsl:for-each select="../../mds:dataQualityInfo/*/dqm:lineage/dqm:LI_Lineage/dqm:statement/gco:CharacterString">
+    <xsl:for-each select="../../mrl:resourceLineage/mrl:LI_Lineage/mrl:statement/gco:CharacterString">
       <dcat:dataQuality>
         <!-- rdfs:literal -->
         <xsl:value-of select="."/>
       </dcat:dataQuality>
     </xsl:for-each>
-    <!-- xpath: mds:dataQualityInfo/*/dqm:lineage/dqm:LI_Lineage/dqm:statement/gco:CharacterString -->
+    <!-- xpath: mrl:resourceLineage/mrl:LI_Lineage/mrl:statement/gco:CharacterString -->
     
     
     <!-- FIXME ? 
@@ -445,9 +446,9 @@
   <xsl:function name="iso19115-3:getResourceCode" as="xs:string">
     <xsl:param name="metadata" as="node()"/>
     
-    <xsl:value-of select="if ($metadata/mds:identificationInfo/*/mri:citation/*/cit:identifier/*/mcc:code/gco:CharacterString!='')
-      then $metadata/mds:identificationInfo/*/mri:citation/*/cit:identifier/*/mcc:code/gco:CharacterString 
-      else $metadata/mds:metadataIdentifier/mcc:MD_Identifier[mcc:codeSpace/gco:CharacterString='urn:uuid']/mcc:code/gco:CharacterString"/>
+    <xsl:value-of select="if ($metadata/mdb:identificationInfo/*/mri:citation/*/cit:identifier/*/mcc:code/gco:CharacterString!='')
+      then $metadata/mdb:identificationInfo/*/mri:citation/*/cit:identifier/*/mcc:code/gco:CharacterString 
+      else $metadata/mdb:metadataIdentifier[position() = 1]/mcc:MD_Identifier/mcc:code/gco:CharacterString"/>
   </xsl:function>
   
   

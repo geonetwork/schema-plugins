@@ -2,17 +2,18 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:gml="http://www.opengis.net/gml/3.2" 
-  xmlns:gco="http://www.isotc211.org/2005/gco" 
-  xmlns:mds="http://www.isotc211.org/namespace/mds/1.0/2014-07-11"
-  xmlns:mcc="http://www.isotc211.org/namespace/mcc/1.0/2014-07-11"
-  xmlns:mco="http://www.isotc211.org/namespace/mco/1.0/2014-07-11"
-  xmlns:mri="http://www.isotc211.org/namespace/mri/1.0/2014-07-11"
-  xmlns:mrd="http://www.isotc211.org/namespace/mrd/1.0/2014-07-11"
-  xmlns:cit="http://www.isotc211.org/namespace/cit/1.0/2014-07-11"
-  xmlns:gex="http://www.isotc211.org/namespace/gex/1.0/2014-07-11"
-  xmlns:lan="http://www.isotc211.org/namespace/lan/1.0/2014-07-11"
-  xmlns:dqm="http://www.isotc211.org/namespace/dqm/1.0/2014-07-11"
-  xmlns:srv="http://www.isotc211.org/namespace/srv/1.0/2014-07-11"
+  xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
+  xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
+  xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"
+  xmlns:mco="http://standards.iso.org/19115/-3/mco/1.0/2014-12-25"
+  xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
+  xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0/2014-12-25"
+  xmlns:mrl="http://standards.iso.org/19115/-3/mrl/1.0/2014-12-25"
+  xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
+  xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
+  xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
+  xmlns:mdq="http://standards.iso.org/19157/-2/mdq/1.0/2014-12-25"
+  xmlns:srv="http://standards.iso.org/19115/-3/srv/1.0/2014-12-25"
   xmlns:geonet="http://www.fao.org/geonetwork"
   xmlns:date="http://exslt.org/dates-and-times" 
   xmlns:exslt="http://exslt.org/common"
@@ -63,7 +64,7 @@
     <!-- Title -->
     <xsl:variable name="title">
       <xsl:apply-templates mode="elementFop"
-        select="./mds:identificationInfo/*/mri:citation/cit:CI_Citation/cit:title">
+        select="./mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:title">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>
@@ -74,8 +75,8 @@
     <!-- Date -->
     <xsl:variable name="date">
       <xsl:apply-templates mode="elementFop"
-        select="./mds:identificationInfo/*/mri:citation/cit:CI_Citation/cit:date/cit:CI_Date/cit:date |
-                ./mds:identificationInfo/*/mri:citation/cit:CI_Citation/cit:date/cit:CI_Date/cit:dateType/cit:CI_DateTypeCode/@codeListValue">
+        select="./mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:date/cit:CI_Date/cit:date |
+                ./mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:date/cit:CI_Date/cit:dateType/cit:CI_DateTypeCode/@codeListValue">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>
@@ -85,7 +86,7 @@
 
     <!-- Abstract -->
     <xsl:variable name="abstract">
-      <xsl:apply-templates mode="elementFop" select="./mds:identificationInfo/*/mri:abstract">
+      <xsl:apply-templates mode="elementFop" select="./mdb:identificationInfo/*/mri:abstract">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>
@@ -96,7 +97,7 @@
     <!-- Service Type -->
     <xsl:variable name="serviceType">
       <xsl:apply-templates mode="elementFop"
-        select="./mds:identificationInfo/*/srv:serviceType/gco:LocalName ">
+        select="./mdb:identificationInfo/*/srv:serviceType/gco:LocalName ">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>
@@ -107,7 +108,7 @@
     <!-- Service Type Version -->
     <xsl:variable name="srvVersion">
       <xsl:apply-templates mode="elementFop"
-        select="./mds:identificationInfo/*/srv:serviceTypeVersion">
+        select="./mdb:identificationInfo/*/srv:serviceTypeVersion">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>
@@ -118,7 +119,7 @@
     <!-- Coupling Type -->
     <xsl:variable name="couplingType">
       <xsl:apply-templates mode="elementFop"
-        select="./mds:identificationInfo/*/srv:couplingType/srv:SV_CouplingType/@codeListValue">
+        select="./mdb:identificationInfo/*/srv:couplingType/srv:SV_CouplingType/@codeListValue">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>
@@ -129,7 +130,7 @@
     <!-- Code -->
     <xsl:variable name="code">
       <xsl:apply-templates mode="elementFop"
-        select="mds:identificationInfo/*/mri:citation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code">
+        select="mdb:identificationInfo/*/mri:citation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>
@@ -139,7 +140,7 @@
 
     <!-- Language -->
     <xsl:variable name="lang">
-      <xsl:apply-templates mode="elementFop" select="./mds:identificationInfo/*/mri:defaultLocale/lan:PT_Locale/lan:language/lan:languageCode/@codeListValue">
+      <xsl:apply-templates mode="elementFop" select="./mdb:identificationInfo/*/mri:defaultLocale/lan:PT_Locale/lan:language/lan:languageCode/@codeListValue">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>
@@ -150,7 +151,7 @@
     <!-- metadataScope Level -->
     <xsl:variable name="hierarchy">
       <xsl:apply-templates mode="elementFop"
-        select="./mds:metadataScope/mcc:MD_ScopeCode/@codeListValue">
+        select="./mdb:metadataScope/mcc:MD_ScopeCode/@codeListValue">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>
@@ -161,8 +162,8 @@
     <!-- Source Online -->
     <xsl:variable name="online">
       <xsl:apply-templates mode="elementFop"
-        select="./mds:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource/cit:linkage |
-                                  ./mds:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource/cit:protocol">
+        select="./mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource/cit:linkage |
+                                  ./mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource/cit:protocol">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>
@@ -177,8 +178,8 @@
     <!-- Contact -->
     <xsl:variable name="poc">
       <xsl:apply-templates mode="elementFop"
-        select="./mds:identificationInfo/*/mri:pointOfContact/cit:CI_Responsibility/cit:party/*/cit:name    |
-                ./mds:identificationInfo/*/mri:pointOfContact/cit:CI_Responsibility/cit:role/cit:CI_RoleCode/@codeListValue">
+        select="./mdb:identificationInfo/*/mri:pointOfContact/cit:CI_Responsibility/cit:party/*/cit:name    |
+                ./mdb:identificationInfo/*/mri:pointOfContact/cit:CI_Responsibility/cit:role/cit:CI_RoleCode/@codeListValue">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>
@@ -193,7 +194,7 @@
 
     <!-- Topic category -->
     <xsl:variable name="topicCat">
-      <xsl:apply-templates mode="elementFop" select="./mds:identificationInfo/*/mri:topicCategory">
+      <xsl:apply-templates mode="elementFop" select="./mdb:identificationInfo/*/mri:topicCategory">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>
@@ -204,8 +205,8 @@
     <!-- Keywords -->
     <xsl:variable name="keyword">
       <xsl:apply-templates mode="elementFop"
-        select="./mds:identificationInfo/*/mri:descriptiveKeywords/mri:MD_Keywords/mri:keyword | 
-              ./mds:identificationInfo/*/mri:descriptiveKeywords/mri:MD_Keywords/mri:type/mri:MD_KeywordTypeCode/@codeListValue">
+        select="./mdb:identificationInfo/*/mri:descriptiveKeywords/mri:MD_Keywords/mri:keyword | 
+              ./mdb:identificationInfo/*/mri:descriptiveKeywords/mri:MD_Keywords/mri:type/mri:MD_KeywordTypeCode/@codeListValue">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>
@@ -220,21 +221,21 @@
     <!-- Geographical extent -->
     <xsl:variable name="geoDesc">
       <xsl:apply-templates mode="elementFop"
-        select="./mds:identificationInfo/*/mri:extent/gex:EX_Extent/gex:description |
-                ./mds:identificationInfo/*/srv:extent/gex:EX_Extent/gex:description">
+        select="./mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:description |
+                ./mdb:identificationInfo/*/srv:extent/gex:EX_Extent/gex:description">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>
     <xsl:variable name="geoBbox">
       <xsl:apply-templates mode="elementFop"
-        select="./mds:identificationInfo/*/mri:extent/gex:EX_Extent/gex:geographicElement/gex:EX_GeographicBoundingBox |
-              ./mds:identificationInfo/*/srv:extent/gex:EX_Extent/gex:geographicElement/gex:EX_GeographicBoundingBox">
+        select="./mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:geographicElement/gex:EX_GeographicBoundingBox |
+              ./mdb:identificationInfo/*/srv:extent/gex:EX_Extent/gex:geographicElement/gex:EX_GeographicBoundingBox">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>
     <xsl:variable name="timeExtent">
       <xsl:apply-templates mode="elementFop"
-        select="./mds:identificationInfo/*/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent/gex:extent/gml:TimeInstant/gml:timePosition">
+        select="./mdb:identificationInfo/*/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent/gex:extent/gml:TimeInstant/gml:timePosition">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>
@@ -270,7 +271,7 @@
     <!-- Spatial resolution -->
     <xsl:variable name="spatialResolution">
       <xsl:apply-templates mode="elementFop"
-        select="./mds:identificationInfo/*/mri:spatialResolution">
+        select="./mdb:identificationInfo/*/mri:spatialResolution">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>
@@ -286,7 +287,7 @@
     <!-- Temporal resolution -->
     <xsl:variable name="temporalResolution">
       <xsl:apply-templates mode="elementFop"
-        select="./mds:identificationInfo/*/mri:temporalResolution">
+        select="./mdb:identificationInfo/*/mri:temporalResolution">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>
@@ -300,14 +301,14 @@
     </xsl:call-template>
 
     <!-- Lineage -->
-    <xsl:if test="./mds:identificationInfo/*[name(.)!='srv:SV_ServiceIdentification']">
+    <xsl:if test="./mdb:identificationInfo/*[name(.)!='srv:SV_ServiceIdentification']">
       <xsl:variable name="qual">
         <xsl:apply-templates mode="elementFop"
-          select="./mds:dataQualityInfo/dqm:DQ_DataQuality/dqm:lineage/dqm:LI_Lineage/dqm:statement">
+          select="./mdb:resourceLineage/mrl:LI_Lineage/mrl:statement">
           <xsl:with-param name="schema" select="$schema"/>
         </xsl:apply-templates>
         <xsl:apply-templates mode="elementFop"
-          select="./mds:dataQualityInfo/dqm:DQ_DataQuality/dqm:lineage/dqm:LI_Lineage/dqm:source">
+          select="./mdb:resourceLineage/mrl:LI_Lineage/mrl:source">
           <xsl:with-param name="schema" select="$schema"/>
         </xsl:apply-templates>
       </xsl:variable>
@@ -315,7 +316,7 @@
         <xsl:with-param name="block" select="$qual"/>
         <xsl:with-param name="label">
           <xsl:value-of
-            select="/root/gui/schemas/*[name()=$schema]/labels/element[@name='dqm:lineage']/label"/>
+            select="/root/gui/schemas/*[name()=$schema]/labels/element[@name='mdb:resourceLineage']/label"/>
         </xsl:with-param>
       </xsl:call-template>
     </xsl:if>
@@ -323,12 +324,12 @@
     <!-- Constraints -->
     <xsl:variable name="constraints">
       <xsl:apply-templates mode="elementFop"
-        select="./mds:identificationInfo/*/mri:resourceConstraints/*/mco:useLimitation/gco:CharacterString">
+        select="./mdb:identificationInfo/*/mri:resourceConstraints/*/mco:useLimitation/gco:CharacterString">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
 
       <xsl:apply-templates mode="elementFop"
-        select="./mds:identificationInfo/*/mri:resourceConstraints/*/mco:classification">
+        select="./mdb:identificationInfo/*/mri:resourceConstraints/*/mco:classification">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>
@@ -343,7 +344,7 @@
 
     <!-- Identifier -->
     <xsl:variable name="identifier">
-      <xsl:apply-templates mode="elementFop" select="./mds:metadataIdentifier/mcc:MD_Identifier[string(mcc:codeSpace/*)='urn:uuid']/mcc:code/*">
+      <xsl:apply-templates mode="elementFop" select="./mdb:metadataIdentifier[position() = 1]/mcc:MD_Identifier/mcc:code/*">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>
@@ -353,7 +354,7 @@
 
     <!-- Language -->
     <xsl:variable name="language">
-      <xsl:apply-templates mode="elementFop" select="./mds:defaultLocale/lan:PT_Locale/lan:language/lan:languageCode/@codeListValue">
+      <xsl:apply-templates mode="elementFop" select="./mdb:defaultLocale/lan:PT_Locale/lan:language/lan:languageCode/@codeListValue">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>
@@ -364,15 +365,15 @@
     <!-- Contact -->
     <xsl:variable name="contact">
       <xsl:apply-templates mode="elementFop"
-        select="./mds:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name">
+        select="./mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
       <xsl:apply-templates mode="elementFop"
-        select="./mds:contact/cit:CI_Responsibility/cit:party/cit:CI_Individual/cit:name">
+        select="./mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Individual/cit:name">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
       <xsl:apply-templates mode="elementFop"
-        select="./mds:contact/cit:CI_Responsibility/cit:role/cit:CI_RoleCode/@codeListValue">
+        select="./mdb:contact/cit:CI_Responsibility/cit:role/cit:CI_RoleCode/@codeListValue">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>
@@ -386,7 +387,7 @@
 
     <!-- Modification date -->
     <xsl:variable name="dateInfo">
-      <xsl:apply-templates mode="elementFop" select="./mds:dateInfo/cit:date/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']/cit:date/*">
+      <xsl:apply-templates mode="elementFop" select="./mdb:dateInfo/cit:date/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue='revision']/cit:date/*">
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:apply-templates>
     </xsl:variable>
