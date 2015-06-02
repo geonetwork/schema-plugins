@@ -1526,7 +1526,9 @@
 		</xsl:for-each>
 
 		<metadatacreationdate>
-			<xsl:value-of select="mdb:dateStamp/*"/>
+			<xsl:value-of select="mdb:dateInfo/cit:CI_Date
+			            [cit:dateType/cit:CI_DateTypeCode/@codeListValue='creation']
+									            /cit:date/*"/>
 		</metadatacreationdate>
 
 		<geonet:info>

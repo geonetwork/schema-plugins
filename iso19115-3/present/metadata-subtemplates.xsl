@@ -1,13 +1,13 @@
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
-  xmlns:mds="http://standards.iso.org/19115/-3/mds/1.0/2014-12-25"
+  xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
   xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
   xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
   xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0/2014-12-25"
   xmlns:mco="http://standards.iso.org/19115/-3/mco/1.0/2014-12-25"
   xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
   xmlns:geonet="http://www.fao.org/geonetwork" 
-  exclude-result-prefixes="mds mri cit mrd mco gex gco geonet">
+  exclude-result-prefixes="mdb mri cit mrd mco gex gco geonet">
   
   <!-- Compute title for all type of subtemplates. If none defined, 
   the title from the metadata title column is used. -->
@@ -30,7 +30,7 @@
   </xsl:template>
   
   <!-- Subtemplate mode -->
-  <xsl:template mode="iso191115-1-2013-subtemplate" match="cit:CI_Responsibility">
+  <xsl:template mode="iso19115-3-subtemplate" match="cit:CI_Responsibility">
     <!-- TODO : multilingual subtemplate are not supported. There is
       no locale element -->
     <xsl:variable name="langId">
@@ -67,7 +67,7 @@
     </xsl:choose>
   </xsl:template>
   
-  <xsl:template mode="iso191115-1-2013-subtemplate" match="gex:EX_Extent">
+  <xsl:template mode="iso19115-3-subtemplate" match="gex:EX_Extent">
     <!-- TODO : multilingual subtemplate are not supported. There is
       no gmd:language element or gmd:locales -->
     <xsl:variable name="langId">
@@ -82,7 +82,7 @@
     </xsl:apply-templates>
   </xsl:template>
   
-  <xsl:template mode="iso191115-1-2013-subtemplate" match="mri:MD_Keywords">
+  <xsl:template mode="iso19115-3-subtemplate" match="mri:MD_Keywords">
     <xsl:variable name="langId">
       <xsl:call-template name="getLangId">
         <xsl:with-param name="langGui" select="/root/gui/language"/>
@@ -100,19 +100,19 @@
     </xsl:for-each>
   </xsl:template>
   
-  <xsl:template mode="iso191115-1-2013-subtemplate" match="mrd:MD_Distribution">
+  <xsl:template mode="iso19115-3-subtemplate" match="mrd:MD_Distribution">
     <xsl:value-of
       select="string-join(mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource/cit:linkage/*, ' ,')"
     />
   </xsl:template>
   
-  <xsl:template mode="iso191115-1-2013-subtemplate" match="mco:MD_LegalConstraints">
+  <xsl:template mode="iso19115-3-subtemplate" match="mco:MD_LegalConstraints">
     <xsl:value-of
       select="if (mco:useLimitation) then mco:useLimitation/* else mco:otherConstraints/*"
     />
   </xsl:template>
   
   
-  <xsl:template mode="iso191115-1-2013-subtemplate" match="*"/>
+  <xsl:template mode="iso19115-3-subtemplate" match="*"/>
   
 </xsl:stylesheet>
