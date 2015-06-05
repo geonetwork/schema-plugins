@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public">
+
+<!-- OASIS CATALOG FOR GEONETWORK TO REMAP VARIOUS XML IDs -->
+
+	<!-- This used to be done in Java code, but with the use of these 
+			 maps you can customise this to suit yourself. -->
+
+  <uri name="http://www.w3.org/2001/xml.xsd"
+	     uri="schema/xml.xsd"/>
+
+	<uri name="http://www.w3.org/ns/prov.xsd" 
+	     uri="schema/prov.xsd"/>
+
+	<uri name="http://dublincore.org/schemas/xmls/qdc/2008/02/11/dc.xsd" 
+	     uri="schema/dc.xsd"/>
+					
+	<uri name="http://dublincore.org/schemas/xmls/qdc/2008/02/11/dcterms.xsd"
+	     uri="schema/dcterms.xsd"/>
+
+
+	<!-- These are to map schemaLocation hints to local schemas to make sure that
+       GeoNetwork edits and validates against a schema it knows about. -->
+
+	<system systemId="http://www.w3.org/ns/prov.xsd" 
+	        uri="schema/prov.xsd"/>
+
+	<system systemId="http://dublincore.org/schemas/xmls/qdc/2008/02/11/dc.xsd" 
+	        uri="schema/dc.xsd"/>
+					
+	<system systemId="http://dublincore.org/schemas/xmls/qdc/2008/02/11/dcterms.xsd"
+	        uri="schema/dcterms.xsd"/>
+
+</catalog>
