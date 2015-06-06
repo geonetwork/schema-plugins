@@ -69,10 +69,10 @@
 
 	</xsl:template>
 
-	<xsl:template mode="prov-xmlIsEmpty" match="*|@*|text()">
+	<xsl:template mode="prov-xmlIsEmpty" match="*|@*">
 		<xsl:choose>
-			<!-- normal element -->
-			<xsl:when test="*">
+			<!-- normal element or attribute -->
+			<xsl:when test="*|@*">
 				<xsl:apply-templates mode="prov-xmlIsEmpty"/>
 			</xsl:when>
 			<!-- text element -->

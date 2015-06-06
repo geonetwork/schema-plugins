@@ -21,21 +21,6 @@
     </xsl:call-template>
   </xsl:template>
 
-	<xsl:template mode="prov-element" match="*">
-		<xsl:call-template name="complexElementSimpleGui">
-			<xsl:with-param name="title">
-        <xsl:call-template name="getTitle">
-          <xsl:with-param name="name" select="name()"/>
-          <xsl:with-param name="schema" select="'prov-xml'"/>
-        </xsl:call-template>
-			</xsl:with-param>
-			<xsl:with-param name="content">
-      	<xsl:apply-templates mode="prov-xml-simple" select="@prov:id"/>
-        <xsl:apply-templates mode="prov-xml-simpleviewmode" select="*"/>
-      </xsl:with-param>
-    </xsl:call-template>
-	</xsl:template>
-
   <!-- View templates are available only in view mode and does not provide editing
   capabilities. Template MUST start with "view". -->
   <!-- ===================================================================== -->
@@ -81,7 +66,24 @@
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template mode="prov-xml-simpleviewmode" match="*" priority="98">
+	<!-- box prov container elements with their prov:id and children -->
+	<xsl:template mode="prov-element" match="*">
+		<xsl:call-template name="complexElementSimpleGui">
+			<xsl:with-param name="title">
+        <xsl:call-template name="getTitle">
+          <xsl:with-param name="name" select="name()"/>
+          <xsl:with-param name="schema" select="'prov-xml'"/>
+        </xsl:call-template>
+			</xsl:with-param>
+			<xsl:with-param name="content">
+      	<xsl:apply-templates mode="prov-xml-simpleattribute" select="@prov:id"/>
+        <xsl:apply-templates mode="prov-xml-simpleviewmode" select="*"/>
+      </xsl:with-param>
+    </xsl:call-template>
+	</xsl:template>
+
+	<!-- simple prov elements - may have text or be a reference to a prov container element -->
+  <xsl:template mode="prov-xml-simpleviewmode" match="*">
     <xsl:call-template name="simpleElementSimpleGUI">
       <xsl:with-param name="title">
         <xsl:call-template name="getTitle">
@@ -108,48 +110,11 @@
     </xsl:call-template>
   </xsl:template>
   
-  
-  <xsl:template mode="prov-xml-simpleviewmode" match="*|@*">
-    <xsl:apply-templates mode="prov-xml-simpleviewmode" select="*"/>
-  </xsl:template>
+  <!-- Do not display date modified in this mode as it appears in the footer -->
+  <xsl:template mode="prov-xml-simpleviewmode" match="dct:modified"/>
 
-
-  <!-- Hide them -->
-  <xsl:template mode="prov-xml-simple" match="geonet:*" priority="99"/>
-  <!-- Don't display -->
-  
-  <!-- these elements should be boxed -->
-  <xsl:template mode="prov-xml-simple" match="prov:*" priority="2">
-    <xsl:call-template name="complexElement">
-      <xsl:with-param name="id" select="generate-id()"/>
-      <xsl:with-param name="title">
-        <xsl:call-template name="getTitle">
-          <xsl:with-param name="name" select="name()"/>
-          <xsl:with-param name="schema" select="$schema"/>
-        </xsl:call-template>
-      </xsl:with-param>
-      <xsl:with-param name="helpLink">
-        <xsl:call-template name="getHelpLink">
-          <xsl:with-param name="name" select="name()"/>
-          <xsl:with-param name="schema" select="$schema"/>
-        </xsl:call-template>
-      </xsl:with-param>
-      <xsl:with-param name="content">
-        <xsl:apply-templates mode="prov-xml-simple" select="@*|*">
-          <xsl:with-param name="schema" select="$schema"/>
-        </xsl:apply-templates>
-      </xsl:with-param>
-    </xsl:call-template>
-  </xsl:template>
-
-
-  <!-- Do not display date type (displayed next to each dates)
-  in this mode. -->
-  <xsl:template mode="prov-xml-simpleviewmode" match="dct:modified" priority="199"/>
-
-  <!-- All others
-   -->
-  <xsl:template mode="prov-xml-simple" match="*|@*">
+  <!-- prov attributes -->
+  <xsl:template mode="prov-xml-simpleattribute" match="@*">
     <xsl:call-template name="simpleElement">
       <xsl:with-param name="id" select="generate-id()"/>
       <xsl:with-param name="title">
@@ -160,17 +125,7 @@
       </xsl:with-param>
       <xsl:with-param name="help"></xsl:with-param>
       <xsl:with-param name="content">
-        <xsl:variable name="empty">
-          <xsl:apply-templates mode="prov-xmlIsEmpty" select="."/>
-        </xsl:variable>
-        <xsl:choose>
-					<xsl:when test="$empty='att' or $empty='txt'">
-						<xsl:value-of select="."/>
-					</xsl:when>
-					<xsl:when test="$empty!=''">
-          	<xsl:apply-templates mode="prov-xml-simple" select="*|@*"/>
-					</xsl:when>
-        </xsl:choose>
+				<xsl:value-of select="."/>
       </xsl:with-param>
     </xsl:call-template>
 
