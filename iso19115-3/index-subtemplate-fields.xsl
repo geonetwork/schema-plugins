@@ -24,6 +24,8 @@
   Add the [count(ancestor::node()) =  1] to only match element at the root of the document.
   This is the method to identify a subtemplate.
   -->
+
+	<!-- cit:CI_Responsibility -->
   <xsl:template mode="index"
                 match="cit:CI_Responsibility[count(ancestor::node()) =  1]">
 
@@ -42,6 +44,7 @@
   </xsl:template>
 
 
+	<!-- mcc:MD_BrowseGraphic -->
   <xsl:template mode="index"
                 match="mcc:MD_BrowseGraphic[count(ancestor::node()) =  1]">
 
@@ -53,6 +56,16 @@
            string="{if ($fileDescription != '')
                     then $fileDescription
                     else $fileName}"
+           store="true" index="true"/>
+    <xsl:call-template name="subtemplate-common-fields"/>
+  </xsl:template>
+
+	<!-- mco:MD_LegalConstraints -->
+  <xsl:template mode="index"
+                match="mco:MD_LegalConstraints[count(ancestor::node()) =  1]">
+
+    <Field name="_title"
+           string="{mco:reference/cit:CI_Citation/cit:title}"
            store="true" index="true"/>
     <xsl:call-template name="subtemplate-common-fields"/>
   </xsl:template>

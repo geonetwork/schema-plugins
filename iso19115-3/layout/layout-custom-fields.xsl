@@ -2,6 +2,7 @@
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
   xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"
+  xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
   xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
   xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
   xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
@@ -170,10 +171,50 @@
   <xsl:template mode="mode-iso19115-3"
           match="gml:Polygon"
           priority="2000">
-    Here is a polygon
     <textarea>
       <xsl:copy-of select="."/>
     </textarea>
+  </xsl:template>
+
+  <!-- Custom rendering of resource constraints section 
+    * mri:resourceConstraints is boxed element and the title 
+    * of the fieldset is the name of the child element
+  -->
+  <xsl:template mode="mode-iso19115-3" priority="33000" match="mri:resourceConstraints">
+    <xsl:param name="schema" select="$schema" required="no"/>
+    <xsl:param name="labels" select="$labels" required="no"/>
+
+    <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
+    <xsl:variable name="isoType" select="if (../@gco:isoType) then ../@gco:isoType else ''"/>
+
+    <xsl:variable name="attributes">
+      <xsl:if test="$isEditing">
+        <!-- Create form for all existing attribute (not in gn namespace)
+        and all non existing attributes not already present. -->
+        <xsl:apply-templates mode="render-for-field-for-attribute"
+          select="
+          @*|
+          gn:attribute[not(@name = parent::node()/@*/name())]">
+          <xsl:with-param name="ref" select="gn:element/@ref"/>
+          <xsl:with-param name="insertRef" select="gn:element/@ref"/>
+        </xsl:apply-templates>
+      </xsl:if>
+    </xsl:variable>
+
+    <xsl:call-template name="render-boxed-element">
+      <xsl:with-param name="label"
+        select="gn-fn-metadata:getLabel($schema, name(*[1]), $labels, name(), $isoType, $xpath)/label"/>
+      <xsl:with-param name="editInfo" select="gn:element"/>
+      <xsl:with-param name="cls" select="local-name()"/>
+      <xsl:with-param name="xpath" select="$xpath"/>
+      <xsl:with-param name="attributesSnippet" select="$attributes"/>
+      <xsl:with-param name="subTreeSnippet">
+        <xsl:apply-templates mode="mode-iso19115-3" select="*">
+          <xsl:with-param name="schema" select="$schema"/>
+          <xsl:with-param name="labels" select="$labels"/>
+        </xsl:apply-templates>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:template>
 
 

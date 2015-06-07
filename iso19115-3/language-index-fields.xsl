@@ -30,9 +30,9 @@
 		work accross different metadata resources -->
 	<!-- ========================================================================================= -->
 
-	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no" />
 	<xsl:include href="convert/functions.xsl"/>
 
+	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no" />
 
   <!-- TODO: discussed where to place UUID. -->
   <xsl:variable name="fileIdentifier"
@@ -46,17 +46,11 @@
     <xsl:template match="/">
 
         <Documents>
-            <xsl:for-each select="/*[name(.)='mdb:MD_Metadata' or contains(@gco:isoType,'MD_Metadata')]/mdb:defaultLocale/lan:PT_Locale">
-            	<xsl:call-template name="document">
-            		<xsl:with-param name="isoLangId" select="java:threeCharLangCode(normalize-space(string(lan:language/lan:LanguageCode/@codeListValue)))"/>
-            		<xsl:with-param name="langId" select="@id"></xsl:with-param>
-            	</xsl:call-template>
-            </xsl:for-each>
            <!-- 
-           		Create a language document only if PT_Locale defined (ie. is a multilingual document)
-           		and mdb:defaultLocale contains the main metadata language. -->
-           	<xsl:if test="/*[name(.)='mdb:MD_Metadata' or contains(@gco:isoType,'MD_Metadata')]/mdb:defaultLocale/lan:PT_Locale
-           		and count(/*[name(.)='mdb:MD_Metadata' or contains(@gco:isoType,'MD_Metadata')]/lan:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode[@codeListValue = $isoDocLangId]) = 0">
+           		Create a language document only if at least one lan:LocalisedCharacterString exists (ie. multilingual 
+							document) and isoDocLangId is defined
+						-->
+           	<xsl:if test="count(/*[name(.)='mdb:MD_Metadata' or contains(@gco:isoType,'MD_Metadata')]//lan:LocalisedCharacterString)>0 and normalize-space($isoDocLangId)!=''">
             	<xsl:call-template name="document">
             		<xsl:with-param name="isoLangId" select="$isoDocLangId"></xsl:with-param>
             		<xsl:with-param name="langId" select="java:twoCharLangCode(normalize-space(string($isoDocLangId)))"></xsl:with-param>

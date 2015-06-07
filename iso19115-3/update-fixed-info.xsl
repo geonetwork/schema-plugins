@@ -90,8 +90,11 @@
           <mdb:metadataStandard>
             <cit:CI_Citation>
               <cit:title>
-                <gco:CharacterString>ISO 19115-3</gco:CharacterString>
+                <gco:CharacterString>ISO19115-1:2014/ISO19115-3:2014-12-25</gco:CharacterString>
               </cit:title>
+              <cit:edition>
+                <gco:CharacterString>2014-12-25</gco:CharacterString>
+              </cit:edition>
             </cit:CI_Citation>
           </mdb:metadataStandard>
         </xsl:when>
