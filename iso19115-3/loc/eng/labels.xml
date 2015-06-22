@@ -418,11 +418,24 @@
     <label>Organisation</label>
     <description iso="true">Class of information about the party if the party is an organization</description>
   </element>
+  <element name="cit:organisationName" id="385.1">
+    <label>Organisation Name</label>
+    <description iso="true">Name of the responsible organisation</description>
+  </element>
+  <element name="cit:individualName" id="385.2">
+    <label>Individual Name</label>
+    <description iso="true">Name of the responsible individual</description>
+  </element>
   <element name="cit:CI_Responsibility" id="376.0">
     <label>Responsibility</label>
     <description iso="true">Class of information about the party and their role</description>
   </element>
   <element name="cit:role" id="377.0" context="cit:CI_Responsibility">
+	<label>Role</label>
+	<description>Function performed by the responsible party</description>
+	<condition>mandatory</condition>
+	</element>
+  <element name="cit:role" id="377.1" context="cit:CI_ResponsibleParty">
 	<label>Role</label>
 	<description>Function performed by the responsible party</description>
 	<condition>mandatory</condition>
