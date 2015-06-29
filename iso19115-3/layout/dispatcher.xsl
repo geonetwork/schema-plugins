@@ -4,6 +4,7 @@
   xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
   xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"
   xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
+  xmlns:mrl="http://standards.iso.org/19115/-3/mrl/1.0/2014-12-25"
   xmlns:mrs="http://standards.iso.org/19115/-3/mrs/1.0/2014-12-25"
   xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0/2014-12-25"
   xmlns:mco="http://standards.iso.org/19115/-3/mco/1.0/2014-12-25"
