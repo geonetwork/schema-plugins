@@ -23,15 +23,24 @@
                 match="mdb:metadataIdentifier/mcc:MD_Identifier/mcc:code|
                        mdb:metadataIdentifier/mcc:MD_Identifier/mcc:codeSpace|
                        mdb:metadataIdentifier/mcc:MD_Identifier/mcc:description|
-                       mdb:dateInfo/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode = 'revision']/cit:date|
-                       mdb:dateInfo/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode = 'revision']/cit:dateType"
+                       mdb:dateInfo/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue = 'revision']/cit:date|
+                       mdb:dateInfo/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue = 'revision']/cit:dateType|
+                       mdb:dateInfo/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue = 'creation']/cit:date|
+                       mdb:dateInfo/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue = 'creation']/cit:dateType"
                 priority="2000">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
 
+		<xsl:variable name="value">
+			<xsl:choose>
+				<xsl:when test="*/@codeListValue"><xsl:value-of select="*/@codeListValue"/></xsl:when>
+				<xsl:otherwise><xsl:value-of select="*"/></xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+
     <xsl:call-template name="render-element">
       <xsl:with-param name="label" select="gn-fn-metadata:getLabel($schema, name(), $labels)/label"/>
-      <xsl:with-param name="value" select="*"/>
+      <xsl:with-param name="value" select="$value"/>
       <xsl:with-param name="cls" select="local-name()"/>
       <xsl:with-param name="xpath" select="gn-fn-metadata:getXPath(.)"/>
       <xsl:with-param name="type" select="gn-fn-metadata:getFieldType($editorConfig, name(), '')"/>

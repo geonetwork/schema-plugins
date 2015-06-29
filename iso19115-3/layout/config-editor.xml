@@ -131,7 +131,6 @@
   <fieldsWithFieldset>
     <name>mcc:MD_Identifier</name>
     <name>mdb:metadataScope</name>
-    <name>mdb:dateInfo</name>
     <name>mdb:alternativeMetadataReference</name>
     <name>mdb:metadataLinkage</name>
     <name>mdb:identificationInfo</name>
