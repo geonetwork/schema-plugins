@@ -242,7 +242,11 @@
   </element>
   <element name="mrl:LI_Source">
     <label>Source</label>
-    <description/>
+    <description>Information about the source resource used in creating the data specified by the scope</description>
+  </element>
+  <element name="mrl:LE_Source">
+    <label>Imagery Source</label>
+    <description>Imagery extensions: Information on source of data sets for processing step</description>
   </element>
   <element name="mri:associatedResource" id="62.0">
     <label>Associated resource</label>
