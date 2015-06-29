@@ -1826,6 +1826,10 @@
 		<label>Citation identifier</label>
 		<description>Identifier of the citation</description>
 	</element>
+	<element name="cit:identifier" id="573.0">
+		<label>Citation identifier</label>
+		<description>Identifier of the citation</description>
+	</element>
 	<element name="mri:identifier" id="575.0" context="mri:MD_Authority">
 		<label>Identifier</label>
 		<description>Identifier which belongs to the authority</description>
