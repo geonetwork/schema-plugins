@@ -17,7 +17,6 @@
 	<!-- A set of templates use to convert thesaurus concept to 
        iso19115-3 fragments. -->
 	
-  <!-- uses functions from schema iso19139/process/process-utility.xsl -->
 	<xsl:include href="../process/process-utility.xsl"/>
 	
 	<!-- Convert a concept to an iso19115-3 fragment with an Anchor 
@@ -159,12 +158,12 @@
 			<xsl:choose>
 				<xsl:when test="$isService">
 					<srv:extent>
-						<xsl:copy-of select="geonet:make-iso-extent(geo/west, geo/south, geo/east, geo/north, value)"/>
+						<xsl:copy-of select="geonet:make-iso19115-3-extent(geo/west, geo/south, geo/east, geo/north, value)"/>
 					</srv:extent>
 				</xsl:when>
 				<xsl:otherwise>
 					<mri:extent>
-						<xsl:copy-of select="geonet:make-iso-extent(geo/west, geo/south, geo/east, geo/north, value)"/>
+						<xsl:copy-of select="geonet:make-iso19115-3-extent(geo/west, geo/south, geo/east, geo/north, value)"/>
 					</mri:extent>
 				</xsl:otherwise>
 			</xsl:choose>
