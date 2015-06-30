@@ -72,7 +72,7 @@
 			<xsl:with-param name="title">
         <xsl:call-template name="getTitle">
           <xsl:with-param name="name" select="name()"/>
-          <xsl:with-param name="schema" select="'prov-xml'"/>
+          <xsl:with-param name="schema" select="$schema"/>
         </xsl:call-template>
 			</xsl:with-param>
 			<xsl:with-param name="content">

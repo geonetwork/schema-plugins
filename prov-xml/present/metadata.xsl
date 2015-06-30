@@ -10,7 +10,6 @@
 
 	<xsl:include href="metadata-utils.xsl"/>
   <xsl:include href="metadata-subtemplates.xsl"/>
-  <xsl:include href="metadata-view.xsl"/>
 
   <xsl:template name="prov-xmlCompleteTab"/>
 
