@@ -10,7 +10,7 @@
   xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
   xmlns:geonet="http://www.fao.org/geonetwork"
   xmlns:xlink="http://www.w3.org/1999/xlink">
-	
+
 	<!-- The correct codeList Location goes here -->
 	<xsl:variable name="codeListLocation" select="'codeListLocation'"/>
 	
@@ -47,6 +47,7 @@
         It's recommended to use it in order to have the thesaurus widget inline editor
         which use the thesaurus identifier for initialization. -->
 		<xsl:param name="withThesaurusAnchor" select="true()"/>
+
       <mri:MD_Keywords>
         <xsl:choose>
           <xsl:when test="$withXlink">
@@ -112,9 +113,9 @@
                               </gco:DateTime>
                             </xsl:when>
                             <xsl:otherwise>
-                              <gco:Date>
-                                <xsl:value-of select="$thesaurusDate"/>
-                              </gco:Date>
+                              <gco:DateTime>
+                                <xsl:value-of select="concat($thesaurusDate,'T00:00:00')"/>
+                              </gco:DateTime>
                             </xsl:otherwise>
                           </xsl:choose>
                         </cit:date>
