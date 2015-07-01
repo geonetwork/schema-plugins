@@ -4,7 +4,6 @@
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:dct="http://purl.org/dc/terms/"
 	xmlns:prov="http://www.w3.org/ns/prov#"
-  xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
   xmlns:gn-fn-prov-xml="http://geonetwork-opensource.org/xsl/functions/profiles/prov-xml"
   xmlns:gn-fn-metadata="http://geonetwork-opensource.org/xsl/functions/metadata"
   exclude-result-prefixes="#all">

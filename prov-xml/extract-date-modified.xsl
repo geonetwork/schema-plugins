@@ -2,8 +2,6 @@
 
 <xsl:stylesheet
   version="2.0"
-  xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
-  xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:prov="http://www.w3.org/ns/prov#"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"

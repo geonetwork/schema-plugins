@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
   xmlns:gml="http://www.opengis.net/gml/3.2" 
-  xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0/2014-12-25"
-  xmlns:gcx="http://standards.iso.org/19115/-3/gcx/1.0/2014-12-25"
-  xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
-  xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
-  xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"
-  xmlns:mrc="http://standards.iso.org/19115/-3/mrc/1.0/2014-12-25"
-  xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
-  xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
-  xmlns:mdq="http://standards.iso.org/19157/-2/mdq/1.0/2014-12-25"
+  xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0"
+  xmlns:gcx="http://standards.iso.org/19115/-3/gcx/1.0"
+  xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0"
+  xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0"
+  xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0"
+  xmlns:mrc="http://standards.iso.org/19115/-3/mrc/1.0"
+  xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0"
+  xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0"
+  xmlns:mdq="http://standards.iso.org/19157/-2/mdq/1.0"
   xmlns:xlink="http://www.w3.org/1999/xlink" 
   xmlns:gn="http://www.fao.org/geonetwork"
   exclude-result-prefixes="#all">
@@ -90,10 +90,10 @@
           <mdb:metadataStandard>
             <cit:CI_Citation>
               <cit:title>
-                <gco:CharacterString>ISO19115-1:2014/ISO19115-3:2014-12-25</gco:CharacterString>
+                <gco:CharacterString>ISO19115-1:2014/ISO19115-3:2015</gco:CharacterString>
               </cit:title>
               <cit:edition>
-                <gco:CharacterString>2014-12-25</gco:CharacterString>
+                <gco:CharacterString>2015</gco:CharacterString>
               </cit:edition>
             </cit:CI_Citation>
           </mdb:metadataStandard>
