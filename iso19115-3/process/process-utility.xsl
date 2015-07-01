@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:exslt="http://exslt.org/common" xmlns:geonet="http://www.fao.org/geonetwork"
-  xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0" 
-	xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0"
+  xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0" 
+	xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
   version="2.0" exclude-result-prefixes="exslt">
   

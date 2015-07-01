@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
   xmlns:gml="http://www.opengis.net/gml/3.2" 
-  xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0"
-  xmlns:gcx="http://standards.iso.org/19115/-3/gcx/1.0"
-  xmlns:gco="http://standards.iso.org/19115/-3/gco/1.0"
-  xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0"
-  xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0"
-  xmlns:mrc="http://standards.iso.org/19115/-3/mrc/1.0"
-  xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0"
-  xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0"
-  xmlns:mdq="http://standards.iso.org/19157/-2/mdq/1.0"
+  xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
+  xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
+  xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+  xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
+  xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
+  xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/1.0"
+  xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
+  xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+  xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0"
   xmlns:xlink="http://www.w3.org/1999/xlink" 
   xmlns:gn="http://www.fao.org/geonetwork"
   exclude-result-prefixes="#all">
@@ -351,7 +351,7 @@
         <xsl:choose>
           <xsl:when test="not(string(@xlink:href)) or starts-with(@xlink:href, /root/env/siteURL)">
             <xsl:attribute name="xlink:href">
-              <xsl:value-of select="concat(/root/env/siteURL,'/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://standards.iso.org/19115/-3/gmd&amp;elementSetName=full&amp;id=',@uuidref)"/>
+              <xsl:value-of select="concat(/root/env/siteURL,'/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://standards.iso.org/iso/19115/-3/gmd&amp;elementSetName=full&amp;id=',@uuidref)"/>
             </xsl:attribute>
           </xsl:when>
           <xsl:otherwise>

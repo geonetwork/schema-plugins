@@ -10,6 +10,6 @@
 		 in the convert dir of the schema 
 -->
 <conversions>
-	<converter name="xml_iso19115-3" nsUri="http://standards.iso.org/19115/-3/mdb/1.0/2014-10-25" schemaLocation="http://standards.iso.org/19115/-3/mdb/1.0/mdb.xsd" xslt=""/> <!-- built in -->
+	<converter name="xml_iso19115-3" nsUri="http://standards.iso.org/iso/19115/-3/mdb/1.0/2014-10-25" schemaLocation="http://standards.iso.org/iso/19115/-3/mdb/1.0/mdb.xsd" xslt=""/> <!-- built in -->
 	<converter name="xml_iso19115-3Tooai_dc" nsUri="http://www.openarchives.org/OAI/2.0/" schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc.xsd" xslt="oai_dc.xsl"/>
 </conversions>
