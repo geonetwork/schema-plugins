@@ -658,28 +658,6 @@
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>
 	<!-- ==================================================== -->
-  <!-- new in ISO19115-1-2013 -->
-	<codelist name="gfc:FC_RoleType">
-		<entry>
-			<code>ordinary</code>
-			<label>Ordinary</label>
-			<description>Indicates an ordinary association.</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>aggregation</code>
-			<label>Aggregation</label>
-			<description>Indicates a UML aggregation (part role).</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>composition</code>
-			<label>Composition</label>
-			<description>Indicates a UML composition (part role).</description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-	</codelist>
-	<!-- ==================================================== -->
 	<codelist name="mco:MD_ClassificationCode">
 		<entry>
 			<code>unclassified</code>
@@ -2212,90 +2190,6 @@
 			<code>preProgrammed</code>
 			<label>PreProgrammed</label>
 			<description>Event instigated by planned stimuli</description>
-		</entry>
-	</codelist>
-	<!-- ==================================================== -->
- <!-- new in ISO19115-1-2013 -->
-	<codelist name="reg:RE_AmendmentType">
-		<entry>
-			<code>supersession</code>
-			<label>Supersession</label>
-			<description></description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>retirement</code>
-			<label>Retirement</label>
-			<description></description>
-		</entry>
-	</codelist>
-	<!-- ==================================================== -->
- <!-- new in ISO19115-1-2013 -->
-	<codelist name="reg:RE_DecisionStatus">
-		<entry>
-			<code>pending</code>
-			<label>Pending</label>
-			<description></description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>tentative</code>
-			<label>Tentative</label>
-			<description></description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>final</code>
-			<label>Final</label>
-			<description></description>
-		</entry>
-	</codelist>
-	<!-- ==================================================== -->
- <!-- new in ISO19115-1-2013 -->
-	<codelist name="reg:RE_Disposition">
-		<entry>
-			<code>withdrawn</code>
-			<label>Withdrawn</label>
-			<description></description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>accepted</code>
-			<label>Accepted</label>
-			<description></description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>notAccepted</code>
-			<label>Not Accepted</label>
-			<description></description>
-		</entry>
-	</codelist>
-	<!-- ==================================================== -->
- <!-- new in ISO19115-1-2013 -->
-	<codelist name="reg:RE_ItemStatus">
-		<entry>
-			<code>notValid</code>
-			<label>Not Valid</label>
-			<description></description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>valid</code>
-			<label>Valid</label>
-			<description></description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>superseded</code>
-			<label>Superseded</label>
-			<description></description>
-		</entry>
-		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-		<entry>
-			<code>retired</code>
-			<label>Retired</label>
-			<description></description>
 		</entry>
 	</codelist>
 	<!-- ==================================================== -->
