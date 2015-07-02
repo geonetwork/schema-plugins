@@ -286,7 +286,7 @@
                 <key label="conformity_title" xpath="mdq:DQ_CompletenessOmission/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:title/gco:CharacterString" tooltip="mdq:pass">
                   <helper name="mdq:title" context="/mdb:MD_Metadata/mdb:dataQualityInfo/mdq:DQ_DataQuality/mdq:report/mdq:DQ_CompletenessOmission/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:title"></helper>
                 </key>
-                <key label="conformity_date" xpath="mdq:DQ_CompletenessOmission/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:date/cit:CI_Date/cit:date/gco:Date" use="date"/>
+                <key label="conformity_date" xpath="mdq:DQ_CompletenessOmission/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:date/cit:CI_Date/cit:date/gco:DateTime" use="datetime-local"/>
                 <key label="explanation" xpath="mdq:DQ_CompletenessOmission/mdq:result/mdq:DQ_ConformanceResult/mdq:explanation/gco:CharacterString" use="textarea"/>
                 <key label="pass" use="checkbox" xpath="mdq:DQ_CompletenessOmission/mdq:result/mdq:DQ_ConformanceResult/mdq:pass/gco:Boolean"/>
               </values>
@@ -305,7 +305,7 @@
                         <cit:date>
                           <cit:CI_Date>
                             <cit:date>
-                              <gco:Date>{{conformity_date}}</gco:Date>
+                              <gco:DateTime>{{conformity_date}}</gco:DateTime>
                             </cit:date>
                             <cit:dateType>
                               <cit:CI_DateTypeCode
@@ -348,7 +348,7 @@
                 <key label="conformity_title" xpath="mdq:DQ_NonQuantitativeAttributeCorrectness/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:title/gco:CharacterString" tooltip="mdq:pass">
                   <helper name="mdq:title" context="/mdb:MD_Metadata/mdb:dataQualityInfo/mdq:DQ_DataQuality/mdq:report/mdq:DQ_NonQuantitativeAttributeCorrectness/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:title"></helper>
                 </key>
-                <key label="conformity_date" xpath="mdq:DQ_NonQuantitativeAttributeCorrectness/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:date/cit:CI_Date/cit:date/gco:Date" use="date"/>
+                <key label="conformity_date" xpath="mdq:DQ_NonQuantitativeAttributeCorrectness/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:date/cit:CI_Date/cit:date/gco:DateTime" use="datetime-local"/>
                 <key label="explanation" xpath="mdq:DQ_NonQuantitativeAttributeCorrectness/mdq:result/mdq:DQ_ConformanceResult/mdq:explanation/gco:CharacterString" use="textarea"/>
                 <key label="pass" use="checkbox" xpath="mdq:DQ_NonQuantitativeAttributeCorrectness/mdq:result/mdq:DQ_ConformanceResult/mdq:pass/gco:Boolean"/>
               </values>
@@ -367,7 +367,7 @@
                         <cit:date>
                           <cit:CI_Date>
                             <cit:date>
-                              <gco:Date>{{conformity_date}}</gco:Date>
+                              <gco:DateTime>{{conformity_date}}</gco:DateTime>
                             </cit:date>
                             <cit:dateType>
                               <cit:CI_DateTypeCode
@@ -410,7 +410,7 @@
                 <key label="conformity_title" xpath="mdq:DQ_ConceptualConsistency/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:title/gco:CharacterString" tooltip="mdq:pass">
                   <helper name="mdq:title" context="/mdb:MD_Metadata/mdb:dataQualityInfo/mdq:DQ_DataQuality/mdq:report/mdq:DQ_ConceptualConsistency/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:title"></helper>
                 </key>
-                <key label="conformity_date" xpath="mdq:DQ_ConceptualConsistency/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:date/cit:CI_Date/cit:date/gco:Date" use="date"/>
+                <key label="conformity_date" xpath="mdq:DQ_ConceptualConsistency/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:date/cit:CI_Date/cit:date/gco:DateTime" use="datetime-local"/>
                 <key label="explanation" xpath="mdq:DQ_ConceptualConsistency/mdq:result/mdq:DQ_ConformanceResult/mdq:explanation/gco:CharacterString" use="textarea"/>
                 <key label="pass" use="checkbox" xpath="mdq:DQ_ConceptualConsistency/mdq:result/mdq:DQ_ConformanceResult/mdq:pass/gco:Boolean"/>
               </values>
@@ -429,7 +429,7 @@
                         <cit:date>
                           <cit:CI_Date>
                             <cit:date>
-                              <gco:Date>{{conformity_date}}</gco:Date>
+                              <gco:DateTime>{{conformity_date}}</gco:DateTime>
                             </cit:date>
                             <cit:dateType>
                               <cit:CI_DateTypeCode
@@ -472,7 +472,7 @@
                 <key label="conformity_title" xpath="mdq:DQ_AbsoluteExternalPositionalAccuracy/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:title/gco:CharacterString" tooltip="mdq:pass">
                   <helper name="mdq:title" context="/mdb:MD_Metadata/mdb:dataQualityInfo/mdq:DQ_DataQuality/mdq:report/mdq:DQ_AbsoluteExternalPositionalAccuracy/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:title"></helper>
                 </key>
-                <key label="conformity_date" xpath="mdq:DQ_AbsoluteExternalPositionalAccuracy/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:date/cit:CI_Date/cit:date/gco:Date" use="date"/>
+                <key label="conformity_date" xpath="mdq:DQ_AbsoluteExternalPositionalAccuracy/mdq:result/mdq:DQ_ConformanceResult/mdq:specification/cit:CI_Citation/cit:date/cit:CI_Date/cit:date/gco:DateTime" use="datetime-local"/>
                 <key label="explanation" xpath="mdq:DQ_AbsoluteExternalPositionalAccuracy/mdq:result/mdq:DQ_ConformanceResult/mdq:explanation/gco:CharacterString" use="textarea"/>
                 <key label="pass" use="checkbox" xpath="mdq:DQ_AbsoluteExternalPositionalAccuracy/mdq:result/mdq:DQ_ConformanceResult/mdq:pass/gco:Boolean"/>
               </values>
@@ -491,7 +491,7 @@
                         <cit:date>
                           <cit:CI_Date>
                             <cit:date>
-                              <gco:Date>{{conformity_date}}</gco:Date>
+                              <gco:DateTime>{{conformity_date}}</gco:DateTime>
                             </cit:date>
                             <cit:dateType>
                               <cit:CI_DateTypeCode
