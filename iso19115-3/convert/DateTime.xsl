@@ -37,8 +37,13 @@
                         <xsl:value-of select="concat(substring($dateNodeString,1,4),'-',substring($dateNodeString,6,2),'-01T00:00:00')"/>
                     </xsl:when>
                     <xsl:when test="string-length($dateNodeString)=8">
-                        <!-- Assume YYYY-MM-DD -->
+                        <!-- Assume YYYYMMDD -->
                         <xsl:value-of select="concat(substring($dateNodeString,1,4),'-',substring($dateNodeString,5,2),'-',substring($dateNodeString,7,2),'T00:00:00')"/>
+                    </xsl:when>
+                    <xsl:when test="string-length($dateNodeString)=16 and substring($dateNodeString,11,1)='+' and substring($dateNodeString,14,1)=':'">
+                        <!-- Assume YYYY-MM-DD+HH:MM 
+												            1234567890123456 -->
+                        <xsl:value-of select="concat(substring($dateNodeString,1,10),'T00:00:00',substring($dateNodeString,11,6))"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="concat($dateNodeString,'T00:00:00')"/>
