@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<prov:document
+  xmlns:prov="http://www.w3.org/ns/prov#"
+  xmlns:gnprov="http://geonetwork-opensource.org/prov-xml"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:dct="http://purl.org/dc/terms/"
+	xsi:schemaLocation="http://www.w3.org/ns/prov# http://www.w3.org/ns/prov.xsd http://purl.org/dc/elements/1.1/ http://dublincore.org/schemas/xmls/qdc/2008/02/11/dc.xsd http://purl.org/dc/terms/ http://dublincore.org/schemas/xmls/qdc/2008/02/11/dcterms.xsd">
+
+  <!-- Entities -->
+
+  <prov:entity prov:id="gnprov:dataset1">
+		<prov:location>/geonetwork/srv/eng/xml.metadata.get?uuid=2298049c-8536-45fc-9566-098eacaa138b</prov:location>
+		<prov:type>dataset</prov:type> <!-- helper provides this -->
+	</prov:entity>
+
+  <prov:entity prov:id="gnprov:outputDataset">
+		<prov:location>/geonetwork/srv/eng/xml.metadata.get?uuid=0f6d03e4-ca8c-4b3d-9355-6acbb7400155</prov:location>
+		<prov:type>dataset</prov:type> <!-- helper provides this -->
+	</prov:entity>
+
+  <!-- Activities - in this scenario, our activity is a model run eg. climate/oceanographic/coupled model
+	     and it is controlled by an OGC WPS interface - see prov:softwareAgent -->
+
+  <prov:activity prov:id="gnprov:modelRun">
+    <prov:startTime>2012-03-31T09:21:00</prov:startTime>
+    <prov:endTime>2012-04-01T15:21:00</prov:endTime>
+	</prov:activity>
+
+  <!-- Agents -->
+
+  <prov:person prov:id="gnprov:francois">
+		<!-- location is a subtemplate cit:CI_Individual from ISO19115-3 -->
+		<prov:location>/geonetwork/srv/eng/xml.subtemplate.get?uuid=urn:francois:individual:users:1</prov:location> 
+  </prov:person>
+
+  <prov:organization prov:id="gnprov:frankOrganization">
+		<!-- location is a subtemplate cit:CI_Organisation from ISO19115-3 -->
+		<prov:location>/geonetwork/srv/eng/xml.subtemplate.get?uuid=urn:frank:frank-organisation:users:1</prov:location> 
+  </prov:organization>
+
+  <prov:softwareAgent prov:id="gnprov:pywps1">
+		<!-- location is a metadata record describing an OGC WPS -->
+		<prov:location>/geonetwork/srv/eng/xml.metadata.get?uuid=36d90a06-6846-4d88-ac5a-1261751ddbfd</prov:location> 
+  </prov:softwareAgent>
+
+	<!-- Responsibilities -->
+
+  <prov:wasAssociatedWith>
+    <prov:activity prov:ref="gnprov:modelRun"/>
+    <prov:agent prov:ref="gnprov:francois"/>
+		<!-- role comes from a helper list -->
+    <prov:role>gnprov:analyst</prov:role>
+    <prov:role>gnprov:operator</prov:role>
+    <prov:role>gnprov:principalInvestigator</prov:role>
+  </prov:wasAssociatedWith>
+
+  <prov:wasAssociatedWith>
+    <prov:activity prov:ref="gnprov:modelRun"/>
+    <prov:agent prov:ref="gnprov:pywps1"/>
+		<!-- role comes from a helper list -->
+    <prov:role>gnprov:softwareSystem</prov:role>
+  </prov:wasAssociatedWith>
+
+  <prov:actedOnBehalfOf>
+    <prov:delegate prov:ref="gnprov:francois"/>
+    <prov:responsible prov:ref="gnprov:frankOrganization"/>
+  </prov:actedOnBehalfOf>
+
+  <!-- Usage and Generation -->
+
+  <prov:used>
+    <prov:activity prov:ref="gnprov:modelRun"/>
+    <prov:entity prov:ref="gnprov:dataset1"/>
+		<!-- role comes from a helper list -->
+    <prov:role>gnprov:wpsParameter</prov:role>
+  </prov:used>
+
+  <prov:wasGeneratedBy>
+    <prov:entity prov:ref="gnprov:outputDataset"/>
+    <prov:activity prov:ref="gnprov:modelRun"/>
+		<prov:time>2012-04-01T15:21:00</prov:time>
+  </prov:wasGeneratedBy>
+
+	<!-- Document metadata -->
+
+	<prov:other>
+    <dc:identifier>39ee0ae6-b1ae-472f-a5f2-435e342267ea</dc:identifier>
+    <dc:title>Provenance document describing a run of the SHOC Coupled Ocean-Atmosphere Model through an OGC Web Processing Service</dc:title>
+    <dc:description>The document describes a run of the SHOC model - including datasets, agents and responsibilities.</dc:description>
+		<dc:coverage>northlimit=-35;southlimit=-43;eastlimit=145;westlimit=149;name=Tasmania</dc:coverage>
+		<dc:subject>SHOC,Hydrodynamic Modelling,OGC WPS</dc:subject>
+		<dct:created>2012-04-01T15:21:00</dct:created>
+	</prov:other>
+
+</prov:document>

@@ -1980,6 +1980,85 @@
 		</xsl:apply-templates>
 	</xsl:template>
 
+	<xsl:template mode="mcp-html" match="mcp:individual">
+		<ul>
+			<li style="list-style-type: none;">
+				<xsl:value-of select="descendant::mcp:name/*"/>
+				<xsl:if test="normalize-space(descendant::mcp:positionName/*)">
+					<xsl:value-of select="concat(', ',descendant::mcp:positionName/*)"/>
+				</xsl:if>
+			</li>
+		</ul>
+	</xsl:template>
+
+	<xsl:template mode="mcp-html" match="mcp:contactInfo">
+		<xsl:param name="organisationName"/>
+
+		<ul>
+			<li style="list-style-type: none;"><xsl:value-of select="$organisationName"/></li>
+			<li style="list-style-type: none;"><xsl:value-of select="descendant::gmd:deliveryPoint/*"/></li>
+			<li style="list-style-type: none;"><xsl:value-of select="descendant::gmd:city/*"/></li>
+			<li style="list-style-type: none;"><xsl:value-of select="descendant::gmd:administrativeArea/*"/></li>
+			<li style="list-style-type: none;"><xsl:value-of select="concat(descendant::gmd:country/*,' ',descendant::gmd:postalCode/*)"/></li>
+			<xsl:if test="normalize-space(descendant::gmd:electronicMailAddress/*)">
+				<li style="list-style-type: none;"><xsl:value-of select="concat('Email: ',descendant::gmd:electronicMailAddress/*)"/></li>
+			</xsl:if>
+			<xsl:if test="normalize-space(descendant::gmd:voice/*)">
+				<li style="list-style-type: none;"><xsl:value-of select="concat('Phone: ',descendant::gmd:voice/*)"/></li>
+			</xsl:if>
+		</ul>
+	</xsl:template>
+
+	<!-- ============================================================================= -->
+
+	<xsl:template mode="iso19139.mcp" match="mcp:CI_Organisation|geonet:child[string(@name)='CI_Organisation']">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+
+		<xsl:apply-templates mode="complexElement" select=".">
+			<xsl:with-param name="schema"  select="$schema"/>
+			<xsl:with-param name="edit"    select="$edit"/>
+			<xsl:with-param name="content">
+				<xsl:choose>
+					<xsl:when test="$edit='true'">
+									
+				<xsl:apply-templates mode="elementEP" select="../@xlink:href">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+				
+				<!-- Show individuals first and then organization contact information -->
+
+				<xsl:apply-templates mode="elementEP" select="mcp:individual/mcp:CI_Individual|geonet:child[string(@name)='CI_Individual']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+									
+				<xsl:apply-templates mode="elementEP" select="mcp:name|geonet:child[string(@name)='name']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+									
+				<xsl:apply-templates mode="elementEP" select="mcp:contactInfo|geonet:child[string(@name)='contactInfo']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+								
+					</xsl:when>
+					<xsl:otherwise>
+
+				<xsl:variable name="organisationName" select="mcp:name/*"/>
+				<xsl:apply-templates mode="mcp-html" select="mcp:individual"/>
+				<xsl:apply-templates mode="mcp-html" select="mcp:contactInfo">
+					<xsl:with-param name="organisationName" select="$organisationName"/>
+				</xsl:apply-templates>
+
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:with-param>
+		</xsl:apply-templates>
+	</xsl:template>
+
 	<!-- ================================================================== -->
 	<!-- mcp Online Resource space reduced when only one resource available -->
 	<!-- ================================================================== -->

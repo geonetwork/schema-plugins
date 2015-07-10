@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0/2014-12-25"
-  xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
-  xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"
-  xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
-  xmlns:mrl="http://standards.iso.org/19115/-3/mrl/1.0/2014-12-25"
-  xmlns:mmi="http://standards.iso.org/19115/-3/mmi/1.0/2014-12-25"
-  xmlns:mrs="http://standards.iso.org/19115/-3/mrs/1.0/2014-12-25"
-  xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0/2014-12-25"
-  xmlns:mco="http://standards.iso.org/19115/-3/mco/1.0/2014-12-25"
-  xmlns:msr="http://standards.iso.org/19115/-3/msr/1.0/2014-12-25"
-  xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
-  xmlns:gcx="http://standards.iso.org/19115/-3/gcx/1.0/2014-12-25"
-  xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
-  xmlns:mdq="http://standards.iso.org/19157/-2/mdq/1.0/2014-12-25"
-  xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
-  xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
+  xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
+  xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
+  xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
+  xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
+  xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/1.0"
+  xmlns:mmi="http://standards.iso.org/iso/19115/-3/mmi/1.0"
+  xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0"
+  xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
+  xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0"
+  xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/1.0"
+  xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
+  xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
+  xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
+  xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0"
+  xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+  xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
   xmlns:gts="http://www.isotc211.org/2005/gts"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:gml="http://www.opengis.net/gml/3.2"
@@ -264,44 +264,9 @@
          data-label="{$labelConfig/label}"
          data-element-name="{name(gco:Date|gco:DateTime)}"
          data-element-ref="{concat('_X', gn:element/@ref)}"
-				 data-namespaces='{{ "gco": "http://standards.iso.org/19139/gco/1.0/2014-12-25", "gml": "http://www.opengis.net/gml/3.2"}}'>
+				 data-namespaces='{{ "gco": "http://standards.iso.org/iso/19115/-3/gco/1.0", "gml": "http://www.opengis.net/gml/3.2"}}'>
     </div>
   </xsl:template>
-
-
-  <xsl:template mode="mode-iso19115-3"
-                match="gml:beginPosition|gml:endPosition|gml:timePosition"
-                priority="400">
-    <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
-    <xsl:variable name="value" select="normalize-space(text())"/>
-
-    <xsl:variable name="attributes">
-      <xsl:if test="$isEditing">
-        <!-- Create form for all existing attribute (not in gn namespace)
-        and all non existing attributes not already present. -->
-        <xsl:apply-templates mode="render-for-field-for-attribute"
-                             select="@*|
-                              gn:attribute[not(@name = parent::node()/@*/name())]">
-          <xsl:with-param name="ref" select="gn:element/@ref"/>
-          <xsl:with-param name="insertRef" select="gn:element/@ref"/>
-        </xsl:apply-templates>
-      </xsl:if>
-    </xsl:variable>
-
-    <xsl:call-template name="render-element">
-      <xsl:with-param name="label"
-                      select="gn-fn-metadata:getLabel($schema, name(), $labels, name(..), '', $xpath)/label"/>
-      <xsl:with-param name="name" select="gn:element/@ref"/>
-      <xsl:with-param name="value" select="text()"/>
-      <xsl:with-param name="cls" select="local-name()"/>
-      <xsl:with-param name="xpath" select="$xpath"/>
-      <xsl:with-param name="type"
-                      select="if (string-length($value) = 10 or $value = '') then 'date' else 'datetime'"/>
-      <xsl:with-param name="editInfo" select="gn:element"/>
-      <xsl:with-param name="attributesSnippet" select="$attributes"/>
-    </xsl:call-template>
-  </xsl:template>
-
 
 
   <!--
@@ -359,7 +324,7 @@
       <xsl:with-param name="cls" select="local-name()"/>
       <xsl:with-param name="type" select="gn-fn-iso19139:getCodeListType(name())"/>
       <xsl:with-param name="name" select="gn:element/@ref"/>
-      <xsl:with-param name="editInfo" select="*/gn:element"/>
+      <xsl:with-param name="editInfo" select="../gn:element"/>
       <xsl:with-param name="listOfValues"
                       select="gn-fn-metadata:getCodeListValues($schema, name(), $codelists, .)"/>
     </xsl:call-template>

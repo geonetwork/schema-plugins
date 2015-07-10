@@ -78,6 +78,21 @@
 		<suggest name="gmd:type"/>
 	</field>
 	
+  <field name="gmd:MD_Constraints">
+		<suggest name="gmd:useLimitation"/>
+	</field>
+
+  <field name="gmd:MD_SecurityConstraints">
+		<suggest name="gmd:useLimitation"/>
+		<suggest name="gmd:classification"/>
+	</field>
+
+  <field name="gmd:MD_LegalConstraints">
+		<suggest name="gmd:useLimitation"/>
+		<suggest name="gmd:accessConstraints"/>
+		<suggest name="gmd:useConstraints"/>
+	</field>
+
 	<field name="mcp:EX_Extent">
 		<suggest name="gmd:temporalElement"/>
 		<suggest name="gmd:geographicElement"/>

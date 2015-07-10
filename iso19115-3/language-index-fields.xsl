@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <xsl:stylesheet version="1.0" 
-            xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
-            xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
-            xmlns:mdq="http://standards.iso.org/19157/-2/mdq/1.0/2014-12-25"
-            xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
-            xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"
-            xmlns:mrc="http://standards.iso.org/19115/-3/mrc/1.0/2014-12-25"
-            xmlns:mco="http://standards.iso.org/19115/-3/mco/1.0/2014-12-25"
-            xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
-            xmlns:mrs="http://standards.iso.org/19115/-3/mrs/1.0/2014-12-25"
-            xmlns:mrl="http://standards.iso.org/19115/-3/mrl/1.0/2014-12-25"
-            xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0/2014-12-25"
-            xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0/2014-12-25"
-						xmlns:gcx="http://standards.iso.org/19115/-3/gcx/1.0/2014-12-25"
-						xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
+            xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
+            xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+            xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0"
+            xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
+            xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
+            xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/1.0"
+            xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0"
+            xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
+            xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0"
+            xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/1.0"
+            xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
+            xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
+						xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
+						xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
 						xmlns:gml="http://www.opengis.net/gml/3.2"
-            xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
+            xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
 						xmlns:java="java:org.fao.geonet.util.XslUtil"
 						xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 										>
@@ -30,9 +30,9 @@
 		work accross different metadata resources -->
 	<!-- ========================================================================================= -->
 
-	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no" />
 	<xsl:include href="convert/functions.xsl"/>
 
+	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no" />
 
   <!-- TODO: discussed where to place UUID. -->
   <xsl:variable name="fileIdentifier"
@@ -46,17 +46,11 @@
     <xsl:template match="/">
 
         <Documents>
-            <xsl:for-each select="/*[name(.)='mdb:MD_Metadata' or contains(@gco:isoType,'MD_Metadata')]/mdb:defaultLocale/lan:PT_Locale">
-            	<xsl:call-template name="document">
-            		<xsl:with-param name="isoLangId" select="java:threeCharLangCode(normalize-space(string(lan:language/lan:LanguageCode/@codeListValue)))"/>
-            		<xsl:with-param name="langId" select="@id"></xsl:with-param>
-            	</xsl:call-template>
-            </xsl:for-each>
            <!-- 
-           		Create a language document only if PT_Locale defined (ie. is a multilingual document)
-           		and mdb:defaultLocale contains the main metadata language. -->
-           	<xsl:if test="/*[name(.)='mdb:MD_Metadata' or contains(@gco:isoType,'MD_Metadata')]/mdb:defaultLocale/lan:PT_Locale
-           		and count(/*[name(.)='mdb:MD_Metadata' or contains(@gco:isoType,'MD_Metadata')]/lan:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode[@codeListValue = $isoDocLangId]) = 0">
+           		Create a language document only if at least one lan:LocalisedCharacterString exists (ie. multilingual 
+							document) and isoDocLangId is defined
+						-->
+           	<xsl:if test="count(/*[name(.)='mdb:MD_Metadata' or contains(@gco:isoType,'MD_Metadata')]//lan:LocalisedCharacterString)>0 and normalize-space($isoDocLangId)!=''">
             	<xsl:call-template name="document">
             		<xsl:with-param name="isoLangId" select="$isoDocLangId"></xsl:with-param>
             		<xsl:with-param name="langId" select="java:twoCharLangCode(normalize-space(string($isoDocLangId)))"></xsl:with-param>

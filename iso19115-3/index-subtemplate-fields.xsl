@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xsl:stylesheet version="2.0"
-                xmlns:cit="http://standards.iso.org/19115/-3/cit/1.0/2014-12-25"
-                xmlns:gco="http://standards.iso.org/19139/gco/1.0/2014-12-25"
-                xmlns:lan="http://standards.iso.org/19115/-3/lan/1.0/2014-12-25"
-                xmlns:mcc="http://standards.iso.org/19115/-3/mcc/1.0/2014-12-25"
-                xmlns:mrc="http://standards.iso.org/19115/-3/mrc/1.0/2014-12-25"
-                xmlns:mco="http://standards.iso.org/19115/-3/mco/1.0/2014-12-25"
-                xmlns:mdb="http://standards.iso.org/19115/-3/mdb/1.0/2014-12-25"
-                xmlns:mri="http://standards.iso.org/19115/-3/mri/1.0/2014-12-25"
-                xmlns:mrs="http://standards.iso.org/19115/-3/mrs/1.0/2014-12-25"
-                xmlns:mrl="http://standards.iso.org/19115/-3/mrl/1.0/2014-12-25"
-                xmlns:mrd="http://standards.iso.org/19115/-3/mrd/1.0/2014-12-25"
+                xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+                xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+                xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
+                xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
+                xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/1.0"
+                xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0"
+                xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
+                xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
+                xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0"
+                xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/1.0"
+                xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
                 xmlns:gml="http://www.opengis.net/gml/3.2"
-                xmlns:srv="http://standards.iso.org/19115/-3/srv/2.0/2014-12-25"
-                xmlns:gcx="http://standards.iso.org/19115/-3/gcx/1.0/2014-12-25"
-                xmlns:gex="http://standards.iso.org/19115/-3/gex/1.0/2014-12-25"
+                xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
+                xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
+                xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
                 xmlns:geonet="http://www.fao.org/geonetwork"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:skos="http://www.w3.org/2004/02/skos/core#">
@@ -24,6 +24,8 @@
   Add the [count(ancestor::node()) =  1] to only match element at the root of the document.
   This is the method to identify a subtemplate.
   -->
+
+	<!-- cit:CI_Responsibility -->
   <xsl:template mode="index"
                 match="cit:CI_Responsibility[count(ancestor::node()) =  1]">
 
@@ -42,6 +44,7 @@
   </xsl:template>
 
 
+	<!-- mcc:MD_BrowseGraphic -->
   <xsl:template mode="index"
                 match="mcc:MD_BrowseGraphic[count(ancestor::node()) =  1]">
 
@@ -53,6 +56,16 @@
            string="{if ($fileDescription != '')
                     then $fileDescription
                     else $fileName}"
+           store="true" index="true"/>
+    <xsl:call-template name="subtemplate-common-fields"/>
+  </xsl:template>
+
+	<!-- mco:MD_LegalConstraints -->
+  <xsl:template mode="index"
+                match="mco:MD_LegalConstraints[count(ancestor::node()) =  1]">
+
+    <Field name="_title"
+           string="{mco:reference/cit:CI_Citation/cit:title}"
            store="true" index="true"/>
     <xsl:call-template name="subtemplate-common-fields"/>
   </xsl:template>
