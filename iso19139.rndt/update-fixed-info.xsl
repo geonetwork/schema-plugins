@@ -17,26 +17,65 @@
 
     <!-- ================================================================= -->
 
+    <!-- Note sulla gestione dei codici:
+
+        /root/env/uuid
+            è l'id generato da GN (se il metadata è appena stato generato)
+            oppure il fileIdentifier corrente (se il metadato è in update).
+        //gmd:fileIdentifier/gco:CharacterString/text()
+            è l'id del metadato preso dal metadato stesso.
+
+        Alla creazione di un metadato abbiamo env/uuid che è un uuid nuovo,
+        mentre il fileIdentifier è l'id copiato dal template.
+
+        Quando un utente imposta il codice iPA, avremo il fileIdentifier che
+        è la composizione di un codice iPA ":" codice uuid.
+
+        Possiamo ritenere che un metadato sia appena creato se
+        env/uuid non compare dentro il fileId.
+
+        Possiamo ritenere che il codice iPA sia appena stato assegnato
+        se uuid e fileIdentifier sono diversi e il codice uuid compare dentro il fileIdentifier.
+    -->
+
+
+    <xsl:variable name="isNew" select="not(contains(//gmd:fileIdentifier/gco:CharacterString, /root/env/uuid))"/>
+
     <xsl:variable name="ipaJustAssigned" select="string(/root/env/uuid) != string(//gmd:fileIdentifier/gco:CharacterString) and ends-with(//gmd:fileIdentifier/gco:CharacterString, /root/env/uuid)"/>
 
-    <xsl:variable name="fileId" select="//gmd:fileIdentifier/gco:CharacterString/text()"/>
+    <xsl:variable name="fileId">
+        <xsl:choose>
+            <xsl:when test="$isNew">
+                <xsl:value-of select="/root/env/uuid"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="//gmd:fileIdentifier/gco:CharacterString"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+
     <xsl:variable name="ipaDefined" select="contains($fileId, ':')"/>
     <xsl:variable name="ipa" select="substring-before($fileId, ':')"/>
 
-    <xsl:template match="gmd:MD_Metadata">
+    <!-- ================================================================= -->
 
+    <xsl:template match="gmd:MD_Metadata">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
 
-            <!-- fileIdentifier : handling RNDT iPA-->
-            <xsl:message>INFO: /root/env/uuid is <xsl:value-of select="$fileId"/></xsl:message>
+            <xsl:if test="$isNew">
+                <xsl:message>INFO: creazione di nuovo metadato</xsl:message>
+            </xsl:if>
+            <xsl:message>INFO: /root/env/uuid is <xsl:value-of select="/root/env/uuid"/></xsl:message>
             <xsl:message>INFO: /root/env/parentUuid is <xsl:value-of select="/root/env/parentUuid"/></xsl:message>
             <xsl:message>INFO: old fileId is <xsl:value-of select="//gmd:fileIdentifier/gco:CharacterString"/></xsl:message>
             <xsl:message>INFO: old parentiId is <xsl:value-of select="//gmd:parentIdentifier/gco:CharacterString"/></xsl:message>
             <xsl:message>INFO: iPA is defined: <xsl:value-of select="$ipaDefined"/></xsl:message>
             <xsl:message>INFO: iPA is just assigned: <xsl:value-of select="$ipaJustAssigned"/></xsl:message>
             <xsl:message>INFO: iPA is <xsl:value-of select="$ipa"/></xsl:message>
+            <xsl:message>INFO: fileId is <xsl:value-of select="$fileId"/></xsl:message>
 
+            <!-- fileIdentifier : handling RNDT iPA-->
             <gmd:fileIdentifier>
                 <gco:CharacterString>
                     <xsl:value-of select="$fileId"/>
