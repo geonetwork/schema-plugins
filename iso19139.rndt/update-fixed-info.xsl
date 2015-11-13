@@ -108,11 +108,11 @@
                     <xsl:if test="not(starts-with(/root/env/parentUuid, $ipa))">
                         <xsl:message>ATTENZIONE: parentId: codice iPA non corrisponde. Eliminazione parentId (<xsl:value-of select="/root/env/parentUuid"/>)</xsl:message>
                         <gmd:parentIdentifier>
-                            <gco:CharacterString></gco:CharacterString>
+                            <gco:CharacterString/>
                         </gmd:parentIdentifier>
                     </xsl:if>
                 </xsl:when>
-                <xsl:when test="gmd:parentIdentifier">
+                <xsl:when test="gmd:parentIdentifier!=''">
                     <xsl:choose>
                         <xsl:when test="starts-with(gmd:parentIdentifier/gco:CharacterString, $ipa)">
                             <xsl:message>INFO: parentId esterno OK</xsl:message>
@@ -121,15 +121,15 @@
                         <xsl:otherwise>
                             <xsl:message>ATTENZIONE: iPA non corrispondente nel parentId esterno. Eliminazione parentId (<xsl:value-of select="gmd:parentIdentifier/gco:CharacterString"/>)</xsl:message>
                             <gmd:parentIdentifier>
-                                <gco:CharacterString></gco:CharacterString>
-                            </gmd:parentIdentifier>                            
+                                <gco:CharacterString/>
+                            </gmd:parentIdentifier>
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:message>INFO: parentId non trovato: env[<xsl:value-of select="/root/env/parentUuid"/>] md[<xsl:value-of select="gmd:parentIdentifier/gco:CharacterString"/>]</xsl:message>
                     <gmd:parentIdentifier>
-                        <gco:CharacterString></gco:CharacterString>
+                        <gco:CharacterString/>
                     </gmd:parentIdentifier>
                 </xsl:otherwise>
             </xsl:choose>
@@ -514,23 +514,23 @@
     service metadata to datasets. This will avoid to have
     error on XSD validation. -->	
     <xsl:template match="srv:operatesOn">
-		<xsl:choose>
-			<xsl:when test=".[not(@uuidref)]">
-				<xsl:copy>
-					<xsl:attribute name="uuidref">
-						<xsl:value-of select="''"/>
-					</xsl:attribute>
-					<xsl:apply-templates select="@*"/>
-				</xsl:copy>
-			</xsl:when>
-			<xsl:otherwise>
-			    <xsl:copy>
-					<xsl:copy-of select="@*"/>
-				</xsl:copy>
-			</xsl:otherwise>
-		</xsl:choose>
+        <xsl:choose>
+            <xsl:when test="$ipaDefined and not(starts-with(@uuidref, $ipa))">
+                <xsl:message>ATTENZIONE: operatesOn: codice iPA non corrisponde. Eliminazione operatesOn (<xsl:value-of select="@uuidref"/>)</xsl:message>
+            </xsl:when>
+            <xsl:when test=".[not(@uuidref)]">
+                <xsl:copy>
+                    <xsl:attribute name="uuidref" select="''"/>
+                    <xsl:apply-templates select="@*"/>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:copy>
+                    <xsl:copy-of select="@*"/>
+                </xsl:copy>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
-
 
     <!-- ================================================================= -->
     <!-- Set local identifier to the first 3 letters of iso code. Locale ids
