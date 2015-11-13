@@ -572,5 +572,97 @@
 			<description>Gruppo autore della risorso</description>
 		</entry>
 	</codelist>
+	<codelist name="gmd:MD_MaintenanceFrequencyCode">
+		<entry>
+			<code>continual</code>
+			<label>Continuo</label>
+			<description>I dati vengono ripetutamente e frequentemente aggiornati</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>daily</code>
+			<label>Quotidiano</label>
+			<description>I dati vengono aggiornati ogni giorno</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>weekly</code>
+			<label>Settimanale</label>
+			<description>I dati vengono aggiornati su base settimanale</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>fortnightly</code>
+			<label>Quindicinale</label>
+			<description>I dati vengono aggiornati ogni due settimane</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>monthly</code>
+			<label>Mensile</label>
+			<description>I dati vengono aggiornati ogni mese</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>quartely</code>
+			<label>Trimestrale</label>
+			<description>I dati vengono aggiornati ogni tre mesi</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>biannually</code>
+			<label>Semestrale</label>
+			<description>I dati vengono aggiornati due volte l'anno</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>annually</code>
+			<label>Annuale</label>
+			<description>I dati vengono aggiornati ogni anno</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>asNeeded</code>
+			<label>Secondo necessità</label>
+			<description>I dati vengono aggiornati se/quando ritenuto necessario</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>irregular</code>
+			<label>Irregolare</label>
+			<description>I dati vengono aggiornati ad intervalli di durata irregolare</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>notPlanned</code>
+			<label>Non pianificato</label>
+			<description>L'aggiornamento dei dati non è programmato</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>unknown</code>
+			<label>Sconosciuto</label>
+			<description>La frequenza di aggiornamento per i dati non è nota</description>
+		</entry>
+	</codelist>
+        
+	<!--=== CouplingType from ISO19119 ===-->
+	<codelist name="srv:SV_CouplingType">
+			<entry>
+					<code>tight</code>
+					<label>Strettamente accoppiati</label>
+					<description>Strettamente accoppiati: dati associati</description>
+			</entry>
+			<entry>
+					<code>mixed</code>
+					<label>Misto</label>
+					<description>Accoppiato misto: dati associati, inoltre, potrebbero essere trattati dati esterni</description>
+			</entry>
+			<entry>
+					<code>loose</code>
+					<label>Accoppiamento debole</label>
+					<description>Accoppiamento debole: non ci sono dati associati</description>
+			</entry>
+	</codelist>
 
 </codelists>
