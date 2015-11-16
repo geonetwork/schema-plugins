@@ -1325,6 +1325,60 @@
 
 	</xsl:template>
 
+  <!-- =================================================================== -->
+  <!-- descriptiveKeywords -->
+  <!-- =================================================================== -->
+  <xsl:template mode="iso19115-3" match="mri:descriptiveKeywords">
+    <xsl:param name="schema"/>
+    <xsl:param name="edit"/>
+    
+    <xsl:apply-templates mode="simpleElement" select=".">
+          <xsl:with-param name="schema" select="$schema"/>
+          <xsl:with-param name="title">
+            <xsl:call-template name="getTitle">
+              <xsl:with-param name="name" select="name(.)"/>
+              <xsl:with-param name="schema" select="$schema"/>
+            </xsl:call-template>
+            <xsl:if test="mri:MD_Keywords/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString">
+              (<xsl:value-of
+                select="mri:MD_Keywords/mri:thesaurusName/cit:CI_Citation/cit:title/gco:CharacterString"/>)
+            </xsl:if>
+          </xsl:with-param>
+          <xsl:with-param name="text">
+            <xsl:variable name="value">
+              <xsl:for-each select="mri:MD_Keywords/mri:keyword">
+                <xsl:if test="position() &gt; 1"><xsl:text>, </xsl:text></xsl:if>
+								<xsl:choose>
+									<xsl:when test="gcx:Anchor">
+										<xsl:choose>
+											<xsl:when test="normalize-space(gcx:Anchor/text())!=''">
+												<b><xsl:value-of select="gcx:Anchor/text()"/></b>
+											</xsl:when>
+											<xsl:otherwise>
+												<a href="{gcx:Anchor/@xlink:href}"><xsl:value-of select="gcx:Anchor/@xlink:href"/></a>
+											</xsl:otherwise>
+										</xsl:choose>
+									</xsl:when>
+									<xsl:otherwise>
+										<b><xsl:value-of select="."/></b>
+									</xsl:otherwise>
+								</xsl:choose>
+              </xsl:for-each>
+
+              <xsl:variable name="type" select="mri:MD_Keywords/mri:type/mri:MD_KeywordTypeCode/@codeListValue"/>
+              <xsl:if test="$type">
+                (<xsl:value-of
+                  select="/root/gui/schemas/*[name(.)=$schema]/codelists/codelist[@name = 'mri:MD_KeywordTypeCode']/
+                  entry[code = $type]/label"/>)
+              </xsl:if>
+              <xsl:text>.</xsl:text>
+            </xsl:variable>
+            <xsl:copy-of select="$value"/>
+          </xsl:with-param>
+    </xsl:apply-templates>
+
+  </xsl:template>
+
 	<!-- ============================================================================= -->
 
 	<xsl:template mode="iso19115-3" match="cit:CI_Responsibility">
