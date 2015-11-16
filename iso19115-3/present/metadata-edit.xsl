@@ -68,21 +68,6 @@
 
       <xsl:otherwise>
         <xsl:value-of select="/root/gui/isoLang/record[code=$value]/label/child::*[name() = $lang]"/>
-
-        <!-- In view mode display other languages from gmd:locale of gmd:MD_Metadata element
-        FIXME
-        <xsl:if test="../gmd:locale or ../../gmd:locale">
-          <xsl:text> (</xsl:text><xsl:value-of
-            select="string(/root/gui/schemas/iso19139/labels/element[@name='gmd:locale' and not(@context)]/label)"/>
-          <xsl:text>:</xsl:text>
-          <xsl:for-each select="../gmd:locale|../../gmd:locale">
-            <xsl:variable name="c" select="gmd:PT_Locale/gmd:languageCode/gmd:LanguageCode/@codeListValue"/>
-            <xsl:value-of select="/root/gui/isoLang/record[code=$c]/label/child::*[name() = $lang]"/>
-            <xsl:if test="position()!=last()">,</xsl:if>
-          </xsl:for-each>
-          <xsl:text>)</xsl:text>
-        </xsl:if>-->
-
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -518,7 +503,7 @@
 	<!-- Metadata -->
 	<!-- ==================================================================== -->
 
-	<xsl:template mode="iso19115-3" match="mdb:MD_Metadata|*[@gco:isoType='gmd:MD_Metadata']">
+	<xsl:template mode="iso19115-3" match="mdb:MD_Metadata|*[@gco:isoType='mdb:MD_Metadata']">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 		<xsl:param name="embedded"/>
@@ -1185,33 +1170,6 @@
 	</xsl:template>
 
 	<!-- ============================================================================= -->
-	<!--
-	simple mode; ISO order is:
-	- mdb:metadataIdentifier
-	- mdb:defaultLocale
-	- mdb:parentMetadata
-	- mdb:metadataScope
-	- mdb:contact
-	- mdb:dateInfo
-	- mdb:metadataStandard
-	- mdb:metadataProfile
-	- mdb:alternativeMetadataReference
-	- mdb:otherLocale
-	- mdb:metadataLinkage
-	- mdb:spatialRepresentationInfo
-	- mdb:referenceSystemInfo
-	- mdb:metadataExtensionInfo
-	- mdb:identificationInfo
-	- mdb:contentInfo
-	- mdb:distributionInfo
-	- mdb:dataQualityInfo
-	- mdb:resourceLineage
-	- mdb:portrayalCatalogueInfo
-	- mdb:metadataConstraints
-	- mdb:applicationSchemaInfo
-	- mdb:metadataMaintenance
-	-->
-	<!-- ============================================================================= -->
 
 	<xsl:template name="iso19115-3Simple">
 		<xsl:param name="schema"/>
@@ -1253,11 +1211,6 @@
 		</xsl:apply-templates>
 
 		<xsl:apply-templates mode="elementEP" select="mdb:resourceLineage|geonet:child[string(@name)='resourceLineage']">
-			<xsl:with-param name="schema" select="$schema"/>
-			<xsl:with-param name="edit"   select="$edit"/>
-		</xsl:apply-templates>
-
-		<xsl:apply-templates mode="elementEP" select="mdb:metadataConstraints|geonet:child[string(@name)='metadataConstraints']">
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 		</xsl:apply-templates>
@@ -1353,9 +1306,231 @@
 
 	</xsl:template>
 
+	<!-- ============================================================================= -->
+
+	<xsl:template mode="iso19115-3" match="mri:pointOfContact|mdb:contact">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+
+		<xsl:apply-templates mode="complexElement" select=".">
+			<xsl:with-param name="schema"  select="$schema"/>
+			<xsl:with-param name="edit"    select="$edit"/>
+			<xsl:with-param name="content">
+				<xsl:apply-templates mode="elementEP" select="cit:CI_Responsibility|geonet:child[string(@name)='CI_Responsibility']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+			</xsl:with-param>
+		</xsl:apply-templates>
+
+	</xsl:template>
+
+	<!-- ============================================================================= -->
+
+	<xsl:template mode="iso19115-3" match="cit:CI_Responsibility">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+
+		<xsl:apply-templates mode="elementEP" select="cit:role|geonet:child[string(@name)='role']">
+			<xsl:with-param name="schema" select="$schema"/>
+			<xsl:with-param name="edit"   select="$edit"/>
+		</xsl:apply-templates>
+
+		<!-- extent is not necessary for simple/default mode -->
+		<xsl:if test="not($flat)">
+			<xsl:apply-templates mode="elementEP" select="cit:extent|geonet:child[string(@name)='extent']">
+				<xsl:with-param name="schema" select="$schema"/>
+				<xsl:with-param name="edit"   select="$edit"/>
+			</xsl:apply-templates>
+		</xsl:if>
+
+		<xsl:apply-templates mode="elementEP" select="cit:party|geonet:child[string(@name)='party']">
+			<xsl:with-param name="edit" select="$edit"/>
+			<xsl:with-param name="schema" select="$schema"/>
+		</xsl:apply-templates>
+
+	</xsl:template>
+
+	<!-- ============================================================================= -->
+
+	<xsl:template mode="iso19115-3" match="cit:party|geonet:child[string(@name)='party']">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+
+		<xsl:call-template name="partyTemplate19115">
+			<xsl:with-param name="edit" select="$edit"/>
+			<xsl:with-param name="schema" select="$schema"/>
+		</xsl:call-template>
+	</xsl:template>
+
+	<!-- ============================================================================= -->
+
+	<xsl:template name="partyTemplate19115">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+		
+		<xsl:variable name="content">
+			<xsl:apply-templates mode="elementEP" select="@xlink:href">
+				<xsl:with-param name="schema" select="$schema"/>
+				<xsl:with-param name="edit"   select="$edit"/>
+			</xsl:apply-templates>
+			
+			<xsl:apply-templates mode="elementEP" select="cit:CI_Organisation|geonet:child[string(@name)='CI_Organisation']">
+				<xsl:with-param name="edit" select="$edit"/>
+				<xsl:with-param name="schema" select="$schema"/>
+			</xsl:apply-templates>
+
+			<xsl:apply-templates mode="elementEP" select="cit:CI_Individual|geonet:child[string(@name)='CI_Individual']">
+				<xsl:with-param name="edit" select="$edit"/>
+				<xsl:with-param name="schema" select="$schema"/>
+			</xsl:apply-templates>
+		</xsl:variable>
+		
+		<xsl:apply-templates mode="complexElement" select=".">
+			<xsl:with-param name="schema"  select="$schema"/>
+			<xsl:with-param name="edit"    select="$edit"/>
+			<xsl:with-param name="content" select="$content"/>
+		</xsl:apply-templates>
+		
+	</xsl:template>
+
+	<!-- ============================================================================= -->
+
+	<xsl:template mode="iso19115-3" match="cit:CI_Individual|geonet:child[string(@name)='CI_Individual']">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+
+			
+		<xsl:apply-templates mode="complexElement" select=".">
+			<xsl:with-param name="schema"  select="$schema"/>
+			<xsl:with-param name="edit"    select="$edit"/>
+			<xsl:with-param name="content">
+									
+				<xsl:apply-templates mode="elementEP" select="../@xlink:href">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+									
+				<xsl:apply-templates mode="elementEP" select="cit:name|geonet:child[string(@name)='name']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+									
+				<xsl:apply-templates mode="elementEP" select="cit:positionName|geonet:child[string(@name)='positionName']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+
+				<!-- Show contact info when not in simple/default view and 
+				     individuals not part of an organisation -->
+				<xsl:if test="not($flat and name(..)='cit:individual')">
+					<xsl:apply-templates mode="elementEP" select="cit:contactInfo|geonet:child[string(@name)='contactInfo']">
+						<xsl:with-param name="schema" select="$schema"/>
+						<xsl:with-param name="edit"   select="$edit"/>
+					</xsl:apply-templates>
+				</xsl:if>
+									
+			</xsl:with-param>
+		</xsl:apply-templates>
+	</xsl:template>
+
+	<!-- ============================================================================= -->
+
+	<xsl:template mode="iso19115-3-html" match="cit:individual">
+		<ul>
+			<li style="list-style-type: none;">
+				<xsl:choose>
+					<xsl:when test="normalize-space(descendant::cit:name/*)">
+						<xsl:value-of select="descendant::cit:name/*"/>
+						<xsl:if test="normalize-space(descendant::cit:positionName/*)">
+							<xsl:value-of select="concat(', ',descendant::cit:positionName/*)"/>
+						</xsl:if>
+					</xsl:when>
+					<xsl:when test="normalize-space(descendant::cit:positionName/*)">
+						<xsl:value-of select="descendant::cit:positionName/*"/>
+					</xsl:when>
+				</xsl:choose>
+			</li>
+		</ul>
+	</xsl:template>
+
+	<!-- ============================================================================= -->
+
+	<xsl:template mode="iso19115-3-html" match="cit:contactInfo">
+		<xsl:param name="organisationName"/>
+
+		<ul>
+			<li style="list-style-type: none;"><xsl:value-of select="$organisationName"/></li>
+			<li style="list-style-type: none;"><xsl:value-of select="descendant::cit:deliveryPoint/*"/></li>
+			<li style="list-style-type: none;"><xsl:value-of select="descendant::cit:city/*"/></li>
+			<li style="list-style-type: none;"><xsl:value-of select="descendant::cit:administrativeArea/*"/></li>
+			<li style="list-style-type: none;"><xsl:value-of select="concat(descendant::cit:country/*,' ',descendant::cit:postalCode/*)"/></li>
+			<xsl:if test="normalize-space(descendant::cit:electronicMailAddress/*)">
+				<li style="list-style-type: none;margin-top: 3px;"><xsl:value-of select="concat('Email: ',descendant::cit:electronicMailAddress/*)"/></li>
+			</xsl:if>
+			<xsl:for-each select="descendant::cit:phone[descendant::cit:CI_TelephoneTypeCode/@codeListValue='voice']">
+				<li style="list-style-type: none;margin-top: 3px;"><xsl:value-of select="concat('Phone: ',descendant::cit:number/*)"/></li>
+			</xsl:for-each>
+			<xsl:for-each select="descendant::cit:phone[descendant::cit:CI_TelephoneTypeCode/@codeListValue='facsimile']">
+				<li style="list-style-type: none;margin-top: 3px;"><xsl:value-of select="concat('Fax: ',descendant::cit:number/*)"/></li>
+			</xsl:for-each>
+		</ul>
+	</xsl:template>
+
+	<!-- ============================================================================= -->
+
+	<xsl:template mode="iso19115-3" match="cit:CI_Organisation|geonet:child[string(@name)='CI_Organisation']">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+
+		<xsl:apply-templates mode="complexElement" select=".">
+			<xsl:with-param name="schema"  select="$schema"/>
+			<xsl:with-param name="edit"    select="$edit"/>
+			<xsl:with-param name="content">
+				<xsl:choose>
+					<xsl:when test="$edit">
+									
+				<xsl:apply-templates mode="elementEP" select="../@xlink:href">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+				
+				<!-- Show individuals first and then organization contact information -->
+
+				<xsl:apply-templates mode="elementEP" select="cit:individual/cit:CI_Individual|geonet:child[string(@name)='CI_Individual']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+									
+				<xsl:apply-templates mode="elementEP" select="cit:name|geonet:child[string(@name)='name']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+									
+				<xsl:apply-templates mode="elementEP" select="cit:contactInfo|geonet:child[string(@name)='contactInfo']">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="$edit"/>
+				</xsl:apply-templates>
+								
+					</xsl:when>
+					<xsl:otherwise>
+
+				<xsl:variable name="organisationName" select="cit:name/*"/>
+				<xsl:apply-templates mode="iso19115-3-html" select="cit:individual"/>
+				<xsl:apply-templates mode="iso19115-3-html" select="cit:contactInfo">
+					<xsl:with-param name="organisationName" select="$organisationName"/>
+				</xsl:apply-templates>
+
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:with-param>
+		</xsl:apply-templates>
+	</xsl:template>
+
 	<!-- ===================================================================== -->
 	<!-- === iso19115-3 brief formatting === -->
 	<!-- ===================================================================== -->
+
 	<xsl:template mode="superBrief" match="mdb:MD_Metadata|*[@gco:isoType='mdb:MD_Metadata']" priority="2">
     <xsl:variable name="langId">
       <xsl:call-template name="getLangId">
