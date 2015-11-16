@@ -12,7 +12,7 @@
 	http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gmd/gmd.xsd" >
 	
 	<gmd:fileIdentifier>
-		<gco:CharacterString>cod_ipa:id_file_vector</gco:CharacterString>
+		<gco:CharacterString>template_id_file_vector</gco:CharacterString>
 	</gmd:fileIdentifier>
 	<gmd:language>
 		<gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="ita">ita</gmd:LanguageCode>
