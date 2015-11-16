@@ -1700,25 +1700,8 @@
 
 			<!-- The old links still in use by some systems. Deprecated -->
 			<xsl:choose>
-				<!-- no protocol, but URL is for a WMS service -->
-				<xsl:when test="(not(string($protocol)) and contains(upper-case($linkage),'SERVICE=WMS') and not(string($name)))">
-					<link type="wms">
-						<xsl:value-of select="concat('javascript:addWMSServerLayers(&#34;' ,  $linkage  ,  '&#34;)' )"/>
-					</link>
-				</xsl:when>
-				<!-- no protocol, but URL is for a WMS service -->
-				<xsl:when test="(not(string($protocol)) and contains(upper-case($linkage),'SERVICE=WMS') and string($name)!='')">
-					<link type="wms">
-						<xsl:value-of select="concat('javascript:addWMSLayer([[&#34;' , $name , '&#34;,&#34;' ,  $linkage  ,  '&#34;, &#34;', $name  ,'&#34;,&#34;',$id,'&#34;]])')"/>
-					</link>
-				</xsl:when>
 				<xsl:when test="matches($protocol,'^WWW:DOWNLOAD-.*-http--download.*') and not(contains($linkage,$download_check))">
 					<link type="download"><xsl:value-of select="$linkage"/></link>
-				</xsl:when>
-				<xsl:when test="starts-with($protocol,'ESRI:AIMS-') and contains($protocol,'-get-image') and string($linkage)!='' and string($name)!=''">
-					<link type="arcims">
-						<xsl:value-of select="concat('javascript:runIM_addService(&#34;'  ,  $linkage  ,  '&#34;, &#34;', $name  ,'&#34;, 1)' )"/>
-					</link>
 				</xsl:when>
 				<xsl:when test="(starts-with($protocol,'OGC:WMS-') and contains($protocol,'-get-map') and string($linkage)!='' and string($name)!='') or ($protocol = 'OGC:WMS' and string($linkage)!='' and string($name)!='')">
 					<link type="wms">
@@ -1728,20 +1711,15 @@
 						<xsl:value-of select="concat(/root/gui/locService,'/google.kml?uuid=',$uuid,'&amp;layers=',$name)"/>
 					</link>
 				</xsl:when>
-				<xsl:when test="(starts-with($protocol,'OGC:WMS-') and contains($protocol,'-get-map') and string($linkage)!='' and not(string($name))) or ($protocol = 'OGC:WMS' and string($linkage)!='' and not(string($name)))">
-					<link type="wms">
-						<xsl:value-of select="concat('javascript:addWMSServerLayers(&#34;' ,  $linkage  ,  '&#34;)' )"/>
-					</link>
-				</xsl:when>
-				<xsl:when test="(starts-with($protocol,'OGC:WMS-') and contains($protocol,'-get-capabilities') and string($linkage)!='') or ($protocol = 'OGC:WMS' and string($name)='' and string($linkage)!='')">
-					<link type="wms">
-						<xsl:value-of select="concat('javascript:addWMSServerLayers(&#34;' ,  $linkage  ,  '&#34;)' )"/>
-					</link>
-				</xsl:when>
+				<xsl:when test="starts-with($protocol,'OGC:WMS-') and contains($protocol,'-get-capabilities') and string($linkage)!=''">
+            <link type="wms">
+              <!--xsl:value-of select="concat('javascript:runIM_selectService(&#34;'  ,  $linkage  ,  '&#34;, 2,',$id,')' )"/-->
+              <xsl:value-of select="concat('javascript:app.switchMode(&#34;','1','&#34;, true);app.getIMap().addWMSLayer([[&#34;' , $name , '&#34;,&#34;' ,  $linkage  ,  '&#34;, &#34;', $name  ,'&#34;,&#34;',$id,'&#34;]])')"/>
+            </link>
+        </xsl:when>
 				<xsl:when test="string($linkage)!=''">
 					<link type="url"><xsl:value-of select="$linkage"/></link>
 				</xsl:when>
-
 			</xsl:choose>
 		</xsl:for-each>
 
