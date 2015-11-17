@@ -174,7 +174,6 @@
   <inspireTheme>INSPIRE themes</inspireTheme>
   <format>Format</format>
   <format_version>Version</format_version>
-  <lineage>Lineage</lineage>
   <spatialResolution>Spatial resolution (scale)</spatialResolution>
   <spatialDistance>Spatial resolution (distance)</spatialDistance>
   <accessConstraints>Access constraints</accessConstraints>
