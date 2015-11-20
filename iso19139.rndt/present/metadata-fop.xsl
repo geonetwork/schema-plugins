@@ -177,6 +177,16 @@
                                 <xsl:value-of select="'Risorsa accoppiata'"/>
                             </xsl:with-param>
                             <xsl:with-param name="block">
+
+                                <xsl:apply-templates mode="simpleElementFop" select="srv:identifier/gco:CharacterString">
+                                    <xsl:with-param name="title" select="'Titolo'"/>
+                                    <xsl:with-param name="text">
+                                        <xsl:call-template name="getMetadataTitle">
+                                            <xsl:with-param name="uuid" select="srv:identifier/gco:CharacterString"/>
+                                        </xsl:call-template>
+                                    </xsl:with-param>
+                                </xsl:apply-templates>
+
                                 <xsl:apply-templates mode="elementFop" select="srv:operationName|srv:identifier">
                                     <xsl:with-param name="schema" select="$schema"/>
                                 </xsl:apply-templates>
@@ -396,6 +406,21 @@
             </xsl:with-param>
         </xsl:call-template>
 
+        <!-- CRS =========================================================== -->
+
+        <!-- Spatial Reference System -->
+
+        <xsl:call-template name="blockElementFop">
+            <xsl:with-param name="label">
+                <xsl:value-of select="'CRS'"/>
+            </xsl:with-param>
+            <xsl:with-param name="block">
+                <xsl:apply-templates mode="elementFop" select="//gmd:referenceSystemInfo">
+                    <xsl:with-param name="schema" select="$schema"/>
+                </xsl:apply-templates>
+            </xsl:with-param>
+        </xsl:call-template>
+        
         <!-- Conformance =================================================== -->
         
         <xsl:if
