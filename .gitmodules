@@ -1,3 +1,12 @@
 [submodule "iso19115-3"]
 	path = iso19115-3
 	url = https://github.com/metadata101/iso19115-3.git
+[submodule "iso19139.anzlic"]
+	path = iso19139.anzlic
+	url = https://github.com/metadata101/iso19139.anzlic
+[submodule "iso19139.mcp"]
+	path = iso19139.mcp
+	url = https://github.com/metadata101/iso19139.mcp
+[submodule "iso19139.mcp-2.0"]
+	path = iso19139.mcp-2.0
+	url = https://github.com/metadata101/iso19139.mcp-2.0
