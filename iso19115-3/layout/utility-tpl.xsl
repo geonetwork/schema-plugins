@@ -19,6 +19,9 @@
 
   <xsl:include href="utility-tpl-multilingual.xsl"/>
 
+	<xsl:template name="get-iso19115-3-is-service">
+		<xsl:value-of select="count($metadata/mdb:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+	</xsl:template>
 
   <xsl:template name="get-iso19115-3-extents-as-json">[
    <!-- <xsl:for-each select="//gmd:geographicElement/gmd:EX_GeographicBoundingBox">
