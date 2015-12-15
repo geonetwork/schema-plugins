@@ -16,6 +16,8 @@ a coupledResource reference.
 
   <!-- UUID of the dataset metadata -->
   <xsl:param name="uuidref"/>
+  <!-- TITLE of the dataset metadata -->
+  <xsl:param name="title"/>
   
   <!-- List of layers -->
   <xsl:param name="scopedName"/>
@@ -84,11 +86,13 @@ a coupledResource reference.
                 select="mdb:identificationInfo/*/srv:operatedDataset|
                 mdb:identificationInfo/*/srv:profile|
                 mdb:identificationInfo/*/srv:serviceStandard|
-                mdb:identificationInfo/*/srv:containsOperations"/>
+                mdb:identificationInfo/*/srv:containsOperations|
+                mdb:identificationInfo/*/srv:operatesOn[@uuidref != $uuidref]"/>
               
               <xsl:if test="$uuidref">
                 <srv:operatesOn uuidref="{$uuidref}"
-                  xlink:href="{$siteUrl}/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;id={$uuidref}"/>
+                  xlink:href="{$siteUrl}/csw?service=CSW&amp;request=GetRecordById&amp;version=2.0.2&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;elementSetName=full&amp;id={$uuidref}"
+									xlink:title="{$title}"/>
               </xsl:if>
               
               <xsl:copy-of
