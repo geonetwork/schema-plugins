@@ -19,6 +19,7 @@
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:geonet="http://www.fao.org/geonetwork"
                 xmlns:exslt="http://exslt.org/common"
+								xmlns:saxon="http://saxon.sf.net/"
                 exclude-result-prefixes="#all">
 
 	<xsl:include href="metadata-utils.xsl"/>
@@ -72,7 +73,7 @@
 		<xsl:if test="$empty!=''">
 			<xsl:apply-templates mode="element" select=".">
 				<xsl:with-param name="schema" select="$schema"/>
-				<xsl:with-param name="edit"   select="false()"/>
+				<xsl:with-param name="edit"   select="$edit"/>
 				<xsl:with-param name="flat"   select="/root/gui/config/metadata-tab/*[name(.)=$currTab]/@flat"/>
 			</xsl:apply-templates>
 		</xsl:if>
@@ -418,6 +419,8 @@
     <xsl:param name="schema"/>
     <xsl:param name="edit"/>
 
+		<!-- <xsl:message><xsl:value-of select="saxon:print-stack()"/></xsl:message> -->
+
     <xsl:variable name="title">
       <xsl:call-template name="getTitle">
         <xsl:with-param name="name"   select="name(.)"/>
@@ -430,13 +433,29 @@
         <xsl:with-param name="schema" select="$schema"/>
       </xsl:call-template>
     </xsl:variable>
-    <xsl:variable name="text" select="."/>
+    <xsl:variable name="text">
+			<xsl:choose>
+				<xsl:when test="$edit">
+					<span>
+						<xsl:for-each select="gco:*">
+							<xsl:call-template name="getElementText">
+								<xsl:with-param name="schema" select="$schema" />
+								<xsl:with-param name="edit" select="true()" />
+								<xsl:with-param name="class" select="''" />
+							</xsl:call-template>
+						</xsl:for-each>
+					</span>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="normalize-space()"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
     <xsl:variable name="attrs">
       <xsl:for-each select="gco:*/@*">
         <xsl:value-of select="name(.)"/>
       </xsl:for-each>
     </xsl:variable>
-
 
     <xsl:choose>
     <xsl:when test="normalize-space($attrs)!=''">
@@ -477,6 +496,7 @@
     </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+
 	<!-- ===================================================================== -->
 	<!-- gml:TimePeriod (format = %Y-%m-%dThh:mm:ss) -->
 	<!-- ===================================================================== -->
@@ -860,6 +880,19 @@
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
+		<xsl:choose>
+			<xsl:when test="$edit">
+
+		<!-- Leave editing available for Responsibility elements -->
+
+		<xsl:apply-templates mode="elementEP" select="cit:CI_Responsibility">
+			<xsl:with-param name="schema"  select="$schema"/>
+			<xsl:with-param name="edit"    select="$edit"/>
+		</xsl:apply-templates>
+
+			</xsl:when>
+			<xsl:otherwise>
+
 		<xsl:apply-templates mode="complexElement" select=".">
 			<xsl:with-param name="schema"  select="$schema"/>
 			<xsl:with-param name="edit"    select="$edit"/>
@@ -870,7 +903,7 @@
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
 
-				<xsl:apply-templates mode="elementEP" select="cit:CI_Responsibility/cit:party/cit:CI_Organisation|cit:CI_Responsibility/cit:party/cit:CI_Individual">
+				<xsl:apply-templates mode="iso19115-3-view" select="cit:CI_Responsibility/cit:party/cit:CI_Organisation|cit:CI_Responsibility/cit:party/cit:CI_Individual">
 					<xsl:with-param name="edit" select="$edit"/>
 					<xsl:with-param name="schema" select="$schema"/>
 				</xsl:apply-templates>
@@ -878,11 +911,15 @@
 			</xsl:with-param>
 		</xsl:apply-templates>
 
+			</xsl:otherwise>
+		</xsl:choose>
+
 	</xsl:template>
 
   <!-- =================================================================== -->
   <!-- descriptiveKeywords -->
   <!-- =================================================================== -->
+
   <xsl:template mode="iso19115-3" match="mri:descriptiveKeywords">
     <xsl:param name="schema"/>
     <xsl:param name="edit"/>
@@ -936,7 +973,7 @@
 
 	<!-- ============================================================================= -->
 
-	<xsl:template mode="iso19115-3" match="cit:CI_Individual">
+	<xsl:template mode="iso19115-3-view" match="cit:CI_Individual">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
@@ -999,7 +1036,7 @@
 
 	<!-- ============================================================================= -->
 
-	<xsl:template mode="iso19115-3" match="cit:CI_Organisation">
+	<xsl:template mode="iso19115-3-view" match="cit:CI_Organisation">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 
