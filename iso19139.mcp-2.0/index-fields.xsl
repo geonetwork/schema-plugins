@@ -15,6 +15,29 @@
 	<xsl:import href="../iso19139/index-fields.xsl"/>
 
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
+	<xsl:template mode="index" match="/*">
+		<!-- Index distinct platforms for facetted searching -->
+
+		<xsl:for-each-group select="//mcp:platform/mcp:DP_Term/mcp:term/gco:CharacterString" group-by=".">
+			<Field name="platform" string="{string(current-grouping-key())}" store="true" index="true"/>
+		</xsl:for-each-group>
+
+		<!-- Index distinct responsible party and point of contact -->
+		<!-- organisations for facetted searching                  -->
+
+		<xsl:variable name="pointOfContactOrganisations" select="gmd:identificationInfo/(gmd:MD_DataIdentification|mcp:MD_DataIdentification)/gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:organisationName/*"/>
+		<xsl:variable name="responsiblePartyOrganisations" select="gmd:identificationInfo/(gmd:MD_DataIdentification|mcp:MD_DataIdentification)/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty/gmd:CI_ResponsibleParty/gmd:organisationName/*"/>
+
+		<xsl:for-each-group select="$pointOfContactOrganisations|$responsiblePartyOrganisations" group-by=".">
+			<Field name="organisation" string="{string(current-grouping-key())}" store="true" index="true"/>
+		</xsl:for-each-group>
+
+		<!-- Apply profile indexing templates to child nodes --> 
+
+		<xsl:apply-templates mode="index" select="*"/>
+	</xsl:template>
+
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 	<xsl:template mode="index" match="mcp:dataParameters/mcp:DP_DataParameters/mcp:dataParameter">
 		<xsl:for-each select="mcp:DP_DataParameter/mcp:parameterName/mcp:DP_Term">
 			<xsl:variable name="term" select="mcp:term/*"/>
