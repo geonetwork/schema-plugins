@@ -10,7 +10,7 @@
 			xmlns:xlink="http://www.w3.org/1999/xlink"
 			xmlns:java="java:org.fao.geonet.util.XslUtil"
 			xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-			exclude-result-prefixes="gmd gmx gco gml srv geonet mcp xlink xsl">
+			exclude-result-prefixes="gmd gmx gco gml srv geonet mcp xlink xsl java">
 
 
 	<xsl:import href="../iso19139/index-fields.xsl"/>
@@ -19,8 +19,9 @@
 	<xsl:template mode="index" match="/*">
 		<!-- Index distinct platforms for facetted searching -->
 
-		<xsl:for-each-group select="//mcp:platform/mcp:DP_Term/mcp:term/gco:CharacterString" group-by=".">
-			<Field name="platform" string="{string(current-grouping-key())}" store="true" index="true"/>
+		<xsl:for-each-group select="//mcp:platform" group-by="mcp:DP_Term/mcp:term/gco:CharacterString">
+			<Field name="platform" string="{current-grouping-key()}" store="true" index="true"/>
+			<Field name="platformUri" string="{current-group()[1]//mcp:vocabularyTermURL/gmd:URL[1]}" store="true" index="true"/>
 		</xsl:for-each-group>
 
 		<!-- Index distinct responsible party and point of contact -->
@@ -45,6 +46,7 @@
 			<Field name="dataparam" string="{$term}" store="true" index="true"/>
 			<xsl:if test="mcp:type/mcp:DP_TypeCode/@codeListValue='longName'">
 				<Field name="longParamName" string="{$term}" store="true" index="true"/>
+				<Field name="parameterUri" string="{.//mcp:vocabularyTermURL/gmd:URL[1]}" store="true" index="true"/>
 			</xsl:if>
 			<xsl:for-each select="mcp:vocabularyRelationship/mcp:DP_VocabularyRelationship">
 				<Field name="vocabTerm" string="{mcp:vocabularyTermURL/gmd:URL}" store="true" index="true"/>
