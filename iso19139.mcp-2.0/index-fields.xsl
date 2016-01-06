@@ -39,7 +39,26 @@
 		<xsl:apply-templates mode="index" select="*"/>
 	</xsl:template>
 
-	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xsl:template mode="index" match="gmd:resourceConstraints">
+		<xsl:for-each select="*/mcp:attributionConstraints/gco:CharacterString">
+			<Field name="attrConstr" string="{string(.)}" store="true" index="true" />
+		</xsl:for-each>
+		<xsl:for-each select="*/mcp:jurisdictionLink/gmd:URL">
+			<Field name="jurisdictionLink" string="{string(.)}" store="true" index="true" />
+		</xsl:for-each>
+		<xsl:for-each select="*/mcp:licenseName/gco:CharacterString">
+			<Field name="licenseName" string="{string(.)}" store="true" index="true" />
+		</xsl:for-each>
+		<xsl:for-each select="*/mcp:licenseLink/gmd:URL">
+			<Field name="licenseLink" string="{string(.)}" store="true" index="true" />
+		</xsl:for-each>
+		<xsl:for-each select="*/gmd:otherCitationDetails/gco:CharacterString">
+			<Field name="otherCitation" string="{string(.)}" store="true" index="true"/>
+		</xsl:for-each>
+	</xsl:template>
+
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 	<xsl:template mode="index" match="mcp:dataParameters/mcp:DP_DataParameters/mcp:dataParameter">
 		<xsl:for-each select="mcp:DP_DataParameter/mcp:parameterName/mcp:DP_Term">
 			<xsl:variable name="term" select="mcp:term/*"/>
