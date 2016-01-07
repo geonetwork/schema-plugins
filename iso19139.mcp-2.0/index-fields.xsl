@@ -121,6 +121,22 @@
 		<xsl:apply-templates mode="index" select="*"/>
 	</xsl:template>
 
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+	<xsl:template mode="index" match="mcp:EX_TemporalExtent/gmd:extent/gml:TimePeriod">
+		<xsl:variable name="times">
+			<xsl:call-template name="newGmlTime">
+				<xsl:with-param name="begin" select="gml:beginPosition|gml:begin/gml:TimeInstant/gml:timePosition"/>
+				<xsl:with-param name="end" select="gml:endPosition|gml:end/gml:TimeInstant/gml:timePosition"/>
+			</xsl:call-template>
+		</xsl:variable>
+		
+		<Field name="tempExtentBegin" string="{lower-case(substring-before($times,'|'))}" store="true" index="true"/>
+		<Field name="tempExtentEnd" string="{lower-case(substring-after($times,'|'))}" store="true" index="true"/>
+	</xsl:template>
+
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
 	<xsl:template mode="index" match="gmd:geographicElement/gmd:EX_BoundingPolygon/gmd:polygon">
 		<xsl:variable name="wktCoords">
 			<xsl:apply-templates mode="gml" select="*"/>
