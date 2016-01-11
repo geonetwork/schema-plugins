@@ -8,13 +8,16 @@
 			xmlns:geonet="http://www.fao.org/geonetwork"
 			xmlns:mcp="http://schemas.aodn.org.au/mcp-2.0"
 			xmlns:xlink="http://www.w3.org/1999/xlink"
-			xmlns:java="java:org.fao.geonet.util.XslUtil"
+			xmlns:java="java:org.fao.geonet.util.GmlWktConverter"
 			xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+			xmlns:saxon="http://saxon.sf.net/"
+			extension-element-prefixes="saxon"
 			exclude-result-prefixes="gmd gmx gco gml srv geonet mcp xlink xsl java">
-
 
 	<xsl:import href="../iso19139/index-fields.xsl"/>
 
+	<xsl:output name="serialisation-output-format" method="xml" omit-xml-declaration="yes"/>
+	
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->		
 	<xsl:template mode="index" match="/*">
 		<!-- Index distinct platforms for facetted searching -->
@@ -138,28 +141,8 @@
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 	<xsl:template mode="index" match="gmd:geographicElement/gmd:EX_BoundingPolygon/gmd:polygon">
-		<xsl:variable name="wktCoords">
-			<xsl:apply-templates mode="gml" select="*"/>
-		</xsl:variable>
-		<xsl:variable name="geom">POLYGON(<xsl:value-of select="java:replace(string($wktCoords), '\),$', ')')"/>)</xsl:variable>
-		<Field name="geoPolygon" string="{string($geom)}" store="true" index="false"/>
+		<xsl:variable name="gml" select="saxon:serialize(., 'serialisation-output-format')"/>
+		<Field name="geoPolygon" string="{java:gmlToWkt($gml)}" store="true" index="false"/>
 	</xsl:template>
 
-	<!-- gml mode - convert gml polygons into WKT -->
-
-	<xsl:template mode="gml" match="gml:coordinates">
-		<xsl:variable name="ts" select="string(@ts)"/>
-		<xsl:variable name="cs" select="string(@cs)"/>
-		<xsl:text>(</xsl:text>
-		<xsl:value-of select="java:takeUntil(java:toWktCoords(string(.),$ts,$cs), ';\Z')"/>
-		<xsl:text>),</xsl:text>
-	</xsl:template>
-
-	<xsl:template mode="gml" match="gml:posList">
-		<xsl:text>(</xsl:text>
-		<xsl:value-of select="java:takeUntil(java:posListToWktCoords(string(.), string(@dimension)), ';\Z')"/>
-		<xsl:text>),</xsl:text>
-	</xsl:template>
-
-	<xsl:template mode="gml" match="text()"/>
 </xsl:stylesheet>
