@@ -544,7 +544,18 @@ temporalSamplingService;temporalProximityAnalysisService;metadataProcessingServi
 			<sch:assert test="(@xlink:href != '')">$loc/strings/alert.M112</sch:assert>
 		</sch:rule>
 	</sch:pattern>
-
+	
+	<!-- OPERAZIONI CONTENUTE -->
+	<sch:pattern>
+		<sch:title>$loc/strings/M121</sch:title>
+		<sch:rule context="//srv:SV_OperationMetadata/srv:operationName">
+			<sch:let name="elementName" value="local-name()"/>
+			<sch:assert test="gco:CharacterString!=''">
+                <sch:value-of select="$loc/strings/alert.M121"/>
+            </sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	
 	<sch:pattern>
 		<sch:title>$loc/strings/M120</sch:title>
 		<sch:rule context="//gmd:MD_Metadata//*[@codeListValue]">
