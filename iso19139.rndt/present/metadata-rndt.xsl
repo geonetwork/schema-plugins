@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-        xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gmd="http://www.isotc211.org/2005/gmd"
-        xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:geonet="http://www.fao.org/geonetwork"
-        xmlns:java="java:org.fao.geonet.util.XslUtil" version="2.0">
+<xsl:stylesheet
+        xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+        xmlns:gco="http://www.isotc211.org/2005/gco"
+        xmlns:gmd="http://www.isotc211.org/2005/gmd"
+        xmlns:srv="http://www.isotc211.org/2005/srv" 
+        xmlns:geonet="http://www.fao.org/geonetwork"
+        xmlns:exslt="http://exslt.org/common"
+        xmlns:java="java:org.fao.geonet.util.XslUtil"
+        version="2.0">
 
     <!--
         Template for INSPIRE RNDT tab
@@ -1456,12 +1461,25 @@
                     <xsl:with-param name="showAttributes"   select="false()"/>
                     <xsl:with-param name="title"    select="/root/gui/schemas/iso19139.rndt/strings/rndt/org/field"/>
                     <xsl:with-param name="helpLink" select="concat('iso19139.rndt|','rndt_org_select')"/>
-                    <xsl:with-param name="text">
-                        <xsl:value-of select="/root/gui/config/rndt/ente[ipa/text()=$ipa]/name/text()"/> (<xsl:value-of select="$ipa"/>)
-                    </xsl:with-param>
+                    <xsl:with-param name="text"><xsl:value-of select="concat(/root/gui/config/rndt/ente[ipa/text()=$ipa]/name/text(), ' (', $ipa, ')')"/></xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
-            <xsl:when test="$edit and not($hasIpa) and /root/gui/config/rndt">
+            <xsl:when test="not($hasIpa) and $edit and /root/gui/config/rndt and count(/root/gui/config/rndt/ente)=1">
+                <xsl:variable name="forcedname" select="/root/gui/config/rndt/ente/name/text()"/>
+                <xsl:variable name="forcedipa" select="/root/gui/config/rndt/ente/ipa/text()"/>
+
+                <xsl:call-template name="simpleElementGui">
+                    <xsl:with-param name="id"      select="'select_pa_simple'"/>
+                    <xsl:with-param name="schema"  select="$schema"/>
+                    <xsl:with-param name="edit"    select="false()"/>
+                    <xsl:with-param name="showAttributes"   select="false()"/>
+                    <xsl:with-param name="title"    select="/root/gui/schemas/iso19139.rndt/strings/rndt/org/field"/>
+                    <xsl:with-param name="helpLink" select="concat('iso19139.rndt|','rndt_org_select')"/>
+                    <xsl:with-param name="text"><xsl:value-of select="concat($forcedname, ' (', $forcedipa, ')   ')"/><i>Valore impostato automaticamente</i></xsl:with-param>
+                </xsl:call-template>
+
+            </xsl:when>
+            <xsl:when test="not($hasIpa) and $edit and /root/gui/config/rndt">
 
                 <xsl:call-template name="simpleElementGui">
                     <xsl:with-param name="id" select="'select_pa_simple'"/>
@@ -1479,21 +1497,14 @@
                             <option value="{$fileid}">
                                 <xsl:value-of select="/root/gui/schemas/iso19139.rndt/strings/rndt/org/askselect"/>
                             </option>
-
-
-                            <!-- Add all of other Concepts -->
+                            <!-- tutti gli enti definiti -->
                             <xsl:for-each select="/root/gui/config/rndt/ente">
-
                                 <option value="{concat(./ipa/text(),':', $fileid)}">
-                                    <!--                            <xsl:if test="$value = ./name/text()">
-                                                                    <xsl:attribute name="selected"/>
-                                                                </xsl:if>
-                                    -->
                                     <xsl:value-of select="./name/text()"/>
                                 </option>
-
                             </xsl:for-each>
                         </select>
+
                     </xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
@@ -1509,10 +1520,25 @@
 
         <xsl:choose>
             <xsl:when test="$edit=true()">
+
+                <xsl:variable name="initialfileid" select="gco:CharacterString/text()"/>
+                <xsl:variable name="hasIpa" select="contains($initialfileid, ':')"/>
+
+                <xsl:variable name="fileid">
+                    <xsl:choose>
+                        <xsl:when test="not($hasIpa) and count(/root/gui/config/rndt/ente)=1">
+                             <xsl:value-of select="concat(/root/gui/config/rndt/ente/ipa/text(),':',$initialfileid)"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="$initialfileid"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+
                 <xsl:variable name="text">
                     <xsl:variable name="ref" select="gco:CharacterString/geonet:element/@ref" />
                     <input
-                        class="md" type="text" name="_{$ref}" id="_{$ref}" value="{gco:CharacterString/text()}" size="40" readonly="readonly"/>
+                        class="md" type="text" name="_{$ref}" id="_{$ref}" value="{normalize-space($fileid)}" size="40" readonly="readonly"/>
                 </xsl:variable>
 
                 <xsl:apply-templates mode="simpleElement" select=".">
