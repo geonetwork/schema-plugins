@@ -230,13 +230,13 @@ temporalSamplingService;temporalProximityAnalysisService;metadataProcessingServi
 	<sch:pattern>
 		<sch:title>$loc/strings/M33</sch:title>
 		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification
-		|//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
-			<sch:assert test="count(./srv:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox)>0 
-			or
-			count(./gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox)>0">$loc/strings/alert.M33</sch:assert>
-			<sch:assert test="count(./srv:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox)&lt;2
-			or
-			count(./gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox)&lt;2">$loc/strings/alert.M33a</sch:assert>
+                                  |//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification">
+                    <sch:assert test="count(./srv:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox)>0
+			              or
+			              count(./gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox)>0">$loc/strings/alert.M33</sch:assert>
+                    <sch:assert test="count(./srv:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox)&lt;2
+			              or
+			              count(./gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox)&lt;2">$loc/strings/alert.M33a</sch:assert>
 		</sch:rule>
 	</sch:pattern>
 	<!--DATA/SERVICE QUALITY - SCOPE-->
@@ -313,7 +313,8 @@ temporalSamplingService;temporalProximityAnalysisService;metadataProcessingServi
 			<sch:let name="rndtparsed" value="exists(tokenize($rslist, ';')[. = $rscode])"/>
 			<sch:let name="epsgparsed" value="$rscode castable as xs:double"/>
 
-			<sch:let name="isepsgspace"  value="gmd:codeSpace/gco:CharacterString= 'http://www.epsg-registry.org'"/>
+			<sch:let name="isepsgspace"  value="string(gmd:codeSpace/gco:CharacterString) = 'http://www.epsg-registry.org' or
+			                                    string(gmd:codeSpace/gco:CharacterString) = 'http://www.epsg-registry.org/'"/>
 			<sch:let name="isnospace"  value="not(gmd:codeSpace)"/>
 
 			<sch:assert test="($isnospace and $rndtparsed) or ($isepsgspace and $epsgparsed)">

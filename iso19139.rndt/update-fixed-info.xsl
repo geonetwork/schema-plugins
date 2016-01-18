@@ -5,6 +5,8 @@
                   xmlns:gmx="http://www.isotc211.org/2005/gmx"
                   xmlns:gco="http://www.isotc211.org/2005/gco"
                   xmlns:gmd="http://www.isotc211.org/2005/gmd"
+				  xmlns:xlink="http://www.w3.org/1999/xlink"
+				  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   exclude-result-prefixes="gmd srv gmx">
     
     <xsl:include href="../iso19139/convert/functions.xsl"/>
@@ -715,7 +717,23 @@
             <xsl:apply-templates select="@*|node()" mode="datoPubblico"/>
         </xsl:copy>
     </xsl:template>
-    
+
+    <!-- ================================================================= -->
+    <!-- setup the CRS info -->
+
+    <xsl:template match="gmd:referenceSystemIdentifier/gmd:RS_Identifier">
+        <xsl:copy>
+            <xsl:apply-templates select="gmd:code"/>
+
+            <xsl:variable name="code" select="gmd:code/gco:CharacterString/text()"/>
+            <xsl:if test="number($code)">
+                <gmd:codeSpace>
+                    <gco:CharacterString>http://www.epsg-registry.org</gco:CharacterString>
+                </gmd:codeSpace>
+            </xsl:if>
+        </xsl:copy>
+    </xsl:template>
+
     <!-- ================================================================= -->
     <!-- copy everything else as is -->
 
