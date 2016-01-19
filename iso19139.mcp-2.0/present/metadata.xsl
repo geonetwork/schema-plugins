@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl ="http://www.w3.org/1999/XSL/Transform"
+<xsl:stylesheet version="2.0" xmlns:xsl ="http://www.w3.org/1999/XSL/Transform"
 	xmlns:gmd="http://www.isotc211.org/2005/gmd"
 	xmlns:gco="http://www.isotc211.org/2005/gco"
 	xmlns:gmx="http://www.isotc211.org/2005/gmx"
@@ -16,7 +16,7 @@
 	<xsl:import href="metadata-subtemplates.xsl"/>
 
 	<xsl:variable name="mcpallgens-2.0" select="document('../schema/resources/Codelist/mcp-allgens.xml')"/>
-
+	
 	<!-- codelists are handled directly from the gmxCodelists.xml file as we
 	     don't support localized codelists in the MCP and we don't want to
 	     duplicate the codelists into another file -->
@@ -24,6 +24,9 @@
 
 	<xsl:variable name="dcurl-2.0" select="/root/gui/schemas/iso19139.mcp-2.0/strings/dataCommonsUrl"/>
 	<xsl:variable name="ccurl-2.0" select="/root/gui/schemas/iso19139.mcp-2.0/strings/creativeCommonsUrl"/>
+
+	<!-- include mcp specific configuration -->
+	<xsl:variable name="mcpconfig" select="/root/gui/config/termSelector"/>
 
 	<!-- main template - the way into processing iso19139.mcp-2.0 -->
   <xsl:template match="metadata-iso19139.mcp-2.0" name="metadata-iso19139.mcp-2.0">
@@ -115,7 +118,6 @@
 			<xsl:with-param name="text"    select="/root/gui/schemas/iso19139.mcp-2.0/strings/temporalExtentTab"/>
 			<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
 			<xsl:with-param name="tabLink" select="$tabLink"/>
-			<xsl:with-param name="highlighted" select="true()"/>
 		</xsl:call-template>
 
 		<xsl:call-template name="displayTab">
@@ -123,7 +125,6 @@
 			<xsl:with-param name="text"    select="/root/gui/schemas/iso19139.mcp-2.0/strings/spatialExtentTab"/>
 			<xsl:with-param name="indent"  select="'&#xA0;&#xA0;&#xA0;'"/>
 			<xsl:with-param name="tabLink" select="$tabLink"/>
-			<xsl:with-param name="highlighted" select="true()"/>
 		</xsl:call-template>
 
 		<xsl:call-template name="displayTab">
@@ -1435,7 +1436,6 @@
 				<xsl:call-template name="iso19139Complete">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
-					<xsl:with-param name="dataset" select="$dataset"/>
 				</xsl:call-template>
 
 				<!-- mcp:revisionDate is the only element added mcp:MD_Metadata -->
@@ -2111,7 +2111,6 @@
 		<xsl:for-each select=".">
 			<xsl:call-template name="complexElementGuiWrapper">
 				<xsl:with-param name="title" select="/root/gui/schemas/iso19139.mcp/strings/distributionOnlineInfo"/>
-				<xsl:with-param name="tab" select="$tab"/>
 				<xsl:with-param name="content">
 
 				<xsl:choose>
@@ -2164,35 +2163,387 @@
 	</xsl:template>
 
 	<!-- ==================================================================== -->
-  <!-- === iso19139.mcp-2.0 brief formatting === -->
-  <!-- ==================================================================== -->
-
+	<!-- === iso19139.mcp-2.0 brief formatting === -->
+	<!-- ==================================================================== -->
+	
 	<xsl:template name="iso19139.mcp-2.0Brief">
 		<metadata>
-				<xsl:choose>
-					<xsl:when test="geonet:info/isTemplate='s'">
-						<xsl:call-template name="iso19139.mcp-2.0-subtemplate"/>
-						<xsl:copy-of select="geonet:info" copy-namespaces="no"/>
-					</xsl:when>
-					<xsl:otherwise>
-						<!-- call iso19139 brief -->
-	 					<xsl:call-template name="iso19139-brief"/>
-						<!-- now brief elements for mcp specific elements -->
-						<xsl:call-template name="iso19139.mcp-2.0-brief"/>
-					</xsl:otherwise>
-				</xsl:choose>
+			<xsl:choose>
+				<xsl:when test="geonet:info/isTemplate='s'">
+					<xsl:call-template name="iso19139.mcp-2.0-subtemplate"/>
+					<xsl:copy-of select="geonet:info" copy-namespaces="no"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<!-- call iso19139 brief -->
+					<xsl:call-template name="iso19139-brief"/>
+					<!-- now brief elements for mcp specific elements -->
+					<xsl:call-template name="iso19139.mcp-2.0-brief"/>
+				</xsl:otherwise>
+			</xsl:choose>
 		</metadata>
 	</xsl:template>
+	
+	<!-- ==================================================================== -->
+	<!-- === Flatten elements that would otherwise result in children being   -->
+	<!-- === boxed twice unnecessarily                                        -->
+	<!-- ==================================================================== -->
+	
+	<xsl:template mode="iso19139.mcp-2.0" match="mcp:DP_DataParameters|mcp:DP_DataParameter|mcp:DP_VocabularyRelationship|mcp:DP_Term">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+		
+		<xsl:apply-templates mode="element"  select=".">
+			<xsl:with-param name="schema" select="$schema"/>
+			<xsl:with-param name="edit" select="$edit"/>
+			<xsl:with-param name="flat" select="true()"/>
+		</xsl:apply-templates>
+	</xsl:template>
+	
+	<!-- ==================================================================== -->
+	<!-- === Vocabulary URL's don't need to be boxed                          -->
+	<!-- ==================================================================== -->
+	
+	<xsl:template mode="iso19139.mcp-2.0" match="mcp:vocabularyTermURL|mcp:vocabularyListURL">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+		
+		<xsl:apply-templates mode="simpleElement" select="gmd:URL">
+			<xsl:with-param name="schema" select="$schema"/>
+			<xsl:with-param name="edit"   select="$edit"/>
+			<xsl:with-param name="title">
+				<xsl:call-template name="getTitle">
+					<xsl:with-param name="name"   select="name(.)"/>
+					<xsl:with-param name="schema" select="$schema"/>
+				</xsl:call-template>
+			</xsl:with-param>
+		</xsl:apply-templates>
+		
+	</xsl:template>
 
-	<!-- match everything else and do nothing - leave that to iso19139 mode -->
+	<!-- ==================================================================== -->
+	<!-- Provide selection of term elements from thesauri in edit mode for    -->
+	<!-- existing elements where this has been configured, otherwise use      -->
+	<!-- default element rendering                                            -->
+	<!-- ==================================================================== -->
+
+	<xsl:template mode="iso19139.mcp-2.0" match="mcp:parameterName|mcp:parameterUnits|mcp:parameterDeterminationInstrument|mcp:parameterAnalysisMethod|mcp:platform">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+		
+		<xsl:variable name="name">
+			<xsl:value-of select="name(.)"/>
+		</xsl:variable>
+		
+		<xsl:variable name="selectorConfig" select="$mcpconfig/element[@name=$name]"/>
+		
+		<xsl:choose>
+			<xsl:when test="$edit and $selectorConfig">
+				<xsl:apply-templates mode="renderTermSelector" select=".">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="config" select="$selectorConfig"/>
+				</xsl:apply-templates>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:apply-templates mode="element" select=".">
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit" select="$edit"/>
+				</xsl:apply-templates>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- ==================================================================== -->
+	<!-- Override default rendering of term element where a term selector is  -->
+	<!-- being used for selection on an existing element                      -->
+	<!-- ==================================================================== -->
+	
+	<xsl:template mode="renderTermSelector" match="*">
+		<xsl:param name="schema"/>
+		<xsl:param name="config"/>
+		
+		<xsl:variable name="viewModeContent">
+			<xsl:call-template name="getViewModeContent">
+				<xsl:with-param name="schema" select="$schema"/>
+			</xsl:call-template>
+		</xsl:variable>
+		
+		<xsl:variable name="title">
+			<xsl:call-template name="getTitle">
+				<xsl:with-param name="name"   select="name(.)"/>
+				<xsl:with-param name="schema" select="$schema"/>
+			</xsl:call-template>
+		</xsl:variable>
+		<xsl:variable name="helpLink">
+			<xsl:call-template name="getHelpLink">
+				<xsl:with-param name="name"   select="name(.)"/>
+				<xsl:with-param name="schema" select="$schema"/>
+			</xsl:call-template>
+		</xsl:variable>
+		
+		<xsl:variable name="id" select="geonet:element/@uuid"/>
+		
+		<xsl:variable name="removeLink">
+			<xsl:value-of select="concat('doRemoveElementAction(',$apos,'/metadata.elem.delete',$apos,',',geonet:element/@ref,',',geonet:element/@parent,',',$apos,$id,$apos,',',geonet:element/@min,');')"/>
+			<xsl:if test="not(geonet:element/@del='true')">
+				<xsl:text>!OPTIONAL</xsl:text>
+			</xsl:if>
+		</xsl:variable>
+		<xsl:variable name="upLink">
+			<xsl:value-of select="concat('doMoveElementAction(',$apos,'/metadata.elem.up',$apos,',',geonet:element/@ref,',',$apos,$id,$apos,');')"/>
+			<xsl:if test="not(geonet:element/@up='true')">
+				<xsl:text>!OPTIONAL</xsl:text>
+			</xsl:if>
+		</xsl:variable>
+		<xsl:variable name="downLink">
+			<xsl:value-of select="concat('doMoveElementAction(',$apos,'/metadata.elem.down',$apos,',',geonet:element/@ref,',',$apos,$id,$apos,');')"/>
+			<xsl:if test="not(geonet:element/@down='true')">
+				<xsl:text>!OPTIONAL</xsl:text>
+			</xsl:if>
+		</xsl:variable>
+		
+		<xsl:choose>
+			<!-- Display the name of the element only for defaulted empty elements -->
+			<!-- Any term selected will replace the empty element -->
+			<xsl:when test="normalize-space($viewModeContent)=''">
+				<xsl:variable name="replaceTermScript">
+					<xsl:call-template name="replaceTermScript">
+						<xsl:with-param name="config" select="$config"/>
+					</xsl:call-template>
+				</xsl:variable>
+				
+				<xsl:call-template name="simpleElementGui">
+					<xsl:with-param name="title" select="$title"/>
+					<xsl:with-param name="text" select="text()"/>
+					<xsl:with-param name="addXMLFragment"  select="$replaceTermScript"/>
+					<xsl:with-param name="removeLink" select="$removeLink"/>
+					<xsl:with-param name="upLink" select="$upLink"/>
+					<xsl:with-param name="downLink" select="$downLink"/>
+					<xsl:with-param name="helpLink" select="$helpLink"/>
+					<xsl:with-param name="edit"     select="true()"/>
+					<xsl:with-param name="editAttributes"     select="false()"/>
+					<xsl:with-param name="id"     	select="$id"/>
+				</xsl:call-template>
+			</xsl:when>
+			<!-- Display existing terms as read only with term selection the only way -->
+			<!-- of adding new terms where applicable -->
+			<xsl:otherwise>
+				<xsl:variable name="addTermScript">
+					<xsl:call-template name="addTermScript">
+						<xsl:with-param name="config" select="$config"/>
+					</xsl:call-template>
+				</xsl:variable>
+				
+				<xsl:call-template name="complexElementGui">
+					<xsl:with-param name="title" select="$title"/>
+					<xsl:with-param name="text" select="text()"/>
+					<xsl:with-param name="content" select="$viewModeContent"/>
+					<xsl:with-param name="addXMLFragment" select="$addTermScript"/>
+					<xsl:with-param name="removeLink" select="$removeLink"/>
+					<xsl:with-param name="upLink" select="$upLink"/>
+					<xsl:with-param name="downLink" select="$downLink"/>
+					<xsl:with-param name="helpLink" select="$helpLink"/>
+					<xsl:with-param name="schema" select="$schema"/>
+					<xsl:with-param name="edit"   select="true()"/>			
+					<xsl:with-param name="id" select="$id"/>
+				</xsl:call-template>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- ==================================================================== -->
+	<!-- Provide addition of term elements from thesauri in edit mode when    -->
+	<!-- no existing elements exist where this has been configured,           -->
+	<!-- otherwise use default element rendering                              -->
+	<!-- ==================================================================== -->
+
+	<xsl:template mode="elementEP" match="geonet:child[@name='parameterDeterminationInstrument']|geonet:child[@name='parameterAnalysisMethod']|geonet:child[@name='platform']">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+		
+		<xsl:variable name="name">
+			<xsl:value-of select="concat(@prefix,':',@name)"/>
+		</xsl:variable>
+		
+		<xsl:variable name="parentName" select="../geonet:element/@ref|@parent"/>
+
+		<xsl:variable name="prevBrother" select="preceding-sibling::*[1]"/>
+
+		<xsl:variable name="config" select="$mcpconfig/element[@name=$name]"/>
+		
+		<xsl:if test="name($prevBrother)!=$name">
+			<xsl:variable name="max" select="(@max|../geonet:element/@max)[1]"/>
+			<xsl:variable name="id" select="@uuid"/>
+	
+			<xsl:variable name="addTermScript">
+				<xsl:if test="normalize-space($config)!=''">
+					<xsl:call-template name="buildSelectTermScript">
+						<xsl:with-param name="ref" select="$parentName"/>
+						<xsl:with-param name="name" select="$name"/>
+						<xsl:with-param name="config" select="$config"/>
+						<xsl:with-param name="action" select="'add'"/>
+					</xsl:call-template>
+				</xsl:if>
+			</xsl:variable>
+	
+			<xsl:variable name="addLink">
+				<xsl:if test="normalize-space($config)=''">
+					<xsl:value-of select="concat('doNewElementAction(',$apos,'/metadata.elem.add',$apos,',',$parentName,',',$apos,$name,$apos,',',$apos,$id,$apos,',',$apos,@action,$apos,',',$max,');')"/>
+				</xsl:if>
+			</xsl:variable>
+
+			<xsl:variable name="title">
+				<xsl:call-template name="getTitle">
+					<xsl:with-param name="name"   select="$name"/>
+					<xsl:with-param name="schema" select="$schema"/>
+				</xsl:call-template>
+			</xsl:variable>
+			
+			<xsl:variable name="helpLink">
+				<xsl:call-template name="getHelpLink">
+					<xsl:with-param name="name"   select="$name"/>
+					<xsl:with-param name="schema" select="$schema"/>
+				</xsl:call-template>
+			</xsl:variable>
+			
+			<xsl:call-template name="simpleElementGui">
+				<xsl:with-param name="title" select="$title"/>
+				<xsl:with-param name="text" select="text()"/>
+				<xsl:with-param name="addXMLFragment"  select="$addTermScript"/>
+				<xsl:with-param name="addLink"  select="$addLink"/>
+				<xsl:with-param name="helpLink" select="$helpLink"/>
+				<xsl:with-param name="edit"     select="true()"/>
+				<xsl:with-param name="id"     	select="$id"/>
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+	
+	<!-- ============================================================================= -->
+	<!-- Build java script to be executed when an existing term is to be replaced      -->
+	<!-- ============================================================================= -->
+	
+	<xsl:template name="replaceTermScript">
+		<xsl:param name="config"/>
+		
+		<xsl:call-template name="buildSelectTermScript">
+			<xsl:with-param name="ref" select="geonet:element/@ref"/>
+			<xsl:with-param name="name" select="name(.)"/>
+			<xsl:with-param name="config" select="$config"/>
+			<xsl:with-param name="action" select="'replace'"/>
+		</xsl:call-template>
+	</xsl:template>
+
+	<!-- ============================================================================= -->
+	<!-- Build java script to be executed when a new term is to be added               --> 
+	<!-- ============================================================================= -->
+	
+	<xsl:template name="addTermScript">
+		<xsl:param name="config"/>
+		
+		<xsl:variable name="nextSibling" select="following-sibling::*[1]"/>
+
+		<xsl:choose>
+			<!-- Add when last sibling and add is possible -->
+			<xsl:when test="name($nextSibling)='geonet:child' and concat($nextSibling/@prefix,':',$nextSibling/@name)=name(.)">
+				<xsl:call-template name="buildSelectTermScript">
+					<xsl:with-param name="ref" select="../geonet:element/@ref"/>
+					<xsl:with-param name="name" select="name(.)"/>
+					<xsl:with-param name="config" select="$config"/>
+					<xsl:with-param name="action" select="'add'"/>
+				</xsl:call-template>
+			</xsl:when>
+			<!-- Add hidden button on others for control swapping purposes -->
+			<xsl:when test="geonet:element/@add='true' and name($nextSibling)=name(.)">
+				<xsl:call-template name="buildSelectTermScript">
+					<xsl:with-param name="ref" select="../geonet:element/@ref"/>
+					<xsl:with-param name="name" select="name(.)"/>
+					<xsl:with-param name="config" select="$config"/>
+					<xsl:with-param name="action" select="'add'"/>
+				</xsl:call-template>
+				<xsl:value-of select="'!OPTIONAL'"/>
+			</xsl:when>
+		</xsl:choose>
+	</xsl:template>
+	
+	<!-- ============================================================================= -->
+	<!-- Build java script to display term selector using passed parameters            -->
+	<!-- ============================================================================= -->
+	
+	<xsl:template name="buildSelectTermScript">
+		<xsl:param name="ref"/>
+		<xsl:param name="name"/>
+		<xsl:param name="config"/>
+		<xsl:param name="action"/>
+		
+		<xsl:value-of select="concat('javascript: Mcp.selectTerm({ref:',$ref,', name: ',$apos, $name, $apos,', ')"/>
+		<xsl:for-each select="$config/*">
+			<xsl:value-of select="concat(name(.), ': ',$apos, text(), $apos, ', ')"/>
+		</xsl:for-each>
+		<xsl:value-of select="concat('action: ', $apos, $action, $apos, '});')"/>
+	</xsl:template>
+	
+	<!-- ==================================================================== -->
+	<!-- === Return view mode content for current element                     -->
+	<!-- === (OK not strictly accurate as some context is lost for generating -->
+	<!-- === labels, but that shouldn't affect us here)                       -->
+	<!-- ==================================================================== -->
+	
+	<xsl:template name="getViewModeContent">
+		<xsl:param name="schema"/>
+		
+		<xsl:variable name="packaged-node">
+			<root>
+				<xsl:copy-of select="/root/gui"/>
+				<node>
+					<xsl:apply-templates mode="stripGeonetworkElements"  select="."/>
+				</node>
+			</root>
+		</xsl:variable>
+		
+		<xsl:apply-templates mode="element"  select="$packaged-node/root/node/*">
+			<xsl:with-param name="schema" select="$schema"/>
+			<xsl:with-param name="edit" select="false()"/>
+			<xsl:with-param name="flat" select="true()"/>
+		</xsl:apply-templates>
+	</xsl:template>
+	
+	<xsl:template mode="stripGeonetworkElements" match="geonet:*|@geonet:*"/>
+	
+	<xsl:template mode="stripGeonetworkElements" match="@*|node()">
+		<xsl:copy>
+			<xsl:apply-templates mode="stripGeonetworkElements" select="@*|node()"/>
+		</xsl:copy>
+	</xsl:template>	
+	
+	<!-- ==================================================================== -->
+	<!-- === Match everything else and do nothing - leave that to iso19139    -->
+	<!-- === mode unnecessarily otherwise -->
+	<!-- ==================================================================== -->
+
 	<xsl:template mode="iso19139.mcp-2.0" match="*|@*"/> 
 
 	<!-- ==================================================================== -->
-  <!-- === Javascript used by functions in this presentation XSLT -->
-  <!-- ==================================================================== -->
+	<!-- === Javascript used by functions in this presentation XSLT -->
+	<!-- ==================================================================== -->
 
 	<!-- Javascript used by functions in this XSLT -->
 	<xsl:template name="iso19139.mcp-2.0-javascript">
+		<!-- Core GeoNetwork translate doesn't include strings defined in schema plugins so include MCP ones here -->
+		<!-- TODO: Core GeoNetwork translate function should include js strings in schema plugins -->
+			
+		<script type="text/javascript">
+			Ext.namespace("Mcp");
+			
+			Mcp.translations= {
+				<xsl:apply-templates select="/root/gui/schemas/iso19139.mcp-2.0/strings/*[@js='true' and not(*) and not(@id)]" mode="js-translations"/>
+			}
+			
+			Mcp.translate = function(text) {
+				return this.translations[text]||text;
+			}
+		</script>
+		<script type="text/javascript">
+			<xsl:copy-of select="unparsed-text('scripts/mcp/SelectTermWindow.js')"/>
+		</script>
 		<script type="text/javascript">
 		<![CDATA[
 /**

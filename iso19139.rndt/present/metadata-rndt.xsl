@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-        xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gmd="http://www.isotc211.org/2005/gmd"
-        xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:geonet="http://www.fao.org/geonetwork"
-        xmlns:java="java:org.fao.geonet.util.XslUtil" version="2.0">
+<xsl:stylesheet
+        xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+        xmlns:gco="http://www.isotc211.org/2005/gco"
+        xmlns:gmd="http://www.isotc211.org/2005/gmd"
+        xmlns:srv="http://www.isotc211.org/2005/srv" 
+        xmlns:geonet="http://www.fao.org/geonetwork"
+        xmlns:exslt="http://exslt.org/common"
+        xmlns:java="java:org.fao.geonet.util.XslUtil"
+        version="2.0">
 
     <!--
         Template for INSPIRE RNDT tab
@@ -1425,6 +1430,140 @@
         </xsl:apply-templates>
     </xsl:template>
 
+    <!-- ============================================================================= -->
+    <!-- CRS custom visualization                                -->
+    <!-- ============================================================================= -->
+
+    <xsl:template mode="elementEP" match="gmd:referenceSystemIdentifier/gmd:RS_Identifier/gmd:code" priority="99">
+        <xsl:param name="schema"/>
+        <xsl:param name="edit" select="false()"/>
+
+        <xsl:choose>
+            <xsl:when test="$edit=true()">
+                <xsl:call-template name="simpleElementGui">
+                    <xsl:with-param name="schema" select="$schema"/>
+                    <xsl:with-param name="edit" select="$edit"/>
+                    <xsl:with-param name="title">
+                        <xsl:call-template name="getTitle">
+                            <xsl:with-param name="name"   select="'RNDTcrs'"/>
+                            <xsl:with-param name="schema" select="$schema"/>
+                        </xsl:call-template>
+                    </xsl:with-param>
+
+                    <xsl:with-param name="helpLink">
+                        <xsl:call-template name="getHelpLink">
+                            <xsl:with-param name="name" select="'RNDTcrs'"/>
+                            <xsl:with-param name="schema" select="$schema"/>
+                        </xsl:call-template>
+                    </xsl:with-param>
+
+                    <xsl:with-param name="text">
+                        <xsl:variable name="value" select="string(gco:CharacterString)"/>
+                        <xsl:variable name="ref" select="gco:CharacterString/geonet:element/@ref"/>
+                        <!--<xsl:variable name="fref" select="../gmd:name/gco:CharacterString/geonet:element/@ref|../gmd:name/gmx:MimeFileType/geonet:element/@ref"/>-->
+                        <!--                        <xsl:variable name="relatedJsAction">
+                            <xsl:value-of select="concat('checkForFileUpload(&quot;',$fref,'&quot;, &quot;',$ref,'&quot;, this.options[this.selectedIndex].value);')" />
+                        </xsl:variable>-->
+
+                        <input type="text" id="_{$ref}" name="_{$ref}" value="{$value}" size="50" />
+                        <input type="hidden" id="previous_{$ref}" name="previous_{$ref}" value="{$value}"/>
+
+                        <xsl:for-each select="gco:CharacterString">
+                            <xsl:call-template name="helperCRS">
+                                <xsl:with-param name="schema" select="$schema"/>
+                                <xsl:with-param name="attribute" select="false()"/>
+                                <xsl:with-param name="labels" select="/root/gui/schemas/*[name(.)=$schema]/labels/element[@name='RNDTcrs']"/>
+                                <xsl:with-param name="selectedValue" select="$value"/>
+                                <!--                                <xsl:with-param name="jsAction" select="$relatedJsAction"/>-->
+                            </xsl:call-template>
+                        </xsl:for-each>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:apply-templates mode="element" select=".">
+                    <xsl:with-param name="schema" select="$schema"/>
+                    <xsl:with-param name="edit"   select="false()"/>
+                </xsl:apply-templates>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+
+    <!-- the codespace is forced upon save if the CRS is an EPSG code -->
+    <xsl:template mode="elementEP" match="gmd:referenceSystemIdentifier/gmd:RS_Identifier/gmd:codeSpace">
+        <xsl:param name="schema"/>
+        <xsl:param name="edit" select="false()"/>
+
+        <xsl:apply-templates mode="simpleElement" select=".">
+            <xsl:with-param name="schema" select="$schema" />
+            <xsl:with-param name="edit" select="false()" />
+            <xsl:with-param name="text">
+                <xsl:value-of select="gco:CharacterString"/>
+            </xsl:with-param>
+        </xsl:apply-templates>
+    </xsl:template>
+
+
+    <xsl:template name="helperCRS">
+        <xsl:param name="schema"/>
+        <xsl:param name="attribute"/>
+        <xsl:param name="jsAction"/>
+        <xsl:param name="selectedValue"/>
+        <xsl:param name="labels"/>
+
+        <!-- Define the element to look for. -->
+        <xsl:variable name="parentName">
+            <xsl:choose>
+                <!-- In dublin core element contains value.
+                In ISO, attribute also but element contains characterString which contains the value -->
+                <xsl:when test="$attribute=true() or $schema = 'dublin-core'">
+                    <xsl:value-of select="name(.)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="name(parent::node())"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
+        <!-- Look for the helper -->
+        <xsl:variable name="helper">
+            <xsl:copy-of select="$labels/helper"/>
+        </xsl:variable>
+
+        <!-- Display the helper list -->
+        <xsl:if test="normalize-space($helper)!=''">
+            <xsl:variable name="list" select="exslt:node-set($helper)"/>
+            <xsl:variable name="refId" select="if ($attribute=true()) then concat(../geonet:element/@ref, '_', name(.)) else geonet:element/@ref"/>
+            <xsl:variable name="relatedElementName" select="$list/*/@rel"/>
+            <xsl:variable name="relatedElementAction">
+                <xsl:if test="$relatedElementName!=''">
+                    <xsl:variable name="relatedElement" select="../following-sibling::node()[name()=$relatedElementName]/gco:CharacterString"/>
+                    <xsl:variable name="relatedElementRef" select="../following-sibling::node()[name()=$relatedElementName]/gco:CharacterString/geonet:element/@ref"/>
+                    <xsl:variable name="relatedElementIsEmpty" select="normalize-space($relatedElement)=''"/>
+
+                    <xsl:value-of select="concat('if ($(&quot;_', $relatedElementRef, '&quot;)) $(&quot;_', $relatedElementRef, '&quot;).value=this.options[this.selectedIndex].title;')"/>
+
+                </xsl:if>
+            </xsl:variable>
+            <xsl:text> </xsl:text>
+            <xsl:variable name="descr" select="$list/*/option[@value=$selectedValue]"/>
+
+            <!--<input type="label" for="s_{$refId}" size="50" id="label-s_{$refId}" name="label-s_{$refId}" value="{$descr}"/>-->
+
+            <select id="s_{$refId}" name="s_{$refId}"
+                        size="1" class="md"
+                        onchange="$('_{$refId}').value=this.options[this.selectedIndex].value; if ($('_{$refId}').onkeyup) $('_{$refId}').onkeyup(); {$relatedElementAction} {$jsAction}">
+                <option/>
+                <!-- This assume that helper list is already sort in alphabetical order in loc file. -->
+                <xsl:copy-of select="$list/*"/>
+            </select>
+        </xsl:if>
+    </xsl:template>
+
+
+    <!-- ============================================================================= -->
+
     <!-- Don't add some gmd:thesaurusName|gmd:MD_Keywords sub elements because not required by RNDT -->
     <xsl:template mode="elementEP" match="gmd:thesaurusName/gmd:CI_Citation/gmd:citedResponsibleParty |
                 gmd:thesaurusName/gmd:CI_Citation/gmd:presentationForm | gmd:thesaurusName/gmd:CI_Citation/gmd:identifier"/>
@@ -1456,12 +1595,25 @@
                     <xsl:with-param name="showAttributes"   select="false()"/>
                     <xsl:with-param name="title"    select="/root/gui/schemas/iso19139.rndt/strings/rndt/org/field"/>
                     <xsl:with-param name="helpLink" select="concat('iso19139.rndt|','rndt_org_select')"/>
-                    <xsl:with-param name="text">
-                        <xsl:value-of select="/root/gui/config/rndt/ente[ipa/text()=$ipa]/name/text()"/> (<xsl:value-of select="$ipa"/>)
-                    </xsl:with-param>
+                    <xsl:with-param name="text"><xsl:value-of select="concat(/root/gui/config/rndt/ente[ipa/text()=$ipa]/name/text(), ' (', $ipa, ')')"/></xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
-            <xsl:when test="$edit and not($hasIpa) and /root/gui/config/rndt">
+            <xsl:when test="not($hasIpa) and $edit and /root/gui/config/rndt and count(/root/gui/config/rndt/ente)=1">
+                <xsl:variable name="forcedname" select="/root/gui/config/rndt/ente/name/text()"/>
+                <xsl:variable name="forcedipa" select="/root/gui/config/rndt/ente/ipa/text()"/>
+
+                <xsl:call-template name="simpleElementGui">
+                    <xsl:with-param name="id"      select="'select_pa_simple'"/>
+                    <xsl:with-param name="schema"  select="$schema"/>
+                    <xsl:with-param name="edit"    select="false()"/>
+                    <xsl:with-param name="showAttributes"   select="false()"/>
+                    <xsl:with-param name="title"    select="/root/gui/schemas/iso19139.rndt/strings/rndt/org/field"/>
+                    <xsl:with-param name="helpLink" select="concat('iso19139.rndt|','rndt_org_select')"/>
+                    <xsl:with-param name="text"><xsl:value-of select="concat($forcedname, ' (', $forcedipa, ')   ')"/><i>Valore impostato automaticamente</i></xsl:with-param>
+                </xsl:call-template>
+
+            </xsl:when>
+            <xsl:when test="not($hasIpa) and $edit and /root/gui/config/rndt">
 
                 <xsl:call-template name="simpleElementGui">
                     <xsl:with-param name="id" select="'select_pa_simple'"/>
@@ -1479,21 +1631,14 @@
                             <option value="{$fileid}">
                                 <xsl:value-of select="/root/gui/schemas/iso19139.rndt/strings/rndt/org/askselect"/>
                             </option>
-
-
-                            <!-- Add all of other Concepts -->
+                            <!-- tutti gli enti definiti -->
                             <xsl:for-each select="/root/gui/config/rndt/ente">
-
                                 <option value="{concat(./ipa/text(),':', $fileid)}">
-                                    <!--                            <xsl:if test="$value = ./name/text()">
-                                                                    <xsl:attribute name="selected"/>
-                                                                </xsl:if>
-                                    -->
                                     <xsl:value-of select="./name/text()"/>
                                 </option>
-
                             </xsl:for-each>
                         </select>
+
                     </xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
@@ -1509,10 +1654,25 @@
 
         <xsl:choose>
             <xsl:when test="$edit=true()">
+
+                <xsl:variable name="initialfileid" select="gco:CharacterString/text()"/>
+                <xsl:variable name="hasIpa" select="contains($initialfileid, ':')"/>
+
+                <xsl:variable name="fileid">
+                    <xsl:choose>
+                        <xsl:when test="not($hasIpa) and count(/root/gui/config/rndt/ente)=1">
+                             <xsl:value-of select="concat(/root/gui/config/rndt/ente/ipa/text(),':',$initialfileid)"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="$initialfileid"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+
                 <xsl:variable name="text">
                     <xsl:variable name="ref" select="gco:CharacterString/geonet:element/@ref" />
                     <input
-                        class="md" type="text" name="_{$ref}" id="_{$ref}" value="{gco:CharacterString/text()}" size="40" readonly="readonly"/>
+                        class="md" type="text" name="_{$ref}" id="_{$ref}" value="{normalize-space($fileid)}" size="40" readonly="readonly"/>
                 </xsl:variable>
 
                 <xsl:apply-templates mode="simpleElement" select=".">

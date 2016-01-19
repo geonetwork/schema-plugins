@@ -27,6 +27,51 @@
 		<condition>Obbligatorio</condition>
 		<help>Testo libero. Da evitare abbreviazioni.</help>		
 	</element>
+
+	<element name="RNDTcrs">
+		<label>Identificatore CRS</label>
+
+		<description>Valore dalla lista suggerito dal DM, o numero intero indicante un CRS con codifica EPSG</description>
+
+		<helper>
+                    <option value="WGS84">WGS84</option>
+                    <option value="ETRS89">ETRS89</option>
+                    <option value="ETRS89/ETRS-LAEA">ETRS89/ETRS-LAEA</option>
+                    <option value="ETRS89/ETRS-LCC">ETRS89/ETRS-LCC</option>
+                    <option value="ETRS89/ETRS-TM32">ETRS89/ETRS-TM32</option>
+                    <option value="ETRS89/ETRS-TM33">ETRS89/ETRS-TM33</option>
+                    <option value="ETRS89/UTM-zone32N">ETRS89/UTM-zone32N</option>
+                    <option value="ETRS89/UTM-zone33N">ETRS89/UTM-zone33N</option>
+                    <option value="ROMA40/EST">ROMA40/EST</option>
+                    <option value="ROMA40/OVEST">ROMA40/OVEST</option>
+                    <option value="ED50/UTM 32N">ED50/UTM 32N</option>
+                    <option value="ED50/UTM 33N">ED50/UTM 33N</option>
+                    <option value="IGM95/UTM 32N">IGM95/UTM 32N</option>
+                    <option value="IGM95/UTM 33N">IGM95/UTM 33N</option>
+                    <option value="WGS84/UTM 32N">WGS84/UTM 32N</option>
+                    <option value="WGS84/UTM 33N">WGS84/UTM 33N</option>
+                    <option value="WGS84/UTM 34N">WGS84/UTM 34N</option>
+                    <option value="BESSEL/Cassini-Soldner">BESSEL/Cassini-Soldner</option>
+                    <option value="BESSEL/Sanson-Flamsteed">BESSEL/Sanson-Flamsteed</option>
+                    <option value="CATASTO / Locale">CATASTO / Locale</option>
+                    <option value="ROMA40">ROMA40</option>
+                    <option value="ROMA40/ROMA">ROMA40/ROMA</option>
+                    <option value="ED50">ED50</option>
+                    <option value="IGM95">IGM95</option>
+                    <option value="Rete Altimetrica Nazionale">Rete Altimetrica Nazionale</option>
+                    <option value="WGS84/3D">WGS84/3D</option>
+                    <option value="Livello medio delle basse maree sizigiali">Livello medio delle basse maree sizigiali</option>
+                    <option value="Livello medio delle alte maree sizigiali">Livello medio delle alte maree sizigiali</option>
+                    <option value="Livello medio lago">Livello medio lago</option>
+                    <option value="ITRS">ITRS</option>
+                    <option value="ITRFxx">ITRFxx</option>
+                    <option value="IGSxx">IGSxx</option>
+                    <option value="IGb00">IGb00</option>
+                    <option value="ETRF89">ETRF89</option>
+                    <option value="ETRF00">ETRF00</option>
+		</helper>
+	</element>
+
 	<element name="gmd:code" context="gmd:RS_Identifier">
 		<label>Identificatore</label>
 		<description>Identificatore univoco della risorsa</description>
