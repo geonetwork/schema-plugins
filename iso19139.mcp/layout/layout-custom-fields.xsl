@@ -92,20 +92,10 @@
 
     <xsl:variable name="parentName" select="name(..)"/>
 
-    <!-- Create custom widget: 
-              * '' for item selector, 
-              * 'tagsinput' for tags
-              * 'tagsinput' and maxTags = 1 for only one tag
-              * 'multiplelist' for multiple selection list
-    -->
-    <xsl:variable name="widgetMode" select="'tagsinput'"/>
-    <xsl:variable name="maxTags" select="'1'"/>
-
 		<div>
 		 	<label class="col-sm-2 control-label" data-gn-field-tooltip="{$schema}|{name()}|{name(..)}|"><xsl:value-of select="gn-fn-metadata:getLabel($schema, name(), $labels)/label"/></label>
 		</div>
     <!-- Create a div with the angular directive configuration
-            * widgetMode: the layout to use
             * elementRef: the element ref to edit
             * jurisdictionUrl: current jurisdiction
             * namespace: current mcp namespace
@@ -113,7 +103,7 @@
             * licenseUrl: current license url
             * licenseImageUrl: current license image url
      -->
-    <div data-gn-commons-jurisdiction-selector="{$widgetMode}"
+    <div data-gn-commons-jurisdiction-selector=""
           data-metadata-id="{$metadataId}"
           data-element-ref="{../gn:element/@ref}"
           data-jurisdiction-url="{$jurisdictionUrl}"
