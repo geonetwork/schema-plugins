@@ -329,7 +329,6 @@ Updates to version 2.0 changes - mainly to mcp:dataParameter after Nov 2015 MCP 
 					<xs:element name="parameterUnits" type="mcp:DP_Term_PropertyType" minOccurs="1" maxOccurs="unbounded"/>
 					<xs:element name="parameterMinimumValue" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="1"/>
 					<xs:element name="parameterMaximumValue" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="1"/>
-					<xs:element name="parameterDescription" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="1"/>
 					<xs:element name="parameterDeterminationInstrument" type="mcp:DP_Term_PropertyType" minOccurs="0" maxOccurs="1"/>
 					<xs:element name="parameterAnalysisMethod" type="mcp:DP_Term_PropertyType" minOccurs="0" maxOccurs="1"/>
 					<xs:element name="platform" type="mcp:DP_Term_PropertyType" minOccurs="0" maxOccurs="1"/>
