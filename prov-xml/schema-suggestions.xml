@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<fields>	
+	<field name="prov:entity">
+		<suggest name="prov:label"/>
+		<suggest name="prov:location"/>
+		<suggest name="prov:type"/>
+		<suggest name="prov:value"/>
+	</field>
+	<field name="prov:activity">
+		<suggest name="prov:startTime"/>
+		<suggest name="prov:endTime"/>
+		<suggest name="prov:label"/>
+		<suggest name="prov:location"/>
+	</field>
+	<field name="prov:person">
+		<suggest name="prov:label"/>
+		<suggest name="prov:location"/>
+	</field>
+	<field name="prov:organization">
+		<suggest name="prov:label"/>
+		<suggest name="prov:location"/>
+	</field>
+	<field name="prov:softwareAgent">
+		<suggest name="prov:label"/>
+		<suggest name="prov:location"/>
+	</field>
+	<field name="prov:wasAssociatedWith">
+		<suggest name="prov:activity"/>
+		<suggest name="prov:agent"/>
+		<suggest name="prov:role"/>
+	</field>
+	<field name="prov:actedOnBehalfOf">
+		<suggest name="prov:delegate"/>
+		<suggest name="prov:responsible"/>
+		<suggest name="prov:role"/>
+	</field>
+	<field name="prov:used">
+		<suggest name="prov:activity"/>
+		<suggest name="prov:entity"/>
+		<suggest name="prov:role"/>
+	</field>
+	<field name="prov:wasGeneratedBy">
+		<suggest name="prov:entity"/>
+		<suggest name="prov:activity"/>
+		<suggest name="prov:time"/>
+	</field>
+</fields>	

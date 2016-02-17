@@ -300,7 +300,7 @@ USA.
 			-->
 		<sch:let name="thesaurusDirPath" value="replace($thesaurusDir, '\\', '//')"/>
 
-		  <sch:let name="inspire-thesaurus" value="document(concat('file:///', $thesaurusDirPath, '/external/thesauri/theme/inspire-theme.rdf'))"/>
+		  <sch:let name="inspire-thesaurus" value="document(concat('file:///', $thesaurusDirPath, '/external/thesauri/theme/inspire-service-taxonomy.rdf'))"/>
 			<sch:let name="inspire-st" value="$inspire-thesaurus//skos:Concept"/>
 			
 			<!-- Display error if INSPIRE thesaurus is not available. -->

@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:srv="http://www.isotc211.org/namespace/srv/2.0/2014-07-11"
-  xmlns:mds="http://www.isotc211.org/namespace/mds/1.0/2014-07-11"
-  xmlns:mcc="http://www.isotc211.org/namespace/mcc/1.0/2014-07-11"
-  xmlns:mri="http://www.isotc211.org/namespace/mri/1.0/2014-07-11"
-  xmlns:mrs="http://www.isotc211.org/namespace/mrs/1.0/2014-07-11"
-  xmlns:mrd="http://www.isotc211.org/namespace/mrd/1.0/2014-07-11"
-  xmlns:mco="http://www.isotc211.org/namespace/mco/1.0/2014-07-11"
-  xmlns:msr="http://www.isotc211.org/namespace/msr/1.0/2014-07-11"
-  xmlns:lan="http://www.isotc211.org/namespace/lan/1.0/2014-07-11"
-  xmlns:gcx="http://www.isotc211.org/namespace/gcx/1.0/2014-07-11"
-  xmlns:gex="http://www.isotc211.org/namespace/gex/1.0/2014-07-11"
-  xmlns:dqm="http://www.isotc211.org/namespace/dqm/1.0/2014-07-11"
-  xmlns:cit="http://www.isotc211.org/namespace/cit/1.0/2014-07-11"
-  xmlns:gco="http://www.isotc211.org/2005/gco"
-  xmlns:gmx="http://www.isotc211.org/namespace/gmx"
+  xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
+  xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
+  xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
+  xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
+  xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/1.0"
+  xmlns:mmi="http://standards.iso.org/iso/19115/-3/mmi/1.0"
+  xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0"
+  xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
+  xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0"
+  xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/1.0"
+  xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
+  xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
+  xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
+  xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0"
+  xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+  xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
   xmlns:gts="http://www.isotc211.org/2005/gts"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:gml="http://www.opengis.net/gml/3.2"
@@ -23,7 +24,7 @@
   xmlns:gn-fn-core="http://geonetwork-opensource.org/xsl/functions/core" 
   xmlns:gn-fn-metadata="http://geonetwork-opensource.org/xsl/functions/metadata"
   xmlns:gn-fn-iso19139="http://geonetwork-opensource.org/xsl/functions/profiles/iso19139"
-  xmlns:exslt="http://exslt.org/common" exclude-result-prefixes="#all">
+  exclude-result-prefixes="#all">
 
   <xsl:include href="utility-tpl.xsl"/>
   <xsl:include href="layout-custom-fields.xsl"/>
@@ -31,8 +32,9 @@
 
   <!-- Visit all XML tree recursively -->
   <xsl:template mode="mode-iso19115-3"
-                match="mds:*|mcc:*|mri:*|mrs:*|mrd:*|mco:*|msr:*|lan:*|
-                       gcx:*|gex:*|dqm:*|cit:*|srv:*|gts:*"
+                match="mdb:*|mcc:*|mri:*|mrs:*|mrd:*|mco:*|msr:*|lan:*|
+                       gcx:*|gex:*|mdq:*|mdq:*|cit:*|srv:*|gml:*|gts:*|
+											 mmi:*|mrl:*"
                 priority="2">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
@@ -41,24 +43,6 @@
       <xsl:with-param name="schema" select="$schema"/>
       <xsl:with-param name="labels" select="$labels"/>
     </xsl:apply-templates>
-    <!--&lt;!&ndash; Check if a layout-<schema_identifier> mode is defined-->
-    <!--for current element. &ndash;&gt;-->
-    <!--<xsl:variable name="profileElements">-->
-      <!--<xsl:apply-templates mode="mode-iso19115-3" select=".">-->
-        <!--<xsl:with-param name="schema" select="$schema"/>-->
-        <!--<xsl:with-param name="labels" select="$labels"/>-->
-      <!--</xsl:apply-templates>-->
-    <!--</xsl:variable>-->
-
-    <!--<xsl:choose>-->
-      <!--<xsl:when test="count($profileElements/*)>0">-->
-        <!--<xsl:copy-of select="$profileElements"/>-->
-      <!--</xsl:when>-->
-      <!--<xsl:otherwise>-->
-        <!--&lt;!&ndash; If not delegate to ISO19139 &ndash;&gt;-->
-        <!--<xsl:apply-templates mode="mode-iso19139" select="."/>-->
-      <!--</xsl:otherwise>-->
-    <!--</xsl:choose>-->
   </xsl:template>
 
   <!-- Ignore all gn element -->
@@ -72,11 +56,12 @@
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
 
-    <!-- TODO: this should be common to all schemas -->
-    <xsl:if test="$isEditing and
-      not($isFlatMode)">
+		<xsl:variable name="name" select="concat(@prefix, ':', @name)"/>
+		<xsl:variable name="flatModeException" select="gn-fn-metadata:getFieldFlatModeException($viewConfig, $name)"/>
 
-      <xsl:variable name="name" select="concat(@prefix, ':', @name)"/>
+    <!-- TODO: this should be common to all schemas -->
+    <xsl:if test="$isEditing and (not($isFlatMode) or $flatModeException)">
+
       <xsl:variable name="directive" select="gn-fn-metadata:getFieldAddDirective($editorConfig, $name)"/>
 
       <xsl:call-template name="render-element-to-add">
@@ -84,8 +69,10 @@
         <xsl:with-param name="label"
                         select="gn-fn-metadata:getLabel($schema, $name, $labels, name(..), '', '')/label"/>
         <xsl:with-param name="directive" select="$directive"/>
+				<xsl:with-param name="directiveAttributes" select="gn-fn-metadata:getFieldDirectiveAttributes($editorConfig, $name)"/>
         <xsl:with-param name="childEditInfo" select="."/>
         <xsl:with-param name="parentEditInfo" select="../gn:element"/>
+        <xsl:with-param name="isFirst" select="count(preceding-sibling::*[name() = $name]) = 0"/>
       </xsl:call-template>
     </xsl:if>
   </xsl:template>
@@ -150,8 +137,8 @@
   <!-- Render simple element which usually match a form field -->
   <xsl:template mode="mode-iso19115-3" priority="200"
                 match="*[gco:CharacterString|gco:Integer|gco:Decimal|
-       gco:Boolean|gco:Real|gco:Measure|gco:Length|gco:Distance|gco:Angle|gmx:FileName|
-       gco:Scale|gco:RecordType|gmx:MimeFileType|gco:LocalName]">
+       gco:Boolean|gco:Real|gco:Measure|gco:Length|gco:Distance|gco:Angle|gcx:FileName|
+       gco:Scale|gco:RecordType|gcx:MimeFileType|gco:LocalName]">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
 
@@ -171,8 +158,8 @@
 
     <!-- TODO: Support gmd:LocalisedCharacterString -->
     <xsl:variable name="theElement" select="gco:CharacterString|gco:Integer|gco:Decimal|
-      gco:Boolean|gco:Real|gco:Measure|gco:Length|gco:Distance|gco:Angle|gmx:FileName|
-      gco:Scale|gco:RecordType|gmx:MimeFileType|gco:LocalName"/>
+      gco:Boolean|gco:Real|gco:Measure|gco:Length|gco:Distance|gco:Angle|gcx:FileName|
+      gco:Scale|gco:RecordType|gcx:MimeFileType|gco:LocalName"/>
 
     <!--
       This may not work if node context is lost eg. when an element is rendered
@@ -258,12 +245,15 @@
       <xsl:with-param name="listOfValues" select="$helper"/>
       <xsl:with-param name="toggleLang" select="$isMultilingualElementExpanded"/>
       <xsl:with-param name="forceDisplayAttributes" select="$forceDisplayAttributes"/>
+      <xsl:with-param name="isFirst" select="count(preceding-sibling::*[name() = $elementName]) = 0"/>
     </xsl:call-template>
   </xsl:template>
 
+	<!-- dates in 19115-3 must be a gco:DateTime - but we will also match gco:Date here and force it to 
+	     gco:DateTime just in case there are any stray gco:Date elements in our 19115-3 records -->
 
-
-  <xsl:template mode="mode-iso19115-3" priority="200"
+  <xsl:template mode="mode-iso19115-3"
+                priority="200"
                 match="*[gco:Date|gco:DateTime]">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
@@ -273,10 +263,12 @@
 
     <div data-gn-date-picker="{gco:Date|gco:DateTime}"
          data-label="{$labelConfig/label}"
-         data-element-name="{name(gco:Date|gco:DateTime)}"
-         data-element-ref="{concat('_X', gn:element/@ref)}">
+         data-element-name="gco:DateTime"
+         data-element-ref="{concat('_X', gn:element/@ref)}"
+				 data-namespaces='{{ "gco": "http://standards.iso.org/iso/19115/-3/gco/1.0", "gml": "http://www.opengis.net/gml/3.2"}}'>
     </div>
   </xsl:template>
+
 
   <!--
   <xsl:template mode="mode-iso19115-3" match="*|@*" priority="0"/>
@@ -287,6 +279,7 @@
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
     <xsl:param name="codelists" select="$codelists" required="no"/>
+    <xsl:variable name="elementName" select="name()"/>
 
     <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
     <xsl:variable name="isoType" select="if (../@gco:isoType) then ../@gco:isoType else ''"/>
@@ -303,6 +296,7 @@
       <xsl:with-param name="parentEditInfo" select="gn:element"/>
       <xsl:with-param name="listOfValues"
                       select="gn-fn-metadata:getCodeListValues($schema, name(*[@codeListValue]), $codelists, .)"/>
+      <xsl:with-param name="isFirst" select="count(preceding-sibling::*[name() = $elementName]) = 0"/>
     </xsl:call-template>
   </xsl:template>
 
@@ -331,9 +325,35 @@
       <xsl:with-param name="cls" select="local-name()"/>
       <xsl:with-param name="type" select="gn-fn-iso19139:getCodeListType(name())"/>
       <xsl:with-param name="name" select="gn:element/@ref"/>
-      <xsl:with-param name="editInfo" select="*/gn:element"/>
+      <xsl:with-param name="editInfo" select="../gn:element"/>
       <xsl:with-param name="listOfValues"
                       select="gn-fn-metadata:getCodeListValues($schema, name(), $codelists, .)"/>
+    </xsl:call-template>
+  </xsl:template>
+
+
+  <!-- Some element to ignore which are matched by the
+  next template -->
+  <xsl:template mode="mode-iso19115-3" priority="400" match="gml:TimeInstantType|gml:TimePeriodTypeGROUP_ELEMENT0|gml:TimePeriodTypeGROUP_ELEMENT4"/>
+
+  <!-- the gml element having no child eg. gml:name. -->
+  <xsl:template mode="mode-iso19115-3" priority="300" match="gml:*[count(.//gn:element) = 1]">
+    <xsl:variable name="name" select="name(.)"/>
+
+    <xsl:variable name="labelConfig" select="gn-fn-metadata:getLabel($schema, $name, $labels)"/>
+    <xsl:variable name="helper" select="gn-fn-metadata:getHelper($labelConfig/helper, .)"/>
+
+    <xsl:variable name="added" select="parent::node()/parent::node()/@gn:addedObj"/>
+    <xsl:call-template name="render-element">
+      <xsl:with-param name="label" select="$labelConfig/label"/>
+      <xsl:with-param name="value" select="."/>
+      <xsl:with-param name="cls" select="local-name()"/>
+      <xsl:with-param name="xpath" select="gn-fn-metadata:getXPath(.)"/>
+      <xsl:with-param name="type" select="gn-fn-metadata:getFieldType($editorConfig, name(), '')"/>
+      <xsl:with-param name="name" select="if ($isEditing) then gn:element/@ref else ''"/>
+      <xsl:with-param name="editInfo"
+                      select="gn:element"/>
+      <xsl:with-param name="listOfValues" select="$helper"/>
     </xsl:call-template>
   </xsl:template>
 </xsl:stylesheet>

@@ -2163,6 +2163,101 @@
 		</xsl:for-each>
 	</xsl:template>
 
+	<!-- ===================================================================== -->
+	<!-- online resources: download -->
+	<!-- ===================================================================== -->
+
+	<xsl:template mode="iso19139.mcp" match="gmd:CI_OnlineResource[starts-with(gmd:protocol/gco:CharacterString,'WWW:DOWNLOAD-') and contains(gmd:protocol/gco:CharacterString,'http--download') and gmd:name]" priority="4">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+		<xsl:variable name="download_check"><xsl:text>&amp;fname=&amp;access</xsl:text></xsl:variable>
+		<xsl:variable name="linkage" select="gmd:linkage/gmd:URL" />
+		<xsl:variable name="name" select="normalize-space(gmd:name/gco:CharacterString|gmd:name/gmx:MimeFileType)" />
+		<xsl:variable name="description" select="normalize-space(gmd:description/gco:CharacterString)" />
+		<xsl:variable name="protocol" select="normalize-space(gmd:protocol/gco:CharacterString)" />
+		
+		<xsl:choose>
+			<xsl:when test="$edit=true()">
+				<xsl:apply-templates mode="iso19139EditOnlineRes" select=".">
+					<xsl:with-param name="schema" select="$schema"/>
+				</xsl:apply-templates>
+			</xsl:when>
+			<xsl:when test="string(//geonet:info/download)='true' and string($linkage)!='' and not(contains($linkage,$download_check))">
+				<xsl:apply-templates mode="simpleElement" select=".">
+					<xsl:with-param name="schema"  select="$schema"/>
+					<xsl:with-param name="title">
+						<xsl:choose>
+							<xsl:when test="ends-with($protocol,'downloaddata')">
+								<xsl:value-of select="/root/gui/schemas/iso19139.mcp/strings/downloadDataLabel[@id='data']" />
+							</xsl:when>
+							<xsl:when test="starts-with($protocol,'WWW:DOWNLOAD-') and contains($protocol,'http--downloadother')">
+								<xsl:value-of select="/root/gui/schemas/iso19139.mcp/strings/downloadDataLabel[@id='other']" />
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="/root/gui/schemas/iso19139.mcp/strings/downloadDataLabel[@id='file']" />
+							</xsl:otherwise>
+						</xsl:choose>
+					</xsl:with-param>
+					<xsl:with-param name="text">
+						<xsl:variable name="title">
+							<xsl:choose>
+								<xsl:when test="string($description)!=''">
+									<xsl:value-of select="$description"/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="$name"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:variable>
+						<a href="{$linkage}" title="{$title}" onclick="runFileDownload(this.href, this.title); return false;"><xsl:value-of select="$title"/></a>
+					</xsl:with-param>
+				</xsl:apply-templates>
+			</xsl:when>
+		</xsl:choose>
+	</xsl:template>
+
+	<!-- ===================================================================== -->
+	<!-- online resources: link to data for download -->
+	<!-- ===================================================================== -->
+
+	<xsl:template mode="iso19139.mcp" match="gmd:CI_OnlineResource[starts-with(gmd:protocol/gco:CharacterString,'WWW:LINK-') and contains(gmd:protocol/gco:CharacterString,'http--downloaddata')]" priority="4">
+		<xsl:param name="schema"/>
+		<xsl:param name="edit"/>
+		<xsl:variable name="linkage" select="gmd:linkage/gmd:URL" />
+		<xsl:variable name="name" select="normalize-space(gmd:name/gco:CharacterString|gmd:name/gmx:MimeFileType)" />
+		<xsl:variable name="description" select="normalize-space(gmd:description/gco:CharacterString)" />
+		<xsl:variable name="protocol" select="normalize-space(gmd:protocol/gco:CharacterString)" />
+		
+		<xsl:choose>
+			<xsl:when test="$edit=true()">
+				<xsl:apply-templates mode="iso19139EditOnlineRes" select=".">
+					<xsl:with-param name="schema" select="$schema"/>
+				</xsl:apply-templates>
+			</xsl:when>
+			<xsl:when test="string($linkage)!=''">
+				<xsl:apply-templates mode="simpleElement" select=".">
+					<xsl:with-param name="schema"  select="$schema"/>
+					<xsl:with-param name="title" select="/root/gui/schemas/iso19139.mcp/strings/downloadDataUrl"/>
+					<xsl:with-param name="text">
+						<a href="{$linkage}" target="_new">
+							<xsl:choose>
+								<xsl:when test="string($description)!=''">
+									<xsl:value-of select="$description"/>
+								</xsl:when>
+								<xsl:when test="string($name)!=''">
+									<xsl:value-of select="$name"/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="$linkage"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</a>
+					</xsl:with-param>
+				</xsl:apply-templates>
+			</xsl:when>
+		</xsl:choose>
+	</xsl:template>
+
 	<!-- ==================================================================== -->
   <!-- === iso19139.mcp brief formatting === -->
   <!-- ==================================================================== -->

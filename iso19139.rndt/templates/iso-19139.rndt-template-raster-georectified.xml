@@ -10,8 +10,8 @@
 	xmlns:gco="http://www.isotc211.org/2005/gco" 
 	xsi:schemaLocation="http://www.isotc211.org/2005/gmd
 	http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/gmd/gmd.xsd" >
-		<gmd:fileIdentifier>
-		<gco:CharacterString>cod_ipa:id_file_georectified</gco:CharacterString>
+	<gmd:fileIdentifier>
+		<gco:CharacterString>template_id_file_georectified</gco:CharacterString>
 	</gmd:fileIdentifier>
 	<gmd:language>
 		<gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="ita">ita</gmd:LanguageCode>

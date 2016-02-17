@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../config-editor.xsd"
+  xmlns:gn="http://www.fao.org/geonetwork"
+	xmlns:prov="http://www.w3.org/ns/prov#"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:dct="http://purl.org/dc/terms/">
+
+  <!-- Form field type configuration. Default is text. -->
+  <fields>
+    <for name="dc:title" use="textarea"/>
+    <for name="dc:description" use="textarea"/>
+    <for name="dc:subject" use="textarea"/>
+
+		<!-- NOTE: for directiveAttributes on these elements refer to prov-xml/layout/layout.xsl -->
+    <for name="prov:time" use="data-gn-date-picker"/> 
+    <for name="prov:startTime" use="data-gn-date-picker"/>
+    <for name="prov:endTime" use="data-gn-date-picker"/>
+
+		<for name="prov:person" addDirective="data-gn-organisation-entry-selector">
+		      <directiveAttributes data-schema="prov-xml"
+		                           data-root="cit:CI_Individual"/>
+    </for>
+
+		<for name="prov:organization" addDirective="data-gn-organisation-entry-selector">
+		      <directiveAttributes data-schema="prov-xml"
+		                           data-root="cit:CI_Organisation"/>
+    </for>
+  </fields>
+
+  <fieldsWithFieldset>
+    <name>prov:entity</name>
+    <name>prov:activity</name>
+    <name>prov:wasGeneratedBy</name>
+    <name>prov:used</name>
+    <name>prov:wasInformedBy</name>
+    <name>prov:wasStartedBy</name>
+    <name>prov:wasEndedBy</name>
+    <name>prov:wasInvalidatedBy</name>
+    <name>prov:wasDerivedFrom</name>
+    <name>prov:wasRevisionOf</name>
+    <name>prov:wasQuotedFrom</name>
+    <name>prov:hasPrimarySource</name>
+    <name>prov:agent</name>
+    <name>prov:person</name>
+    <name>prov:organization</name>
+    <name>prov:softwareAgent</name>
+    <name>prov:wasAttributedTo</name>
+    <name>prov:wasAssociatedWith</name>
+    <name>prov:actedOnBehalfOf</name>
+    <name>prov:wasInfluencedBy</name>
+    <name>prov:bundle</name>
+    <name>prov:specializationOf</name>
+    <name>prov:alternateOf</name>
+    <name>prov:collection</name>
+    <name>prov:emptyCollection</name>
+    <name>prov:hadMember</name>
+    <name>prov:plan</name>
+    <name>prov:other</name>
+    <name>prov:internalElement</name>
+    <name>proviso:dateInfo</name>
+    <name>proviso:descriptiveKeywords</name>
+  </fieldsWithFieldset>
+
+  <multilingualFields>
+  </multilingualFields>
+
+
+  <!-- View configuration -->
+  <views>
+    <view name="default">
+      <tab id="default" default="true" mode="flat">
+        <section name="prov:document">
+          <field xpath="/prov:document/prov:entity" or="entity" in="/prov:document"/>
+          <field xpath="/prov:document/prov:agent" or="agent" in="/prov:document"/>
+          <field xpath="/prov:document/prov:person" or="person" in="/prov:document"/>
+          <field xpath="/prov:document/prov:softwareAgent" or="softwareAgent" in="/prov:document"/>
+          <field xpath="/prov:document/prov:organization" or="organization" in="/prov:document"/>
+          <field xpath="/prov:document/prov:activity" or="activity" in="/prov:document"/>
+          <field xpath="/prov:document/prov:wasGeneratedBy" or="wasGeneratedBy" in="/prov:document"/>
+          <field xpath="/prov:document/prov:used" or="used" in="/prov:document"/>
+          <field xpath="/prov:document/prov:wasInformedBy" or="wasInformedBy" in="/prov:document"/>
+          <field xpath="/prov:document/prov:wasStartedBy" or="wasStartedBy" in="/prov:document"/>
+          <field xpath="/prov:document/prov:wasEndedBy" or="wasEndedBy" in="/prov:document"/>
+          <field xpath="/prov:document/prov:wasInvalidatedBy" or="wasInvalidatedBy" in="/prov:document"/>
+          <field xpath="/prov:document/prov:wasDerivedFrom" or="wasDerivedFrom" in="/prov:document"/>
+          <field xpath="/prov:document/prov:wasRevisionOf" or="wasRevisionOf" in="/prov:document"/>
+          <field xpath="/prov:document/prov:wasQuotedFrom" or="wasQuotedFrom" in="/prov:document"/>
+          <field xpath="/prov:document/prov:hadPrimarySource" or="hadPrimarySource" in="/prov:document"/>
+          <field xpath="/prov:document/prov:wasAttributedTo" or="wasAttributedTo" in="/prov:document"/>
+          <field xpath="/prov:document/prov:wasAssociatedWith" or="wasAssociatedWith" in="/prov:document"/>
+          <field xpath="/prov:document/prov:actedOnBehalfOf" or="actedOnBehalfOf" in="/prov:document"/>
+          <field xpath="/prov:document/prov:wasInfluencedBy" or="wasInfluencedBy" in="/prov:document"/>
+          <field xpath="/prov:document/prov:specializationOf" or="specializationOf" in="/prov:document"/>
+          <field xpath="/prov:document/prov:alternateOf" or="alternateOf" in="/prov:document"/>
+          <field xpath="/prov:document/prov:collection" or="collection" in="/prov:document"/>
+          <field xpath="/prov:document/prov:emptyCollection" or="emptyCollection" in="/prov:document"/>
+          <field xpath="/prov:document/prov:hadMember" or="hadMember" in="/prov:document"/>
+          <field xpath="/prov:document/prov:plan" or="plan" in="/prov:document"/>
+          <field xpath="/prov:document/prov:other" in="/prov:document"/>
+        </section>
+      </tab>
+
+      <!-- Elements that should not use the "flat" mode ie. new instances can be added -->
+      <flatModeExceptions>
+				<for name="prov:role"/>
+      </flatModeExceptions>
+    </view>
+    <view name="advanced">
+      <tab id="entities" default="true">
+        <section xpath="/prov:document/prov:entity" or="entity"
+                 in="/prov:document"/>
+      </tab>
+      <tab id="agents">
+        <section xpath="/prov:document/prov:organization" or="organization"
+                 in="/prov:document"/>
+        <section xpath="/prov:document/prov:person" or="person"
+                 in="/prov:document"/>
+        <section xpath="/prov:document/prov:softwareAgent" or="softwareAgent"
+                 in="/prov:document"/>
+      </tab>
+      <tab id="activities">
+        <section xpath="/prov:document/prov:activity" or="activity"
+                 in="/prov:document"/>
+      </tab>
+      <tab id="responsibilities">
+        <section xpath="/prov:document/prov:wasAssociatedWith" or="wasAssociatedWith"
+                 in="/prov:document"/>
+        <section xpath="/prov:document/prov:wasAttributedTo" or="wasAttributedTo"
+                 in="/prov:document"/>
+        <section xpath="/prov:document/prov:actedOnBehalfOf" or="actedOnBehalfOf"
+                 in="/prov:document"/>
+        <section xpath="/prov:document/prov:wasStartedBy" or="wasStartedBy"
+                 in="/prov:document"/>
+        <section xpath="/prov:document/prov:wasEndedBy" or="wasEndedBy"
+                 in="/prov:document"/>
+      </tab>
+      <tab id="usageAndGeneration">
+        <section xpath="/prov:document/prov:used" or="used"
+                 in="/prov:document"/>
+        <section xpath="/prov:document/prov:wasGeneratedBy" or="wasGeneratedBy"
+                 in="/prov:document"/>
+      </tab>
+      <tab id="revisionAndDerivation">
+        <section xpath="/prov:document/prov:wasDerivedFrom" or="wasDerivedFrom"
+                 in="/prov:document"/>
+      </tab>
+      <tab id="documentMetadata">
+				<section xpath="/prov:document/prov:other">
+        	<field xpath="/prov:document/prov:other/dc:identifier" in="/prov:document/prov:other"/>
+        	<field xpath="/prov:document/prov:other/dc:title" in="/prov:document/prov:other"/>
+        	<field xpath="/prov:document/prov:other/dc:description" in="/prov:document/prov:other"/>
+        	<field xpath="/prov:document/prov:other/dc:coverage" in="/prov:document/prov:other"/>
+        	<field xpath="/prov:document/prov:other/dc:subject" in="/prov:document/prov:other"/>
+        	<field xpath="/prov:document/prov:other/dct:created" in="/prov:document/prov:other"/>
+        	<field xpath="/prov:document/prov:other/dct:modified" in="/prov:document/prov:other"/>
+				</section>
+      </tab>
+    </view>
+    <view name="xml">
+      <tab id="xml" default="true"/>
+    </view>
+  </views>
+</editor>

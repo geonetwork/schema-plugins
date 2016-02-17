@@ -6,13 +6,15 @@
       + super-brief representation.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
-  xmlns:gco="http://www.isotc211.org/2005/gco" 
-  xmlns:gmx="http://www.isotc211.org/namespace/gmx"
+  xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+  xmlns:gmx="http://standards.iso.org/iso/19115/-3/gmx"
   xmlns:gn="http://www.fao.org/geonetwork"
-  xmlns:mdb="http://www.isotc211.org/namespace/mdb/1.0/2014-07-11"
-  xmlns:mcc="http://www.isotc211.org/namespace/mcc/1.0/2014-07-11"
-  xmlns:mrd="http://www.isotc211.org/namespace/mrd/1.0/2014-07-11"
-  xmlns:cit="http://www.isotc211.org/namespace/cit/1.0/2014-07-11"
+  xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
+  xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
+  xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
+  xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
+  xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:util="java:org.fao.geonet.util.XslUtil"
   exclude-result-prefixes="#all" >
   
@@ -21,7 +23,7 @@
   It could be document or thumbnails
   -->
   <xsl:template mode="relation" match="metadata[mdb:MD_Metadata]" priority="99">
-
+    
     <xsl:for-each select="*/descendant::*[name(.) = 'mri:graphicOverview']/*">
       <relation type="thumbnail">
         <id><xsl:value-of select="mcc:fileName/gco:CharacterString"/></id>
@@ -29,6 +31,14 @@
       </relation>
     </xsl:for-each>
     
+    <xsl:for-each  select="*/descendant::srv:operatesOn">
+    	<relation type="datasets">
+        <id><xsl:value-of select="@uuidref"/></id>
+				<title><xsl:value-of select="@xlink:title"/></title>
+				<url><xsl:value-of select="@xlink:href"/></url>
+    	</relation>
+    </xsl:for-each>
+
     <xsl:for-each select="*/descendant::*[name(.) = 'mrd:onLine']/*[cit:linkage/gco:CharacterString!='']">
       <relation type="onlinesrc">
         

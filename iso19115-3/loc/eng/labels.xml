@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <labels xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:srv="http://www.isotc211.org/2005/srv/2.0/2014-07-11"
-        xmlns:mdb="http://www.isotc211.org/2005/mdb/1.0/2014-07-11"
-        xmlns:mcc="http://www.isotc211.org/2005/mcc/1.0/2014-07-11"
-        xmlns:mri="http://www.isotc211.org/2005/mri/1.0/2014-07-11"
-        xmlns:mrs="http://www.isotc211.org/2005/mrs/1.0/2014-07-11"
-        xmlns:mrd="http://www.isotc211.org/2005/mrd/1.0/2014-07-11"
-        xmlns:mco="http://www.isotc211.org/2005/mco/1.0/2014-07-11"
-        xmlns:msr="http://www.isotc211.org/2005/msr/1.0/2014-07-11"
-        xmlns:lan="http://www.isotc211.org/2005/lan/1.0/2014-07-11"
-        xmlns:gcx="http://www.isotc211.org/2005/gcx/1.0/2014-07-11"
-        xmlns:gex="http://www.isotc211.org/2005/gex/1.0/2014-07-11"
-        xmlns:dqm="http://www.isotc211.org/2005/dqm/1.0/2014-07-11"
-        xmlns:cit="http://www.isotc211.org/2005/cit/1.0/2014-07-11"
-        xmlns:gco="http://www.isotc211.org/2005/gco"
-	xsi:noNamespaceSchemaLocation="../../../labels.xsd">
+			  xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
+  			xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
+  			xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
+  			xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
+  			xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0"
+  			xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
+  			xmlns:mex="http://standards.iso.org/iso/19115/-3/mex/1.0"
+  			xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0"
+  			xmlns:mas="http://standards.iso.org/iso/19115/-3/mas/1.0"
+  			xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/1.0"
+  			xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
+  			xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
+  			xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
+  			xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0"
+  			xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+  			xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+  			xmlns:gfc="http://standards.iso.org/iso/19110/gfc/1.1"
+  			xmlns:gml="http://www.opengis.net/gml/3.2"
+  			xmlns:xlink="http://www.w3.org/1999/xlink" 
+				xsi:noNamespaceSchemaLocation="../../../labels.xsd">
   <element name="mdq:standaloneQualityReport">
     <label>Standalone quality report</label>
     <description></description>
@@ -205,21 +210,50 @@
     <_condition>optional</_condition>
   </element>
   <element name="mdb:resourceLineage" id="37.0">
-    <label>Resource lineage</label>
+    <label>Resource Lineage</label>
     <description iso="true">Information about the provenance, source(s), and/or the production process(es) applied to the resource</description>
     <_condition>optional</_condition>
   </element>
   <element name="mdb:metadataScope" id="38.0">
-    <label>Domaine d’application des métadonnées</label>
-    <description iso="true">Le domaine d’application/type de ressource pour laquelle les métadonnées sont fournies</description>
-    <_condition>conditional / ifMetadata is about a resource other than a dataset?</_condition>
+    <label>Type of resource</label>
+    <description iso="true">Type of resource for which metadata is provided</description>
+  </element>
+  <element name="mdb:resourceScope" id="38.1">
+    <label>Resource Scope Code</label>
+    <description iso="true">Information about the scope of the resource</description>
+  </element>
+  <element name="mdb:name" context="mdb:MD_MetadataScope" id="38.2">
+    <label>Scope Description</label>
+    <description iso="true">Description of the scope</description>
+  </element>
+  <element name="mdb:MD_MetadataScope" id="6.0">
+    <label>Hierarchy level</label>
+    <description>Scope to which the metadata applies (see annex H for more information about
+      metadata hierarchy levels)</description>
   </element>
   <element name="mri:temporalResolution" id="51.0">
     <label>Temporal resolution</label>
     <description iso="true">Smallest resolvable temporal period in a resource</description>
     <_condition>optional</_condition>
   </element>
+  <element name="mrl:additionalDocumentation">
+    <label>Additional doc.</label>
+    <description/>
+  </element>
+  <element name="mrl:LI_Source">
+    <label>Source</label>
+    <description>Information about the source resource used in creating the data specified by the scope</description>
+  </element>
+  <element name="mrl:LE_Source">
+    <label>Imagery Source</label>
+    <description>Imagery extensions: Information on source of data sets for processing step</description>
+  </element>
   <element name="mri:associatedResource" id="62.0">
+    <label>Associated resource</label>
+    <description iso="true">Associated resource information</description>
+    <_condition>optional</_condition>
+  </element>
+  <element name="mri:MD_AssociatedResource" id="62.0">
     <label>Associated resource</label>
     <description iso="true">Associated resource information</description>
     <_condition>optional</_condition>
@@ -396,11 +430,24 @@
     <label>Organisation</label>
     <description iso="true">Class of information about the party if the party is an organization</description>
   </element>
+  <element name="cit:organisationName" id="385.1">
+    <label>Organisation Name</label>
+    <description iso="true">Name of the responsible organisation</description>
+  </element>
+  <element name="cit:individualName" id="385.2">
+    <label>Individual Name</label>
+    <description iso="true">Name of the responsible individual</description>
+  </element>
   <element name="cit:CI_Responsibility" id="376.0">
     <label>Responsibility</label>
     <description iso="true">Class of information about the party and their role</description>
   </element>
   <element name="cit:role" id="377.0" context="cit:CI_Responsibility">
+	<label>Role</label>
+	<description>Function performed by the responsible party</description>
+	<condition>mandatory</condition>
+	</element>
+  <element name="cit:role" id="377.1" context="cit:CI_ResponsibleParty">
 	<label>Role</label>
 	<description>Function performed by the responsible party</description>
 	<condition>mandatory</condition>
@@ -430,8 +477,14 @@
     	<condition/>
   	</element>
   	<element name="cit:CI_Series" id="413.0">
-    	<label>Séries</label>
+    	<label>Series</label>
     	<description iso="true">Class of information about the series, or aggregate resource, to which a resource belongs</description>
+    	<help/>
+    	<condition/>
+  	</element>
+  	<element name="cit:name" id="413.1" context="cit:CI_Series">
+    	<label>Series Title</label>
+    	<description iso="true">Name of the series to which a resource belongs</description>
     	<help/>
     	<condition/>
   	</element>
@@ -763,11 +816,11 @@
 		<description>Information about the distributor of and options for obtaining the
             resource</description>
 	</element>
-	<element name="mri:MD_Distributor" id="279.0">
+	<element name="mrd:MD_Distributor" id="279.0">
 		<label>Distributor</label>
 		<description>Information about the distributor</description>
 	</element>
-	<element name="mri:MD_ExtendedElementInformation" id="306.0">
+	<element name="mex:MD_ExtendedElementInformation" id="306.0">
 		<description>New metadata element, not found in ISO 19115, which is required to describe
             geographic data</description>
 		<label>Extended Element Information</label>
@@ -869,6 +922,12 @@
             information</description>
 		<condition>Either attributes, features, featureInstances, attributeInstnaces, dataset or other must be provided</condition>
 	</element>
+  <element name="mcc:MD_ScopeDescription_Type" id="149.0">
+    <label>Scope description</label>
+    <description>Description of the class of information covered by the
+      information</description>
+    <condition>Either attributes, features, featureInstances, attributeInstnaces, dataset or other must be provided</condition>
+  </element>
 	<element name="mco:MD_SecurityConstraints" id="73.0">
 		<label>Security constraints</label>
 		<description>Handling restrictions imposed on the resource or metadata for national security
@@ -934,7 +993,7 @@
     
   </element>
 	<element name="cit:administrativeArea" id="391.0">
-		<label>Administrative area</label>
+		<label>State</label>
 		<description>State, province of the location</description>
 	</element>
 	<element name="mri:aggregateDataSetIdentifier" id="66.3">
@@ -1141,18 +1200,13 @@
 	</element>
 	<element name="mdb:contact" id="19.0">
 		<condition>mandatory</condition>
-		<label>Contact</label>
+		<label>Metadata Contact</label>
 		<description>Party responsible for the metadata information</description>
 	</element>
 	<element name="mmi:contact" id="148.1" context="mmi:MD_MaintenanceInformation">
 		<label>Contact</label>
 		<description>Identification of, and means of communication with, person(s) and
             organization(s) with responsability for maintaining the metadata</description>
-	</element>
-	<element name="mri:contact" id="8.0">
-		<label>Metadata author</label>
-		<description>Party responsible for the metadata information</description>
-		<condition>mandatory</condition>
 	</element>
 	<element name="cit:contactInfo" id="378.0">
 		<description>Address of the responsible party</description>
@@ -1635,7 +1689,7 @@
 		<description>Features to which the information applies</description>
 		<condition />
 	</element>
-	<element name="mri:fees" id="299.0">
+	<element name="mrd:fees" id="299.0">
 		<label>Fees</label>
 		<description>Fees and terms for retrieving the resource. Include monetary units (as
             specified in ISO 4217)</description>
@@ -1649,8 +1703,8 @@
 		<label>File description</label>
 		<description>Text description of the illustration</description>
 	</element>
-	<element name="mri:fileIdentifier" id="2.0">
-		<label>File identifier</label>
+	<element name="mdb:metadataIdentifier" id="2.0">
+		<label>Metadata identifier</label>
 		<description>Unique identifier for this metadata file</description>
 	</element>
 	<element name="mcc:fileName" id="438.0">
@@ -1776,6 +1830,10 @@
 		<label>Citation identifier</label>
 		<description>Identifier of the citation</description>
 	</element>
+	<element name="cit:identifier" id="573.0">
+		<label>Citation identifier</label>
+		<description>Identifier of the citation</description>
+	</element>
 	<element name="mri:identifier" id="575.0" context="mri:MD_Authority">
 		<label>Identifier</label>
 		<description>Identifier which belongs to the authority</description>
@@ -1892,7 +1950,7 @@
 		<description>Longest wavelength that the sensor is capable of collecting within a designated
             band</description>
 	</element>
-	<element name="mri:maximumValue" id="356.0">
+	<element name="gex:maximumValue" id="356.0">
 		<label>Maximum value</label>
 		<description>Highest vertical extent contained in the dataset</description>
 		<condition>mandatory</condition>
@@ -1918,7 +1976,7 @@
 		<label>Metadata constraints</label>
 		<description>Provides restrictions on the access and use of metadata</description>
 	</element>
-	<element name="mri:metadataExtensionInfo" id="14.0">
+	<element name="mdb:metadataExtensionInfo" id="14.0">
 		<description>Information describing metadata extensions</description>
 		<label>Metadata Extension Information</label>
 	</element>
@@ -1927,13 +1985,13 @@
 		<description>Provides information about the frequency of metadata updates, and the scope of
             those updates</description>
 	</element>
-	<element name="mri:metadataStandardName" id="10.0">
-		<label>Metadata standard name</label>
-		<description>Name of the metadata standard (including profile name) used</description>
+	<element name="mdb:metadataStandard" id="10.0">
+		<label>Metadata Standard</label>
+		<description>Metadata Standard Citation</description>
 	</element>
-	<element name="mri:metadataStandardVersion" id="11.0">
-		<label>Metadata standard version</label>
-		<description>Version (profile) of the metadata standard used</description>
+	<element name="mdb:metadataProfile" id="11.0">
+		<label>Metadata Profile</label>
+		<description>Metadata Profile Citation</description>
 	</element>
 	<element name="mrc:minValue" id="261.0">
 		<label>Minimum value</label>
@@ -2007,11 +2065,6 @@
 	<element name="cit:name" context="cit:CI_OnlineResource" id="409.0">
 		<label>Name of the resource</label>
 		<description>Name of the online resource</description>
-	</element>
-	<element name="cit:name" context="cit:CI_Series" id="414.0">
-		<label>Name</label>
-		<description>Name of the series, or aggregate dataset, of which the dataset is a
-            part</description>
 	</element>
 	<element name="mri:name" context="mri:MD_CodeDomain" id="537.0">
 		<label>Name</label>
@@ -2420,7 +2473,7 @@
 		<description>Telephone numbers at which the organization or individual may be
             contacted</description>
 	</element>
-	<element name="mri:plannedAvailableDateTime" id="300.0">
+	<element name="mrd:plannedAvailableDateTime" id="300.0">
 		<label>Planned available datetime</label>
 		<description>Date and time when the dataset will be available
             (CCYY-MM-DDThh:mm:ss)</description>
@@ -2431,7 +2484,7 @@
 		<condition>mandatory</condition>
 	</element>
 	<element name="mri:pointOfContact" id="29.0">
-		<label>Point of contact</label>
+		<label>Resource Contact</label>
 		<description>Identification of, and means of communication with, person(s) and
         organizations(s) associated with the resource(s)</description>
 	</element>
@@ -2483,43 +2536,34 @@
 		<label>Protocol</label>
 		<description>Connection protocol to be used</description>
 		<helper sort="true">
-			<option value="OGC:CSW">OGC-CSW Catalogue Service for the Web
-			</option>
-			<option value="OGC:KML">OGC-KML Keyhole Markup Language
-			</option>
-			<option value="OGC:GML">OGC-GML Geography Markup Language
-			</option>
-			<option value="OGC:ODS">OGC-ODS OpenLS Directory Service
-			</option>
-			<option value="OGC:OGS">OGC-ODS OpenLS Gateway Service</option>
-			<option value="OGC:OUS">OGC-ODS OpenLS Utility Service</option>
-			<option value="OGC:OPS">OGC-ODS OpenLS Presentation Service
-			</option>
-			<option value="OGC:ORS">OGC-ODS OpenLS Route Service</option>
-			<option value="OGC:SOS">OGC-SOS Sensor Observation Service
-			</option>
-			<option value="OGC:SPS">OGC-SPS Sensor Planning Service
-			</option>
-			<option value="OGC:SAS">OGC-SAS Sensor Alert Service</option>
-			<option value="OGC:WCS">OGC-WCS Web Coverage Service</option>
-			<option value="OGC:WCTS">OGC-WCTS Web Coordinate Transformation
-				Service
-			</option>
-			<option value="OGC:WFS">OGC-WFS Web Feature Service</option>
-			<option value="OGC:WMS">OGC-WMS Web Map Service</option>
-			<option value="OGC:WNS">OGC-WNS Web Notification Service</option>
-			<option value="OGC:WPS">OGC-WPS Web Processing Service</option>
-			<option value="WWW:DOWNLOAD-1.0-ftp--download">File for download through FTP</option>
-			<option value="WWW:DOWNLOAD-1.0-http--download">File for download</option>
-			<option value="FILE:GEO">GIS file</option>
-			<option value="FILE:RASTER">GIS RASTER file</option>
-			<option value="WWW:LINK-1.0-http--link">Web address (URL)</option>
-			<option value="WWW:LINK-1.0-http--rss">RSS News feed (URL)</option>
-			<option value="DB:POSTGIS">PostGIS database table</option>
-			<option value="DB:ORACLE">ORACLE database table</option>
-			<option value="WWW:LINK-1.0-http--opendap">OPeNDAP URL</option>
-			<option value="RBNB:DATATURBINE">Data Turbine</option>
-			<option value="UKST">Unknown Service Type</option>
+<option value="OGC:CSW">OGC-CSW Catalogue Service for the Web</option>
+<option value="OGC:KML">OGC-KML Keyhole Markup Language</option>
+<option value="OGC:GML">OGC-GML Geography Markup Language</option>
+<option value="OGC:ODS">OGC-ODS OpenLS Directory Service</option>
+<option value="OGC:OGS">OGC-ODS OpenLS Gateway Service</option>
+<option value="OGC:OUS">OGC-ODS OpenLS Utility Service</option>
+<option value="OGC:OPS">OGC-ODS OpenLS Presentation Service</option>
+<option value="OGC:ORS">OGC-ODS OpenLS Route Service</option>
+<option value="OGC:SOS">OGC-SOS Sensor Observation Service</option>
+<option value="OGC:SPS">OGC-SPS Sensor Planning Service</option>
+<option value="OGC:SAS">OGC-SAS Sensor Alert Service</option>
+<option value="OGC:WCS">OGC-WCS Web Coverage Service</option>
+<option value="OGC:WCTS">OGC-WCTS Web Coordinate Transformation Service</option>
+<option value="OGC:WFS">OGC-WFS Web Feature Service</option>
+<option value="OGC:WMS">OGC-WMS Web Map Service</option>
+<option value="OGC:WNS">OGC-WNS Web Notification Service</option>
+<option value="OGC:WPS">OGC-WPS Web Processing Service</option>
+<option value="WWW:DOWNLOAD-1.0-ftp--download">File for download through FTP</option>
+<option value="WWW:DOWNLOAD-1.0-http--download">File for download</option>
+<option value="FILE:GEO">GIS file</option>
+<option value="FILE:RASTER">GIS RASTER file</option>
+<option value="WWW:LINK-1.0-http--link">Web address (URL)</option>
+<option value="WWW:LINK-1.0-http--rss">RSS News feed (URL)</option>
+<option value="DB:POSTGIS">PostGIS database table</option>
+<option value="DB:ORACLE">ORACLE database table</option>
+<option value="WWW:LINK-1.0-http--opendap">OPeNDAP URL</option>
+<option value="RBNB:DATATURBINE">Data Turbine</option>
+<option value="UKST">Unknown Service Type</option>
 		</helper>
 	</element>
 	<element name="mri:purpose" id="26.0">
@@ -2612,6 +2656,26 @@
 		<label>Resolution</label>
 		<description>Degree of detail in the grid dataset</description>
 	</element>
+  <element name="mri:distance">
+    <label>Horizontal ground sample distance</label>
+    <description>Horizontal ground sample distance</description>
+  </element>
+  <element name="mri:vertical">
+    <label>Vertical sampling distance</label>
+    <description>Vertical sampling distance</description>
+  </element>
+  <element name="mri:angularDistance">
+    <label>Angular sampling measure</label>
+    <description>Angular sampling measure</description>
+  </element>
+  <element name="mri:levelOfDetail">
+    <label>Level of detail</label>
+    <description>Brief textual description of the spatial resolution of the resource</description>
+  </element>
+  <element name="mri:MD_Resolution_Type">
+    <label>Resolution type</label>
+    <description/>
+  </element>
 	<element name="mri:resourceConstraints" id="35.0">
 		<label>Resource constraints</label>
 		<description>Provides information about constraints which apply to the
@@ -3146,6 +3210,23 @@
 		<label>Name of the calendar era</label>
 		<description></description>
 	</element>
+
+  <element name="relativePosition">
+    <label>Relative position</label>
+    <description></description>
+  </element>
+  <element name="gml:remoteSchema">
+    <label>Remote schema</label>
+    <description></description>
+  </element>
+  <element name="owns">
+    <label>Owns</label>
+    <description></description>
+  </element>
+  <element name="xlink:type">
+    <label>Type of link</label>
+    <description></description>
+  </element>
 	<element name="unit">
 		<label>Unit</label>
 		<description></description>
@@ -3492,23 +3573,6 @@
 		<label>Role code</label>
 		<description />
 	</element>
-	<element name="gts:TM_PeriodDuration">
-		<label>Period duration</label>
-		<description>
-            The duration data type is used to specify a time interval.
-            
-            The time interval is specified in the following form "PnYnMnDTnHnMnS" where:
-            
-            * P indicates the period (required)
-            * nY indicates the number of years
-            * nM indicates the number of months
-            * nD indicates the number of days
-            * T indicates the start of a time section (required if you are going to specify hours, minutes, or seconds)
-            * nH indicates the number of hours
-            * nM indicates the number of minutes
-            * nS indicates the number of seconds            
-        </description>
-    </element>
     <element name="gco:CharacterString">
         <label>Text</label>
         <description/>
@@ -3523,6 +3587,10 @@
     <element name="gex:verticalCRS">
         <label>Vertical CRS</label>
         <description>Provides information about the origin from which the maximum and minimum elevation values are measured</description>
+    </element>
+    <element name="gex:verticalCRSId">
+      <label>Vertical CRS identifier</label>
+      <description>Provides information about the origin from which the maximum and minimum elevation values are measured</description>
     </element>
     <element name="gcx:FileName">
         <label>File name</label>
@@ -3546,23 +3614,23 @@
         <description>Child elements and attributes have been hidden because you do no have access to view those elements</description>
     </element>
     <!-- ==================================================== -->
-    <element name="gmx:name"> 
+    <element name="gcx:name"> 
         <label>Name</label> 
         <description>Feature catalogue name</description> 
     </element> 
-    <element name="gmx:scope"> 
+    <element name="gcx:scope"> 
         <label>Scope</label> 
         <description>Scope definition</description> 
     </element> 
-    <element name="gmx:versionNumber"> 
+    <element name="gcx:versionNumber"> 
         <label>Version</label> 
         <description>Catalogue version</description> 
     </element> 
-    <element name="gmx:versionDate"> 
+    <element name="gcx:versionDate"> 
         <label>Date</label> 
         <description>Catalogue date</description> 
     </element> 
-    <element name="gmx:fieldOfApplication"> 
+    <element name="gcx:fieldOfApplication"> 
         <label>Field of application</label> 
         <description>Field of application</description> 
     </element>
@@ -3669,14 +3737,6 @@
   <element name="gfc:fieldOfApplication">
     <label>Field of application</label>
     <description>Field of application</description>
-  </element>
-  <element name="gmd:responsibleParty">
-    <label>Responsible party</label>
-    <description>Responsible party</description>
-  </element>
-  <element name="gmd:CI_ResponsibleParty">
-    <label>Responsible party</label>
-    <description>Responsible party</description>
   </element>
   <element name="gco:lower">
     <label>Lower cardinality</label>
@@ -3823,33 +3883,6 @@
   <element name="gfc:valueMeasurementUnit">
     <label>Value measurement unit</label>
   </element>
-  <element name="gco:CharacterString">
-    <label>Text</label>
-    <description></description>
-  </element>
-  <element name="gmx:FileName">
-    <label>File name</label>
-    <description></description>
-  </element>
   <!-- ==================================================== -->
-  <element name="gmx:name">
-    <label>Name</label>
-    <description>Feature catalogue name</description>
-  </element>
-  <element name="gmx:scope">
-    <label>Scope</label>
-    <description>Scope definition</description>
-  </element>
-  <element name="gmx:versionNumber">
-    <label>Version</label>
-    <description>Catalogue version</description>
-  </element>
-  <element name="gmx:versionDate">
-    <label>Date</label>
-    <description>Catalogue date</description>
-  </element>
-  <element name="gmx:fieldOfApplication">
-    <label>Field of application</label>
-    <description>Field of application</description>
-  </element>
+
 </labels>

@@ -13,7 +13,15 @@
     <rndtTabQua>Quality</rndtTabQua>
     <rndtTabAcc>Access constraints</rndtTabAcc>
     <rndtTabMd>Metadata</rndtTabMd-->
-  
+
+    <rndt>
+       <org>
+           <title>Ente PA</title>
+           <field>Ente</field>
+           <askselect>Seleziona un Ente</askselect>
+       </org>
+    </rndt>
+
     <identification>
         <title>Identificazione</title>
     </identification>

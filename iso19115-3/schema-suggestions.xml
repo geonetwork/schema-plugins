@@ -57,14 +57,46 @@
 	
 	
 	<!-- Contact info: suggest all by default. -->
+	<field name="cit:CI_Responsibility">
+		<suggest name="cit:role"/>
+		<!--
+    <suggest name="cit:party"/>
+		-->
+	</field>
+
+  <field name="cit:individual">
+    <suggest name="cit:CI_Individual"/>
+  </field>
+	
 	<field name="cit:CI_Individual">
 		<suggest name="cit:name"/>
-    <suggest name="cit:address"/>
+    <suggest name="cit:contactInfo"/>
+		<suggest name="cit:positionName"/>
 	</field>
 	
 	<field name="cit:CI_Organisation">
     <suggest name="cit:name"/>
+    <suggest name="cit:contactInfo"/>
+		<suggest name="cit:logo"/>
+    <suggest name="cit:individual"/>
 	</field>
+
+  <field name="cit:contactInfo">
+    <suggest name="cit:CI_Contact"/>
+  </field>
+	
+  <field name="cit:address">
+    <suggest name="cit:CI_Address"/>
+  </field>
+	
+  <field name="cit:phone">
+    <suggest name="cit:CI_Telephone"/>
+  </field>
+	
+  <field name="cit:CI_Contact">
+    <suggest name="cit:phone"/>
+    <suggest name="cit:address"/>
+  </field>
 	
 	<field name="cit:CI_Telephone">
 		<suggest name="cit:number"/>
@@ -72,10 +104,13 @@
 	</field>
 	
 	<field name="cit:CI_Address">
+		<suggest name="cit:deliveryPoint"/>
+		<suggest name="cit:city"/>
+		<suggest name="cit:administrativeArea"/>
+		<suggest name="cit:postalCode"/>
+		<suggest name="cit:country"/>
 		<suggest name="cit:electronicMailAddress"/>
-		</field>
-	
-
+	</field>
 	
 	<!-- Expand optional element mri:type (mri:keyword is mandatory and will be expanded) -->
 	<field name="mri:MD_Keywords">
@@ -183,16 +218,32 @@
 
   <field name="mco:MD_Constraints">
     <suggest name="mco:useLimitation"/>
+    <suggest name="mco:constraintApplicationScope"/>
+    <suggest name="mco:graphic"/>
+    <suggest name="mco:reference"/>
+    <suggest name="mco:releasability"/>
+    <suggest name="mco:responsibleParty"/>
   </field>
   
   <field name="mco:MD_LegalConstraints">
     <suggest name="mco:useLimitation"/>
+    <suggest name="mco:constraintApplicationScope"/>
+    <suggest name="mco:graphic"/>
+    <suggest name="mco:reference"/>
+    <suggest name="mco:releasability"/>
+    <suggest name="mco:responsibleParty"/>
     <suggest name="mco:accessConstraints"/>
     <suggest name="mco:useConstraints"/>
     <suggest name="mco:otherContraints"/>
   </field>
   
   <field name="mco:MD_SecurityContraints">
+    <suggest name="mco:useLimitation"/>
+    <suggest name="mco:constraintApplicationScope"/>
+    <suggest name="mco:graphic"/>
+    <suggest name="mco:reference"/>
+    <suggest name="mco:releasability"/>
+    <suggest name="mco:responsibleParty"/>
     <suggest name="mco:classification"/>
     <suggest name="mco:useLimitation"/>
   </field>

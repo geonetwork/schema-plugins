@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://geonetwork-opensource.org/schemas/schema-ident" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://geonetwork-opensource.org/schemas/schema-ident http://geonetwork-opensource.org/schemas/schema-ident/schema-ident.xsd">
+	<name>prov-xml</name>
+	<id>dc85cae4-f632-4658-a134-3955569e4f29</id>
+	<version>1.0</version>
+	<schemaLocation>http://www.w3.org/ns/prov# http://www.w3.org/ns/prov.xsd http://purl.org/dc/elements/1.1/ http://dublincore.org/schemas/xmls/qdc/2008/02/11/dc.xsd http://purl.org/dc/terms/ http://dublincore.org/schemas/xmls/qdc/2008/02/11/dcterms.xsd</schemaLocation>
+	<autodetect>
+	  <!-- Anything with the prov namespace will be selected -->
+		<namespaces xmlns:prov="http://www.w3.org/ns/prov#"/>
+	</autodetect>
+</schema>
