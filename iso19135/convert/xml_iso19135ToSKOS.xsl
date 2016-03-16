@@ -12,7 +12,7 @@
 		xmlns:dct="http://purl.org/dc/terms/" 
 		xmlns:fn="http://www.w3.org/2005/02/xpath-functions" 
 		xmlns:foaf="http://xmlns.com/foaf/0.1/" 
-		xmlns:gml="http://www.opengis.net/gml" 
+		xmlns:gml="http://www.opengis.net/gml#" 
 		xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" 
 		xmlns:skos="http://www.w3.org/2004/02/skos/core#" 
 		xmlns:xdt="http://www.w3.org/2005/02/xpath-datatypes"
@@ -45,6 +45,17 @@
 			<dc:identifier><xsl:value-of select="@uuid"/></dc:identifier>
 			<xsl:apply-templates select="grg:name|grg:contentSummary|grg:uniformResourceIdentifier|grg:dateOfLastChange|grg:version|grg:manager|grg:submitter"/>
 			<dct:issued><xsl:value-of select="format-dateTime(current-dateTime(),$df)"/></dct:issued>
+
+	  	<!-- get all the top concepts and create the a skos:topConcepts element -->
+			<xsl:for-each select="grg:containedItem/*[grg:status/grg:RE_ItemStatus='valid' and gnreg:topConcept]">
+				<xsl:variable name="conceptId">
+					<xsl:call-template name="getConceptId">
+						<xsl:with-param name="about" select="$about"/>
+					</xsl:call-template>
+				</xsl:variable>
+				<skos:hasTopConcept rdf:resource="{$conceptId}"/>
+			</xsl:for-each>
+
 		</skos:ConceptScheme>
    
 		<!-- and now all the concepts -->
@@ -131,11 +142,32 @@
 
 <!-- ................................................................... -->
 
+	<xsl:template name="getConceptId">
+		<xsl:param name="about"/>
+
+			<xsl:choose>
+				<xsl:when test="gnreg:itemIdentifier">
+					<xsl:value-of select="gnreg:itemIdentifier/gco:CharacterString"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="concat($about,':',grg:itemIdentifier/gco:Integer)"/>	
+				</xsl:otherwise>
+			</xsl:choose>
+	</xsl:template>
+
+<!-- ................................................................... -->
+
 	<xsl:template match="grg:RE_RegisterItem|gnreg:RE_RegisterItem">
 		<xsl:param name="about"/>
 		<xsl:param name="aboutScheme"/>
 
-		<skos:Concept rdf:about="{concat($about,':',grg:itemIdentifier/gco:Integer)}">
+		<xsl:variable name="conceptId">
+			<xsl:call-template name="getConceptId">
+				<xsl:with-param name="about" select="$about"/>
+			</xsl:call-template>
+		</xsl:variable>
+
+		<skos:Concept rdf:about="{$conceptId}">
 			<skos:prefLabel xml:lang="en"><xsl:value-of select="grg:name/gco:CharacterString"/></skos:prefLabel>
 			<skos:inScheme rdf:resource="{$aboutScheme}"/>
 
@@ -189,6 +221,9 @@
 					<skos:scopeNote xml:lang="en"><xsl:value-of select="grg:name/gco:CharacterString"/></skos:scopeNote>
 				</xsl:otherwise>
 			</xsl:choose>
+			<xsl:if test="gnreg:topConcept">
+				<skos:topConceptOf rdf:resource="{$aboutScheme}"/>
+			</xsl:if>
 			<!--
 			<xsl:for-each select="grg:fieldOfApplication/grg:RE_FieldOfApplication">
 				<skos:scopeNote xml:lang="en"><xsl:value-of select="concat('Name of field of Application: ',grg:name/gco:CharacterString,', Description: ',grg:description/gco:CharacterString)"/></skos:scopeNote>
