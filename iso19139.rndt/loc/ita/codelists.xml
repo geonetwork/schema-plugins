@@ -368,4 +368,301 @@
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 	</codelist>	
 	<!-- ==================================================== -->
+
+	<codelist name="gmd:MD_ClassificationCode">
+		<entry>
+			<code>unclassified</code>
+			<label>Non riservato</label>
+			<description>Disponibile per la divulgazione generale</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>restricted</code>
+			<label>Riservato</label>
+			<description>Non disponibile per la divulgazione generale</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>confidential</code>
+			<label>Confidenziale</label>
+			<description>Disponibile solo a soggetti fidati</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>secret</code>
+			<label>Segreto</label>
+			<description>Tenuti o destinati ad essere mantenuti privati​​, sconosciuti, o nascosti a tutti, se non ad un gruppo selezionato di persone</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>topSecret</code>
+			<label>TopSecret</label>
+			<description>Di altissima segretezza</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+	</codelist>
+
+	<codelist name="gmd:CI_PresentationFormCode">
+		<entry>
+			<code>documentDigital</code>
+			<label>Documento digitale</label>
+			<description>Rappresentazione digitale di un testo (può contenere anche illustrazioni)
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>imageDigital</code>
+			<label>Immagine digitale</label>
+			<description>Immagine in formato digitale</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>documentHardcopy</code>
+			<label>Documento cartaceo</label>
+			<description>Rappresentazione di un testo (può contenere anche illustrazioni) su
+				carta, materiale fotografico o altri supporti.
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>imageHardcopy</code>
+			<label>Immagine cartacea</label>
+			<description>Immagine riprodotta su carta,
+				materiale fotografico o altri
+				supporti per uso diretto.
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>mapDigital</code>
+			<label>Mappa digitale</label>
+			<description>Mappa in formato raster o vettoriale</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>mapHardcopy</code>
+			<label>Mappa cartacea</label>
+			<description>Mappa stampata su carta, materiale
+				fotografico o altri supporti per uso diretto
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>modelDigital</code>
+			<label>Modello digitale</label>
+			<description>Mappa in formato raster o
+				vettoriale
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>modelHardcopy</code>
+			<label>Modello fisico</label>
+			<description>Modello fisico tridimensionale</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>profileDigital</code>
+			<label>Profilo digitale</label>
+			<description>Sezione verticale (stratigrafia) in formato digitale</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>profileHardcopy</code>
+			<label>Profilo cartaceo</label>
+			<description>Sezione verticale (stratigrafia) stampata su carta o su altro supporto</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>tableDigital</code>
+			<label>Tabella digitale</label>
+			<description>Rappresentazione digitale di fatti e
+				cifre presentate in modo sistematico, specialmente in colonne
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>tableHardcopy</code>
+			<label>Tabella cartacea</label>
+			<description>Rappresentazione di fatti e cifre presentate in modo sistematico,
+				specialmente in colonne, stampate su carta, materiale fotografico, o altri supporti.
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>videoDigital</code>
+			<label>Video digitale</label>
+			<description>Registrazione video digitale</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>videoHardcopy</code>
+			<label>Video analogico</label>
+			<description>Registrazione video su pellicola</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+	</codelist>
+
+	<codelist name="gmd:CI_RoleCode">
+		<entry>
+			<code>resourceProvider</code>
+			<label>Fornitore della risorsa</label>
+			<description>Soggetto che fornisce la risorsa</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>custodian</code>
+			<label>Depositario</label>
+			<description>Parte che accetta il controllo e la responsabilità per i dati e garantisce assistenza appropriata e il mantenimento della risorsa</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>owner</code>
+			<label>Proprietario</label>
+			<description>Soggetto proprietario della risorsa</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>user</code>
+			<label>Utente</label>
+			<description>Soggetto che utilizza la risorsa</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>distributor</code>
+			<label>Distributore</label>
+			<description>Soggetto che distribuisce la risorsa</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>originator</code>
+			<label>Ideatore</label>
+			<description>Soggetto che ha prodotto la risorsa</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>pointOfContact</code>
+			<label>Punto di contatto</label>
+			<description>Soggetto che può essere contattato per avere
+				informazioni o acquisire la risorsa
+			</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>principalInvestigator</code>
+			<label>Ricercatore principale</label>
+			<description>Gruppo principale incaricata di raccogliere informazioni e di effettuare ricerche</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>processor</code>
+			<label>Processor</label>
+			<description>Soggetto che ha processato i dati modificando in qualche modo la risorsa</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>publisher</code>
+			<label>Editore</label>
+			<description>Soggetto che ha pubblicato la risorsa</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>author</code>
+			<label>Autore</label>
+			<description>Gruppo autore della risorso</description>
+		</entry>
+	</codelist>
+	<codelist name="gmd:MD_MaintenanceFrequencyCode">
+		<entry>
+			<code>continual</code>
+			<label>Continuo</label>
+			<description>I dati vengono ripetutamente e frequentemente aggiornati</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>daily</code>
+			<label>Quotidiano</label>
+			<description>I dati vengono aggiornati ogni giorno</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>weekly</code>
+			<label>Settimanale</label>
+			<description>I dati vengono aggiornati su base settimanale</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>fortnightly</code>
+			<label>Quindicinale</label>
+			<description>I dati vengono aggiornati ogni due settimane</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>monthly</code>
+			<label>Mensile</label>
+			<description>I dati vengono aggiornati ogni mese</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>quartely</code>
+			<label>Trimestrale</label>
+			<description>I dati vengono aggiornati ogni tre mesi</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>biannually</code>
+			<label>Semestrale</label>
+			<description>I dati vengono aggiornati due volte l'anno</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>annually</code>
+			<label>Annuale</label>
+			<description>I dati vengono aggiornati ogni anno</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>asNeeded</code>
+			<label>Secondo necessità</label>
+			<description>I dati vengono aggiornati se/quando ritenuto necessario</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>irregular</code>
+			<label>Irregolare</label>
+			<description>I dati vengono aggiornati ad intervalli di durata irregolare</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>notPlanned</code>
+			<label>Non pianificato</label>
+			<description>L'aggiornamento dei dati non è programmato</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>unknown</code>
+			<label>Sconosciuto</label>
+			<description>La frequenza di aggiornamento per i dati non è nota</description>
+		</entry>
+	</codelist>
+        
+	<!--=== CouplingType from ISO19119 ===-->
+	<codelist name="srv:SV_CouplingType">
+			<entry>
+					<code>tight</code>
+					<label>Strettamente accoppiati</label>
+					<description>Strettamente accoppiati: dati associati</description>
+			</entry>
+			<entry>
+					<code>mixed</code>
+					<label>Misto</label>
+					<description>Accoppiato misto: dati associati, inoltre, potrebbero essere trattati dati esterni</description>
+			</entry>
+			<entry>
+					<code>loose</code>
+					<label>Accoppiamento debole</label>
+					<description>Accoppiamento debole: non ci sono dati associati</description>
+			</entry>
+	</codelist>
+
 </codelists>

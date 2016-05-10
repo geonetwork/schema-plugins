@@ -234,7 +234,7 @@
 
 	<xsl:template match="gmx:CodeListDictionary">
 
-		<xsl:variable name="id" select="substring-after(generate-id(),'e')"/>
+		<xsl:variable name="id" select="substring-after(generate-id(..),'e')"/>
 
 		<!-- process the code dictionary element -->
 		<xsl:call-template name="createItem"/>

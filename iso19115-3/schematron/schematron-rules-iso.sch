@@ -175,7 +175,7 @@
       <!-- Check that element exist and is not empty ones.
       TODO improve nonEmpty checks -->
 
-      <sch:let name="description" value="gex:description[text() != '']"/>
+      <sch:let name="description" value="gex:description/*[normalize-space() != '']"/>
 
       <sch:let name="geographicId" value="gex:geographicElement/gex:EX_GeographicDescription/                          gex:geographicIdentifier[normalize-space(*) != '']"/>
 

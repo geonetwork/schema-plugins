@@ -268,7 +268,8 @@
 						</xsl:otherwise>
 					</xsl:choose>
 					<xsl:text>&#160;</xsl:text>
-					<xsl:if test="$edit and not($isXLinked)">
+					<!--<xsl:if test="$edit and not($isXLinked)">-->
+					<xsl:if test="$edit and (not($isXLinked) or name(.)='srv:operatesOn')">
 						<xsl:call-template name="getButtons">
 							<xsl:with-param name="addLink" select="$addLink"/>
 							<xsl:with-param name="addXMLFragment" select="$addXMLFragment"/>

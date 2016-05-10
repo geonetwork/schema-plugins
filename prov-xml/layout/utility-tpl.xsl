@@ -8,6 +8,9 @@
 
   <xsl:include href="utility-tpl-multilingual.xsl"/>
 
+	<xsl:template name="get-prov-xml-is-service">
+		<xsl:value-of select="false()"/>
+	</xsl:template>
 
   <xsl:template name="get-prov-xml-extents-as-json">[]</xsl:template>
 

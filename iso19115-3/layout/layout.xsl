@@ -249,7 +249,8 @@
     </xsl:call-template>
   </xsl:template>
 
-
+	<!-- dates in 19115-3 must be a gco:DateTime - but we will also match gco:Date here and force it to 
+	     gco:DateTime just in case there are any stray gco:Date elements in our 19115-3 records -->
 
   <xsl:template mode="mode-iso19115-3"
                 priority="200"
@@ -262,7 +263,7 @@
 
     <div data-gn-date-picker="{gco:Date|gco:DateTime}"
          data-label="{$labelConfig/label}"
-         data-element-name="{name(gco:Date|gco:DateTime)}"
+         data-element-name="gco:DateTime"
          data-element-ref="{concat('_X', gn:element/@ref)}"
 				 data-namespaces='{{ "gco": "http://standards.iso.org/iso/19115/-3/gco/1.0", "gml": "http://www.opengis.net/gml/3.2"}}'>
     </div>

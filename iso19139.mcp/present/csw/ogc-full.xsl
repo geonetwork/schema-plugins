@@ -50,7 +50,7 @@
 
 				<!-- subject -->
 
-				<xsl:for-each select="gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gco:CharacterString">
+				<xsl:for-each select="gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gco:CharacterString|gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gmx:Anchor">
 					<dc:subject><xsl:value-of select="."/></dc:subject>
 				</xsl:for-each>
 
@@ -59,6 +59,10 @@
 				<xsl:for-each select="gmd:abstract/gco:CharacterString">
 					<dct:abstract><xsl:value-of select="."/></dct:abstract>
 					<dc:description><xsl:value-of select="."/></dc:description>
+				</xsl:for-each>
+
+				<xsl:for-each select="gmd:credit/gco:CharacterString|gmd:credit/gmx:Anchor">
+					<dc:contributor><xsl:value-of select="."/></dc:contributor>
 				</xsl:for-each>
 
 				<!-- rights -->

@@ -1,3 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<labels/>
+<labels>
 
+        <element name="rndt_org_box">
+		<label>Organization</label>
+		<description>The owner organization for this metadata.</description>
+		<help>You can only set the organization once. Once set, you won't be able to update it.</help>
+        </element>
+
+        <element name="rndt_org_select">
+		<label>Organization</label>
+		<description>The owner organization for this metadata.</description>
+		<help>This info binds the iPA code to the metadata.</help>
+        </element>
+
+</labels>
