@@ -24,7 +24,7 @@
 
 		<xsl:for-each-group select="//mcp:platform" group-by="mcp:DP_Term/mcp:term/gco:CharacterString">
 			<Field name="platform" string="{current-grouping-key()}" store="true" index="true"/>
-			<Field name="platformUri" string="{current-group()[1]//mcp:vocabularyTermURL/gmd:URL[1]}" store="true" index="true"/>
+			<Field name="platformUri" string="{current-group()[1]/mcp:DP_Term/mcp:vocabularyTermURL/gmd:URL}" store="true" index="true"/>
 		</xsl:for-each-group>
 
 		<!-- Index distinct responsible party and point of contact -->
@@ -40,6 +40,11 @@
 		<!-- Apply profile indexing templates to child nodes --> 
 
 		<xsl:apply-templates mode="index" select="*"/>
+	</xsl:template>
+
+
+	<xsl:template mode="index" match="mcp:MD_TemporalAggregationUnitCode/@codeListValue">
+      <Field name="temporalAggregation" string="{.}" store="true" index="true"/>
 	</xsl:template>
 
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -62,17 +67,16 @@
 	</xsl:template>
 
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-	<xsl:template mode="index" match="mcp:dataParameters/mcp:DP_DataParameters/mcp:dataParameter">
+	<xsl:template mode="index" match="mcp:dataParameter">
 		<xsl:for-each select="mcp:DP_DataParameter/mcp:parameterName/mcp:DP_Term">
 			<xsl:variable name="term" select="mcp:term/*"/>
 			<Field name="dataparam" string="{$term}" store="true" index="true"/>
 			<xsl:if test="mcp:type/mcp:DP_TypeCode/@codeListValue='longName'">
 				<Field name="longParamName" string="{$term}" store="true" index="true"/>
-				<Field name="parameterUri" string="{.//mcp:vocabularyTermURL/gmd:URL[1]}" store="true" index="true"/>
+				<Field name="parameterUri" string="{mcp:vocabularyTermURL/gmd:URL}" store="true" index="true"/>
 			</xsl:if>
 			<xsl:for-each select="mcp:vocabularyRelationship/mcp:DP_VocabularyRelationship">
 				<Field name="vocabTerm" string="{mcp:vocabularyTermURL/gmd:URL}" store="true" index="true"/>
-				<Field name="vocabTermList" string="{mcp:vocabularyListURL/gmd:URL}" store="true" index="true"/>
 			</xsl:for-each>
 		</xsl:for-each>
 

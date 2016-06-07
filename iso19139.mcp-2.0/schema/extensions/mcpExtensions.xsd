@@ -35,6 +35,9 @@ Reorganise for MCP 1.4
 Simon Pigot, March 2013  
 Version 2.0 changes: mcp:taxonomicCoverage and mcp:dataParameter mods
 
+Julian Atkinson, January 2016
+Updates to version 2.0 changes - mainly to mcp:dataParameter after Nov 2015 MCP 2.0 ratification.
+
 		</xs:documentation>
 	</xs:annotation>
 
@@ -231,27 +234,18 @@ Version 2.0 changes: mcp:taxonomicCoverage and mcp:dataParameter mods
 
 	<xs:complexType name="DP_VocabularyRelationship_Type">
 		<xs:annotation>
-			<xs:documentation>Information about relationships to a term in 
-			another vocabulary
-			- the type of relationship between the term and the vocabulary term   
-			- URL of the term from the vocabulary
-			- URL of the definition of the term from the vocabulary
-			- Definition of the term (if not in a definition vocabulary)
-			- URL of the vocabulary
-			- Version of the vocabulary
-			- Citation of the vocabulary
+			<xs:documentation>Information about the relationship between term and another vocabulary term
+			- the type of relationship between two terms described using skos
+			- URL of the related vocabulary term
+			- related term name or label
 			</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="gco:AbstractObject_Type">
 				<xs:sequence minOccurs="1">
 					<xs:element name="relationshipType" type="mcp:DP_RelationshipTypeCode_PropertyType" minOccurs="1" maxOccurs="1"/>
-					<xs:element name="vocabularyTermURL" type="gmd:URL_PropertyType" minOccurs="1" maxOccurs="1"/>
-					<xs:element name="vocabularyTermDefinitionURL" type="gmd:URL_PropertyType" minOccurs="0" maxOccurs="1"/>
-					<xs:element name="vocabularyTermDefinition" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="1"/>
-					<xs:element name="vocabularyListURL" type="gmd:URL_PropertyType" minOccurs="1" maxOccurs="1"/>
-					<xs:element name="vocabularyListVersion" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="1"/>
-					<xs:element name="vocabularyListAuthority" type="gmd:CI_Citation_PropertyType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="relatedTermURL" type="gmd:URL_PropertyType" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="relatedTerm" type="gco:CharacterString_PropertyType" minOccurs="1" maxOccurs="1"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -280,23 +274,33 @@ Version 2.0 changes: mcp:taxonomicCoverage and mcp:dataParameter mods
 
 	<xs:complexType name="DP_Term_Type">
 		<xs:annotation>
-			<xs:documentation>Information about a Data Parameter Term - 
-			- the term, 
-			- term type: short name, long name, localSynonym etc     
-			- whether the term is actually used in dataset (boolean), 
-			- relationships between the term and terms in other vocabularies      
-			- local definition (usually used if term is not related to terms in other
-			  vocabularies)
+			<xs:documentation>Information about the Term
+			- word or label used to describe the term
+			- type of term e.g. short name long name
+			- flag to indicate whether the term is used in the dataset
+			- URL of the term
+			- Citation of publishing authority managing vocabulary term
+			- URL for the service that exposes the scheme in which the term resides
+			- version of the vocabulary in which term resides
+			- Citation of publisher managing the vocabulary in which term resides
+			- information about relationship of term to another term from a vocabulary
+			- definition of the term if not available from vocabulary service
 			</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="gco:AbstractObject_Type">
 				<xs:sequence minOccurs="1">
-					<xs:element name="term" type="gco:CharacterString_PropertyType" minOccurs="1"/>
-					<xs:element name="type" type="mcp:DP_TypeCode_PropertyType" minOccurs="1"/>
-					<xs:element name="usedInDataset" type="gco:Boolean_PropertyType" minOccurs="0"/>
-					<xs:element name="vocabularyRelationship" type="mcp:DP_VocabularyRelationship_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="localDefinition" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="term" type="gco:CharacterString_PropertyType" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="type" type="mcp:DP_TypeCode_PropertyType" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="usedInDataset" type="gco:Boolean_PropertyType" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="vocabularyTermURL" type="gmd:URL_PropertyType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="vocabularyTermPublisher" type="gmd:CI_Citation_PropertyType" minOccurs="0" maxOccurs="1"/>
+					<!-- non-mandatory for uncontrolled vocabulary -->
+					<xs:element name="vocabularyServiceURL" type="gmd:URL_PropertyType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="vocabularyVersion" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="vocabularyPublisher" type="gmd:CI_Citation_PropertyType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="vocabularyRelationship" type="mcp:DP_VocabularyRelationship_PropertyType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="termDefinition" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="1"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -325,7 +329,6 @@ Version 2.0 changes: mcp:taxonomicCoverage and mcp:dataParameter mods
 					<xs:element name="parameterUnits" type="mcp:DP_Term_PropertyType" minOccurs="1" maxOccurs="unbounded"/>
 					<xs:element name="parameterMinimumValue" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="1"/>
 					<xs:element name="parameterMaximumValue" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="1"/>
-					<xs:element name="parameterDescription" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="1"/>
 					<xs:element name="parameterDeterminationInstrument" type="mcp:DP_Term_PropertyType" minOccurs="0" maxOccurs="1"/>
 					<xs:element name="parameterAnalysisMethod" type="mcp:DP_Term_PropertyType" minOccurs="0" maxOccurs="1"/>
 					<xs:element name="platform" type="mcp:DP_Term_PropertyType" minOccurs="0" maxOccurs="1"/>

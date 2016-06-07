@@ -2023,6 +2023,18 @@
 				</CodeDefinition>
 			</codeEntry>
 			<codeEntry>
+				<CodeDefinition gml:id="MD_TemporalAggregationUnitCode_three-day">
+					<gml:description>aggregation unit is three-day</gml:description>
+					<gml:identifier codeSpace="MCP version 2.0">three-day</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
+				<CodeDefinition gml:id="MD_TemporalAggregationUnitCode_six-day">
+					<gml:description>aggregation unit is six-day</gml:description>
+					<gml:identifier codeSpace="MCP version 2.0">six-day</gml:identifier>
+				</CodeDefinition>
+			</codeEntry>
+			<codeEntry>
 				<CodeDefinition gml:id="MD_TemporalAggregationUnitCode_multi-day">
 					<gml:description>aggregation unit is multi-day</gml:description>
 					<gml:identifier codeSpace="MCP version 1.2">multi-day</gml:identifier>

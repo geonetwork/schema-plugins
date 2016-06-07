@@ -153,7 +153,7 @@
 			<xsl:with-param name="schema" select="$schema"/>
 			<xsl:with-param name="edit"   select="$edit"/>
 			<xsl:with-param name="text">
-				<xsl:apply-templates mode="iso19139GetAttributeTextmcp" select="*/@codeListValue">
+				<xsl:apply-templates mode="iso19139GetAttributeTextmcp-2.0" select="*/@codeListValue">
 					<xsl:with-param name="schema" select="$schema"/>
 					<xsl:with-param name="edit"   select="$edit"/>
 				</xsl:apply-templates>
@@ -163,7 +163,7 @@
 	
 	<!-- ================================================================= -->
 
-	<xsl:template mode="iso19139GetAttributeTextmcp" match="@*">
+	<xsl:template mode="iso19139GetAttributeTextmcp-2.0" match="@*">
 		<xsl:param name="schema"/>
 		<xsl:param name="edit"/>
 		
