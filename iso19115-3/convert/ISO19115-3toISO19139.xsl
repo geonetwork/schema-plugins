@@ -119,8 +119,17 @@
       <gco:CharacterString>
         <xsl:choose>
           <xsl:when test="mcc:MD_Identifier/mcc:codeSpace/gco2:CharacterString">
-            <xsl:value-of select="concat(mcc:MD_Identifier/mcc:codeSpace/gco2:CharacterString, ':',
+            <xsl:choose>
+              <!-- only do the concatenation thing of codeSpace and code when we aren't using urn:uuid
+                   otherwise things get confused -->
+              <xsl:when test="mcc:MD_Identifier/mcc:codeSpace/gco2:CharacterString!='urn:uuid'">
+                <xsl:value-of select="concat(mcc:MD_Identifier/mcc:codeSpace/gco2:CharacterString, ':',
                                          mcc:MD_Identifier/mcc:code/gco2:CharacterString)"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="mcc:MD_Identifier/mcc:code/gco2:CharacterString"/>
+              </xsl:otherwise>
+            </xsl:choose>
           </xsl:when>
           <xsl:otherwise>
             <xsl:value-of select="mcc:MD_Identifier/mcc:code/gco2:CharacterString"/>
@@ -252,7 +261,7 @@
           <xsl:if test="srv2:serviceType">
             <srv:serviceType>
               <gco:LocalName>
-                <xsl:value-of select="srv2:serviceType/gco:ScopedName"/>
+                <xsl:value-of select="srv2:serviceType/gco2:ScopedName"/>
               </gco:LocalName>
             </srv:serviceType>
           </xsl:if>
@@ -277,6 +286,19 @@
         </xsl:element>
       </xsl:for-each>
     </gmd:identificationInfo>
+  </xsl:template>
+    
+  <xsl:template match="srv2:parameter">
+    <srv:parameters>
+      <xsl:apply-templates select="*"/>
+    </srv:parameters>
+  </xsl:template>
+  
+  <xsl:template match="srv2:name">
+    <srv:name>
+      <xsl:apply-templates select="gco2:MemberName/gco2:aName"/>
+      <xsl:apply-templates select="gco2:MemberName/gco2:attributeType"/>
+    </srv:name>
   </xsl:template>
   
   <xsl:template match="mdb:contentInfo">
@@ -405,8 +427,6 @@
       <xsl:apply-templates select="mdq:value"/>
     </gmd:DQ_QuantitativeResult>
   </xsl:template>
-
-
 
 
   <xsl:template match="cit:CI_Citation">
@@ -839,7 +859,6 @@
                        cit:party|
                        cit:graphic|
                        cit:CI_Citation/cit:onlineResource|
-                       srv2:parameter|
                        mri:keywordClass|
                        mrd:formatSpecificationCitation|
                        mdb:dateInfo|
