@@ -496,6 +496,18 @@
 		</entry>
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<entry>
+			<code>three-day</code>
+			<label>Three day</label>
+			<description>Aggregation unit is three-day</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
+			<code>six-day</code>
+			<label>Six day</label>
+			<description>Aggregation unit is six-day</description>
+		</entry>
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<entry>
 			<code>multi-day</code>
 			<label>Multi-day</label>
 			<description>Aggregation unit is multi-day</description>
