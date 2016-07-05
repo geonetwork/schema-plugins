@@ -54,4 +54,12 @@
 	<system systemId="http://www.w3.org/1999/xlink/xlinks.xsd" 
 	        uri="schema/xlink/xlinks.xsd"/>
 
+	<!-- srv -->
+	<system systemId="http://eden.ign.fr/xsd/isotc211/isofull/20090316/srv/srv.xsd"
+			uri="schema/srv/srv.xsd"/>
+
+    <system systemId="http://eden.ign.fr/xsd/isotc211/isofull/20090316/gmx/gmx.xsd" 
+            uri="schema/gmx/gmx.xsd"/>
+
+
 </catalog>
