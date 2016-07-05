@@ -50,6 +50,12 @@
              schemaLocation="schema/standards.iso.org/iso/19115/-3/mac/1.0/mac.xsd"/>
   <xs:import namespace="http://standards.iso.org/iso/19115/-3/gco/1.0"
              schemaLocation="schema/standards.iso.org/iso/19115/-3/gco/1.0/gco.xsd"/>
+  <xs:import namespace="http://standards.iso.org/iso/19115/-3/gmw/1.0"
+             schemaLocation="schema/standards.iso.org/iso/19115/-3/gmw/1.0/gmw.xsd"/>
   <xs:import namespace="http://www.opengis.net/gml/3.2"
              schemaLocation="schema/others/ISO19136/gml.xsd"/>
+	<xs:import namespace="http://standards.iso.org/iso/19110/gfc/1.1"
+	           schemaLocation="schema/standards.iso.org/iso/19110/gfc/1.1/gfc.xsd"/>
+	<xs:import namespace="http://standards.iso.org/iso/19110/fcc/1.0"
+	           schemaLocation="schema/standards.iso.org/iso/19110/fcc/1.0/fcc.xsd"/>
 </xs:schema>

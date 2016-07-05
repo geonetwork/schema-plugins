@@ -7,7 +7,15 @@
     <rndt2iso19139>Export this metadata as ISO19139 XML file</rndt2iso19139>
     <rndt2dc>Export this metadata as Dublin Core file</rndt2dc>
 
-  <rndtTab>RNDT view</rndtTab>
+    <rndtTab>RNDT view</rndtTab>
+
+    <rndt>
+       <org>
+           <title>PA organization</title>
+           <field>Organization</field>
+           <askselect>Select an organization</askselect>
+       </org>
+    </rndt>
 <!--  <rndtTabDesc>Description</rndtTabDesc>
   <rndtTabTech>Technical info.</rndtTabTech>
   <rndtTabQua>Quality</rndtTabQua>

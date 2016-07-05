@@ -136,7 +136,7 @@
         </xsl:apply-templates>
         
         <xsl:variable name="geoBox">
-            <xsl:call-template name="geoBoxGUI">
+            <xsl:call-template name="geoBoxGUI19115-3">
                 <xsl:with-param name="schema" select="$schema"/>
                 <xsl:with-param name="edit"   select="$edit"/>
                 <xsl:with-param name="id"   select="geonet:element/@ref"/>
@@ -171,5 +171,153 @@
     </xsl:template>
     
     
+  <!-- Display the extent widget composed of
+    * 4 input text fields with bounds coordinates
+    * a coordinate system switcher. Coordinates are stored in WGS84 but could be displayed 
+    or edited in another projection. 
+  -->
+  <xsl:template name="geoBoxGUI19115-3">
+    <xsl:param name="schema" />
+    <xsl:param name="edit" />
+    <xsl:param name="nEl"/>
+    <xsl:param name="nId"/>
+    <xsl:param name="nValue"/>
+    <xsl:param name="sEl"/>
+    <xsl:param name="sId"/>
+    <xsl:param name="sValue"/>
+    <xsl:param name="wEl"/>
+    <xsl:param name="wId"/>
+    <xsl:param name="wValue"/>
+    <xsl:param name="eEl"/>
+    <xsl:param name="eId"/>
+    <xsl:param name="eValue"/>
+    <xsl:param name="descId"/>
+    <xsl:param name="id"/>
+    <xsl:param name="places"/>
+    
+    
+    <xsl:variable name="eltRef">
+      <xsl:choose>
+        <xsl:when test="$edit=true()">
+          <xsl:value-of select="$id"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="generate-id(.)"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    
+    
+    <!-- Loop on all projections defined in config-gui.xml -->
+    <xsl:for-each select="/root/gui/config/map/proj/crs">
+      <input id="{@code}_{$eltRef}" type="radio" class="proj" name="proj_{$eltRef}" value="{@code}">
+        <xsl:if test="@default='1'"><xsl:attribute name="checked">checked</xsl:attribute></xsl:if>
+      </input>
+      <!-- Set label from loc file -->
+      <label for="{@code}_{$eltRef}">
+        <xsl:variable name="code" select="@code"/>
+        <xsl:choose>
+          <xsl:when test="/root/gui/strings/*[@code=$code]"><xsl:value-of select="/root/gui/strings/*[@code=$code]"/></xsl:when>
+          <xsl:otherwise><xsl:value-of select="@code"/></xsl:otherwise>
+        </xsl:choose>
+      </label>
+      <xsl:text>&#160;&#160;</xsl:text>
+    </xsl:for-each>
+    
+    
+    <table>
+      <tr>
+        <td />
+        <td class="padded" align="center">
+          <xsl:apply-templates mode="coordinateElementGUI"
+            select="$nEl/gco:Decimal"><!-- FIXME make it schema generic -->
+            <xsl:with-param name="schema" select="$schema" />
+            <xsl:with-param name="edit" select="$edit" />
+            <xsl:with-param name="name" select="'gmd:northBoundLatitude'" />
+            <xsl:with-param name="eltRef" select="concat('n', $eltRef)"/>
+          </xsl:apply-templates>
+        </td>
+        <td >
+          <xsl:copy-of select="$places"/>
+        </td>
+      </tr>
+      <tr>
+        <td class="padded" style="align:center;vertical-align: middle">
+          <xsl:apply-templates mode="coordinateElementGUI"
+            select="$wEl/gco:Decimal">
+            <xsl:with-param name="schema" select="$schema" />
+            <xsl:with-param name="edit" select="$edit" />
+            <xsl:with-param name="name" select="'gmd:westBoundLongitude'" />
+            <xsl:with-param name="eltRef" select="concat('w', $eltRef)"/>
+          </xsl:apply-templates>
+        </td>
+        
+        <td class="padded">
+          <xsl:variable name="wID">
+            <xsl:choose>
+              <xsl:when test="$edit=true()"><xsl:value-of select="$wId"/></xsl:when>
+              <xsl:otherwise>w<xsl:value-of select="$eltRef"/></xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
+          
+          <xsl:variable name="eID">
+            <xsl:choose>
+              <xsl:when test="$edit=true()"><xsl:value-of select="$eId"/></xsl:when>
+              <xsl:otherwise>e<xsl:value-of select="$eltRef"/></xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
+          
+          <xsl:variable name="nID">
+            <xsl:choose>
+              <xsl:when test="$edit=true()"><xsl:value-of select="$nId"/></xsl:when>
+              <xsl:otherwise>n<xsl:value-of select="$eltRef"/></xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
+          
+          <xsl:variable name="sID">
+            <xsl:choose>
+              <xsl:when test="$edit=true()"><xsl:value-of select="$sId"/></xsl:when>
+              <xsl:otherwise>s<xsl:value-of select="$eltRef"/></xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
+          
+          
+          <xsl:variable name="geom" >
+            <xsl:value-of select="concat('Polygon((', $wValue, ' ', $sValue,',',$eValue,' ',$sValue,',',$eValue,' ',$nValue,',',$wValue,' ',$nValue,',',$wValue,' ',$sValue, '))')"/>
+          </xsl:variable>
+          <xsl:call-template name="showMap">
+            <xsl:with-param name="edit" select="$edit" />
+            <xsl:with-param name="mode" select="'bbox'" />
+            <xsl:with-param name="coords" select="$geom"/>
+            <xsl:with-param name="watchedBbox" select="concat($wID, ',', $sID, ',', $eID, ',', $nID)"/>
+            <xsl:with-param name="eltRef" select="$eltRef"/>
+          </xsl:call-template>
+        </td>
+        
+        <td class="padded"  style="align:center;vertical-align: middle">
+          <xsl:apply-templates mode="coordinateElementGUI"
+            select="$eEl/gco:Decimal">
+            <xsl:with-param name="schema" select="$schema" />
+            <xsl:with-param name="edit" select="$edit" />
+            <xsl:with-param name="name" select="'gmd:eastBoundLongitude'" />
+            <xsl:with-param name="eltRef" select="concat('e', $eltRef)"/>
+          </xsl:apply-templates>
+        </td>
+      </tr>
+      <tr>
+        <td />
+        <td class="padded" align="center">
+          <xsl:apply-templates mode="coordinateElementGUI"
+            select="$sEl/gco:Decimal">
+            <xsl:with-param name="schema" select="$schema" />
+            <xsl:with-param name="edit" select="$edit" />
+            <xsl:with-param name="name" select="'gmd:southBoundLatitude'" />
+            <xsl:with-param name="eltRef" select="concat('s', $eltRef)"/>
+          </xsl:apply-templates>
+        </td>
+        <td />
+      </tr>
+    </table>
+  </xsl:template>
 
 </xsl:stylesheet>

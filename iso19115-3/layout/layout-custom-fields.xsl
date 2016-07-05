@@ -185,11 +185,11 @@
     </textarea>
   </xsl:template>
 
-  <!-- Custom rendering of resource constraints section 
-    * mri:resourceConstraints is boxed element and the title 
-    * of the fieldset is the name of the child element
+  <!-- Custom rendering of constraints sections mri:resourceConstraints and 
+	  * mdb:metadataConstraints is boxed element and the 
+		* title of the fieldset is the name of the child element
   -->
-  <xsl:template mode="mode-iso19115-3" priority="33000" match="mri:resourceConstraints">
+  <xsl:template mode="mode-iso19115-3" priority="33000" match="mri:resourceConstraints|mdb:metadataConstraints">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
 

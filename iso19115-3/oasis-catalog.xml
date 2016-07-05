@@ -76,6 +76,9 @@
   <uri name="http://standards.iso.org/iso/19115/-3/gco/1.0/gco.xsd"
        uri="schema/standards.iso.org/iso/19115/-3/gco/1.0/gco.xsd"/>
 
+  <uri name="http://standards.iso.org/iso/19115/-3/gmw/1.0/gmw.xsd"
+       uri="schema/standards.iso.org/iso/19115/-3/gmw/1.0/gmw.xsd"/>
+
   <uri name="http://schemas.opengis.net/gml/3.2.1/gml.xsd"
        uri="schema/others/ISO19136/gml.xsd"/>
 
@@ -162,6 +165,9 @@
 
   <system systemId="http://standards.iso.org/iso/19115/-3/gco/1.0/gco.xsd"
        uri="schema/standards.iso.org/iso/19115/-3/gco/1.0/gco.xsd"/>
+
+  <system systemId="http://standards.iso.org/iso/19115/-3/gmw/1.0/gmw.xsd"
+       uri="schema/standards.iso.org/iso/19115/-3/gmw/1.0/gmw.xsd"/>
 
   <system systemId="http://schemas.opengis.net/gml/3.2.1/gml.xsd"
        uri="schema/others/ISO19136/gml.xsd"/>

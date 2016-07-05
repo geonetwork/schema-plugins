@@ -10,9 +10,11 @@
   xmlns:gmx="http://standards.iso.org/iso/19115/-3/gmx"
   xmlns:gn="http://www.fao.org/geonetwork"
   xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
+  xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
   xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
   xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
   xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:util="java:org.fao.geonet.util.XslUtil"
   exclude-result-prefixes="#all" >
   
@@ -29,6 +31,14 @@
       </relation>
     </xsl:for-each>
     
+    <xsl:for-each  select="*/descendant::srv:operatesOn">
+    	<relation type="datasets">
+        <id><xsl:value-of select="@uuidref"/></id>
+				<title><xsl:value-of select="@xlink:title"/></title>
+				<url><xsl:value-of select="@xlink:href"/></url>
+    	</relation>
+    </xsl:for-each>
+
     <xsl:for-each select="*/descendant::*[name(.) = 'mrd:onLine']/*[cit:linkage/gco:CharacterString!='']">
       <relation type="onlinesrc">
         
