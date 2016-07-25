@@ -105,14 +105,14 @@ Status for each plugins in that repository is described below:
   <td></td>
  </tr><tr>
   <td>iso19139.sdn-cdi</td>
-  <td>2.11.x</td>
-  <td>Ifremer</td>
-  <td>No updates planned</td>
+  <td>3.x</td>
+  <td>Ifremer, @chseip</td>
+  <td>Use https://github.com/metadata101/iso19139.sdn-cdi</td>
  </tr><tr>
   <td>iso19139.sdn-csr</td>
-  <td>2.11.x</td>
-  <td>Ifremer</td>
-  <td>No updates planned</td>
+  <td>3.x</td>
+  <td>Ifremer, @chseip</td>
+  <td>Use https://github.com/metadata101/iso19139.sdn-csr</td>
  </tr><tr>
   <td>iso19139.xyz</td>
   <td></td>
