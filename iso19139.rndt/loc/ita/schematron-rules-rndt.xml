@@ -33,7 +33,7 @@
 
 	<!--DATA/SERVICE IDENTIFICATION - IDENTIFIER-->
 	<M13>Identificazione dei Dati/Servizi - Identificatore</M13>
-	<alert.M13><div>L'elemento RS_Identifier è mancante, incompleto o ha un valore errato</div></alert.M13>
+	<alert.M13><div>L'elemento RS_Identifier/MD_Identifier è mancante, incompleto o ha un valore errato</div></alert.M13>
 	<!--DATA/SERVICE IDENTIFICATION - SERIES-->
 	<M14>Identificazione dei Dati/Servizi - Id livello superiore</M14>
 	<alert.M14><div>L'elemento series è mancante, incompleto o ha un valore errato</div></alert.M14>

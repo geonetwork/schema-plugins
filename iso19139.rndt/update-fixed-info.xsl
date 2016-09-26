@@ -5,10 +5,10 @@
                   xmlns:gmx="http://www.isotc211.org/2005/gmx"
                   xmlns:gco="http://www.isotc211.org/2005/gco"
                   xmlns:gmd="http://www.isotc211.org/2005/gmd"
-				  xmlns:xlink="http://www.w3.org/1999/xlink"
-				  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   exclude-result-prefixes="gmd srv gmx">
-    
+
     <xsl:include href="../iso19139/convert/functions.xsl"/>
 
     <!-- ================================================================= -->
@@ -151,8 +151,7 @@
     <!-- ================================================================= -->
     <!-- Resource identifier -->
 
-    <xsl:variable name="oldResId" select="//gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString/text() | 
-	                                      //gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString/text"/>
+    <xsl:variable name="oldResId" select="//gmd:identificationInfo/*/gmd:citation/gmd:CI_Citation/gmd:identifier/*/gmd:code/gco:CharacterString/text()"/>
 
     <!-- this var is used both for the resource id and the series id -->
 
@@ -168,7 +167,7 @@
             <!-- either first metadatacreation, or ipa just defined: create the code -->
             <!-- Will be equals to the resource identifier, which is OK -->
             <xsl:when test="not(contains($oldResId , ':'))">
-                <xsl:message>INFO: creating resource identifier</xsl:message>                
+                <xsl:message>INFO: creating resource identifier</xsl:message>
                 <xsl:value-of select="concat($fileId,'_resource')"/>
             </xsl:when>
             <!-- ipa defined, different from the one in code -->
@@ -193,8 +192,7 @@
     </xsl:variable>
 
 
-    <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code | 
-	                     gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code"  priority="10">
+    <xsl:template match="gmd:identificationInfo/*/gmd:citation/gmd:CI_Citation/gmd:identifier/*/gmd:code"  priority="10">
         <xsl:message>==== RESOURCE IDENTIFIER ====</xsl:message>
         <xsl:copy>
             <gco:CharacterString><xsl:value-of select="$resId"/></gco:CharacterString>
@@ -246,7 +244,7 @@
             <!-- redefine the current code since it may no longer be valid -->
 
             <xsl:when test="$ipaJustAssigned">
-				
+
             <!-- Check if gmd:Identifier != gmd:parentIdentifier, in this case this    -->
             <!-- metadata is a child so the gmd:issueIdentification must assume        -->
             <!-- the value of the gmd:parentIdentifier.                                -->

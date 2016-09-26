@@ -179,7 +179,7 @@ temporalSamplingService;temporalProximityAnalysisService;metadataProcessingServi
 		<sch:title>$loc/strings/M13</sch:title>
 		<sch:rule context="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation
 		|//gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation">
-			<sch:assert test="gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString">$loc/strings/alert.M13</sch:assert>
+			<sch:assert test="gmd:identifier/*/gmd:code/gco:CharacterString">$loc/strings/alert.M13</sch:assert>
 		</sch:rule>
 	</sch:pattern>
 	<!--DATA/SERVICE IDENTIFICATION - SERIES-->
@@ -503,7 +503,7 @@ temporalSamplingService;temporalProximityAnalysisService;metadataProcessingServi
 		<sch:title>$loc/strings/M101</sch:title>
 		<sch:rule context="gmd:parentIdentifier[.!='']|gmd:fileIdentifier|
 		/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:series/gmd:CI_Series/gmd:issueIdentification|
-		/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code">
+		/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/*/gmd:code">
 			<sch:assert test="contains(gco:CharacterString,':')">$loc/strings/alert.M101</sch:assert>
 		</sch:rule>
 			</sch:pattern>
@@ -515,11 +515,10 @@ temporalSamplingService;temporalProximityAnalysisService;metadataProcessingServi
 		</sch:rule>
 	</sch:pattern>
 	<!--COD IPA - IDENTIFIER-->
-	/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString
 	<sch:pattern>
 		<sch:title>$loc/strings/M103</sch:title>
-		<sch:rule context="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code[contains(../../../../../../../gmd:fileIdentifier/gco:CharacterString,':')]|
-		                   /gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code[contains(../../../../../../../gmd:fileIdentifier/gco:CharacterString,':')]">
+		<sch:rule context="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/*/gmd:code[contains(../../../../../../../gmd:fileIdentifier/gco:CharacterString,':')]|
+		                   /gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/*/gmd:code[contains(../../../../../../../gmd:fileIdentifier/gco:CharacterString,':')]">
 			<sch:assert test="starts-with(gco:CharacterString,substring-before(../../../../../../../gmd:fileIdentifier/gco:CharacterString,':'))">$loc/strings/alert.M103</sch:assert>
 		</sch:rule>
 	</sch:pattern>

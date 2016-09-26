@@ -78,11 +78,11 @@
 
                     <!-- Identifier -->
                     <xsl:apply-templates mode="elementEP"
-                            select="gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code">
+                            select="gmd:citation/gmd:CI_Citation/gmd:identifier/*/gmd:code">
                         <xsl:with-param name="schema" select="$schema" />
                         <xsl:with-param name="edit" select="$edit" />
                     </xsl:apply-templates>
-                    <xsl:if test="not(gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code)">
+                    <xsl:if test="not(gmd:citation/gmd:CI_Citation/gmd:identifier/*/gmd:code)">
                             <xsl:apply-templates mode="elementEP"
                                     select="gmd:citation/gmd:CI_Citation/geonet:child[string(@name)='code']">
                             <xsl:with-param name="schema" select="$schema" />
