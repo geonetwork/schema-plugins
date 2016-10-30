@@ -423,8 +423,15 @@
 
 	<!-- ================================================================= -->
 
-        <!-- RNDT chockes on MimeFile-->
-
+        <!-- L'harvester RNDT non riconosce l'elemento gmx:MimeFile -->
+        
+        <!-- Disabilitare questo template nel caso in cui servano per qualche altro scopo le informazioni aggiuntive fornite da gmx:MimeFile.
+             In questo caso l'eliminazione dell'elemento non riconosciuto può essere effettuata in un postprocessing XSL:
+             - l'XSL presente (iso-full.xsl) effettua la maggior parte del processing, lasciando nell'output anche le informazioni aggiuntive
+               non riconosciute dall'harvester del Repertorio Nazionale.
+             - viene creato un servizio CSW aggiuntivo, a cui si fanno effettuare le trasformazioni finali (da MimeType a CharacterString)
+        -->
+         
         <xsl:template match="gmx:MimeFileType">
             <gco:CharacterString><xsl:value-of select="text()"/></gco:CharacterString>
         </xsl:template>

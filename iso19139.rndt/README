@@ -39,3 +39,33 @@ GeoNetwork Italian RNDT metadata pluggable schema (added 23 October 2013).
     </ente>
  </rndt>
 ```
+
+- CSW: RNDT vs ISO
+  In case you need to provide a further ISO endpoint, you have to create the 
+  related service:
+  
+  <service name="csw-YOUR_ISO_NAME">
+      <class name=".services.main.CswDiscoveryDispatcher" >
+          <param name="filter" value="YOUR_FILTER_HERE"/>
+      </class>
+      <output sheet="rndt2iso.xsl" />
+  </service>
+  
+  The standard RNDT CSW output will transform gmx:MimeType into CharacterString, but many services expects 
+  some file information in the MimeType attributes. So you need to edit the present/csw/iso-full.xsl file
+  and comment out the template that performs this replacement; it's located toward the end of the XSL file
+  and there are some comments about this use case.
+  
+  Now you need also to configure a further CSW endpoint for the RNDT output in this way:  
+    
+  <service name="csw-WHATEVER-rndt-WHATEVER">
+      <class name=".services.main.CswDiscoveryDispatcher" >
+          <param name="filter" value="YOUR_FILTER_IF_ANY"/>
+      </class>
+      <output sheet="rndt_fix.xsl" />
+  </service>
+   
+  The rndt_fix.xsl transformations will apply the MimeType/CharacterString subst removed previously.
+  You can find this file in the present/csw directory, but you'll have to copy in in the xsl/ dir 
+  in order to let GeoNetwork find it.
+   
