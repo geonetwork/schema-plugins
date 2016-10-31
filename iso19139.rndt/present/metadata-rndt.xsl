@@ -581,7 +581,7 @@
                                                         <xsl:apply-templates mode="elementEP"
                                                                 select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title">
                                                                 <xsl:with-param name="schema" select="$schema" />
-                                                                <xsl:with-param name="edit" select="$edit" />
+                                                                <xsl:with-param name="edit" select="false()" />
                                                         </xsl:apply-templates>
                                                         <xsl:if
                                                                 test="not(../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title)">
@@ -597,7 +597,7 @@
                                                         <xsl:apply-templates mode="elementEP"
                                                                 select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date">
                                                                 <xsl:with-param name="schema" select="$schema" />
-                                                                <xsl:with-param name="edit" select="$edit" />
+                                                                <xsl:with-param name="edit" select="false()" />
                                                         </xsl:apply-templates>
                                                         <xsl:if
                                                                 test="not(../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date)">
@@ -613,7 +613,7 @@
                                                         <xsl:apply-templates mode="elementEP"
                                                                 select="../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:dateType">
                                                                 <xsl:with-param name="schema" select="$schema" />
-                                                                <xsl:with-param name="edit" select="$edit" />
+                                                                <xsl:with-param name="edit" select="false()" />
                                                         </xsl:apply-templates>
                                                         <xsl:if
                                                                 test="not(../../gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:dateType)">
@@ -1135,7 +1135,7 @@
                     <xsl:apply-templates mode="elementEP"
                                          select="../../gmd:metadataStandardName">
                         <xsl:with-param name="schema" select="$schema" />
-                        <xsl:with-param name="edit" select="$edit" />
+                        <xsl:with-param name="edit" select="false()" />
                     </xsl:apply-templates>
                     <xsl:if	test="not(../../gmd:metadataStandardName)">
                         <xsl:apply-templates mode="elementEP"
@@ -1150,7 +1150,7 @@
                     <xsl:apply-templates mode="elementEP"
                                          select="../../gmd:metadataStandardVersion">
                         <xsl:with-param name="schema" select="$schema" />
-                        <xsl:with-param name="edit" select="$edit" />
+                        <xsl:with-param name="edit" select="false()" />
                     </xsl:apply-templates>
                     <xsl:if	test="not(../../gmd:metadataStandardVersion)">
                         <xsl:apply-templates mode="elementEP"

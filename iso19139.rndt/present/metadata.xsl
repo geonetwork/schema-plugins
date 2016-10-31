@@ -206,4 +206,35 @@
         </xsl:choose>
     </xsl:template>
 
+  <!-- ============================================================================= -->
+  <!--
+  make the following fields always not editable:
+  metadataStandardName
+  metadataStandardVersion
+  fileIdentifier
+  -->
+  <!-- ============================================================================= -->
+
+  <xsl:template mode="iso19139" match="gmd:metadataStandardName|gmd:metadataStandardVersion|gmd:fileIdentifier" priority="200">
+    <xsl:param name="schema"/>
+    <xsl:param name="edit"/>
+
+    <xsl:apply-templates mode="simpleElement" select=".">
+      <xsl:with-param name="schema"  select="$schema"/>
+      <xsl:with-param name="edit"    select="false()"/>
+      <xsl:with-param name="text">
+        <xsl:choose>
+          <xsl:when test="string-join(gco:*, '')=''">
+            <span class="info">
+              - <xsl:value-of select="/root/gui/strings/setOnSave"/> -
+            </span>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="gco:*"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:with-param>
+    </xsl:apply-templates>
+  </xsl:template>
+
 </xsl:stylesheet>
