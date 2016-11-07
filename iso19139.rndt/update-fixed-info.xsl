@@ -719,17 +719,61 @@
     <!-- ================================================================= -->
     <!-- setup the CRS info -->
 
-    <xsl:template match="gmd:referenceSystemIdentifier/gmd:RS_Identifier">
-        <xsl:copy>
-            <xsl:apply-templates select="gmd:code"/>
+    <!-- prendi solo l'ultimo nodo, che dovrebbe essere l'ultimo aggiunto -->
 
-            <xsl:variable name="code" select="gmd:code/gco:CharacterString/text()"/>
-            <xsl:if test="number($code)">
-                <gmd:codeSpace>
-                    <gco:CharacterString>http://www.epsg-registry.org</gco:CharacterString>
-                </gmd:codeSpace>
-            </xsl:if>
+    <xsl:template match="gmd:referenceSystemInfo">
+        <xsl:message>Elimino CRS <xsl:value-of select=".//gmd:referenceSystemIdentifier/gmd:RS_Identifier/gmd:code"/></xsl:message>
+    </xsl:template>
+
+    <xsl:template match="gmd:referenceSystemInfo[last()]">
+        <xsl:copy>
+            <xsl:apply-templates select="@*|node()"/>
         </xsl:copy>
+    </xsl:template>
+
+    <!-- parsa il CRS e imposta il formato RNDT -->
+
+    <xsl:template match="gmd:referenceSystemIdentifier/gmd:RS_Identifier">
+
+       <xsl:variable name="fullcode" select="gmd:code/gco:CharacterString/text()"/>
+       <xsl:variable name="epsgcode" select="substring-before(substring-after($fullcode,'(EPSG:'), ')')"/>
+
+       <xsl:message>FULL: <xsl:value-of select="$fullcode"/></xsl:message>
+       <xsl:message>EPSG: <xsl:value-of select="$epsgcode"/></xsl:message>
+       
+        <xsl:copy>
+            <xsl:choose>
+                <!-- se e' un numero, consideralo un codice EPSG -->
+                <xsl:when test="string(number($fullcode)) != 'NaN'">
+                    <xsl:call-template name="srsEPSGsnippet">
+                        <xsl:with-param name="epsg" select="$fullcode"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <!-- se il code contiene la stringa "(EPSG:nnnn)" dovrebbe essere un codice preso dal CRS selector -->
+                <xsl:when test="string(number($epsgcode)) != 'NaN'">
+                    <xsl:call-template name="srsEPSGsnippet">
+                        <xsl:with-param name="epsg" select="$epsgcode"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <!-- altrimenti copia solo il codice, che dovrebbe essere stringa RNDT -->
+                <xsl:otherwise>
+                    <xsl:apply-templates select="gmd:code"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:copy>
+    </xsl:template>
+
+    <xsl:template name="srsEPSGsnippet">
+        <xsl:param name="epsg"/>
+
+            <gmd:code>
+                <gco:CharacterString>
+                    <xsl:value-of select="$epsg"/>
+                </gco:CharacterString>
+            </gmd:code>
+            <gmd:codeSpace>
+                <gco:CharacterString>http://www.epsg-registry.org/</gco:CharacterString>
+            </gmd:codeSpace>
     </xsl:template>
 
     <!-- ================================================================= -->
