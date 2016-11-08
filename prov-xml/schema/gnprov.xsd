@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://geonetwork-opensource.org/prov-xml"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:gnprov="http://geonetwork-opensource.org/prov-xml"
+           xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/1.0"
+           xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
+           xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+
+  <xs:import namespace="http://standards.iso.org/iso/19115/-3/msr/1.0" 
+             schemaLocation="standards.iso.org/iso/19115/-3/msr/1.0/msr.xsd"/>
+
+  <xs:import namespace="http://standards.iso.org/iso/19115/-3/gex/1.0" 
+             schemaLocation="standards.iso.org/iso/19115/-3/gex/1.0/gex.xsd"/>
+
+  <xs:import namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" 
+             schemaLocation="standards.iso.org/iso/19115/-3/cit/1.0/cit.xsd"/>
+
+  <element name="timeExtent" type="gex:EX_TemporalExtent_PropertyType"/>
+
+  <element name="gridDefinition" type="msr:MD_Georectified_Type"/>
+ 
+  <element name="party" type="cit:AbstractCI_Party_PropertyType"/>
+ 
+</xs:schema>

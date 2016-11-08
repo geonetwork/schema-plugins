@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Example provenance document for a trike run
+     S.Pigot - August, 2016
+  -->
+<prov:document
+  xmlns:prov="http://www.w3.org/ns/prov#"
+  xmlns:gnprov="http://geonetwork-opensource.org/prov-xml"
+  xmlns:trike-prov="http://www.csiro.au/en/Research/OandA/trike"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:dct="http://purl.org/dc/terms/"
+  xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/1.0"
+  xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
+  xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+  xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+  xmlns:gml="http://www.opengis.net/gml/3.2"
+  xsi:schemaLocation="http://www.w3.org/ns/prov# http://www.w3.org/ns/prov.xsd http://purl.org/dc/elements/1.1/ http://dublincore.org/schemas/xmls/qdc/2008/02/11/dc.xsd http://purl.org/dc/terms/ http://dublincore.org/schemas/xmls/qdc/2008/02/11/dcterms.xsd http://standards.iso.org/iso/19115/-3/gex/1.0 http://standards.iso.org/iso/19115/-3/gex/1.0/gex.xsd http://standards.iso.org/iso/19115/-3/msr/1.0 http://standards.iso.org/iso/19115/-3/msr/1.0/msr.xsd http://standards.iso.org/iso/19115/-3/cit/1.0 http://standards.iso.org/iso/19115/-3/cit/1.0/cit.xsd  http://standards.iso.org/iso/19115/-3/gco/1.0 http://standards.iso.org/iso/19115/-3/gco/1.0/gco.xsd http://geonetwork-opensource.org/prov-xml http://geonetwork-opensource.org/prov-xml/gnprov.xsd http://www.csiro.au/en/Research/OandA/trike http://www.csiro.au/en/Research/OandA/trike/trike-prov.xsd">
+
+  <!-- Entities - usually input and output parameters - support: model, forcing, timeExtent, 
+                  spatialextent and output -->
+
+  <!-- entity prov:type list: 
+          model
+          forcing
+          timeExtent
+          gridDefinition
+          output
+          ?others
+    -->
+
+  <!-- models are identified in the marlin catalog by uuid:
+          708aca95-835e-4b4b-b47e-b02a4fb5bb31 moms
+          19eea2a0-03d1-408b-a1a3-a57853701570 roms
+          2b869a47-d076-4f1c-9af0-3a0b717e3ed6 shoc
+          9c3d92a2-e859-491d-aeb4-cf7dbff0f481 rams
+          63f99842-21e3-4e3e-b0d1-517c9f3c6277 swan
+          8b9b88d1-560f-47fa-a69f-f9f20e4431ef xbeach
+          c3a50519-86ea-44d3-aea3-6a43d4496ec3 ccam
+          8498c3c9-6502-4567-a323-f60990822305 wavewatch
+          ?? others
+   -->
+
+  <prov:entity prov:id="a model name eg. shoc">
+    <!-- location is ISO19115 metadata record in a catalog or a prov:document -->
+    <prov:location>location is ISO19115 metadata record or a prov:document in a catalog that describes the model</prov:location>
+    <!-- prov:type is Mandatory -->
+    <prov:type codeList="codeListLocation#type" codeListValue="">model</prov:type> 
+  </prov:entity>
+
+  <!-- forcing datasets are identified in the marlin catalog by uuid:
+          c5dd4a53-ceaf-42dc-9a8f-0dad331c5eb3 access-a-surface
+          25c812f2-82af-4cb2-b962-c00afdd5d088 access-g-surface
+          9ea34b6f-f891-4872-bbb0-3abe43d00dbe access-r-surface
+          4b1c46d2-1c35-475a-8915-5ddc1312db62 bran3
+          ab890a6a-c482-484b-a7e9-f0d4a402ba8f bran3p5
+          f0df2001-c9b4-48d8-a4b9-4ae13a16422d foam1-an
+          b4de011b-fb62-441b-ba4d-8f49068c125a foam1
+          bcb67817-19fa-45c5-96b4-ca06ea307158 ncep
+          91596d73-401a-40b5-86c5-be1f23c09e64 ofam2-1-an
+          5bbe288c-2427-4e48-9272-dd89c6d0dafb ofam2-1-fc
+          f4c2493f-c09e-489d-bcd1-88c064dd524b ofam2-1-nrt
+          435d3322-ce94-423b-8581-52b90f4bc897 ofam2-an
+          d7a0123a-5cf1-4de1-be10-26f318c92868 ofam2-fc
+          a0d42453-720a-4c95-aa2d-df4f430a3d60 ofam2-nrt
+          ?? others
+
+       they always point to a metadata record (but later a prov document) that describes them
+    -->
+  <prov:entity prov:id="a forcing dataset name eg. access-a-surface">
+    <!-- location is ISO19115 metadata record in a catalog or a prov:document -->
+    <prov:location>location is ISO19115 metadata record or a prov:document in catalog that describes the forcing dataset</prov:location>
+    <!-- prov:type is Mandatory -->
+    <prov:type codeList="codeListLocation#type" codeListValue="forcing">forcing</prov:type> 
+  </prov:entity>
+
+  <!-- timeExtent is prov:entity with a gex:EX_TemporalExtent element in it -->
+  <prov:entity prov:id="timeExtent">
+    <gnprov:temporalExtent>
+      <gex:EX_Extent>
+        <gex:temporalElement>
+          <gex:EX_TemporalExtent>
+            <gex:extent>
+              <!-- gmd:id needs to be unique to this document, gml:TimePeriod can be
+                   quite sophisticated - see for example
+                   https://geo-ide.noaa.gov/wiki/index.php?title=TimePeriod -->
+              <gml:TimePeriod gml:id="A1234">
+                <gml:beginPosition></gml:beginPosition>
+                <gml:endPosition></gml:endPosition>
+              </gml:TimePeriod>
+            </gex:extent>
+          </gex:EX_TemporalExtent>
+        </gex:temporalElement>
+      </gex:EX_Extent>  
+    </gnprov:temporalExtent>
+    <!-- prov:type is Mandatory -->
+    <prov:type codeList="codeListLocation#type" codeListValue="timeExtent">timeExtent</prov:type> <!-- helper provides this -->
+  </prov:entity>
+
+  <!-- gridDefinition is prov:entity with an msr:MD_Georectified element -->
+  <prov:entity prov:id="gridDefinition">
+    <gnprov:gridDefinition>
+      <msr:MD_Georectified>
+        <msr:numberOfDimensions>
+          <gco:Integer>2</gco:Integer>
+        </msr:numberOfDimensions>
+        <msr:axisDimensionProperties>
+          <msr:MD_Dimension>
+            <msr:dimensionName>
+              <msr:MD_DimensionNameTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_DimensionNameTypeCode" codeListValue="row"/>
+            </msr:dimensionName>
+            <msr:dimensionSize>
+              <gco:Integer></gco:Integer>
+            </msr:dimensionSize>
+            <msr:resolution>
+              <gco:Measure uom="Degree"></gco:Measure>
+            </msr:resolution>
+          </msr:MD_Dimension>
+        </msr:axisDimensionProperties>
+        <msr:axisDimensionProperties>
+          <msr:MD_Dimension>
+            <msr:dimensionName>
+              <msr:MD_DimensionNameTypeCode codeList="http://www.isotc211.org/2005/resources/codeList.xml#MD_DimensionNameTypeCode" codeListValue="column"/>
+            </msr:dimensionName>
+            <msr:dimensionSize>
+              <gco:Integer></gco:Integer>
+            </msr:dimensionSize>
+            <msr:resolution>
+              <gco:Measure uom="Degree"></gco:Measure>
+            </msr:resolution>
+          </msr:MD_Dimension>
+        </msr:axisDimensionProperties>
+        <msr:cellGeometry>
+          <msr:MD_CellGeometryCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CellGeometryCode" codeListValue="point"/>
+        </msr:cellGeometry>
+        <msr:transformationParameterAvailability>
+          <gco:Boolean>true</gco:Boolean>
+        </msr:transformationParameterAvailability>
+        <msr:cornerPoints>
+          <gml:Point gml:id="origin">
+           <gml:pos>-180.0 -90.0</gml:pos>
+        </gml:Point>
+         </msr:cornerPoints>
+        <msr:cornerPoints>
+          <gml:Point>
+           <gml:pos>180.0 -90.0</gml:pos>
+          </gml:Point>
+         </msr:cornerPoints>
+        <msr:cornerPoints>
+          <gml:Point>
+           <gml:pos>180.0 90.0</gml:pos>
+          </gml:Point>
+         </msr:cornerPoints>
+        <msr:cornerPoints>
+          <gml:Point>
+           <gml:pos>-180.0 90.0</gml:pos>
+          </gml:Point>
+         </msr:cornerPoints>
+        <msr:transformationDimensionDescription>
+          <gco:CharacterString>rotation in degrees, clockwise from north</gco:CharacterString>
+         </msr:transformationDimensionDescription>
+         <msr:transformationDimensionMapping>
+          <gco:CharacterString>0.0</gco:CharacterString>
+         </msr:transformationDimensionMapping>
+      </msr:MD_Georectified>
+    </gnprov:gridDefinition>
+    <!-- prov:type is Mandatory -->
+    <prov:type codeList="codeListLocation#type" codeListValue="gridDefinition">gridDefinition</prov:type> <!-- helper provides this -->
+  </prov:entity>
+
+  <!-- output packages are identified by their own uuid(? could be too opaque) and a location 
+       which is a URL pointing to the package -->
+  <prov:entity prov:id="output">
+    <prov:location>url of output package</prov:location>
+    <!-- prov:type is Mandatory -->
+    <prov:type codeList="codeListLocation#type" codeListValue="output">output</prov:type> <!-- helper provides this -->
+  </prov:entity>
+
+  <!-- Activities - in this scenario, our activity is a model run 
+       and it is controlled by the trike software  - see prov:softwareAgent -->
+
+  <prov:activity prov:id="modelRun">
+    <prov:startTime>ISO date time of start of model run</prov:startTime>
+    <prov:endTime>ISO date time of end of model run</prov:endTime>
+    <!-- Can have additional fields from dublin core (dc:) or dublin core terms (dct:) as required -->
+    <!-- Not sure what else to put here? Uwe?  -->
+  </prov:activity>
+
+  <!-- Agents & Actors - the people, organization and software involved in this  -->
+
+  <prov:person prov:id="name of individual who did something in this activity">
+    <gnprov:party>
+            <cit:CI_Individual>
+               <cit:positionName>
+                  <gco:CharacterString>eg. Research Scientist</gco:CharacterString>
+               </cit:positionName>
+               <cit:individualName>
+                  <gco:CharacterString>John Q Scientist</gco:CharacterString>
+               </cit:individualName>
+            </cit:CI_Individual>
+    </gnprov:party>
+  </prov:person>
+
+  <prov:organization prov:id="name of organization that an individual acts on behalf of">
+    <gnprov:party>
+      <cit:CI_Organisation>
+         <cit:name>
+            <gco:CharacterString></gco:CharacterString>
+         </cit:name>
+         <cit:contactInfo>
+            <cit:CI_Contact>
+               <cit:phone>
+                  <cit:CI_Telephone>
+                     <cit:number>
+                        <gco:CharacterString></gco:CharacterString>
+                     </cit:number>
+                     <cit:numberType>
+                        <cit:CI_TelephoneTypeCode codeList="codeListLocation#CI_TelephoneTypeCode" codeListValue="voice">voice</cit:CI_TelephoneTypeCode>
+                     </cit:numberType>
+                  </cit:CI_Telephone>
+               </cit:phone>
+               <cit:address>
+                  <cit:CI_Address>
+                     <cit:deliveryPoint>
+                        <gco:CharacterString></gco:CharacterString>
+                     </cit:deliveryPoint>
+                     <cit:city>
+                        <gco:CharacterString></gco:CharacterString>
+                     </cit:city>
+                     <cit:administrativeArea>
+                        <gco:CharacterString></gco:CharacterString>
+                     </cit:administrativeArea>
+                     <cit:postalCode>
+                        <gco:CharacterString></gco:CharacterString>
+                     </cit:postalCode>
+                     <cit:country>
+                        <gco:CharacterString></gco:CharacterString>
+                     </cit:country>
+                  </cit:CI_Address>
+               </cit:address>
+            </cit:CI_Contact>
+         </cit:contactInfo>
+      </cit:CI_Organisation>
+    </gnprov:party>
+  </prov:organization>
+
+  <prov:softwareAgent prov:id="trike">
+    <!-- location is a metadata record describing trike -->
+    <prov:location>Location is the url of the metadata record that describes the trike software system</prov:location> 
+  </prov:softwareAgent>
+
+
+  <!-- Associations: who did what: processor, principalInvestigator and softwareSystem used 
+       and who acted on behalf of who (if you get my drift :-)) -->
+
+  <!-- prov:role for wasAssociatedWith comes from ISO19115 responsibility roles + softwareSystem -->
+
+  <prov:wasAssociatedWith>
+    <prov:activity prov:ref="modelRun"/>
+    <prov:agent prov:ref="should be the prov:id of a person or organization"/>
+    <prov:role codeList="codeListLocation#associatedRole" codeListValue="processor">processor</prov:role>
+  </prov:wasAssociatedWith>
+
+  <prov:wasAssociatedWith>
+    <prov:activity prov:ref="modelRun"/>
+    <prov:agent prov:ref="should be the prov:id of a person or organization"/>
+    <prov:role codeList="codeListLocation#associatedRole" codeListValue="principalInvestigator">principalInvestigator</prov:role>
+  </prov:wasAssociatedWith>
+
+  <prov:wasAssociatedWith>
+    <prov:activity prov:ref="modelRun"/>
+    <prov:agent prov:ref="trike"/>
+    <prov:role codeList="codeListLocation#associatedRole" codeListValue="softwareSystem">softwareSystem</prov:role>
+  </prov:wasAssociatedWith>
+
+  <prov:actedOnBehalfOf>
+    <prov:delegate prov:ref="should be the prov:id of a person"/>
+    <prov:responsible prov:ref="should be the prov:id of an agent"/>
+  </prov:actedOnBehalfOf>
+
+  <!-- entities used and outputs generated. In the prov:used elements, the prov:role corresponds
+       to the prov:entity/prov:type - this is a deliberate choice -->
+
+  <prov:used>
+    <prov:activity prov:ref="modelRun"/>
+    <prov:entity prov:ref="should be the prov:id of a model entity"/>
+    <prov:role codeList="codeListLocation#usedRole" codeListValue="model">model</prov:role>
+  </prov:used>
+
+  <prov:used>
+    <prov:activity prov:ref="modelRun"/>
+    <prov:entity prov:ref="should be the prov:id of a forcing entity"/>
+    <prov:role codeList="codeListLocation#usedRole" codeListValue="forcing">forcing</prov:role>
+  </prov:used>
+
+  <prov:used>
+    <prov:activity prov:ref="modelRun"/>
+    <prov:entity prov:ref="timeExtent"/>
+    <prov:role codeList="codeListLocation#usedRole" codeListValue="timeExtent">timeExtent</prov:role>
+  </prov:used>
+
+  <prov:used>
+    <prov:activity prov:ref="modelRun"/>
+    <prov:entity prov:ref="gridDefinition"/>
+    <prov:role codeList="codeListLocation#usedRole" codeListValue="gridDefinition">gridDefinition</prov:role>
+  </prov:used>
+
+  <prov:wasGeneratedBy>
+    <prov:entity prov:ref="output"/>
+    <prov:activity prov:ref="modelRun"/>
+    <prov:time></prov:time>
+  </prov:wasGeneratedBy>
+
+  <!-- Document metadata: id, title, description, coverage, keywords (subject), date created -->
+
+  <prov:other>
+    <dc:identifier>63417bf5-8c26-435d-87a4-1ae358eee4a9</dc:identifier>
+    <dc:title>Template: Provenance document describing a trike run</dc:title>
+    <dc:description>The trike run used a model with some forcing datasets, timeExtent, gridDefinition and produced an output</dc:description>
+    <dc:coverage>northlimit=90;southlimit=-90;eastlimit=-180;westlimit=180;name=</dc:coverage>
+    <dc:subject>TRIKE,MARVL</dc:subject>
+    <dct:created></dct:created>
+  </prov:other>
+
+</prov:document>
