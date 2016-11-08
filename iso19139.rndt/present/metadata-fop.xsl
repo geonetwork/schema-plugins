@@ -23,8 +23,8 @@
                 <xsl:with-param name="schema" select="$schema"/>
             </xsl:apply-templates>
 
-            <xsl:apply-templates mode="elementFop" select="./gmd:identificationInfo/*/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code|
-                                                         ./gmd:identificationInfo/*/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code">
+            <xsl:apply-templates mode="elementFop" select="./gmd:identificationInfo/*/gmd:citation/gmd:CI_Citation/gmd:identifier/*/gmd:code|
+                                                         ./gmd:identificationInfo/*/gmd:citation/gmd:CI_Citation/gmd:identifier/*/gmd:code">
                 <xsl:with-param name="schema" select="$schema"/>
             </xsl:apply-templates>
 

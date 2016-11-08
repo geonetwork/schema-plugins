@@ -5,10 +5,10 @@
                   xmlns:gmx="http://www.isotc211.org/2005/gmx"
                   xmlns:gco="http://www.isotc211.org/2005/gco"
                   xmlns:gmd="http://www.isotc211.org/2005/gmd"
-				  xmlns:xlink="http://www.w3.org/1999/xlink"
-				  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   exclude-result-prefixes="gmd srv gmx">
-    
+
     <xsl:include href="../iso19139/convert/functions.xsl"/>
 
     <!-- ================================================================= -->
@@ -151,8 +151,7 @@
     <!-- ================================================================= -->
     <!-- Resource identifier -->
 
-    <xsl:variable name="oldResId" select="//gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString/text() | 
-	                                      //gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString/text"/>
+    <xsl:variable name="oldResId" select="//gmd:identificationInfo/*/gmd:citation/gmd:CI_Citation/gmd:identifier/*/gmd:code/gco:CharacterString/text()"/>
 
     <!-- this var is used both for the resource id and the series id -->
 
@@ -168,7 +167,7 @@
             <!-- either first metadatacreation, or ipa just defined: create the code -->
             <!-- Will be equals to the resource identifier, which is OK -->
             <xsl:when test="not(contains($oldResId , ':'))">
-                <xsl:message>INFO: creating resource identifier</xsl:message>                
+                <xsl:message>INFO: creating resource identifier</xsl:message>
                 <xsl:value-of select="concat($fileId,'_resource')"/>
             </xsl:when>
             <!-- ipa defined, different from the one in code -->
@@ -193,8 +192,7 @@
     </xsl:variable>
 
 
-    <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code | 
-	                     gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code"  priority="10">
+    <xsl:template match="gmd:identificationInfo/*/gmd:citation/gmd:CI_Citation/gmd:identifier/*/gmd:code"  priority="10">
         <xsl:message>==== RESOURCE IDENTIFIER ====</xsl:message>
         <xsl:copy>
             <gco:CharacterString><xsl:value-of select="$resId"/></gco:CharacterString>
@@ -246,7 +244,7 @@
             <!-- redefine the current code since it may no longer be valid -->
 
             <xsl:when test="$ipaJustAssigned">
-				
+
             <!-- Check if gmd:Identifier != gmd:parentIdentifier, in this case this    -->
             <!-- metadata is a child so the gmd:issueIdentification must assume        -->
             <!-- the value of the gmd:parentIdentifier.                                -->
@@ -721,17 +719,61 @@
     <!-- ================================================================= -->
     <!-- setup the CRS info -->
 
-    <xsl:template match="gmd:referenceSystemIdentifier/gmd:RS_Identifier">
-        <xsl:copy>
-            <xsl:apply-templates select="gmd:code"/>
+    <!-- prendi solo l'ultimo nodo, che dovrebbe essere l'ultimo aggiunto -->
 
-            <xsl:variable name="code" select="gmd:code/gco:CharacterString/text()"/>
-            <xsl:if test="number($code)">
-                <gmd:codeSpace>
-                    <gco:CharacterString>http://www.epsg-registry.org</gco:CharacterString>
-                </gmd:codeSpace>
-            </xsl:if>
+    <xsl:template match="gmd:referenceSystemInfo">
+        <xsl:message>Elimino CRS <xsl:value-of select=".//gmd:referenceSystemIdentifier/gmd:RS_Identifier/gmd:code"/></xsl:message>
+    </xsl:template>
+
+    <xsl:template match="gmd:referenceSystemInfo[last()]">
+        <xsl:copy>
+            <xsl:apply-templates select="@*|node()"/>
         </xsl:copy>
+    </xsl:template>
+
+    <!-- parsa il CRS e imposta il formato RNDT -->
+
+    <xsl:template match="gmd:referenceSystemIdentifier/gmd:RS_Identifier">
+
+       <xsl:variable name="fullcode" select="gmd:code/gco:CharacterString/text()"/>
+       <xsl:variable name="epsgcode" select="substring-before(substring-after($fullcode,'(EPSG:'), ')')"/>
+
+       <xsl:message>FULL: <xsl:value-of select="$fullcode"/></xsl:message>
+       <xsl:message>EPSG: <xsl:value-of select="$epsgcode"/></xsl:message>
+       
+        <xsl:copy>
+            <xsl:choose>
+                <!-- se e' un numero, consideralo un codice EPSG -->
+                <xsl:when test="string(number($fullcode)) != 'NaN'">
+                    <xsl:call-template name="srsEPSGsnippet">
+                        <xsl:with-param name="epsg" select="$fullcode"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <!-- se il code contiene la stringa "(EPSG:nnnn)" dovrebbe essere un codice preso dal CRS selector -->
+                <xsl:when test="string(number($epsgcode)) != 'NaN'">
+                    <xsl:call-template name="srsEPSGsnippet">
+                        <xsl:with-param name="epsg" select="$epsgcode"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <!-- altrimenti copia solo il codice, che dovrebbe essere stringa RNDT -->
+                <xsl:otherwise>
+                    <xsl:apply-templates select="gmd:code"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:copy>
+    </xsl:template>
+
+    <xsl:template name="srsEPSGsnippet">
+        <xsl:param name="epsg"/>
+
+            <gmd:code>
+                <gco:CharacterString>
+                    <xsl:value-of select="$epsg"/>
+                </gco:CharacterString>
+            </gmd:code>
+            <gmd:codeSpace>
+                <gco:CharacterString>http://www.epsg-registry.org/</gco:CharacterString>
+            </gmd:codeSpace>
     </xsl:template>
 
     <!-- ================================================================= -->

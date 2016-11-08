@@ -33,13 +33,14 @@
 
 	<!--DATA/SERVICE IDENTIFICATION - IDENTIFIER-->
 	<M13>Identificazione dei Dati/Servizi - Identificatore</M13>
-	<alert.M13><div>L'elemento RS_Identifier è mancante, incompleto o ha un valore errato</div></alert.M13>
+	<alert.M13><div>L'elemento RS_Identifier/MD_Identifier è mancante, incompleto o ha un valore errato</div></alert.M13>
 	<!--DATA/SERVICE IDENTIFICATION - SERIES-->
 	<M14>Identificazione dei Dati/Servizi - Id livello superiore</M14>
 	<alert.M14><div>L'elemento series è mancante, incompleto o ha un valore errato</div></alert.M14>
 	<!--DATA/SERVICE IDENTIFICATION - DATASET RESPONSIBLE PARTY -->	
 	<M15>Identificazione dei Dati/Servizi - Responsabile del dato/servizio</M15>
 	<!--<alert.M15><div>L'elemento citedResponsibleParty è mancante, incompleto o ha un valore errato. Il metadato deve contenere gli elementi organisationName,role e electronicMailAddress e almeno uno tra gli elementi phone e onlineResource</div></alert.M15>-->
+	<alert.M15missing><div>Responsabile del dato|servizio mancante</div></alert.M15missing>
 	<alert.M15org><div>Nome dell'Ente mancante</div></alert.M15org>
 	<alert.M15poc><div>Ruolo mancante</div></alert.M15poc>
 	<alert.M15mail><div>Indirizzo e-mail mancante</div></alert.M15mail>
