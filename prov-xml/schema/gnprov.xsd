@@ -20,7 +20,7 @@
 
   <xs:element name="temporalExtent" type="gex:EX_TemporalExtent_PropertyType"/>
 
-  <xs:element name="gridDefinition" type="msr:MD_Georectified_Type"/>
+  <xs:element name="gridDefinition" type="msr:MD_Georectified_PropertyType"/>
  
   <xs:element name="party" type="cit:AbstractCI_Party_PropertyType"/>
  

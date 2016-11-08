@@ -135,6 +135,9 @@
         <msr:transformationParameterAvailability>
           <gco:Boolean>true</gco:Boolean>
         </msr:transformationParameterAvailability>
+        <msr:checkPointAvailability>
+          <gco:Boolean>false</gco:Boolean>
+        </msr:checkPointAvailability>
         <msr:cornerPoints>
           <gml:Point gml:id="origin">
            <gml:pos>-180.0 -90.0</gml:pos>
@@ -155,6 +158,9 @@
            <gml:pos>-180.0 90.0</gml:pos>
           </gml:Point>
          </msr:cornerPoints>
+        <msr:pointInPixel>
+          <msr:MD_PixelOrientationCode>lowerLeft</msr:MD_PixelOrientationCode>
+        </msr:pointInPixel>
         <msr:transformationDimensionDescription>
           <gco:CharacterString>rotation in degrees, clockwise from north</gco:CharacterString>
          </msr:transformationDimensionDescription>
