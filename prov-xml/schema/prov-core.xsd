@@ -13,6 +13,7 @@
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:prov="http://www.w3.org/ns/prov#"
            xmlns:gnprov="http://geonetwork-opensource.org/prov-xml"
+           xmlns:trike-prov="http://www.csiro.au/en/Research/OandA/trike"
            xmlns:cu="http://www.w3.org/1999/xhtml/datatypes/"
            xmlns:xml="http://www.w3.org/XML/1998/namespace"
            xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -33,6 +34,9 @@
 
   <xs:import namespace="http://geonetwork-opensource.org/prov-xml" 
              schemaLocation="gnprov.xsd"/>
+
+  <xs:import namespace="http://www.csiro.au/en/Research/OandA/trike" 
+             schemaLocation="trike-prov.xsd"/>
 
   <!-- Component 1 -->
 
@@ -58,6 +62,7 @@
 				<!-- <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/> -->
         <xs:element ref="gnprov:temporalExtent" minOccurs="0"/>
         <xs:element ref="gnprov:gridDefinition" minOccurs="0"/>
+        <xs:element ref="trike-prov:param" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute ref="prov:id"/>
     <!-- <xs:anyAttribute namespace="##other" processContents="lax"/> -->

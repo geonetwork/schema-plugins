@@ -21,6 +21,9 @@
 	<uri name="http://geonetwork-opensource.org/prov-xml/gnprov.xsd" 
 	     uri="schema/gnprov.xsd"/>
 
+	<uri name="http://www.csiro.au/en/Research/OandA/trike/trike-prov.xsd" 
+	     uri="schema/trike-prov.xsd"/>
+
 
 	<!-- These are to map schemaLocation hints to local schemas to make sure that
        GeoNetwork edits and validates against a schema it knows about. -->
@@ -36,6 +39,10 @@
 
 	<system systemId="http://geonetwork-opensource.org/prov-xml/gnprov.xsd" 
 	     uri="schema/gnprov.xsd"/>
+
+	<system systemId="http://www.csiro.au/en/Research/OandA/trike/trike-prov.xsd" 
+	     uri="schema/trike-prov.xsd"/>
+
 
 
   <!-- The stuff for iso19115-3 - shouldn't need to be repeated here but... -->
