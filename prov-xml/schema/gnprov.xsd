@@ -18,10 +18,10 @@
   <xs:import namespace="http://standards.iso.org/iso/19115/-3/cit/1.0" 
              schemaLocation="standards.iso.org/iso/19115/-3/cit/1.0/cit.xsd"/>
 
-  <element name="timeExtent" type="gex:EX_TemporalExtent_PropertyType"/>
+  <xs:element name="temporalExtent" type="gex:EX_TemporalExtent_PropertyType"/>
 
-  <element name="gridDefinition" type="msr:MD_Georectified_Type"/>
+  <xs:element name="gridDefinition" type="msr:MD_Georectified_Type"/>
  
-  <element name="party" type="cit:AbstractCI_Party_PropertyType"/>
+  <xs:element name="party" type="cit:AbstractCI_Party_PropertyType"/>
  
 </xs:schema>

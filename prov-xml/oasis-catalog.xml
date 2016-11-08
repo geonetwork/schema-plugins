@@ -18,6 +18,9 @@
 	<uri name="http://dublincore.org/schemas/xmls/qdc/2008/02/11/dcterms.xsd"
 	     uri="schema/dcterms.xsd"/>
 
+	<uri name="http://geonetwork-opensource.org/prov-xml/gnprov.xsd" 
+	     uri="schema/gnprov.xsd"/>
+
 
 	<!-- These are to map schemaLocation hints to local schemas to make sure that
        GeoNetwork edits and validates against a schema it knows about. -->
@@ -30,6 +33,9 @@
 					
 	<system systemId="http://dublincore.org/schemas/xmls/qdc/2008/02/11/dcterms.xsd"
 	        uri="schema/dcterms.xsd"/>
+
+	<system systemId="http://geonetwork-opensource.org/prov-xml/gnprov.xsd" 
+	     uri="schema/gnprov.xsd"/>
 
 
   <!-- The stuff for iso19115-3 - shouldn't need to be repeated here but... -->

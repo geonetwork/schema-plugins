@@ -77,9 +77,9 @@
 
   <!-- timeExtent is prov:entity with a gex:EX_TemporalExtent element in it -->
   <prov:entity prov:id="timeExtent">
+    <!-- prov:type is Mandatory -->
+    <prov:type codeList="codeListLocation#type" codeListValue="timeExtent">timeExtent</prov:type> <!-- helper provides this -->
     <gnprov:temporalExtent>
-      <gex:EX_Extent>
-        <gex:temporalElement>
           <gex:EX_TemporalExtent>
             <gex:extent>
               <!-- gmd:id needs to be unique to this document, gml:TimePeriod can be
@@ -91,15 +91,13 @@
               </gml:TimePeriod>
             </gex:extent>
           </gex:EX_TemporalExtent>
-        </gex:temporalElement>
-      </gex:EX_Extent>  
     </gnprov:temporalExtent>
-    <!-- prov:type is Mandatory -->
-    <prov:type codeList="codeListLocation#type" codeListValue="timeExtent">timeExtent</prov:type> <!-- helper provides this -->
   </prov:entity>
 
   <!-- gridDefinition is prov:entity with an msr:MD_Georectified element -->
   <prov:entity prov:id="gridDefinition">
+    <!-- prov:type is Mandatory -->
+    <prov:type codeList="codeListLocation#type" codeListValue="gridDefinition">gridDefinition</prov:type> <!-- helper provides this -->
     <gnprov:gridDefinition>
       <msr:MD_Georectified>
         <msr:numberOfDimensions>
@@ -165,8 +163,6 @@
          </msr:transformationDimensionMapping>
       </msr:MD_Georectified>
     </gnprov:gridDefinition>
-    <!-- prov:type is Mandatory -->
-    <prov:type codeList="codeListLocation#type" codeListValue="gridDefinition">gridDefinition</prov:type> <!-- helper provides this -->
   </prov:entity>
 
   <!-- output packages are identified by their own uuid(? could be too opaque) and a location 
@@ -192,12 +188,12 @@
   <prov:person prov:id="name of individual who did something in this activity">
     <gnprov:party>
             <cit:CI_Individual>
+               <cit:name>
+                  <gco:CharacterString>John Q Scientist</gco:CharacterString>
+               </cit:name>
                <cit:positionName>
                   <gco:CharacterString>eg. Research Scientist</gco:CharacterString>
                </cit:positionName>
-               <cit:individualName>
-                  <gco:CharacterString>John Q Scientist</gco:CharacterString>
-               </cit:individualName>
             </cit:CI_Individual>
     </gnprov:party>
   </prov:person>
