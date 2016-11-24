@@ -122,7 +122,7 @@ Status for each plugins in that repository is described below:
   <td>sensorML</td>
   <td>?</td>
   <td>?</td>
-  <td></td>
+  <td>Being updated by @delawen to 3.x</td>
  </tr>
 </table> 
 
