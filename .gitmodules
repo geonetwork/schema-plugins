@@ -16,3 +16,6 @@
 [submodule "iso19139.nl.services.1.2.1"]
 	path = iso19139.nl.services.1.2.1
 	url = https://github.com/metadata101/iso19139.nl.services.1.2.1.git
+[submodule "sensorML"]
+	path = sensorML
+	url = git@github.com:metadata101/sensorML.git
