@@ -120,9 +120,9 @@ Status for each plugins in that repository is described below:
   <td>This is a template to start with</td>
  </tr><tr>
   <td>sensorML</td>
-  <td>?</td>
-  <td>?</td>
-  <td>Being updated by @delawen to 3.x</td>
+  <td>3.x</td>
+  <td>ICGC, @Delawen</td>
+  <td>Use https://github.com/metadata101/sensorML</td>
  </tr>
 </table> 
 
