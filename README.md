@@ -99,9 +99,9 @@ Status for each plugins in that repository is described below:
   <td>?</td>
   <td></td>
  </tr><tr>
-  <td>iso19139.mdt</td>
-  <td>?</td>
-  <td>?</td>
+  <td>iso19139.rndt</td>
+  <td>2.10.x</td>
+  <td><a href="https://github.com/etj">Emanuele Tajariol</a>, Geo-Solutions</td>
   <td></td>
  </tr><tr>
   <td>iso19139.sdn-cdi</td>
