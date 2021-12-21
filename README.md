@@ -1,4 +1,6 @@
 
+**This repository is deprecated! For GeoNetwork versions 3 and above plugins are developed at https://github.com/metadata101/**
+
 ## Schema plugin repository
 
 This GitHub repository contains schema plugin for GeoNetwork.
